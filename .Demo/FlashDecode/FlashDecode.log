@@ -1,0 +1,3347 @@
+FirmwareTMS.dat found at current directory
+  Compile date  =  2010-10-30
+  Database      =  16 SysIDs, 1 F/W IDs
+  SysID         =  22010
+  Device        =  SRP-2100 (TMS)
+  AppType       =  
+  SystemType    =  ST_TMSS
+  DisplayType   =  Masterpiece VFD
+  RemoteType    =  2100
+
+TV channels (116)
+  000: 'ORF1' / 'ORF'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=72, LCN=0
+    ServiceID=32c9, PMTPID=03e9, PCRPID=00a0, VideoPID=00a0, AudioPID=80a1
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  001: 'ORF1 HD' / 'ORF'
+    SatIndex=1, VideoStreamType=1b, AudioStreamType=03, Tuner=3, TpIndex=99, LCN=0
+    ServiceID=132f, PMTPID=006b, PCRPID=0780, VideoPID=0780, AudioPID=8781
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  002: 'ORF2' / 'ORF'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=72, LCN=0
+    ServiceID=32ca, PMTPID=03ea, PCRPID=01f4, VideoPID=01f4, AudioPID=01f5
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  003: 'ORF2 HD' / 'ORF'
+    SatIndex=1, VideoStreamType=1b, AudioStreamType=03, Tuner=3, TpIndex=99, LCN=0
+    ServiceID=1330, PMTPID=006c, PCRPID=0b68, VideoPID=0b68, AudioPID=8b69
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  004: 'ORF2 W' / 'ORF'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=72, LCN=0
+    ServiceID=32cb, PMTPID=03f3, PCRPID=01f4, VideoPID=01f4, AudioPID=81f5
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  005: 'ORF2 N' / 'ORF'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=72, LCN=0
+    ServiceID=32cc, PMTPID=03f4, PCRPID=01f4, VideoPID=01f4, AudioPID=81f5
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  006: 'ORF2 B' / 'ORF'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=72, LCN=0
+    ServiceID=32cd, PMTPID=03f5, PCRPID=01f4, VideoPID=01f4, AudioPID=81f5
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  007: 'ORF2 O' / 'ORF'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=72, LCN=0
+    ServiceID=32ce, PMTPID=03f6, PCRPID=01f4, VideoPID=01f4, AudioPID=81f5
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  008: 'ORF2 S' / 'ORF'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=72, LCN=0
+    ServiceID=32cf, PMTPID=03f7, PCRPID=01f4, VideoPID=01f4, AudioPID=81f5
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  009: 'ORF2 T' / 'ORF'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=72, LCN=0
+    ServiceID=32d0, PMTPID=03f8, PCRPID=01f4, VideoPID=01f4, AudioPID=81f5
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  010: 'ORF2 V' / 'ORF'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=72, LCN=0
+    ServiceID=32d1, PMTPID=03f9, PCRPID=01f4, VideoPID=01f4, AudioPID=81f5
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  011: 'ORF2 St' / 'ORF'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=72, LCN=0
+    ServiceID=32d2, PMTPID=03fa, PCRPID=01f4, VideoPID=01f4, AudioPID=81f5
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  012: 'ORF2 K' / 'ORF'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=72, LCN=0
+    ServiceID=32d3, PMTPID=03fb, PCRPID=01f4, VideoPID=01f4, AudioPID=81f5
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  013: 'HITRADIO OE3' / 'ORF'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=72, LCN=0
+    ServiceID=32d5, PMTPID=03eb, PCRPID=0082, VideoPID=0082, AudioPID=8083
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  014: 'ORF2E' / 'ORF'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=72, LCN=0
+    ServiceID=32d6, PMTPID=03ec, PCRPID=00aa, VideoPID=00aa, AudioPID=80ab
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  015: 'ATV' / 'ATV+'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=72, LCN=0
+    ServiceID=32d4, PMTPID=03fc, PCRPID=01fa, VideoPID=01fa, AudioPID=81fb
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  016: 'TW1' / 'ORF'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=70, LCN=0
+    ServiceID=332d, PMTPID=044d, PCRPID=03f2, VideoPID=03f2, AudioPID=83f3
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  017: '3sat' / 'ZDFvision'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=04, Tuner=3, TpIndex=32, LCN=0
+    ServiceID=6d67, PMTPID=00c8, PCRPID=00d2, VideoPID=00d2, AudioPID=80dc
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  018: 'ANIXE HD' / 'BetaDigital'
+    SatIndex=1, VideoStreamType=1b, AudioStreamType=81, Tuner=3, TpIndex=106, LCN=0
+    ServiceID=ef12, PMTPID=0062, PCRPID=02ff, VideoPID=02ff, AudioPID=a303
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  019: 'arte HD' / 'ZDFvision'
+    SatIndex=1, VideoStreamType=1b, AudioStreamType=03, Tuner=3, TpIndex=87, LCN=0
+    ServiceID=2b70, PMTPID=1838, PCRPID=1842, VideoPID=1842, AudioPID=984d
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  020: 'arte' / 'ARD'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=82, LCN=0
+    ServiceID=7034, PMTPID=0190, PCRPID=0191, VideoPID=0191, AudioPID=8192
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  021: 'ASTRA HD' / 'BetaDigital'
+    SatIndex=1, VideoStreamType=1b, AudioStreamType=81, Tuner=3, TpIndex=106, LCN=0
+    ServiceID=ef13, PMTPID=0063, PCRPID=03ff, VideoPID=03ff, AudioPID=a403
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  022: 'Bayerisches FS Nord' / 'ARD'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=26, LCN=0
+    ServiceID=6dce, PMTPID=01f4, PCRPID=00c9, VideoPID=00c9, AudioPID=80ca
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  023: 'BR-alpha' / 'ARD'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f47, PMTPID=0578, PCRPID=0579, VideoPID=0579, AudioPID=857a
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  024: 'Das Erste' / 'ARD'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=04, Tuner=3, TpIndex=26, LCN=0
+    ServiceID=6dca, PMTPID=0064, PCRPID=0065, VideoPID=0065, AudioPID=8066
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  025: 'Das Erste HD' / 'ARD'
+    SatIndex=1, VideoStreamType=1b, AudioStreamType=03, Tuner=3, TpIndex=87, LCN=0
+    ServiceID=2b5c, PMTPID=1770, PCRPID=177a, VideoPID=177a, AudioPID=1784
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  026: '†D‡AS† VIERTE‡' / 'BetaDigital'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=04, Tuner=3, TpIndex=58, LCN=0
+    ServiceID=0701, PMTPID=0073, PCRPID=07ff, VideoPID=07ff, AudioPID=8800
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  027: 'EinsExtra' / 'ARD'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=82, LCN=0
+    ServiceID=7031, PMTPID=0064, PCRPID=0065, VideoPID=0065, AudioPID=8066
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  028: 'Einsfestival' / 'ARD'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=04, Tuner=3, TpIndex=82, LCN=0
+    ServiceID=7032, PMTPID=00c8, PCRPID=00c9, VideoPID=00c9, AudioPID=80ca
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  029: 'Einsfestival HD' / 'ARD'
+    SatIndex=1, VideoStreamType=1b, AudioStreamType=03, Tuner=3, TpIndex=56, LCN=0
+    ServiceID=6eec, PMTPID=0640, PCRPID=0641, VideoPID=0641, AudioPID=8642
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  030: 'EinsPlus' / 'ARD'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=04, Tuner=3, TpIndex=82, LCN=0
+    ServiceID=7033, PMTPID=012c, PCRPID=012d, VideoPID=012d, AudioPID=812e
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  031: 'EuroNews' / 'Globecast'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=46, LCN=0
+    ServiceID=79f4, PMTPID=0104, PCRPID=0980, VideoPID=0980, AudioPID=8981
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  032: 'hr-fernsehen' / 'ARD'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=26, LCN=0
+    ServiceID=6dcc, PMTPID=012c, PCRPID=012d, VideoPID=012d, AudioPID=012f
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  033: 'kabel eins' / 'ProSiebenSat.1'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=62, LCN=0
+    ServiceID=445e, PMTPID=0062, PCRPID=02ff, VideoPID=02ff, AudioPID=8300
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  034: 'kabel eins HD' / 'ProSiebenSat.1'
+    SatIndex=1, VideoStreamType=1b, AudioStreamType=81, Tuner=3, TpIndex=105, LCN=0
+    ServiceID=ef76, PMTPID=0062, PCRPID=02ff, VideoPID=02ff, AudioPID=a303
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  035: 'MDR S-Anhalt' / 'ARD'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=04, Tuner=3, TpIndex=40, LCN=0
+    ServiceID=6e45, PMTPID=0b54, PCRPID=0b55, VideoPID=0b55, AudioPID=8b56
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  036: 'MTV Germany' / 'MTV Networks Europe'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=04, Tuner=3, TpIndex=33, LCN=0
+    ServiceID=7001, PMTPID=019d, PCRPID=1ffe, VideoPID=0fbf, AudioPID=8fc0
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  037: 'n-tv' / 'RTL World'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=44, LCN=0
+    ServiceID=2f3a, PMTPID=0030, PCRPID=00a9, VideoPID=00a9, AudioPID=8049
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  038: 'N24' / 'ProSiebenSat.1'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=04, Tuner=3, TpIndex=62, LCN=0
+    ServiceID=445f, PMTPID=0063, PCRPID=03ff, VideoPID=03ff, AudioPID=8400
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  039: 'NDR FS SH' / 'ARD'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=04, Tuner=3, TpIndex=40, LCN=0
+    ServiceID=6e43, PMTPID=0a8c, PCRPID=0a29, VideoPID=0a29, AudioPID=8a2a
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  040: 'Phoenix' / 'ARD'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=82, LCN=0
+    ServiceID=7035, PMTPID=01f4, PCRPID=01f5, VideoPID=01f5, AudioPID=81f6
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  041: 'ProSieben' / 'ProSiebenSat.1'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=62, LCN=0
+    ServiceID=445d, PMTPID=0061, PCRPID=01ff, VideoPID=01ff, AudioPID=8200
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  042: 'ProSieben HD' / 'ProSiebenSat.1'
+    SatIndex=1, VideoStreamType=1b, AudioStreamType=81, Tuner=3, TpIndex=105, LCN=0
+    ServiceID=ef75, PMTPID=0061, PCRPID=01ff, VideoPID=01ff, AudioPID=a203
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  043: 'PULS 4 Austria' / 'ProSiebenSat.1'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=04, Tuner=3, TpIndex=37, LCN=0
+    ServiceID=4e27, PMTPID=0066, PCRPID=06ff, VideoPID=06ff, AudioPID=8700
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  044: 'Radio Bremen TV' / 'ARD'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=04, Tuner=3, TpIndex=56, LCN=0
+    ServiceID=6ee1, PMTPID=04b0, PCRPID=04b1, VideoPID=04b1, AudioPID=84b2
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  045: 'rbb Brandenburg' / 'ARD'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=40, LCN=0
+    ServiceID=6e2d, PMTPID=01f4, PCRPID=0259, VideoPID=0259, AudioPID=825a
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  046: 'RTL FS' / 'RTL World'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=44, LCN=0
+    ServiceID=2ee6, PMTPID=0038, PCRPID=00a3, VideoPID=00a3, AudioPID=8068
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  047: '†RTL‡ Television' / 'RTL World'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=44, LCN=0
+    ServiceID=2ee3, PMTPID=002c, PCRPID=00a3, VideoPID=00a3, AudioPID=8068
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  048: 'RTL2' / 'RTL World'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=44, LCN=0
+    ServiceID=2ef4, PMTPID=002e, PCRPID=00a6, VideoPID=00a6, AudioPID=8080
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  049: 'SAT.1' / 'ProSiebenSat.1'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=62, LCN=0
+    ServiceID=445c, PMTPID=0060, PCRPID=00ff, VideoPID=00ff, AudioPID=8100
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  050: 'SAT.1 HD' / 'ProSiebenSat.1'
+    SatIndex=1, VideoStreamType=1b, AudioStreamType=81, Tuner=3, TpIndex=105, LCN=0
+    ServiceID=ef74, PMTPID=0060, PCRPID=00ff, VideoPID=00ff, AudioPID=a103
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  051: 'ServusTV' / 'ServusTV'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=04, Tuner=3, TpIndex=70, LCN=0
+    ServiceID=3337, PMTPID=04bb, PCRPID=083e, VideoPID=083e, AudioPID=883f
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  052: 'Servus TV HD' / 'ServusTV'
+    SatIndex=1, VideoStreamType=1b, AudioStreamType=04, Tuner=3, TpIndex=99, LCN=0
+    ServiceID=1331, PMTPID=006d, PCRPID=0dff, VideoPID=0dff, AudioPID=8e00
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  053: 'SR Fernsehen' / 'ARD'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f46, PMTPID=0514, PCRPID=0515, VideoPID=0515, AudioPID=8516
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  054: '†S‡uper† RTL‡' / 'RTL World'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=04, Tuner=3, TpIndex=44, LCN=0
+    ServiceID=2f08, PMTPID=002d, PCRPID=00a5, VideoPID=00a5, AudioPID=8078
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  055: 'SWR Fernsehen RP' / 'ARD'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=40, LCN=0
+    ServiceID=6e47, PMTPID=0c1c, PCRPID=0c1d, VideoPID=0c1d, AudioPID=8c1e
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  056: 'VOX' / 'RTL World'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=44, LCN=0
+    ServiceID=2f1c, PMTPID=002f, PCRPID=00a7, VideoPID=00a7, AudioPID=8088
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  057: 'WDR Bielefeld' / 'ARD'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=56, LCN=0
+    ServiceID=6e92, PMTPID=012c, PCRPID=0065, VideoPID=0065, AudioPID=8066
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  058: 'ZDF' / 'ZDFvision'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=04, Tuner=3, TpIndex=32, LCN=0
+    ServiceID=6d66, PMTPID=0064, PCRPID=006e, VideoPID=006e, AudioPID=8078
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  059: 'ZDF HD' / 'ZDFvision'
+    SatIndex=1, VideoStreamType=1b, AudioStreamType=03, Tuner=3, TpIndex=87, LCN=0
+    ServiceID=2b66, PMTPID=17d4, PCRPID=17de, VideoPID=17de, AudioPID=97e8
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  060: 'zdf_neo' / 'ZDFvision'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=04, Tuner=3, TpIndex=32, LCN=0
+    ServiceID=6d6e, PMTPID=028a, PCRPID=0294, VideoPID=0294, AudioPID=829e
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  061: 'ZDFinfokanal' / 'ZDFvision'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=04, Tuner=3, TpIndex=32, LCN=0
+    ServiceID=6d6b, PMTPID=0258, PCRPID=0262, VideoPID=0262, AudioPID=826c
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  062: '123 Sat / 69 xtv' / 'GlobeCast'
+    SatIndex=0, VideoStreamType=02, AudioStreamType=00, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=29d6, PMTPID=00d2, PCRPID=00e6, VideoPID=00e6, AudioPID=80fa
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0013, unknown2=00 00 00 80 00 00 
+
+  063: '†DELUXE‡ MUSIC' / 'BetaDigital'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=04, Tuner=3, TpIndex=47, LCN=0
+    ServiceID=2774, PMTPID=0060, PCRPID=00ff, VideoPID=00ff, AudioPID=8100
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  064: 'Countdown' / 'OIV Zagreb'
+    SatIndex=0, VideoStreamType=00, AudioStreamType=00, Tuner=3, TpIndex=111, LCN=0
+    ServiceID=0c8c, PMTPID=002c, PCRPID=00eb, VideoPID=00eb, AudioPID=80ec
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0021, unknown2=00 00 00 80 00 00 
+
+  065: 'GoTV' / 'GoTV'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=70, LCN=0
+    ServiceID=332e, PMTPID=044e, PCRPID=03fc, VideoPID=03fc, AudioPID=83fd
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  066: 'imusic TV' / 'BetaDigital'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=04, Tuner=3, TpIndex=58, LCN=0
+    ServiceID=0304, PMTPID=0092, PCRPID=01ef, VideoPID=01ef, AudioPID=81f0
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  067: 'RTL 102.5 TV' / 'GlobeCast_Italia'
+    SatIndex=0, VideoStreamType=02, AudioStreamType=00, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=29d0, PMTPID=0021, PCRPID=00e0, VideoPID=00e0, AudioPID=80f4
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0013, unknown2=00 00 00 80 00 00 
+
+  068: 'VIVA Germany' / 'MTV Networks Europe'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=04, Tuner=3, TpIndex=33, LCN=0
+    ServiceID=7004, PMTPID=01a0, PCRPID=1ffe, VideoPID=0fdd, AudioPID=8fde
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  069: 'VIVA Polska' / 'MTV Networks Europe'
+    SatIndex=0, VideoStreamType=02, AudioStreamType=00, Tuner=3, TpIndex=18, LCN=0
+    ServiceID=0005, PMTPID=0404, PCRPID=00a4, VideoPID=00a4, AudioPID=8060
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0013, unknown2=00 00 00 80 00 00 
+
+  070: '†Sky‡ †Sel‡ect' / 'SKY'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=36, LCN=0
+    ServiceID=0012, PMTPID=0067, PCRPID=0aff, VideoPID=0aff, AudioPID=8b00
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  071: '.' / 'BetaDigital'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=04, Tuner=3, TpIndex=47, LCN=0
+    ServiceID=277b, PMTPID=0067, PCRPID=07ff, VideoPID=07ff, AudioPID=8800
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  072: 'KiKa' / 'ZDFvision'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=32, LCN=0
+    ServiceID=6d68, PMTPID=012c, PCRPID=0136, VideoPID=0136, AudioPID=8140
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  073: 'ZDFtheaterkanal' / 'ZDFvision'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=32, LCN=0
+    ServiceID=6d70, PMTPID=044c, PCRPID=0456, VideoPID=0456, AudioPID=8460
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  074: '†Sky‡ †Sel‡ect †1‡' / 'SKY'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=24, LCN=0
+    ServiceID=00fb, PMTPID=0062, PCRPID=0bff, VideoPID=0bff, AudioPID=8c00
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  075: '†Sky‡ †Sel‡ect †2‡' / 'SKY'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=24, LCN=0
+    ServiceID=0105, PMTPID=006c, PCRPID=0cff, VideoPID=0cff, AudioPID=8d00
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  076: '†Sky‡ †Sel‡ect †3‡' / 'SKY'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=20, LCN=0
+    ServiceID=010f, PMTPID=0067, PCRPID=09ff, VideoPID=09ff, AudioPID=8a00
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  077: '†Sky‡ †Sel‡ect †4‡' / 'SKY'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=20, LCN=0
+    ServiceID=0119, PMTPID=0068, PCRPID=0aff, VideoPID=0aff, AudioPID=8b00
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  078: '†Sky‡ †Sel‡ect †5‡' / 'SKY'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=20, LCN=0
+    ServiceID=0123, PMTPID=0069, PCRPID=0bff, VideoPID=0bff, AudioPID=8c00
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  079: '†Sky‡ †Sel‡ect †6‡' / 'SKY'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=20, LCN=0
+    ServiceID=012d, PMTPID=0062, PCRPID=02ff, VideoPID=02ff, AudioPID=8300
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  080: '†Sky‡ †Sel‡ect †7‡' / 'SKY'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=22, LCN=0
+    ServiceID=0137, PMTPID=006b, PCRPID=0bff, VideoPID=0bff, AudioPID=8c00
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  081: '†Sky‡ †Sel‡ect †8‡' / 'SKY'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=22, LCN=0
+    ServiceID=0141, PMTPID=006d, PCRPID=0cff, VideoPID=0cff, AudioPID=8d00
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  082: '†Sky‡ †Sel‡ect †9‡' / 'SKY'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=22, LCN=0
+    ServiceID=014b, PMTPID=0073, PCRPID=0dff, VideoPID=0dff, AudioPID=8e00
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  083: '†Sky ‡Select †Event A‡' / 'SKY'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=24, LCN=0
+    ServiceID=00fe, PMTPID=0068, PCRPID=05ff, VideoPID=05ff, AudioPID=8600
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  084: '†Sky ‡Select †Event B‡' / 'SKY'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=24, LCN=0
+    ServiceID=0108, PMTPID=006b, PCRPID=0dff, VideoPID=0dff, AudioPID=8e00
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  085: '†Sky Bu‡ndes†li‡ga' / 'SKY'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=36, LCN=0
+    ServiceID=00df, PMTPID=0066, PCRPID=02ff, VideoPID=02ff, AudioPID=8300
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  086: '†Sky Bu‡ndes†li‡ga† 1‡' / 'SKY'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=24, LCN=0
+    ServiceID=0106, PMTPID=0060, PCRPID=0cff, VideoPID=0cff, AudioPID=8d00
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  087: '†Sky Bu‡ndes†li‡ga† 2‡' / 'SKY'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=20, LCN=0
+    ServiceID=0110, PMTPID=0060, PCRPID=06ff, VideoPID=06ff, AudioPID=8700
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  088: '†Sky Bu‡ndes†li‡ga† 3‡' / 'SKY'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=20, LCN=0
+    ServiceID=011a, PMTPID=0065, PCRPID=0aff, VideoPID=0aff, AudioPID=8b00
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  089: '†Sky Bu‡ndes†li‡ga† 4‡' / 'SKY'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=20, LCN=0
+    ServiceID=0124, PMTPID=006d, PCRPID=0bff, VideoPID=0bff, AudioPID=8c00
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  090: '†Sky Bu‡ndes†li‡ga† 5‡' / 'SKY'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=20, LCN=0
+    ServiceID=012e, PMTPID=006f, PCRPID=02ff, VideoPID=02ff, AudioPID=8300
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  091: '†Sky Bu‡ndes†li‡ga† 6‡' / 'SKY'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=22, LCN=0
+    ServiceID=0138, PMTPID=006c, PCRPID=0bff, VideoPID=0bff, AudioPID=8c00
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  092: '†Sky Bu‡ndes†li‡ga† 7‡' / 'SKY'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=22, LCN=0
+    ServiceID=0142, PMTPID=0071, PCRPID=0cff, VideoPID=0cff, AudioPID=8d00
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  093: '†Sky Bu‡ndes†li‡ga† 8‡' / 'SKY'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=22, LCN=0
+    ServiceID=014c, PMTPID=0072, PCRPID=0dff, VideoPID=0dff, AudioPID=8e00
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  094: 'Sky Bundesliga 9' / 'SKY'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=38, LCN=0
+    ServiceID=0156, PMTPID=0078, PCRPID=07ff, VideoPID=07ff, AudioPID=8800
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  095: 'Sky Bundesliga 10' / 'SKY'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=38, LCN=0
+    ServiceID=0160, PMTPID=007a, PCRPID=08ff, VideoPID=08ff, AudioPID=8900
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  096: '†Sky Bu‡ndes†li‡ga† 11' / 'SKY'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=24, LCN=0
+    ServiceID=00fc, PMTPID=0063, PCRPID=0bff, VideoPID=0bff, AudioPID=8c00
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  097: 'Sky †Sport‡ †1‡' / 'SKY'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=36, LCN=0
+    ServiceID=00dd, PMTPID=006e, PCRPID=07ff, VideoPID=07ff, AudioPID=8800
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  098: 'Sky †Sport‡ †2‡' / 'SKY'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=36, LCN=0
+    ServiceID=00de, PMTPID=0068, PCRPID=08ff, VideoPID=08ff, AudioPID=8900
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  099: 'Sky †Sport‡ †3‡' / 'SKY'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=24, LCN=0
+    ServiceID=00fd, PMTPID=0064, PCRPID=04ff, VideoPID=04ff, AudioPID=8500
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  100: 'Sky †Sport‡ †4‡' / 'SKY'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=22, LCN=0
+    ServiceID=014d, PMTPID=006a, PCRPID=0aff, VideoPID=0aff, AudioPID=8b00
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  101: 'Sky †Sport‡ †5‡' / 'SKY'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=22, LCN=0
+    ServiceID=0143, PMTPID=0069, PCRPID=08ff, VideoPID=08ff, AudioPID=8900
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  102: 'Sky †Sport‡ †6‡' / 'SKY'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=22, LCN=0
+    ServiceID=0139, PMTPID=006f, PCRPID=0eff, VideoPID=0eff, AudioPID=8f00
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  103: 'Sky †Sport‡ †7‡' / 'SKY'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=20, LCN=0
+    ServiceID=012f, PMTPID=0070, PCRPID=0dff, VideoPID=0dff, AudioPID=8e00
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  104: 'Sky †Sport‡ †8‡' / 'SKY'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=20, LCN=0
+    ServiceID=0125, PMTPID=006e, PCRPID=0bff, VideoPID=0bff, AudioPID=8c00
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  105: 'Sky †Sport‡ †9‡' / 'SKY'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=20, LCN=0
+    ServiceID=011b, PMTPID=0066, PCRPID=0aff, VideoPID=0aff, AudioPID=8b00
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  106: 'Sky †Sport‡ †10‡' / 'SKY'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=24, LCN=0
+    ServiceID=0107, PMTPID=006a, PCRPID=0cff, VideoPID=0cff, AudioPID=8d00
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  107: 'Sky †Sport‡ †11‡' / 'SKY'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=20, LCN=0
+    ServiceID=0111, PMTPID=0063, PCRPID=09ff, VideoPID=09ff, AudioPID=8a00
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  108: 'Sky Sport 12' / 'SKY'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=38, LCN=0
+    ServiceID=016b, PMTPID=007c, PCRPID=08ff, VideoPID=08ff, AudioPID=8900
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  109: 'Sky Sport 13' / 'SKY'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=38, LCN=0
+    ServiceID=0175, PMTPID=007e, PCRPID=0aff, VideoPID=0aff, AudioPID=8b00
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  110: 'Sky Blue Movie 1' / 'SKY'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=38, LCN=0
+    ServiceID=0159, PMTPID=0079, PCRPID=07ff, VideoPID=07ff, AudioPID=8800
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  111: 'Sky Blue Movie 2' / 'SKY'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=38, LCN=0
+    ServiceID=0163, PMTPID=007b, PCRPID=08ff, VideoPID=08ff, AudioPID=8900
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  112: 'Sky Blue Movie 3' / 'SKY'
+    SatIndex=1, VideoStreamType=02, AudioStreamType=03, Tuner=3, TpIndex=38, LCN=0
+    ServiceID=016d, PMTPID=007d, PCRPID=0aff, VideoPID=0aff, AudioPID=8b00
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  113: '†Disney‡ Cinemagic †HD' / 'SKY'
+    SatIndex=1, VideoStreamType=1b, AudioStreamType=81, Tuner=1, TpIndex=100, LCN=0
+    ServiceID=007e, PMTPID=0060, PCRPID=00ff, VideoPID=00ff, AudioPID=a103
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  114: '†NatGeo‡ †HD‡' / 'SKY'
+    SatIndex=1, VideoStreamType=1b, AudioStreamType=81, Tuner=1, TpIndex=100, LCN=0
+    ServiceID=007f, PMTPID=0061, PCRPID=01ff, VideoPID=01ff, AudioPID=a203
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  115: '†Hist‡ory †HD‡' / 'SKY'
+    SatIndex=1, VideoStreamType=1b, AudioStreamType=81, Tuner=1, TpIndex=100, LCN=0
+    ServiceID=0080, PMTPID=0062, PCRPID=02ff, VideoPID=02ff, AudioPID=a303
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+Radio channels (239)
+  000: '1LIVE' / 'ARD WDR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f3b, PMTPID=044c, PCRPID=044d, VideoPID=ffff, AudioPID=844d
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  001: '1LIVE diggi' / 'ARD WDR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f41, PMTPID=0488, PCRPID=0489, VideoPID=ffff, AudioPID=8489
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  002: '†ANTENNE‡ BAYERN' / 'BetaDigital'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=42, LCN=0
+    ServiceID=00aa, PMTPID=0070, PCRPID=0160, VideoPID=ffff, AudioPID=8160
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  003: 'Antenne Brandenburg' / 'ARD rbb'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=03, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f26, PMTPID=0334, PCRPID=0335, VideoPID=ffff, AudioPID=8335
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  004: 'B5 aktuell' / 'ARD BR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=03, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6ef4, PMTPID=008c, PCRPID=008d, VideoPID=ffff, AudioPID=808d
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  005: 'B5 plus' / 'ARD BR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6ef8, PMTPID=00b4, PCRPID=00b5, VideoPID=ffff, AudioPID=80b5
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  006: 'Bayern 1' / 'ARD BR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6ef0, PMTPID=0064, PCRPID=0065, VideoPID=ffff, AudioPID=8065
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  007: 'Bayern 2' / 'ARD BR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6ef1, PMTPID=006e, PCRPID=006f, VideoPID=ffff, AudioPID=806f
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  008: 'BAYERN 3' / 'ARD BR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6ef2, PMTPID=0078, PCRPID=0079, VideoPID=ffff, AudioPID=8079
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  009: 'BR-KLASSIK' / 'ARD BR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6ef3, PMTPID=0082, PCRPID=0083, VideoPID=ffff, AudioPID=8083
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  010: 'BAYERN plus' / 'ARD BR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6ef5, PMTPID=0096, PCRPID=0097, VideoPID=ffff, AudioPID=8097
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  011: 'Bremen Eins' / 'ARD RB'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f20, PMTPID=02bc, PCRPID=02bd, VideoPID=ffff, AudioPID=82bd
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  012: 'Bremen Vier' / 'ARD RB'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f22, PMTPID=02d0, PCRPID=02d1, VideoPID=ffff, AudioPID=82d1
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  013: 'BR Verkehr' / 'ARD BR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=03, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6ef7, PMTPID=00aa, PCRPID=00ab, VideoPID=ffff, AudioPID=80ab
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  014: 'DASDING' / 'ARD SWR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=03, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f37, PMTPID=0424, PCRPID=0425, VideoPID=ffff, AudioPID=8425
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  015: 'DELUXE LOUNGE' / 'BetaDigital'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=03, Tuner=3, TpIndex=47, LCN=0
+    ServiceID=279d, PMTPID=0081, PCRPID=0160, VideoPID=ffff, AudioPID=8160
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  016: 'DELUXE RADIO' / 'BetaDigital'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=47, LCN=0
+    ServiceID=279c, PMTPID=0080, PCRPID=0150, VideoPID=ffff, AudioPID=8150
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  017: 'DKULTUR' / 'ZDFvision'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=32, LCN=0
+    ServiceID=6d6c, PMTPID=02bc, PCRPID=02c6, VideoPID=ffff, AudioPID=82c6
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  018: 'DLF' / 'ZDFvision'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=32, LCN=0
+    ServiceID=6d6d, PMTPID=0320, PCRPID=032a, VideoPID=ffff, AudioPID=832a
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  019: 'ffn Comedy' / 'MEDIA BROADCAST'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=03, Tuner=3, TpIndex=68, LCN=0
+    ServiceID=3172, PMTPID=009e, PCRPID=0166, VideoPID=ffff, AudioPID=8166
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  020: 'ffn digital' / 'MEDIA BROADCAST'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=03, Tuner=3, TpIndex=68, LCN=0
+    ServiceID=316e, PMTPID=009a, PCRPID=0162, VideoPID=ffff, AudioPID=8162
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  021: 'Fritz' / 'ARD rbb'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=03, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f29, PMTPID=0352, PCRPID=0353, VideoPID=ffff, AudioPID=8353
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  022: 'harmony.fm' / 'MEDIA BROADCAST'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=03, Tuner=3, TpIndex=68, LCN=0
+    ServiceID=3176, PMTPID=006f, PCRPID=040b, VideoPID=ffff, AudioPID=840c
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  023: 'HIT RADIO FFH' / 'MEDIA BROADCAST'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=03, Tuner=3, TpIndex=68, LCN=0
+    ServiceID=3174, PMTPID=006d, PCRPID=03ff, VideoPID=ffff, AudioPID=8400
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  024: 'hr1' / 'ARD HR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=03, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f03, PMTPID=0190, PCRPID=0191, VideoPID=ffff, AudioPID=8191
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  025: 'hr2' / 'ARD HR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=03, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f04, PMTPID=019a, PCRPID=019b, VideoPID=ffff, AudioPID=819b
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  026: 'hr3' / 'ARD HR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=03, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f05, PMTPID=01a4, PCRPID=01a5, VideoPID=ffff, AudioPID=81a5
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  027: 'hr4' / 'ARD HR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=03, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f06, PMTPID=01ae, PCRPID=01af, VideoPID=ffff, AudioPID=81af
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  028: 'hr-iNFO' / 'ARD HR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=03, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f08, PMTPID=01cc, PCRPID=01cd, VideoPID=ffff, AudioPID=81cd
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  029: 'hr-iNFO' / 'ARD HR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f09, PMTPID=01d6, PCRPID=01d7, VideoPID=ffff, AudioPID=81d7
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  030: 'Inforadio' / 'ARD rbb'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f24, PMTPID=0320, PCRPID=0321, VideoPID=ffff, AudioPID=8321
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  031: 'Inselradio' / 'MEDIA BROADCAST'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=68, LCN=0
+    ServiceID=316b, PMTPID=0098, PCRPID=02be, VideoPID=ffff, AudioPID=82be
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  032: 'JUMP' / 'ARD MDR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f10, PMTPID=021c, PCRPID=021d, VideoPID=ffff, AudioPID=821d
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  033: 'Kulturradio' / 'ARD rbb'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f25, PMTPID=032a, PCRPID=032b, VideoPID=ffff, AudioPID=832b
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  034: 'MDR1 SA-ANHALT' / 'ARD MDR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f0d, PMTPID=01fe, PCRPID=01ff, VideoPID=ffff, AudioPID=81ff
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  035: 'MDR1 SACHSEN' / 'ARD MDR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f0c, PMTPID=01f4, PCRPID=01f5, VideoPID=ffff, AudioPID=81f5
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  036: 'MDR1 THÜRINGEN' / 'ARD MDR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f0e, PMTPID=0208, PCRPID=0209, VideoPID=ffff, AudioPID=8209
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  037: 'MDR FIGARO' / 'ARD MDR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f0f, PMTPID=0212, PCRPID=0213, VideoPID=ffff, AudioPID=8213
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  038: 'MDR INFO' / 'ARD MDR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f12, PMTPID=0230, PCRPID=0231, VideoPID=ffff, AudioPID=8231
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  039: 'MDR KLASSIK' / 'ARD MDR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f13, PMTPID=023a, PCRPID=023b, VideoPID=ffff, AudioPID=823b
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  040: 'MDR SPUTNIK' / 'ARD MDR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f11, PMTPID=0226, PCRPID=0227, VideoPID=ffff, AudioPID=8227
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  041: 'N-JOY' / 'ARD NDR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f18, PMTPID=0276, PCRPID=0277, VideoPID=ffff, AudioPID=8277
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  042: 'NDR 1 Nieders.' / 'ARD NDR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f1c, PMTPID=029e, PCRPID=029f, VideoPID=ffff, AudioPID=829f
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  043: 'NDR 1 Radio MV' / 'ARD NDR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f1b, PMTPID=0294, PCRPID=0295, VideoPID=ffff, AudioPID=8295
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  044: 'NDR1WelleNord' / 'ARD NDR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f1a, PMTPID=028a, PCRPID=028b, VideoPID=ffff, AudioPID=828b
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  045: 'NDR 2' / 'ARD NDR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f15, PMTPID=0258, PCRPID=0259, VideoPID=ffff, AudioPID=8259
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  046: 'NDR 90,3' / 'ARD NDR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f19, PMTPID=0280, PCRPID=0281, VideoPID=ffff, AudioPID=8281
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  047: 'NDR Info' / 'ARD NDR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f17, PMTPID=026c, PCRPID=026d, VideoPID=ffff, AudioPID=826d
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  048: 'NDR Info Spez.' / 'ARD NDR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f1d, PMTPID=02a8, PCRPID=02a9, VideoPID=ffff, AudioPID=82a9
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  049: 'NDR Kultur' / 'ARD NDR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f16, PMTPID=0262, PCRPID=0263, VideoPID=ffff, AudioPID=8263
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  050: 'Nordwestradio' / 'ARD RB'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f21, PMTPID=02c6, PCRPID=02c7, VideoPID=ffff, AudioPID=82c7
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  051: 'NRJ' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=2158, PMTPID=0512, PCRPID=00a8, VideoPID=ffff, AudioPID=80ec
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  052: 'PEPPERMINT fm' / 'MEDIA BROADCAST'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=68, LCN=0
+    ServiceID=3171, PMTPID=009d, PCRPID=0165, VideoPID=ffff, AudioPID=8165
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  053: 'planet radio' / 'MEDIA BROADCAST'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=68, LCN=0
+    ServiceID=3175, PMTPID=006e, PCRPID=0405, VideoPID=ffff, AudioPID=8406
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  054: 'radioBERLIN 88,8' / 'ARD rbb'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f27, PMTPID=033e, PCRPID=033f, VideoPID=ffff, AudioPID=833f
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  055: '†ROCK ANT‡ENNE' / 'BetaDigital'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=42, LCN=0
+    ServiceID=00a0, PMTPID=0065, PCRPID=0130, VideoPID=ffff, AudioPID=8130
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  056: 'RTL RADIO' / 'CANALDIGITAAL'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=52, LCN=0
+    ServiceID=0803, PMTPID=0803, PCRPID=1ffe, VideoPID=ffff, AudioPID=8068
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  057: 'SR1 Europawelle' / 'ARD SR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f2d, PMTPID=0384, PCRPID=0385, VideoPID=ffff, AudioPID=8385
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  058: 'SR2 KulturRadio' / 'ARD SR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f2e, PMTPID=038e, PCRPID=038f, VideoPID=ffff, AudioPID=838f
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  059: 'SR3 Saarlandwelle' / 'ARD SR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f2f, PMTPID=0398, PCRPID=0399, VideoPID=ffff, AudioPID=8399
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  060: '†sunshine‡ live' / 'BetaDigital'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=42, LCN=0
+    ServiceID=00a9, PMTPID=0066, PCRPID=0150, VideoPID=ffff, AudioPID=8150
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  061: 'SWR 1 BW' / 'ARD SWR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f31, PMTPID=03e8, PCRPID=03e9, VideoPID=ffff, AudioPID=83e9
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  062: 'SWR 1 RP' / 'ARD SWR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f32, PMTPID=03f2, PCRPID=03f3, VideoPID=ffff, AudioPID=83f3
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  063: 'SWR 2' / 'ARD SWR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f33, PMTPID=03fc, PCRPID=03fd, VideoPID=ffff, AudioPID=83fd
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  064: 'SWR 3' / 'ARD SWR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f34, PMTPID=0406, PCRPID=0407, VideoPID=ffff, AudioPID=8407
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  065: 'SWR 4 BW' / 'ARD SWR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f35, PMTPID=0410, PCRPID=0411, VideoPID=ffff, AudioPID=8411
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  066: 'SWR 4 RP' / 'ARD SWR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f36, PMTPID=041a, PCRPID=041b, VideoPID=ffff, AudioPID=841b
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  067: 'SWR cont.ra' / 'ARD SWR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f38, PMTPID=042e, PCRPID=042f, VideoPID=ffff, AudioPID=842f
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  068: 'WDR 2' / 'ARD WDR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f3c, PMTPID=0456, PCRPID=0457, VideoPID=ffff, AudioPID=8457
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  069: 'WDR 3' / 'ARD WDR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f3d, PMTPID=0460, PCRPID=0461, VideoPID=ffff, AudioPID=8461
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  070: 'WDR 4' / 'ARD WDR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f3e, PMTPID=046a, PCRPID=046b, VideoPID=ffff, AudioPID=846b
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  071: 'WDR 5' / 'ARD WDR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f3f, PMTPID=0474, PCRPID=0475, VideoPID=ffff, AudioPID=8475
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  072: 'WDR Event' / 'ARD WDR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f43, PMTPID=049c, PCRPID=049d, VideoPID=ffff, AudioPID=849d
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  073: 'WDR Funkhaus Europa' / 'ARD WDR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f40, PMTPID=047e, PCRPID=047f, VideoPID=ffff, AudioPID=847f
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  074: 'WRN Deutsch' / 'MEDIA BROADCAST'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=68, LCN=0
+    ServiceID=3170, PMTPID=009c, PCRPID=0164, VideoPID=ffff, AudioPID=8164
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  075: 'YOU FM' / 'ARD HR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f07, PMTPID=01c2, PCRPID=01c3, VideoPID=ffff, AudioPID=81c3
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  076: 'OE1' / 'ORF'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=70, LCN=0
+    ServiceID=3341, PMTPID=0461, PCRPID=01a5, VideoPID=ffff, AudioPID=81a5
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  077: 'OE2 B' / 'ORF'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=70, LCN=0
+    ServiceID=3345, PMTPID=0465, PCRPID=01a9, VideoPID=ffff, AudioPID=81a9
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  078: 'OE2 K' / 'ORF'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=70, LCN=0
+    ServiceID=334b, PMTPID=046b, PCRPID=01af, VideoPID=ffff, AudioPID=81af
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  079: 'OE2 N' / 'ORF'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=70, LCN=0
+    ServiceID=3344, PMTPID=0464, PCRPID=01a8, VideoPID=ffff, AudioPID=81a8
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  080: 'OE2 O' / 'ORF'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=70, LCN=0
+    ServiceID=3346, PMTPID=0466, PCRPID=01aa, VideoPID=ffff, AudioPID=81aa
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  081: 'OE2 S' / 'ORF'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=70, LCN=0
+    ServiceID=3347, PMTPID=0467, PCRPID=01ab, VideoPID=ffff, AudioPID=81ab
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  082: 'OE2 St' / 'ORF'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=70, LCN=0
+    ServiceID=334a, PMTPID=046a, PCRPID=01ae, VideoPID=ffff, AudioPID=81ae
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  083: 'OE2 T' / 'ORF'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=70, LCN=0
+    ServiceID=3348, PMTPID=0468, PCRPID=01ac, VideoPID=ffff, AudioPID=81ac
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  084: 'OE2 V' / 'ORF'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=70, LCN=0
+    ServiceID=3349, PMTPID=0469, PCRPID=01ad, VideoPID=ffff, AudioPID=81ad
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  085: 'OE2 W' / 'ORF'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=70, LCN=0
+    ServiceID=3343, PMTPID=0463, PCRPID=01a7, VideoPID=ffff, AudioPID=81a7
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  086: 'OE3' / 'ORF'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=70, LCN=0
+    ServiceID=334d, PMTPID=046d, PCRPID=01b1, VideoPID=ffff, AudioPID=81b1
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  087: 'SRG-DRS 1' / 'Schweizer Radio DRS'
+    SatIndex=0, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=85, LCN=0
+    ServiceID=0399, PMTPID=01c3, PCRPID=00d3, VideoPID=ffff, AudioPID=80d3
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  088: 'SRG-DRS 2' / 'Schweizer Radio DRS'
+    SatIndex=0, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=85, LCN=0
+    ServiceID=039a, PMTPID=01c4, PCRPID=00d4, VideoPID=ffff, AudioPID=80d4
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  089: 'SRG-DRS 3' / 'Schweizer Radio DRS'
+    SatIndex=0, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=85, LCN=0
+    ServiceID=039b, PMTPID=01c5, PCRPID=00d5, VideoPID=ffff, AudioPID=80d5
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  090: 'SRG-DRS 4 News' / 'Schweizer Radio DRS'
+    SatIndex=0, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=85, LCN=0
+    ServiceID=03a9, PMTPID=01d3, PCRPID=00e3, VideoPID=ffff, AudioPID=80e3
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  091: 'SRG-DRS Musikwelle' / 'Schweizer Radio DRS'
+    SatIndex=0, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=85, LCN=0
+    ServiceID=039d, PMTPID=01c7, PCRPID=00d7, VideoPID=ffff, AudioPID=80d7
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  092: 'SRG-DRS Virus' / 'Schweizer Radio DRS'
+    SatIndex=0, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=85, LCN=0
+    ServiceID=039c, PMTPID=01c6, PCRPID=00d6, VideoPID=ffff, AudioPID=80d6
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  093: 'SRG-Rumantsch' / 'Radio Rumantsch'
+    SatIndex=0, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=85, LCN=0
+    ServiceID=039e, PMTPID=01c8, PCRPID=00d8, VideoPID=ffff, AudioPID=80d8
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  094: 'SRG-Swiss Classic' / 'Swiss Satellite Rad'
+    SatIndex=0, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=85, LCN=0
+    ServiceID=03a6, PMTPID=01d0, PCRPID=00e0, VideoPID=ffff, AudioPID=80e0
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  095: 'SRG-Swiss Jazz' / 'Swiss Satellite Rad'
+    SatIndex=0, VideoStreamType=ff, AudioStreamType=03, Tuner=3, TpIndex=85, LCN=0
+    ServiceID=03a8, PMTPID=01d2, PCRPID=00e2, VideoPID=ffff, AudioPID=80e2
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  096: 'SRG-Swiss Pop' / 'Swiss Satellite Rad'
+    SatIndex=0, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=85, LCN=0
+    ServiceID=03a7, PMTPID=01d1, PCRPID=00e1, VideoPID=ffff, AudioPID=80e1
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  097: 'domradio' / 'BetaDigital'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=58, LCN=0
+    ServiceID=00ab, PMTPID=0068, PCRPID=0170, VideoPID=ffff, AudioPID=8170
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  098: 'egoFM' / 'BetaDigital'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=58, LCN=0
+    ServiceID=00ac, PMTPID=0084, PCRPID=0180, VideoPID=ffff, AudioPID=8180
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  099: '†Klassik‡ Radio' / 'BetaDigital'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=58, LCN=0
+    ServiceID=00ad, PMTPID=0085, PCRPID=0150, VideoPID=ffff, AudioPID=8150
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  100: '†D‡eu†t‡sche †Charts‡' / 'SKY'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=22, LCN=0
+    ServiceID=0096, PMTPID=0078, PCRPID=1ffe, VideoPID=ffff, AudioPID=8110
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  101: '†Rock‡ Hymnen' / 'SKY'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=22, LCN=0
+    ServiceID=0097, PMTPID=0079, PCRPID=1ffe, VideoPID=ffff, AudioPID=8120
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  102: '†LoveSongs‡' / 'SKY'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=22, LCN=0
+    ServiceID=0098, PMTPID=007b, PCRPID=1ffe, VideoPID=ffff, AudioPID=8130
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  103: '†60er/70er‡' / 'SKY'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=22, LCN=0
+    ServiceID=0099, PMTPID=007c, PCRPID=1ffe, VideoPID=ffff, AudioPID=8140
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  104: '†80er/90er‡' / 'SKY'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=22, LCN=0
+    ServiceID=009a, PMTPID=007d, PCRPID=1ffe, VideoPID=ffff, AudioPID=8150
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  105: 'RnB/†Hip‡ †Hop‡' / 'SKY'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=22, LCN=0
+    ServiceID=009b, PMTPID=007e, PCRPID=1ffe, VideoPID=ffff, AudioPID=8160
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  106: 'Country' / 'SKY'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=22, LCN=0
+    ServiceID=009c, PMTPID=007f, PCRPID=1ffe, VideoPID=ffff, AudioPID=8170
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  107: 'RADIOS ESP' / 'DIGITAL+'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=3, LCN=0
+    ServiceID=7598, PMTPID=0436, PCRPID=1fff, VideoPID=ffff, AudioPID=8190
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  108: 'PLAYIN'Tvi' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=13, LCN=0
+    ServiceID=191f, PMTPID=051e, PCRPID=07c4, VideoPID=ffff, AudioPID=87c4
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  109: 'PLAYIN'TV' / 'IMEDIA'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=03, Tuner=3, TpIndex=13, LCN=0
+    ServiceID=1921, PMTPID=0520, PCRPID=04b7, VideoPID=ffff, AudioPID=84b7
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  110: 'ETB Radio 1' / 'Globecast'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=03, Tuner=3, TpIndex=14, LCN=0
+    ServiceID=1b6e, PMTPID=0102, PCRPID=02e7, VideoPID=ffff, AudioPID=82e7
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  111: 'ETB Radio 2' / 'GlobeCast'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=03, Tuner=3, TpIndex=14, LCN=0
+    ServiceID=1b6f, PMTPID=0103, PCRPID=02e8, VideoPID=ffff, AudioPID=82e8
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  112: 'Radio Aragon' / 'GlobeCast'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=03, Tuner=3, TpIndex=15, LCN=0
+    ServiceID=1afe, PMTPID=0294, PCRPID=0276, VideoPID=ffff, AudioPID=8276
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  113: '†Bartok Radio - MR3‡' / 'UPC Direct'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=18, LCN=0
+    ServiceID=4fe2, PMTPID=02bc, PCRPID=02c6, VideoPID=ffff, AudioPID=82c6
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  114: '†Petofi Radio - MR2‡' / 'UPC Direct'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=18, LCN=0
+    ServiceID=4fe3, PMTPID=02ee, PCRPID=02f8, VideoPID=ffff, AudioPID=82f8
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  115: '†Kossuth Radio - MR1‡' / 'UPC Direct'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=18, LCN=0
+    ServiceID=4fe4, PMTPID=0320, PCRPID=032a, VideoPID=ffff, AudioPID=832a
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  116: 'DRadio Wissen' / 'ZDFvision'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=03, Tuner=3, TpIndex=32, LCN=0
+    ServiceID=6d71, PMTPID=019b, PCRPID=019a, VideoPID=ffff, AudioPID=819a
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  117: 'A LA CARTE' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=35, LCN=0
+    ServiceID=226c, PMTPID=050b, PCRPID=00e0, VideoPID=ffff, AudioPID=80e0
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  118: 'ARD-Data-2' / 'ARD'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=03, Tuner=3, TpIndex=40, LCN=0
+    ServiceID=6e3a, PMTPID=0708, PCRPID=0709, VideoPID=ffff, AudioPID=8709
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  119: '†ERF‡ Radio' / 'BetaDigital'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=42, LCN=0
+    ServiceID=00a1, PMTPID=006e, PCRPID=0140, VideoPID=ffff, AudioPID=8140
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  120: '2255 Gewinnradio' / 'BetaDigital'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=42, LCN=0
+    ServiceID=00b0, PMTPID=0096, PCRPID=0210, VideoPID=ffff, AudioPID=8210
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  121: 'CANALSAT RADIOS' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=213b, PMTPID=0506, PCRPID=00ec, VideoPID=ffff, AudioPID=8777
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  122: 'CANALSAT RADIOS' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=213d, PMTPID=0508, PCRPID=00a8, VideoPID=ffff, AudioPID=8780
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  123: 'RADIOS 2' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=213e, PMTPID=0509, PCRPID=00a8, VideoPID=ffff, AudioPID=80fb
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  124: 'RADIOS 3' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=213f, PMTPID=050a, PCRPID=00a9, VideoPID=ffff, AudioPID=8795
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  125: 'RF' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=2146, PMTPID=0511, PCRPID=0770, VideoPID=ffff, AudioPID=8772
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  126: 'FRANCE MUSIQUE' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=2147, PMTPID=0512, PCRPID=0770, VideoPID=ffff, AudioPID=876d
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  127: 'FIP' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=2148, PMTPID=0512, PCRPID=0770, VideoPID=ffff, AudioPID=876f
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  128: 'FRANCE INFO' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=2149, PMTPID=0512, PCRPID=0770, VideoPID=ffff, AudioPID=8770
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  129: 'FRANCE INTER' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=214a, PMTPID=0512, PCRPID=0770, VideoPID=ffff, AudioPID=8771
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  130: 'FRANCE BLEU IDF' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=214b, PMTPID=0512, PCRPID=0770, VideoPID=ffff, AudioPID=8773
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  131: 'RFI INT' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=214c, PMTPID=0512, PCRPID=00a8, VideoPID=ffff, AudioPID=8774
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  132: 'RADIO CLASSIQUE' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=214d, PMTPID=0512, PCRPID=00a8, VideoPID=ffff, AudioPID=8775
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  133: 'EUROPE 1' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=214e, PMTPID=0512, PCRPID=00a8, VideoPID=ffff, AudioPID=8777
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  134: 'RMC' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=214f, PMTPID=0512, PCRPID=00a8, VideoPID=ffff, AudioPID=8778
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  135: 'RTL' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=2150, PMTPID=0512, PCRPID=00a8, VideoPID=ffff, AudioPID=8776
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  136: 'RIRE & CHANSONS' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=2151, PMTPID=0512, PCRPID=00a8, VideoPID=ffff, AudioPID=8779
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  137: 'SUD RADIO' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=2152, PMTPID=0512, PCRPID=00a8, VideoPID=ffff, AudioPID=877a
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  138: 'MC DOUALIYA' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=2153, PMTPID=0512, PCRPID=00a8, VideoPID=ffff, AudioPID=877b
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  139: 'TSF JAZZ' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=2154, PMTPID=0512, PCRPID=00a8, VideoPID=ffff, AudioPID=877c
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  140: 'NOSTALGIE' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=2155, PMTPID=0512, PCRPID=00a8, VideoPID=ffff, AudioPID=80f6
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  141: 'BFM' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=2156, PMTPID=0512, PCRPID=00a8, VideoPID=ffff, AudioPID=877e
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  142: 'JAZZ RADIO' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=2157, PMTPID=0512, PCRPID=00a8, VideoPID=ffff, AudioPID=80fe
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  143: 'VIRGIN RADIO' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=2159, PMTPID=0512, PCRPID=00a8, VideoPID=ffff, AudioPID=80ed
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  144: 'RTL 2' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=215a, PMTPID=0512, PCRPID=00a8, VideoPID=ffff, AudioPID=80ee
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  145: 'SKYROCK' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=215b, PMTPID=0512, PCRPID=00a8, VideoPID=ffff, AudioPID=80ef
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  146: 'FUN RADIO' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=215c, PMTPID=0512, PCRPID=00a8, VideoPID=ffff, AudioPID=80f0
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  147: 'LE MOUV'' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=215d, PMTPID=0512, PCRPID=0770, VideoPID=ffff, AudioPID=80f1
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  148: 'NOVA' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=215e, PMTPID=0512, PCRPID=00a8, VideoPID=ffff, AudioPID=80f2
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  149: 'RADIO FG' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=215f, PMTPID=0512, PCRPID=00a8, VideoPID=ffff, AudioPID=80f3
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  150: 'VIBRATION' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=2160, PMTPID=0512, PCRPID=00a8, VideoPID=ffff, AudioPID=80f4
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  151: 'CONTACT FM' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=2161, PMTPID=0512, PCRPID=00a8, VideoPID=ffff, AudioPID=80f5
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  152: 'RADIO LATINA' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=2162, PMTPID=0512, PCRPID=00a8, VideoPID=ffff, AudioPID=80f7
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  153: 'RFM' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=2163, PMTPID=0512, PCRPID=00a8, VideoPID=ffff, AudioPID=80f8
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  154: 'CHERIE FM' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=2164, PMTPID=0512, PCRPID=00a8, VideoPID=ffff, AudioPID=80f9
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  155: 'VOLTAGE' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=2166, PMTPID=0512, PCRPID=00a8, VideoPID=ffff, AudioPID=80fb
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  156: 'OUI FM' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=2167, PMTPID=0512, PCRPID=00a8, VideoPID=ffff, AudioPID=80fc
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  157: 'ADO' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=2168, PMTPID=0512, PCRPID=00a8, VideoPID=ffff, AudioPID=80fd
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  158: 'RADIO NOTRE-DAME' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=216b, PMTPID=0512, PCRPID=00a9, VideoPID=ffff, AudioPID=8796
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  159: 'RADIO ALFA' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=216c, PMTPID=0512, PCRPID=00a9, VideoPID=ffff, AudioPID=8797
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  160: 'RCJ / SHALOM' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=216d, PMTPID=0512, PCRPID=00a9, VideoPID=ffff, AudioPID=8798
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  161: 'BEUR FM' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=216e, PMTPID=0512, PCRPID=00a9, VideoPID=ffff, AudioPID=8799
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  162: 'BBC ARABIC' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=216f, PMTPID=0512, PCRPID=00a9, VideoPID=ffff, AudioPID=879a
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  163: 'RFI MULTILINGUE' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=2170, PMTPID=0512, PCRPID=00a9, VideoPID=ffff, AudioPID=879b
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  164: 'MEDI 1' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=2172, PMTPID=0512, PCRPID=00a9, VideoPID=ffff, AudioPID=879d
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  165: 'FRANCE CULTURE' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=2173, PMTPID=0512, PCRPID=0770, VideoPID=ffff, AudioPID=8772
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  166: 'WRN' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=2174, PMTPID=0512, PCRPID=00a9, VideoPID=ffff, AudioPID=878c
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  167: 'BBCW SERVICE' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=2175, PMTPID=0512, PCRPID=00a9, VideoPID=ffff, AudioPID=879f
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  168: 'RADIO COURTOISIE' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=2176, PMTPID=0512, PCRPID=00a9, VideoPID=ffff, AudioPID=87a0
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  169: 'RADIO 1' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=2185, PMTPID=0529, PCRPID=00a9, VideoPID=ffff, AudioPID=878c
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  170: 'RADIO 2' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=2186, PMTPID=0529, PCRPID=00a8, VideoPID=ffff, AudioPID=8774
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  171: 'RADIO 3' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=2187, PMTPID=0529, PCRPID=00a8, VideoPID=ffff, AudioPID=80ec
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  172: 'RADIO FRANCE' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=2188, PMTPID=0529, PCRPID=0770, VideoPID=ffff, AudioPID=80f1
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  173: 'RCI SAT' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=00, Tuner=3, TpIndex=45, LCN=0
+    ServiceID=2171, PMTPID=2000, PCRPID=2000, VideoPID=2000, AudioPID=0000
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  174: 'TEDDY' / 'BetaDigital'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=47, LCN=0
+    ServiceID=279e, PMTPID=0082, PCRPID=0170, VideoPID=ffff, AudioPID=8170
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  175: 'on3-radio' / 'ARD BR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=03, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6ef6, PMTPID=00a0, PCRPID=00a1, VideoPID=ffff, AudioPID=80a1
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  176: 'DW 1' / 'ARD DW'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=03, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f00, PMTPID=012c, PCRPID=012d, VideoPID=ffff, AudioPID=812d
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  177: 'DW 4' / 'ARD DW'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=03, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f01, PMTPID=0136, PCRPID=0137, VideoPID=ffff, AudioPID=8137
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  178: 'radioeins' / 'ARD rbb'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=03, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f28, PMTPID=0348, PCRPID=0349, VideoPID=ffff, AudioPID=8349
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  179: 'KIRAKA' / 'ARD WDR'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=03, Tuner=3, TpIndex=48, LCN=0
+    ServiceID=6f42, PMTPID=0492, PCRPID=0493, VideoPID=ffff, AudioPID=8493
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  180: 'Astra08601' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=51, LCN=0
+    ServiceID=2199, PMTPID=0500, PCRPID=00a1, VideoPID=ffff, AudioPID=87fe
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  181: 'CDN12' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=51, LCN=0
+    ServiceID=21a8, PMTPID=050f, PCRPID=00aa, VideoPID=ffff, AudioPID=87fe
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  182: 'RTL 1440' / 'CANALDIGITAAL'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=52, LCN=0
+    ServiceID=0804, PMTPID=0804, PCRPID=1ffe, VideoPID=ffff, AudioPID=8069
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  183: 'RV info' / 'CANALDIGITAAL'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=52, LCN=0
+    ServiceID=0816, PMTPID=0816, PCRPID=1ffe, VideoPID=ffff, AudioPID=8064
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  184: 'Radio Vlaanderen' / 'CANALDIGITAAL'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=52, LCN=0
+    ServiceID=081b, PMTPID=081b, PCRPID=1ffe, VideoPID=ffff, AudioPID=8065
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  185: 'Mint' / 'CANALDIGITAAL'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=52, LCN=0
+    ServiceID=0820, PMTPID=0820, PCRPID=1ffe, VideoPID=ffff, AudioPID=806d
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  186: 'Bel RTL' / 'CANALDIGITAAL'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=52, LCN=0
+    ServiceID=0821, PMTPID=0821, PCRPID=1ffe, VideoPID=ffff, AudioPID=806e
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  187: 'Radio Contact' / 'CANALDIGITAAL'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=52, LCN=0
+    ServiceID=0822, PMTPID=0822, PCRPID=1ffe, VideoPID=ffff, AudioPID=806f
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  188: 'Pure FM' / 'CANALDIGITAAL'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=52, LCN=0
+    ServiceID=0825, PMTPID=0825, PCRPID=0087, VideoPID=ffff, AudioPID=8087
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  189: 'Classic21' / 'CANALDIGITAAL'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=52, LCN=0
+    ServiceID=0826, PMTPID=0826, PCRPID=0088, VideoPID=ffff, AudioPID=8088
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  190: 'VivaCite' / 'CANALDIGITAAL'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=52, LCN=0
+    ServiceID=0827, PMTPID=0827, PCRPID=0089, VideoPID=ffff, AudioPID=8089
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  191: 'Musiq 3' / 'CANALDIGITAAL'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=52, LCN=0
+    ServiceID=0828, PMTPID=0828, PCRPID=008a, VideoPID=ffff, AudioPID=808a
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  192: 'La Premiere' / 'CANALDIGITAAL'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=52, LCN=0
+    ServiceID=0829, PMTPID=0829, PCRPID=008b, VideoPID=ffff, AudioPID=808b
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  193: 'Astra09117' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=53, LCN=0
+    ServiceID=239d, PMTPID=0510, PCRPID=1fff, VideoPID=ffff, AudioPID=87fe
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  194: 'CE SOIR' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=53, LCN=0
+    ServiceID=23a0, PMTPID=0514, PCRPID=1fff, VideoPID=ffff, AudioPID=87fe
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  195: 'Astra09122' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=53, LCN=0
+    ServiceID=23a2, PMTPID=0516, PCRPID=1fff, VideoPID=ffff, AudioPID=87fe
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  196: 'Astra09124' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=53, LCN=0
+    ServiceID=23a4, PMTPID=0518, PCRPID=1fff, VideoPID=ffff, AudioPID=87fe
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  197: 'Astra09125' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=53, LCN=0
+    ServiceID=23a5, PMTPID=0519, PCRPID=1fff, VideoPID=ffff, AudioPID=87fe
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  198: 'Astra09126' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=53, LCN=0
+    ServiceID=23a6, PMTPID=051a, PCRPID=1fff, VideoPID=ffff, AudioPID=87fe
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  199: 'DT2' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=53, LCN=0
+    ServiceID=23bf, PMTPID=0546, PCRPID=00a0, VideoPID=ffff, AudioPID=87c8
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  200: 'DT13' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=53, LCN=0
+    ServiceID=23ca, PMTPID=0546, PCRPID=1fff, VideoPID=ffff, AudioPID=806c
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  201: 'DT20' / 'CSAT'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=53, LCN=0
+    ServiceID=23d1, PMTPID=0546, PCRPID=00a2, VideoPID=ffff, AudioPID=87c8
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  202: 'MEHRKANALTEST' / 'ARD'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=03, Tuner=3, TpIndex=56, LCN=0
+    ServiceID=6eed, PMTPID=0708, PCRPID=07d1, VideoPID=ffff, AudioPID=87d1
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  203: '.' / 'BetaDigital'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=03, Tuner=3, TpIndex=58, LCN=0
+    ServiceID=00ae, PMTPID=0086, PCRPID=0160, VideoPID=ffff, AudioPID=8160
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  204: '†HOPE Ch‡annel Radio' / 'BetaDigital'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=03, Tuner=3, TpIndex=58, LCN=0
+    ServiceID=00af, PMTPID=0087, PCRPID=0190, VideoPID=ffff, AudioPID=8190
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  205: 'JAM FM' / 'BetaDigital'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=03, Tuner=3, TpIndex=58, LCN=0
+    ServiceID=00b1, PMTPID=0077, PCRPID=0210, VideoPID=ffff, AudioPID=8210
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  206: 'FunX' / 'CANALDIGITAAL'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=60, LCN=0
+    ServiceID=0fc3, PMTPID=0857, PCRPID=1ffe, VideoPID=ffff, AudioPID=8078
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  207: 'Classic FM' / 'CANALDIGITAAL'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=60, LCN=0
+    ServiceID=0fc8, PMTPID=085c, PCRPID=1ffe, VideoPID=ffff, AudioPID=8076
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  208: 'Q-Music' / 'CANALDIGITAAL'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=60, LCN=0
+    ServiceID=0fcd, PMTPID=0861, PCRPID=1ffe, VideoPID=ffff, AudioPID=8072
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  209: 'Radio 4 Surround' / 'CANALDIGITAAL'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=81, Tuner=3, TpIndex=60, LCN=0
+    ServiceID=0fcf, PMTPID=0863, PCRPID=1ffe, VideoPID=ffff, AudioPID=a080
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  210: 'Arrow Classic Rock' / 'CANALDIGITAAL'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=64, LCN=0
+    ServiceID=13ba, PMTPID=08ca, PCRPID=1ffe, VideoPID=ffff, AudioPID=80de
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  211: 'Arrow Jazz' / 'CANALDIGITAAL'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=64, LCN=0
+    ServiceID=13bb, PMTPID=08cb, PCRPID=1ffe, VideoPID=ffff, AudioPID=80dd
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  212: 'KINK FM' / 'CANALDIGITAAL'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=64, LCN=0
+    ServiceID=13bf, PMTPID=08cf, PCRPID=1ffe, VideoPID=ffff, AudioPID=80dc
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  213: 'RNW1' / 'CANALDIGITAAL'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=64, LCN=0
+    ServiceID=13c4, PMTPID=08d4, PCRPID=1ffe, VideoPID=ffff, AudioPID=80e1
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  214: 'RNW2' / 'CANALDIGITAAL'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=64, LCN=0
+    ServiceID=13c5, PMTPID=08d5, PCRPID=1ffe, VideoPID=ffff, AudioPID=80e2
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  215: 'Sky Radio' / 'CANALDIGITAAL'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=64, LCN=0
+    ServiceID=13ce, PMTPID=08de, PCRPID=1ffe, VideoPID=ffff, AudioPID=80e3
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  216: '538 Juize' / 'CANALDIGITAAL'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=64, LCN=0
+    ServiceID=13cf, PMTPID=08df, PCRPID=1ffe, VideoPID=ffff, AudioPID=80e5
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  217: 'Radio538' / 'CANALDIGITAAL'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=64, LCN=0
+    ServiceID=13d0, PMTPID=08e0, PCRPID=1ffe, VideoPID=ffff, AudioPID=80e6
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  218: 'NL-Radio 6' / 'CANALDIGITAAL'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=64, LCN=0
+    ServiceID=13d8, PMTPID=08e8, PCRPID=1ffe, VideoPID=ffff, AudioPID=80e4
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  219: 'NL-Radio 1' / 'CANALDIGITAAL'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=64, LCN=0
+    ServiceID=13a7, PMTPID=08b7, PCRPID=1ffe, VideoPID=ffff, AudioPID=80e7
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  220: 'NL-Radio 2' / 'CANALDIGITAAL'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=64, LCN=0
+    ServiceID=13a8, PMTPID=08b8, PCRPID=1ffe, VideoPID=ffff, AudioPID=80e8
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  221: 'NL-3FM' / 'CANALDIGITAAL'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=64, LCN=0
+    ServiceID=13a9, PMTPID=08b9, PCRPID=1ffe, VideoPID=ffff, AudioPID=80e9
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  222: 'NL-Radio 4' / 'CANALDIGITAAL'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=64, LCN=0
+    ServiceID=13aa, PMTPID=08ba, PCRPID=1ffe, VideoPID=ffff, AudioPID=80ea
+    FlagDelete=false, FlagCAS=true, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  223: 'NL-Radio 5' / 'CANALDIGITAAL'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=64, LCN=0
+    ServiceID=13ab, PMTPID=08bb, PCRPID=1ffe, VideoPID=ffff, AudioPID=80eb
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  224: 'Radio10Gold' / 'CANALDIGITAAL'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=64, LCN=0
+    ServiceID=13dd, PMTPID=08ed, PCRPID=1ffe, VideoPID=ffff, AudioPID=80ec
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  225: 'RNW3' / 'CANALDIGITAAL'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=64, LCN=0
+    ServiceID=13c6, PMTPID=08d6, PCRPID=1ffe, VideoPID=ffff, AudioPID=80f0
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  226: 'Radio Veronica' / 'CANALDIGITAAL'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=64, LCN=0
+    ServiceID=13e7, PMTPID=08f7, PCRPID=1ffe, VideoPID=ffff, AudioPID=80ef
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  227: 'Radio neue Hoffnung' / 'RADIO Neue Hoffnung'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=03, Tuner=3, TpIndex=66, LCN=0
+    ServiceID=1c7c, PMTPID=1c7c, PCRPID=050c, VideoPID=ffff, AudioPID=850c
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  228: 'CFN/RFC' / 'Canadian Forces Euro'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=03, Tuner=3, TpIndex=66, LCN=0
+    ServiceID=1c7b, PMTPID=1c7b, PCRPID=050b, VideoPID=ffff, AudioPID=850b
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  229: 'Radio Horeb' / 'Eurociel'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=03, Tuner=3, TpIndex=66, LCN=0
+    ServiceID=1c79, PMTPID=1c79, PCRPID=0509, VideoPID=ffff, AudioPID=8509
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  230: 'radio top40' / 'MEDIA BROADCAST'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=03, Tuner=3, TpIndex=68, LCN=0
+    ServiceID=316d, PMTPID=0099, PCRPID=0161, VideoPID=ffff, AudioPID=8161
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  231: 'Radio Paloma' / 'MEDIA BROADCAST'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=03, Tuner=3, TpIndex=68, LCN=0
+    ServiceID=316f, PMTPID=009b, PCRPID=0163, VideoPID=ffff, AudioPID=8163
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  232: 'Radio Gloria' / 'Media Broadcast'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=03, Tuner=3, TpIndex=68, LCN=0
+    ServiceID=3173, PMTPID=009f, PCRPID=0167, VideoPID=ffff, AudioPID=8167
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  233: 'Radio Regenbogen' / 'MEDIA BROADCAST'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=03, Tuner=3, TpIndex=68, LCN=0
+    ServiceID=3177, PMTPID=00a3, PCRPID=016b, VideoPID=ffff, AudioPID=816b
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  234: 'OE1 DD' / 'ORF'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=81, Tuner=3, TpIndex=70, LCN=0
+    ServiceID=3342, PMTPID=0462, PCRPID=01a6, VideoPID=ffff, AudioPID=a1a6
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  235: 'FM4' / 'ORF'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=03, Tuner=3, TpIndex=70, LCN=0
+    ServiceID=334e, PMTPID=046e, PCRPID=01b2, VideoPID=ffff, AudioPID=81b2
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  236: 'Ö1 International' / 'ORF'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=03, Tuner=3, TpIndex=70, LCN=0
+    ServiceID=334f, PMTPID=046f, PCRPID=01b3, VideoPID=ffff, AudioPID=81b3
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0002, unknown2=00 00 00 00 00 00 
+
+  237: 'RADIO MARIA' / 'Radio Maria '
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=03, Tuner=3, TpIndex=70, LCN=0
+    ServiceID=3354, PMTPID=0474, PCRPID=01b8, VideoPID=ffff, AudioPID=81b8
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+  238: 'Radio Maryja' / 'TVP'
+    SatIndex=1, VideoStreamType=ff, AudioStreamType=04, Tuner=3, TpIndex=79, LCN=0
+    ServiceID=4331, PMTPID=00c9, PCRPID=0295, VideoPID=ffff, AudioPID=8295
+    FlagDelete=false, FlagCAS=false, FlagLock=false, FlagSkip=false
+    unknown1=0004, unknown2=00 00 00 00 00 00 
+
+Sat tables (2)
+  000: 'HotBird'
+    NrOfTransponders=112, SatPosition=130
+    unused1=65535, unused2=ff ff ff ff ff ff 00 00 , unknown1=00 00 00 00 00 01 00 01 00 00 d5 2f 7b 00 85 7b 00 00 00 00 00 00 
+    LNB1
+      LNBSupply=1, DiSEqC10=2, DiSEqC11=0, DiSEqC12=2, DiSEqC12Flags=fe 7f 7f 
+      UniversalLNB=1, Switch22=0, LowBand=9750, HBFrq=10600, LoopThrough=1
+      unused1=00, unused2=00, unused3=00, unused4=00, unused5=ff ff ff ff ff 
+    LNB2
+      LNBSupply=1, DiSEqC10=2, DiSEqC11=0, DiSEqC12=2, DiSEqC12Flags=fe 7f 7f 
+      UniversalLNB=1, Switch22=0, LowBand=9750, HBFrq=10600, LoopThrough=1
+      unused1=00, unused2=00, unused3=00, unused4=00, unused5=ff ff ff ff ff 
+
+  001: 'Astra'
+    NrOfTransponders=112, SatPosition=192
+    unused1=65535, unused2=ff ff ff ff ff ff 00 00 , unknown1=00 00 00 00 01 01 00 01 00 00 b2 2e 6e 00 78 6e 00 00 00 00 00 00 
+    LNB1
+      LNBSupply=1, DiSEqC10=0, DiSEqC11=0, DiSEqC12=4, DiSEqC12Flags=fe 7f 7f 
+      UniversalLNB=1, Switch22=0, LowBand=9750, HBFrq=10600, LoopThrough=1
+      unused1=00, unused2=00, unused3=00, unused4=00, unused5=ff ff ff ff ff 
+    LNB2
+      LNBSupply=1, DiSEqC10=0, DiSEqC11=0, DiSEqC12=4, DiSEqC12Flags=fe 7f 7f 
+      UniversalLNB=1, Switch22=0, LowBand=9750, HBFrq=10600, LoopThrough=1
+      unused1=00, unused2=00, unused3=00, unused4=00, unused5=ff ff ff ff ff 
+
+Transponder tables (HotBird = 112)
+  000: SatIndex=0, Frequency=10719, SymbolRate=27500
+    TSID=2af8, ONID=013e,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  001: SatIndex=0, Frequency=10722, SymbolRate=29900
+    TSID=2b5c, ONID=013e,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  002: SatIndex=0, Frequency=10758, SymbolRate=27500
+    TSID=0000, ONID=0000,Pilot=false
+    FEC=0, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  003: SatIndex=0, Frequency=10775, SymbolRate=28000
+    TSID=00c9, ONID=0006,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  004: SatIndex=0, Frequency=10796, SymbolRate=27500
+    TSID=2c88, ONID=013e,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  005: SatIndex=0, Frequency=10829, SymbolRate=3333
+    TSID=2cec, ONID=013e,Pilot=false
+    FEC=0, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  006: SatIndex=0, Frequency=10834, SymbolRate=27500
+    TSID=0000, ONID=0000,Pilot=false
+    FEC=0, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  007: SatIndex=0, Frequency=10853, SymbolRate=27500
+    TSID=2db4, ONID=013e,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  008: SatIndex=0, Frequency=10873, SymbolRate=27500
+    TSID=0000, ONID=0000,Pilot=false
+    FEC=0, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  009: SatIndex=0, Frequency=10892, SymbolRate=27500
+    TSID=2e7c, ONID=013e,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  010: SatIndex=0, Frequency=10911, SymbolRate=27500
+    TSID=0000, ONID=0000,Pilot=false
+    FEC=0, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  011: SatIndex=0, Frequency=10930, SymbolRate=27500
+    TSID=2f44, ONID=013e,Pilot=false
+    FEC=0, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  012: SatIndex=0, Frequency=10949, SymbolRate=27500
+    TSID=2fa8, ONID=013e,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  013: SatIndex=0, Frequency=10971, SymbolRate=27500
+    TSID=300c, ONID=013e,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  014: SatIndex=0, Frequency=10992, SymbolRate=27500
+    TSID=3070, ONID=013e,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  015: SatIndex=0, Frequency=11013, SymbolRate=27500
+    TSID=1250, ONID=2500,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  016: SatIndex=0, Frequency=11034, SymbolRate=27500
+    TSID=3138, ONID=00b0,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  017: SatIndex=0, Frequency=11054, SymbolRate=27500
+    TSID=319c, ONID=013e,Pilot=false
+    FEC=4, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  018: SatIndex=0, Frequency=11075, SymbolRate=27500
+    TSID=3200, ONID=013e,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  019: SatIndex=0, Frequency=11095, SymbolRate=28000
+    TSID=012d, ONID=0006,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  020: SatIndex=0, Frequency=11116, SymbolRate=27500
+    TSID=32c8, ONID=013e,Pilot=false
+    FEC=0, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  021: SatIndex=0, Frequency=11137, SymbolRate=27500
+    TSID=332c, ONID=013e,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  022: SatIndex=0, Frequency=11158, SymbolRate=27500
+    TSID=3390, ONID=0071,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  023: SatIndex=0, Frequency=11178, SymbolRate=27500
+    TSID=33f4, ONID=013e,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  024: SatIndex=0, Frequency=11200, SymbolRate=27500
+    TSID=3458, ONID=013e,Pilot=false
+    FEC=4, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  025: SatIndex=0, Frequency=11219, SymbolRate=27500
+    TSID=0064, ONID=fbff,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  026: SatIndex=0, Frequency=11240, SymbolRate=27500
+    TSID=00c8, ONID=013e,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  027: SatIndex=0, Frequency=11278, SymbolRate=27500
+    TSID=0000, ONID=0000,Pilot=false
+    FEC=0, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  028: SatIndex=0, Frequency=11295, SymbolRate=27500
+    TSID=01f4, ONID=013e,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  029: SatIndex=0, Frequency=11305, SymbolRate=27500
+    TSID=01f4, ONID=013e,Pilot=false
+    FEC=0, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  030: SatIndex=0, Frequency=11334, SymbolRate=27500
+    TSID=0385, ONID=0110,Pilot=false
+    FEC=1, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  031: SatIndex=0, Frequency=11343, SymbolRate=27500
+    TSID=0000, ONID=0000,Pilot=false
+    FEC=0, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  032: SatIndex=0, Frequency=11355, SymbolRate=27500
+    TSID=0320, ONID=fbff,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  033: SatIndex=0, Frequency=11373, SymbolRate=27500
+    TSID=0000, ONID=0000,Pilot=false
+    FEC=0, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  034: SatIndex=0, Frequency=11393, SymbolRate=27500
+    TSID=03e8, ONID=013e,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  035: SatIndex=0, Frequency=11411, SymbolRate=27500
+    TSID=044c, ONID=013e,Pilot=false
+    FEC=4, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  036: SatIndex=0, Frequency=11432, SymbolRate=27500
+    TSID=0000, ONID=0000,Pilot=false
+    FEC=0, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  037: SatIndex=0, Frequency=11449, SymbolRate=27500
+    TSID=0514, ONID=013e,Pilot=false
+    FEC=2, Modulation=2, ModSystem=1, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  038: SatIndex=0, Frequency=11470, SymbolRate=27500
+    TSID=0578, ONID=013e,Pilot=false
+    FEC=4, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  039: SatIndex=0, Frequency=11487, SymbolRate=27500
+    TSID=05dc, ONID=013e,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  040: SatIndex=0, Frequency=11526, SymbolRate=27500
+    TSID=06a4, ONID=013e,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  041: SatIndex=0, Frequency=11541, SymbolRate=22000
+    TSID=0708, ONID=00c8,Pilot=false
+    FEC=4, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  042: SatIndex=0, Frequency=11565, SymbolRate=27500
+    TSID=3bc4, ONID=013e,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  043: SatIndex=0, Frequency=11585, SymbolRate=27500
+    TSID=3c28, ONID=013e,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  044: SatIndex=0, Frequency=11604, SymbolRate=27500
+    TSID=3c8c, ONID=013e,Pilot=false
+    FEC=4, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  045: SatIndex=0, Frequency=11623, SymbolRate=27500
+    TSID=041e, ONID=0001,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  046: SatIndex=0, Frequency=11642, SymbolRate=27500
+    TSID=1c20, ONID=013e,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  047: SatIndex=0, Frequency=11662, SymbolRate=27500
+    TSID=0000, ONID=0000,Pilot=false
+    FEC=0, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  048: SatIndex=0, Frequency=11677, SymbolRate=27500
+    TSID=3e1c, ONID=013f,Pilot=false
+    FEC=0, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  049: SatIndex=0, Frequency=11681, SymbolRate=27500
+    TSID=3e1c, ONID=013f,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  050: SatIndex=0, Frequency=11727, SymbolRate=27500
+    TSID=1388, ONID=013e,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  051: SatIndex=0, Frequency=11747, SymbolRate=27500
+    TSID=13ef, ONID=013e,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  052: SatIndex=0, Frequency=11765, SymbolRate=27500
+    TSID=1450, ONID=013e,Pilot=false
+    FEC=2, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  053: SatIndex=0, Frequency=11785, SymbolRate=27500
+    TSID=14b4, ONID=013e,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  054: SatIndex=0, Frequency=11804, SymbolRate=27500
+    TSID=1518, ONID=013e,Pilot=false
+    FEC=2, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  055: SatIndex=0, Frequency=11823, SymbolRate=27500
+    TSID=157c, ONID=013e,Pilot=false
+    FEC=0, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  056: SatIndex=0, Frequency=11842, SymbolRate=27500
+    TSID=15e0, ONID=fbff,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  057: SatIndex=0, Frequency=11861, SymbolRate=27500
+    TSID=1644, ONID=fbff,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  058: SatIndex=0, Frequency=11880, SymbolRate=27500
+    TSID=16a8, ONID=fbff,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  059: SatIndex=0, Frequency=11900, SymbolRate=27500
+    TSID=170c, ONID=fbff,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  060: SatIndex=0, Frequency=11919, SymbolRate=27500
+    TSID=1770, ONID=0110,Pilot=false
+    FEC=2, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  061: SatIndex=0, Frequency=11938, SymbolRate=27500
+    TSID=17d4, ONID=013e,Pilot=false
+    FEC=0, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  062: SatIndex=0, Frequency=11958, SymbolRate=27500
+    TSID=1838, ONID=fbff,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  063: SatIndex=0, Frequency=11976, SymbolRate=27500
+    TSID=189c, ONID=fbff,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  064: SatIndex=0, Frequency=11996, SymbolRate=27500
+    TSID=1900, ONID=fbff,Pilot=true
+    FEC=2, Modulation=2, ModSystem=1, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  065: SatIndex=0, Frequency=12015, SymbolRate=27500
+    TSID=1964, ONID=013e,Pilot=false
+    FEC=0, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  066: SatIndex=0, Frequency=12034, SymbolRate=27500
+    TSID=19c8, ONID=fbff,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  067: SatIndex=0, Frequency=12054, SymbolRate=27500
+    TSID=1a2c, ONID=fbff,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  068: SatIndex=0, Frequency=12072, SymbolRate=27500
+    TSID=1a90, ONID=fbff,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  069: SatIndex=0, Frequency=12091, SymbolRate=27500
+    TSID=1af4, ONID=fbff,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  070: SatIndex=0, Frequency=12111, SymbolRate=27500
+    TSID=1b58, ONID=013e,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  071: SatIndex=0, Frequency=12144, SymbolRate=3333
+    TSID=0000, ONID=0000,Pilot=false
+    FEC=0, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  072: SatIndex=0, Frequency=12149, SymbolRate=27500
+    TSID=1c20, ONID=013e,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  073: SatIndex=0, Frequency=12169, SymbolRate=27500
+    TSID=1c84, ONID=013e,Pilot=false
+    FEC=0, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  074: SatIndex=0, Frequency=12188, SymbolRate=27500
+    TSID=1ce8, ONID=0071,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  075: SatIndex=0, Frequency=12207, SymbolRate=27500
+    TSID=0001, ONID=0001,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  076: SatIndex=0, Frequency=12226, SymbolRate=27500
+    TSID=0065, ONID=0001,Pilot=false
+    FEC=0, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  077: SatIndex=0, Frequency=12245, SymbolRate=27500
+    TSID=1e14, ONID=013e,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  078: SatIndex=0, Frequency=12264, SymbolRate=27500
+    TSID=1e78, ONID=0071,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  079: SatIndex=0, Frequency=12284, SymbolRate=27500
+    TSID=1edc, ONID=0071,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  080: SatIndex=0, Frequency=12302, SymbolRate=27500
+    TSID=0447, ONID=0001,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  081: SatIndex=0, Frequency=12322, SymbolRate=27500
+    TSID=1fa4, ONID=013e,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  082: SatIndex=0, Frequency=12341, SymbolRate=27500
+    TSID=2008, ONID=fbff,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  083: SatIndex=0, Frequency=12360, SymbolRate=27500
+    TSID=206c, ONID=013e,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  084: SatIndex=0, Frequency=12379, SymbolRate=27500
+    TSID=20d0, ONID=013e,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  085: SatIndex=0, Frequency=12398, SymbolRate=27500
+    TSID=2134, ONID=013e,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  086: SatIndex=0, Frequency=12418, SymbolRate=27500
+    TSID=2198, ONID=fbff,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  087: SatIndex=0, Frequency=12437, SymbolRate=27500
+    TSID=21fc, ONID=013e,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  088: SatIndex=0, Frequency=12460, SymbolRate=27500
+    TSID=2260, ONID=fbff,Pilot=false
+    FEC=0, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  089: SatIndex=0, Frequency=12475, SymbolRate=27500
+    TSID=22c4, ONID=013e,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  090: SatIndex=0, Frequency=12519, SymbolRate=27500
+    TSID=2328, ONID=013e,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  091: SatIndex=0, Frequency=12539, SymbolRate=27500
+    TSID=238c, ONID=013e,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  092: SatIndex=0, Frequency=12558, SymbolRate=27500
+    TSID=23f0, ONID=013f,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  093: SatIndex=0, Frequency=12577, SymbolRate=27500
+    TSID=0000, ONID=0000,Pilot=false
+    FEC=0, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  094: SatIndex=0, Frequency=12596, SymbolRate=27500
+    TSID=24b8, ONID=013e,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  095: SatIndex=0, Frequency=12616, SymbolRate=27500
+    TSID=251c, ONID=fbff,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  096: SatIndex=0, Frequency=12635, SymbolRate=27500
+    TSID=2580, ONID=fbff,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  097: SatIndex=0, Frequency=12654, SymbolRate=27500
+    TSID=25e4, ONID=02be,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  098: SatIndex=0, Frequency=12673, SymbolRate=27500
+    TSID=2648, ONID=013e,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  099: SatIndex=0, Frequency=12692, SymbolRate=27500
+    TSID=26ac, ONID=013e,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  100: SatIndex=0, Frequency=12713, SymbolRate=27500
+    TSID=2710, ONID=fbff,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  101: SatIndex=0, Frequency=12731, SymbolRate=27500
+    TSID=2774, ONID=fbff,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  102: SatIndex=0, Frequency=11508, SymbolRate=27500
+    TSID=0640, ONID=013e,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  103: SatIndex=0, Frequency=12465, SymbolRate=27500
+    TSID=2260, ONID=fbff,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  104: SatIndex=0, Frequency=11533, SymbolRate=27500
+    TSID=0640, ONID=013e,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  105: SatIndex=0, Frequency=11278, SymbolRate=27500
+    TSID=0190, ONID=013e,Pilot=false
+    FEC=2, Modulation=2, ModSystem=1, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  106: SatIndex=0, Frequency=11996, SymbolRate=27500
+    TSID=1900, ONID=fbff,Pilot=false
+    FEC=2, Modulation=2, ModSystem=1, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  107: SatIndex=0, Frequency=11158, SymbolRate=27500
+    TSID=3390, ONID=0071,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  108: SatIndex=0, Frequency=11449, SymbolRate=27500
+    TSID=0514, ONID=013e,Pilot=false
+    FEC=2, Modulation=2, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  109: SatIndex=0, Frequency=11278, SymbolRate=27500
+    TSID=0190, ONID=013e,Pilot=false
+    FEC=3, Modulation=2, ModSystem=1, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  110: SatIndex=0, Frequency=12226, SymbolRate=27500
+    TSID=0065, ONID=0001,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  111: SatIndex=0, Frequency=12303, SymbolRate=27500
+    TSID=1f40, ONID=013e,Pilot=false
+    FEC=0, Modulation=0, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+Transponder tables (Astra = 112)
+  000: SatIndex=1, Frequency=10788, SymbolRate=22000
+    TSID=041e, ONID=0001,Pilot=false
+    FEC=4, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  001: SatIndex=1, Frequency=10817, SymbolRate=22000
+    TSID=0420, ONID=0001,Pilot=false
+    FEC=4, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  002: SatIndex=1, Frequency=10832, SymbolRate=22000
+    TSID=0437, ONID=0001,Pilot=false
+    FEC=4, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  003: SatIndex=1, Frequency=10847, SymbolRate=22000
+    TSID=0422, ONID=0001,Pilot=false
+    FEC=4, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  004: SatIndex=1, Frequency=10861, SymbolRate=22000
+    TSID=0423, ONID=0001,Pilot=false
+    FEC=4, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  005: SatIndex=1, Frequency=10876, SymbolRate=22000
+    TSID=0424, ONID=0001,Pilot=false
+    FEC=4, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  006: SatIndex=1, Frequency=10920, SymbolRate=22000
+    TSID=0427, ONID=0001,Pilot=false
+    FEC=4, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  007: SatIndex=1, Frequency=10979, SymbolRate=22000
+    TSID=040a, ONID=0001,Pilot=false
+    FEC=4, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  008: SatIndex=1, Frequency=11038, SymbolRate=22000
+    TSID=040e, ONID=0001,Pilot=false
+    FEC=4, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  009: SatIndex=1, Frequency=11097, SymbolRate=22000
+    TSID=0412, ONID=0001,Pilot=false
+    FEC=4, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  010: SatIndex=1, Frequency=11156, SymbolRate=22000
+    TSID=0416, ONID=0001,Pilot=false
+    FEC=4, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  011: SatIndex=1, Frequency=11317, SymbolRate=22000
+    TSID=03f0, ONID=0001,Pilot=false
+    FEC=4, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  012: SatIndex=1, Frequency=11435, SymbolRate=22000
+    TSID=03f8, ONID=0001,Pilot=false
+    FEC=4, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  013: SatIndex=1, Frequency=11479, SymbolRate=22000
+    TSID=03fa, ONID=0001,Pilot=false
+    FEC=4, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  014: SatIndex=1, Frequency=11508, SymbolRate=22000
+    TSID=03fc, ONID=0001,Pilot=false
+    FEC=4, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  015: SatIndex=1, Frequency=11538, SymbolRate=22000
+    TSID=03fe, ONID=0001,Pilot=false
+    FEC=4, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  016: SatIndex=1, Frequency=11567, SymbolRate=22000
+    TSID=0400, ONID=0001,Pilot=false
+    FEC=4, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  017: SatIndex=1, Frequency=11597, SymbolRate=22000
+    TSID=0402, ONID=0001,Pilot=false
+    FEC=4, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  018: SatIndex=1, Frequency=11670, SymbolRate=22000
+    TSID=0407, ONID=0001,Pilot=false
+    FEC=4, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  019: SatIndex=1, Frequency=11685, SymbolRate=22000
+    TSID=0408, ONID=0001,Pilot=false
+    FEC=4, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  020: SatIndex=1, Frequency=11719, SymbolRate=27500
+    TSID=0003, ONID=0085,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  021: SatIndex=1, Frequency=11739, SymbolRate=27500
+    TSID=042a, ONID=0001,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  022: SatIndex=1, Frequency=11758, SymbolRate=27500
+    TSID=0011, ONID=0085,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  023: SatIndex=1, Frequency=11778, SymbolRate=27500
+    TSID=042c, ONID=0001,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  024: SatIndex=1, Frequency=11797, SymbolRate=27500
+    TSID=0002, ONID=0085,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  025: SatIndex=1, Frequency=11817, SymbolRate=27500
+    TSID=042e, ONID=0001,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  026: SatIndex=1, Frequency=11836, SymbolRate=27500
+    TSID=044d, ONID=0001,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  027: SatIndex=1, Frequency=11856, SymbolRate=27500
+    TSID=0430, ONID=0001,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  028: SatIndex=1, Frequency=11875, SymbolRate=27500
+    TSID=0009, ONID=0085,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  029: SatIndex=1, Frequency=11895, SymbolRate=27500
+    TSID=0432, ONID=0001,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  030: SatIndex=1, Frequency=11914, SymbolRate=27500
+    TSID=0006, ONID=0085,Pilot=false
+    FEC=9, Modulation=1, ModSystem=1, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  031: SatIndex=1, Frequency=11934, SymbolRate=27500
+    TSID=0434, ONID=0001,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  032: SatIndex=1, Frequency=11953, SymbolRate=27500
+    TSID=0437, ONID=0001,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  033: SatIndex=1, Frequency=11973, SymbolRate=27500
+    TSID=0436, ONID=0001,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  034: SatIndex=1, Frequency=11992, SymbolRate=27500
+    TSID=04ff, ONID=0001,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  035: SatIndex=1, Frequency=12012, SymbolRate=27500
+    TSID=0438, ONID=0001,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  036: SatIndex=1, Frequency=12031, SymbolRate=27500
+    TSID=0004, ONID=0085,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  037: SatIndex=1, Frequency=12051, SymbolRate=27500
+    TSID=043a, ONID=0001,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  038: SatIndex=1, Frequency=12070, SymbolRate=27500
+    TSID=0001, ONID=0085,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  039: SatIndex=1, Frequency=12090, SymbolRate=29900
+    TSID=0000, ONID=0000,Pilot=false
+    FEC=0, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  040: SatIndex=1, Frequency=12109, SymbolRate=27500
+    TSID=0431, ONID=0001,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  041: SatIndex=1, Frequency=12129, SymbolRate=27500
+    TSID=043e, ONID=0001,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  042: SatIndex=1, Frequency=12148, SymbolRate=27500
+    TSID=0007, ONID=0085,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  043: SatIndex=1, Frequency=12168, SymbolRate=27500
+    TSID=0440, ONID=0001,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  044: SatIndex=1, Frequency=12187, SymbolRate=27500
+    TSID=0441, ONID=0001,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  045: SatIndex=1, Frequency=12207, SymbolRate=27500
+    TSID=0442, ONID=0001,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  046: SatIndex=1, Frequency=12226, SymbolRate=27500
+    TSID=0443, ONID=0001,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  047: SatIndex=1, Frequency=12246, SymbolRate=27500
+    TSID=0444, ONID=0001,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  048: SatIndex=1, Frequency=12265, SymbolRate=27500
+    TSID=0445, ONID=0001,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  049: SatIndex=1, Frequency=12285, SymbolRate=27500
+    TSID=0446, ONID=0001,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  050: SatIndex=1, Frequency=12304, SymbolRate=27500
+    TSID=0447, ONID=0001,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  051: SatIndex=1, Frequency=12324, SymbolRate=27500
+    TSID=0448, ONID=0001,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  052: SatIndex=1, Frequency=12343, SymbolRate=27500
+    TSID=0449, ONID=0035,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  053: SatIndex=1, Frequency=12363, SymbolRate=27500
+    TSID=044a, ONID=0001,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  054: SatIndex=1, Frequency=12382, SymbolRate=27500
+    TSID=044b, ONID=0001,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  055: SatIndex=1, Frequency=12402, SymbolRate=27500
+    TSID=044c, ONID=0001,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  056: SatIndex=1, Frequency=12421, SymbolRate=27500
+    TSID=04b1, ONID=0001,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  057: SatIndex=1, Frequency=12441, SymbolRate=27500
+    TSID=044e, ONID=0001,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  058: SatIndex=1, Frequency=12460, SymbolRate=27500
+    TSID=0005, ONID=0085,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  059: SatIndex=1, Frequency=12480, SymbolRate=27500
+    TSID=0021, ONID=0085,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  060: SatIndex=1, Frequency=12515, SymbolRate=22000
+    TSID=0451, ONID=0035,Pilot=false
+    FEC=4, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  061: SatIndex=1, Frequency=12522, SymbolRate=22000
+    TSID=0452, ONID=0001,Pilot=true
+    FEC=2, Modulation=2, ModSystem=1, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  062: SatIndex=1, Frequency=12544, SymbolRate=22000
+    TSID=0453, ONID=0001,Pilot=false
+    FEC=4, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  063: SatIndex=1, Frequency=12551, SymbolRate=22000
+    TSID=0454, ONID=0001,Pilot=false
+    FEC=4, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  064: SatIndex=1, Frequency=12574, SymbolRate=22000
+    TSID=0455, ONID=0035,Pilot=false
+    FEC=4, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  065: SatIndex=1, Frequency=12581, SymbolRate=22000
+    TSID=0456, ONID=0001,Pilot=false
+    FEC=4, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  066: SatIndex=1, Frequency=12603, SymbolRate=22000
+    TSID=0000, ONID=0000,Pilot=false
+    FEC=0, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  067: SatIndex=1, Frequency=12610, SymbolRate=22000
+    TSID=0458, ONID=0001,Pilot=false
+    FEC=4, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  068: SatIndex=1, Frequency=12633, SymbolRate=22000
+    TSID=0459, ONID=0001,Pilot=false
+    FEC=4, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  069: SatIndex=1, Frequency=12640, SymbolRate=22000
+    TSID=045a, ONID=0001,Pilot=false
+    FEC=4, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  070: SatIndex=1, Frequency=12662, SymbolRate=22000
+    TSID=045b, ONID=0001,Pilot=false
+    FEC=4, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  071: SatIndex=1, Frequency=12670, SymbolRate=22000
+    TSID=045c, ONID=0001,Pilot=false
+    FEC=0, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  072: SatIndex=1, Frequency=12692, SymbolRate=22000
+    TSID=045d, ONID=0001,Pilot=false
+    FEC=4, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=true
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  073: SatIndex=1, Frequency=12699, SymbolRate=22000
+    TSID=045e, ONID=0001,Pilot=false
+    FEC=4, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  074: SatIndex=1, Frequency=12699, SymbolRate=22000
+    TSID=045d, ONID=0001,Pilot=false
+    FEC=0, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  075: SatIndex=1, Frequency=12721, SymbolRate=22000
+    TSID=045f, ONID=0035,Pilot=true
+    FEC=2, Modulation=2, ModSystem=1, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  076: SatIndex=1, Frequency=12728, SymbolRate=22000
+    TSID=0460, ONID=0001,Pilot=false
+    FEC=4, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  077: SatIndex=1, Frequency=12603, SymbolRate=22000
+    TSID=0000, ONID=0000,Pilot=false
+    FEC=0, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  078: SatIndex=1, Frequency=12580, SymbolRate=22000
+    TSID=0456, ONID=0001,Pilot=false
+    FEC=2, Modulation=2, ModSystem=1, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  079: SatIndex=1, Frequency=10773, SymbolRate=22000
+    TSID=041d, ONID=0001,Pilot=false
+    FEC=4, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  080: SatIndex=1, Frequency=12522, SymbolRate=22000
+    TSID=0452, ONID=0001,Pilot=false
+    FEC=2, Modulation=2, ModSystem=1, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  081: SatIndex=1, Frequency=12090, SymbolRate=27500
+    TSID=043c, ONID=0001,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  082: SatIndex=1, Frequency=10743, SymbolRate=22000
+    TSID=041b, ONID=0001,Pilot=false
+    FEC=4, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  083: SatIndex=1, Frequency=12721, SymbolRate=22000
+    TSID=045f, ONID=0001,Pilot=false
+    FEC=4, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  084: SatIndex=1, Frequency=11361, SymbolRate=22000
+    TSID=0437, ONID=0001,Pilot=false
+    FEC=2, Modulation=2, ModSystem=1, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  085: SatIndex=1, Frequency=11707, SymbolRate=22000
+    TSID=0417, ONID=0001,Pilot=false
+    FEC=2, Modulation=2, ModSystem=1, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  086: SatIndex=1, Frequency=11435, SymbolRate=22000
+    TSID=03f8, ONID=0001,Pilot=false
+    FEC=2, Modulation=2, ModSystem=1, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  087: SatIndex=1, Frequency=11361, SymbolRate=22000
+    TSID=03f3, ONID=0001,Pilot=true
+    FEC=2, Modulation=2, ModSystem=1, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  088: SatIndex=1, Frequency=11170, SymbolRate=22000
+    TSID=0417, ONID=0001,Pilot=false
+    FEC=2, Modulation=2, ModSystem=1, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  089: SatIndex=1, Frequency=11435, SymbolRate=22000
+    TSID=03f8, ONID=0001,Pilot=true
+    FEC=2, Modulation=2, ModSystem=1, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  090: SatIndex=1, Frequency=12580, SymbolRate=22000
+    TSID=0456, ONID=0001,Pilot=true
+    FEC=2, Modulation=2, ModSystem=1, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  091: SatIndex=1, Frequency=12669, SymbolRate=22000
+    TSID=045c, ONID=0001,Pilot=true
+    FEC=2, Modulation=2, ModSystem=1, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  092: SatIndex=1, Frequency=12669, SymbolRate=22000
+    TSID=045c, ONID=0001,Pilot=false
+    FEC=2, Modulation=2, ModSystem=1, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  093: SatIndex=1, Frequency=11914, SymbolRate=27500
+    TSID=0006, ONID=0085,Pilot=false
+    FEC=15, Modulation=1, ModSystem=0, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  094: SatIndex=1, Frequency=12522, SymbolRate=22000
+    TSID=045d, ONID=0001,Pilot=false
+    FEC=2, Modulation=0, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  095: SatIndex=1, Frequency=12090, SymbolRate=29900
+    TSID=043c, ONID=0001,Pilot=false
+    FEC=5, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  096: SatIndex=1, Frequency=11758, SymbolRate=27500
+    TSID=0021, ONID=0085,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  097: SatIndex=1, Frequency=12721, SymbolRate=22000
+    TSID=045f, ONID=0001,Pilot=false
+    FEC=2, Modulation=2, ModSystem=1, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  098: SatIndex=1, Frequency=11992, SymbolRate=22000
+    TSID=04ff, ONID=0001,Pilot=false
+    FEC=4, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  099: SatIndex=1, Frequency=11302, SymbolRate=22000
+    TSID=03ef, ONID=0001,Pilot=true
+    FEC=2, Modulation=2, ModSystem=1, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  100: SatIndex=1, Frequency=11023, SymbolRate=22000
+    TSID=0008, ONID=0085,Pilot=true
+    FEC=2, Modulation=2, ModSystem=1, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  101: SatIndex=1, Frequency=11023, SymbolRate=22000
+    TSID=0008, ONID=0085,Pilot=false
+    FEC=2, Modulation=2, ModSystem=1, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  102: SatIndex=1, Frequency=11302, SymbolRate=22000
+    TSID=03ef, ONID=0001,Pilot=false
+    FEC=2, Modulation=2, ModSystem=1, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  103: SatIndex=1, Frequency=11170, SymbolRate=22000
+    TSID=0417, ONID=0001,Pilot=true
+    FEC=2, Modulation=2, ModSystem=1, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  104: SatIndex=1, Frequency=10817, SymbolRate=22000
+    TSID=0420, ONID=0001,Pilot=true
+    FEC=2, Modulation=2, ModSystem=1, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  105: SatIndex=1, Frequency=11464, SymbolRate=22000
+    TSID=03f9, ONID=0001,Pilot=true
+    FEC=2, Modulation=2, ModSystem=1, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  106: SatIndex=1, Frequency=10832, SymbolRate=22000
+    TSID=0421, ONID=0001,Pilot=true
+    FEC=2, Modulation=2, ModSystem=1, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  107: SatIndex=1, Frequency=10817, SymbolRate=22000
+    TSID=0420, ONID=0001,Pilot=false
+    FEC=2, Modulation=2, ModSystem=1, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  108: SatIndex=1, Frequency=11464, SymbolRate=22000
+    TSID=03f9, ONID=0001,Pilot=false
+    FEC=2, Modulation=2, ModSystem=1, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  109: SatIndex=1, Frequency=10832, SymbolRate=22000
+    TSID=0421, ONID=0001,Pilot=false
+    FEC=2, Modulation=2, ModSystem=1, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  110: SatIndex=1, Frequency=10862, SymbolRate=22000
+    TSID=0423, ONID=0001,Pilot=false
+    FEC=4, Modulation=2, ModSystem=1, Polarisation=1, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+  111: SatIndex=1, Frequency=11126, SymbolRate=6666
+    TSID=7789, ONID=007e,Pilot=false
+    FEC=3, Modulation=1, ModSystem=0, Polarisation=0, ClockSync=false
+    unused1=0000, unused2=0000, unused3=00, unused4=0000
+
+Time info
+  UTCOffset=60, SleepTimer=0, GMTCollection=2, Mode=0, DST=01
+  unknown1=07, unknown2=00, unknown3=00, unknown4=3f, unknown5=ffffffff
+
+Timer (8)
+  000: 'FBEPG.rec'
+    TunerIndex=1, RecMode=2, DemuxPath=0, ManualRec=1, SatIndex=1, ServiceType=0, PMT=0000
+    ReservationType=1, ServiceID=32c9, Duration=1, StartTime=d8d40500, EndTime=d8d40501
+    isRec=0, NameSet=0, EPGMarker=0, EventID1=0000, EventID2=0000, ServiceIndex=0
+    unused1=00, unused2=00, unused3=00, unused5=00 00 00 00 00 00 , unused6=0000, unused7=0000, unused8=00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+
+  001: 'MythBusters - Die Wissensjäger - .rec'
+    TunerIndex=3, RecMode=2, DemuxPath=0, ManualRec=1, SatIndex=1, ServiceType=0, PMT=0000
+    ReservationType=0, ServiceID=2ef4, Duration=70, StartTime=d8d4040a, EndTime=d8d40514
+    isRec=1, NameSet=1, EPGMarker=0, EventID1=0000, EventID2=0000, ServiceIndex=48
+    unused1=00, unused2=00, unused3=00, unused5=00 00 00 00 00 00 , unused6=0000, unused7=0000, unused8=00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+
+  002: 'Battlestar Galactica - .rec'
+    TunerIndex=3, RecMode=2, DemuxPath=0, ManualRec=1, SatIndex=1, ServiceType=0, PMT=0000
+    ReservationType=0, ServiceID=2ef4, Duration=41, StartTime=d8d70105, EndTime=d8d7012e
+    isRec=1, NameSet=1, EPGMarker=0, EventID1=0000, EventID2=0000, ServiceIndex=48
+    unused1=00, unused2=00, unused3=00, unused5=00 00 00 00 00 00 , unused6=0000, unused7=0000, unused8=00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+
+  003: 'Achtung Kontrolle! Einsatz für die Ordnungshüter.rec'
+    TunerIndex=3, RecMode=2, DemuxPath=0, ManualRec=1, SatIndex=1, ServiceType=0, PMT=0000
+    ReservationType=0, ServiceID=445e, Duration=60, StartTime=d8d4083a, EndTime=d8d4093a
+    isRec=1, NameSet=1, EPGMarker=0, EventID1=0000, EventID2=0000, ServiceIndex=33
+    unused1=00, unused2=00, unused3=00, unused5=00 00 00 00 00 00 , unused6=0000, unused7=0000, unused8=00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+
+  004: 'Achtung Kontrolle! Einsatz für die Ordnungshüter.rec'
+    TunerIndex=3, RecMode=2, DemuxPath=0, ManualRec=1, SatIndex=1, ServiceType=0, PMT=0000
+    ReservationType=0, ServiceID=445e, Duration=59, StartTime=d8d41310, EndTime=d8d4140f
+    isRec=1, NameSet=1, EPGMarker=0, EventID1=0000, EventID2=0000, ServiceIndex=33
+    unused1=00, unused2=00, unused3=00, unused5=00 00 00 00 00 00 , unused6=0000, unused7=0000, unused8=00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+
+  005: 'Achtung Kontrolle! Einsatz für die Ordnungshüter.rec'
+    TunerIndex=3, RecMode=2, DemuxPath=0, ManualRec=1, SatIndex=1, ServiceType=0, PMT=0000
+    ReservationType=0, ServiceID=445e, Duration=61, StartTime=d8d50839, EndTime=d8d5093a
+    isRec=1, NameSet=1, EPGMarker=0, EventID1=0000, EventID2=0000, ServiceIndex=33
+    unused1=00, unused2=00, unused3=00, unused5=00 00 00 00 00 00 , unused6=0000, unused7=0000, unused8=00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+
+  006: 'Achtung Kontrolle! Einsatz für die Ordnungshüter.rec'
+    TunerIndex=3, RecMode=2, DemuxPath=0, ManualRec=1, SatIndex=1, ServiceType=0, PMT=0000
+    ReservationType=0, ServiceID=445e, Duration=58, StartTime=d8d51311, EndTime=d8d5140f
+    isRec=1, NameSet=1, EPGMarker=0, EventID1=0000, EventID2=0000, ServiceIndex=33
+    unused1=00, unused2=00, unused3=00, unused5=00 00 00 00 00 00 , unused6=0000, unused7=0000, unused8=00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+
+  007: 'MythBusters - Die Wissensjäger - .rec'
+    TunerIndex=3, RecMode=2, DemuxPath=0, ManualRec=1, SatIndex=1, ServiceType=0, PMT=0000
+    ReservationType=0, ServiceID=2ef4, Duration=60, StartTime=d8d9060f, EndTime=d8d9070f
+    isRec=1, NameSet=1, EPGMarker=0, EventID1=0000, EventID2=0000, ServiceIndex=48
+    unused1=00, unused2=00, unused3=00, unused5=00 00 00 00 00 00 , unused6=0000, unused7=0000, unused8=00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+
+AutoDescramble timer
+  StartTime=d8d4010a, EndTime=d8d40122, Duration=24, ReservationType=0, DelOrig=true, NrOfFiles=1, TotalTime=22
+  unknown1=0000, unknown2=0001, unknown3=0000
+   000: ZIB 24_20101105_0001.rec
+

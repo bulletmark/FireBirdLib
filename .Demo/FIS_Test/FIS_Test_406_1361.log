@@ -1,0 +1,81 @@
+11:13:15 SysID=406, ApplID=1361, FWgp=8039e800
+11:13:15 Built with FBLib version 2009-07-04
+11:13:15 
+11:13:16 Main init = OK
+11:13:17 Flash init failed.
+11:13:18   This might be due to a failed main init, a failed attempt to open Firmware.dat,
+11:13:18   your system ID missing in Firmware.dat (see next paragraph) or the failure to
+11:13:19   locate FIS_vFlash()
+11:13:19 
+11:13:20 Firmware.dat not found.
+11:13:20 
+11:13:21 FIS_fwAddEventHandler             = 8016589c
+11:13:21 FIS_fwBIOS                        = 80000c14
+11:13:21 FIS_fwDelEventHandler             = 80165910
+11:13:22 FIS_fwDSTCheck                    = 801b5434
+11:13:22 FIS_fwEnqueueEvent                = 801652a8
+11:13:22 FIS_fwEventDispatcher             = 80005f78
+11:13:23 FIS_fwFlashEraseSector            = 80006d60
+11:13:23 FIS_fwFlashFindSectorAddressIndex = 80007104
+11:13:24 FIS_fwFlashGetSectorAddress       = 800071a8
+11:13:24 FIS_fwFWFlashProgram              = 80006f44
+11:13:24 FIS_fwGetMPVFDDataBuffer          = 00000000
+11:13:25 FIS_fwMemMonitor                  = 8000175c
+11:13:25 FIS_fwMHEGDisable                 = 00000000
+11:13:25 FIS_fwMHEGStatus                  = 00000000
+11:13:26 FIS_fwMoveOld                     = 00000000
+11:13:26 FIS_fwObtainResource              = 80000df0
+11:13:27 FIS_fwPIC2_ISR18                  = 80004528
+11:13:27 FIS_fwReboot                      = 800095e8
+11:13:27 FIS_fwReleaseResource             = 80000f64
+11:13:28 FIS_fwSendToFP                    = 800044a4
+11:13:28 FIS_fwSendToLEDDisplay            = 800066e4
+11:13:28 FIS_fwSetLEDByMode                = 8019b088
+11:13:29 FIS_fwSetPlaybackMode             = 8010e900
+11:13:29 FIS_fwSetPlaybackSpeed            = 8014be2c
+11:13:30 FIS_fwSetVFDByMode                = 801a221c
+11:13:30 FIS_fwShutdownHandler             = 8010baa4
+11:13:30 FIS_fwStopDisplayUpdateTimers     = 801a2004
+11:13:31 FIS_fwTAPStart                    = 8018c81c
+11:13:31 FIS_fwUpdateMPVFD                 = 00000000
+11:13:32 FIS_fwWriteSectors                = 8009395c
+11:13:32 FIS_fwWriteSectorsDMA             = 800942f8
+11:13:32 
+11:13:33 FIS_vEEPROM                       = 81c3295c
+11:13:33 FIS_vEEPROMPin                    = 81c32980
+11:13:33 FIS_vEventHandlerMap              = 823df610
+11:13:34 FIS_vFlash                        = 81b83d34
+11:13:34 FIS_vFlashFWMaxSize               = 80397b50
+11:13:35 FIS_vFlashFWStartOffset           = 80397b40
+11:13:35 FIS_vFlashInProgress              = 80396cde
+11:13:35 FIS_vGMT                          = 80396cc0
+11:13:36 FIS_vHddInfoStructure1            = 80398028
+11:13:36 FIS_vHddInfoStructure2            = 80396b84
+11:13:36 FIS_vHDDLiveFSFAT1                = 81df047c
+11:13:37 FIS_vHDDLiveFSRootDir             = 81decf34
+11:13:37 FIS_vHDDLiveFSSuperblock          = 81dee164
+11:13:37 FIS_vHDDShutdown                  = 8009c914
+11:13:38 FIS_vHeapMap                      = 81c0e960
+11:13:38 FIS_vHeapStart                    = 81ec3410
+11:13:39 FIS_vIntVectorTable               = 81c0e7c0
+11:13:39 FIS_vKeyMap                       = 802681b8
+11:13:39 FIS_vLEDDisplayBuffer             = 80398648
+11:13:40 FIS_vMPEGHeader                   = 81ec0a58
+11:13:40 FIS_vMPVFD                        = 00000000
+11:13:41 FIS_vMPVFDBackup                  = 00000000
+11:13:41 FIS_vOSDMap                       = 8032bd80
+11:13:41 FIS_vPinStatus                    = 80397204
+11:13:42 FIS_vPlaybackPaused               = 80396cdc
+11:13:42 FIS_vPlaySlot                     = 81a111a8
+11:13:42 FIS_vRecFile0                     = 81dee58c
+11:13:43 FIS_vRecFile1                     = 00000000
+11:13:43 FIS_vRECSlotAddress0              = 81b37548
+11:13:44 FIS_vRECSlotAddress1              = 81b375d0
+11:13:44 FIS_vSuppressedAutoStart          = 80397171
+11:13:44 FIS_vSysOsdControl                = 80397174
+11:13:45 FIS_vTAP_Vfd_Control              = 803971cc
+11:13:45 FIS_vTAP_Vfd_Status               = 803971cd
+11:13:45 FIS_vTAPTable                     = 8018d430
+11:13:46 FIS_vTaskAddressTable             = 802802a8
+11:13:46 FIS_vVolume                       = 80397ffb
+11:13:46 FIS_vWD1                          = 80396d00

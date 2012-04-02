@@ -1,0 +1,16 @@
+#include "FBLib_tap.h"
+
+// Return codes: 0..15 = Position in the TAP table
+//                  -1 = TAPID not found
+//
+int HDD_TAP_GetIndexByID (dword TAPID)
+{
+  int                   i;
+
+  for (i = 0; i < TAP_MAX; i++)
+  {
+    if(HDD_TAP_GetIDByIndex(i) == TAPID) return i;
+  }
+
+  return -1;
+}

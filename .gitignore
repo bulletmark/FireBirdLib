@@ -1,0 +1,15 @@
+*.[oa]
+*.d
+*.dll
+*.exe
+*.lib
+*.map
+*.obj
+*.pyc
+*.so
+*.tap
+*~
+/HTMLDOCS/
+cscope.out
+tags
+JailBreak

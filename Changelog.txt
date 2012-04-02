@@ -1,0 +1,713 @@
+Name:     FireBirdLib
+For:      Topfield SRP (TMS) series
+Author:   FireBird & ibbi
+Descr.:   A collection of useful and dangerous functions ;-)
+
+          Code has been taken from several other libs and several people have been contributing to this collection:
+
+          asrael, bdb, Bubendorf, DeadBeef, DeJe, Happy, jkIT, miq, R2-D2, RobbieT, simonc
+
+          If you find your code in this lib but aren't mentioned above, please send me a short note
+
+License:  This library is freeware. You may use this code in your own projects free of charge.
+          Use at your own risk!
+
+2007-01-07  First release
+2007-01-08  minor internal changes
+2007-01-09  tapapifix assimilated
+2007-01-10  missing prototypes added
+2007-01-11  Added SuppressedAutoStart and HDD_TAP_isBatchMode
+            Upgraded HDD_TAP_Start
+2007-01-12  Added HDD_EncodeRECHeader, HDD_DecodeRECHeader and HDD_TAP_ClearBatchFlag
+2007-01-14  Added a lot of new SysIDs to FlashInitialize
+            Adapted HDD_BigFile_Read, HDD_BigFile_Write and HDD_BigFile_Size to use standard TYPE_File structures
+            Removed HDD_BigFile_Open and HDD_BigFile_Close
+            Added several checks to the INI functions
+2007-01-15  Added all reserved-bits to the tRECHeaderInfo structures
+2007-01-16  bugs fixed
+2007-01-17  bugs fixed, HDD_TAP_IsAnyRunning added
+2007-01-23  Resolved some unknown fields in the REC header structure
+2007-01-26  some fixes, DEBUG_FIREBIRDLIB, FlashGetSatelliteByIndex, FlashGetTransponder{S,C,T}ByIndex added
+2007-01-27  Removed the parameter from HDD_TAP_IsAnyRunning
+            Added HDD_isCryptedStream, HDD_TAP_Disable, HDD_TAP_DisableAll, HDD_TAP_isDisabled, HDD_FreeSize
+            HDD_LiveFS_GetFirstCluster, HDD_LiveFS_GetLastCluster, HDD_LiveFS_GetNextCluster and
+              HDD_LiveFS_GetPreviousCluster
+2007-01-28  Added HDD_Write
+2007-01-29  FlashReindexTimers, FlashReindexFavourites added
+            Added HDD_TAP_GetIDByFileName, HDD_TAP_GetIDByIndex, HDD_TAP_GetIndexByID
+            Changed the parameter TAPIndex to TAPID of the following functions: HDD_TAP_Terminate, HDD_TAP_Disable
+              and HDD_TAP_isDisabled
+2007-01-30  Added HDD_WriteClusterDMA, HDD_LiveFS_GetChainLength, HDD_TAP_isDisabledAll
+            Separated into several themes and packed all objects into libFireBird.a
+2007-02-01  complete re-organization of the sources to allow linking as a real library
+            Renamed isRecording to HDD_isRecording; a parameter = 0xff will return if slot 0 or slot 1 is recording
+            Renamed FindPCR to HDD_FindPCR and FindPMT to HDD_FindPMT
+            Renamed SetRECDuration to HDD_SetRECDuration
+            Renamed IsAnyOSDVisible to isAnyOSDVisible
+2007-02-02  Added ParseLine
+            Added HDD_TAP_GetCurrentDirCluster and HDD_TAP_GetCurrentDir
+            Added HDD_TAP_SetStartParameter and HDD_TAP_GetStartParameter
+            Added a lot of new EMMA register descriptions (XDMA and TTSD). Thanks to Harvey.
+2007-02-06  DeJe: Bugfixing the INI block
+            Renamed RemoveLastSpaces to TrimTrailingSpaces
+            Renamed AWToolSoundSinus to SoundSinus
+2007-02-09  Bugfix in HDD_FindPMT: added the detection of adaptation fields
+            'Official release'
+
+2007-02-10  Moved all MIPS opcodes into libFireBird.h
+2007-02-12  Added HDD_isAnyRecording, HDD_isRecording doesn't support 0xff for all rec slots any more
+2007-02-13  Replaced TrimTrailingSpaces by RTrim
+            Added TAP_Channel_SetAudioTrack to tapapifix
+            Added FindDBTrack
+2007-02-14  Fixed HDD_TAP_SendEvents (Large parts have been taken from simoncs TAPextensions)
+            Modified the tTAPTable structure
+            Fixed a bug in the detection routine of the BIOS entry point
+2007-02-16  HDD_TAP_SetStartParameter integrated into HDD_TAP_Start
+            Removed HDD_TAP_ClearBatchFlag. (Parameters and Batch flag are valid in TAP_Main only!)
+2007-02-18  Modified interface: void *HDD_TAP_GetStartParameter (void)
+            Added FlashGetServiceByIndex, HDD_TAP_Callback, FlashAddFavourite and FlashDeleteFavourites
+2007-02-21  Added the TAPCOM library (thanks to asrael)
+2007-03-01  Added ShowMessageWindow
+2007-03-02  Renamed TAPCOM_isStillAlive to TAPCOM_LastAlive
+            Added a tapapifix for the TAP_HDD_Delete dot-bug (thanks to Happy)
+2007-03-09  HDD_TAP_DisableAll now returns how many TAPs couldn't be disabled
+            minor internal changes
+2007-03-10  EMMA register definitions extracted from InitTAPex
+2007-03-16  Added BootReason
+2007-03-22  Modified the tRECSlot structure (Pause-flag has been added); also fixed a alignment bug
+            Added HDD_RECSlotPause, HDD_RECSlotIsPaused & HDD_RECSlotGetAddress
+            Renamed HDD_SetRECDuration to HDD_RECSlotSetDuration
+            English PDF has been added
+            'Official release'
+
+2007-03-26  Bugfix in the vertical scaling of GetFrameBufferPixel (thanks to Stevie2k)
+2007-03-27  Fixed a crash-bug in HookSet.c  (thanks to simonc)
+            'Official release'
+
+2007-04-05  Added HDD_FappendOpen and HDD_FappendWrite
+2007-04-06  Added GetOSDMapAddress and isOSDRegionAlive
+            Added HDD_GetFirmwareDirCluster and HDD_TranslateDirCluster
+2007-04-07  Bugfix in the INI-block: if a INI file didn't exist, a new one wasn't created
+2007-04-12  Fixed as bug in the GetTuner/SetTuner functions (wrong EEPROM offset).
+            'Official release'
+
+2007-04-13  Updated the tRECServiceInfo5000 and tRECServiceInfo5010 structures
+2007-04-16  Bugfix in HDD_GetFirmwareDirCluster (missing lib init)
+2007-04-18  Added the documented but missing HDD_LiveFS_GetRootDirAddress (thanks to Erdnussnase)
+            Added HDD_MakeNewFilename and HDD_TAP_StartedByTAP
+            'Official release'
+
+2007-04-19  Added TimeDiff
+            Added HDD_SetFileDateTime, HDD_SetCryptFlag, HDD_SetSkipFlag
+            Added the constants TF_FILE_NAME_SIZE, TF_RECFILE_NAME_SIZE
+            HDD_MakeNewFilename renamed to HDD_MakeNewRecName
+2007-04-22  Added HDD_TAP_SetCurrentDirCluster
+2007-04-23  Added GetSysOsdControl
+            Fixed a bug in HDD_TAP_StartedByTAP which prevented a correct return value if the launcher wasn't the
+              first TAP in the TAP table
+2007-04-26  Fixed a bug in INIGetString which occasionally prevented a value from being returned
+2007-04-30  Fixed a bug in Fixed_TAP_Hdd_Flen and Fixed_TAP_Hdd_Fseek
+            Renamed TpInfo to TPInfo in the TYPE_TimerT structure
+2007-05-02  Added HDD_TouchFile
+            Renamed the following tFileSlot fields:
+              FileSize_Field1 -> TotalCluster
+              FileSize_Field2 -> UnusedByte
+              FileSize_Field3 -> BytesUsed
+              reserved5       -> BytesUsedCRC
+2007-05-03  Fixed another bug in INIGetString
+            Added Now and the macros Date, MJD, Hour and Minute
+            Added HDD_TruncateFile
+2007-05-04  Added TimeStamp and Log
+            Renamed Date, Hour and Minute macros to DATE, HOUR and MINUTE
+            Complete rework of the INI block
+2007-05-05  Added HDD_TruncateFile to INISaveFile
+            Added GetAudioTrackPID
+2007-05-06  Added FlashRemoveServiceByPartOfName (thanks to Willi)
+2007-05-10  Renamed TimeStamp to TimeFormat
+            Added the parameter Sec to Now
+2007-05-11  Added the boot reason BOOT_CRASH_REBOOT. This state is set by the AutoReboot TAP.
+            'Official release'
+
+2007-05-19  Changed FlashMemory_Base from a dword* to a word*
+            Updated the FileSelector Demo
+2007-05-29  Added FBLIB_DIR_SIZE
+2007-05-30  Fixed HDD_Move for old firmware versions
+2007-06-03  Added the isValidRAMPtr macro
+            Another change in HDD_Move
+            Added SetCrashBehaviour
+            Added FlushCache
+            Added the compression block (UncompressBlock, UncompressedLoaderSize, UncompressLoader,
+              UncompressedFirmwareSize, UncompressFirmware, UncompressedTFDSize and UncompressTFD);
+            Renamend CalcRAMCRC to CRC16
+2007-06-05  Added SeparatePathComponents
+2007-06-09  Added parameter StartValue to CRC16
+2007-06-12  Made intLock/intUnlock "public"
+2007-06-17  Fixed a bug in HDD_TAP_DisableAll (thanks to EMJB for reporting)
+            Added the dialog block (thanks to the graphic artist StevieC)
+            Added TAP_Osd_PutFreeColorGd and DrawLine
+2007-06-18  Added FlashWrite (use this command only if you know what you're doing!)
+2007-06-19  Changed MakeValidFileName into a function
+            Both FlashRemoveServiceByName & FlashRemoveServiceByPartOfName remove invisible control characters
+              before comparing with ChannelName
+2007-06-20  Fixed a bug in SetCrashBehaviour (thanks to asrael for analyzing the problem)
+            Changed "Shutdown (TaskPower)" from an event to a firmware call as the event made
+              troubles with 2007er F/W releases
+2007-06-27  Added ProgresssBar
+2007-06-28  Added MHEG_Status, InteractiveGetStatus, InteractiveSetStatus, SubtitleGetStatus and SubtitleSetStatus
+              (provided by R2-D2)
+2007-06-29  Renamed GetTuner/SetTuner to TunerGet/TunerSet
+2007-06-30  Added the parameter PercentFinishedCallback to FlashWrite
+            Changed the 3rd parameter of CRC16 from "EndAddress" to "Length"
+            Added DialogProgressBarTitle
+2007-07-01  Added the TFDTYPE structure and the compression commands
+2007-07-04  Added the PercentFinishedCallback parameter to several (Un)Compress functions
+            Bugfix: MsgBox with only one button shouldn't show the button in pressed state
+            Added DialogWindowItemDeleteAll
+2007-07-05  Added the EEPROM struct
+2007-07-07  Rebuild the compression block based on "LHa for UNIX version 1.14i"
+2007-07-13  Profile parameter ScrollScreen and ScrollWrapAround set to TRUE by default to emulate the native filer
+            Added InfoTestGrid
+2007-07-17  Reboot doesn't temporarily shutdown the HDD any more
+2007-07-18  Added the IMEM block (programmed by DeJe)
+2007-07-22  Fixed a bug in getRECSlotAddress to make it work with cable Toppies (thanks to Gerti for reporting)
+            Fixed a missing initialization in HDD_TAP_GetCurrentDirCluster and HDD_TAP_SetCurrentDirCluster (thanks
+              to asrael for reporting)
+2007-07-26  Added CallFirmwareA, CallFirmwareA64 and CallFirmwareT (thanks to R2-D2 for the code)
+2007-07-26  Added ibbi's FileSelector
+2007-07-30  Added the definition of LAN_Suomi
+2007-08-07  'Official release'
+
+2007-08-08  Added DialogWindowTabulatorSet
+2007-08-09  Added LangLoadStrings, LangGetString, LangUnloadStrings
+            Fixed a memory bug in DialogWindowInfoAddS
+            Changed the color of the scroll bar to prevent flickering
+2007-08-12  Renamed DrawLine to DrawOSDLine
+2007-08-13  Added iso639_1
+2007-08-14  'Official release'
+
+2007-08-15  Fixed a graphical bug in the scroll bar routines
+2007-08-17  Added CRC32
+2007-08-20  Fixed a bug in CRC32
+2007-08-21  Fixed a bug in LangLoadStrings, which prevented the fallback to the default language
+2007-08-24  Added FlashGetServiceByName
+2007-08-31  Fixed a bug that crashes the Toppy if no selectable line was available
+            Improved the alternate line selection for unselectable lines
+            Added LAN_Bulgarian
+2007-09-02  Changed the return code of HDD_TAP_Start. As it can't detect if a TAP has been successfully launched,
+              HDD_TAP_Start returns 0 if something goes wrong before starting the TAP. Otherwise a 1 is returned
+2007-09-03  Added "à" to the list of invalid file name characters. It prevents a file name from being listed in the Toppies native filer
+2007-09-04  Bugfix: FileSelector didn't distinguish between directories and files if both had the same name
+            Bugfix: Sometimes INI_Get* returned a wrong value instead of the default value
+2007-09-06  'Official release'
+
+2007-09-08  Added DialogWindowAlpha
+2007-09-11  Added the WinFileAttribute field to tFileSlot and the WINFILEATTRIBUTE defines
+2007-09-17  Added HDD_TAP_PushDir, HDD_TAP_PopDir, INILocateFile
+            Modified the behaviour of the INI, language and profile blocks. On load operations, the TAP will
+              automatically
+            check the following directories and load the first hit:
+              * current dir
+              * /ProgramFiles/Settings/<AppName>  (if AppName has been provided)
+              * /ProgramFiles/Settings
+              * /ProgramFiles
+
+            Due to that change, the parameters of the following functions have changed:
+              * INIOpenFile, INISaveFile
+              * DialogProfileLoad, DialogProfileLoadMy, DialogProfileSave, DialogProfileCheck
+              * LangLoadStrings
+
+2007-09-20  Added HDD_GetHddInfo
+2007-09-25  Added AddSec
+2007-09-27  Fixed a bug in the REL_ADDR macro (thanks to R2-D2)
+2007-10-05  Fixed a bug in ProfileInit
+2007-10-21  Added the field "UserData" to tDialogItem
+2007-10-23  Added PatchInstructionSequence (thanks to R2-D2)
+2007-10-28  Added the new FWPatches block
+            Added IdentifyFirmware
+            The following functions make use of the new Firmware.dat database:
+              GetToppyString and IdentifyFirmware
+2007-11-04  'Official release'
+
+2007-11-05  Changed 'unknown3' to 'SlotCRC' in tFileSlot
+2007-11-07  When transcoding a REC header with HDD_EncodeRECHeader, the transponder block is filled
+              with useful data instead of 0x00
+2007-11-11  Bugfix: if a integer value in a INI file was larger than the allowed maximum or smaller
+              than the allowed minimum, INIGetInt returned the default value instead of the minimum
+              or maximum value. The same was true for INIGetHexByte, -Word, -DWord.
+2007-11-14  Merged the FLASH_TYPE and HEADER_TYPE enums into one single SYSTEM_TYPE
+            Improved HDD_DecodeRECHeader to auto detect TF5700 REC headers
+2007-11-15  Made Shutdown compatible with the new UK firmware (thanks to simonc for the update)
+2007-11-25  Added CallTraceExitResult and CallTraceComment
+2007-12-05  HDD_DecodeRECHeader returns the type of the decoded header
+            Added SysID 2456 (TF6000PVRE) to the isMasterpiece lookup table
+2007-12-06  Fixed an uninitialized variable in CompressBlock (thanks to R2-D2 for hunting this down)
+2007-12-07  HDD_TAP_GetCurrentDirCluster returns -1 instead of 0 in case of a failed lib init
+2007-12-13  Added HDD_PlaySlotGetAddress
+            Added INIGetRGB, INIGetRGB8, INISetRGB, INISetRGB8
+
+            The following updates have been provided by R2-D2
+            TAP_Hdd_Fwrite:  added to TAPAPIFix (doesn't write junk to fill the 512 byte buffer)
+            TAP_Hdd_Flen TAPAPIFix: added the detection of a fixed/patched firmware Flen
+            Added the TimeFormat flag to EEPROMSTRUCT
+            Added tPlaySlot
+            Corrected the tRECSlot struct
+2007-12-15  'Official release'
+
+2007-12-22  Improved PatchFindType to react faster on unmatched patches (thanks to R2-D2)
+2007-12-25  Modified the behaviour of HDD_TAP_SendEvent
+2007-12-27  Added TAP_Hdd_Fopen to the TAPAPIFix block (thanks to R2-D2)
+2008-01-04  Added the missing TAP_SystemProc entry to tTAPEntryPoints. All the elements from "FirmareVersion"
+              onwards were off by 4. (thanks to R2-D2)
+            Fixed a bug in INIGetInt, which disallowed negative values
+            FindInstructionSequence and PatchInstructionSequence will terminate if the size of pattern != sizeof mask
+            PatchInstructionSequence returns a bool
+2008-01-08  Modified HDD_GetHDDInfo so that it also works correctly on TF6xxxs
+            Fixed DialogProfileSaveDefault: it will now save to a moved DialogProfile.ini instead of
+              creating a new one in /ProgramFiles
+2008-01-10  PatchApply checks if a patch is still applicable
+2008-01-11  Added LoadFirmwareDat
+            Fixed a bug in DialogProfileSave, which failed while saving a profile to /ProgramFiles/Settings
+2008-01-13  Added InitTAPexFailedMsg and EnqueueEvent
+            Fixed the init routine for the new Finish firmware
+2008-01-14  Fixed a bug in INISaveFile, which might crash the Toppy if INILocation == INILOCATION_AtAppName and AppName == NULL
+            'Official release'
+
+2008-01-16  Added HDD_RecalcPlaytime
+2008-01-17  Added AddEventHandler and DelEventHandler
+2008-01-20  Changed Shutdown back to a event drive function (see 2007-06-20 and 2008-01-13)
+2008-01-22  Fixed a bug in the shortcut routine of PatchFindType
+2008-01-26  Fixed a bug where HDD_GetHddID froze without a preceding InitTAPex
+2008-01-27  If the SearchMask allows it PatchFindType and PatchApply can remove generic patches (thanks to R2-D2)
+2008-01-31  Added HDD_PausePlayback
+2008-02-04  Added INIKeyExists
+            Fixed a bug in INILocateFile, which might have ended up in the wrong directory
+2008-02-17  Added a security check to CallFirmware
+            Fixed FIS_fwSetVFDByMode so that it will also find the TF5500's SetVFDByMode routine
+            'Official release'
+
+2008-02-19  Fixed a bug in InitTAPex, which caused HDD_TAP_Start to crash
+            HDD_GetFirmwareDirCluster will return -1 instead of 0 in case of a fault
+2008-02-22  HDD_FindPCR returns -1 instead of 0 in case of an unavailable PCR packet
+            Fixed a bug in FIS_vOSDMap, which returned an false address
+            'Official release'
+
+2008-02-25  Fixed a bug in File Selector, which didn't display German Umlaute
+2008-03-05  Added the parameter PID to HDD_FindPCR
+2008-03-07  Recoded HDD_LiveFS_GetPreviousCluster and HDD_LiveFS_GetLastCluster in assembler: now it runs about 4000 times faster
+2008-03-17  Modified some FIS patterns to make them work on a broader range of firmwares
+2008-03-18  isMasterpiece uses FIS_fwUpdateMPVFD instead of a hard coded SysID table
+2008-03-19  Modified FlashProgram to use TAP_WriteSystemVar instead of creating and deleting a timer
+            Added DISPLAY_TYPE to the Firmware.dat database. Keep in mind that TF5000s and TF5200s will report
+              DT_LED even if they may have been upgraded to DT_VFD5500. Use TAP_Vfd_GetStatus to detect this
+              kind of display.
+            MPDisplayDisplayLongString translates Ä, Ö, Ü into AE, OE and UE only if the OSD language is set to German, otherwise the
+              MP VFD will show A, O and U respectively.
+2008-03-27  'Official release'
+
+2008-04-05  Fixed a bug in FIS_vPlaySlot
+2008-04-18  Fixed a bug in FIS_vFlashFWStartOffset (thanks to R2-D2)
+            R2-D2 has translated the original lh5 Pascal sources to "fix" a compression bug which seems to be tripped
+              by the new TF5810 firmware. lh5 replaces AREncode and ARDecode, but there's no change in the interface.
+2008-04-23  TAP_Hdd_StopTs added to TAPAPIFix by R2-D2
+            'Official release'
+
+2008-05-01  TAP_HDD_Delete also seem to be unable to delete files with a very long name. So the APIFixed version now renames every
+              file before deleting it
+2008-05-08  The TYPE_TpInfoT has been updated (thanks to R2-D2). NetworkID has been renamed to OriginalNetworkID!
+2008-05-16  Renamed the FIS_vRecFile parameter from "Slot" to "DemuxPath". This is not a code change, but the parameter has a different
+            meaning. To convert from Slot to DemuxPath do a
+
+            tRECSlot *RECSlot = (tRECSlot*) FIS_vRECSlotAddress(Slot);
+            if (RECSlot) RECFile = (tFileSlot*) FIS_vRecFile(RECSlot ->DemuxPath);
+
+2008-06-28  Increased the speed of HDD_LiveFS_GetNextCluster()
+            Updated the tPlaySlot struct (thanks to R2-D2 for these two items)
+            Added the new function SetRemoteMode
+            Modified the tFileSlot struct for a better alignment
+            Bugfix: RecHdr in the tPlaySlot struct shouldn't be a pointer
+2008-08-09  HDD_FreeSize returned the used instead of the free space
+2008-08-09  'Official release'
+
+2008-10-05  The new TF6000ES firmware (SysID 2457, 2008-09-28) has a stripped down event routine. Instead of taking "EventID" and "Param"
+              it is now designed to work for key events only (0xe300). Added a SysID check to "Shutdown.c" so that the shutdown event
+              will be directly injected into the EventDispatcher on these machines.
+2008-10-08  'Official release'
+
+2008-10-25  StopDisplayUpdateTimers sometimes found the wrong entry point. Updated the search algo.
+2008-10-26  'Official release'
+
+2008-11-14  Added FIS_vMPEGHeader
+2009-01-30  Modified FIS_fwMemMonitor to reflect changes in the Finnish 2009 firmware for the TF5100PVRc HDMI
+2009-02-21  Added PatchLoadModuleGP (thanks to R2-D2)
+2009-04-03  Added fwDSTCheck
+2009-06-21  Found a bug in FIS_fwEventDispatcher() which crashed Shutdown() on f/w version 2008-03-28 (thanks to RobbieT)
+2009-07-04  FlashFindEndOfServiceTableAddress() also uses the PMTPID to detect invalid entries
+            FlashProgram() deliberately modifies the CRC of the TVServices in the memory to ensure that the flash will be update
+
+2009-07-18  TMS Support
+            Added TryResolve()
+            Added GetMacAddress()
+            Changed all Dialog word *Colors to dword to be compatible with the TMS's OSD_8888 format
+            Added SetEEPROMPin
+            New flash type ST_DVBSTMS, udpated all flash function
+            Added FIS_vMACAddress()
+            Added FIS_fwPowerOff()
+            Added TMS support to BootReason()
+            Added FIS_vEtcInfo()
+            Added DumpMemory()
+
+2009-08-22  I had to rename Log() to LogEntry() because calling Log() caused an immediate reboot on the TMS
+            Added TMS support to SetRemoteMode()
+            Added FIS_fwSetIrCode()
+            Bugfix @ HDD_TAP_Start() [TMS]: the launched TAP is now in the same directory as the launcher, not /ProgramFiles
+            Had to change several NetworkIDs to OriginalNetworkIDs:
+              TYPE_TpInfoS, TYPE_TpInfoT, TYPE_TpInfoT5700, TYPE_TpInfoC, tRECTPInfoSat, tRECTPInfoTer, tRECTPInfoCable, tRECHeaderInfo
+
+2009-08-23  New function block tmsvfd allows to take over the control of the VFD
+            New FIS-functions: FIS_fwApplVfdStop, FIS_fwApplVfdStart, FIS_vgrid
+            Decoded fields isRec and SetName of TYPE_TimerSTMS
+
+2009-08-29  New TMS functions HDD_GetAbsolutePathByTypeFile and HDD_GetInodeByTypeFile
+            New hash functions SuperFastHash and OATH (thanks to miq)
+            Created a new libFireBird_generic which contains all structs and functions which are common to the 5k/TMS
+            New tmsvfd functions VFD_EnableCD, VFD_EnableHDD, VFD_SetCDValue, VFD_SetHDDValue
+            'Official release'
+
+2009-08-30  New functions  HDD_GetInodeByRelFileName and HDD_GetInodeByAbsFileName
+
+2009-09-02  Adapted HDD_DecodeRECHeader for the TMS and made it endian safe
+
+2009-09-05  New functions HDD_GetFileTimeByAbsFileName, HDD_GetFileTimeByRelFileName, HDD_GetFileTimeByTypeFile, HDD_GetAbsolutePathByTypeFile,
+                          HDD_GetInodeByTypeFile, FixInvalidFileName, HDD_Unrecycle, HDD_Delete, HDD_Recycle, HDD_Rename,
+                          MakeUniqueFileNamea and SeparateFileNameComponents
+            Renamed StrEndsWith to StringEndsWith due to a clash with the TMS development environment
+
+2009-09-05  Changed Shutdown to work with the newest Aussie f/w
+
+2009-09-07  HDD_GetFileTimeByAbsFileName and HDD_GetInodeByAbsFileName need to use lstat64() to work with files >= 4GB
+2009-09-12  Fixed a wrong constant in the win_h and win_l macros (thanks to xyzzyx)
+
+2009-09-15  Moved some functions into the new debug block
+            There might be a memory leak with TryResolve. Made all address variables static
+            Added TMS support to isOSDRegionAlive()
+            Stack trace for all functions (lib needs to be compiled with DEBUG_FIREBIRDLIB)
+            HDD_isFileInUse
+            Added playback/recording check to HDD_Delete() and HDD_Recycle()
+
+2009-12-04  Changed the colors in ShowMessageWin() to make them RGB8888 compatible
+            Upper limit of the color calculation in TAP_Osd_PutFreeColorGd()
+            Replaced a lot of TAPPrintNet() with TAPPrint()
+            Fixed the FlashBlockOffsetSTMS table to make it downward compatible with the 5k versions
+            HDD_Delete() and HDD_Recycle() try to stop a playback before it tries to delete the file
+            New macro isTMS
+            Added the function HDD_isFileInUse() and the enum tFileInUse
+            Added the TYPE_AutoDescrambleTimer struct
+            Added the struct tVFDIcon and the functions VFD_SetIcon(), VFD_EnableCDAnimation() and VFD_CDAnimation()
+            Renamed VFDSegmentMap.inc to VFDSegmentMap.h
+            'Official release'
+
+2009-12-15  TunerIndex in TYPE_TimerSTMS changed to a full byte
+2009-12-19  Added GetUptime(), which is mainly for the TMS
+2009-12-20  Ported isAnyOSDVisible()
+2009-12-25  HDD_Recycle() and HDD_Delete() adapted to a firmware bug (TAP_Hdd_StopTs() doesn't stop anything, TAP_Hdd_StopMp3() stops both .recs and .mp3s)
+            Some changes to make the lib compatible with the Australian TRF-2400 (.rec and .mpg): HDD_isFileInUse(), SeparateFileNameComponents()
+2009-12-28  Despite the FromDir parameter, HDD_Move() expected to be in the FromDir folder, else the FileExist check failed
+            Added: DayOfWeek()
+2010-01-01  Added FontManager
+              Changes to the standalone lib:
+                FM_PutString() maxX parameter will be limited to the width of the OSD region
+            Added the TMS style menu/dialog box/message box
+              Changes to the standalone lib:
+                addition parameter ButtonIcon in function OSDMenuButtonAdd()
+                several button icons have been compiled into the lib
+                removed OSDMenuKeyEvent() and added OSDMenuEvent()
+2010-01-04  Increased speed of isAnyOSDVisible() by checking every fourth pixel only
+            Added isAnyOSDVisibleEx(), which allows to check a specific plane
+2010-01-11  Bugfix: FixInvalidFileName() must not rename files, which are currently being recorded or played
+            Added isAnyOSDVisibleEx(), which allows to specify the OSD plane
+2010-01-12  Bugfix: The TMS produzed a reboot if one did a time shift buffer jump after HDD_TAP_Start() has been called by a TAP
+            'Official release'
+
+2010-01-17  Bugfix: FontManager's FM_PutString() didn't check maxX for being larger than the region it should paint on (thx to xyzzyx)
+2010-01-19  Bugfix: Renamed TYPE_SatInfoSTMS.SatAngle to TYPE_SatInfoSTMS.Position to be compatible with the 5k version
+2010-01-23  Bugfix: HDD_DecodeRECHeader_ServiceInfo() used the wrong endian for decoding the flags
+2010-01-24  Separated the HDD full icon into a independent icon (VFD_HDDFull)
+2010-01-28  Bugfix: Removed the 2 digit file index check in SeparateFileNameComponents() as it may interfere with a date at the end of the file name.
+2010-01-29  Added FlashGetTransponderT5700ByIndex()
+            Added TF5700 support to FlashGetChannelNumber() and FlashFindServiceByUHF()
+2010-02-02  FM_GetStringWidthAndRestrict_TMS() (thx to Erdnussnase)
+2010-02-13  Added HDD_RemoveDir()
+2010-02-19  Added tDirEntry struct
+            Added FIS_vcurTapTask()
+            Added HDD_TAP_GetInfo() and HDD_TAP_GetInfoByAbsPath()
+            Ported FIS_vTAPTable()
+            Ported HDD_TAP_Callback()
+            Ported HDD_TAP_GetIDByFileName()
+            Ported HDD_TAP_GetIDByIndex()
+            Ported HDD_TAP_GetIndexByID()
+            Ported HDD_TAP_GetStartParameter()
+            Ported HDD_TAP_isAnyRunning()
+            Ported HDD_TAP_isBatchMode()
+            Ported HDD_TAP_SendEvent()
+            Ported HDD_TAP_StartedByTAP()
+            Ported HDD_TAP_Terminate()
+            Ported BatchMode and ParameterBlock parameter in HDD_TAP_Start()
+            Ported TAPCOM
+2010-02-20  'Official release'
+
+2010-03-01  Additional parameter ID in OSDMenuItemAdd()
+            Added OSDMenuItemGetID() and OSDMenuItemGetCurrentID()
+            Added OSDMenuItemModifyValueXPos()
+2010-03-07  Added TF2UnixTime()
+2010-03-15  Fixed the file-busy-check in FixInvalidFileName(). See 2010-01-11
+            'Official release'
+
+2010-03-21  HDD_TAP_SendEvent() return the return value of TAP_EventHandler() instead of param1
+2010-03-23  Modified HDD_Delete(), HDD_Recycle() and HDD_Rename() so that they work on the rec/inf/nav tripple only if the .rec file name has been provided
+2010-03-26  Fixed some mess in INIGetRGB8(),INISetRGB8() and added INIGetARGB8() and INISetARGB8(). This fixes some confusion but the conversion
+              between 1555 INIs und 8888 INIs has to be done by the application
+2010-03-28  Fixed some bugs in HDD_DecodeRECHeader() and HDD_EncodeRECHeader() and added the TMS to HDD_EncodeRECHeader()
+              SYSTEM_TYPE has been changed to eRECHeaderType for the above functions.
+            Added UTCtoLocal()
+            Bugfix: OSDMenuInfoBox and OSDMenuMessageBox do not bite holes into OSDMenu
+2010-03-30  Added a color picker dialog
+            Added a color patch to the OSDMenu dialog. This displays an icon with a specific color
+            Added a color picker demo
+2010-03-31  The number of OSDMenu items is not limited to 100 entries any more
+2010-04-01  Ported HDD_TAP_Disable(), HDD_TAP_DisableAll(), HDD_TAP_isDisabled() and HDD_TAP_isDisabledAll()
+2010-04-02  'Official release'
+
+2010-04-03  Increased STDSTRINGSIZE from 64 to 80
+2010-04-11  Added HDD_TAP_GetFileNameByIndex()
+2010-04-14  Added the parameter SuppressOSDSync to OSDMenuUpdate(). If set to true, the calling TAP may
+              add some graphics but needs to do the TAP_Osd_Sync()
+2010-04-28  Replaced reserved2 in tRECHeaderTMS with DurationSec
+            Replaced HeaderUnknown3 in tRECHeaderInfo with HeaderDurationSec
+2010-05-25  Bugfix: text output of DumpMemory() moved to the correct column if (size mod BytesPerLine) != 0
+            Added: HDD_GetFileSizeAndInode()
+            Added: GetApplVer() returns a pointer to a version string as seen in the information menu
+
+2010-05-26  Version 1.08 of the TMS firmware introduces the UTF-8 encoding of the file system. While the TAP API is
+              transparent to this modification, all Linux commands, which access the files on the drive, needed to
+              be modified.
+              Added: CharToUTF8(), StrToUTF8()
+              Fixed: HDD_GetFileSizeAndInode(), HDD_RemoveDir(), HDD_GetInodeByAbsFileName(), HDD_GetFileTimeByAbsFileName(), HDD_Move()
+            Added: StrMkUTF8()
+2010-05-28  Added: Unix2TFTime()
+2010-07-01  Added: LangGetStringDefault()
+2010-07-06  Added: StrToISO(), StrMkISO() and CharToISO()
+            Fixed: HDD_GetAbsolutePathByTypeFile() wasn't UTF8 aware. This should fix all functions, which depend
+                   on this routine: HDD_TAP_GetIDByIndex(), HDD_GetInodeByTypeFile(), HDD_GetFileTimeByTypeFile()
+2010-07-13  Added: a fix for TAP_Hdd_ChangeDir(), which fails to change into directories with German Umlaute. HDD_ChangeDir()
+              retries a TAP_Hdd_ChangeDir() with the UTF-8 version of the directory name, if the original name fails.
+              All FBLib functions now use HDD_ChangeDir().
+2010-07-14  Fixed: Some bugs with the UTF8 to ISO conversion
+            Removed: utf8 support has been removed by Korea. Removed all utf8 conversion from the following functions:
+              HDD_RemoveDir(), HDD_Move(), HDD_GetInodeByAbsFileName(), HDD_GetInodeByTypeFile(), HDD_GetInodeByRelFileName(),
+              HDD_GetFileTimeByAbsFileName(), HDD_GetFileTimeByRelFileName(), HDD_GetFileTimeByTypeFile(), HDD_GetFileSizeAndInode(),
+              HDD_GetAbsolutePathByTypeFile(), HDD_TAP_GetIDByIndex(), HDD_GetFileTimeByTypeFile(), HDD_GetInodeByTypeFile()
+2010-07-19  Fixed: Removed the firmware version check in HDD_ChangeDir()
+            'Official release'
+
+2010-07-24  Fixed: A numbered line in TMS OSD menu should now correctly display until 10000.
+                   It has been truncated starting from 100.
+2010-07-26  Fixed: Endless loop if a menu doesn't have a single selectable item
+2010-07-30  Fixed: Modified StrMkISO() and StrMkUTF8() so that they dynamically allocate the necessary memory
+2010-08-06  Added: StrReplace()
+2010-08-08  Added: OSDMenuItemGetNrOfItems();
+2010-08-16  Added: FileList button to OSDMenu (BI_FileList)
+2010-08-26  Added: Added a memo dialog (displays large text)
+            Added: FirmwareTMS.dat SysID 22122 (2410M)
+2010-08-28  If no item has ValueArrows, the keys RKEY_Right and RKEY_Left are used for page up and down scrolling
+2010-08-29  Added: new function FirmwareDatMJD(), which returns the compile date of the Firmware.dat file
+2010-08-30  Added: Support for more than 2 parallel recs. The following functions have been modified:
+                   FixInvalidFileName(), HDD_isFileInUse(), HDD_isAnyRecording(), HDD_Delete(), HDD_Recycle(),
+                   FIS_vRECSlotAddress(), getRECSlotAddress(), HDD_NumberOfRECSlots(), HDD_RECSlotGetAddress(),
+                   HDD_RECSlotIsPaused(), HDD_RECSlotPause(), HDD_RECSlotIsPaused() and HDD_RECSlotSetDuration.
+                   The following SysIDs have been registered as 4 rec slot machines:
+                   SRP-2401CI+ (22120)
+                   SRP-2410 (22121)
+                   SRP-2410M (22122)
+                   TF-7100HDPlus (32030)
+                   TRF-7160 (33021)
+                   TRF-2400 Masterpiece HD (32020)
+                   TRF-2460 Masterpiece HD Plus (32026)
+            Added: isInfoBoxVisible()
+2010-09-10  Added: tAudioTrk struct and AudioTrackInfo()
+                   STDSTRINGSIZE for the dialogs expanded from 80 to 256 characters
+2010-09-18  Fixed: HDD_Delete(), HDD_Recycle() and HDD_Rename() didn't work correctly with .mpg recordings
+            Added: KeyTranslate() which translates the keys for some incompatible models
+                     SRP-2410(22121), SRP-2411(22122), SRP-2411(CZ)(22241): Red key only
+                     TF7100HD+(32030), TRF7160(33021), TF2401CI+(22120): Vol+, Vol-, Ch+, Ch-, VF, Red, Green, Yellow, Blue, Option
+            Fixed: the memo dialog forgot to display some lines of text (mostly after two \n)
+            'Official release'
+
+2010-09-20  Added: Exit allows to exit a messagebox. In that case, OSDMenuMessageBoxLastButton() returns (dword) -1.
+2010-09-21  Fixed: Changed KeyTranslate() so that it returns the modified param1 instead of modifying the original param1. The reason
+                   is that a "return param1;" in the TAP_EventHandler may also forward a modified param1 to the firmware. This is
+                   different to the 5000 and is not what one wants most of the time.
+2010-09-26  Added: INIOpenFile() adds an \r\n at the end of the INI buffer to make sure that the last line is terminated
+2010-09-28  Removed all TF5000 code
+2010-10-18  Removed TYPE_FlashBlock and FlashGetBlockStartAddress() as the TMS firmware exports the block start addresses as names
+              Use the following exported names:
+                TVServices          = _tvSvc                FIS_vFlashBlockTVServices()
+                RadioServices       = _radioSvc             FIS_vFlashBlockRadioServices()
+                Satellites          = _satInfo              FIS_vFlashBlockSatInfo()
+                Transponders        = _tpInfo               FIS_vFlashBlockTransponderInfo()
+                Favourites          = _favGrp               FIS_vFlashBlockFavoriteGroup()
+                ClockSetup          = _timeInfo             FIS_vFlashBlockTimeInfo()
+                Timers              = _timer                FIS_vFlashBlockTimer()
+                ServiceNames        = _svcName              FIS_vFlashServiceName()
+                ProviderNames       = _providerInfo         FIS_vFlashProviderInfo()
+                IP                  = _oldLanIpConfig,      FIS_vFlashBlockLanIPConfig()
+                Server Settings     = _serverData           FIS_vFlashBlockServerData()
+                FirmwareServer      = _networkUpdateConfig  FIS_vFlashBlockNetworkUpdateConfig()
+                NetworkProfiles     = _network,             FIS_vFlashBlockNetwork()
+                AutoDescrambleTimer = _autoDec              FIS_vFlashBlockAutoDec()
+                DLNA                = _dlnaData             FIS_vFlashBlockDLNAData()
+
+              With these changes, a new layer has been added (namely structs tFlashChannel, tFlashLNB, tFlashSatTable,
+              tFlashTransponderTable, tFlashTimeInfo and tAutoDescrambleTimer). These structs are meant to be common
+              for all the different Toppy models and a TAP doesn’t necessarily need to know the system type. At this
+              moment, only their getters have been implemented. Also because of that big change, all
+              the old flash functions have been removed. If you need specific functions for a project,
+              please get in touch with me.
+
+2010-10-19  Added the RemoteType to the FirmwareTMS.dat and adapted KeyTranslate so that it uses that information
+2010-10-30  Added the number of max rec streams to the FirmwareTMS.dat
+            Removed all 5k firmwares and machines from FirmwareTMS.dat to make the file smaller
+            Added a progress bar to the OSD menu library
+            Added the StringDB functions
+            Added the ELF section
+2010-11-14  Added HookFirmware(), UnhookFirmware() and FindGotPointer() functions
+            Added NoAutoStartTAP()
+2010-11-15  'Official release'
+
+2010-11-18  The TMS version of HDD_TAP_DisableAll() reported the number of disabled TAPs instead of the number failed attempts
+            The FirmwareTMS.dat reported the wrong number of simultaneous recordings
+            Reordered the SYSTEM_TYPE enum to make it compatible with the 5k version
+2010-12-18  Combined RECHeaderInfo.EventDurationHour and RECHeaderInfo.EventDurationMin into RecHeaderInfo.EventDuration
+            Added isMJD() function
+2011-01-02  Changed all ST_TUK to ST_T5800
+            Added FlashProgram(), which reprogramms the settings in the flash memory
+2011-01-02  Added OSDMenuSaveMyRegion(). Call this prior to OSDMenuInfoBoxShow(), OSDMenuMessageBoxShow() or OSDMenuColorPickerShow() to
+              prevent them drilling a whole into your OSD
+2011-01-07  The INI functions will now ignore lines starting with # or ;
+2011-01-11  Fixed: TAP_Osd_GetPlaneBaseInfo(...,TAP_PLANE) returns a NULL pointer and crashes isAnyOSDVisible() on a 2401. Until it has been
+              clarified if this is an API change or a firmware bug, the function will return FALSE on these machines.
+2011-01-13  Added: FlashTimerSetInfo()
+2011-02-05  Fixed the FlashDecode demo TAP
+2011-02-07  Added: FIS_fwAppl_GetIsExternal(), FIS_vextPartitionInfo(), FIS_vextTsFolder(), FIS_visAllPartitionInvalid(), FIS_vnExtPartition(),
+                   FIS_fwAppl_SetIsExternal(), FIS_vselectedPartition(), HDD_isExtRecording(), HDD_SetExtRecording()
+            Fixed: INIOpenFile() added a new line every time
+2011-02-11  Added: FlashServiceDel(), FlashTransponderTablesSetInfo(), FlashTransponderTablesAdd(), FlashTransponderTablesDel(), FlashTransponderFindIndex2()
+2011-02-13  Fixed: FM_PutString() accessed memory outside of the newstr array if there wasn't enough OSD space for a single character. In addition the "..." have been drawn beyond maxX
+2011-02-19  Fixed: the firmware didn't recognize the service name of services added by FlashServiceAdd(). Used some f/w functions to fix this.
+            Added: FIS_fwAppl_AddSvcName(), FIS_fwAppl_DeleteTvSvcName(), FIS_fwAppl_DeleteRadioSvcName() and FIS_fwAppl_SetProviderName()
+2011-03-05  Fixed: Some Timer and Favorites reindexing bugs with FlashServiceAdd(), FlashServiceDel() and FlashTransponderTablesAdd()
+            Added: FlashServiceMove()
+2011-03-12  Added: ShowPvrList() allows to show the Toppie's file list from within a TAP
+2011-03-26  Added: TAP_EnterNormalNoInfo() which allows to enter normal mode without displaying the pvr infos
+            Added: FIS_fwAppl_EnterNormal()
+            Changed FIS_vEtcInfo: Instead of returing a point to _etcInfo, it returns a pointer to the _etcInfo struct
+2011-03-30  Added: PutDevEvent() and FIS_fwPutDevEvt()
+            Changed Shutdown() so that it puts an event into the event queue instead of directly calling Appl_EvtProc_PowerOff(). This makes it possible to intercept the shutdown
+2011-04-01  Added: DumpMemoryDword()
+            Added: PutDevEvent() and FIS_fwPutDevEvt()
+2011-04-02  Added: SDS = ShutDownServer, which allows to intercept and cancel a shutdown command. This way a TAP can perform some tasks when the user shuts the Toppy down.
+                   A sample is available in the .Demo\SDS_Demo folder
+2011-04-06  Added: FixInvalidFileName() now also removes 0x86 and 0x87 control characters
+2011-04-10  Changed: it seems that the meaning of the AutoDescramble timer field TotalTime has changed into a auto/manual mode
+2011-04-13  Added the Recall button icon
+2011-05-06  Fixed: FlashServiceSetInfo() didn't remove the old service name table entry and that created an ever growing table until the Toppy failed to report the correct service names
+2011-05-11  Fixed: SeparateFileNameComponents() doesn't interpret a -0 as an index
+            Added: The new function LogEntryGeneric() generates the log file "TAPSystem.log" in the folder /ProgramFiles/Settings and is meant to combine the output of several TAPs in a single log.
+            Added: A new callback feature for the TMS OSD menu functions. This allows to add custom drawings to a menu.
+                   OSDMenuSetCallback(void *OSDCallbackProcedure) should be used to set the callback after a OSDMenuInitialize()
+                   void CallbackProcedure(tOSDCB OSDCBType, word OSDRgn) gets called, informing the TAP which region of the menu has been refreshed and its OSD region ID
+
+2011-05-18  Added: Callback method to the TMS menu, which allows custom drawings on the menu
+            Fixed: OSDMenuDestroy() didn't release some memory
+2011-05-20  'Official release'
+
+2011-05-29  Added StringDBLoadFromFile() and StringDBSaveToFile()
+            Modified StringDBAdd() so that it will add the same string only once
+2011-06-01  Added OSDMenuItemModifyTextColor()
+2011-06-04  Added the STOP key to the TMSMenu block
+            Rearranged the tFlashTimer struct so that it more closely corresponds to the access pattern of the firmware
+2011-06-11  Added OSDMenuItemGetTopIndex() and OSDMenuSelectTopItem()
+2011-06-14  Added FlashFavoritesGetTotal(), FlashFavoritesGetInfo(), FlashFavoritesSetInfo() and FlashFavoritesFindService()
+2011-06-16  Added OSDMenuDestroyNoOSDUpdate()
+2011-06-17  Fixed the scrollbar graphic (TV picture visible on the right end side)
+2011-06-18  Added (Happy) VFD_SetCharacterSet() to select characterset for VFD, i.e. cyrillic
+2011-06-20  Added a lot of buttons for the TMS OSD menu (thanks to JayTee for the icons)
+              BI_0, BI_1, BI_2, BI_3, BI_4, BI_5, BI_6, BI_7, BI_8, BI_9, BI_AR, BI_Audio, BI_Cut, BI_Guide, BI_M, BI_Option, BI_Pause, BI_Sleep, BI_Step, BI_Subtitle, BI_TV_Radio, BI_TTX, BI_VF
+2011-07-03  Fixed AddTime() so that it will allow large number of minutes to add
+2011-07-08  Added OSDMenuItemSortNameColumn(), OSDMenuItemSortValueColumn()
+            Added EVT_TMSREMOTEASCII
+2011-07-10  Added the Play button for the TMS OSD menu
+2011-07-11  Fixed OSDMenu: the right hand title will be truncated if both right and left hand title are long, so that the won't overlap
+2011-07-16  Added the LogoManager
+            Added InsertAt() and DeleteAt()
+            Fixed a bug in INISaveFile(), which left junk at the end of the INI
+2011-07-22  Fixed a bug in StringDBAdd(), which left junk in the database and therefore prevented a correct EOF
+            Bugfix in the Logo name handling of the cache file
+            Fixed a bug in OSDMenuScrollPageDown(), which prevent a scroll down if there were less than 10 items in the list
+2011-07-24  Added OSDMenuItemFindName() and OSDMenuItemFindValue()
+2011-07-30  Added a lot of new buttons
+2011-08-01  Added the Mute button
+2011-08-04  Fixed OSDMenuScrollPageDown(), which went one line too far
+            Bugfix: The TMSMenu button color will be reset by OSDMenuInitialize()
+2011-08-05  'Official release'
+
+2011-08-06  Added the parameter CaseSensitive to OSDMenuItemSortNameColumn() and OSDMenuItemSortValueColumn()
+            Added the function OSDMenuItemSortID()
+2011-08-11  Added Appl_CheckRecording(), Appl_CheckRecording_Tuner(), FIS_fwAppl_CheckRecording() and FIS_fwAppl_CheckRecording_Tuner()
+2011-08-12  Added MD5String() and MD5File()
+2011-08-13  Fixed: As it seems to be allowed that extended event information strings may contain NULL bytes as line terminators, ExtEventTextLength has been added to tRECHeaderInfo and
+                   HDD_De/EncodeRECHeader() has been modified so that the number of bytes is transfered and not just strings. So do not forget to set ExtEventTextLength before encoding.
+            Fixed: BMP_WriteHeader() and SaveBitmap() now create rows with a multiple of 4 bytes (thx to xyzzyx)
+            Fixed: OSDMenuItemSortNameColumn(), OSDMenuItemSortValueColumn() and OSDMenuItemSortID()
+2011-08-15  Fixed: Another fix in BMP_WriteHeader() and SaveBitmap()
+2011-08-19  LogoManager Update: added the rule that German umlauts (äöü) will be replaced by ae, oe and ue respectively
+                                Another one is that a "r_" preceedes the name of radio channels
+            Added LogoManager_ProcessLILAdd()
+            Fixed: INISetString() failed on files with mixed LF and CRLF line terminations
+            Fixed: StringDBLoadFromFile() didn't set the DBSize field
+            Fixed: LogEntry() crashed on text lengths > 512 because the TAP_PrintNet() macro doesn't allow more than that. The text is now separated in 510 char junks
+            Added: OSDMenuInfoBoxNoOSDUpdate()
+2011-08-31  Added: CallTraceExportStats() and CallTraceResetStats(). The CallTrace-API now logs how often a particular function gets called and how long it takes. CallTraceExportStats()
+                   exports the data to a csv file.
+            Fixed: LogoManager_ChannelNameToLogoName() might produce a buffer overrun
+2011-09-01  Added: LogoManager_GetPathToLogoByChannelID()
+2011-10-08  Added: OSDMenuSetFont() which allows to modify the fonts used in the OSDMenu API
+            Fixed: Moved a global variable onto the menu stack so that menus and memos are correctly handled OSDMenuPush() and OSDMenuPop()
+2011-10-22  Fixed: GetCurrentEvent() ignored the radio EPG
+            Added: GetStreamFormat() and FIS_fwAppl_GetStreamFormat().
+2011-11-05  Added: isPIPActive()
+2011-12-29  Added: AntiAliasFactor parameter to FM_PutString(). Standard value is 1. This parameter allows to make text a bit brighter but 1.2 seems to be the limit where grey text starts to look ugly.
+2012-01-01  Added: As some people state that they can't easily read the text below the Topfield-blue menu cursor, OSDMenuSetCursor() has been added, which adds 2 additional cursor types to the OSDMenu-API.
+2012-01-05  Added: OSDMenuItemModifyID()
+2012-01-06  Fixed: FIS_vRECSlotAddress() calculated the wrong address on cable boxes
+2012-01-11  Fixed: MakeUniqueFileName() forgot to add the .del extension if it had to look for a new name index (thanks to Töppi for spotting this)
+2012-01-14  Changed: Removed the AntiAlias parameter from FM_PutString() and added an new FM_PutStringAA()
+            Fixed: HDD_DecodeRECHeader() could crash with a defective .inf and a bad extended event text length
+2012-01-19  Added: GetRecExtension() returns a char* to .rec or .mpg, depending on the current machine. FirmwareTMS.dat 2012-01-19 or newer is needed
+            decode/encode timer for dvbt
+            Added: TAP_GetSysOsdControl(), the counterpart of TAP_SysOsdControl()
+            Added: FlashTimerStructSize(), which calculates the size of the timer structure in the firmware. In Australia, some machines use the old DVBt structure (208 bytes), some the DVBs structure (200 bytes)
+            Fixed: FlashTimerDecode() and FlashTimerEncode() are using FlashTimerStructSize() to determine the correct structure
+            'Official release'
+
+2012-02-02  Updated FM_PutString(): Topfield has declared the bDot parameter in TAP_Osd_PutS() as byte tough bool would be more logical. I've now abused that parameter and if a 2 is passed, the ... for
+            long texts will appear on the left side instead of right of the text.
+2012-02-03  Added: HDD_GetPvrRecTsInfoPointer()
+2012-02-07  Added: OSDMenuMessageBoxDestroyNoOSDUpdate()
+            Renamed OSDMenuInfoBoxNoOSDUpdate() to OSDMenuInfoBoxDestroyNoOSDUpdate()
+            Added: OSDMenuMessageBoxDoNotEnterNormalMode()
+2012-02-18  Added the OSDMenuKeyboard API and demo TAP
+2012-02-29  Fixed: FlashTimerSetInfo() zeroed 208 bytes on DVBt Toppies with 200 byte timer structs
+2012-03-02  Added: The logo manager now moves the files LogoPack.tar, Logos.lil and lil.add from a thumb drive to the logo folder during the initialization
+            Fixed: HDD_DecodeRECHeader() will convert NULL characters within the extended information text to CR/LFs
+2012-03-08  Added: the Australian IceTV flag to the timer structures
+            Added: button PAUSE switches between small and capitals letters in the TMSOSDKeyboard

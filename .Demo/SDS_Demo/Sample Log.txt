@@ -1,0 +1,56 @@
+2011-04-02 21:54:04 TimerDiags: TAP Launch : 'SDS_Demo.tap'
+2011-04-02 21:54:04 TimerDiags: TAP Launch :   Slot=4, Type=TSR, TAP_Main=10 ms
+2011-04-02 21:54:04 SDS: HHS_Init
+2011-04-02 21:54:04 SDS: Found 0xef00 handler @ index 22. Redirecting from 0x0046bd9c to 0x3e1a781c
+2011-04-02 21:54:04 SDS: SDS has been activated by 'SDS Demo V0.1'
+                    SDS reported to be active
+2011-04-02 21:54:04 SDS: HHS_Idle
+                    Interception = on
+
+2011-04-02 21:54:33 SDS: HHS_EF00Received
+2011-04-02 21:54:33 TimerDiags: Slot  0: event=EVT_STOP, param1=00000002 (native)
+2011-04-02 21:54:33 TimerDiags: Shutting down (SDS request)
+                    Shutdown has been intercepted, starting own job
+2011-04-02 21:54:33 SDS: A TAP has intercepted the shutdown notfication
+2011-04-02 21:54:33 SDS: HHS_PowerOffCancel
+2011-04-02 21:54:33 SDS: The shutdown has been canceled
+2011-04-02 21:54:33 SDS: HHS_Idle
+2011-04-02 21:54:33 SDS: HHS_EF00Received
+2011-04-02 21:54:33 SDS: HHS_PowerOffCancel
+2011-04-02 21:54:34 SDS: HHS_Idle
+
+                    Own job is done, shutting Toppy down
+2011-04-02 21:55:03 SDS: HHS_EF00Received
+2011-04-02 21:55:03 TimerDiags: Slot  0: event=EVT_STOP, param1=00000002 (native)
+2011-04-02 21:55:03 TimerDiags: Shutting down (SDS request)
+2011-04-02 21:55:03 TimerDiags: Slot  2: event=EVT_STOP, param1=00000002
+2011-04-02 21:55:03 TimerDiags: Slot  3: event=EVT_STOP, param1=00000002
+2011-04-02 21:55:03 TimerDiags: Slot  4: event=EVT_STOP, param1=00000002
+2011-04-02 21:55:03 TimerDiags: Slot  5: event=EVT_STOP, param1=00000002
+2011-04-02 21:55:03 TimerDiags: Slot  6: event=EVT_STOP, param1=00000002
+2011-04-02 21:55:03 TimerDiags: Slot  7: event=EVT_STOP, param1=00000002
+2011-04-02 21:55:03 TimerDiags: Slot  9: event=EVT_STOP, param1=00000002
+2011-04-02 21:55:03 TAPtoDate: Shutdown event received
+2011-04-02 21:55:03 TAPtoDate: -------------------------------
+2011-04-02 21:55:03 TimerDiags: Slot 11: event=EVT_STOP, param1=00000002
+2011-04-02 21:55:03 TimerDiags: Slot 12: event=EVT_STOP, param1=00000002
+2011-04-02 21:55:03 TimerDiags: TAP Exit   : 'TAPtoDate V1.3h' (Slot=10, Runtime=00:01:18.8)
+2011-04-02 21:55:03 SDS: HHS_ShutdownTimerDiags
+2011-04-02 21:55:03 SDS: Notifiying TimerDiags about the shutdown
+2011-04-02 21:55:03 TimerDiags: Slot  0: event=EVT_STOP, param1=00000000 (native)
+2011-04-02 21:55:03 TimerDiags: Shutting down (Power off)
+2011-04-02 21:55:03 TimerDiags: TAPProfiler has been deactivated
+2011-04-02 21:55:03 SDS: HHS_Shutdown
+2011-04-02 21:55:04 TimerDiags: Terminating now
+2011-04-02 21:55:05 SDS: Found 0xef00 handler @ index 22. Redirecting from 0x3e1a781c to 0x0046bd9c
+2011-04-02 21:55:05 SDS: Notifiying all TAPs about the shutdown
+2011-04-02 21:55:05 FBEPG: Shutdown event
+2011-04-02 21:55:05 FBEPG: Closing server socket
+2011-04-02 21:55:05 TMSRemote: RMT: Shutdown event
+2011-04-02 21:55:05 TMSRemote: RMT: Closing connection to client
+2011-04-02 21:55:05 TMSRemote: RMT: Closing server socket
+2011-04-02 21:55:05 TMSRemote: VFD: Shutdown event
+2011-04-02 21:55:05 TMSRemote: VFD: Closing server socket
+2011-04-02 21:55:05 TMSRemote: RMT: Shutdown event
+2011-04-02 21:55:06 StandbyMode: Created a StandbyMode timer @ 2011-04-02 23:59
+2011-04-02 21:55:06 SDS: Enqueuing the shutdown event

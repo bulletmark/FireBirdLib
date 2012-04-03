@@ -5,7 +5,11 @@ DIRS = av compression debug elf Firmware flash FontManager hdd ini InstructionSe
 BASE = $(shell cd /tapapi/TMS; pwd)
 include ${BASE}/include/tool.mk
 
-all:
+all: lib
+
+docs: HTMLDOCS
+
+lib:
 	@for i in $(DIRS); \
 	do \
 	  cd $$i; \
@@ -21,3 +25,9 @@ all:
 
 clean:
 	@for i in $(DIRS); do cd $$i; make clean; cd ..; done
+	rm -rf $(PROJECT).a HTMLDOCS
+
+.PHONY: HTMLDOCS
+
+HTMLDOCS:
+	doxygen

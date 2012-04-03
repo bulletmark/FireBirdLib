@@ -1,0 +1,51 @@
+#!/usr/bin/env python
+'Program to copy one or more TAP files to specified Topfield PVR host.'
+# (C) Mark Blakeney, Mar 2012.
+
+PROG = '/ProgramFiles'
+AUTO = PROG + '/AutoStart'
+USER = 'guest'
+PASS = '0000'
+
+import os, sys, argparse, ftplib
+
+def main():
+    'Main code'
+    # Process command line options
+    opt = argparse.ArgumentParser(description=__doc__.strip(),
+            formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    opt.add_argument('-u', '--user', default=USER,
+            help='ftp login user name')
+    opt.add_argument('-p', '--password', default=PASS,
+            help='ftp login user password')
+    opt.add_argument('-n', '--noauto', action='store_true',
+            help='put tapfile[s] in "%s" dir rather than "%s"' % (PROG, AUTO))
+    opt.add_argument('host',
+            help='Topfield PVR IP host name/address')
+    opt.add_argument('tapfile', nargs='+',
+            help='1 or more TAP files to copy')
+    args = opt.parse_args()
+
+    # Connect to host
+    try:
+        ftp = ftplib.FTP(args.host, args.user, args.password)
+    except:
+        sys.stderr.write('Can not connect to "%s"\n' % args.host)
+        sys.exit(1)
+
+    # Transfer TAP files ..
+    tdir = PROG if args.noauto else AUTO
+    ftp.cwd(tdir)
+    for tap in args.tapfile:
+        if not os.path.isfile(tap):
+            sys.stderr.write('No file "%s"\n' % tap)
+            sys.exit(1)
+
+        print 'Copying "%s" to %s:%s/ ..' % (tap, args.host, tdir)
+        with open(tap, 'rb') as fp:
+            ftp.storbinary('STOR %s' % os.path.basename(tap), fp)
+
+    ftp.close()
+
+if __name__ == '__main__':
+    main()

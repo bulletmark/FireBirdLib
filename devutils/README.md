@@ -1,44 +1,111 @@
-## JailBreak
+## TAP development utilities
 
-On the new Topfield SRP-2100 series HDTV set top boxes, Topfield has
-made the brilliant decision to implement the famous TAP API, which has
-been a big success on the TF5000 and TF6000 models. Opposed to the older
-STBs, the SRP-2100 is based on Linux. Due to whatever reason, the main
-application does not allow TAPs to call Linux system commands, they are
-restricted to the TAP-API. While this might be o.k. for most TAPs, there
-are still a lot of things which cannot be done because of the limited
+### JailBreak
+
+For an unknown reason, the Topfield TMS TAP runtime environment does not
+allow TAPs to call Linux system commands. TAPs are constrained to use
+only the TAP-API. While this might be o.k. for most TAPs, there are
+still a lot of things which cannot be done because of the limited
 functionality of the API.
 
-JailBreak modifies the compiled TAP so that it passes the check upon
-launch regardless of what you have coded.
+The JailBreak utility modifies the compiled TAP so that it passes the
+check upon launch regardless of what you have coded.
 
-Usage: JailBreak <filename.tap>
+Usage: JailBreak filename.tap
 
-Or to automake the procedure of modifying the TAP, some entries in the
-tool chain are needed. The following instruction is based on the
-"Installationsanleitung fur die TAP-Entwicklungsumgebungen" TV-Junkie
-and FireBird.
+Add this to your Makefile/build.
 
-1. Copy "JailBreak.exe" into "C:\Work\cygwin\opt\crosstool\bin"
-2. Open "C:\Work\API\TMS\include\tool.mk" with an Unix-aware editor
-3. Add the JB line after AWK
-
-    AWK 	= awk
-    JB 	= JailBreak.exe
-
-4. Save and exit the editor
-5. Open the Makefile of your project and add the last line of the following block:
-
-    $(TAP_APP): ${TAP_OBJS}
-	    @echo "[Linking... $@]"
-	    $(Q_)$(LD) -shared --no-undefined --allow-shlib-undefined  -o $@ ${TAP_OBJS} $(TAP_LIBS) -Map ${TAP_MAP}
-	    $(Q_)$(JB) $(TAP_APP)
-
-6. Save and exit
-
-Warning: due to a limited number of machines on the market and because
+**Warning**: due to a limited number of machines on the market and because
 this hack is brand new, there has been nearly no testing of the effects
 of this JailBreak hack nor the possibilities opened by the hack. The
 most worrying thing is that SRP seem to have no loader. If this proves
 to be true, there would not be any emergency procedure to reflash a
 damaged firmware.
+
+### tapput
+
+    usage: tapput [-h] [-u USER] [-p PASSWORD] [-n] host tapfile [tapfile ...]
+
+    Program to copy one or more TAP files to specified Topfield PVR host.
+
+    positional arguments:
+    host                  Topfield PVR IP host name/address
+    tapfile               1 or more TAP files to copy
+
+    optional arguments:
+    -h, --help            show this help message and exit
+    -u USER, --user USER  ftp login user name (default: guest)
+    -p PASSWORD, --password PASSWORD
+			    ftp login user password (default: 0000)
+    -n, --noauto          put tapfile[s] in "/ProgramFiles" dir rather than
+			    "/ProgramFiles/AutoStart" (default: False)
+
+I have also include a shell version (that requires ncftp package).
+It has the same options and usage.
+
+    tapput.sh toppy my.tap
+
+### tapdebug
+
+    usage: tapdebug [-h] [-u USER] [-p PASSWORD] [-t TIMEOUT] host
+
+    Program to connect to FTP TAP debug port on specfied Topfield TMS PVR host and
+    print all diagnostics.
+
+    positional arguments:
+    host                  Topfield PVR IP host name/address
+
+    optional arguments:
+    -h, --help            show this help message and exit
+    -u USER, --user USER  ftp login user name (default: guest)
+    -p PASSWORD, --password PASSWORD
+			    ftp login user password (default: 0000)
+    -t TIMEOUT, --timeout TIMEOUT
+			    timeout in secs (default: 4)
+
+### tapfont
+
+When I first used the the TMSOSDMenu functions I found my TAP binary was
+huge due to the raw bitmaps included on the font files. I noticed those
+font bitmaps had many repeated sequences of 0x00 and 0xff bytes.
+Accordingly I re-encoded the font source files with a very primitive
+"compression" scheme where I just follow those 2 bytes with a repeat
+byte. The code changes to support this are trivial (a few lines in 2
+files), impose zero extra runtime overhead, and are backwards compatible
+with the original font files (i.e. FM_LoadFontFile.c will still read the
+original bitmap files, or the new compressed format). The size changes
+in TMSOSDMenu/font are:
+
+    Calibri_10.c:/* Compressed from 18048 to 9269 bytes (-49%) */
+    Calibri_12.c:/* Compressed from 27824 to 12490 bytes (-56%) */
+    Calibri_14.c:/* Compressed from 40432 to 17197 bytes (-58%) */
+    Calibri_16.c:/* Compressed from 50064 to 19738 bytes (-61%) */
+    Calibri_18.c:/* Compressed from 64400 to 22001 bytes (-66%) */
+    Calibri_20.c:/* Compressed from 81760 to 25887 bytes (-69%) */
+    Calibri_20B.c:/* Compressed from 83776 to 25040 bytes (-71%) */
+
+This tapfont program is what I created to convert the above source files.
+Linking with this, reduced my small TAP application from 470K to 195K.
+The tapfont program will also convert existing uncompressed binary font
+files to compressed binary files.
+
+    usage: tapfont [-h] [-i] [-o] [-x] [-t] file
+
+    Topfield FireBird library (FireBirdLib) font file compressor/converter.
+    Converts an uncompressed C source font file into a compressed C source font
+    file. Or converts an uncompressed binary font file into a compressed binary
+    font file. Reads given input file, or standard input, and writes to standard
+    output. Can also compress source to binary, or binary to source. Rather than
+    compress, you can uncompress, or even just straight translate input to output.
+    So all combinations of source/binary input to output
+    compression/uncompression/translation are possible.
+
+    positional arguments:
+    file              input C source, or binary, file. Or '-' for stdin
+
+    optional arguments:
+    -h, --help        show this help message and exit
+    -i, --in_binary   read binary input instead of C source
+    -o, --out_binary  write binary output instead of C source
+    -x, --uncompress  uncompress rather than compress
+    -t, --translate   do not compress/uncompress, just translate input to output

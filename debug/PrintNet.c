@@ -11,11 +11,15 @@
   #include              "tap.h"
 #endif
 
+char puffer[1024];
+
 void PrintNet(char *puffer)
 {
   int                   i = 0;
   int                   fd;
   char                  fn[12];
+
+  int len = strlen(puffer) + 1;
 
   do
   {
@@ -23,7 +27,7 @@ void PrintNet(char *puffer)
     fd = open(fn, O_RDWR);
     if(fd)
     {
-      write(fd, puffer, strlen(puffer) + 1);
+      write(fd, puffer, len);
       close(fd);
       return;
     }

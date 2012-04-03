@@ -1,4 +1,5 @@
 #include              <stdlib.h>
+#include              <string.h>
 #include              <stdio.h>
 #include              <ctype.h>
 
@@ -72,26 +73,24 @@ typedef struct
   Elf32_Half      st_shndx;
 } Elf32_Sym;
 
-char  BadWords[][87] = {"calloc",   "chdir",     "chmod",    "chown",    "close",
-                        "closedir", "create",    "dlclose",  "dlerror",  "dlopen",
-                        "dlsym",    "dup",       "dupioctl", "environ",  "execl",
-                        "execle",   "execlp",    "execv",    "execve",   "execvp",
-                        "fchdir",   "fchmod",    "fchown",   "fclose",   "fdopen",
-                        "fflush",   "fileno",    "fopen",    "fork",     "fprintf",
-                        "fread",    "free",      "freopen",  "fwrite",   "getcwd",
-                        "getenv",   "getgid",    "getgrp",   "getpid",   "gets",
-                        "getuid",   "ioctl",     "kill",     "killpg",   "lchown",
-                        "listen",   "lstat",     "malloc",   "mkdir",    "mkfifo",
-                        "mknod",    "mkstemp",   "mktemp",   "mktime",   "mlock",
-                        "mlockall", "mmap",      "open",     "opendir",  "pipe",
-                        "poll",     "popen",     "pread",    "pselect",  "read",
-                        "readdir",  "readlink",  "realloc",  "recv",     "recvfrom",
-                        "recvmsg",  "remove",    "rename",   "rewind",   "rewinddir",
-                        "rmdir",    "select",    "socket",   "symlink",  "tmpfile",
-                        "tmpnam",   "truncate",  "unlink",   "utime",    "vfork",
-                        "write",    ""};
-
-
+char *BadWords[] = {"calloc",   "chdir",     "chmod",    "chown",    "close",
+		    "closedir", "create",    "dlclose",  "dlerror",  "dlopen",
+		    "dlsym",    "dup",       "dupioctl", "environ",  "execl",
+		    "execle",   "execlp",    "execv",    "execve",   "execvp",
+		    "fchdir",   "fchmod",    "fchown",   "fclose",   "fdopen",
+		    "fflush",   "fileno",    "fopen",    "fork",     "fprintf",
+		    "fread",    "free",      "freopen",  "fwrite",   "getcwd",
+		    "getenv",   "getgid",    "getgrp",   "getpid",   "gets",
+		    "getuid",   "ioctl",     "kill",     "killpg",   "lchown",
+		    "listen",   "lstat",     "malloc",   "mkdir",    "mkfifo",
+		    "mknod",    "mkstemp",   "mktemp",   "mktime",   "mlock",
+		    "mlockall", "mmap",      "open",     "opendir",  "pipe",
+		    "poll",     "popen",     "pread",    "pselect",  "read",
+		    "readdir",  "readlink",  "realloc",  "recv",     "recvfrom",
+		    "recvmsg",  "remove",    "rename",   "rewind",   "rewinddir",
+		    "rmdir",    "select",    "socket",   "symlink",  "tmpfile",
+		    "tmpnam",   "truncate",  "unlink",   "utime",    "vfork",
+		    "write",    ""};
 
 void Cleanup(char *Message);
 
@@ -107,8 +106,7 @@ void Cleanup(char *Message)
 {
   if(Message)
   {
-    printf("JailBreak: ");
-    printf(Message);
+    printf("JailBreak: %s", Message);
   }
 
   if(fTAP)
@@ -168,7 +166,7 @@ int main(int argc, char *argv[])
   //Count the string length of all bad words to reserve enough space
   i = 0;
   j = 0;
-  while(strlen(BadWords[j]) != 0)
+  while(BadWords[j])
   {
     i += (strlen(BadWords[j]) + 2); //add space and comma
     j++;
@@ -329,7 +327,7 @@ int main(int argc, char *argv[])
                 (psymtab->st_info & 0x0f) == STT_FUNC)
             {
               j = 0;
-              while(strlen(BadWords[j]) != 0)
+              while(BadWords[j])
               {
                 if(!strcmp(BadWords[j], &strtab[psymtab->st_name]))
                 {

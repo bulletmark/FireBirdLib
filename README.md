@@ -13,6 +13,10 @@ details. I have also added FireBird's JailBreak utility and some of my
 own tap development utilities in [devutils/][devutils]. See
 [devutils/README.md][devread] for details.
 
+I have added [Doxygen][doxygen] to the make/build to supplement the API
+documentation. You can see the output [here][fbdoxy]. The
+[directory][fbdirs] links are probably the most useful.
+
 [fb]: http://www.topfield.cc/files/Firebird/FireBirdLib.zip
 [fbgit]: http://github.com/bulletmark/FireBirdLib/
 [commits]: http://github.com/bulletmark/FireBirdLib/commits/master/
@@ -23,3 +27,6 @@ own tap development utilities in [devutils/][devutils]. See
 [tf]: http://www.topfield.co.kr/
 [cygtools]: http://www.topfield.co.kr/eng/download/utility_view.asp?idx=29&tb=&tn=utility
 [lintools]: http://www.topfield.co.kr/eng/download/utility_view.asp?idx=28&tb=&tn=utility
+[doxygen]: http://www.doxygen.org/
+[fbdoxy]: http://markb.dreamhosters.com/FireBirdLib/HTMLDOCS/
+[fbdirs]: http://markb.dreamhosters.com/FireBirdLib/HTMLDOCS/dirs.html

@@ -1,13 +1,5 @@
 #include                "FBLib_TMSOSDMenu.h"
 
-#include                "fonts/Calibri_10.c"
-#include                "fonts/Calibri_12.c"
-#include                "fonts/Calibri_14.c"
-#include                "fonts/Calibri_16.c"
-#include                "fonts/Calibri_18.c"
-#include                "fonts/Calibri_20.c"
-#include                "fonts/Calibri_20B.c"
-
 int OSDMenuGetW(const char * str, byte fntSize)
 {
   switch(fntSize)

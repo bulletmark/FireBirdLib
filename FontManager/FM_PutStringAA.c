@@ -17,7 +17,9 @@ void FM_PutStringAA(word rgn, dword x, dword y, dword maxX, const char * str, dw
   dword                 LastBackgroundPixel = 0;
   byte                  LastForegroundPixel = 0;
   dword                 LastPixel = 0;
-  byte                  Grey;
+  byte                  Grey = 0;
+  dword                 repcnt;
+  bool                  compressed_font;
   dword                 StrLen;
 
   if(!str || !str[0] || !FontData || !FontData->pFontData || (maxX <= x)) return;
@@ -156,16 +158,30 @@ void FM_PutStringAA(word rgn, dword x, dword y, dword maxX, const char * str, dw
       if(FM_isValidCharacter(newstr[i]))
       {
         CharIndex = FM_CharToIndex(newstr[i]);
-        FontBitmap = &FontData->pFontData[FontData->FontDef[CharIndex].BitmapIndex];
+        FontBitmap = &FontData->pFontData[CharIndex == 0 ? 0 :
+	    FontData->FontDef[CharIndex].BitmapIndex];
         CW = FontData->FontDef[CharIndex].Width;
         CH = FontData->FontDef[CharIndex].Height;
+	compressed_font = FontData->FontDef[0].BitmapIndex != 0;
 
+	repcnt = 0;
         for(Y = 0; Y < CH; Y++)
         {
           CY = (XEnd - x + 1) * Y;
           for(X = 0; X < CW; X++)
           {
-            Grey = *FontBitmap;
+
+	    if (repcnt == 0) {
+		Grey = *FontBitmap++;
+
+		/* Compressed fonts have repeat counts after every 0x00
+		 * and 0xff bytes */
+		if (compressed_font && (Grey == 0x00 || Grey == 0xff))
+		    repcnt = *FontBitmap++ - 1;
+	    }
+	    else
+	        --repcnt;
+
             if(Grey != 0x00)
             {
               if(Grey == 0xff)
@@ -192,7 +208,6 @@ void FM_PutStringAA(word rgn, dword x, dword y, dword maxX, const char * str, dw
                 }
               }
             } // if grey else
-            FontBitmap++;
           } // for x
         } // for y
         CX += CW;

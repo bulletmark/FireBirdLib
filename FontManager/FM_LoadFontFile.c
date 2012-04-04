@@ -18,13 +18,13 @@ bool FM_LoadFontFile(char *FontFileName, tFontData *FontData)
   TAP_Hdd_Fread(FontData->FontDef, sizeof(tFontDef), 191, f);
 
   /* Check for normal or compressed bitmap font */
-  if (FontData->FontDef[0].BitmapIndex == 0) {
-
+  if (FontData->FontDef[0].BitmapIndex == 0)
+  {
     /* Normal font file. Last font table entry defines total size */
-    GreyScaleSize = FontData->FontDef[190].Width *
-	FontData->FontDef[190].Height + FontData->FontDef[190].BitmapIndex;
+    GreyScaleSize = FontData->FontDef[190].Width * FontData->FontDef[190].Height + FontData->FontDef[190].BitmapIndex;
   }
-  else {
+  else
+  {
 
     /* Compressed font file. The first index for a compressed bitmap font
      * is set to the size of the bitmap so we can identify and read the

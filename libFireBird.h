@@ -3,7 +3,7 @@
 
 //  #define DEBUG_FIREBIRDLIB
 
-  #define __FBLIB_RELEASEDATE__ "2012-03-08"
+  #define __FBLIB_RELEASEDATE__ "2012-04-03"
 
   #ifdef _TMSEMU_
     #define __FBLIB_VERSION__ __FBLIB_RELEASEDATE__" TMSEmulator"
@@ -31,8 +31,9 @@
   #define _FILE_OFFSET_BITS     64
 
   #include              <sys/types.h>
+
   #ifdef __cplusplus
-  extern "C" {
+    extern "C" {
   #endif
 
   extern word           ApplID;
@@ -156,7 +157,7 @@
       // Without the interception, TMS directs these to an FTP debug
       // socket.
       #ifndef FB_NO_TAP_PRINT_OVERRIDE
-	#define TAP_Print   TAP_PrintNet
+        #define TAP_Print   TAP_PrintNet
       #endif
     #else
       #define TAP_PrintNet(...) {sprintf(puffer, __VA_ARGS__); TAP_Output(puffer);}
@@ -1779,6 +1780,6 @@
   #define SW_S7T9_CMD     0xAF370000
 
   #ifdef __cplusplus
-  }
+    }
   #endif
 #endif

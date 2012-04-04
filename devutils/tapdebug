@@ -1,0 +1,62 @@
+#!/usr/bin/env python
+'''
+Program to connect to FTP TAP debug port on specfied Topfield TMS PVR
+host and print all diagnostics.
+'''
+# (C) Mark Blakeney, Feb 2011.
+
+# Defaults, can change on command line
+USER = 'guest'
+PASS = '0000'
+TIMEOUT = 4
+
+import sys, telnetlib, argparse
+
+def main():
+    'Main code'
+    # Process command line options
+    opt = argparse.ArgumentParser(description=__doc__.strip(),
+            formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    opt.add_argument('-u', '--user', default=USER,
+            help='ftp login user name')
+    opt.add_argument('-p', '--password', default=PASS,
+            help='ftp login user password')
+    opt.add_argument('-t', '--timeout', type=int, default=TIMEOUT,
+            help='timeout in secs')
+    opt.add_argument('host',
+            help='Topfield PVR IP host name/address')
+    args = opt.parse_args()
+
+    # Connect to host
+    try:
+        tn = telnetlib.Telnet(args.host, 21, timeout=args.timeout)
+    except:
+        sys.stderr.write('Can not connect to "%s"\n' % args.host)
+        sys.exit(1)
+
+    tn.read_until('Server')
+    tn.read_until('\n')
+
+    # Log in with user/pass
+    tn.write('user %s\n' % args.user)
+    tn.read_until('\n')
+    tn.write('pass %s\n' % args.password)
+    tn.read_until('\n')
+
+    # Set TAP debug on
+    tn.write('tap debug on\n')
+    tn.read_until('\n')
+
+    print 'Connected to host "%s", waiting for diagnostics ..' % args.host
+
+    # Just print out each line received until interrupted by user ..
+    while True:
+        try:
+            print tn.read_until('\n', timeout=None).rstrip()
+        except KeyboardInterrupt:
+            print ' .. Keyboard interrupt, quitting.'
+            tn.close()
+            break
+
+if __name__ == '__main__':
+    main()

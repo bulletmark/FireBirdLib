@@ -7,7 +7,7 @@ include ${BASE}/include/tool.mk
 
 # Folders
 SRC_DIR = ${CUR_DIR}
-INCLUDE_DIRS = ${BASE}/include
+INCLUDE_DIRS = ${BASE}/include ..
 
 #compile options
 CFLAGS += -DLINUX -MD -W -Wall -O2 -mips32
@@ -20,7 +20,10 @@ endif
 
 #TAP_LIBS =  ${BASE}/tapinit.o ${BASE}/libtap.so -lc
 TAP_OBJS := $(patsubst %.c,%.o,$(wildcard *.c))
+TAP_OBJS += $(patsubst fonts/%.c,%.o,$(wildcard fonts/*.c))
 TAP_HEAD = ${BASE}/include/libFireBird.h FBLib_$(BLOCK).h $(CUR_DIR)/Makefile
+
+vpath %.c ./fonts
 
 all: ${TAP_OBJS}
 	@$(Q_)-${RM} *.d

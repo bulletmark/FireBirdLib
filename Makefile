@@ -5,7 +5,16 @@ DIRS = av compression debug elf Firmware flash FontManager hdd ini InstructionSe
 BASE = $(shell cd /tapapi/TMS; pwd)
 include ${BASE}/include/tool.mk
 
-all:
+all: lib devutils
+
+docs: HTMLDOCS
+
+.PHONY: doc
+
+doc:
+	markdown README.md >README.html
+
+lib:
 	@for i in $(DIRS); \
 	do \
 	  cd $$i; \
@@ -19,5 +28,18 @@ all:
 	done
 	@$(RANLIB) $(PROJECT).a
 
+.PHONY:	devutils
+
+devutils:
+	cd $@; \
+	make all;
+
 clean:
 	@for i in $(DIRS); do cd $$i; make clean; cd ..; done
+	cd devutils; make clean; cd ..;
+	rm -rf $(PROJECT).a HTMLDOCS README.html
+
+.PHONY: HTMLDOCS
+
+HTMLDOCS:
+	doxygen

@@ -6,8 +6,9 @@ word GetOSDRegionWidth(word Region)
   word                  ret;
 
 #ifdef DEBUG_FIREBIRDLIB
-  TAP_SPrint(tracePuffer, "GetOSDRegionWidth(%d)", Region);
-  CallTraceEnter(tracePuffer);
+  char buf[80];
+  TAP_SPrint(buf, "GetOSDRegionWidth(%d)", Region);
+  CallTraceEnter(buf);
 #endif
 
   if (!(OSDMapInfo = (tOSDMapInfo*) FIS_vOsdMap()))
@@ -23,8 +24,8 @@ word GetOSDRegionWidth(word Region)
   ret = OSDMapInfo[Region].Width;
 
 #ifdef DEBUG_FIREBIRDLIB
-  TAP_SPrint(tracePuffer, "%d", ret);
-  CallTraceExitResult(NULL, tracePuffer);
+  TAP_SPrint(buf, "%d", ret);
+  CallTraceExitResult(NULL, buf);
 #endif
 
   return ret;

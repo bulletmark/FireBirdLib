@@ -3,7 +3,7 @@
 
 //  #define DEBUG_FIREBIRDLIB
 
-  #define __FBLIB_RELEASEDATE__ "2012-03-08"
+  #define __FBLIB_RELEASEDATE__ "2012-04-03"
 
   #ifdef _TMSEMU_
     #define __FBLIB_VERSION__ __FBLIB_RELEASEDATE__" TMSEmulator"
@@ -24,11 +24,17 @@
     #endif
   #endif
 
+  #undef __USE_LARGEFILE64
   #define __USE_LARGEFILE64
+  #undef _LARGEFILE64_SOURCE
   #define _LARGEFILE64_SOURCE
   #define _FILE_OFFSET_BITS     64
 
   #include              <sys/types.h>
+
+  #ifdef __cplusplus
+    extern "C" {
+  #endif
 
   extern word           ApplID;
   extern dword          TAP_TableIndex;
@@ -136,8 +142,6 @@
   #define LE16(p)       (p)
   #define LE32(p)       (p)
 
-  char puffer[1024];
-  char tracePuffer[512];
   void PrintNet(char *puffer);
 
   #define XDATA                                       //don't use XDATA on the TMS
@@ -145,9 +149,18 @@
   #define ATTR_PARENT         0xf0                    //FindFirst/FindNext doesn't know about ..
 
   #ifndef PC_BASED
+    extern char puffer[];
     #ifndef _TMSEMU_
+      void PrintNet(char *puffer);
       #define TAP_PrintNet(...) {sprintf(puffer, __VA_ARGS__); PrintNet(puffer);}
-      #define TAP_Print   TAP_PrintNet
+      // Define the following override if you want to stop FBLIB
+      // intercepting TAP_Print() [i.e. printf() from TAPs]. Normally,
+      // FBLIB intercepts these messages to a local pseudo terminal.
+      // Without the interception, TMS directs these to an FTP debug
+      // socket.
+      #ifndef FB_NO_TAP_PRINT_OVERRIDE
+        #define TAP_Print   TAP_PrintNet
+      #endif
     #else
       #define TAP_PrintNet(...) {sprintf(puffer, __VA_ARGS__); TAP_Output(puffer);}
     #endif
@@ -1768,5 +1781,7 @@
   #define SW_S5T9_CMD     0xAF350000
   #define SW_S7T9_CMD     0xAF370000
 
-
+  #ifdef __cplusplus
+    }
+  #endif
 #endif

@@ -1,0 +1,244 @@
+#!/usr/bin/env python
+'''
+Topfield FireBird library (FireBirdLib) font file compressor/converter.
+Converts an uncompressed C source font file into a compressed C source
+font file. Or converts an uncompressed binary font file into a
+compressed binary font file. Reads given input file, or standard input,
+and writes to standard output.
+
+Can also compress source to binary, or binary to source. Rather
+than compress, you can uncompress, or even just straight translate input
+to output. So all combinations of source/binary input to output
+compression/uncompression/translation are possible.
+'''
+
+# Mark Blakeney, Mar 2012.
+import os, sys, argparse, fileinput, itertools, struct
+
+# List of font bytes we want to compress.
+# The extremely simple compression scheme is that the following bytes
+# are always followed by a number byte which is the total count of such
+# bytes. All other bytes are just output as verbatim bytes.
+COMPRESS_LIST = (0x00, 0xff)
+
+def compress(bitmap, length):
+    'Compress given bitmap list to return new list'
+    newmap = []
+    count = 0
+    preval = -1
+    for val in bitmap[:length] + [-1]:
+        compress_it = val in COMPRESS_LIST
+        if not compress_it or val != preval or count == 0xff:
+            if count > 0:
+                newmap.append(count)
+                count = 0
+
+            if val >= 0:
+                newmap.append(val)
+                preval = val
+                if compress_it:
+                    count = 1
+        else:
+            count += 1
+
+    return newmap
+
+def uncompress(bitmap, length):
+    'Uncompress given bitmap list to return new list'
+    newmap = []
+    it = iter(bitmap)
+    while len(newmap) < length:
+        val = it.next()
+        if val in COMPRESS_LIST:
+            newmap.extend(it.next() * [val])
+        else:
+            newmap.append(val)
+
+    return newmap
+
+class FONT(object):
+    'Class to hold font table and bitmap'
+    def __init__(self, name = ''):
+        'Constructor'
+        self.table = []
+        self.bitmap = []
+        self.name = name
+
+    def get_bitmap_size(self):
+        'Return total byte size of bitmap attached to this font'
+        size = self.table[0][2]
+        if size == 0:
+            v = self.table[-1]
+            size = v[0] * v[1] + v[2]
+        return size
+
+    def is_compressed(self):
+        'Return True if this font is compressed'
+        return self.table[0][2] != 0
+
+    def sanitise(self):
+        'Ensure this fonts bitmap is adequate size, etc'
+        size = self.get_bitmap_size()
+        bitmap_size = len(self.bitmap)
+        if size > bitmap_size:
+            self.bitmap.extend((size - bitmap_size) * [0])
+        elif size < bitmap_size:
+            del self.bitmap[size:]
+
+        return self
+
+    def write_c_source(self, old_size, translate):
+        'Write this font (i.e. table and bitmap) as C source output'
+        ix = self.name.rfind('_')
+        nameroot = self.name if ix < 0 else self.name[:ix]
+        desc = 'compressed' if self.is_compressed() else 'uncompressed'
+
+        # Output new compressed C font file ..
+        print '#include <libFireBird.h>'
+        sys.stdout.write('static byte %s_Bitmap_%s[] = {' % (nameroot, desc))
+        is_count = False
+        for i, val in enumerate(self.bitmap):
+            if (i % 12) == 0:
+                sys.stdout.write('\n   ')
+
+            if is_count and self.is_compressed():
+                sys.stdout.write(' %4d,' % val)
+                is_count = False
+            else:
+                sys.stdout.write(' 0x%02x,' % val)
+                is_count = val in COMPRESS_LIST
+
+        print
+        print '};'
+        print
+        print 'tFontData %s = {' % self.name
+        print '    %s_Bitmap_%s, {' % (nameroot, desc)
+
+        comment = ' /* Compressed font 1st index is size of total bitmap */' \
+                if self.is_compressed() else ''
+
+        for w, h, ix in self.table:
+            print '        {%2d, %2d, %5d},%s' % (w, h, ix, comment)
+            comment = ''
+        print '    }'
+        print '};'
+        print
+        print '/* %s bitmap written by %s */' % \
+                (self.name, os.path.basename(sys.argv[0]))
+        if not translate:
+            new_size = len(self.bitmap)
+            print '/* %s from %d to %d bytes (%d%%) */' % \
+                    (desc.title(), old_size, new_size, (new_size - old_size)
+                            * 100 / (old_size if old_size > 0 else 1))
+
+    def write_binary(self):
+        'Write this font (i.e. table and bitmap) to binary output'
+        def out(code, data):
+            sys.stdout.write(struct.pack('>%d%c' % (len(data), code), *data))
+
+        out('L', list(itertools.chain.from_iterable(self.table)))
+        out('B', self.bitmap)
+
+    def action(self, func):
+        'Apply passed func to this font table and bitmap to return a new font'
+        newfont = FONT(self.name)
+
+        for w, h, ix in self.table:
+            currlen = len(newfont.bitmap)
+            newfont.table.append((w, h, currlen))
+
+            if currlen == 0:
+                ix = 0
+
+            newfont.bitmap.extend(func(self.bitmap[ix:], w * h))
+
+        # Save size of new compressed bitmap in first index (which is
+        # otherwise always 0)
+        if func == compress:
+            v = newfont.table[0]
+            newfont.table[0] = (v[0], v[1], len(newfont.bitmap))
+
+        return newfont
+
+def read_c_source(cfile):
+    'Read given C source file/input to create new font table and bitmap'
+    font = FONT()
+
+    # Iterate through input C source font file/input and extract the
+    # font table + bitmap.
+    for line in fileinput.input(cfile):
+        s = line.strip()
+        if not s:
+            continue
+
+        if s.startswith('tFontData'):
+            font.name = s.split()[1]
+        elif s[0].isdigit():
+            s = s.replace(' ', '').strip(',')
+            font.bitmap.extend([int(x, 0) for x in s.split(',')])
+        else:
+            s = s.replace('{', '').replace('}', '').replace(',', '').strip()
+            if s and s[0].isdigit():
+                font.table.append(tuple(int(x, 0) for x in s.split()[:3]))
+
+    return font.sanitise()
+
+def read_binary(bfile):
+    'Read given binary file/input to create new font table and bitmap'
+    font = FONT('Binary')
+    fp = sys.stdin if bfile == '-' else open(bfile, 'rb')
+
+    # Read font table
+    st = struct.Struct('>%dL' % (191 * 3))
+    it = iter(st.unpack(fp.read(st.size)))
+    font.table = [(x, it.next(), it.next()) for x in it]
+
+    # Read remainder as font bitmap
+    bitmap = fp.read()
+    font.bitmap = list(struct.unpack('>%dB' % len(bitmap), bitmap))
+    fp.close()
+    return font.sanitise()
+
+def main():
+    'Main code'
+    # Process command line options
+    opt = argparse.ArgumentParser(description=__doc__.strip())
+    opt.add_argument('file',
+            help='input C source, or binary, file. Or \'-\' for stdin')
+    opt.add_argument('-i', '--in_binary', action='store_true',
+            help='read binary input instead of C source')
+    opt.add_argument('-o', '--out_binary', action='store_true',
+            help='write binary output instead of C source')
+    opt.add_argument('-x', '--uncompress', action='store_true',
+            help='uncompress rather than compress')
+    opt.add_argument('-t', '--translate', action='store_true',
+            help='do not compress/uncompress, just translate input to output')
+    args = opt.parse_args()
+
+    # Read font table and bitmap (from file or stdin)
+    if args.in_binary:
+        font = read_binary(args.file)
+    else:
+        font = read_c_source(args.file)
+
+    # Sanity check options to ensure we don't double compress etc
+    if not args.translate:
+        args.translate = (not font.is_compressed()) if args.uncompress \
+                else font.is_compressed()
+
+    # Convert font table and bitmap to desired format
+    if args.translate:
+        newfont = font
+    elif args.uncompress:
+        newfont = font.action(uncompress)
+    else:
+        newfont = font.action(compress)
+
+    # Write new font table and bitmap (to stdout)
+    if args.out_binary:
+        newfont.write_binary()
+    else:
+        newfont.write_c_source(len(font.bitmap), args.translate)
+
+if __name__ == '__main__':
+    main()

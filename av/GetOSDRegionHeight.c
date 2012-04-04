@@ -6,8 +6,9 @@ word GetOSDRegionHeight(word Region)
   word                  ret;
 
 #ifdef DEBUG_FIREBIRDLIB
-  TAP_SPrint(tracePuffer, "GetOSDRegionHeight(%d)", Region);
-  CallTraceEnter(tracePuffer);
+  char buf[80];
+  TAP_SPrint(buf, "GetOSDRegionHeight(%d)", Region);
+  CallTraceEnter(buf);
 #endif
 
   OSDMapInfo = (tOSDMapInfo*) FIS_vOsdMap();
@@ -25,8 +26,9 @@ word GetOSDRegionHeight(word Region)
   ret = OSDMapInfo[Region].Height;
 
 #ifdef DEBUG_FIREBIRDLIB
-  TAP_SPrint(tracePuffer, "%d", ret);
-  CallTraceExitResult(NULL, tracePuffer);
+  char buf[80];
+  TAP_SPrint(buf, "%d", ret);
+  CallTraceExitResult(NULL, buf);
 #endif
 
   return ret;

@@ -3,7 +3,7 @@
 
 //  #define DEBUG_FIREBIRDLIB
 
-  #define __FBLIB_RELEASEDATE__ "2012-04-03"
+  #define __FBLIB_RELEASEDATE__ "2012-04-08"
 
   #ifdef _TMSEMU_
     #define __FBLIB_VERSION__ __FBLIB_RELEASEDATE__" TMSEmulator"
@@ -141,8 +141,6 @@
 
   #define LE16(p)       (p)
   #define LE32(p)       (p)
-
-  void PrintNet(char *puffer);
 
   #define XDATA                                       //don't use XDATA on the TMS
   #define TS_FILE_NAME_SIZE   MAX_FILE_NAME_SIZE      //the name has changed
@@ -851,7 +849,6 @@
   void        INISetRGB8(char *Key, byte Red, byte Green, byte Blue);
   void        INISetARGB(char *Key, byte Alpha, byte Red, byte Green, byte Blue);
   void        INISetARGB8(char *Key, byte Alpha, byte Red, byte Green, byte Blue);
-  void        INISetComment(char *Comments);
   void        INISetHexByte(char *Key, byte Value);
   void        INISetHexDWord(char *Key, dword Value);
   void        INISetHexWord(char *Key, word Value);
@@ -947,6 +944,7 @@
   inline dword FIS_vFlash(void);
   inline dword FIS_vGrid(void);
   inline dword FIS_vHddDivxFolder(void);
+  inline dword FIS_vhddRecordFile(void);
   inline dword FIS_vHddTapFolder(void);
   inline dword FIS_vHddTsFolder(void);
   inline dword FIS_vIboxTimerId(void);
@@ -1160,6 +1158,7 @@
   bool   HDD_EncodeRECHeader(byte *Buffer, tRECHeaderInfo *RECHeaderInfo, SYSTEM_TYPE SystemType);
   int    HDD_FindPCR(byte *pBuffer, dword BufferSize, word PID);   //Returns the PCR in minutes
   byte  *HDD_GetPvrRecTsInfoPointer(byte Slot);
+  bool   HDD_GetRecSlotFiles(byte Slot, TYPE_File **RecFile, TYPE_File **InfFile, TYPE_File **NavFile);
   bool   HDD_isAnyRecording(void);
   bool   HDD_isCryptedStream(char *Buffer, dword BufferSize);
   bool   HDD_isRecording(byte RecSlot);

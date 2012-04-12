@@ -8,7 +8,7 @@ void DumpMemoryDword(dword *p, dword size)
   int                   CollectedBytes;
   char                  Header[20];
   char                  s[255];
-  dword                 Remaining;
+  int                   Remaining;
 
   s[0] = '\0';
   CollectedBytes = 0;

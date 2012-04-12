@@ -42,4 +42,5 @@ clean:
 .PHONY: HTMLDOCS
 
 HTMLDOCS:
+	rm -rf $@
 	doxygen

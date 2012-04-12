@@ -33,19 +33,29 @@ def main():
         sys.stderr.write('Can not connect to "%s"\n' % args.host)
         sys.exit(1)
 
+    error_code = 0
+
     # Transfer TAP files ..
     tdir = PROG if args.noauto else AUTO
     ftp.cwd(tdir)
     for tap in args.tapfile:
         if not os.path.isfile(tap):
-            sys.stderr.write('No file "%s"\n' % tap)
-            sys.exit(1)
-
-        print 'Copying "%s" to %s:%s/ ..' % (tap, args.host, tdir)
-        with open(tap, 'rb') as fp:
-            ftp.storbinary('STOR %s' % os.path.basename(tap), fp)
+            sys.stderr.write('ERROR reading file "%s"\n' % tap)
+            error_code = 1
+        else:
+            basetap = os.path.basename(tap)
+            with open(tap, 'rb') as fp:
+                try:
+                    ftp.storbinary('STOR %s' % basetap, fp)
+                except:
+                    error_code = 1
+                    sys.stderr.write('ERROR copying "%s" to %s:%s/\n' % \
+                            (tap, args.host, tdir))
+                else:
+                    print 'Copied "%s" to %s:%s/' % (tap, args.host, tdir)
 
     ftp.close()
+    sys.exit(error_code)
 
 if __name__ == '__main__':
     main()

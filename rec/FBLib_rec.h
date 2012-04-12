@@ -5,6 +5,13 @@
 
 #define PCRSECTORS      900
 
+typedef struct
+{
+  TYPE_File          *RecFile;
+  TYPE_File          *InfFile;
+  TYPE_File          *NavFile;
+} tHddRecordFile;
+
 extern bool             LibInitialized;
 
 word getWord(void *buffer, bool NeedsByteSwapping);

@@ -712,3 +712,5 @@ License:  This library is freeware. You may use this code in your own projects f
 2012-03-08  Added: the Australian IceTV flag to the timer structures
             Added: button PAUSE switches between small and capitals letters in the TMSOSDKeyboard
 2012-04-03  Added: several improvements, especially compressed fonts, which makes the resulting TAP smaller (thanks to markb for these updates)
+2012-04-07  Removed: INISetComment(), which has never been implemented
+2012-04-08  Added: HDD_GetRecSlotFiles() and FIS_vhddRecordFile(). These return a TYPE_File pointer (rec, inf, nav) of a currently running recording.

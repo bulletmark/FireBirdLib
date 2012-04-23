@@ -2,11 +2,10 @@
 
 ### JailBreak
 
-For an unknown reason, the Topfield TMS TAP runtime environment does not
-allow TAPs to call Linux system commands. TAPs are constrained to use
-only the TAP-API. While this might be o.k. for most TAPs, there are
-still a lot of things which cannot be done because of the limited
-functionality of the API.
+The Topfield TMS TAP runtime environment does not allow TAPs to call
+Linux system commands. TAPs are constrained to use only the TAP-API.
+While this might be o.k. for most TAPs, there are still a lot of things
+which cannot be done because of the limited functionality of the API.
 
 The JailBreak utility modifies the compiled TAP so that it passes the
 check upon launch regardless of what you have coded.
@@ -15,12 +14,6 @@ Usage: JailBreak filename.tap
 
 Add this to your Makefile/build.
 
-**Warning**: due to a limited number of machines on the market and because
-this hack is brand new, there has been nearly no testing of the effects
-of this JailBreak hack nor the possibilities opened by the hack. The
-most worrying thing is that SRP seem to have no loader. If this proves
-to be true, there would not be any emergency procedure to reflash a
-damaged firmware.
 
 ### tapput
 

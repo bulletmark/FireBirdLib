@@ -108,10 +108,7 @@ class FONT(object):
                 sys.stdout.write(' 0x%02x,' % val)
                 is_count = val in COMPRESS_LIST
 
-        print
-        print '};'
-        print
-        print 'tFontData %s = {' % self.name
+        print '\n};\n\ntFontData %s = {' % self.name
         print '    %s_Bitmap_%s, {' % (nameroot, desc)
 
         comment = ' /* Compressed font 1st index is size of total bitmap */' \
@@ -120,10 +117,8 @@ class FONT(object):
         for w, h, ix in self.table:
             print '        {%2d, %2d, %5d},%s' % (w, h, ix, comment)
             comment = ''
-        print '    }'
-        print '};'
-        print
-        print '/* %s bitmap written by %s */' % \
+
+        print '    }\n};\n\n/* %s bitmap written by %s */' % \
                 (self.name, os.path.basename(sys.argv[0]))
         if not translate:
             new_size = len(self.bitmap)
@@ -186,17 +181,16 @@ def read_c_source(cfile):
 def read_binary(bfile):
     'Read given binary file/input to create new font table and bitmap'
     font = FONT('Binary')
-    fp = sys.stdin if bfile == '-' else open(bfile, 'rb')
+    with (sys.stdin if bfile == '-' else open(bfile, 'rb')) as fp:
+        # Read font table
+        st = struct.Struct('>%dL' % (191 * 3))
+        it = iter(st.unpack(fp.read(st.size)))
+        font.table = [(x, it.next(), it.next()) for x in it]
 
-    # Read font table
-    st = struct.Struct('>%dL' % (191 * 3))
-    it = iter(st.unpack(fp.read(st.size)))
-    font.table = [(x, it.next(), it.next()) for x in it]
+        # Read remainder as font bitmap
+        bitmap = fp.read()
+        font.bitmap = list(struct.unpack('>%dB' % len(bitmap), bitmap))
 
-    # Read remainder as font bitmap
-    bitmap = fp.read()
-    font.bitmap = list(struct.unpack('>%dB' % len(bitmap), bitmap))
-    fp.close()
     return font.sanitise()
 
 def main():

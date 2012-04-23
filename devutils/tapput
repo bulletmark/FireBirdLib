@@ -49,7 +49,7 @@ def main():
                     ftp.storbinary('STOR %s' % basetap, fp)
                 except:
                     error_code = 1
-                    sys.stderr.write('ERROR copying "%s" to %s:%s/\n' % \
+                    sys.stderr.write('***** ERROR copying "%s" to %s:%s/\n' % \
                             (tap, args.host, tdir))
                 else:
                     print 'Copied "%s" to %s:%s/' % (tap, args.host, tdir)

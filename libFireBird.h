@@ -3,7 +3,7 @@
 
 //  #define DEBUG_FIREBIRDLIB
 
-  #define __FBLIB_RELEASEDATE__ "2012-04-08"
+  #define __FBLIB_RELEASEDATE__ "2012-04-23"
 
   #ifdef _TMSEMU_
     #define __FBLIB_VERSION__ __FBLIB_RELEASEDATE__" TMSEmulator"
@@ -644,10 +644,12 @@
     byte                unused1;
   } tFavorites;
 
-  int  FlashFavoritesGetTotal(void);
-  bool FlashFavoritesGetInfo(int FavNum, tFavorites *Favorites);
-  bool FlashFavoritesSetInfo(int FavNum, tFavorites *Favorites);
-  int  FlashFavoritesFindService(int SvcType, int SvcNum);
+  int   FlashFavoritesGetTotal(void);
+  char *FlashFavoritesGetSelectedGroupName(void);
+  bool  FlashFavoritesGetInfo(int FavNum, tFavorites *Favorites);
+  bool  FlashFavoritesGetInfoCurrent(tFavorites *Favorites);
+  bool  FlashFavoritesSetInfo(int FavNum, tFavorites *Favorites);
+  int   FlashFavoritesFindService(int SvcType, int SvcNum);
 
 
   dword FIS_vFlashBlockAutoDec(void);
@@ -940,7 +942,7 @@
   inline dword FIS_vEtcInfo(void);
   inline dword FIS_vExtPartitionInfo(void);
   inline dword FIS_vExtTsFolder(void);
-  inline dword FIS_vVfdTimerId(void);
+  inline dword FIS_vfavName(void);
   inline dword FIS_vFlash(void);
   inline dword FIS_vGrid(void);
   inline dword FIS_vHddDivxFolder(void);
@@ -977,6 +979,7 @@
   inline dword FIS_vTimerTempInfo(void);
   inline dword FIS_vTopEvent(void);
   inline dword FIS_vVfdBrightTimerId(void);
+  inline dword FIS_vVfdTimerId(void);
 
   /*****************************************************************************************************************************/
   /* LogoManager                                                                                                               */

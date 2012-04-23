@@ -85,7 +85,7 @@
     byte                  unused2[8];
   } TYPE_SatInfo_TMSS;
 
-   typedef struct
+  typedef struct
   {
     word                  NrOfTransponders;
     char                  SatName[16];      //Contains DVBT

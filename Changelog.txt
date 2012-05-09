@@ -715,3 +715,5 @@ License:  This library is freeware. You may use this code in your own projects f
 2012-04-07  Removed: INISetComment(), which has never been implemented
 2012-04-08  Added: HDD_GetRecSlotFiles() and FIS_vhddRecordFile(). These return a TYPE_File pointer (rec, inf, nav) of a currently running recording.
 2012-04-23  Added: FlashFavoritesGetSelectedGroupName() and FlashFavoritesGetInfoCurrent()
+2012-04-28  There seem to be at least 2 different Favourites structures. On sat machines there is space for 30 groups and 100 services per group. On other machines there are 10 groups with 50 services per group.
+            The FlashFavorites* functions now try to distinguish between these two formats. FlashFavoritesGetParameters() has been added.

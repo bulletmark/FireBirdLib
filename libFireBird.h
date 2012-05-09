@@ -3,7 +3,7 @@
 
 //  #define DEBUG_FIREBIRDLIB
 
-  #define __FBLIB_RELEASEDATE__ "2012-04-23"
+  #define __FBLIB_RELEASEDATE__ "2012-05-04"
 
   #ifdef _TMSEMU_
     #define __FBLIB_VERSION__ __FBLIB_RELEASEDATE__" TMSEmulator"
@@ -177,6 +177,7 @@
   char       *GetToppyString(word SysID);
   dword       GetUptime(void);
   char       *iso639_1(int OSDLan);
+  char       *iso639_2(int OSDLan);
   bool        LoadFirmwareDat(tFWDATHeader **FWDatHeader, tToppyInfo **ToppyInfo, tFWInfo **FWInfo);
   bool        PutDevEvent(word Event, dword Param1);
 
@@ -650,6 +651,7 @@
   bool  FlashFavoritesGetInfoCurrent(tFavorites *Favorites);
   bool  FlashFavoritesSetInfo(int FavNum, tFavorites *Favorites);
   int   FlashFavoritesFindService(int SvcType, int SvcNum);
+  void  FlashFavoritesGetParameters(int *NrGroups, int *NrSvcsPerGroup);
 
 
   dword FIS_vFlashBlockAutoDec(void);
@@ -1025,6 +1027,7 @@
   void          LogoManager_MoveExternalUpdates(void);
   char         *LogoManager_ChannelNameToLogoName(char *ChannelName);
   void          LogoManager_Cleanup(void);
+  void          LogoManager_CleanupMemory(void);
   bool          LogoManager_LogoCacheLoad(void);
   void          LogoManager_LogoCacheRebuild(void);
   TYPE_GrData  *LogoManager_GetLogoByChannelID(ulong64 ChannelID, tLogoStyle LogoStyle, tLogoSize LogoSize, tLogoAspect LogoAR);

@@ -3,7 +3,7 @@
 
 int FlashFavoritesFindService(int SvcType, int SvcNum)
 {
-  tFavorites           *Favs;
+  tFavorites            Favs;
   int                   i, j, NrFavs;
 
   //SvcType out of range
@@ -12,18 +12,15 @@ int FlashFavoritesFindService(int SvcType, int SvcNum)
   //SvcNum out of range
   if((SvcNum < 0) || (SvcNum >= FlashServiceGetTotal(SvcType))) return FALSE;
 
-  //There is no system specific information in the fav group
-  Favs = (tFavorites*)FIS_vFlashBlockFavoriteGroup();
-  if(!Favs) return 0;
-
   NrFavs = FlashFavoritesGetTotal();
   for(i = 0; i < NrFavs; i++)
   {
-    for(j = 0; j < Favs->NrEntries; j++)
-      if((Favs->SvcType[j] == SvcType) && (Favs->SvcNum[j] == SvcNum))
-        return i;
-
-    Favs++;
+    if(FlashFavoritesGetInfo(i, &Favs))
+    {
+      for(j = 0; j < Favs.NrEntries; j++)
+        if((Favs.SvcType[j] == SvcType) && (Favs.SvcNum[j] == SvcNum))
+          return i;
+    }
   }
 
   return -1;

@@ -347,4 +347,13 @@
 
   void FlashReindexFavorites(int SvcType, int FromSvcNum, int ToSvcNum);
 
+  typedef struct
+  {
+    char                GroupName[12];
+    word                SvcNum[50];
+    byte                SvcType[50];
+    byte                NrEntries;
+    byte                unused1;
+  } tFavorites1050;
+
 #endif

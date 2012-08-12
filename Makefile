@@ -1,6 +1,6 @@
 PROJECT = libFireBird
 
-DIRS = av compression debug elf Firmware flash FontManager hdd ini InstructionSequences LogoManager main rec shutdown string StringDB tap tapcom time TMSOSDMenu TMSOSDKeyboard tmsvfd
+DIRS = av compression debug elf ExtAttribs Firmware flash FontManager hdd ini InstructionSequences LogoManager main rec shutdown string StringDB tap tapcom time TMSOSDMenu TMSOSDKeyboard tmsvfd
 
 BASE = $(shell cd /tapapi/TMS; pwd)
 include ${BASE}/include/tool.mk

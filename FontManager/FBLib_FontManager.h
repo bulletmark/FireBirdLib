@@ -10,7 +10,7 @@ typedef struct
   byte  b;
 } tAlphaLUT;
 
-tAlphaLUT  AlphaLUT[256];
+extern tAlphaLUT  AlphaLUT[256];
 
 
 bool FM_isValidCharacter(byte Char);

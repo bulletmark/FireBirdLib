@@ -2,14 +2,13 @@
 
 inline dword FIS_vFlashBlockLanIPConfig(void)
 {
-  static dword          *vFlash = 0;
+  static dword          *vFlashOldLanIpConfig = 0;
 
-  if(!vFlash)
+  if(!vFlashOldLanIpConfig)
   {
-    vFlash = (dword*)TryResolve("_oldLanIpConfig");
-    if(!vFlash) return 0;
+    vFlashOldLanIpConfig = (dword*)TryResolve("_oldLanIpConfig");
+    if(!vFlashOldLanIpConfig) return 0;
   }
 
-  return *vFlash;
+  return *vFlashOldLanIpConfig;
 }
-

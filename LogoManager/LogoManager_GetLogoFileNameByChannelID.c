@@ -6,12 +6,12 @@
 
 char *LogoManager_GetPathToLogoByChannelID(ulong64 ChannelID, tLogoStyle LogoStyle, tLogoSize LogoSize, tLogoAspect LogoAR)
 {
-  static char           LogoName[256];
+  static char           LogoNameB[256];
   char                  s[20];
 
   LogoManager_Initialize(LogoManager_CB);
 
-  TAP_SPrint(LogoName, "%s/", LogoManager_GetDirectory(LogoStyle, LogoAR));
+  TAP_SPrint(LogoNameB, "%s/", LogoManager_GetDirectory(LogoStyle, LogoAR));
 
   HDD_TAP_PushDir();
   HDD_ChangeDir(LOGOROOT);
@@ -19,20 +19,20 @@ char *LogoManager_GetPathToLogoByChannelID(ulong64 ChannelID, tLogoStyle LogoSty
   {
     TAP_SPrint(s, "%16.16llx", ChannelID);
     INIOpenFile(LILNAME, NULL);
-    INIGetString(s, &LogoName[strlen(LogoName)], "", 40);
+    INIGetString(s, &LogoNameB[strlen(LogoNameB)], "", 40);
     INICloseFile();
     HDD_TAP_PopDir();
 
     switch(LogoSize)
     {
-      case LGSZ_qtl: strcat(LogoName, ".qtl"); break;
-      case LGSZ_ibl: strcat(LogoName, ".ibl"); break;
-      case LGSZ_qsl: strcat(LogoName, ".qsl"); break;
+      case LGSZ_qtl: strcat(LogoNameB, ".qtl"); break;
+      case LGSZ_ibl: strcat(LogoNameB, ".ibl"); break;
+      case LGSZ_qsl: strcat(LogoNameB, ".qsl"); break;
         default:
           break;
     }
 
-    return LogoName;
+    return LogoNameB;
   }
   HDD_TAP_PopDir();
 

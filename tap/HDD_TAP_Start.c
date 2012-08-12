@@ -9,16 +9,16 @@ dword HDD_TAP_Start(char *TAPFileName, bool BatchMode, void* ParameterBlock, dwo
 {
   dword                 ret;
   dword                 _TempWorkFolder[4];
-  static dword          *_hddTapFolder = NULL;
-  static dword          *_hddTsFolder = NULL;
+  dword                *_hddTapFolder;
+  dword                *_hddTsFolder;
   char                  CurrentDir[FBLIB_DIR_SIZE];
   int                   shmidBatch = 0, shmidParameterBlock = 0;
   char                 *segptrBatch = NULL;
   tTAPInfo              TAPInfo;
 
-  static void  (*ApplHdd_SetWorkFolder)(void*) = NULL;
-  static dword (*ApplHdd_SelectFolder)(void*, char  const*) = NULL;
-  static void  (*Appl_ExecProgram)(char*) = NULL;
+  void  (*ApplHdd_SetWorkFolder)(void*) = NULL;
+  dword (*ApplHdd_SelectFolder)(void*, char  const*) = NULL;
+  void  (*Appl_ExecProgram)(char*) = NULL;
 
   //Set the TAPID and batch flag
   if(!HDD_TAP_GetInfo(TAPFileName, &TAPInfo)) return 0;
@@ -47,11 +47,11 @@ dword HDD_TAP_Start(char *TAPFileName, bool BatchMode, void* ParameterBlock, dwo
     fbl_parametered_tap->pParameterBlock = (dword)ParameterBlock;
   }
 
-  if(!Appl_ExecProgram)      Appl_ExecProgram      = (void*)FIS_fwAppl_ExecProgram();
-  if(!ApplHdd_SetWorkFolder) ApplHdd_SetWorkFolder = (void*)FIS_fwApplHdd_SetWorkFolder();
-  if(!ApplHdd_SelectFolder)  ApplHdd_SelectFolder  = (void*)FIS_fwApplHdd_SelectFolder();
-  if(!_hddTapFolder)        _hddTapFolder          = (dword*)FIS_vHddTapFolder();
-  if(!_hddTsFolder)         _hddTsFolder           = (dword*)FIS_vHddTsFolder();
+  Appl_ExecProgram       = (void*)FIS_fwAppl_ExecProgram();
+  ApplHdd_SetWorkFolder  = (void*)FIS_fwApplHdd_SetWorkFolder();
+  ApplHdd_SelectFolder   = (void*)FIS_fwApplHdd_SelectFolder();
+  _hddTapFolder          = (dword*)FIS_vHddTapFolder();
+  _hddTsFolder           = (dword*)FIS_vHddTsFolder();
 
   //"Calculate" the current absolute directory of the new TAP
   TAP_SPrint(CurrentDir, "mnt/hd");

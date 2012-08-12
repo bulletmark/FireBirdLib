@@ -2,14 +2,13 @@
 
 inline dword FIS_vFlashBlockGameSaveData(void)
 {
-  static dword          *vFlash = 0;
+  static dword          *vFlashGameSaveData = 0;
 
-  if(!vFlash)
+  if(!vFlashGameSaveData)
   {
-    vFlash = (dword*)TryResolve("_gameSaveData");
-    if(!vFlash) return 0;
+    vFlashGameSaveData = (dword*)TryResolve("_gameSaveData");
+    if(!vFlashGameSaveData) return 0;
   }
 
-  return *vFlash;
+  return *vFlashGameSaveData;
 }
-

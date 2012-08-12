@@ -2,14 +2,13 @@
 
 inline dword FIS_vFlashBlockNetwork(void)
 {
-  static dword          *vFlash = 0;
+  static dword          *vFlashNetwork = 0;
 
-  if(!vFlash)
+  if(!vFlashNetwork)
   {
-    vFlash = (dword*)TryResolve("_network");
-    if(!vFlash) return 0;
+    vFlashNetwork = (dword*)TryResolve("_network");
+    if(!vFlashNetwork) return 0;
   }
 
-  return *vFlash;
+  return *vFlashNetwork;
 }
-

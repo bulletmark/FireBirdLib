@@ -170,7 +170,7 @@ extern word             MyOSDRgn; //Used by OSDMenuSaveMyRegion()
 extern bool             OSDDirty, TitleDirty, ListDirty, ButtonsDirty, LogoDirty;
 extern tMenu            Menu[NRMENULEVELS];
 extern dword            CurrentMenuLevel;
-dword            ButtonColor;
+extern dword            ButtonColor;
 extern tCursorType      MenuCursorType;
 
 extern word             InfoBoxOSDRgn;

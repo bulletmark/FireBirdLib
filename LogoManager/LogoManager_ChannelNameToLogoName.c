@@ -5,14 +5,14 @@
 
 char *LogoManager_ChannelNameToLogoName(char *ChannelName)
 {
-  static char           LogoName[512];
+  static char           LogoNameA[256];
   char                 *pLogoName;
   char                  AllowedChars[] = "abcdefghijklmnoprqstuvwxyz0123456789הצü+";
 
-  memset(LogoName, 0, sizeof(LogoName));
-  strncpy(LogoName, ChannelName, 255);
-  LowerCase(LogoName);
-  pLogoName = LogoName;
+  memset(LogoNameA, 0, sizeof(LogoNameA));
+  strncpy(LogoNameA, ChannelName, 255);
+  LowerCase(LogoNameA);
+  pLogoName = LogoNameA;
   while(*pLogoName)
   {
     if(index(AllowedChars, *pLogoName) == NULL)
@@ -20,9 +20,9 @@ char *LogoManager_ChannelNameToLogoName(char *ChannelName)
     else
       pLogoName++;
   }
-  StrReplace(LogoName, "ה", "ae");
-  StrReplace(LogoName, "צ", "oe");
-  StrReplace(LogoName, "ü", "ue");
+  StrReplace(LogoNameA, "ה", "ae");
+  StrReplace(LogoNameA, "צ", "oe");
+  StrReplace(LogoNameA, "ü", "ue");
 
-  return LogoName;
+  return LogoNameA;
 }

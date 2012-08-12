@@ -3,7 +3,7 @@
 
 //  #define DEBUG_FIREBIRDLIB
 
-  #define __FBLIB_RELEASEDATE__ "2012-05-19"
+  #define __FBLIB_RELEASEDATE__ "2012-07-28"
 
   #ifdef _TMSEMU_
     #define __FBLIB_VERSION__ __FBLIB_RELEASEDATE__" TMSEmulator"
@@ -400,6 +400,21 @@
   bool  ELFReadDWORD(dword SectionIndex, dword *Data);
   bool  ELFReadData(dword SectionIndex, byte *Data);
   void  ELFCleanup(void);
+
+
+  /*****************************************************************************************************************************/
+  /* Extended File Attributes                                                                                                  */
+  /*****************************************************************************************************************************/
+
+  int  ExtAttribExists(char *FileName, char *AttrName);
+  int  ExtAttribExistsAbsPath(char *AbsFileName, char *AttrName);
+  bool ExtAttribGet(char *FileName, char *AttrName, byte *Data, int MaxDataLen, int *DataLen);
+  bool ExtAttribGetAbsPath(char *AbsFileName, char *AttrName, byte *Data, int MaxDataLen, int *DataLen);
+  bool ExtAttribRemove(char *FileName, char *AttrName);
+  bool ExtAttribRemoveAbsPath(char *AbsFileName, char *AttrName);
+  bool ExtAttribSet(char *FileName, char *AttrName, byte *Data, int DataLen);
+  bool ExtAttribSetAbsPath(char *AbsFileName, char *AttrName, byte *Data, int DataLen);
+
 
   /*****************************************************************************************************************************/
   /* Firmware functions                                                                                                        */
@@ -871,6 +886,7 @@
 
   dword TryResolve(char *Function);
 
+  dword        FindInstructionSequence(char *SearchPattern, char *SearchMask, dword StartAddress, dword EndAddress, int EntryPointOffset, bool SearchForPrevADDIUSP);
   inline dword FIS_fwAppl_AddSvcName(void);
   inline dword FIS_fwAppl_CheckRecording(void);
   inline dword FIS_fwAppl_CheckRecording_Tuner(void);
@@ -1566,9 +1582,10 @@
   } tButtonIcon;
 
 
-  void OSDMenuButtonsClear(void);
-  void OSDMenuButtonColor(dword Color);
-  void OSDMenuButtonAdd(dword Line, tButtonIcon ButtonIcon, TYPE_GrData *ButtonGd, char *Text);
+  void        OSDMenuButtonsClear(void);
+  void        OSDMenuButtonColor(dword Color);
+  void        OSDMenuButtonAdd(dword Line, tButtonIcon ButtonIcon, TYPE_GrData *ButtonGd, char *Text);
+  tButtonIcon OSDMenuGetButtonIcon(dword key);
 
   //Cursor Functions
   bool  OSDMenuSelectItem(int ItemIndex);

@@ -2,14 +2,14 @@
 
 inline dword FIS_vFlashBlockServerData(void)
 {
-  static dword          *vFlash = 0;
+  static dword          *vFlashServerData = 0;
 
-  if(!vFlash)
+  if(!vFlashServerData)
   {
-    vFlash = (dword*)TryResolve("_serverData");
-    if(!vFlash) return 0;
+    vFlashServerData = (dword*)TryResolve("_serverData");
+    if(!vFlashServerData) return 0;
   }
 
-  return *vFlash;
+  return *vFlashServerData;
 }
 

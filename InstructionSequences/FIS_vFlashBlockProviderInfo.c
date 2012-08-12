@@ -2,14 +2,14 @@
 
 inline dword FIS_vFlashBlockProviderInfo(void)
 {
-  static dword          *vFlash = 0;
+  static dword          *vFlashProviderInfo = 0;
 
-  if(!vFlash)
+  if(!vFlashProviderInfo)
   {
-    vFlash = (dword*)TryResolve("_providerInfo");
-    if(!vFlash) return 0;
+    vFlashProviderInfo = (dword*)TryResolve("_providerInfo");
+    if(!vFlashProviderInfo) return 0;
   }
 
-  return *vFlash;
+  return *vFlashProviderInfo;
 }
 

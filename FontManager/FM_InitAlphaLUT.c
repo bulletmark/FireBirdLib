@@ -1,5 +1,7 @@
 #include                "FBLib_FontManager.h"
 
+tAlphaLUT  AlphaLUT[256];
+
 void FM_InitAlphaLUT(dword fgColor, dword bgColor, float AntiAliasFactor)
 {
   int                   i;

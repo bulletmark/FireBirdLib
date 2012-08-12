@@ -2,14 +2,13 @@
 
 inline dword FIS_vFlashBlockSatInfo(void)
 {
-  static dword          *vFlash = 0;
+  static dword          *vFlashSatInfo = 0;
 
-  if(!vFlash)
+  if(!vFlashSatInfo)
   {
-    vFlash = (dword*)TryResolve("_satInfo");
-    if(!vFlash) return 0;
+    vFlashSatInfo = (dword*)TryResolve("_satInfo");
+    if(!vFlashSatInfo) return 0;
   }
 
-  return *vFlash;
+  return *vFlashSatInfo;
 }
-

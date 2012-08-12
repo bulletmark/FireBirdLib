@@ -2,14 +2,13 @@
 
 inline dword FIS_vFlashBlockOTAInfo(void)
 {
-  static dword          *vFlash = 0;
+  static dword          *vFlashOtaInfo = 0;
 
-  if(!vFlash)
+  if(!vFlashOtaInfo)
   {
-    vFlash = (dword*)TryResolve("_otaInfo");
-    if(!vFlash) return 0;
+    vFlashOtaInfo = (dword*)TryResolve("_otaInfo");
+    if(vFlashOtaInfo) return 0;
   }
 
-  return *vFlash;
+  return *vFlashOtaInfo;
 }
-

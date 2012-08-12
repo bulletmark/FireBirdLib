@@ -6,6 +6,6 @@ void OSDMenuInfoBoxDestroy(void)
   {
     OSDMenuInfoBoxDestroyNoOSDUpdate();
     TAP_Osd_Sync();
-    if((!OSDRgn) && (!ProgressBarOSDRgn) && (!MessageBoxOSDRgn) && (!ColorPickerOSDRgn)) TAP_EnterNormal();
   }
+  if((!OSDRgn) && (!ProgressBarOSDRgn) && (!MessageBoxOSDRgn) && (!ColorPickerOSDRgn)) TAP_EnterNormal();
 }

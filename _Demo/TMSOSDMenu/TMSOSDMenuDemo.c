@@ -6,7 +6,7 @@
 #include                "graphic/status_bad.gd"
 
 #define PROGRAM_NAME    "TMSOSDMenu Demo"
-#define VERSION         "V0.2a"
+#define VERSION         "V0.2b"
 
 TAP_ID                  (0x8E0Affff);
 TAP_PROGRAM_NAME        (PROGRAM_NAME" "VERSION);
@@ -62,7 +62,7 @@ dword TAP_EventHandler(word event, dword param1, dword param2)
       OSDMenuButtonAdd(2, BI_Blue,  NULL,  "Button 4");
       OSDMenuButtonAdd(2, BI_White, NULL,  "Button 5");
 
-      OSDMenuUpdate();
+      OSDMenuUpdate(FALSE);
 
       State = ST_Idle;
 

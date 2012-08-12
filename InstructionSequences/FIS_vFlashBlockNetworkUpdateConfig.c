@@ -2,13 +2,13 @@
 
 inline dword FIS_vFlashBlockNetworkUpdateConfig(void)
 {
-  static dword          *vFlash = 0;
+  static dword          *vFlashNetworkUpdateConfig = 0;
 
-  if(!vFlash)
+  if(!vFlashNetworkUpdateConfig)
   {
-    vFlash = (dword*)TryResolve("_networkUpdateConfig");
-    if(!vFlash) return 0;
+    vFlashNetworkUpdateConfig = (dword*)TryResolve("_networkUpdateConfig");
+    if(!vFlashNetworkUpdateConfig) return 0;
   }
 
-  return *vFlash;
+  return *vFlashNetworkUpdateConfig;
 }

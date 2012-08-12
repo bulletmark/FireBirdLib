@@ -2,13 +2,13 @@
 
 inline dword FIS_vFlashBlockAutoDec(void)
 {
-  static dword          *vFlash = 0;
+  static dword          *vFlashAutoDec = 0;
 
-  if(!vFlash)
+  if(!vFlashAutoDec)
   {
-    vFlash = (dword*)TryResolve("_autoDec");
-    if(!vFlash) return 0;
+    vFlashAutoDec = (dword*)TryResolve("_autoDec");
+    if(!vFlashAutoDec) return 0;
   }
 
-  return *vFlash;
+  return *vFlashAutoDec;
 }

@@ -718,3 +718,12 @@ License:  This library is freeware. You may use this code in your own projects f
 2012-04-28  There seem to be at least 2 different Favourites structures. On sat machines there is space for 30 groups and 100 services per group. On other machines there are 10 groups with 50 services per group.
             The FlashFavorites* functions now try to distinguish between these two formats. FlashFavoritesGetParameters() has been added.
 2012-05-19  Fixed: little modification in OSDMenuDestroy() which allows the enter normal mode, even if main osd has been deleted by OSDMenuDestroyNoOSDUpdate()
+            Fixed the UTF8 detection
+            Added: OSDMenuGetButtonIcon() and LogoManager_CleanupMemory()
+2012-07-24  Added some functions for extended file attributes. These allow to attach data to a file and therefore it is not necessary to modify a file or add another files
+            ExtAttribSet(): adds or modifies a name attribute. Like with the TAP_Hdd API, you need to be in the file's directory, the file name may not contain a path.
+            ExtAttribExists(): checks if a named attribute exists and returns the attribute's size in bytes.
+            ExtAttribGet(): reads the attribute.
+            ExtAttribRemove(): removes the attribute.
+            In addition, all 4 functions are available with a full path for the file name (ExtAttribSetAbsPath(), ExtAttribExistsAbsPath(), ExtAttribGetAbsPath(), ExtAttribRemoveAbsPath())
+2012-07-28  The return of FindInstructionSequence()

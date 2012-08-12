@@ -2,14 +2,13 @@
 
 inline dword FIS_vFlashBlockRadioServices(void)
 {
-  static dword          *vFlash = 0;
+  static dword          *vFlashRadioSvc = 0;
 
-  if(!vFlash)
+  if(!vFlashRadioSvc)
   {
-    vFlash = (dword*)TryResolve("_radioSvc");
-    if(!vFlash) return 0;
+    vFlashRadioSvc = (dword*)TryResolve("_radioSvc");
+    if(!vFlashRadioSvc) return 0;
   }
 
-  return *vFlash;
+  return *vFlashRadioSvc;
 }
-

@@ -7,17 +7,14 @@ bool GetPIPPosition(int *North, int *South, int *East, int *West)
   CallTraceEnter("GetPIPPosition");
 #endif
 
-  static byte         *_isPipActive;
-  static word         *_pipX, *_pipY, *_pipW, *_pipH;
+  byte                 *_isPipActive;
+  word                 *_pipX, *_pipY, *_pipW, *_pipH;
 
-  if(!_isPipActive)
-  {
-    _isPipActive = (byte*)FIS_vIsPipActive();
-    _pipX = (word*)FIS_vPipX();
-    _pipY = (word*)FIS_vPipY();
-    _pipW = (word*)FIS_vPipW();
-    _pipH = (word*)FIS_vPipH();
-  }
+  _isPipActive = (byte*)FIS_vIsPipActive();
+  _pipX = (word*)FIS_vPipX();
+  _pipY = (word*)FIS_vPipY();
+  _pipW = (word*)FIS_vPipW();
+  _pipH = (word*)FIS_vPipH();
 
   if(_isPipActive)
   {

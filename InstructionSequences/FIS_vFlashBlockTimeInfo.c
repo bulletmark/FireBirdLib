@@ -2,13 +2,13 @@
 
 inline dword FIS_vFlashBlockTimeInfo(void)
 {
-  static dword          *vFlash = 0;
+  static dword          *vFlashTimeInfo = 0;
 
-  if(!vFlash)
+  if(!vFlashTimeInfo)
   {
-    vFlash = (dword*)TryResolve("_timeInfo");
-    if(!vFlash) return 0;
+    vFlashTimeInfo = (dword*)TryResolve("_timeInfo");
+    if(!vFlashTimeInfo) return 0;
   }
 
-  return *vFlash;
+  return *vFlashTimeInfo;
 }

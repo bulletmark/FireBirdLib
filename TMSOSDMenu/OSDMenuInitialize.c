@@ -95,6 +95,8 @@ dword                   ColorPickerDefaultColor;
 tCurrentColorSelected   CurrentColorSelected;
 int                     ColorPickerLastCursorRed, ColorPickerLastCursorGreen, ColorPickerLastCursorBlue;
 
+dword                   ButtonColor;
+
 void (*CallbackProcedure)(tOSDCB OSDCBType, word OSDRgn) = NULL;
 
 void OSDMenuInitialize(bool AllowScrollingOfLongText, bool HasValueColumn, bool NumberedItems, bool ScrollLoop, char *TitleLeft, char *TitleRight)

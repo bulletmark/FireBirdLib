@@ -2,14 +2,13 @@
 
 inline dword FIS_vFlashBlockDLNAData(void)
 {
-  static dword          *vFlash = 0;
+  static dword          *vFlashDlnaData = 0;
 
-  if(!vFlash)
+  if(!vFlashDlnaData)
   {
-    vFlash = (dword*)TryResolve("_dlnaData");
-    if(!vFlash) return 0;
+    vFlashDlnaData = (dword*)TryResolve("_dlnaData");
+    if(!vFlashDlnaData) return 0;
   }
 
-  return *vFlash;
+  return *vFlashDlnaData;
 }
-

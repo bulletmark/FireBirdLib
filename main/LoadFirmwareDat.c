@@ -7,10 +7,10 @@ bool LoadFirmwareDat(tFWDATHeader **FWDatHeader, tToppyInfo **ToppyInfo, tFWInfo
   dword                 blk;
   tFWDATHeader          *FWDAT;
 
+  if (!HDD_TAP_PushDir()) return FALSE;
+
   if (!FWDATBin)
   {
-    if (!HDD_TAP_PushDir()) return FALSE;
-
     if (INILocateFile (FIRMWAREDAT, NULL) == INILOCATION_NotFound)
     {
       (void) HDD_TAP_PopDir();

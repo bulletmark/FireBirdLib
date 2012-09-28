@@ -727,3 +727,10 @@ License:  This library is freeware. You may use this code in your own projects f
             ExtAttribRemove(): removes the attribute.
             In addition, all 4 functions are available with a full path for the file name (ExtAttribSetAbsPath(), ExtAttribExistsAbsPath(), ExtAttribGetAbsPath(), ExtAttribRemoveAbsPath())
 2012-07-28  The return of FindInstructionSequence()
+2012-08-31  Some Toppy firmwares have a bug which prevents the display of the main menu on the TV if subtitles are turned on and a TAP creates a memory region. Modified the TMSMenu routines
+              so that the cursor, which is loaded into a mem rgn, gets destroyed with OSDMenuDestroy()
+            'Official release'
+
+2012-09-02  Fixed an issue with the TMS OSD Menu standard cursor
+2012-09-03  Fixed LoadFirmwareDat(), which could destroy the working directory if the dir stack was not empty (HDD_TAP_PushDir() has been used before the calling LoadFirmwareDat())
+2012-09-08  Added FIS_fwAppl_ConvertToValidUTF8Str() and isUTFToppy()

@@ -3,7 +3,7 @@
 
 //  #define DEBUG_FIREBIRDLIB
 
-  #define __FBLIB_RELEASEDATE__ "2012-07-28"
+  #define __FBLIB_RELEASEDATE__ "2012-09-08"
 
   #ifdef _TMSEMU_
     #define __FBLIB_VERSION__ __FBLIB_RELEASEDATE__" TMSEmulator"
@@ -891,6 +891,7 @@
   inline dword FIS_fwAppl_CheckRecording(void);
   inline dword FIS_fwAppl_CheckRecording_Tuner(void);
   inline dword FIS_fwAppl_ClrTimer(void);
+  inline dword FIS_fwAppl_ConvertToValidUTF8Str(void);
   inline dword FIS_fwAppl_DeleteRadioSvcName(void);
   inline dword FIS_fwAppl_DeleteTvSvcName(void);
   inline dword FIS_fwAppl_EnterNormal(void);
@@ -1229,6 +1230,7 @@
   size_t  GetLine(char *data, bool strip);
   void    InsertAt(char *SourceString, int Pos, char *NewString);
   bool    isUTF8Char(byte *p);
+  bool    isUTFToppy(void);
   void    LowerCase(char *string);
   void    MakeValidFileName(char *strName, eRemoveChars ControlCharacters);
   char   *ParseLine(char *zeile, size_t *n, char delim);

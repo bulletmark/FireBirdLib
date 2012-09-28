@@ -87,6 +87,13 @@ typedef enum
   CCS_Blue
 }tCurrentColorSelected;
 
+typedef enum
+{
+  LCT_Blue,
+  LCT_BlueDark,
+  LCT_NRCURSORS
+} tOSDMenuLastCursorType;
+
 extern tFontData        Calibri_10_FontData;
 extern tFontData        Calibri_12_FontData;
 extern tFontData        Calibri_14_FontData;
@@ -167,11 +174,13 @@ extern TYPE_GrData      _ColorPicker_ValueBackroundSelected_Gd;
 
 extern word             OSDRgn;
 extern word             MyOSDRgn; //Used by OSDMenuSaveMyRegion()
+extern word             OSDMenuSelectionBarRgn;
 extern bool             OSDDirty, TitleDirty, ListDirty, ButtonsDirty, LogoDirty;
 extern tMenu            Menu[NRMENULEVELS];
 extern dword            CurrentMenuLevel;
 extern dword            ButtonColor;
 extern tCursorType      MenuCursorType;
+extern tOSDMenuLastCursorType    OSDMenuLastCursor;
 
 extern word             InfoBoxOSDRgn;
 extern dword            InfoBoxTimeOut;

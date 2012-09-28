@@ -27,15 +27,15 @@ void LogEntry(char *FileName, char *ProgramName, bool Console, eTimeStampFormat 
 
   if (Console)
   {
-    if (TimeStampFormat != TIMESTAMP_NONE) TAP_Print (TS);
-    if (ProgramName && ProgramName [0]) TAP_Print ("%s: ", ProgramName);
+    if (TimeStampFormat != TIMESTAMP_NONE) TAP_PrintNet (TS);
+    if (ProgramName && ProgramName [0]) TAP_PrintNet ("%s: ", ProgramName);
 
     //Max length is 512. If above, a buffer overflow may occur
     if(Text && Text [0])
     {
       if(strlen(Text) < 510)
       {
-        TAP_Print("%s", Text);
+        TAP_PrintNet("%s", Text);
       }
       else
       {
@@ -51,12 +51,12 @@ void LogEntry(char *FileName, char *ProgramName, bool Console, eTimeStampFormat 
 
           q = p[l];
           p[l] = '\0';
-          TAP_Print("%s", p);
+          TAP_PrintNet("%s", p);
           p[l] = q;
           p += l;
         }
       }
     }
-    TAP_Print ("\n");
+    TAP_PrintNet ("\n");
   }
 }

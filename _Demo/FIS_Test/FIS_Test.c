@@ -513,17 +513,46 @@ void PackAndDelete(void)
 int TAP_Main (void)
 {
   word                  SystemID;
+  TYPE_File            *File;
+  char                  s[20];
+
+  TAP_Hdd_Create ("FIS.Test.log", ATTR_NORMAL);
+  if((File = TAP_Hdd_Fopen ("FIS.Test.log")) != NULL)
+  {
+    TAP_SPrint(s, "Wos is jetzt?\n");
+    TAP_Hdd_Fwrite (s, strlen (s), 1, File);
+    TAP_Hdd_Fclose (File);
+  }
+
+  TAP_PrintNet("a");
 
   InstallBusybox();
 
+  TAP_PrintNet("b");
+
   SystemID = GetSysID();
 
+  TAP_PrintNet("c");
+
   DEBUG("SysID=%d, ApplVer=%s (0x%4.4x)", SystemID, GetApplVer(), TAP_GetVersion());
+
+  TAP_PrintNet("d");
+
   DEBUG("Built with FBLib version %s", __FBLIB_VERSION__);
+
+  TAP_PrintNet("e");
+
   DEBUG("");
 
+  TAP_PrintNet("f");
+
   APIBug_ChangeDir();
+
+  TAP_PrintNet("g");
+
   APIBug_fReadWrite();
+
+  TAP_PrintNet("h\n");
 
   DumpInfo();
   DEBUG("");

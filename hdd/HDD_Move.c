@@ -7,7 +7,7 @@
 bool HDD_Move(char *FileName, char *FromDir, char *ToDir)
 {
   char                  cmd[2048];
-  char                  NewFileName[TS_FILE_NAME_SIZE];
+  char                  OldFileName[TS_FILE_NAME_SIZE], NewFileName[TS_FILE_NAME_SIZE];
   char                  Name[TS_FILE_NAME_SIZE], Ext[TS_FILE_NAME_SIZE];
   char                  OldInfName[TS_FILE_NAME_SIZE], NewInfName[TS_FILE_NAME_SIZE];
   bool                  isRec, isDel;
@@ -25,12 +25,18 @@ bool HDD_Move(char *FileName, char *FromDir, char *ToDir)
   {
     HDD_TAP_PushDir();
     HDD_ChangeDir(ToDir);
+    strcpy(OldFileName, FileName);
+    StrReplace(OldFileName, "\"", "\\\"");
+    StrReplace(OldFileName, "$", "\\$");
+
     strcpy(NewFileName, FileName);
     MakeUniqueFileName(NewFileName);
+    StrReplace(NewFileName, "\"", "\\\"");
+    StrReplace(NewFileName, "$", "\\$");
     HDD_TAP_PopDir();
 
     //Build the unix mv command
-    TAP_SPrint(cmd, "mv \"%s%s%s%s%s\" ", TAPFSROOT, (FromDir[0] != '/') ? "/" : "", FromDir, (FromDir[strlen(FromDir) - 1] != '/') ? "/" : "", FileName);
+    TAP_SPrint(cmd, "mv \"%s%s%s%s%s\" ", TAPFSROOT, (FromDir[0] != '/') ? "/" : "", FromDir, (FromDir[strlen(FromDir) - 1] != '/') ? "/" : "", OldFileName);
     TAP_SPrint(&cmd[strlen(cmd)], "\"%s%s%s%s%s\"", TAPFSROOT, (ToDir[0] != '/') ? "/" : "", ToDir, (ToDir[strlen(ToDir) - 1] != '/') ? "/" : "", NewFileName);
     //if(TAP_GetVersion() >= 0x0108)
     //{
@@ -39,7 +45,7 @@ bool HDD_Move(char *FileName, char *FromDir, char *ToDir)
     //}
     system(cmd);
 
-    SeparateFileNameComponents(FileName, Name, Ext, &fNumber, &isRec, &isDel);
+    SeparateFileNameComponents(OldFileName, Name, Ext, &fNumber, &isRec, &isDel);
     if(isRec && strcmp(Ext, ".nav"))
     {
       if(fNumber)
@@ -63,7 +69,7 @@ bool HDD_Move(char *FileName, char *FromDir, char *ToDir)
       //}
       system(cmd);
 
-      SeparateFileNameComponents(FileName, Name, Ext, &fNumber, &isRec, &isDel);
+      SeparateFileNameComponents(OldFileName, Name, Ext, &fNumber, &isRec, &isDel);
       if(fNumber)
         TAP_SPrint(OldInfName, "%s-%d%s.nav%s", Name, fNumber, Ext, isDel ? ".del" : "");
       else

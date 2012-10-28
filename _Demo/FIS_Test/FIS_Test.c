@@ -344,6 +344,197 @@ void DumpInfo(void)
   DEBUG("_network                           = %8.8x", FIS_vFlashBlockNetwork());
   DEBUG("_autoDec                           = %8.8x", FIS_vFlashBlockAutoDec());
   DEBUG("_dlnaData                          = %8.8x", FIS_vFlashBlockDLNAData());
+
+  DEBUG("");
+
+  DEBUG("TAP API");
+  DEBUG("TAP_CaptureScreen                  = %p", TAP_CaptureScreen);
+  DEBUG("TAP_Channel_ExchangePip            = %p", TAP_Channel_ExchangePip);
+  DEBUG("TAP_Channel_GetAudioTrackName      = %p", TAP_Channel_GetAudioTrackName);
+  DEBUG("TAP_Channel_GetCurrent             = %p", TAP_Channel_GetCurrent);
+  DEBUG("TAP_Channel_GetCurrentSubTV        = %p", TAP_Channel_GetCurrentSubTV);
+  DEBUG("TAP_Channel_GetFirstInfo           = %p", TAP_Channel_GetFirstInfo);
+  DEBUG("TAP_Channel_GetInfo                = %p", TAP_Channel_GetInfo);
+  DEBUG("TAP_Channel_GetNextInfo            = %p", TAP_Channel_GetNextInfo);
+  DEBUG("TAP_Channel_GetSubtitleTrackName   = %p", TAP_Channel_GetSubtitleTrackName);
+  DEBUG("TAP_Channel_GetTotalAudioTrack     = %p", TAP_Channel_GetTotalAudioTrack);
+  DEBUG("TAP_Channel_GetTotalNum            = %p", TAP_Channel_GetTotalNum);
+  DEBUG("TAP_Channel_GetTotalSubtitleTrack  = %p", TAP_Channel_GetTotalSubtitleTrack);
+  DEBUG("TAP_Channel_IsPlayable             = %p", TAP_Channel_IsPlayable);
+  DEBUG("TAP_Channel_IsStarted              = %p", TAP_Channel_IsStarted);
+  DEBUG("TAP_Channel_Move                   = %p", TAP_Channel_Move);
+  DEBUG("TAP_Channel_Scale                  = %p", TAP_Channel_Scale);
+  DEBUG("TAP_Channel_SetAudioTrack          = %p", TAP_Channel_SetAudioTrack);
+  DEBUG("TAP_Channel_SetSubtitleTrack       = %p", TAP_Channel_SetSubtitleTrack);
+  DEBUG("TAP_Channel_Start                  = %p", TAP_Channel_Start);
+  DEBUG("TAP_Channel_Stop                   = %p", TAP_Channel_Stop);
+  DEBUG("TAP_ControlEit                     = %p", TAP_ControlEit);
+  DEBUG("TAP_Cos                            = %p", TAP_Cos);
+  DEBUG("TAP_Delay                          = %p", TAP_Delay);
+  DEBUG("TAP_Demux_GetData                  = %p", TAP_Demux_GetData);
+  DEBUG("TAP_Demux_StartFilter              = %p", TAP_Demux_StartFilter);
+  DEBUG("TAP_Demux_StopFilter               = %p", TAP_Demux_StopFilter);
+  DEBUG("TAP_DiffTick                       = %p", TAP_DiffTick);
+  DEBUG("TAP_EnterNormal                    = %p", TAP_EnterNormal);
+  DEBUG("TAP_EPG_DeleteEvent                = %p", TAP_EPG_DeleteEvent);
+  DEBUG("TAP_EPG_GetExtInfo                 = %p", TAP_EPG_GetExtInfo);
+  DEBUG("TAP_EPG_UpdateEvent                = %p", TAP_EPG_UpdateEvent);
+  DEBUG("TAP_Exit                           = %p", TAP_Exit);
+  DEBUG("TAP_ExitNormal                     = %p", TAP_ExitNormal);
+  DEBUG("TAP_ExtractMjd                     = %p", TAP_ExtractMjd);
+  DEBUG("TAP_GenerateEvent                  = %p", TAP_GenerateEvent);
+  DEBUG("TAP_Get12bit                       = %p", TAP_Get12bit);
+  DEBUG("TAP_Get13bit                       = %p", TAP_Get13bit);
+  DEBUG("TAP_Get16bit                       = %p", TAP_Get16bit);
+  DEBUG("TAP_Get24bit                       = %p", TAP_Get24bit);
+  DEBUG("TAP_Get32bit                       = %p", TAP_Get32bit);
+  DEBUG("TAP_GetCh                          = %p", TAP_GetCh);
+  DEBUG("TAP_GetCurrentEvent                = %p", TAP_GetCurrentEvent);
+  DEBUG("TAP_GetEvent                       = %p", TAP_GetEvent);
+  DEBUG("TAP_GetMpegCrc32                   = %p", TAP_GetMpegCrc32);
+  DEBUG("TAP_GetSignalLevel                 = %p", TAP_GetSignalLevel);
+  DEBUG("TAP_GetSignalQuality               = %p", TAP_GetSignalQuality);
+  DEBUG("TAP_GetState                       = %p", TAP_GetState);
+  DEBUG("TAP_GetSystemId                    = %p", TAP_GetSystemId);
+  DEBUG("TAP_GetSystemVar                   = %p", TAP_GetSystemVar);
+  DEBUG("TAP_GetTick                        = %p", TAP_GetTick);
+  DEBUG("TAP_GetTime                        = %p", TAP_GetTime);
+  DEBUG("TAP_GetVersion                     = %p", TAP_GetVersion);
+  DEBUG("TAP_Hdd_ChangeDir                  = %p", TAP_Hdd_ChangeDir);
+  DEBUG("TAP_Hdd_ChangePlaybackPos          = %p", TAP_Hdd_ChangePlaybackPos);
+  DEBUG("TAP_Hdd_Create                     = %p", TAP_Hdd_Create);
+  DEBUG("TAP_Hdd_Delete                     = %p", TAP_Hdd_Delete);
+  DEBUG("TAP_Hdd_Exist                      = %p", TAP_Hdd_Exist);
+  DEBUG("TAP_Hdd_Fclose                     = %p", TAP_Hdd_Fclose);
+  DEBUG("TAP_Hdd_FindFirst                  = %p", TAP_Hdd_FindFirst);
+  DEBUG("TAP_Hdd_FindNext                   = %p", TAP_Hdd_FindNext);
+  DEBUG("TAP_Hdd_Flen                       = %p", TAP_Hdd_Flen);
+  DEBUG("TAP_Hdd_Fopen                      = %p", TAP_Hdd_Fopen);
+  DEBUG("TAP_Hdd_Fread                      = %p", TAP_Hdd_Fread);
+  DEBUG("TAP_Hdd_FreeSize                   = %p", TAP_Hdd_FreeSize);
+  DEBUG("TAP_Hdd_Fseek                      = %p", TAP_Hdd_Fseek);
+  DEBUG("TAP_Hdd_Ftell                      = %p", TAP_Hdd_Ftell);
+  DEBUG("TAP_Hdd_Fwrite                     = %p", TAP_Hdd_Fwrite);
+  DEBUG("TAP_Hdd_GetHddID                   = %p", TAP_Hdd_GetHddID);
+  DEBUG("TAP_Hdd_GetPlayInfo                = %p", TAP_Hdd_GetPlayInfo);
+  DEBUG("TAP_Hdd_GetRecInfo                 = %p", TAP_Hdd_GetRecInfo);
+  DEBUG("TAP_Hdd_GotoBookmark               = %p", TAP_Hdd_GotoBookmark);
+  DEBUG("TAP_Hdd_Move                       = %p", TAP_Hdd_GotoBookmark);
+  DEBUG("TAP_Hdd_PlayMp3                    = %p", TAP_Hdd_PlayMp3);
+  DEBUG("TAP_Hdd_PlayTs                     = %p", TAP_Hdd_PlayTs);
+  DEBUG("TAP_Hdd_Rename                     = %p", TAP_Hdd_Rename);
+  DEBUG("TAP_Hdd_SetBookmark                = %p", TAP_Hdd_SetBookmark);
+  DEBUG("TAP_Hdd_StartRecord                = %p", TAP_Hdd_StartRecord);
+  DEBUG("TAP_Hdd_StopMp3                    = %p", TAP_Hdd_StopMp3);
+  DEBUG("TAP_Hdd_StopRecord                 = %p", TAP_Hdd_StopRecord);
+  DEBUG("TAP_Hdd_StopTs                     = %p", TAP_Hdd_StopTs);
+  DEBUG("TAP_Hdd_TotalSize                  = %p", TAP_Hdd_TotalSize);
+  DEBUG("TAP_KbHit                          = %p", TAP_KbHit);
+  DEBUG("TAP_MakeMjd                        = %p", TAP_MakeMjd);
+  DEBUG("TAP_MemAlloc                       = %p", TAP_MemAlloc);
+  DEBUG("TAP_MemCmp                         = %p", TAP_MemCmp);
+  DEBUG("TAP_MemCpy                         = %p", TAP_MemCpy);
+  DEBUG("TAP_MemFree                        = %p", TAP_MemFree);
+  DEBUG("TAP_MemInfo                        = %p", TAP_MemInfo);
+  DEBUG("TAP_MemSet                         = %p", TAP_MemSet);
+  DEBUG("TAP_Osd_Copy                       = %p", TAP_Osd_Copy);
+  DEBUG("TAP_Osd_Create                     = %p", TAP_Osd_Create);
+  DEBUG("TAP_Osd_Ctrl                       = %p", TAP_Osd_Ctrl);
+  DEBUG("TAP_Osd_DecompressJpeg             = %p", TAP_Osd_DecompressJpeg);
+  DEBUG("TAP_Osd_Delete                     = %p", TAP_Osd_Delete);
+  DEBUG("TAP_Osd_Draw3dBox                  = %p", TAP_Osd_Draw3dBox);
+  DEBUG("TAP_Osd_Draw3dBoxFill              = %p", TAP_Osd_Draw3dBoxFill);
+  DEBUG("TAP_Osd_DrawJpeg                   = %p", TAP_Osd_DrawJpeg);
+  DEBUG("TAP_Osd_DrawPixmap                 = %p", TAP_Osd_DrawPixmap);
+  DEBUG("TAP_Osd_DrawRectangle              = %p", TAP_Osd_DrawRectangle);
+  DEBUG("TAP_Osd_DrawString                 = %p", TAP_Osd_DrawString);
+  DEBUG("TAP_Osd_FillBox                    = %p", TAP_Osd_FillBox);
+  DEBUG("TAP_Osd_GetBaseInfo                = %p", TAP_Osd_GetBaseInfo);
+  DEBUG("TAP_Osd_GetBox                     = %p", TAP_Osd_GetBox);
+  DEBUG("TAP_Osd_GetPixel                   = %p", TAP_Osd_GetPixel);
+  DEBUG("TAP_Osd_GetPlaneBaseInfo           = %p", TAP_Osd_GetPlaneBaseInfo);
+  DEBUG("TAP_Osd_GetW                       = %p", TAP_Osd_GetW);
+  DEBUG("TAP_Osd_Move                       = %p", TAP_Osd_Move);
+  DEBUG("TAP_Osd_PutBox                     = %p", TAP_Osd_PutBox);
+  DEBUG("TAP_Osd_PutGd                      = %p", TAP_Osd_PutGd);
+  DEBUG("TAP_Osd_PutPixel                   = %p", TAP_Osd_PutPixel);
+  DEBUG("TAP_Osd_PutS                       = %p", TAP_Osd_PutS);
+  DEBUG("TAP_Osd_PutString                  = %p", TAP_Osd_PutString);
+  DEBUG("TAP_Osd_PutStringAf                = %p", TAP_Osd_PutStringAf);
+  DEBUG("TAP_Osd_RestoreBox                 = %p", TAP_Osd_RestoreBox);
+  DEBUG("TAP_Osd_SaveBox                    = %p", TAP_Osd_SaveBox);
+  DEBUG("TAP_Osd_SetLut                     = %p", TAP_Osd_SetLut);
+  DEBUG("TAP_Osd_SetTransparency            = %p", TAP_Osd_SetTransparency);
+  DEBUG("TAP_Osd_Sync                       = %p", TAP_Osd_Sync);
+  DEBUG("TAP_Osd_Zoom                       = %p", TAP_Osd_Zoom);
+  DEBUG("TAP_PlayPCM                        = %p", TAP_PlayPCM);
+  DEBUG("TAP_Print                          = %p", TAP_PlayPCM);
+  DEBUG("TAP_PrintSys                       = %p", TAP_PrintSys);
+  DEBUG("TAP_Put12bit                       = %p", TAP_Put12bit);
+  DEBUG("TAP_Put13bit                       = %p", TAP_Put13bit);
+  DEBUG("TAP_Put16bit                       = %p", TAP_Put16bit);
+  DEBUG("TAP_Put24bit                       = %p", TAP_Put24bit);
+  DEBUG("TAP_Put32bit                       = %p", TAP_Put32bit);
+  DEBUG("TAP_PutByte                        = %p", TAP_PutByte);
+  DEBUG("TAP_PutCh                          = %p", TAP_PutCh);
+  DEBUG("TAP_PutEvent                       = %p", TAP_PutEvent);
+  DEBUG("TAP_Rand                           = %p", TAP_Rand);
+  DEBUG("TAP_Reboot                         = %p", TAP_Reboot);
+  DEBUG("TAP_SetBaudRate                    = %p", TAP_SetBaudRate);
+  DEBUG("TAP_SetInfoboxTime                 = %p", TAP_SetInfoboxTime);
+  DEBUG("TAP_SetRemote                      = %p", TAP_SetRemote);
+  DEBUG("TAP_SetSoundLevel                  = %p", TAP_SetSoundLevel);
+  DEBUG("TAP_SetSystemVar                   = %p", TAP_SetSystemVar);
+  DEBUG("TAP_Sin                            = %p", TAP_Sin);
+  DEBUG("TAP_Sleep                          = %p", TAP_Sleep);
+  DEBUG("TAP_SPrint                         = %p", TAP_SPrint);
+  DEBUG("TAP_Srand                          = %p", TAP_Srand);
+  DEBUG("TAP_StrCaseCmp                     = %p", TAP_StrCaseCmp);
+  DEBUG("TAP_StrCat                         = %p", TAP_StrCat);
+  DEBUG("TAP_StrCmp                         = %p", TAP_StrCmp);
+  DEBUG("TAP_StrCpy                         = %p", TAP_StrCpy);
+  DEBUG("TAP_StrLen                         = %p", TAP_StrLen);
+  DEBUG("TAP_StrNCaseCmp                    = %p", TAP_StrNCaseCmp);
+  DEBUG("TAP_StrNCmp                        = %p", TAP_StrNCmp);
+  DEBUG("TAP_StrNCpy                        = %p", TAP_StrNCpy);
+  DEBUG("TAP_SysOsdControl                  = %p", TAP_SysOsdControl);
+  DEBUG("TAP_SystemProc                     = %p", TAP_SystemProc);
+  DEBUG("TAP_Timer_Add                      = %p", TAP_Timer_Add);
+  DEBUG("TAP_Timer_Delete                   = %p", TAP_Timer_Delete);
+  DEBUG("TAP_Timer_GetInfo                  = %p", TAP_Timer_GetInfo);
+  DEBUG("TAP_Timer_GetTotalNum              = %p", TAP_Timer_GetTotalNum);
+  DEBUG("TAP_Timer_Modify                   = %p", TAP_Timer_Modify);
+  DEBUG("TAP_Vfd_Control                    = %p", TAP_Vfd_Control);
+  DEBUG("TAP_Vfd_GetStatus                  = %p", TAP_Vfd_GetStatus);
+  DEBUG("TAP_Vfd_SendData                   = %p", TAP_Vfd_SendData);
+  DEBUG("TAP_Wav_PlayerClose                = %p", TAP_Wav_PlayerClose);
+  DEBUG("TAP_Wav_PlayerOpen                 = %p", TAP_Wav_PlayerOpen);
+  DEBUG("TAP_Wav_PlayerSetVolume            = %p", TAP_Wav_PlayerSetVolume);
+  DEBUG("TAP_Wav_PlayerStart                = %p", TAP_Wav_PlayerStart);
+  DEBUG("TAP_Wav_PlayerStop                 = %p", TAP_Wav_PlayerStop);
+  DEBUG("TAP_Win_Action                     = %p", TAP_Win_Action);
+  DEBUG("TAP_Win_AddItem                    = %p", TAP_Win_AddItem);
+  DEBUG("TAP_Win_Create                     = %p", TAP_Win_Create);
+  DEBUG("TAP_Win_Delete                     = %p", TAP_Win_Delete);
+  DEBUG("TAP_Win_Draw                       = %p", TAP_Win_Draw);
+  DEBUG("TAP_Win_GetAvtice                  = %p", TAP_Win_GetAvtice);
+  DEBUG("TAP_Win_GetItem                    = %p", TAP_Win_GetItem);
+  DEBUG("TAP_Win_GetMaxViewItem             = %p", TAP_Win_GetMaxViewItem);
+  DEBUG("TAP_Win_GetSelection               = %p", TAP_Win_GetSelection);
+  DEBUG("TAP_Win_GetStartPos                = %p", TAP_Win_GetStartPos);
+  DEBUG("TAP_Win_GetTotalItem               = %p", TAP_Win_GetTotalItem);
+  DEBUG("TAP_Win_GetWindowInfo              = %p", TAP_Win_GetWindowInfo);
+  DEBUG("TAP_Win_RemoveAllItems             = %p", TAP_Win_RemoveAllItems);
+  DEBUG("TAP_Win_RemoveItem                 = %p", TAP_Win_RemoveItem);
+  DEBUG("TAP_Win_SetAvtice                  = %p", TAP_Win_SetAvtice);
+  DEBUG("TAP_Win_SetColor                   = %p", TAP_Win_SetColor);
+  DEBUG("TAP_Win_SetDefaultColor            = %p", TAP_Win_SetDefaultColor);
+  DEBUG("TAP_Win_SetDrawItemFunc            = %p", TAP_Win_SetDrawItemFunc);
+  DEBUG("TAP_Win_SetFont                    = %p", TAP_Win_SetFont);
+  DEBUG("TAP_Win_SetItemXpos                = %p", TAP_Win_SetItemXpos);
+  DEBUG("TAP_Win_SetSelection               = %p", TAP_Win_SetSelection);
+  DEBUG("TAP_Win_SetTitle                   = %p", TAP_Win_SetTitle);
+  DEBUG("TAP_WriteSystemVar                 = %p", TAP_WriteSystemVar);
 }
 
 void ExtractSettingsMTD(void)
@@ -513,47 +704,14 @@ void PackAndDelete(void)
 int TAP_Main (void)
 {
   word                  SystemID;
-  TYPE_File            *File;
-  char                  s[20];
-
-  TAP_Hdd_Create ("FIS.Test.log", ATTR_NORMAL);
-  if((File = TAP_Hdd_Fopen ("FIS.Test.log")) != NULL)
-  {
-    TAP_SPrint(s, "Wos is jetzt?\n");
-    TAP_Hdd_Fwrite (s, strlen (s), 1, File);
-    TAP_Hdd_Fclose (File);
-  }
-
-  TAP_PrintNet("a");
 
   InstallBusybox();
-
-  TAP_PrintNet("b");
-
   SystemID = GetSysID();
-
-  TAP_PrintNet("c");
-
   DEBUG("SysID=%d, ApplVer=%s (0x%4.4x)", SystemID, GetApplVer(), TAP_GetVersion());
-
-  TAP_PrintNet("d");
-
   DEBUG("Built with FBLib version %s", __FBLIB_VERSION__);
-
-  TAP_PrintNet("e");
-
   DEBUG("");
-
-  TAP_PrintNet("f");
-
   APIBug_ChangeDir();
-
-  TAP_PrintNet("g");
-
   APIBug_fReadWrite();
-
-  TAP_PrintNet("h\n");
-
   DumpInfo();
   DEBUG("");
   ExtractSettingsMTD();

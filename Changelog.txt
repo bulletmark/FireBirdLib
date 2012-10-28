@@ -734,3 +734,7 @@ License:  This library is freeware. You may use this code in your own projects f
 2012-09-02  Fixed an issue with the TMS OSD Menu standard cursor
 2012-09-03  Fixed LoadFirmwareDat(), which could destroy the working directory if the dir stack was not empty (HDD_TAP_PushDir() has been used before the calling LoadFirmwareDat())
 2012-09-08  Added FIS_fwAppl_ConvertToValidUTF8Str() and isUTFToppy()
+2012-10-19  Added isIceTVToppy() and FIS_fwApplIcelink_EitFromHdd()
+            Fixed HDD_Move() so that it handle file names with " and $ characters
+            Fixed FIS_vFlashBlockOTAInfo(), which crashes if the datablock doesn't exist
+2012-10-27  Fixed: FixInvalidFileName() is now UTF8 aware. Use this function to remove unwanted characters from a file name

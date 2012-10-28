@@ -7,7 +7,7 @@ inline dword FIS_vFlashBlockOTAInfo(void)
   if(!vFlashOtaInfo)
   {
     vFlashOtaInfo = (dword*)TryResolve("_otaInfo");
-    if(vFlashOtaInfo) return 0;
+    if(!vFlashOtaInfo) return 0;
   }
 
   return *vFlashOtaInfo;

@@ -1,6 +1,6 @@
 #include "FBLib_string.h"
 
-char *ValidFileName (char *strName, eRemoveChars ControlCharacters)
+char *ValidFileName(char *strName, eRemoveChars ControlCharacters)
 {
   char                  *s, *p, *l;
   static char           validName [MAX_FILE_NAME_SIZE];

@@ -1,7 +1,7 @@
 #include <string.h>
 #include "FBLib_string.h"
 
-void MakeValidFileName (char *strName, eRemoveChars ControlCharacters)
+void MakeValidFileName(char *strName, eRemoveChars ControlCharacters)
 {
   unsigned char         *p, c;
   int                   i;

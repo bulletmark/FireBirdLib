@@ -55,7 +55,5 @@ void HDD_Delete(char *FileName)
       TAP_Hdd_Rename(TempName, "FilerDelete.tmp");
       TAP_Hdd_Delete("FilerDelete.tmp");
     }
-
-
   }
 }

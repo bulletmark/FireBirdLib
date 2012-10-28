@@ -3,7 +3,7 @@
 
 //  #define DEBUG_FIREBIRDLIB
 
-  #define __FBLIB_RELEASEDATE__ "2012-09-08"
+  #define __FBLIB_RELEASEDATE__ "2012-10-27"
 
   #ifdef _TMSEMU_
     #define __FBLIB_VERSION__ __FBLIB_RELEASEDATE__" TMSEmulator"
@@ -176,6 +176,7 @@
   SYSTEM_TYPE GetSystemType(void);
   char       *GetToppyString(word SysID);
   dword       GetUptime(void);
+  bool        isIceTVToppy(void);
   char       *iso639_1(int OSDLan);
   char       *iso639_2(int OSDLan);
   bool        LoadFirmwareDat(tFWDATHeader **FWDatHeader, tToppyInfo **ToppyInfo, tFWInfo **FWInfo);
@@ -930,6 +931,7 @@
   inline dword FIS_fwApplHdd_SaveWorkFolder(void);
   inline dword FIS_fwApplHdd_SelectFolder(void);
   inline dword FIS_fwApplHdd_SetWorkFolder(void);
+  inline dword FIS_fwApplIcelink_EitFromHdd(void);
   inline dword FIS_fwApplOsd_DrawJpeg(void);
   inline dword FIS_fwApplTap_CallEventHandler(void);
   inline dword FIS_fwApplTap_GetEmptyTask(void);
@@ -1740,8 +1742,7 @@
   /* USB Keyboard                                                                                                              */
   /*****************************************************************************************************************************/
 
-  #define EVT_USBKEYBOARD   0x0ffe
-
+  //#define EVT_USBKEYBOARD   0x0ffe
   #define EVT_TMSREMOTEASCII 0x0ffd
 
   /*****************************************************************************************************************************/

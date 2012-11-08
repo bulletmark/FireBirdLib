@@ -12,7 +12,7 @@ bool HDD_Move(char *FileName, char *FromDir, char *ToDir)
   char                  OldInfName[TS_FILE_NAME_SIZE], NewInfName[TS_FILE_NAME_SIZE];
   bool                  isRec, isDel;
   int                   fNumber;
-  //char                  cmdUTF8[256];
+  char                  cmdUTF8[512];
 
   HDD_TAP_PushDir();
   if(HDD_ChangeDir(FromDir) == FALSE)
@@ -38,11 +38,13 @@ bool HDD_Move(char *FileName, char *FromDir, char *ToDir)
     //Build the unix mv command
     TAP_SPrint(cmd, "mv \"%s%s%s%s%s\" ", TAPFSROOT, (FromDir[0] != '/') ? "/" : "", FromDir, (FromDir[strlen(FromDir) - 1] != '/') ? "/" : "", OldFileName);
     TAP_SPrint(&cmd[strlen(cmd)], "\"%s%s%s%s%s\"", TAPFSROOT, (ToDir[0] != '/') ? "/" : "", ToDir, (ToDir[strlen(ToDir) - 1] != '/') ? "/" : "", NewFileName);
-    //if(TAP_GetVersion() >= 0x0108)
-    //{
-    //  StrToUTF8(cmd, cmdUTF8);
-    //  strcpy(cmd, cmdUTF8);
-    //}
+
+    if(isUTFToppy())
+    {
+      StrToUTF8(cmd, cmdUTF8);
+      strcpy(cmd, cmdUTF8);
+    }
+
     system(cmd);
 
     SeparateFileNameComponents(OldFileName, Name, Ext, &fNumber, &isRec, &isDel);
@@ -62,11 +64,11 @@ bool HDD_Move(char *FileName, char *FromDir, char *ToDir)
       //Build the unix mv command
       TAP_SPrint(cmd, "mv \"%s%s%s%s%s\" ", TAPFSROOT, (FromDir[0] != '/') ? "/" : "", FromDir, (FromDir[strlen(FromDir) - 1] != '/') ? "/" : "", OldInfName);
       TAP_SPrint(&cmd[strlen(cmd)], "\"%s%s%s%s%s\"", TAPFSROOT, (ToDir[0] != '/') ? "/" : "", ToDir, (ToDir[strlen(ToDir) - 1] != '/') ? "/" : "", NewInfName);
-      //if(TAP_GetVersion() >= 0x0108)
-      //{
-      //  StrToUTF8(cmd, cmdUTF8);
-      //  strcpy(cmd, cmdUTF8);
-      //}
+      if(isUTFToppy())
+      {
+        StrToUTF8(cmd, cmdUTF8);
+        strcpy(cmd, cmdUTF8);
+      }
       system(cmd);
 
       SeparateFileNameComponents(OldFileName, Name, Ext, &fNumber, &isRec, &isDel);
@@ -84,11 +86,11 @@ bool HDD_Move(char *FileName, char *FromDir, char *ToDir)
       //Build the unix mv command
       TAP_SPrint(cmd, "mv \"%s%s%s%s%s\" ", TAPFSROOT, (FromDir[0] != '/') ? "/" : "", FromDir, (FromDir[strlen(FromDir) - 1] != '/') ? "/" : "", OldInfName);
       TAP_SPrint(&cmd[strlen(cmd)], "\"%s%s%s%s%s\"", TAPFSROOT, (ToDir[0] != '/') ? "/" : "", ToDir, (ToDir[strlen(ToDir) - 1] != '/') ? "/" : "", NewInfName);
-      //if(TAP_GetVersion() >= 0x0108)
-      //{
-      //  StrToUTF8(cmd, cmdUTF8);
-      //  strcpy(cmd, cmdUTF8);
-      //}
+      if(isUTFToppy())
+      {
+        StrToUTF8(cmd, cmdUTF8);
+        strcpy(cmd, cmdUTF8);
+      }
       system(cmd);
     }
   }

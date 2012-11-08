@@ -3,7 +3,7 @@
 
 //  #define DEBUG_FIREBIRDLIB
 
-  #define __FBLIB_RELEASEDATE__ "2012-10-27"
+  #define __FBLIB_RELEASEDATE__ "2012-11-04"
 
   #ifdef _TMSEMU_
     #define __FBLIB_VERSION__ __FBLIB_RELEASEDATE__" TMSEmulator"
@@ -1230,6 +1230,7 @@
   void    DeleteAt(char *SourceString, int Pos, int Len);
   void    ExtractLine(char *Text, char *Line);
   size_t  GetLine(char *data, bool strip);
+  void    GetStringEncoding(char *Text, bool *hasAnsiChars, bool *hasUTFChars);
   void    InsertAt(char *SourceString, int Pos, char *NewString);
   bool    isUTF8Char(byte *p);
   bool    isUTFToppy(void);
@@ -1648,6 +1649,7 @@
   void  OSDMenuMessageBoxButtonSelect(dword SelectedButton);
   void  OSDMenuMessageBoxDoNotEnterNormalMode(bool DoNotEnterNormalMode);
   void  OSDMenuMessageBoxShow(void);
+  void  OSDMenuMessageBoxModifyText(char *Text);
   void  OSDMenuMessageBoxDestroy(void);
   void  OSDMenuMessageBoxDestroyNoOSDUpdate(void);
   bool  OSDMenuMessageBoxIsVisible(void);

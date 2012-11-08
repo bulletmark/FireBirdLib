@@ -129,7 +129,7 @@ void DumpInfo(void)
   }
   else
   {
-    TAP_SPrint(x, "%s found at ", FIRMWAREDAT);
+    sprintf(x, "%s found at ", FIRMWAREDAT);
     switch(Loc)
     {
       case INILOCATION_AtCurrentDir:    strcat(x, "current directory"); break;
@@ -547,7 +547,7 @@ void ExtractSettingsMTD(void)
 
   for(i = 0; i < 10; i++)
   {
-    TAP_SPrint(fn, "/dev/mtd%d", i);
+    sprintf(fn, "/dev/mtd%d", i);
     fd = open(fn, O_RDONLY);
     if(fd)
     {
@@ -556,7 +556,7 @@ void ExtractSettingsMTD(void)
 
       if((ret == 2) && (Data[0] == 0x1d) && (Data[1] == 0x1f))
       {
-        TAP_SPrint(x, "/bin/busybox dd if=%s of=/mnt/hd/ProgramFiles/mtd%d", fn, i);
+        sprintf(x, "/bin/busybox dd if=%s of=/mnt/hd/ProgramFiles/mtd%d", fn, i);
         system(x);
         break;
       }
@@ -607,23 +607,23 @@ void DumpFlashPointer(dword SectionStart, dword SectionEnd, dword FlashStart, dw
     if((d >= FlashStart) && (d <= FlashEnd))
     {
       s[0] = '\0';
-      if(d == FIS_vFlashBlockAutoDec())             TAP_SPrint(s, "(_autoDec)");
-      if(d == FIS_vFlashBlockDLNAData())            TAP_SPrint(s, "(_dlnaData)");
-      if(d == FIS_vFlashBlockFavoriteGroup())       TAP_SPrint(s, "(_favGrp)");
-      if(d == FIS_vFlashBlockGameSaveData())        TAP_SPrint(s, "(_gameSaveData)");
-      if(d == FIS_vFlashBlockLanIPConfig())         TAP_SPrint(s, "(_oldLanIpConfig)");
-      if(d == FIS_vFlashBlockNetwork())             TAP_SPrint(s, "(_network)");
-      if(d == FIS_vFlashBlockNetworkUpdateConfig()) TAP_SPrint(s, "(_networkUpdateConfig)");
-      if(d == FIS_vFlashBlockOTAInfo())             TAP_SPrint(s, "(_otaInfo)");
-      if(d == FIS_vFlashBlockProviderInfo())        TAP_SPrint(s, "(_providerInfo)");
-      if(d == FIS_vFlashBlockRadioServices())       TAP_SPrint(s, "(_radioSvc)");
-      if(d == FIS_vFlashBlockSatInfo())             TAP_SPrint(s, "(_satInfo)");
-      if(d == FIS_vFlashBlockServerData())          TAP_SPrint(s, "(_serverData)");
-      if(d == FIS_vFlashBlockServiceName())         TAP_SPrint(s, "(_svcName)");
-      if(d == FIS_vFlashBlockTVServices())          TAP_SPrint(s, "(_tvSvc)");
-      if(d == FIS_vFlashBlockTimeInfo())            TAP_SPrint(s, "(_timeInfo)");
-      if(d == FIS_vFlashBlockTimer())               TAP_SPrint(s, "(_timer)");
-      if(d == FIS_vFlashBlockTransponderInfo())     TAP_SPrint(s, "(_tpInfo)");
+      if(d == FIS_vFlashBlockAutoDec())             sprintf(s, "(_autoDec)");
+      if(d == FIS_vFlashBlockDLNAData())            sprintf(s, "(_dlnaData)");
+      if(d == FIS_vFlashBlockFavoriteGroup())       sprintf(s, "(_favGrp)");
+      if(d == FIS_vFlashBlockGameSaveData())        sprintf(s, "(_gameSaveData)");
+      if(d == FIS_vFlashBlockLanIPConfig())         sprintf(s, "(_oldLanIpConfig)");
+      if(d == FIS_vFlashBlockNetwork())             sprintf(s, "(_network)");
+      if(d == FIS_vFlashBlockNetworkUpdateConfig()) sprintf(s, "(_networkUpdateConfig)");
+      if(d == FIS_vFlashBlockOTAInfo())             sprintf(s, "(_otaInfo)");
+      if(d == FIS_vFlashBlockProviderInfo())        sprintf(s, "(_providerInfo)");
+      if(d == FIS_vFlashBlockRadioServices())       sprintf(s, "(_radioSvc)");
+      if(d == FIS_vFlashBlockSatInfo())             sprintf(s, "(_satInfo)");
+      if(d == FIS_vFlashBlockServerData())          sprintf(s, "(_serverData)");
+      if(d == FIS_vFlashBlockServiceName())         sprintf(s, "(_svcName)");
+      if(d == FIS_vFlashBlockTVServices())          sprintf(s, "(_tvSvc)");
+      if(d == FIS_vFlashBlockTimeInfo())            sprintf(s, "(_timeInfo)");
+      if(d == FIS_vFlashBlockTimer())               sprintf(s, "(_timer)");
+      if(d == FIS_vFlashBlockTransponderInfo())     sprintf(s, "(_tpInfo)");
       DEBUG("Flash pointer %8.8p (%s) -> abs=0x%8.8x rel=%8.8x %s", i, SectionName, d, d - FlashStart, s);
     }
   }
@@ -677,7 +677,7 @@ void CopyInf(void)
     if(FolderEntry.attr == ATTR_NORMAL)
     {
       Got++;
-      TAP_SPrint(x, "cp '/mnt/hd/DataFiles/%s' /mnt/hd/ProgramFiles/inf%2.2d.inf", FolderEntry.name, Got);
+      sprintf(x, "cp '/mnt/hd/DataFiles/%s' /mnt/hd/ProgramFiles/inf%2.2d.inf", FolderEntry.name, Got);
       system(x);
       if(Got == 10) break;
     }
@@ -691,10 +691,10 @@ void PackAndDelete(void)
   #define FILELIST      "EEPROM.bin FIS_Test.log inf*.inf mtd.log mtd?"
   #define ROOTDIR       "/mnt/hd/ProgramFiles"
 
-  TAP_SPrint(x, "cd "ROOTDIR"; ./busybox tar cvf FIS_Test.tar %s", FILELIST);
+  sprintf(x, "cd "ROOTDIR"; ./busybox tar cvf FIS_Test.tar %s", FILELIST);
   system(x);
 
-  TAP_SPrint(x, "cd "ROOTDIR";rm %s", FILELIST);
+  sprintf(x, "cd "ROOTDIR";rm %s", FILELIST);
   system(x);
 
   system("cd "ROOTDIR"; ./busybox gzip FIS_Test.tar");

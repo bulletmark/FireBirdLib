@@ -738,3 +738,6 @@ License:  This library is freeware. You may use this code in your own projects f
             Fixed HDD_Move() so that it handle file names with " and $ characters
             Fixed FIS_vFlashBlockOTAInfo(), which crashes if the datablock doesn't exist
 2012-10-27  Fixed: FixInvalidFileName() is now UTF8 aware. Use this function to remove unwanted characters from a file name
+2012-10-30  Added: GetStringEncoding(), which reports whether a string contains UTF or high byte ANSI characters
+            Fixed: StrMkISO(), StrToISO(), StrToUTF8(), StrMkUTF8() to work in ANSI and UTF mixed environments
+2012-11-04  Added: OSDMenuMessageBoxModifyText()

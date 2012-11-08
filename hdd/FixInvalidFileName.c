@@ -12,8 +12,7 @@ void FixInvalidFileName(char *FileName)
   bool                  isRec, isDel;
   int                   fNumber;
   char                  OldInfName[TS_FILE_NAME_SIZE+1], NewInfName[TS_FILE_NAME_SIZE+1];
-  bool                  hasAnsiChar, hasUTFChar;
-  byte                 *p;
+  bool                  hasAnsiChars, hasUTFChars;
 
   if(TAP_Hdd_Exist(FileName))
   {
@@ -34,27 +33,9 @@ void FixInvalidFileName(char *FileName)
     if(isUTFToppy())
     {
       //Check if the file name contains UTF or ANSI characters
-      hasAnsiChar = FALSE;
-      hasUTFChar = FALSE;
-      p = NewRecName;
-      while(*p)
-      {
-        if(*p >= 0x80)
-        {
-          if(isUTF8Char(p))
-          {
-            p++;
-            hasUTFChar = TRUE;
-          }
-          else
-          {
-            hasAnsiChar = TRUE;
-          }
-        }
-        p++;
-      }
+      GetStringEncoding(NewRecName, &hasAnsiChars, &hasUTFChars);
 
-      if(hasAnsiChar && !hasUTFChar)
+      if(hasAnsiChars && !hasUTFChars)
       {
         //Convert to UTF8
         if(NewRecName[0] < 0x20) DeleteAt(NewRecName, 0, 1);

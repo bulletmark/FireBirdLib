@@ -4,6 +4,7 @@
 void StrToISO(byte *SourceString, byte *DestString)
 {
   int                   Len;
+  bool                  hasAnsiChars, hasUTFChars;
 
   if(!SourceString || !DestString) return;
   if(!*SourceString)
@@ -12,19 +13,26 @@ void StrToISO(byte *SourceString, byte *DestString)
     return;
   }
 
-  Len = strlen(SourceString);
-  while(Len > 0)
+  GetStringEncoding(SourceString, &hasAnsiChars, &hasUTFChars);
+
+  if(!hasAnsiChars && hasUTFChars)
   {
-    *DestString = CharToISO(SourceString);
-    if(isUTF8Char(SourceString))
+    Len = strlen(SourceString);
+    while(Len > 0)
     {
+      *DestString = CharToISO(SourceString);
+      if(isUTF8Char(SourceString))
+      {
+        SourceString++;
+        Len--;
+      }
+
       SourceString++;
+      DestString++;
       Len--;
     }
-
-    SourceString++;
-    DestString++;
-    Len--;
+    *DestString = '\0';
   }
-  *DestString = '\0';
+  else
+    strcpy(DestString, SourceString);
 }

@@ -14,7 +14,7 @@ bool HDD_GetAbsolutePathByTypeFile(TYPE_File *File, char *AbsFileName)
   if(!d || !d[2]) return FALSE;
 
   strcpy(AbsFileName, (char*)d[2]);
-  //if(TAP_GetVersion() >= 0x0108) StrMkISO(AbsFileName);
+  StrMkISO(AbsFileName);
 
   return TRUE;
 }

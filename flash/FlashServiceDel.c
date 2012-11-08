@@ -46,7 +46,7 @@ bool FlashServiceDel(int SvcType, int SvcNum)
       if(!FlashServiceDelete(p)) return FALSE;
       *nSvc = *nSvc - 1;
 
-      //Delete provider
+      //TODO: Delete provider
 
       FlashReindexFavorites(SvcType, SvcNum, -1);
       FlashReindexTimers(SvcType, SvcNum, -1);
@@ -69,7 +69,7 @@ bool FlashServiceDel(int SvcType, int SvcNum)
       if(!FlashServiceDelete(p)) return FALSE;
       *nSvc = *nSvc - 1;
 
-      //Delete provider
+      //TODO: Delete provider
 
       FlashReindexFavorites(SvcType, SvcNum, -1);
       FlashReindexTimers(SvcType, SvcNum, -1);
@@ -92,7 +92,7 @@ bool FlashServiceDel(int SvcType, int SvcNum)
       if(!FlashServiceDelete(p)) return FALSE;
       *nSvc = *nSvc - 1;
 
-      //Delete provider
+      //TODO: Delete provider
 
       FlashReindexFavorites(SvcType, SvcNum, -1);
       FlashReindexTimers(SvcType, SvcNum, -1);

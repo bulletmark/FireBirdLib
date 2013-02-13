@@ -3,7 +3,7 @@
 
 #include "../libFireBird.h"
 
-bool isLegalChar(unsigned char, eRemoveChars);
+bool isLegalChar(byte*, eRemoveChars);
 char *stricstr(const char *, const char *);
 
 #endif

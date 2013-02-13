@@ -6,6 +6,7 @@
   #define DEFAULTMAGIC        0xFB1BB100
   #define CTSTACKSIZE         50
   #define CTSTATENTRIES       5000
+  #define CRASHCHECKINI       "CrashCheck.ini"
 
   typedef struct
   {

@@ -25,7 +25,10 @@
     word                PCRPID;
     word                VideoPID;
     word                AudioPID;
-    word                unknown1;
+
+    word                NameLock:1;
+    word                Flags2:15;
+
     dword               NameOffset;
     word                ProviderIdx;
     word                LCN;

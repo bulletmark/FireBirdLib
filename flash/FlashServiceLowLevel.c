@@ -50,7 +50,8 @@ bool FlashServiceDecode_ST_TMSS(TYPE_Service_TMSS *Data, tFlashService *Service)
   Service->AudioPID        = Data->AudioPID;
   Service->LCN             = Data->LCN;
   Service->AudioStreamType = Data->AudioStreamType;
-  Service->unknown1        = Data->unknown1;
+  Service->NameLock        = Data->NameLock;
+  Service->Flags2          = Data->Flags2;
   memcpy(Service->unknown2, Data->unknown2, 6);
 
   Text = (char*)(FIS_vFlashBlockServiceName() + Data->NameOffset);
@@ -145,7 +146,8 @@ bool FlashServiceEncode_ST_TMSS(TYPE_Service_TMSS *Data, tFlashService *Service)
   Data->AudioPID        = Service->AudioPID;
   Data->LCN             = Service->LCN;
   Data->AudioStreamType = Service->AudioStreamType;
-  Data->unknown1        = Service->unknown1;
+  Data->NameLock        = Service->NameLock;
+  Data->Flags2          = Service->Flags2;
   memcpy(Data->unknown2, Service->unknown2, 6);
 
   Appl_AddSvcName = (void*)FIS_fwAppl_AddSvcName();

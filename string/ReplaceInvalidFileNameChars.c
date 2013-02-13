@@ -3,35 +3,31 @@
 
 void ReplaceInvalidFileNameChars(char *strName)
 {
-  unsigned char         *p, c;
-  int                   i;
-  int                   fileNameLength;
+  unsigned char         *s, *d;
 
-  p = strName;
-  i = 0;
-  fileNameLength = strlen(strName);
-  while (i < fileNameLength)
+  d = strName;
+  s = strName;
+  while(*s)
   {
-    c = strName[i];
-    if(isLegalChar(c, InvalidFileNameChars))
+    if(isLegalChar(s, InvalidFileNameChars))
     {
-      *p = c;
+      *d = *s;
     }
     else
     {
-      switch (c)
+      switch (*s)
       {
         // These characters are not allowed in Windows.
-        case '*': *p = 'x'; break;
-        case '"': *p = '\''; break;
+        case '*': *d = 'x'; break;
+        case '"': *d = '\''; break;
 
         default:
-          *p = '-';
+          *d = '-';
           break;
       }
     }
-    p++;
-    i++;
+    d++;
+    s++;
   }
-  *p = '\0';
+  *d = '\0';
 }

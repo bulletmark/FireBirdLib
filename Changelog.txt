@@ -741,3 +741,15 @@ License:  This library is freeware. You may use this code in your own projects f
 2012-10-30  Added: GetStringEncoding(), which reports whether a string contains UTF or high byte ANSI characters
             Fixed: StrMkISO(), StrToISO(), StrToUTF8(), StrMkUTF8() to work in ANSI and UTF mixed environments
 2012-11-04  Added: OSDMenuMessageBoxModifyText()
+2012-11-13  Added TAPVersion to the tTAPInfo struct. It needs the TAP compiled against a modified tap.h (added TAP_PROGRAM_VERSION) otherwise it will be empty
+2012-11-26  Added: NameLock flag to the tFlashService struct
+            Renamed unknown1 to Flags2 in the tFlashService struct to make it obvious that the flag struct has changed (compiler error on unknown unknown1)
+2012-12-06  Added CrashCheck_Startup() and CrashCheck_Shutdown(), which may break an endless reboot loop. See the _Demo folder for more details
+2012-12-25  Added HDD_GetAbsolutePathByTypeFileUTF8()
+2013-01-13  Fixed: made FixInvalidFileName(), ReplaceInvalidFileName() and ValidFileName() UTF8 aware
+2013-01-23  Fixed: HDD_TAP_GetInfoByAbsPath() didn't restore the parameter AbsFileName
+2013-02-10  Added: FIS_fwDevService_Mute(), FIS_fwAppl_PvrPause(), FIS_fwAppl_SetPlaybackSpeed(), FIS_vbookmarkTime(), FIS_vdupEntry(), FIS_vnDupTimer(), FIS_fwAppl_CiMenu(), FIS_fwAppl_CiplusMenu()
+                   FIS_vciMenuMode(), FIS_vciplusMenuMode(), FIS_fwAppl_GetEvtListHeadInHash(), FIS_fwAppl_GetEvtCountInFreePool(), FIS_fwAppl_GetEvtListHeadInUsePool()
+            Added: DevService_Mute(), Appl_GetEvtListHeadInUsePool(), Appl_GetEvtListHeadInHash(), Appl_GetEvtListHeadInHashByChannelID(), Appl_GetEvtCountInFreePool(), Appl_RestartTimeShiftSvc(), 
+                   Appl_StopRecPlaying(), ApplHdd_GetFileInfo(), ApplTap_GetEmptyTask(), Appl_StartPlaybackMedia(), Appl_GetIsExternal(), Appl_SetIsExternal(), Appl_WriteRecInfo(), Appl_SetPlaybackSpeed(),
+                   Appl_PvrPause(), Appl_ExportChData(), Appl_ImportChData()

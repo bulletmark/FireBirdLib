@@ -68,15 +68,19 @@ bool HDD_TAP_GetInfo(char *FileName, tTAPInfo *pTAPInfo)
 
   pTAPInfo->TAPName[0] = '\0';
   Index = ELFGetSectionIndex("._tap_program_name");
-  if(Index && ELFReadData(Index, pTAPInfo->TAPName))
+  if(Index) ELFReadData(Index, pTAPInfo->TAPName);
 
   pTAPInfo->Author[0] = '\0';
   Index = ELFGetSectionIndex("._tap_author_name");
-  if(Index && ELFReadData(Index, pTAPInfo->Author))
+  if(Index) ELFReadData(Index, pTAPInfo->Author);
 
   pTAPInfo->Description[0] = '\0';
   Index = ELFGetSectionIndex("._tap_description");
-  if(Index && ELFReadData(Index, pTAPInfo->Description))
+  if(Index) ELFReadData(Index, pTAPInfo->Description);
+
+  pTAPInfo->TAPVersion[0] = '\0';
+  Index = ELFGetSectionIndex("._tap_program_version");
+  if(Index) ELFReadData(Index, pTAPInfo->TAPVersion);
 
   ELFCleanup();
 

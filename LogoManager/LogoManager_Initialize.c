@@ -20,9 +20,9 @@ void LogoManager_Initialize(void *Callback)
 
   HDD_TAP_PushDir();
   HDD_ChangeDir("/ProgramFiles");
-  TAP_Hdd_Create("Settings", ATTR_FOLDER);
+  if(!TAP_Hdd_Exist("Settings")) TAP_Hdd_Create("Settings", ATTR_FOLDER);
   HDD_ChangeDir("Settings");
-  TAP_Hdd_Create("Logos", ATTR_FOLDER);
+  if(!TAP_Hdd_Exist("Logos")) TAP_Hdd_Create("Logos", ATTR_FOLDER);
   HDD_ChangeDir("Logos");
 
   if(!LogoManager_LUTInitialized || !TAP_Hdd_Exist(LOGOCACHE))

@@ -17,7 +17,7 @@ void LogEntryGeneric(char *ProgramName, bool Console, char *Text)
   if(!HDD_ChangeDir("/ProgramFiles/Settings"))
   {
     HDD_ChangeDir("/ProgramFiles");
-    TAP_Hdd_Create("Settings", ATTR_FOLDER);
+    if(!TAP_Hdd_Exist("Settings")) TAP_Hdd_Create("Settings", ATTR_FOLDER);
     HDD_ChangeDir("Settings");
   }
   l = strlen(ProgramName) + strlen(Text) + 4;
@@ -28,7 +28,7 @@ void LogEntryGeneric(char *ProgramName, bool Console, char *Text)
   TS = TimeFormat(Now(&Sec), Sec, TIMESTAMP_YMDHMS);
   strcat(TS, " ");
 
-  TAP_Hdd_Create(FILENAME, ATTR_NORMAL);
+  if(!TAP_Hdd_Exist(FILENAME)) TAP_Hdd_Create(FILENAME, ATTR_NORMAL);
   if((File = TAP_Hdd_Fopen(FILENAME)) != NULL)
   {
     TAP_Hdd_Fseek(File, 0, SEEK_END);

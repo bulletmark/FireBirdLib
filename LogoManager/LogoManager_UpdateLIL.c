@@ -101,7 +101,7 @@ int LogoManager_UpdateLIL(void)
     word                year;
     byte                month, day, weekDay;
 
-    TAP_Hdd_Create(LILNAME, ATTR_NORMAL);
+    if(!TAP_Hdd_Exist(LILNAME)) TAP_Hdd_Create(LILNAME, ATTR_NORMAL);
     f = TAP_Hdd_Fopen(LILNAME);
 
     if(!f)

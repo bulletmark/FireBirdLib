@@ -11,7 +11,7 @@ dword HDD_TAP_GetIDByIndex(int TAPIndex)
   TMSTAPTaskTable = (tTMSTAPTaskTable*)FIS_vTAPTable();
   if(TMSTAPTaskTable == NULL) return 0;
 
-  if(!HDD_GetAbsolutePathByTypeFile(TMSTAPTaskTable[TAPIndex].file, AbsFileName)) return 0;
+  if(!HDD_GetAbsolutePathByTypeFileUTF8(TMSTAPTaskTable[TAPIndex].file, AbsFileName)) return 0;
 
   if(!HDD_TAP_GetInfoByAbsPath(AbsFileName, &pTAPInfo)) return 0;
 

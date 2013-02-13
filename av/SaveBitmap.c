@@ -20,7 +20,7 @@ bool SaveBitmap(char *strName, int width, int height, byte* pBuffer )
     return FALSE;
   }
 
-  TAP_Hdd_Create( strName, ATTR_NORMAL );
+  if(!TAP_Hdd_Exist(strName)) TAP_Hdd_Create( strName, ATTR_NORMAL );
   pFile = TAP_Hdd_Fopen( strName );
   if ( !pFile )
   {

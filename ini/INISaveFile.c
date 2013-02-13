@@ -28,8 +28,8 @@ bool INISaveFile (char *FileName, INILOCATION INILocation, char *AppName)
 
   if (INILocation == INILOCATION_AtSettings || INILocation == INILOCATION_AtAppName)
   {
-    TAP_Hdd_Create ("Settings", ATTR_FOLDER);
-    if (!HDD_ChangeDir ("Settings"))
+    if(!TAP_Hdd_Exist("Settings")) TAP_Hdd_Create("Settings", ATTR_FOLDER);
+    if(!HDD_ChangeDir ("Settings"))
     {
       HDD_TAP_PopDir();
       return FALSE;
@@ -38,7 +38,7 @@ bool INISaveFile (char *FileName, INILOCATION INILocation, char *AppName)
 
   if (INILocation == INILOCATION_AtAppName)
   {
-    TAP_Hdd_Create (AppName, ATTR_FOLDER);
+    if(!TAP_Hdd_Exist(AppName)) TAP_Hdd_Create(AppName, ATTR_FOLDER);
     if (!HDD_ChangeDir (AppName))
     {
       HDD_TAP_PopDir();

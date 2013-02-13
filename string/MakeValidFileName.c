@@ -3,22 +3,26 @@
 
 void MakeValidFileName(char *strName, eRemoveChars ControlCharacters)
 {
-  unsigned char         *p, c;
-  int                   i;
-  int                   fileNameLength;
+  unsigned char         *s, *d;
 
-  p = strName;
-  i = 0;
-  fileNameLength = strlen(strName);
-  while (i < fileNameLength)
+  d = strName;
+  s = strName;
+
+  while(*s)
   {
-    c = strName[i];
-    if (isLegalChar(c, ControlCharacters))
+    if(isLegalChar(s, ControlCharacters))
     {
-      *p = c;
-      p++;
+      *d = *s;
+      if(isUTF8Char(s))
+      {
+        //As this is a double byte UTF character, copy both bytes
+        d++;
+        s++;
+        *d = *s;
+      }
+      d++;
     }
-    i++;
+    s++;
   }
-  *p = '\0';
+  *d = '\0';
 }

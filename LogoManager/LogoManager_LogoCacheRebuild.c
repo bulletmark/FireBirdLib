@@ -55,7 +55,7 @@ void LogoManager_LogoCacheRebuild(void)
   {
     memset(LogoManager_LogoData, 0, LogoManager_NrLogos * sizeof(tLogoData));
     HDD_ChangeDir(LOGOROOT);
-    TAP_Hdd_Create(LOGOCACHE, ATTR_NORMAL);
+    if(!TAP_Hdd_Exist(LOGOCACHE)) TAP_Hdd_Create(LOGOCACHE, ATTR_NORMAL);
     f = TAP_Hdd_Fopen(LOGOCACHE);
     if(f)
     {

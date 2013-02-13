@@ -3,7 +3,7 @@
 
 //  #define DEBUG_FIREBIRDLIB
 
-  #define __FBLIB_RELEASEDATE__ "2012-11-04"
+  #define __FBLIB_RELEASEDATE__ "2013-02-10"
 
   #ifdef _TMSEMU_
     #define __FBLIB_VERSION__ __FBLIB_RELEASEDATE__" TMSEmulator"
@@ -375,6 +375,8 @@
   void   CallTraceExportStats(char *FileName);
   void   CallTraceResetStats(void);
 
+  bool CrashCheck_Startup(char *TAPName);
+  void CrashCheck_Shutdown(char *TAPName);
 
   void* TAP_MemAlloc_Chk(char *Comment, dword size);
   int   TAP_Osd_Copy_Chk(char *Comment, word srcRgnNum, word dstRgnNum, dword srcX, dword srcY, dword w, dword h, dword dstX, dword dstY,  bool sprite);
@@ -429,27 +431,44 @@
     dword               unknown2;
   }tDirEntry;
 
-  byte  DevFront_SetIlluminate(byte a0, byte Brightness);
-  dword DevHdd_DeviceClose(tDirEntry **hddPlaybackFolder);
-  dword DevHdd_DeviceOpen(tDirEntry **hddPlaybackFolder, tDirEntry *DirEntry);
-  int   Appl_CheckRecording(int SvcType, int SvcNum, bool Unknown);
-  int   Appl_CheckRecording_Tuner(byte TunerIndex, int SvcType, int SvcNum, bool Unknown);
-  void  Appl_ClrTimer(byte *TimerHandle);
-  dword Appl_GetFreeExtRecordSpace(char *MountPath);
-  void  Appl_ShoutCast(void);
-  dword Appl_StopPlaying(void);
-  dword Appl_WaitEvt(uint Event, uint *a1, uint a2, uint a3, uint Timeout);
-  byte  ApplChannel_GetAgc(unsigned char TunerIndex, unsigned char *AGC);
-  byte  ApplChannel_GetBer(unsigned char TunerIndex, unsigned char *BER);
-  dword ApplHdd_FileCutPaste(char  const* SourceFileName, unsigned int StartBlock, unsigned int NrBlocks, char const* CutFileName);
-  dword ApplHdd_FreeSize(char *MountPath, bool a1);
-  dword ApplHdd_GetInfoFromExternalDevice(dword *TotalSpaceMB, dword *FreeSpaceMB, char  const *MountPath);
-  void  ApplHdd_RestoreWorkFolder(void);
-  void  ApplHdd_SaveWorkFolder(void);
-  dword ApplHdd_SelectFolder(tDirEntry *FolderStruct, char const *FolderPath);
-  void  ApplHdd_SetWorkFolder(tDirEntry *FolderStruct);
-  void  ApplNewVfd_Stop(void);
-  void  ApplTimer_OptimizeList(void);
+  byte   DevFront_SetIlluminate(byte a0, byte Brightness);
+  dword  DevHdd_DeviceClose(tDirEntry **hddPlaybackFolder);
+  dword  DevHdd_DeviceOpen(tDirEntry **hddPlaybackFolder, tDirEntry *DirEntry);
+  int    Appl_CheckRecording(int SvcType, int SvcNum, bool Unknown);
+  int    Appl_CheckRecording_Tuner(byte TunerIndex, int SvcType, int SvcNum, bool Unknown);
+  void   Appl_ClrTimer(byte *TimerHandle);
+  bool   Appl_ExportChData(char *FileName);
+  dword  Appl_GetEvtCountInFreePool(void);
+  dword *Appl_GetEvtListHeadInHash(word NetID, word TSID, word ServiceID);
+  dword *Appl_GetEvtListHeadInHashByChannelID(ulong64 ChannelID);
+  dword *Appl_GetEvtListHeadInUsePool(void);
+  bool   Appl_GetIsExternal(void);
+  dword  Appl_GetFreeExtRecordSpace(char *MountPath);
+  bool   Appl_ImportChData(char *FileName);
+  void   Appl_PvrPause(bool p1);
+  void   Appl_RestartTimeShiftSvc(bool p1, dword Block);
+  void   Appl_SetIsExternal(bool External);
+  void   Appl_SetPlaybackSpeed(byte Mode, int Speed, bool p3);
+  void   Appl_ShoutCast(void);
+  byte   Appl_StartPlaybackMedia(char const *FileName, unsigned int p2, bool p3, bool ScaleInPip);
+  dword  Appl_StopPlaying(void);
+  void   Appl_StopRecPlaying(bool p1);
+  dword  Appl_WaitEvt(uint Event, uint *a1, uint a2, uint a3, uint Timeout);
+  void   Appl_WriteRecInfo(dword Slot);
+  byte   ApplChannel_GetAgc(unsigned char TunerIndex, unsigned char *AGC);
+  byte   ApplChannel_GetBer(unsigned char TunerIndex, unsigned char *BER);
+  dword  ApplHdd_FileCutPaste(char  const* SourceFileName, unsigned int StartBlock, unsigned int NrBlocks, char const* CutFileName);
+  dword  ApplHdd_FreeSize(char *MountPath, bool a1);
+  word   ApplHdd_GetFileInfo(word p1, int *TotalBlocks, int *CurrentBlock, byte p4, byte p5);
+  dword  ApplHdd_GetInfoFromExternalDevice(dword *TotalSpaceMB, dword *FreeSpaceMB, char  const *MountPath);
+  void   ApplHdd_RestoreWorkFolder(void);
+  void   ApplHdd_SaveWorkFolder(void);
+  dword  ApplHdd_SelectFolder(tDirEntry *FolderStruct, char const *FolderPath);
+  void   ApplHdd_SetWorkFolder(tDirEntry *FolderStruct);
+  void   ApplNewVfd_Stop(void);
+  int    ApplTap_GetEmptyTask(void);
+  void   ApplTimer_OptimizeList(void);
+  int    DevService_Mute(bool Mute);
 
 
   /*****************************************************************************************************************************/
@@ -475,9 +494,10 @@
     word                  AudioStreamType;
     char                  ServiceName[MAX_SvcName];
     char                  ProviderName[40];
+    byte                  NameLock;
+    word                  Flags2;
 
     //Unidentified fields
-    word                  unknown1;
     byte                  unknown2[6];
   } tFlashService;
 
@@ -800,6 +820,7 @@
   TYPE_File *HDD_FappendOpen(char *filename);
   bool       HDD_FappendWrite(TYPE_File *file, char *data);
   bool       HDD_GetAbsolutePathByTypeFile(TYPE_File *File, char *AbsFileName);
+  bool       HDD_GetAbsolutePathByTypeFileUTF8(TYPE_File *File, char *AbsFileName);
 
   #ifdef _TMSEMU_
     bool     HDD_GetFileSizeAndInode(char *Directory, char *FileName, dword *CInode, off_t *FileSize);
@@ -891,6 +912,8 @@
   inline dword FIS_fwAppl_AddSvcName(void);
   inline dword FIS_fwAppl_CheckRecording(void);
   inline dword FIS_fwAppl_CheckRecording_Tuner(void);
+  inline dword FIS_fwAppl_CiMenu(void);
+  inline dword FIS_fwAppl_CiplusMenu(void);
   inline dword FIS_fwAppl_ClrTimer(void);
   inline dword FIS_fwAppl_ConvertToValidUTF8Str(void);
   inline dword FIS_fwAppl_DeleteRadioSvcName(void);
@@ -898,6 +921,9 @@
   inline dword FIS_fwAppl_EnterNormal(void);
   inline dword FIS_fwAppl_ExecProgram(void);
   inline dword FIS_fwAppl_ExportChData(void);
+  inline dword FIS_fwAppl_GetEvtListHeadInHash(void);
+  inline dword FIS_fwAppl_GetEvtCountInFreePool(void);
+  inline dword FIS_fwAppl_GetEvtListHeadInUsePool(void);
   inline dword FIS_fwAppl_GetFreeExtRecordSpace(void);
   inline dword FIS_fwAppl_GetIsExternal(void);
   inline dword FIS_fwAppl_GetStreamFormat(void);
@@ -906,9 +932,11 @@
   inline dword FIS_fwAppl_IsTimeShifting(void);
   inline dword FIS_fwAppl_PvrList(void);
   inline dword FIS_fwAppl_PvrList_SetListType(void);
+  inline dword FIS_fwAppl_PvrPause(void);
   inline dword FIS_fwAppl_RestartTimeShiftSvc(void);
   inline dword FIS_fwAppl_SetApplVer(void);
   inline dword FIS_fwAppl_SetIsExternal(void);
+  inline dword FIS_fwAppl_SetPlaybackSpeed(void);
   inline dword FIS_fwAppl_SetProviderName(void);
   inline dword FIS_fwAppl_SetTimeShift(void);
   inline dword FIS_fwAppl_ShoutCast(void);
@@ -947,6 +975,7 @@
   inline dword FIS_fwDevFront_SetIlluminate(void);
   inline dword FIS_fwDevHdd_DeviceClose(void);
   inline dword FIS_fwDevHdd_DeviceOpen(void);
+  inline dword FIS_fwDevService_Mute(void);
   inline dword FIS_fwEeprom_DirectWrite(void);
   inline dword FIS_fwPowerOff(void);
   inline dword FIS_fwPutDevEvt(void);
@@ -954,10 +983,14 @@
 
   inline dword FIS_vApplState(void);
   inline dword FIS_vAudioTrack(void);
+  inline dword FIS_vbookmarkTime(void);
   inline dword FIS_vBootReason(void);
   inline dword FIS_vCheckAutoDecTimerId(void);
+  inline dword FIS_vciMenuMode(void);
+  inline dword FIS_vciplusMenuMode(void);
   inline dword FIS_vCurTapTask(void);
   inline dword FIS_vDirectSvcNumTimerId(void);
+  inline dword FIS_vdupEntry(void);
   inline dword FIS_vEEPROM(void);
   inline dword FIS_vEEPROMPin(void);
   inline dword FIS_vEtcInfo(void);
@@ -975,6 +1008,7 @@
   inline dword FIS_vIsPipActive(void);
   inline dword FIS_vIsPopUpOn(void);
   inline dword FIS_vMACAddress(void);
+  inline dword FIS_vnDupTimer(void);
   inline dword FIS_vnExtPartition(void);
   inline dword FIS_vnPipSvcNum(void);
   inline dword FIS_vnRadioSvc(void);
@@ -1302,9 +1336,10 @@
   {
     dword               TAPID;
     dword               Date;
-    char                TAPName[64];
-    char                Author[64];
-    char                Description[128];
+    char                TAPName[MAX_PROGRAM_NAME];
+    char                Author[MAX_AUTHOR_NAME];
+    char                Description[MAX_DESCRIPTION];
+    char                TAPVersion[MAX_PROGRAM_VERSION];       //This field will only be populated when the TAP has been compiled with a modified tap.h
   } tTAPInfo;
 
   dword HDD_TAP_Callback(dword TAPID, void *ProcedureAddress, dword param1, dword param2, dword param3, dword param4);

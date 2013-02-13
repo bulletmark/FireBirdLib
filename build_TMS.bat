@@ -8,7 +8,7 @@ copy %Project%.h %TFROOT%\API\TMS\include
 if exist Compile_TMSEMU goto Compile_TMSEMU
 
 echo Building MIPS FBLib
-bash -i -c make
+bash -i -c "make"
 goto Compile_Done
 
 :Compile_TMSEMU

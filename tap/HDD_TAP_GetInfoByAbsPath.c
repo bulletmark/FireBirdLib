@@ -28,5 +28,8 @@ bool HDD_TAP_GetInfoByAbsPath(char *AbsFileName, tTAPInfo *pTAPInfo)
 
   HDD_TAP_PopDir();
 
+  //Restore the slash
+  *Slash = '/';
+
   return ret;
 }

@@ -54,7 +54,7 @@ void APIBug_fReadWrite()
   dword           ret;
 
   HDD_ChangeDir("/ProgramFiles");
-  TAP_Hdd_Create(PROGRAM_NAME ".test", ATTR_NORMAL);
+  if(!TAP_Hdd_Exist(PROGRAM_NAME ".test")) TAP_Hdd_Create(PROGRAM_NAME ".test", ATTR_NORMAL);
   fp = TAP_Hdd_Fopen(PROGRAM_NAME ".test");
   if(fp)
   {
@@ -584,7 +584,7 @@ void DumpEEPROM(void)
   }
 
   TAP_Hdd_ChangeDir("/ProgramFiles");
-  TAP_Hdd_Create(EEPROMFN, ATTR_NORMAL);
+  if(!TAP_Hdd_Exist(EEPROMFN)) TAP_Hdd_Create(EEPROMFN, ATTR_NORMAL);
   f = TAP_Hdd_Fopen(EEPROMFN);
   if(!f)
   {

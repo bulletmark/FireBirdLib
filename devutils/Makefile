@@ -1,9 +1,8 @@
 JB = JailBreak
 
-all: ${JB}
+CFLAGS = -I../elf -m32
 
-${JB}: ${JB}.c
-	gcc -o $@ $<
+all: ${JB}
 
 .PHONY: doc
 

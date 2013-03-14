@@ -1,4 +1,3 @@
-#include "FBLib_av.h"
 #include "../libFireBird.h"
 
 bool isPIPActive(void)

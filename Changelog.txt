@@ -750,6 +750,8 @@ License:  This library is freeware. You may use this code in your own projects f
 2013-01-23  Fixed: HDD_TAP_GetInfoByAbsPath() didn't restore the parameter AbsFileName
 2013-02-10  Added: FIS_fwDevService_Mute(), FIS_fwAppl_PvrPause(), FIS_fwAppl_SetPlaybackSpeed(), FIS_vbookmarkTime(), FIS_vdupEntry(), FIS_vnDupTimer(), FIS_fwAppl_CiMenu(), FIS_fwAppl_CiplusMenu()
                    FIS_vciMenuMode(), FIS_vciplusMenuMode(), FIS_fwAppl_GetEvtListHeadInHash(), FIS_fwAppl_GetEvtCountInFreePool(), FIS_fwAppl_GetEvtListHeadInUsePool()
-            Added: DevService_Mute(), Appl_GetEvtListHeadInUsePool(), Appl_GetEvtListHeadInHash(), Appl_GetEvtListHeadInHashByChannelID(), Appl_GetEvtCountInFreePool(), Appl_RestartTimeShiftSvc(), 
+            Added: DevService_Mute(), Appl_GetEvtListHeadInUsePool(), Appl_GetEvtListHeadInHash(), Appl_GetEvtListHeadInHashByChannelID(), Appl_GetEvtCountInFreePool(), Appl_RestartTimeShiftSvc(),
                    Appl_StopRecPlaying(), ApplHdd_GetFileInfo(), ApplTap_GetEmptyTask(), Appl_StartPlaybackMedia(), Appl_GetIsExternal(), Appl_SetIsExternal(), Appl_WriteRecInfo(), Appl_SetPlaybackSpeed(),
-                   Appl_PvrPause(), Appl_ExportChData(), Appl_ImportChData()
+                   Appl_PvrPause(), Appl_ExportChData(), Appl_ImportChData(), PlayMediaFile()
+2013-02-15  Fixed: FBLib will compile even if TAP_PROGRAM_VERSION does not exist in tap.h
+            Added  PlayMediaFile(), FIS_fwAppl_GetEvtCount() and Appl_GetEvtCount()

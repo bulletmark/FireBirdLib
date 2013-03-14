@@ -166,39 +166,40 @@
 
   typedef struct
   {
-    word                TunerIndex:8;
+    word                TunerIndex:8;       //0000
     word                RecMode:3;
     word                DemuxPath:2;
     word                ManualRec:1;
     word                unused1:2;          //uumd drrr tttt tttt
 
-    byte                SatIndex;
+    byte                SatIndex;           //0002
 
-    byte                ServiceType:1;
+    byte                ServiceType:1;      //0003
     byte                ReservationType:3;
     byte                unused2:4;          //uuuu rrrt
 
-    word                ServiceID;
-    word                Duration;
-    byte                unused3;
-    char                FileName[131];
-    dword               StartTime;
-    dword               EndTime;
-    word                PMTPID;
-    byte                isRec;
-    byte                NameSet;
-    byte                unused4;
-    byte                EPGMarker;
-    word                unused5;
-    dword               unknown1;
-    dword               EventID1;
-    dword               EventID2;
-    word                ServiceIndex;
-    byte                unused8[8];
-    byte                IceTV;
-    byte                unused9[5];
-
+    word                ServiceID;          //0004
+    word                Duration;           //0006
+    byte                unused3;            //0008
+    char                FileName[131];      //0009
+    dword               StartTime;          //008C
+    dword               EndTime;            //0090
+    word                PMTPID;             //0094
+    byte                isRec;              //0096
+    byte                NameSet;            //0097
+    byte                unused4;            //0098
+    byte                EPGMarker;          //0099
+    word                unused5;            //009a
+    dword               unknown1;           //009c
+    dword               EventID1;           //00a0
+    dword               EventID2;           //00a4
+    word                ServiceIndex;       //00a8
+    byte                unused8[8];         //00aa
+    byte                IceTV;              //00b2
+    byte                unused9[5];         //00b3
+    //184 bytes
     TYPE_TpInfo_TMSS    TpInfo;
+    //100 bytes
   }__attribute__((packed)) TYPE_Timer_TMSS;
 
   typedef struct

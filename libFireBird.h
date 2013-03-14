@@ -3,7 +3,7 @@
 
 //  #define DEBUG_FIREBIRDLIB
 
-  #define __FBLIB_RELEASEDATE__ "2013-02-10"
+  #define __FBLIB_RELEASEDATE__ "2013-02-18"
 
   #ifdef _TMSEMU_
     #define __FBLIB_VERSION__ __FBLIB_RELEASEDATE__" TMSEmulator"
@@ -308,6 +308,7 @@
   bool  isOSDRegionAlive(word Region);
   bool  isPIPActive(void);
   void  OSDCopy(word rgn, dword x, dword y, dword w, dword h, word items, eCopyDirection direction);
+  dword PlayMediaFile(char *MediaFileName);
   bool  SaveBitmap(char *strName, int width, int height, byte* pBuffer );
   void  SetRemoteMode(byte Mode, bool Active);
   void  ShowMessageWin(char* title, char* lpMessage1, char* lpMessage2, dword dwDelay);
@@ -438,6 +439,7 @@
   int    Appl_CheckRecording_Tuner(byte TunerIndex, int SvcType, int SvcNum, bool Unknown);
   void   Appl_ClrTimer(byte *TimerHandle);
   bool   Appl_ExportChData(char *FileName);
+  dword  Appl_GetEvtCount(byte SatIdx, word NetID, word TSID, word ServiceID);
   dword  Appl_GetEvtCountInFreePool(void);
   dword *Appl_GetEvtListHeadInHash(word NetID, word TSID, word ServiceID);
   dword *Appl_GetEvtListHeadInHashByChannelID(ulong64 ChannelID);
@@ -921,8 +923,9 @@
   inline dword FIS_fwAppl_EnterNormal(void);
   inline dword FIS_fwAppl_ExecProgram(void);
   inline dword FIS_fwAppl_ExportChData(void);
-  inline dword FIS_fwAppl_GetEvtListHeadInHash(void);
+  inline dword FIS_fwAppl_GetEvtCount(void);
   inline dword FIS_fwAppl_GetEvtCountInFreePool(void);
+  inline dword FIS_fwAppl_GetEvtListHeadInHash(void);
   inline dword FIS_fwAppl_GetEvtListHeadInUsePool(void);
   inline dword FIS_fwAppl_GetFreeExtRecordSpace(void);
   inline dword FIS_fwAppl_GetIsExternal(void);
@@ -1339,7 +1342,11 @@
     char                TAPName[MAX_PROGRAM_NAME];
     char                Author[MAX_AUTHOR_NAME];
     char                Description[MAX_DESCRIPTION];
+
+#ifdef MAX_PROGRAM_VERSION
     char                TAPVersion[MAX_PROGRAM_VERSION];       //This field will only be populated when the TAP has been compiled with a modified tap.h
+#endif
+
   } tTAPInfo;
 
   dword HDD_TAP_Callback(dword TAPID, void *ProcedureAddress, dword param1, dword param2, dword param3, dword param4);

@@ -78,9 +78,11 @@ bool HDD_TAP_GetInfo(char *FileName, tTAPInfo *pTAPInfo)
   Index = ELFGetSectionIndex("._tap_description");
   if(Index) ELFReadData(Index, pTAPInfo->Description);
 
+#ifdef MAX_PROGRAM_VERSION
   pTAPInfo->TAPVersion[0] = '\0';
   Index = ELFGetSectionIndex("._tap_program_version");
   if(Index) ELFReadData(Index, pTAPInfo->TAPVersion);
+#endif
 
   ELFCleanup();
 

@@ -2,6 +2,10 @@
 
 void OSDMenuMessageBoxDestroyNoOSDUpdate(void)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("OSDMenuMessageBoxDestroyNoOSDUpdate");
+  #endif
+
   tOSDMapInfo          *OSDMapInfo;
 
   if(MessageBoxOSDRgn)
@@ -24,4 +28,10 @@ void OSDMenuMessageBoxDestroyNoOSDUpdate(void)
       MyOSDRgn = 0;
     }
   }
+
+  OSDMenuFreeStdFonts();
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

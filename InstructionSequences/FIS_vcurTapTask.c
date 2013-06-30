@@ -2,8 +2,18 @@
 
 inline dword FIS_vCurTapTask(void)
 {
-  static dword          *vcurTapTask = NULL;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FIS_vCurTapTask");
+  #endif
 
-  if(!vcurTapTask) vcurTapTask = (dword*)TryResolve("_curTapTask");
-  return (dword)vcurTapTask;
+  static dword          vcurTapTask = 0;
+
+  if(!vcurTapTask)
+    vcurTapTask = TryResolve("_curTapTask");
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return vcurTapTask;
 }

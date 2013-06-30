@@ -10,9 +10,9 @@ void CallTraceExportStats(char *FileName)
 
   if(!CallTraceInitialized) CallTraceInit();
 
-  if(CallTraceStats && CallTraceEnabled)
+  if(CallTraceStats && FileName)
   {
-    TAP_Hdd_Delete(FileName);
+    if(TAP_Hdd_Exist(FileName)) TAP_Hdd_Delete(FileName);
     TAP_Hdd_Create(FileName, ATTR_NORMAL);
     f = TAP_Hdd_Fopen(FileName);
     if(f)

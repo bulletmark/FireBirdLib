@@ -29,6 +29,7 @@ void PrintNet(char *puffer)
     {
       write(fd, puffer, len);
       close(fd);
+
       return;
     }
     i++;

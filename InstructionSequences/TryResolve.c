@@ -11,19 +11,40 @@
 
 dword TryResolve(char *Function)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("TryResolve");
+  #endif
+
   void                *pvr;
   dword               *ret;
 
   pvr = dlopen(NULL, RTLD_GLOBAL | RTLD_LAZY);
-  if(!pvr) return 0;
+  if(!pvr)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return 0;
+  }
 
   ret = dlsym(pvr, Function);
-  if (dlerror() != NULL)
+  if(dlerror() != NULL)
   {
     dlclose(pvr);
+
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
     return 0;
   }
 
   dlclose(pvr);
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
   return (dword)ret;
 }

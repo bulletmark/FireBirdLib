@@ -5,5 +5,15 @@
 
 ulong64 LogoManager_CalculateChannelID(word SatLongitude, word NetworkID, word TSID, word ServiceID)
 {
-  return ((ulong64)SatLongitude << 48) | ((ulong64)NetworkID << 32) | (TSID << 16) | ServiceID;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("LogoManager_CalculateChannelID");
+  #endif
+
+  ulong64 ret = ((ulong64)SatLongitude << 48) | ((ulong64)NetworkID << 32) | (TSID << 16) | ServiceID;
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }

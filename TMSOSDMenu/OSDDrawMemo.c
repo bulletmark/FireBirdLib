@@ -2,6 +2,10 @@
 
 void OSDDrawMemo(void)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("OSDDrawMemo");
+  #endif
+
   int                   i;
   dword                 Y;
   tMenu                *pMenu;
@@ -17,8 +21,12 @@ void OSDDrawMemo(void)
 
     //The text of the left column
     if((i + pMenu->CurrentTopIndex) < pMenu->NrItems)
-      FM_PutStringAA(OSDRgn, 76, Y + 5, 645 + FONTYOFFSET, pMenu->Item[i + pMenu->CurrentTopIndex].Name, RGB(255, 255, 255), COLOR_None, pMenu->FontMemo, TRUE, ALIGN_LEFT, 1);
+      FMUC_PutStringAA(OSDRgn, 76, Y + 5, 645 + FONTYOFFSET, pMenu->Item[i + pMenu->CurrentTopIndex].Name, RGB(255, 255, 255), COLOR_None, pMenu->FontMemo, TRUE, ALIGN_LEFT, 1);
   }
 
   if(CallbackProcedure) CallbackProcedure(OSDCB_List, OSDRgn);
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

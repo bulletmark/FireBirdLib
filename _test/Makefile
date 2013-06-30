@@ -1,4 +1,4 @@
-APP = test
+APP1 = LinkerTest
 BASE = $(shell cd /tapapi/TMS; pwd)
 CUR_DIR = $(shell pwd)
 
@@ -16,28 +16,28 @@ TAP_FLAGS += -g -DDEBUG
 endif
 
 #compile options
-CFLAGS += -DLINUX  -MD -W -Wall -O2 -mips32
-CPPFLAGS += -DLINUX  -MD -W -Wall  -O2 -mips32
+CFLAGS += -DLINUX -MD -W -Wall -O2 -mips32 -std=c99
+CPPFLAGS += -DLINUX -MD -W -Wall  -O2 -mips32
 
 INCLUDE_DIRS = ${BASE}/include /opt/crosstool/include/
 TAP_INCLUDE_DIRS = $(addprefix -I, $(INCLUDE_DIRS))
 TAP_FLAGS += $(TAP_INCLUDE_DIRS)
 TAP_LIBS = ${BASE}/tapinit.o ${BASE}/libtap.so -lFireBird -ldl -lc
 
-all: $(BIN_DIR) $(APP).tap clean
+all: $(BIN_DIR) $(APP1).tap clean
 
 $(BIN_DIR):
 	@echo "[Making directory... $@]"
 	@$(MKDIR) "$@"
 
-$(APP).tap: $(APP).o
+$(APP1).tap: $(APP1).o
 	@echo "[Linking... $@]"
 	@$(LD) -shared --no-undefined --allow-shlib-undefined  -o $(BIN_DIR)/$@ $< $(TAP_LIBS)
 	@$(JB) $(BIN_DIR)/$@
 	@-${RM} $(subst .tap,_TMS.tap,$@)
 	@$(MV) $(BIN_DIR)/$@ $(subst .tap,_TMS.tap,$@)
 
-$(APP).o: $(APP).c ${BASE}/include/libFireBird.h
+$(APP1).o: $(APP1).c ${BASE}/include/libFireBird.h
 	@echo "[Compiling... $@]"
 	@$(CC) $(CFLAGS) $(TAP_FLAGS) -c $< -o $@
 

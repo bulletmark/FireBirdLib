@@ -3,6 +3,10 @@
 
 void OSDMenuColorPickerShow(char *Title, dword Color)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("OSDMenuColorPickerShow");
+  #endif
+
   dword                 x, y;
   tOSDMapInfo          *OSDMapInfo;
 
@@ -54,4 +58,8 @@ void OSDMenuColorPickerShow(char *Title, dword Color)
   OSDMenuColorPickerDrawCursor(CCS_Blue, FALSE);
 
   TAP_Osd_Sync();
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

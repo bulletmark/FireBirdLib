@@ -10,10 +10,21 @@
 
 bool VFD_CDAnimation(bool Forward)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("VFD_CDAnimation");
+  #endif
+
   static int            Counter = 0;
   byte *grid = (byte*)FIS_vGrid();
 
-  if(!VFDUsedByTAP || !grid || !CDEnabledAnimation) return FALSE;
+  if(!VFDUsedByTAP || !grid || !CDEnabledAnimation)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return FALSE;
+  }
 
   grid[25] &= 0xfe;
   grid[26]  = 0x00;
@@ -83,6 +94,10 @@ bool VFD_CDAnimation(bool Forward)
       break;
     }
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return TRUE;
 }

@@ -2,11 +2,15 @@
 
 void OSDMenuColorPickerDrawCursor(tCurrentColorSelected CursorColor, bool Selected)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("OSDMenuColorPickerDrawCursor");
+  #endif
+
   int                  y = 0, CurrentX = 0, NewX = 0, TextY = 0;
   char                 s[24];
   TYPE_GrData          *MB;
 
-#define CURSORXOFFET   8
+  #define CURSORXOFFET   8
 
   if(ColorPickerOSDRgn)
   {
@@ -43,7 +47,7 @@ void OSDMenuColorPickerDrawCursor(tCurrentColorSelected CursorColor, bool Select
       }
     }
 
-    if (CurrentX > -1)TAP_Osd_PutGd(ColorPickerOSDRgn, CurrentX , y, &_ColorPicker_CursorNone_Gd, FALSE);
+    if(CurrentX > -1)TAP_Osd_PutGd(ColorPickerOSDRgn, CurrentX , y, &_ColorPicker_CursorNone_Gd, FALSE);
     TAP_Osd_PutGd(ColorPickerOSDRgn, NewX , y, &_ColorPicker_CursorDeselected_Gd, FALSE);
 
     MB = &_ColorPicker_ValueBackroundSelected_Gd;
@@ -62,4 +66,8 @@ void OSDMenuColorPickerDrawCursor(tCurrentColorSelected CursorColor, bool Select
     TAP_Osd_FillBox(ColorPickerOSDRgn, 211, 116, 60, 18, ColorPickerColor | 0xff000000);
     TAP_Osd_DrawRectangle(ColorPickerOSDRgn, 211, 116, 60, 18, 1, RGB(192,192,192));
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

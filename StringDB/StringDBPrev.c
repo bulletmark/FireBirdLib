@@ -2,14 +2,31 @@
 
 dword StringDBPrev(tStringDB *StringDB)
 {
-  char                 *p;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("StringDBPrev");
+  #endif
 
-  if(!StringDB || !StringDB->DBPtr || (StringDB->DBPtr <= StringDB->DB)) return '\0';
+  char                 *p;
+  dword                 ret;
+
+  if(!StringDB || !StringDB->DBPtr || (StringDB->DBPtr <= StringDB->DB))
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return '\0';
+  }
 
   p = (StringDB->DBPtr - 2);
   while(*p || (p >= StringDB->DB)) p--;
   p++;
   StringDB->DBPtr = p;
+  ret = (dword)p - (dword)StringDB->DB;
 
-  return (dword)p - (dword)StringDB->DB;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }

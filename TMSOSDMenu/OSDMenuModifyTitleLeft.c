@@ -3,13 +3,28 @@
 
 void OSDMenuModifyTitleLeft(char *Text)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("OSDMenuModifyTitleLeft");
+  #endif
+
   tMenu                *pMenu;
 
-  if(!Text) return;
+  if(!Text)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return;
+  }
 
   pMenu = &Menu[CurrentMenuLevel];
 
-  strncpy(pMenu->TitleLeft, Text, STDSTRINGSIZE);
+  strncpyUC(pMenu->TitleLeft, Text, STDSTRINGSIZE);
   pMenu->TitleLeft[STDSTRINGSIZE - 1] = '\0';
   TitleDirty = TRUE;
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

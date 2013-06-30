@@ -3,12 +3,33 @@
 
 bool FlashTransponderTablesDel(int SatNum, int TransponderNum)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashTransponderTablesDel");
+  #endif
+
+  bool ret;
+
   //SatNum out of range
-  if((SatNum < 0) || (SatNum >= FlashSatTablesGetTotal())) return FALSE;
+  if((SatNum < 0) || (SatNum >= FlashSatTablesGetTotal()))
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return FALSE;
+  }
 
   //TransponderNum out of range
-  if((TransponderNum < 0) || (TransponderNum >= FlashTransponderTablesGetTotal(SatNum))) return FALSE;
+  if((TransponderNum < 0) || (TransponderNum >= FlashTransponderTablesGetTotal(SatNum)))
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
 
+    return FALSE;
+  }
+
+  ret = FALSE;
   switch(GetSystemType())
   {
     //Unknown and old 5k/6k systems are not supported
@@ -20,7 +41,7 @@ bool FlashTransponderTablesDel(int SatNum, int TransponderNum)
     case ST_CT:
     case ST_T5700:
     case ST_T5800:
-    case ST_TF7k7HDPVR: return FALSE;
+    case ST_TF7k7HDPVR: break;
 
     case ST_TMSS:
     {
@@ -30,12 +51,26 @@ bool FlashTransponderTablesDel(int SatNum, int TransponderNum)
       dword                  *NrTransponders;
 
       pSat = (TYPE_SatInfo_TMSS*)(FIS_vFlashBlockSatInfo());
-      if(!pSat) return FALSE;
+      if(!pSat)
+      {
+        #ifdef DEBUG_FIREBIRDLIB
+          CallTraceExit(NULL);
+        #endif
+
+        return FALSE;
+      }
 
       NrSats = FlashSatTablesGetTotal();
 
       pTransp = (TYPE_TpInfo_TMSS*)(FIS_vFlashBlockTransponderInfo());
-      if(!pTransp) return FALSE;
+      if(!pTransp)
+      {
+        #ifdef DEBUG_FIREBIRDLIB
+          CallTraceExit(NULL);
+        #endif
+
+        return FALSE;
+      }
 
       //Find the end of the transponder list
       pTranspEnd = pTransp;
@@ -67,7 +102,8 @@ bool FlashTransponderTablesDel(int SatNum, int TransponderNum)
       *NrTransponders = *NrTransponders - 1;
       pSat->NrOfTransponders--;
 
-      return TRUE;
+      ret = TRUE;
+      break;
     }
 
     case ST_TMST:
@@ -77,10 +113,24 @@ bool FlashTransponderTablesDel(int SatNum, int TransponderNum)
       dword                  *NrTransponders;
 
       pSat = (TYPE_SatInfo_TMST*)(FIS_vFlashBlockSatInfo());
-      if(!pSat) return FALSE;
+      if(!pSat)
+      {
+        #ifdef DEBUG_FIREBIRDLIB
+          CallTraceExit(NULL);
+        #endif
+
+        return FALSE;
+      }
 
       pTransp = (TYPE_TpInfo_TMST*)(FIS_vFlashBlockTransponderInfo());
-      if(!pTransp) return FALSE;
+      if(!pTransp)
+      {
+        #ifdef DEBUG_FIREBIRDLIB
+          CallTraceExit(NULL);
+        #endif
+
+        return FALSE;
+      }
 
       //Find the location where to delete the transponder
       pTransp += TransponderNum;
@@ -101,7 +151,8 @@ bool FlashTransponderTablesDel(int SatNum, int TransponderNum)
       *NrTransponders = *NrTransponders - 1;
       pSat->NrOfTransponders--;
 
-      return TRUE;
+      ret = TRUE;
+      break;
     }
 
     case ST_TMSC:
@@ -111,10 +162,24 @@ bool FlashTransponderTablesDel(int SatNum, int TransponderNum)
       dword                  *NrTransponders;
 
       pSat = (TYPE_SatInfo_TMSC*)(FIS_vFlashBlockSatInfo());
-      if(!pSat) return FALSE;
+      if(!pSat)
+      {
+        #ifdef DEBUG_FIREBIRDLIB
+          CallTraceExit(NULL);
+        #endif
+
+        return FALSE;
+      }
 
       pTransp = (TYPE_TpInfo_TMSC*)(FIS_vFlashBlockTransponderInfo());
-      if(!pTransp) return FALSE;
+      if(!pTransp)
+      {
+        #ifdef DEBUG_FIREBIRDLIB
+          CallTraceExit(NULL);
+        #endif
+
+        return FALSE;
+      }
 
       //Find the location where to delete the transponder
       pTransp += TransponderNum;
@@ -135,11 +200,16 @@ bool FlashTransponderTablesDel(int SatNum, int TransponderNum)
       *NrTransponders = *NrTransponders - 1;
       pSat->NrOfTransponders--;
 
-      return TRUE;
+      ret = TRUE;
+      break;
     }
 
     case ST_NRTYPES: break;
   }
 
-  return FALSE;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }

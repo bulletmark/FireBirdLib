@@ -1,18 +1,23 @@
 #include                "FBLib_debug.h"
 
-void CallTraceExitResult (dword *Magic, char *Result)
+void CallTraceExitResult(dword *Magic, char *Result)
 {
-  char                  Spaces [101];
+  char                  Spaces[101];
   int                   i, j;
   dword                 t;
+  byte                 *ISOText;
+  extern dword          __tap_ud__;
+
+  if(CallTraceDoNotReenter) return;
+  CallTraceDoNotReenter = TRUE;
 
   t = TAP_GetTick();
 
   if(!CallTraceInitialized) CallTraceInit();
 
-  Spaces [0] = '\0';
+  Spaces[0] = '\0';
 
-  if (CallLevel > 0)
+  if(CallLevel > 0)
   {
     CallLevel--;
 
@@ -59,19 +64,23 @@ void CallTraceExitResult (dword *Magic, char *Result)
     }
   }
   else
-    TAP_Print("\n\nCallLevel Underflow!\n\n");
+    LogEntryFBLibPrintf(TRUE, "CallLevel Underflow! (TAPID 0x%8.8x)", __tap_ud__);
 
 
-  if (CallTraceEnabled || Magic)
+  if((CallTraceEnabled || Magic) && Result)
   {
-    memset (Spaces, ' ', CallLevel < CTSTACKSIZE ? CallLevel << 1 : 100);
-    Spaces [CallLevel < CTSTACKSIZE ? CallLevel << 1 : 100] = '\0';
-    if (Result && *Result) TAP_Print("%s  = %s\n", Spaces, Result);
+    memset(Spaces, ' ', CallLevel < CTSTACKSIZE ? CallLevel << 1 : 100);
+    Spaces[CallLevel < CTSTACKSIZE ? CallLevel << 1 : 100] = '\0';
+    StrToISOAlloc(Result, &ISOText);
+    if(ISOText && *ISOText) TAP_PrintNet("%s  = %s\n", Spaces, ISOText);
+    TAP_MemFree(ISOText);
   }
 
-  if (Magic && *Magic != DEFAULTMAGIC)
+  if(Magic && *Magic != DEFAULTMAGIC)
   {
-    TAP_Print("\n\n%sINVALID MAGIC!\n\n", Spaces);
+    TAP_PrintNet("%sINVALID MAGIC!\n", Spaces);
     *Magic = DEFAULTMAGIC;
   }
+
+  CallTraceDoNotReenter = FALSE;
 }

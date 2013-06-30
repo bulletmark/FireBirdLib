@@ -7,10 +7,21 @@
 
 int ExtAttribExistsAbsPath(char *AbsFileName, char *AttrName)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("ExtAttribExistsAbsPath");
+  #endif
+
   char                  FullAttrName[128];
   int                   f, i;
 
-  if(!AbsFileName || !*AbsFileName || !AttrName || !*AttrName) return 0;
+  if(!AbsFileName || !*AbsFileName || !AttrName || !*AttrName)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return 0;
+  }
 
   f = open(AbsFileName, O_RDWR, 0600);
   if(f)
@@ -20,10 +31,19 @@ int ExtAttribExistsAbsPath(char *AbsFileName, char *AttrName)
     if((i = fgetxattr(f, FullAttrName, NULL, 0)) >= 0)
     {
       close(f);
+
+      #ifdef DEBUG_FIREBIRDLIB
+        CallTraceExit(NULL);
+      #endif
+
       return i;
     }
     close(f);
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return 0;
 }

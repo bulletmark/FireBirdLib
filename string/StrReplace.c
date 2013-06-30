@@ -3,18 +3,43 @@
 
 bool StrReplace(char *String, char *Find, char *Replace)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("StrReplace");
+  #endif
+
   int                   FindLen, ReplaceLen;
   char                 *p;
   bool                  ret = FALSE;
 
   //No NULL pointers?
-  if(!String || !Find || !Replace) return FALSE;
+  if(!String || !Find || !Replace)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return FALSE;
+  }
 
   //No empty strings? Replace may be empty
-  if(!String[0] || !Find[0]) return FALSE;
+  if(!String[0] || !Find[0])
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return FALSE;
+  }
 
   //At least one match?
-  if(!strstr(String, Find)) return FALSE;
+  if(!strstr(String, Find))
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return FALSE;
+  }
 
   FindLen = strlen(Find);
   ReplaceLen = strlen(Replace);
@@ -79,6 +104,10 @@ bool StrReplace(char *String, char *Find, char *Replace)
     strcpy(String, TempBuffer);
     TAP_MemFree(TempBuffer);
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return ret;
 }

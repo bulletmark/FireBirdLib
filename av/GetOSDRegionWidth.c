@@ -2,31 +2,27 @@
 
 word GetOSDRegionWidth(word Region)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("GetOSDRegionWidth");
+  #endif
+
   tOSDMapInfo          *OSDMapInfo;
   word                  ret;
 
-#ifdef DEBUG_FIREBIRDLIB
-  char buf[80];
-  TAP_SPrint(buf, "GetOSDRegionWidth(%d)", Region);
-  CallTraceEnter(buf);
-#endif
-
-  if (!(OSDMapInfo = (tOSDMapInfo*) FIS_vOsdMap()))
+  if(!(OSDMapInfo = (tOSDMapInfo*) FIS_vOsdMap()))
   {
-
-#ifdef DEBUG_FIREBIRDLIB
-    CallTraceExitResult(NULL, "0");
-#endif
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
 
     return 0;
   }
 
   ret = OSDMapInfo[Region].Width;
 
-#ifdef DEBUG_FIREBIRDLIB
-  TAP_SPrint(buf, "%d", ret);
-  CallTraceExitResult(NULL, buf);
-#endif
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return ret;
 }

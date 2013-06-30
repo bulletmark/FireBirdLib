@@ -2,8 +2,18 @@
 
 bool FM_isValidCharacter(byte Char)
 {
-  if(Char < 0x20) return FALSE;
-  if((Char > 0x7e) && (Char < 0xa0)) return FALSE;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FM_isValidCharacter");
+  #endif
 
-  return TRUE;
+  bool ret = TRUE;
+
+  if(Char < 0x20) ret = FALSE;
+  if((Char > 0x7e) && (Char < 0xa0)) ret = FALSE;
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }

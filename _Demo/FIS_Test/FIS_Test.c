@@ -22,7 +22,7 @@ TAP_ETCINFO             (__DATE__);
 char                    LogPuffer[256];
 #define DEBUG(...)      {sprintf(LogPuffer, __VA_ARGS__); LogEntry(LOGNAME, PROGRAM_NAME, TRUE, TIMESTAMP_HMS, LogPuffer);}
 
-dword TAP_EventHandler (word event, dword param1, dword param2)
+dword TAP_EventHandler(word event, dword param1, dword param2)
 {
   (void) event;
   (void) param2;
@@ -108,7 +108,7 @@ void DumpInfo(void)
   int                   i;
 
   //Details about Flash access
-  if (InitTAPex())
+  if(InitTAPex())
   {
     DEBUG("Main init = OK");
   }
@@ -121,7 +121,7 @@ void DumpInfo(void)
   DEBUG("");
   HDD_TAP_PushDir();
   Loc = INILocateFile(FIRMWAREDAT, NULL);
-  if (Loc == INILOCATION_NotFound)
+  if(Loc == INILOCATION_NotFound)
   {
     HDD_TAP_PopDir();
 
@@ -139,7 +139,7 @@ void DumpInfo(void)
       default: strcat(x, "(unhandled)"); break;
     }
 
-    if (!LoadFirmwareDat(&FWDatHeader, &ToppyInfo, &FWInfo))
+    if(!LoadFirmwareDat(&FWDatHeader, &ToppyInfo, &FWInfo))
     {
       HDD_TAP_PopDir();
       DEBUG("%s", x);
@@ -160,14 +160,14 @@ void DumpInfo(void)
     }
     else
     {
-      for (i = 0; i < (int)FWDatHeader->NrOfToppyInfoEntries; i++, ToppyInfo++)
+      for(i = 0; i < (int)FWDatHeader->NrOfToppyInfoEntries; i++, ToppyInfo++)
         if(ToppyInfo->SysID == GetSysID()) break;
 
       DEBUG("  SysID         =  %d", ToppyInfo->SysID);
       DEBUG("  Device        =  %s", ToppyInfo->Device);
       DEBUG("  AppType       =  %s", ToppyInfo->AppType);
 
-      switch (ToppyInfo->SystemType)
+      switch(ToppyInfo->SystemType)
       {
         case ST_UNKNOWN   : break;
         case ST_S         : DEBUG("  SystemType    =  ST_S"); break;
@@ -253,7 +253,6 @@ void DumpInfo(void)
   DEBUG("ApplTap_CallEventHandler           = %8.8x", FIS_fwApplTap_CallEventHandler());
   DEBUG("ApplTap_GetEmptyTask               = %8.8x", FIS_fwApplTap_GetEmptyTask());
   DEBUG("ApplTimer_OptimizeList             = %8.8x", FIS_fwApplTimer_OptimizeList());
-  DEBUG("ApplTimeToLocal                    = %8.8x", FIS_fwApplTimeToLocal());
   DEBUG("ApplVfdSendData                    = %8.8x", FIS_fwApplVfdSendData());
   DEBUG("ApplVfdStart                       = %8.8x", FIS_fwApplVfdStart());
   DEBUG("ApplVfdStop                        = %8.8x", FIS_fwApplVfdStop());
@@ -672,7 +671,7 @@ void CopyInf(void)
   TAP_Hdd_ChangeDir("/DataFiles");
   NrFiles = TAP_Hdd_FindFirst(&FolderEntry, "inf");
   Got = 0;
-  for (i = 0; i < NrFiles; i++)
+  for(i = 0; i < NrFiles; i++)
   {
     if(FolderEntry.attr == ATTR_NORMAL)
     {
@@ -701,7 +700,7 @@ void PackAndDelete(void)
   rename(ROOTDIR"/FIS_Test.tar.gz", ROOTDIR"/FIS_Test.tgz");
 }
 
-int TAP_Main (void)
+int TAP_Main(void)
 {
   word                  SystemID;
 

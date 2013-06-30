@@ -3,9 +3,17 @@
 
 void OSDMenuKeyboard_CursorRight(void)
 {
-  if(OSDMenuKeyboard_CursorPosition < (int)strlen(OSDMenuKeyboard_StringVar))
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("OSDMenuKeyboard_CursorRight");
+  #endif
+
+  if(OSDMenuKeyboard_CursorPosition < (int)strlenUC(OSDMenuKeyboard_StringVar))
   {
     OSDMenuKeyboard_CursorPosition++;
     OSDMenuKeyboard_Draw();
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

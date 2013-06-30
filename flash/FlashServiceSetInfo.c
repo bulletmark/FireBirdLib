@@ -3,15 +3,43 @@
 
 bool FlashServiceSetInfo(int SvcType, int SvcNum, tFlashService *Service)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashServiceSetInfo");
+  #endif
+
+  bool ret;
+
   //SvcType out of range
-  if((SvcType < 0) || (SvcType > SVC_TYPE_Radio)) return FALSE;
+  if((SvcType < 0) || (SvcType > SVC_TYPE_Radio))
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return FALSE;
+  }
 
   //SvcNum out of range
-  if((SvcNum < 0) || (SvcNum >= FlashServiceGetTotal(SvcType))) return FALSE;
+  if((SvcNum < 0) || (SvcNum >= FlashServiceGetTotal(SvcType)))
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return FALSE;
+  }
 
   //Service is NULL
-  if(!Service) return FALSE;
+  if(!Service)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
 
+    return FALSE;
+  }
+
+  ret = FALSE;
   switch(GetSystemType())
   {
     //Unknown and old 5k/6k systems are not supported
@@ -23,7 +51,7 @@ bool FlashServiceSetInfo(int SvcType, int SvcNum, tFlashService *Service)
     case ST_CT:
     case ST_T5700:
     case ST_T5800:
-    case ST_TF7k7HDPVR: return FALSE;
+    case ST_TF7k7HDPVR: break;
 
     case ST_TMSS:
     {
@@ -33,9 +61,8 @@ bool FlashServiceSetInfo(int SvcType, int SvcNum, tFlashService *Service)
         p = (TYPE_Service_TMSS*)(FIS_vFlashBlockTVServices() + SvcNum * sizeof(TYPE_Service_TMSS));
       else
         p = (TYPE_Service_TMSS*)(FIS_vFlashBlockRadioServices() + SvcNum * sizeof(TYPE_Service_TMSS));
-      if(!p) return FALSE;
-
-      return FlashServiceEncode(p, Service);
+      if(p) ret = FlashServiceEncode(p, Service);
+      break;
     }
 
     case ST_TMST:
@@ -46,9 +73,8 @@ bool FlashServiceSetInfo(int SvcType, int SvcNum, tFlashService *Service)
         p = (TYPE_Service_TMST*)(FIS_vFlashBlockTVServices() + SvcNum * sizeof(TYPE_Service_TMST));
       else
         p = (TYPE_Service_TMST*)(FIS_vFlashBlockRadioServices() + SvcNum * sizeof(TYPE_Service_TMST));
-      if(!p) return FALSE;
-
-      return FlashServiceEncode(p, Service);
+      if(p) ret = FlashServiceEncode(p, Service);
+      break;
     }
 
     case ST_TMSC:
@@ -59,13 +85,16 @@ bool FlashServiceSetInfo(int SvcType, int SvcNum, tFlashService *Service)
         p = (TYPE_Service_TMSC*)(FIS_vFlashBlockTVServices() + SvcNum * sizeof(TYPE_Service_TMSC));
       else
         p = (TYPE_Service_TMSC*)(FIS_vFlashBlockRadioServices() + SvcNum * sizeof(TYPE_Service_TMSC));
-      if(!p) return FALSE;
-
-      return FlashServiceEncode(p, Service);
+      if(p) ret = FlashServiceEncode(p, Service);
+      break;
     }
 
     case ST_NRTYPES: break;
   }
 
-  return FALSE;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }

@@ -435,14 +435,14 @@ static void ReadCLen(ARDATA *ar)
           else
             c = ar->Left[c];
           mask >>= 1;
-        } while (c>=NT);
+        } while(c>=NT);
       }
       FillBuf(ar, ar->PtLen[c]);
       if(c <= 2)
       {
         if(c == 1)
           c = 2+GetBits(ar, 4);
-        else if (c == 2)
+        else if(c == 2)
           c = 19+GetBits(ar, CBIT);
         while(c >= 0)
         {
@@ -1308,49 +1308,86 @@ static void Encode(ARDATA *ar)
 
 word CompressBlock(byte *inputbuffer, word inputsize, byte *outputbuffer)
 {
-  if (!inputbuffer || inputsize > 0x7ffa)
-    return 0;
-  else
-  {
-    int compsize = 0;
-    ARDATA *ar = malloc(sizeof(ARDATA));
-    if(ar)
-    {
-      InitVars(ar);
-      ar->FileInPtr = inputbuffer;
-      ar->FileOutPtr = outputbuffer;
-      ar->InBufferBytes = inputsize;
-      Encode(ar);
-      compsize = ar->CompSize;
-      // Copy the Buffer If encoding failed
-      if(compsize == 0 || ar->CBytesWritten > 0x7ffa)
-      {
-        if(outputbuffer) memcpy(outputbuffer, inputbuffer, inputsize);
-        compsize = inputsize;
-      }
-      free(ar);
-    }
-    return compsize;
-  }
-}
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("CompressBlock");
+  #endif
 
-word UncompressBlock(byte *inputbuffer, word inputsize, byte *outputbuffer, word outputsize)
-{
-  ARDATA *ar = malloc(sizeof(ARDATA));
-  if(!ar)
-    return 0;
-  else
+  if(!inputbuffer || inputsize > 0x7ffa)
   {
-    word failed;
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return 0;
+  }
+
+  int compsize = 0;
+  ARDATA *ar = malloc(sizeof(ARDATA));
+  if(ar)
+  {
     InitVars(ar);
     ar->FileInPtr = inputbuffer;
     ar->FileOutPtr = outputbuffer;
-    ar->CompSize = inputsize;
     ar->InBufferBytes = inputsize;
-    ar->OrigSize = outputsize;
-    Decode(ar);
-    failed = ar->Failed;
+    Encode(ar);
+    compsize = ar->CompSize;
+    // Copy the Buffer If encoding failed
+    if(compsize == 0 || ar->CBytesWritten > 0x7ffa)
+    {
+      if(outputbuffer) memcpy(outputbuffer, inputbuffer, inputsize);
+      compsize = inputsize;
+    }
     free(ar);
-    return !failed;
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return compsize;
+}
+
+word UncompressBlock(byte *inputbuffer, word inputsize, byte *outputbuffer, word BufferSize)
+{
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("UncompressBlock");
+  #endif
+
+  if(!inputbuffer)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return 0;
+  }
+
+  ARDATA *ar = malloc(sizeof(ARDATA));
+  if(!ar)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return 0;
+  }
+
+  word failed;
+
+  InitVars(ar);
+  ar->FileInPtr = inputbuffer;
+  ar->FileOutPtr = outputbuffer;
+  ar->CompSize = inputsize;
+  ar->InBufferBytes = inputsize;
+  ar->OrigSize = BufferSize;
+  Decode(ar);
+  failed = ar->Failed;
+  free(ar);
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return !failed;
+
 }

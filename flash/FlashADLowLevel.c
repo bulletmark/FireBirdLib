@@ -3,9 +3,23 @@
 
 bool FlashADDecode(void *Data, tAutoDescrambleTimer *ADTimer)
 {
-  //ADTimer is NULL
-  if(!Data || !ADTimer) return FALSE;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashADDecode");
+  #endif
 
+  bool ret;
+
+  //ADTimer is NULL
+  if(!Data || !ADTimer)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return FALSE;
+  }
+
+  ret = FALSE;
   switch(GetSystemType())
   {
     //Unknown and old 5k/6k systems are not supported
@@ -17,21 +31,29 @@ bool FlashADDecode(void *Data, tAutoDescrambleTimer *ADTimer)
     case ST_CT:
     case ST_T5700:
     case ST_T5800:
-    case ST_TF7k7HDPVR: return FALSE;
+    case ST_TF7k7HDPVR: break;
 
-    case ST_TMSS: return FlashADDecode_ST_TMSS(Data, ADTimer);
-    case ST_TMST: return FlashADDecode_ST_TMST(Data, ADTimer);
-    case ST_TMSC: return FlashADDecode_ST_TMSC(Data, ADTimer);
+    case ST_TMSS: ret = FlashADDecode_ST_TMSS(Data, ADTimer); break;
+    case ST_TMST: ret = FlashADDecode_ST_TMST(Data, ADTimer); break;
+    case ST_TMSC: ret = FlashADDecode_ST_TMSC(Data, ADTimer); break;
 
     case ST_NRTYPES: break;
   }
 
-  return FALSE;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }
 
 bool FlashADDecode_ST_TMSS(TYPE_AutoDescrambleTimer *Data, tAutoDescrambleTimer *ADTimer)
 {
   int                        i;
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashADDecode_ST_TMSS");
+  #endif
 
   memset(ADTimer, 0, sizeof(tAutoDescrambleTimer));
   ADTimer->StartTime        = Data->StartTime;
@@ -48,24 +70,66 @@ bool FlashADDecode_ST_TMSS(TYPE_AutoDescrambleTimer *Data, tAutoDescrambleTimer 
   for(i = 0; i < 50; i++)
     strncpy(ADTimer->FileName[i], Data->FileName[i], MAX_FILE_NAME_SIZE);
 
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
   return TRUE;
 }
 
 bool FlashADDecode_ST_TMSC(TYPE_AutoDescrambleTimer *Data, tAutoDescrambleTimer *ADTimer)
 {
-  return FlashADDecode_ST_TMSS(Data, ADTimer);
+  bool ret;
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashADDecode_ST_TMSC");
+  #endif
+
+  ret = FlashADDecode_ST_TMSS(Data, ADTimer);
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }
 
 bool FlashADDecode_ST_TMST(TYPE_AutoDescrambleTimer *Data, tAutoDescrambleTimer *ADTimer)
 {
-  return FlashADDecode_ST_TMSS(Data, ADTimer);
+  bool ret;
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashADDecode_ST_TMST");
+  #endif
+
+  ret = FlashADDecode_ST_TMSS(Data, ADTimer);
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }
 
 bool FlashADEncode(void *Data, tAutoDescrambleTimer *ADTimer)
 {
-  //ADTimer is NULL
-  if(!Data || !ADTimer) return FALSE;
+  bool ret;
 
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashADEncode");
+  #endif
+
+  //ADTimer is NULL
+  if(!Data || !ADTimer)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return FALSE;
+  }
+
+  ret = FALSE;
   switch(GetSystemType())
   {
     //Unknown and old 5k/6k systems are not supported
@@ -77,21 +141,29 @@ bool FlashADEncode(void *Data, tAutoDescrambleTimer *ADTimer)
     case ST_CT:
     case ST_T5700:
     case ST_T5800:
-    case ST_TF7k7HDPVR: return FALSE;
+    case ST_TF7k7HDPVR: break;
 
-    case ST_TMSS: return FlashADEncode_ST_TMSS(Data, ADTimer);
-    case ST_TMST: return FlashADEncode_ST_TMST(Data, ADTimer);
-    case ST_TMSC: return FlashADEncode_ST_TMSC(Data, ADTimer);
+    case ST_TMSS: ret = FlashADEncode_ST_TMSS(Data, ADTimer); break;
+    case ST_TMST: ret = FlashADEncode_ST_TMST(Data, ADTimer); break;
+    case ST_TMSC: ret = FlashADEncode_ST_TMSC(Data, ADTimer); break;
 
     case ST_NRTYPES: break;
   }
 
-  return FALSE;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }
 
 bool FlashADEncode_ST_TMSS(TYPE_AutoDescrambleTimer *Data, tAutoDescrambleTimer *ADTimer)
 {
   int                   i;
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashADEncode_ST_TMSS");
+  #endif
 
   memset(Data, 0, sizeof(TYPE_AutoDescrambleTimer));
   Data->StartTime        = ADTimer->StartTime;
@@ -108,15 +180,43 @@ bool FlashADEncode_ST_TMSS(TYPE_AutoDescrambleTimer *Data, tAutoDescrambleTimer 
   for(i = 0; i < 50; i++)
     strncpy(Data->FileName[i], ADTimer->FileName[i], MAX_FILE_NAME_SIZE);
 
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
   return TRUE;
 }
 
 bool FlashADEncode_ST_TMSC(TYPE_AutoDescrambleTimer *Data, tAutoDescrambleTimer *ADTimer)
 {
-  return FlashADEncode_ST_TMSS(Data, ADTimer);
+  bool ret;
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashADEncode_ST_TMSC");
+  #endif
+
+  ret = FlashADEncode_ST_TMSS(Data, ADTimer);
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }
 
 bool FlashADEncode_ST_TMST(TYPE_AutoDescrambleTimer *Data, tAutoDescrambleTimer *ADTimer)
 {
-  return FlashADEncode_ST_TMSS(Data, ADTimer);
+  bool ret;
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashADEncode_ST_TMST");
+  #endif
+
+  ret = FlashADEncode_ST_TMSS(Data, ADTimer);
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }

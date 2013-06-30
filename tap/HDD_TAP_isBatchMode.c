@@ -4,5 +4,15 @@
 
 bool HDD_TAP_isBatchMode(void)
 {
-  return (shmget(BATCHMODEKEY, 1, 0) != -1);
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("HDD_TAP_isBatchMode");
+  #endif
+
+  bool ret = (shmget(BATCHMODEKEY, 1, 0) != -1);
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }

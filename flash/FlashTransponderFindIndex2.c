@@ -2,6 +2,10 @@
 
 int FlashTransponderFindIndex2(dword SatIndex, dword NetworkID, dword TSID, byte ModSystem)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashTransponderFindIndex2");
+  #endif
+
   int                     TrCount, i;
   tFlashTransponderTable  TransponderTable;
 
@@ -10,9 +14,20 @@ int FlashTransponderFindIndex2(dword SatIndex, dword NetworkID, dword TSID, byte
   {
     if(FlashTransponderTablesGetInfo(SatIndex, i, &TransponderTable))
     {
-      if((TransponderTable.OriginalNetworkID == NetworkID) && (TransponderTable.TSID == TSID) && (TransponderTable.ModSystem == ModSystem)) return i;
+      if((TransponderTable.OriginalNetworkID == NetworkID) && (TransponderTable.TSID == TSID) && (TransponderTable.ModSystem == ModSystem))
+      {
+        #ifdef DEBUG_FIREBIRDLIB
+          CallTraceExit(NULL);
+        #endif
+
+        return i;
+      }
     }
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return -1;
 }

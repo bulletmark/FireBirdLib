@@ -7,15 +7,32 @@
 
 bool ExtAttribRemove(char *FileName, char *AttrName)
 {
-  char                  AbsFileName[512];
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("ExtAttribRemove");
+  #endif
 
-  if(!FileName || !*FileName || !TAP_Hdd_Exist(FileName) || !AttrName || !*AttrName) return FALSE;
+  char                  AbsFileName[512];
+  bool                  ret;
+
+  if(!FileName || !*FileName || !TAP_Hdd_Exist(FileName) || !AttrName || !*AttrName)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return FALSE;
+  }
 
   memset(AbsFileName, 0, sizeof(AbsFileName));
   strcpy(AbsFileName, TAPFSROOT);
   HDD_TAP_GetCurrentDir(&AbsFileName[strlen(AbsFileName)]);
   if(AbsFileName[strlen(AbsFileName) - 1] != '/') strcat(AbsFileName, "/");
   strcat(AbsFileName, FileName);
+  ret = ExtAttribRemoveAbsPath(AbsFileName, AttrName);
 
-  return ExtAttribRemoveAbsPath(AbsFileName, AttrName);
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }

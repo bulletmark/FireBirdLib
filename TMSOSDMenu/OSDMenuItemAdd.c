@@ -3,6 +3,10 @@
 
 bool OSDMenuItemAdd(char *Name, char *Value, TYPE_GrData *pNameIconGd, TYPE_GrData *pValueIconGd, bool Selectable, bool ValueArrows, dword ID)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("OSDMenuItemAdd");
+  #endif
+
   tMenu                *pMenu;
   int                   NewNrItems;
   tItem                *TempItem;
@@ -13,7 +17,15 @@ bool OSDMenuItemAdd(char *Name, char *Value, TYPE_GrData *pNameIconGd, TYPE_GrDa
   {
     NewNrItems = pMenu->MaxItems + 30;
     TempItem = TAP_MemAlloc(NewNrItems * sizeof(tItem));
-    if(!TempItem) return FALSE;
+    if(!TempItem)
+    {
+      #ifdef DEBUG_FIREBIRDLIB
+        CallTraceExit(NULL);
+      #endif
+
+      return FALSE;
+    }
+
     memset(TempItem, 0, NewNrItems * sizeof(tItem));
     memcpy(TempItem, pMenu->Item, pMenu->NrItems * sizeof(tItem));
     TAP_MemFree(pMenu->Item);
@@ -21,7 +33,14 @@ bool OSDMenuItemAdd(char *Name, char *Value, TYPE_GrData *pNameIconGd, TYPE_GrDa
     pMenu->MaxItems = NewNrItems;
   }
 
-  if(!Name || !Name[0]) return FALSE;
+  if(!Name || !Name[0])
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return FALSE;
+  }
 
   strncpy(pMenu->Item[pMenu->NrItems].Name, Name, ITEMNAMESIZE);
   pMenu->Item[pMenu->NrItems].Name[ITEMNAMESIZE - 1] = '\0';
@@ -32,7 +51,7 @@ bool OSDMenuItemAdd(char *Name, char *Value, TYPE_GrData *pNameIconGd, TYPE_GrDa
     pMenu->Item[pMenu->NrItems].Value[ITEMVALUESIZE - 1] = '\0';
   }
   else
-    pMenu->Item[pMenu->NrItems].Value[0]    = '\0';
+    pMenu->Item[pMenu->NrItems].Value[0] = '\0';
 
   pMenu->Item[pMenu->NrItems].pNameIconGd   = pNameIconGd;
   pMenu->Item[pMenu->NrItems].pValueIconGd  = pValueIconGd;
@@ -46,8 +65,11 @@ bool OSDMenuItemAdd(char *Name, char *Value, TYPE_GrData *pNameIconGd, TYPE_GrDa
 
   pMenu->NrItems++;
 
-  //TODO: only when in visible area
   ListDirty = TRUE;
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return TRUE;
 }

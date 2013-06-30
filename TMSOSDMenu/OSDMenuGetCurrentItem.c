@@ -2,5 +2,15 @@
 
 int OSDMenuGetCurrentItem(void)
 {
-  return Menu[CurrentMenuLevel].CurrentSelection;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("OSDMenuGetCurrentItem");
+  #endif
+
+  int ret = Menu[CurrentMenuLevel].CurrentSelection;
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }

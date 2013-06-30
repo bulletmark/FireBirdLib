@@ -2,13 +2,18 @@
 
 inline dword FIS_vFlashBlockOTAInfo(void)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FIS_vFlashBlockOTAInfo");
+  #endif
+
   static dword          *vFlashOtaInfo = 0;
 
   if(!vFlashOtaInfo)
-  {
     vFlashOtaInfo = (dword*)TryResolve("_otaInfo");
-    if(!vFlashOtaInfo) return 0;
-  }
 
-  return *vFlashOtaInfo;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return (vFlashOtaInfo ? *vFlashOtaInfo : 0);
 }

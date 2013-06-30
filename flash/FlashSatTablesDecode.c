@@ -3,12 +3,33 @@
 
 bool FlashSatTablesGetInfo(int SatNum, tFlashSatTable *SatTable)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashSatTablesGetInfo");
+  #endif
+
+  bool ret;
+
   //SatNum out of range
-  if((SatNum < 0) || (SatNum >= FlashSatTablesGetTotal())) return FALSE;
+  if((SatNum < 0) || (SatNum >= FlashSatTablesGetTotal()))
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return FALSE;
+  }
 
   //SatTable is NULL
-  if(!SatTable) return FALSE;
+  if(!SatTable)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
 
+    return FALSE;
+  }
+
+  ret = FALSE;
   switch(GetSystemType())
   {
     //Unknown and old 5k/6k systems are not supported
@@ -20,16 +41,19 @@ bool FlashSatTablesGetInfo(int SatNum, tFlashSatTable *SatTable)
     case ST_CT:
     case ST_T5700:
     case ST_T5800:
-    case ST_TF7k7HDPVR: return FALSE;
+    case ST_TF7k7HDPVR: break;
 
     case ST_TMSS:
     {
       TYPE_SatInfo_TMSS *p;
 
       p = (TYPE_SatInfo_TMSS*)FIS_vFlashBlockSatInfo();
-      if(!p) return FALSE;
-      p = p + SatNum;
-      return FlashSatTablesDecode(p, SatTable);
+      if(p)
+      {
+        p = p + SatNum;
+        ret = FlashSatTablesDecode(p, SatTable);
+      }
+      break;
     }
 
     case ST_TMST:
@@ -37,8 +61,8 @@ bool FlashSatTablesGetInfo(int SatNum, tFlashSatTable *SatTable)
       TYPE_SatInfo_TMST *p;
 
       p = (TYPE_SatInfo_TMST*)FIS_vFlashBlockSatInfo();
-      if(!p) return FALSE;
-      return FlashSatTablesDecode(p, SatTable);
+      if(p) ret = FlashSatTablesDecode(p, SatTable);
+      break;
     }
 
     case ST_TMSC:
@@ -46,21 +70,38 @@ bool FlashSatTablesGetInfo(int SatNum, tFlashSatTable *SatTable)
       TYPE_SatInfo_TMSC *p;
 
       p = (TYPE_SatInfo_TMSC*)FIS_vFlashBlockSatInfo();
-      if(!p) return FALSE;
-
-      return FlashSatTablesDecode(p, SatTable);
+      if(p) ret = FlashSatTablesDecode(p, SatTable);
+      break;
     }
 
     case ST_NRTYPES: break;
   }
 
-  return FALSE;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }
 
 bool FlashSatTablesDecode(void *Data, tFlashSatTable *SatTable)
 {
-  if(!Data || !SatTable) return FALSE;
+  bool ret;
 
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashSatTablesDecode");
+  #endif
+
+  if(!Data || !SatTable)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return FALSE;
+  }
+
+  ret = FALSE;
   switch(GetSystemType())
   {
     //Unknown and old 5k/6k systems are not supported
@@ -72,21 +113,36 @@ bool FlashSatTablesDecode(void *Data, tFlashSatTable *SatTable)
     case ST_CT:
     case ST_T5700:
     case ST_T5800:
-    case ST_TF7k7HDPVR: return FALSE;
+    case ST_TF7k7HDPVR: break;
 
-    case ST_TMSS: return FlashSatTablesDecode_ST_TMSS(Data, SatTable);
-    case ST_TMST: return FlashSatTablesDecode_ST_TMST(Data, SatTable);
-    case ST_TMSC: return FlashSatTablesDecode_ST_TMSC(Data, SatTable);
+    case ST_TMSS: ret = FlashSatTablesDecode_ST_TMSS(Data, SatTable); break;
+    case ST_TMST: ret = FlashSatTablesDecode_ST_TMST(Data, SatTable); break;
+    case ST_TMSC: ret = FlashSatTablesDecode_ST_TMSC(Data, SatTable); break;
 
     case ST_NRTYPES: break;
   }
 
-  return FALSE;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }
 
 bool FlashSatTablesDecode_ST_TMSS(TYPE_SatInfo_TMSS *Data, tFlashSatTable *SatTable)
 {
-  if(!Data || !SatTable) return FALSE;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashSatTablesDecode_ST_TMSS");
+  #endif
+
+  if(!Data || !SatTable)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return FALSE;
+  }
 
   memset(SatTable, 0, sizeof(tFlashSatTable));
   SatTable->NrOfTransponders = Data->NrOfTransponders;
@@ -130,27 +186,61 @@ bool FlashSatTablesDecode_ST_TMSS(TYPE_SatInfo_TMSS *Data, tFlashSatTable *SatTa
   memcpy(SatTable->LNB[1].DiSEqC12Flags, Data->LNB[1].DiSEqC12Flags, 3);
   memcpy(SatTable->LNB[1].unused5, Data->LNB[1].unused5, 5);
 
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
   return TRUE;
 }
 
 bool FlashSatTablesDecode_ST_TMST(TYPE_SatInfo_TMST *Data, tFlashSatTable *SatTable)
 {
-  if(!Data || !SatTable) return FALSE;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashSatTablesDecode_ST_TMST");
+  #endif
+
+  if(!Data || !SatTable)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return FALSE;
+  }
 
   memset(SatTable, 0, sizeof(tFlashSatTable));
   SatTable->NrOfTransponders = Data->NrOfTransponders;
   strncpy(SatTable->SatName, Data->SatName, 15);
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return TRUE;
 }
 
 bool FlashSatTablesDecode_ST_TMSC(TYPE_SatInfo_TMSC *Data, tFlashSatTable *SatTable)
 {
-  if(!Data || !SatTable) return FALSE;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashSatTablesDecode_ST_TMSC");
+  #endif
+
+  if(!Data || !SatTable)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return FALSE;
+  }
 
   memset(SatTable, 0, sizeof(tFlashSatTable));
   SatTable->NrOfTransponders = Data->NrOfTransponders;
   strncpy(SatTable->SatName, "Cable", 15);
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return TRUE;
 }

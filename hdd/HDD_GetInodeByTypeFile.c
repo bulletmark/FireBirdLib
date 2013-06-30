@@ -1,10 +1,22 @@
 #include                "../libFireBird.h"
 
-dword HDD_GetInodeByTypeFile(TYPE_File *File)
+__ino64_t HDD_GetInodeByTypeFile(TYPE_File *File)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("HDD_GetInodeByTypeFile");
+  #endif
+
   char                  AbsFileName[512];
+  __ino64_t             ret;
 
-  if(!HDD_GetAbsolutePathByTypeFileUTF8(File, AbsFileName)) return 0;
+  if(HDD_GetAbsolutePathByTypeFile(File, AbsFileName))
+    ret = HDD_GetInodeByAbsFileName(AbsFileName);
+  else
+    ret = 0;
 
-  return HDD_GetInodeByAbsFileName(AbsFileName);
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }

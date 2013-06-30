@@ -2,6 +2,10 @@
 
 int FlashFavoritesGetTotal(void)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashFavoritesGetTotal");
+  #endif
+
   int                   i, NrGroups, NrSvcsPerGroup;
   tFavorites           *Favs30100;
   tFavorites1050       *Favs1050;
@@ -9,7 +13,14 @@ int FlashFavoritesGetTotal(void)
   Favs30100 = (tFavorites*)FIS_vFlashBlockFavoriteGroup();
   Favs1050 = (tFavorites1050*)Favs30100;
 
-  if(!Favs30100) return 0;
+  if(!Favs30100)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return 0;
+  }
 
   i = 0;
 
@@ -38,6 +49,10 @@ int FlashFavoritesGetTotal(void)
       break;
     }
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return i;
 }

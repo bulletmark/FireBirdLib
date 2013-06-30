@@ -37,12 +37,12 @@
   extern int            OSDMenuKeyboard_ButtonsX[3];
   extern tOSDMenuKeyboard_Buttons OSDMenuKeyboard_Buttons[20];
   extern int            OSDMenuKeyboard_NrButtons;
-  extern char           Keypad[KPM_NrModes][26][2];
+  extern char           Keypad[KPM_NrModes][26][4];
   extern tKeyPadMode    KeyPadMode;
   extern int            KeyPadPosition;
   extern word           OSDMenuKeyboard_rgn;
-  extern tFontData      Calibri_14_FontData;
   extern bool           OSDMenuKeyboard_ReturnToNormal;
+  extern tFontDataUC    KeyboardFont_12, KeyboardFont_14;
 
   void OSDMenuKeyboard_Draw(void);
   void OSDMenuKeyboard_DrawLegendButton(dword Line, tButtonIcon ButtonIcon, char *Text);

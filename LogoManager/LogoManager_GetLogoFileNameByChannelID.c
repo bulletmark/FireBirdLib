@@ -6,6 +6,10 @@
 
 char *LogoManager_GetPathToLogoByChannelID(ulong64 ChannelID, tLogoStyle LogoStyle, tLogoSize LogoSize, tLogoAspect LogoAR)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("LogoManager_GetPathToLogoByChannelID");
+  #endif
+
   static char           LogoNameB[256];
   char                  s[20];
 
@@ -32,9 +36,17 @@ char *LogoManager_GetPathToLogoByChannelID(ulong64 ChannelID, tLogoStyle LogoSty
           break;
     }
 
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
     return LogoNameB;
   }
   HDD_TAP_PopDir();
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return "";
 }

@@ -2,6 +2,10 @@
 
 void OSDMenuKeyboard_Finish(void)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("OSDMenuKeyboard_Finish");
+  #endif
+
   if(OSDMenuKeyboard_rgn)
   {
     TAP_MemFree(OSDMenuKeyboard_StringVar);
@@ -14,5 +18,11 @@ void OSDMenuKeyboard_Finish(void)
     if(OSDMenuKeyboard_ReturnToNormal) TAP_EnterNormalNoInfo();
     OSDMenuKeyboard_TMSRemoteDirectMode(FALSE);
     OSDMenuKeyboard_StringVarOrig = NULL;
+    FMUC_FreeFontFile(&KeyboardFont_12);
+    FMUC_FreeFontFile(&KeyboardFont_14);
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

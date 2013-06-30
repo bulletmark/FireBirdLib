@@ -1,15 +1,26 @@
 #include                "FBLib_tapcom.h"
 
-TAPCOM_Channel TAPCOM_OpenChannel (dword TargetID, dword ServiceID, dword ParamBlockVersion, void *ParamBlock)
+TAPCOM_Channel TAPCOM_OpenChannel(dword TargetID, dword ServiceID, dword ParamBlockVersion, void *ParamBlock)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("TAPCOM_OpenChannel");
+  #endif
+
   TAPCOM_InternalMesBuf *mesBuf = NULL;
 
-  if (!LibInitialized) InitTAPex();
-  if (!LibInitialized) return NULL;
+  if(!LibInitialized) InitTAPex();
+  if(!LibInitialized)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return NULL;
+  }
 
   mesBuf = (TAPCOM_InternalMesBuf *) TAP_MemAlloc_Chk("TAPCOM_OpenChannel", sizeof(TAPCOM_InternalMesBuf));
 
-  if (mesBuf)
+  if(mesBuf)
   {
     // Speicherbereich für Nachrichtenaustausch anlegen
     mesBuf->tapcomSignature     = TAPCOM_SIGNATURE;
@@ -25,16 +36,20 @@ TAPCOM_Channel TAPCOM_OpenChannel (dword TargetID, dword ServiceID, dword ParamB
     mesBuf->Reserved            = 0;
 
     //Existiert der Ziel-Server überhaupt?
-    if ((TargetID != TAPCOM_App_BROADCAST) && !HDD_TAP_isRunning (TargetID))
+    if((TargetID != TAPCOM_App_BROADCAST) && !HDD_TAP_isRunning(TargetID))
     {
       mesBuf->Status = TAPCOM_Status_SERVER_NOT_AVAILABLE;
     }
     else
     {
       // TAPCOM Event mit der Adresse des Message-Buffers versenden.
-      HDD_TAP_SendEvent (TargetID, FALSE, EVT_TAPCOM, (dword) mesBuf, 0);
+      HDD_TAP_SendEvent(TargetID, FALSE, EVT_TAPCOM, (dword) mesBuf, 0);
     }
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return (TAPCOM_Channel) mesBuf;
 }

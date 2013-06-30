@@ -3,9 +3,23 @@
 
 bool FlashADGetInfo(tAutoDescrambleTimer *ADTimer)
 {
-  //ADTimer is NULL
-  if(!ADTimer) return FALSE;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashADGetInfo");
+  #endif
 
+  bool ret;
+
+  //ADTimer is NULL
+  if(!ADTimer)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return FALSE;
+  }
+
+  ret = FALSE;
   switch(GetSystemType())
   {
     //Unknown and old 5k/6k systems are not supported
@@ -17,16 +31,15 @@ bool FlashADGetInfo(tAutoDescrambleTimer *ADTimer)
     case ST_CT:
     case ST_T5700:
     case ST_T5800:
-    case ST_TF7k7HDPVR: return FALSE;
+    case ST_TF7k7HDPVR: break;
 
     case ST_TMSS:
     {
       TYPE_AutoDescrambleTimer  *p;
 
       p = (TYPE_AutoDescrambleTimer*)(FIS_vFlashBlockAutoDec());
-      if(!p) return FALSE;
-
-      return FlashADDecode(p, ADTimer);
+      if(p) ret = FlashADDecode(p, ADTimer);
+      break;
     }
 
     case ST_TMST:
@@ -34,9 +47,8 @@ bool FlashADGetInfo(tAutoDescrambleTimer *ADTimer)
       TYPE_AutoDescrambleTimer  *p;
 
       p = (TYPE_AutoDescrambleTimer*)(FIS_vFlashBlockAutoDec());
-      if(!p) return FALSE;
-
-      return FlashADDecode(p, ADTimer);
+      if(p) ret = FlashADDecode(p, ADTimer);
+      break;
     }
 
     case ST_TMSC:
@@ -44,13 +56,16 @@ bool FlashADGetInfo(tAutoDescrambleTimer *ADTimer)
       TYPE_AutoDescrambleTimer  *p;
 
       p = (TYPE_AutoDescrambleTimer*)(FIS_vFlashBlockAutoDec());
-      if(!p) return FALSE;
-
-      return FlashADDecode(p, ADTimer);
+      if(p) ret = FlashADDecode(p, ADTimer);
+      break;
     }
 
     case ST_NRTYPES: break;
   }
 
-  return FALSE;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }

@@ -47,7 +47,7 @@ License:  This library is freeware. You may use this code in your own projects f
 2007-02-02  Added ParseLine
             Added HDD_TAP_GetCurrentDirCluster and HDD_TAP_GetCurrentDir
             Added HDD_TAP_SetStartParameter and HDD_TAP_GetStartParameter
-            Added a lot of new EMMA register descriptions (XDMA and TTSD). Thanks to Harvey.
+            Added a lot of new EMMA register descriptions (XDMA and TTSD). (thanks to Harvey)
 2007-02-06  DeJe: Bugfixing the INI block
             Renamed RemoveLastSpaces to TrimTrailingSpaces
             Renamed AWToolSoundSinus to SoundSinus
@@ -428,14 +428,14 @@ License:  This library is freeware. You may use this code in your own projects f
 2010-01-12  Bugfix: The TMS produzed a reboot if one did a time shift buffer jump after HDD_TAP_Start() has been called by a TAP
             'Official release'
 
-2010-01-17  Bugfix: FontManager's FM_PutString() didn't check maxX for being larger than the region it should paint on (thx to xyzzyx)
+2010-01-17  Bugfix: FontManager's FM_PutString() didn't check maxX for being larger than the region it should paint on (thanks to xyzzyx)
 2010-01-19  Bugfix: Renamed TYPE_SatInfoSTMS.SatAngle to TYPE_SatInfoSTMS.Position to be compatible with the 5k version
 2010-01-23  Bugfix: HDD_DecodeRECHeader_ServiceInfo() used the wrong endian for decoding the flags
 2010-01-24  Separated the HDD full icon into a independent icon (VFD_HDDFull)
 2010-01-28  Bugfix: Removed the 2 digit file index check in SeparateFileNameComponents() as it may interfere with a date at the end of the file name.
 2010-01-29  Added FlashGetTransponderT5700ByIndex()
             Added TF5700 support to FlashGetChannelNumber() and FlashFindServiceByUHF()
-2010-02-02  FM_GetStringWidthAndRestrict_TMS() (thx to Erdnussnase)
+2010-02-02  FM_GetStringWidthAndRestrict_TMS() (thanks to Erdnussnase)
 2010-02-13  Added HDD_RemoveDir()
 2010-02-19  Added tDirEntry struct
             Added FIS_vcurTapTask()
@@ -496,13 +496,13 @@ License:  This library is freeware. You may use this code in your own projects f
 2010-05-28  Added: Unix2TFTime()
 2010-07-01  Added: LangGetStringDefault()
 2010-07-06  Added: StrToISO(), StrMkISO() and CharToISO()
-            Fixed: HDD_GetAbsolutePathByTypeFile() wasn't UTF8 aware. This should fix all functions, which depend
+            Fixed: HDD_GetAbsolutePathByTypeFile() wasn't UTF-8 aware. This should fix all functions, which depend
                    on this routine: HDD_TAP_GetIDByIndex(), HDD_GetInodeByTypeFile(), HDD_GetFileTimeByTypeFile()
 2010-07-13  Added: a fix for TAP_Hdd_ChangeDir(), which fails to change into directories with German Umlaute. HDD_ChangeDir()
               retries a TAP_Hdd_ChangeDir() with the UTF-8 version of the directory name, if the original name fails.
               All FBLib functions now use HDD_ChangeDir().
-2010-07-14  Fixed: Some bugs with the UTF8 to ISO conversion
-            Removed: utf8 support has been removed by Korea. Removed all utf8 conversion from the following functions:
+2010-07-14  Fixed: Some bugs with the UTF-8 to ISO conversion
+            Removed: UTF-8 support has been removed by Korea. Removed all UTF-8 conversion from the following functions:
               HDD_RemoveDir(), HDD_Move(), HDD_GetInodeByAbsFileName(), HDD_GetInodeByTypeFile(), HDD_GetInodeByRelFileName(),
               HDD_GetFileTimeByAbsFileName(), HDD_GetFileTimeByRelFileName(), HDD_GetFileTimeByTypeFile(), HDD_GetFileSizeAndInode(),
               HDD_GetAbsolutePathByTypeFile(), HDD_TAP_GetIDByIndex(), HDD_GetFileTimeByTypeFile(), HDD_GetInodeByTypeFile()
@@ -666,7 +666,7 @@ License:  This library is freeware. You may use this code in your own projects f
 2011-08-12  Added MD5String() and MD5File()
 2011-08-13  Fixed: As it seems to be allowed that extended event information strings may contain NULL bytes as line terminators, ExtEventTextLength has been added to tRECHeaderInfo and
                    HDD_De/EncodeRECHeader() has been modified so that the number of bytes is transfered and not just strings. So do not forget to set ExtEventTextLength before encoding.
-            Fixed: BMP_WriteHeader() and SaveBitmap() now create rows with a multiple of 4 bytes (thx to xyzzyx)
+            Fixed: BMP_WriteHeader() and SaveBitmap() now create rows with a multiple of 4 bytes (thanks to xyzzyx)
             Fixed: OSDMenuItemSortNameColumn(), OSDMenuItemSortValueColumn() and OSDMenuItemSortID()
 2011-08-15  Fixed: Another fix in BMP_WriteHeader() and SaveBitmap()
 2011-08-19  LogoManager Update: added the rule that German umlauts (äöü) will be replaced by ae, oe and ue respectively
@@ -718,7 +718,7 @@ License:  This library is freeware. You may use this code in your own projects f
 2012-04-28  There seem to be at least 2 different Favourites structures. On sat machines there is space for 30 groups and 100 services per group. On other machines there are 10 groups with 50 services per group.
             The FlashFavorites* functions now try to distinguish between these two formats. FlashFavoritesGetParameters() has been added.
 2012-05-19  Fixed: little modification in OSDMenuDestroy() which allows the enter normal mode, even if main osd has been deleted by OSDMenuDestroyNoOSDUpdate()
-            Fixed the UTF8 detection
+            Fixed the UTF-8 detection
             Added: OSDMenuGetButtonIcon() and LogoManager_CleanupMemory()
 2012-07-24  Added some functions for extended file attributes. These allow to attach data to a file and therefore it is not necessary to modify a file or add another files
             ExtAttribSet(): adds or modifies a name attribute. Like with the TAP_Hdd API, you need to be in the file's directory, the file name may not contain a path.
@@ -737,16 +737,16 @@ License:  This library is freeware. You may use this code in your own projects f
 2012-10-19  Added isIceTVToppy() and FIS_fwApplIcelink_EitFromHdd()
             Fixed HDD_Move() so that it handle file names with " and $ characters
             Fixed FIS_vFlashBlockOTAInfo(), which crashes if the datablock doesn't exist
-2012-10-27  Fixed: FixInvalidFileName() is now UTF8 aware. Use this function to remove unwanted characters from a file name
+2012-10-27  Fixed: FixInvalidFileName() is now UTF-8 aware. Use this function to remove unwanted characters from a file name
 2012-10-30  Added: GetStringEncoding(), which reports whether a string contains UTF or high byte ANSI characters
             Fixed: StrMkISO(), StrToISO(), StrToUTF8(), StrMkUTF8() to work in ANSI and UTF mixed environments
 2012-11-04  Added: OSDMenuMessageBoxModifyText()
-2012-11-13  Added TAPVersion to the tTAPInfo struct. It needs the TAP compiled against a modified tap.h (added TAP_PROGRAM_VERSION) otherwise it will be empty
+2012-11-13  Added: TAPVersion to the tTAPInfo struct. It needs the TAP compiled against a modified tap.h (added TAP_PROGRAM_VERSION) otherwise it will be empty
 2012-11-26  Added: NameLock flag to the tFlashService struct
             Renamed unknown1 to Flags2 in the tFlashService struct to make it obvious that the flag struct has changed (compiler error on unknown unknown1)
-2012-12-06  Added CrashCheck_Startup() and CrashCheck_Shutdown(), which may break an endless reboot loop. See the _Demo folder for more details
-2012-12-25  Added HDD_GetAbsolutePathByTypeFileUTF8()
-2013-01-13  Fixed: made FixInvalidFileName(), ReplaceInvalidFileName() and ValidFileName() UTF8 aware
+2012-12-06  Added: CrashCheck_Startup() and CrashCheck_Shutdown(), which may break an endless reboot loop. See the _Demo folder for more details
+2012-12-25  Added: HDD_GetAbsolutePathByTypeFileUTF8()
+2013-01-13  Fixed: made FixInvalidFileName(), ReplaceInvalidFileName() and ValidFileName() UTF-8 aware
 2013-01-23  Fixed: HDD_TAP_GetInfoByAbsPath() didn't restore the parameter AbsFileName
 2013-02-10  Added: FIS_fwDevService_Mute(), FIS_fwAppl_PvrPause(), FIS_fwAppl_SetPlaybackSpeed(), FIS_vbookmarkTime(), FIS_vdupEntry(), FIS_vnDupTimer(), FIS_fwAppl_CiMenu(), FIS_fwAppl_CiplusMenu()
                    FIS_vciMenuMode(), FIS_vciplusMenuMode(), FIS_fwAppl_GetEvtListHeadInHash(), FIS_fwAppl_GetEvtCountInFreePool(), FIS_fwAppl_GetEvtListHeadInUsePool()
@@ -755,3 +755,74 @@ License:  This library is freeware. You may use this code in your own projects f
                    Appl_PvrPause(), Appl_ExportChData(), Appl_ImportChData(), PlayMediaFile()
 2013-02-15  Fixed: FBLib will compile even if TAP_PROGRAM_VERSION does not exist in tap.h
             Added  PlayMediaFile(), FIS_fwAppl_GetEvtCount() and Appl_GetEvtCount()
+
+2013-02-27  Added  exit() to the list of bad keywords in JailBreak (JB V1.3)
+2013-03-02  Added  TAP_MemRealloc()  (thanks to xyzzyx)
+            Added  the whole EPG section, which allows accessing the EPG data in memory, which has been collected by the Toppy
+            Added  a new set of functions, which converts from UTC to local time and back. The can use an ini to define the DST rule for a specific country.
+                   See _Demo\EPG for documentation and a demo TAP. (thanks to DMC)
+                   DST_SetDSTRule(), DST_CalcTransition(), UTC2LocalTime(), LocalTime2UTC(), GetCurrentTimeZone() and Appl_TimeToLocal()
+            Removed: UTCtoLocal()
+
+2013-03-04  Added: Unicode support. This means that all string handling functions should be able to handle UTF-8 encoded strings.
+                   In addition, some function will also be able to handle several different code page encodings defined in EN300468 section A.2.
+                   Because of that change a new Unicode FontManager (FMUC) has been created. Also because the Unicode fonts are too large
+                   to be compiled into a TAP (more than 65000 glyphs per file), several font files (*.ufnt) will be provided as separate package
+                   and need to be copied to /ProgramFiles/Settings/Logos. The old FontManager is available for backward compatibility but OSDMenu
+                   and other OSD functions already use the new FontManager and therefore won’t display any text if the ufnt files are not
+                   available in the Logos folder.
+
+            Removed: CharToUTF8() has been replaced by UTF32ToUTF8()
+            Removed: CharToISO() has been replaced by UTF8ToUTF32()
+            Added strlenUC()
+
+            Fixed: HDD_GetAbsolutePathByTypeFile() doesn't convert to ISO format any more. HDD_GetAbsolutePathByTypeFileUTF8() is still available as a define, but will be removed soon
+            Added StrToISOAlloc()
+            Added HDD_RecycleSF(), HDD_UnrecycleSF() (thanks to Paul79)
+2013-03-11  Added LogEntryPrintf() and LogEntryGenericPrintf()  (thanks to jda)
+2013-03-12  Added strcpyUC() and strncpyUC() which copy like strcpy() and strncpy() respectively but preserves any possible character table bytes (EN300468 A.2) at the beginning of the source string
+2013-03-13  Added OSDMenuWaitSpinnerInit(), which adds a spinning icon to an info box
+2013-03-15  Added the CallTrace functions to all routines
+            Added HDD_isRecFileName(), which compares the file name extension against a list of strings (.rec, .mpg)
+            Added GetUCPos(), which returns a pointer to the n-th character, regardless if the string is UTF-8 encoded or not or if the strings are preceded by character table bytes
+            Added SkipCharTableBytes() which returns a pointer to the first character of a string, skipping any character table bytes
+2013-03-27  Added FlashServiceFindNum()
+            Added FIS_fwApplSvc_GetTpIdx(), ApplSvc_GetTpIdx(), FIS_fwApplSvc_GetSvcIdx(), ApplSvc_GetSvcIdx()
+            Changed: TMSOSDKeyboard will return an UTF-8 encoded string
+            Added: DST_FindNextTransition()
+2013-03-29  Added: curl functions, which are basically wrappers for the curl lib in the firmware. (thanks to JDA for hacking the firmware and providing the functions)
+            Div. Unicode fixes
+2013-03-30  Added: ezXML functions, which are the same firmware wrappers as curl. (thanks to JDA again)
+            Fixed: endless loop in LogoManager_ChannelNameToLogoName() if the text contained a LF character
+            Fixed: different position calculation for diacritical marks
+2013-03-31  Added: FMUC_MemDebug.c contains some debugging code for memory allocation. This needs to be enabled in the source code
+            Fixed: GetStringEncoding() doesn't interpret characters between 0x80 and 0x8f as ANSI
+2013-04-01  Fixed: modified the way StrToUTF8() is working so that mixed ANSI / UTF strings are converted correctly
+            Added: LogEntryFBLibPrintf() which lets the lib report problems into /ProgramFiles/Settings/FBLib.log
+            Added: if a TAP calls one of the DST conversion routines without calling DST_SetDSTRule() first, the Lib will now check DST.ini if there is a key called "DefaultRule" and
+                   will use the appropriate rule is if the key contains one of the following values: "firmware", "europe" or "manual". If the check fails, the Lib will default to firmware.
+2013-04-02  Fixed: 2 string length bugs in EPGInfo_CopyData()
+            Added: StrToUTF8() support for a lot more ISO6937 diacritical characters
+2013-04-05  Added: FIS_fwApplPin_IsLockPopup(), ApplPin_IsLockPopup(), FIS_fwAppl_EvtProc_PincodeKey(), Appl_EvtProc_PincodeKey(), FIS_fwApplPin_Delete() and ApplPin_Delete()
+2013-04-14  Added: parameter StartCurrent at EPGInfo_FilterChannelByIndex()
+2013-04-21  Fixed: FMUC_LoadFontFile() dislpays an informational window if the specified font file does not exist
+            Fixed: EPGInfo_CopyData() inadvertently replaced LF with NULL characters
+2013-04-28  Added: isOnMainTuner(), FIS_fwAppl_GetSameTimeEvent() and Appl_GetSameTimeEvent()
+            Modified EPGInfo_FindCurrent(): if a channel is selected, which is currently not on the main tuner, the running status flag won't advance because
+                     the firmware doesn't download the EIT data from the background tuner. Therefore this function now checks if the selected is on the main tuner
+                     and search for the event with the correct start time if it is not the case.
+2013-05-02  Fixed: FMUC_PutStringAA() could crash the Toppy if a string needed to be cut to zero characters due to maxX constraints and the string contained UTF-8 characters
+            Added: the DSTConfig.c to the _Demo folder (thanks to DMC)
+2013-05-04  Fixed: As the EPG's running status flag has proved to be unreliable, EPGInfo_FindCurrent() and EPGInfo_FindFirst() won't use that flag
+                   anymore and are now checking for start and end time only.
+2013-05-09  Fixed: a typo TYPE_EPGInfo.ShortEventTextLenght -> TYPE_EPGInfo.ShortEventTextLength
+2013-05-11  Added: CrashCheck_isOK()
+2013-05-14  Added: the infData functions infData_isAvail(), infData_Get(), infData_GetNameByIndex(), infData_Set() and infData_Delete()
+2013-05-18  Added: infData_isAvailAbs(), infData_GetAbs(), infData_GetNameByIndexAbs(), infData_SetAbs() and infData_DeleteAbs(), which accept
+                   an absolute path to the target inf. (thanks to DMC)
+2013-05-24  Added: FIS_fwAppl_StartPlayback() and Appl_StartPlayback()
+2013-06-17  Fixed: The firmware's version of Appl_GetSameTimeEvent() has a flaw. If the firmware can't receive any TDT time stamps (e.g. due to a currently running playback), it doesn't
+                   update the internal GMT clock and therefore the current event doesn't update. This lib's Appl_GetSameTimeEvent() version is a clone of the firmware's Appl_GetSameTimeEvent(),
+                   except that it uses a GMT time derived from the user clock.
+2013-06-20  Modified HDD_RecycleSF() and HDD_UnrecycleSF() to incorporate the new SmartFiler functionality
+2013-06-27  Fixed: FMUC_PutStringAA() has crashed if the text contained a non-printable character and the text had to be truncated with "…"

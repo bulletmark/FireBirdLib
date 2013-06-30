@@ -2,16 +2,30 @@
 
 bool OSDMenuItemModifyValueIcon(int ItemIndex, TYPE_GrData *pValueIconGd)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("OSDMenuItemModifyValueIcon");
+  #endif
+
   tMenu                *pMenu;
 
   pMenu = &Menu[CurrentMenuLevel];
 
-  if((pMenu->NrItems == 0) || (ItemIndex >= pMenu->NrItems)) return FALSE;
+  if((pMenu->NrItems == 0) || (ItemIndex >= pMenu->NrItems))
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return FALSE;
+  }
 
   pMenu->Item[ItemIndex].pValueIconGd = pValueIconGd;
 
-  //TODO: only when in visible area
   ListDirty = TRUE;
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return TRUE;
 }

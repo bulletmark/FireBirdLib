@@ -1,23 +1,46 @@
 #include "../libFireBird.h"
 
-bool isAnyOSDVisibleEx(dword checkX, dword checkY, dword checkW, dword checkH, byte Plane)
+bool isAnyOSDVisibleEx(dword CheckX, dword CheckY, dword CheckW, dword CheckH, byte Plane)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("isAnyOSDVisibleEx");
+  #endif
+
   TYPE_OsdBaseInfo      OSDBaseInfo;
   dword                *pOSD;
   dword                 x, y;
 
   TAP_Osd_GetPlaneBaseInfo(&OSDBaseInfo, Plane);
-  if(OSDBaseInfo.frameBuffer == NULL) return FALSE;
+  if(OSDBaseInfo.frameBuffer == NULL)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
 
-  for(y = checkY; y < (checkY + checkH); y += 4)
+    return FALSE;
+  }
+
+  for(y = CheckY; y < (CheckY + CheckH); y += 4)
   {
     pOSD = (dword*)(OSDBaseInfo.frameBuffer);
-    pOSD = (dword*)&pOSD[720*y + checkX];
-    for(x = checkX; x < (checkX + checkW); x += 4)
+    pOSD = (dword*)&pOSD[720*y + CheckX];
+    for(x = CheckX; x < (CheckX + CheckW); x += 4)
     {
-      if(*pOSD != 0x00000000) return TRUE;
+      if(*pOSD != 0x00000000)
+      {
+        #ifdef DEBUG_FIREBIRDLIB
+          CallTraceExit(NULL);
+        #endif
+
+        return TRUE;
+      }
       pOSD += 4;
     }
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
   return FALSE;
 }

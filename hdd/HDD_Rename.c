@@ -4,18 +4,22 @@
 
 void HDD_Rename(char *FileName, char *NewFileName)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("HDD_Rename");
+  #endif
+
   char                  Name[TS_FILE_NAME_SIZE], Ext[TS_FILE_NAME_SIZE];
   char                  OldInfName[TS_FILE_NAME_SIZE], NewInfName[TS_FILE_NAME_SIZE];
   bool                  isRec, isDel;
   int                   fNumber;
 
-  if (TAP_Hdd_Exist(FileName))
+  if(FileName && NewFileName && NewFileName[0] && TAP_Hdd_Exist(FileName))
   {
     MakeUniqueFileName(NewFileName);
     TAP_Hdd_Rename(FileName, NewFileName);
 
     SeparateFileNameComponents(FileName, Name, Ext, &fNumber, &isRec, &isDel);
-    if(isRec && (StringEndsWith(FileName, ".rec") || StringEndsWith(FileName, ".mpg")))
+    if(isRec)
     {
       if(fNumber)
         TAP_SPrint(OldInfName, "%s-%d%s.inf%s", Name, fNumber, Ext, isDel ? ".del" : "");
@@ -45,4 +49,8 @@ void HDD_Rename(char *FileName, char *NewFileName)
       TAP_Hdd_Rename(OldInfName, NewInfName);
     }
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

@@ -1,15 +1,24 @@
 #include "FBLib_av.h"
 #include "../libFireBird.h"
 
-void BMP_WriteHeader (TYPE_File *pFile, int width, int height )
+void BMP_WriteHeader(TYPE_File *pFile, int width, int height)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("BMP_WriteHeader");
+  #endif
+
   static struct BMP_HEAD head;
   static struct BMP_INFO info;
   dword                  i, size, rowlength;
 
-#ifdef DEBUG_FIREBIRDLIB
-  CallTraceEnter("BMP_WriteHeader");
-#endif
+  if(!pFile)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return;
+  }
 
 	// according to spec.: the rowlength must be a multiple of 4 bytes, if necessary fill up with zero-bytes
 	rowlength = (width*3%4==0) ? width*3 : ((width*3/4)+1)*4;
@@ -36,11 +45,10 @@ void BMP_WriteHeader (TYPE_File *pFile, int width, int height )
   info.color          = 0;
   info.icolor         = 0;
 
-  TAP_Hdd_Fwrite( &head, sizeof( head ), 1, pFile );
-  TAP_Hdd_Fwrite( &info, sizeof( info ), 1, pFile );
+  TAP_Hdd_Fwrite(&head, sizeof( head ), 1, pFile);
+  TAP_Hdd_Fwrite(&info, sizeof( info ), 1, pFile);
 
-#ifdef DEBUG_FIREBIRDLIB
-  CallTraceExit(NULL);
-#endif
-
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

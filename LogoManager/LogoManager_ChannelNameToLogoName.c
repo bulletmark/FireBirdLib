@@ -5,13 +5,20 @@
 
 char *LogoManager_ChannelNameToLogoName(char *ChannelName)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("LogoManager_ChannelNameToLogoName");
+  #endif
+
   static char           LogoNameA[256];
   char                 *pLogoName;
   char                  AllowedChars[] = "abcdefghijklmnoprqstuvwxyz0123456789הצü+";
 
   memset(LogoNameA, 0, sizeof(LogoNameA));
-  strncpy(LogoNameA, ChannelName, 255);
+  strncpy(LogoNameA, SkipCharTableBytes(ChannelName), sizeof(LogoNameA) - 1);
+  StrMkISO(LogoNameA);
+  MakeValidFileName(LogoNameA, ControlChars | LFChars);
   LowerCase(LogoNameA);
+
   pLogoName = LogoNameA;
   while(*pLogoName)
   {
@@ -23,6 +30,10 @@ char *LogoManager_ChannelNameToLogoName(char *ChannelName)
   StrReplace(LogoNameA, "ה", "ae");
   StrReplace(LogoNameA, "צ", "oe");
   StrReplace(LogoNameA, "ü", "ue");
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return LogoNameA;
 }

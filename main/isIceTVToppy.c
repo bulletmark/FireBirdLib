@@ -2,5 +2,15 @@
 
 bool isIceTVToppy(void)
 {
-  return FIS_fwApplIcelink_EitFromHdd() != 0;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("isIceTVToppy");
+  #endif
+
+  bool ret = FIS_fwApplIcelink_EitFromHdd() != 0;
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }

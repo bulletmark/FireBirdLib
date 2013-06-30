@@ -10,13 +10,17 @@ bool                    LogoManager_LUTInitialized = FALSE;
 
 void (*LogoManager_CB)(int CallbackType, int Param1) = NULL;
 
-void LogoManager_Initialize(void *Callback)
+void LogoManager_Initialize(void *CallbackRoutine)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("LogoManager_Initialize");
+  #endif
+
   char                  cmd[255];
   TYPE_FolderEntry      FolderEntry;
   int                   NrFiles, i;
 
-  LogoManager_CB = Callback;
+  LogoManager_CB = CallbackRoutine;
 
   HDD_TAP_PushDir();
   HDD_ChangeDir("/ProgramFiles");
@@ -63,4 +67,8 @@ void LogoManager_Initialize(void *Callback)
   }
 
   HDD_TAP_PopDir();
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

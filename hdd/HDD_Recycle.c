@@ -4,13 +4,17 @@
 
 void HDD_Recycle(char *FileName)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("HDD_Recycle");
+  #endif
+
   char                  Name[TS_FILE_NAME_SIZE], Ext[TS_FILE_NAME_SIZE];
   char                  OldName[TS_FILE_NAME_SIZE], NewName[TS_FILE_NAME_SIZE];
   bool                  isRec, isDel;
   int                   fNumber;
   tFileInUse            FileInUse;
 
-  if (TAP_Hdd_Exist(FileName))
+  if(FileName && TAP_Hdd_Exist(FileName))
   {
     FileInUse = HDD_isFileInUse(FileName);
     switch(FileInUse)
@@ -45,7 +49,7 @@ void HDD_Recycle(char *FileName)
       MakeUniqueFileName(NewName);
       TAP_Hdd_Rename(OldName, NewName);
 
-      if(isRec && (StringEndsWith(FileName, ".rec") || StringEndsWith(FileName, ".mpg")))
+      if(isRec && HDD_isRecFileName(FileName))
       {
         strcat(OldName, ".inf");
         NewName[strlen(NewName) - 4] = '\0';
@@ -60,4 +64,9 @@ void HDD_Recycle(char *FileName)
       }
     }
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
 }

@@ -7,15 +7,31 @@
 
 void SeparateFileNameComponents(char *FileName, char *Name, char *Ext, int *Index, bool *isRec, bool *isDel)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("SeparateFileNameComponents");
+  #endif
+
   char                 *dot;
+
+  if(!FileName || !*FileName || !Name)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return;
+  }
 
   strcpy(Name, FileName);
 
-  *isDel = FALSE;
-  if(StringEndsWith(Name, ".del"))
+  if(isDel)
   {
-    *isDel = TRUE;
-    Name[strlen(Name) - 4] = '\0';
+    *isDel = FALSE;
+    if(StringEndsWith(Name, ".del"))
+    {
+      *isDel = TRUE;
+      Name[strlen(Name) - 4] = '\0';
+    }
   }
 
   if(StringEndsWith(Name, ".rec.inf")) Name[strlen(Name) - 4] = '\0';
@@ -23,24 +39,30 @@ void SeparateFileNameComponents(char *FileName, char *Name, char *Ext, int *Inde
   if(StringEndsWith(Name, ".rec.nav")) Name[strlen(Name) - 4] = '\0';
   if(StringEndsWith(Name, ".mpg.nav")) Name[strlen(Name) - 4] = '\0';
 
-  *isRec = FALSE;
-  if(StringEndsWith(Name, ".rec") || StringEndsWith(Name, ".mpg")) *isRec = TRUE;
+  if(isRec) *isRec = HDD_isRecFileName(Name);
 
-  Ext[0] = '\0';
   dot = strrchr(Name, '.');
-  if(dot)
+  if(Ext)
   {
-    strcpy(Ext, dot);
-    *dot = '\0';
+    Ext[0] = '\0';
+    if(dot) strcpy(Ext, dot);
   }
+  if(dot) *dot = '\0';
 
-  *Index = 0;
-  if(strlen(Name) > 2)
+  if(Index)
   {
-    if((Name[strlen(Name) - 2] == '-') && isdigit(Name[strlen(Name) - 1]) && (Name[strlen(Name) - 1] != '0'))
+    *Index = 0;
+    if(strlen(Name) > 2)
     {
-      *Index = strtol(&Name[strlen(Name) - 1], NULL, 10);
-      Name[strlen(Name) - 2] = '\0';
+      if((Name[strlen(Name) - 2] == '-') && isdigit(Name[strlen(Name) - 1]) && (Name[strlen(Name) - 1] != '0'))
+      {
+        *Index = strtol(&Name[strlen(Name) - 1], NULL, 10);
+        Name[strlen(Name) - 2] = '\0';
+      }
     }
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

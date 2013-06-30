@@ -2,6 +2,10 @@
 
 dword HDD_NumberOfRECSlots(void)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("HDD_NumberOfRECSlots");
+  #endif
+
   static dword          MaxRecStreams = 0;
   dword                 i;
   tToppyInfo           *ToppyInfo;
@@ -11,7 +15,7 @@ dword HDD_NumberOfRECSlots(void)
   {
     if(LoadFirmwareDat(&FWDatHeader, &ToppyInfo, NULL))
     {
-      for (i = 0; i < FWDatHeader->NrOfToppyInfoEntries; i++, ToppyInfo++)
+      for(i = 0; i < FWDatHeader->NrOfToppyInfoEntries; i++, ToppyInfo++)
       {
         if(ToppyInfo->SysID == GetSysID())
         {
@@ -23,6 +27,10 @@ dword HDD_NumberOfRECSlots(void)
 
     if(MaxRecStreams == 0) MaxRecStreams = 2;
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return MaxRecStreams;
 }

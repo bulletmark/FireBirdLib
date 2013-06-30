@@ -2,64 +2,91 @@
 #include "FBLib_ini.h"
 #include "../libFireBird.h"
 
-void INISetString (char *Key, char *Value)
+void INISetString(char *Key, char *Value)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("INISetString");
+  #endif
+
   char                  *i = NULL, *j = NULL;
-  char                  TempKey [80];
+  char                  TempKey[80];
   char                  *OldBuffer, *NewBuffer;
   dword                 l, BS = 0;
 
-  if (!Key || !Value || !INIBuffer) return;
-
-  strncpy (TempKey, Key, sizeof(TempKey) - 2);
-  TempKey[sizeof(TempKey) - 2] = '\0';
-  strcat (TempKey, "=");
-
-  INIFindStartEnd (TempKey, &i, &j, BufferSize);
-  if (!i || !j)
+  if(!Key || !Value || !INIBuffer)
   {
-    l = strlen (INIBuffer) + strlen (TempKey) + strlen (Value) + 3;
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
 
-    if (l > BufferSize)
+    return;
+  }
+
+  strncpy(TempKey, Key, sizeof(TempKey) - 2);
+  TempKey[sizeof(TempKey) - 2] = '\0';
+  strcat(TempKey, "=");
+
+  INIFindStartEnd(TempKey, &i, &j, BufferSize);
+  if(!i || !j)
+  {
+    l = strlen(INIBuffer) + strlen(TempKey) + strlen(Value) + 3;
+
+    if(l > BufferSize)
     {
       OldBuffer = INIBuffer;
       BS = ((BufferSize >> 10) + 1) << 10;
 
-      if (l > BS || !(INIBuffer = malloc(BS)))
+      if(l > BS || !(INIBuffer = malloc(BS)))
       {
         INIBuffer = OldBuffer;
+
+        #ifdef DEBUG_FIREBIRDLIB
+          CallTraceExit(NULL);
+        #endif
+
         return;
       }
 
-      memset (INIBuffer, 0, BS);
-      memcpy (INIBuffer, OldBuffer, BufferSize);
+      memset(INIBuffer, 0, BS);
+      memcpy(INIBuffer, OldBuffer, BufferSize);
       BufferSize = BS;
-      free (OldBuffer);
+      free(OldBuffer);
     }
 
-    strcat (INIBuffer, TempKey);
-    strcat (INIBuffer, Value);
-    strcat (INIBuffer, "\x0d\x0a");
+    strcat(INIBuffer, TempKey);
+    strcat(INIBuffer, Value);
+    strcat(INIBuffer, "\x0d\x0a");
   }
   else
   {
-    l = strlen(INIBuffer) - (j - i) + strlen (TempKey) + strlen (Value) + 1;
+    l = strlen(INIBuffer) - (j - i) + strlen(TempKey) + strlen(Value) + 1;
 
-    if (l > BufferSize)
+    if(l > BufferSize)
       BS = ((BufferSize >> 10) + 1) << 10;
     else
       BS = BufferSize;
 
-    if (l > BS || !(NewBuffer = malloc(BS))) return;
+    if(l > BS || !(NewBuffer = malloc(BS)))
+    {
+      #ifdef DEBUG_FIREBIRDLIB
+        CallTraceExit(NULL);
+      #endif
+
+      return;
+    }
 
     memset(NewBuffer, 0, BS);
     strncpy(NewBuffer, INIBuffer, i - INIBuffer);
     strcat(NewBuffer, TempKey);
     strcat(NewBuffer, Value);
     strcat(NewBuffer, j + 1);
-    free (INIBuffer);
+    free(INIBuffer);
     INIBuffer = NewBuffer;
 
     BufferSize = BS;
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

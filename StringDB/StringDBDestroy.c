@@ -2,10 +2,25 @@
 
 bool StringDBDestroy(tStringDB *StringDB)
 {
-  if(!StringDB) return FALSE;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("StringDBDestroy");
+  #endif
+
+  if(!StringDB)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return FALSE;
+  }
 
   if(StringDB->DB) TAP_MemFree(StringDB->DB);
   StringDBInit(StringDB, 0);
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return TRUE;
 }

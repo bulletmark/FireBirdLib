@@ -22,19 +22,28 @@ word CRC16Table[] =
 
 word CRC16(word StartValue, void *StartAddress, dword Length)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("CRC16");
+  #endif
+
   volatile byte         *pData;
   word                  CRC = StartValue;
 
-#ifdef DEBUG_FIREBIRDLIB
-  CallTraceEnter("CRC16");
-#endif
+  if(!StartAddress)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
 
-  for (pData = StartAddress; pData < (byte *) StartAddress + Length; pData++)
-    CRC= CRC16Table [*pData ^ (CRC & 0x00FF)] ^ (CRC >> 8);
+    return CRC;
+  }
 
-#ifdef DEBUG_FIREBIRDLIB
-  CallTraceExit(NULL);
-#endif
+  for(pData = StartAddress; pData < (byte *) StartAddress + Length; pData++)
+    CRC = CRC16Table[*pData ^ (CRC & 0x00FF)] ^ (CRC >> 8);
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return CRC;
 }

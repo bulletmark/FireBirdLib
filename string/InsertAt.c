@@ -3,34 +3,58 @@
 
 void InsertAt(char *SourceString, int Pos, char *NewString)
 {
-  char                 *dst;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("InsertAt");
+  #endif
+
+  char                 *dst, *src;
   char                 *Target;
   int                   OldLen, NewLen;
 
-  if(Pos >= (int)strlen(SourceString))
+  if(!SourceString || !NewString)
   {
-    strcat(SourceString, NewString);
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return;
+  }
+
+  src = SkipCharTableBytes(SourceString);
+
+  if(Pos >= (int)strlenUC(src))
+  {
+    strcat(src, NewString);
+
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
     return;
   }
 
   if(Pos < 0) Pos = 0;
 
-  OldLen = strlen(SourceString);
+  OldLen = strlen(src);
   NewLen = strlen(NewString);
 
-  dst = &SourceString[OldLen + NewLen];
+  dst = &src[OldLen + NewLen];
   *dst = '\0';
   dst--;
 
-  Target = &SourceString[Pos];
-  SourceString = &SourceString[OldLen - 1];
+  Target = GetUCPos(src, Pos);
+  src = &src[OldLen - 1];
 
-  while(SourceString >= Target)
+  while(src >= Target)
   {
-    *dst = *SourceString;
+    *dst = *src;
     dst--;
-    SourceString--;
+    src--;
   }
 
   memcpy(Target, NewString, NewLen);
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

@@ -2,15 +2,31 @@
 #include "FBLib_ini.h"
 #include "../libFireBird.h"
 
-void INIFindStartEnd (char *Key, char **Start, char **End, dword MaxEntrylen)
+void INIFindStartEnd(char *Key, char **Start, char **End, dword MaxEntrylen)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("INIFindStartEnd");
+  #endif
+
   char                  *CR, *LF, *p;
 
-  if(!Start || !End || !MaxEntrylen) return;
+  if(!Start || !End || !MaxEntrylen)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
 
-  if (!INIBuffer)
+    return;
+  }
+
+  if(!INIBuffer)
   {
     *Start = NULL;
+
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
     return;
   }
 
@@ -18,14 +34,22 @@ void INIFindStartEnd (char *Key, char **Start, char **End, dword MaxEntrylen)
   *Start = INIBuffer - 1;
   do
   {
-    *Start = stricstr (*Start + 1, Key);
-    if (*Start == NULL) return;
+    *Start = stricstr(*Start + 1, Key);
+    if(*Start == NULL)
+    {
+      #ifdef DEBUG_FIREBIRDLIB
+        CallTraceExit(NULL);
+      #endif
+
+      return;
+    }
+
     p = *Start;
     if(*Start > INIBuffer) p--;
   } while((*p == '#') || (*p == ';'));
 
-  CR = strchr (*Start, '\x0d');
-  LF = strchr (*Start, '\x0a');
+  CR = strchr(*Start, '\x0d');
+  LF = strchr(*Start, '\x0a');
 
   if(CR)
   {
@@ -36,6 +60,11 @@ void INIFindStartEnd (char *Key, char **Start, char **End, dword MaxEntrylen)
       else                  // junk
       {
         *End = LF - 1;
+
+        #ifdef DEBUG_FIREBIRDLIB
+          CallTraceExit(NULL);
+        #endif
+
         return;
       }
     }
@@ -47,8 +76,17 @@ void INIFindStartEnd (char *Key, char **Start, char **End, dword MaxEntrylen)
     else                    // junk
     {
       *End = NULL;
+
+      #ifdef DEBUG_FIREBIRDLIB
+        CallTraceExit(NULL);
+      #endif
+
       return;
     }
 
-  if (*End >= *Start + MaxEntrylen) *End = *Start + MaxEntrylen - 1;
+  if(*End >= *Start + MaxEntrylen) *End = *Start + MaxEntrylen - 1;
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

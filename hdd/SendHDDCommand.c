@@ -3,6 +3,10 @@
 
 int SendHDDCommand(dword Command, byte *CommandBlock, int BufferSize)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("SendHDDCommand");
+  #endif
+
   //Unsupport in the TMSEmu environment
 #ifdef _TMSEMU_
   (void) Command;
@@ -21,7 +25,14 @@ int SendHDDCommand(dword Command, byte *CommandBlock, int BufferSize)
   //Open the hard drive
   fd = open("/dev/sda", O_RDONLY | O_NONBLOCK);
   //fd = open("/dev/sdb", O_RDONLY | O_NONBLOCK);
-  if(fd < 0) return 1;
+  if(fd < 0)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return 1;
+  }
 
   //DumpMemory(CommandBlock, 7, 16);
 
@@ -31,7 +42,14 @@ int SendHDDCommand(dword Command, byte *CommandBlock, int BufferSize)
 
   close(fd);
 
-  if(ret) return 1;
+  if(ret)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return 1;
+  }
 
   //Swap endianess of the whole buffer
   p = (unsigned short int*)&CommandBlock[4];
@@ -44,5 +62,10 @@ int SendHDDCommand(dword Command, byte *CommandBlock, int BufferSize)
   }
 
 #endif
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
   return 0;
 }

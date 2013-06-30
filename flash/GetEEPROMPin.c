@@ -2,7 +2,18 @@
 
 word GetEEPROMPin(void)
 {
-  word                 *Pin = (word*)FIS_vParentalInfo();
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("GetEEPROMPin");
+  #endif
 
-  return (Pin ? *Pin : 0);
+  word                 *Pin = (word*)FIS_vParentalInfo();
+  word                  ret;
+
+  ret = (Pin ? *Pin : 0);
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }

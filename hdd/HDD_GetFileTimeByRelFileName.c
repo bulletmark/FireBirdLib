@@ -3,11 +3,23 @@
 
 dword HDD_GetFileTimeByRelFileName(char *FileName)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("HDD_GetFileTimeByRelFileName");
+  #endif
+
   char                  AbsFileName[256];
+  dword                 ret;
 
-  if(!FileName) return 0;
+  if(FileName)
+  {
+    TAP_SPrint(AbsFileName, "%s%s", TAPFSROOT, FileName);
+    ret = HDD_GetFileTimeByAbsFileName(AbsFileName);
+  }
+  else ret = 0;
 
-  TAP_SPrint(AbsFileName, "%s%s", TAPFSROOT, FileName);
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
-  return HDD_GetFileTimeByAbsFileName(AbsFileName);
+  return ret;
 }

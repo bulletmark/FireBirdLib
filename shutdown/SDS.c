@@ -44,6 +44,10 @@ void (*OrigHandler)(word, dword);
 
 void CreateRootDir(void)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("CreateRootDir");
+  #endif
+
   //Check & Create Folders
   HDD_TAP_PushDir();
   HDD_ChangeDir("/ProgramFiles");
@@ -51,6 +55,10 @@ void CreateRootDir(void)
   HDD_ChangeDir("Settings");
   if(!TAP_Hdd_Exist("SDS")) TAP_Hdd_Create("SDS", ATTR_FOLDER);
   HDD_TAP_PopDir();
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }
 
 void WriteLog(char *s)
@@ -63,20 +71,39 @@ void WriteLog(char *s)
 
 void Hooked_ApplEvent_CallHandler(unsigned int a1, unsigned int a2)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("Hooked_ApplEvent_CallHandler");
+  #endif
+
   (void)a1;
   (void)a2;
 
   ShutdownHooked = TRUE;
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }
 
 bool SetHandler(dword EventID, void *Handler, void **OrigHandler)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("SetHandler");
+  #endif
+
   static dword         *__topEvent = NULL;
   tEventQueue          *EventQueue;
   tEventQueueDetails   *EventQueueDetails;
   int                   i;
 
-  if(!Handler && !(dword*)Handler) return FALSE;
+  if(!Handler && !(dword*)Handler)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return FALSE;
+  }
 
   if(!__topEvent)
   {
@@ -85,6 +112,11 @@ bool SetHandler(dword EventID, void *Handler, void **OrigHandler)
     {
       if(LastStatus != -10) WriteLog("Failed to resolve _topEvent");
       LastStatus = -10;
+
+      #ifdef DEBUG_FIREBIRDLIB
+        CallTraceExit(NULL);
+      #endif
+
       return FALSE;
     }
   }
@@ -106,6 +138,11 @@ bool SetHandler(dword EventID, void *Handler, void **OrigHandler)
             WriteLog(Log);
             LastStatus = -11;
           }
+
+          #ifdef DEBUG_FIREBIRDLIB
+            CallTraceExit(NULL);
+          #endif
+
           return FALSE;
         }
 
@@ -117,6 +154,11 @@ bool SetHandler(dword EventID, void *Handler, void **OrigHandler)
         }
         if(OrigHandler) *OrigHandler = (void*)EventQueueDetails->Handler;
         EventQueueDetails->Handler = (dword)Handler;
+
+        #ifdef DEBUG_FIREBIRDLIB
+          CallTraceExit(NULL);
+        #endif
+
         return TRUE;
       }
     }
@@ -130,11 +172,19 @@ bool SetHandler(dword EventID, void *Handler, void **OrigHandler)
     LastStatus = -13;
   }
 
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
   return FALSE;
 }
 
 bool SDS(void)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("SDS");
+  #endif
+
   static dword              Timeout = 0;
   static tHookHandlerState  LastHHS = HHS_Exit;
   static dword              EF00FilterTimeout = 0;
@@ -174,6 +224,11 @@ bool SDS(void)
           if(LastStatus != -1) WriteLog("Failed to resolve DevFront_PowerOffReply()");
           LastStatus = -1;
           HookHandlerState = HHS_Exit;
+
+          #ifdef DEBUG_FIREBIRDLIB
+            CallTraceExit(NULL);
+          #endif
+
           return FALSE;
         }
       }
@@ -186,12 +241,24 @@ bool SDS(void)
           if(LastStatus != -2) WriteLog("Failed to resolve DevFront_PowerOffCancel()");
           LastStatus = -2;
           HookHandlerState = HHS_Exit;
+
+          #ifdef DEBUG_FIREBIRDLIB
+            CallTraceExit(NULL);
+          #endif
+
           return FALSE;
         }
       }
 
       //Modify the handler pointer of the ef00 event queue
-      if(!SetHandler(0xef00, Hooked_ApplEvent_CallHandler, (void*)&OrigHandler)) return FALSE;
+      if(!SetHandler(0xef00, Hooked_ApplEvent_CallHandler, (void*)&OrigHandler))
+      {
+        #ifdef DEBUG_FIREBIRDLIB
+          CallTraceExit(NULL);
+        #endif
+
+        return FALSE;
+      }
 
       curTapTask = (dword*)FIS_vCurTapTask();
       Slot = *curTapTask;
@@ -301,15 +368,28 @@ bool SDS(void)
         if(LastStatus != -9) WriteLog("SDS has been deactivated");
         LastStatus = -9;
       }
+
+      #ifdef DEBUG_FIREBIRDLIB
+        CallTraceExit(NULL);
+      #endif
+
       return FALSE;
     }
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return TRUE;
 }
 
 void SDSTerminate(void)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("SDSTerminate");
+  #endif
+
   if(LastStatus != -3) WriteLog("SDS termination request received");
   LastStatus = -3;
 
@@ -321,4 +401,8 @@ void SDSTerminate(void)
     LastStatus = -9;
   }
   HookHandlerState = HHS_Exit;
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

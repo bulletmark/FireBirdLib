@@ -133,4 +133,32 @@ bool  PopDirEntry (dword *Cluster, dword *Entry, dword *DirLen);
 bool  GetFileDir(char *, dword, char *);
 inline dword getNextCluster(dword c);
 
+//The latest version of the SmartFiler Recycle Bin
+
+#define RECYCLEPATH       "/DataFiles/RecycleBin-/"
+#define INFBLOCKMAGIC     "SFIB"
+#define INFBLOCKVERSION   1
+
+typedef struct
+{
+  char                Magic[4];           //0
+  byte                Version;            //4
+  byte                Filler1;            //5
+  word                Duration;           //6
+  dword               LastBlock;          //8
+  bool                Seen;               //12
+  dword               RecycleDate;        //16
+  char                RecoverPath[512];   //20
+  byte                Filler2[1516];      //532
+                                          //2048
+}tinfBlock;
+
+typedef struct __STDIO_FILE_STRUCT FILE;
+
+extern FILE *fopen64 (__const char *__restrict __filename, __const char *__restrict __modes);
+extern int fseeko64(FILE *__stream, __off64_t  __off, int __whence);
+
+bool HDD_InfBlockGet(char *AbsRecPath, tinfBlock *infBlock);
+bool HDD_InfBlockSet(char *AbsRecPath, tinfBlock *infBlock);
+
 #endif

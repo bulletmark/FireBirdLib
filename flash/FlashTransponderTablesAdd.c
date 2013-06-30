@@ -3,11 +3,29 @@
 
 int FlashTransponderTablesAdd(int SatNum, tFlashTransponderTable *TransponderTable)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashTransponderTablesAdd");
+  #endif
+
   //SatNum out of range
-  if((SatNum < 0) || (SatNum >= FlashSatTablesGetTotal())) return FALSE;
+  if((SatNum < 0) || (SatNum >= FlashSatTablesGetTotal()))
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return FALSE;
+  }
 
   //TransponderTable is NULL
-  if(!TransponderTable) return -1;
+  if(!TransponderTable)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return -1;
+  }
 
   switch(GetSystemType())
   {
@@ -20,7 +38,14 @@ int FlashTransponderTablesAdd(int SatNum, tFlashTransponderTable *TransponderTab
     case ST_CT:
     case ST_T5700:
     case ST_T5800:
-    case ST_TF7k7HDPVR: return -1;
+    case ST_TF7k7HDPVR:
+    {
+      #ifdef DEBUG_FIREBIRDLIB
+        CallTraceExit(NULL);
+      #endif
+
+      return -1;
+    }
 
     case ST_TMSS:
     {
@@ -30,12 +55,26 @@ int FlashTransponderTablesAdd(int SatNum, tFlashTransponderTable *TransponderTab
       dword                  *NrTransponders;
 
       pSat = (TYPE_SatInfo_TMSS*)(FIS_vFlashBlockSatInfo());
-      if(!pSat) return -1;
+      if(!pSat)
+      {
+        #ifdef DEBUG_FIREBIRDLIB
+          CallTraceExit(NULL);
+        #endif
+
+        return -1;
+      }
 
       NrSats = FlashSatTablesGetTotal();
 
       pTransp = (TYPE_TpInfo_TMSS*)(FIS_vFlashBlockTransponderInfo());
-      if(!pTransp) return -1;
+      if(!pTransp)
+      {
+        #ifdef DEBUG_FIREBIRDLIB
+          CallTraceExit(NULL);
+        #endif
+
+        return -1;
+      }
 
       //Find the end of the transponder list
       pTranspEnd = pTransp;
@@ -70,8 +109,17 @@ int FlashTransponderTablesAdd(int SatNum, tFlashTransponderTable *TransponderTab
         NrTransponders = (dword*)(FIS_vFlashBlockTransponderInfo() - 4);
         *NrTransponders = *NrTransponders + 1;
         pSat->NrOfTransponders++;
+
+        #ifdef DEBUG_FIREBIRDLIB
+          CallTraceExit(NULL);
+        #endif
+
         return pSat->NrOfTransponders - 1;
       }
+
+      #ifdef DEBUG_FIREBIRDLIB
+        CallTraceExit(NULL);
+      #endif
 
       return -1;
     }
@@ -83,10 +131,24 @@ int FlashTransponderTablesAdd(int SatNum, tFlashTransponderTable *TransponderTab
       dword                  *NrTransponders;
 
       pSat = (TYPE_SatInfo_TMST*)(FIS_vFlashBlockSatInfo());
-      if(!pSat) return -1;
+      if(!pSat)
+      {
+        #ifdef DEBUG_FIREBIRDLIB
+          CallTraceExit(NULL);
+        #endif
+
+        return -1;
+      }
 
       pTransp = (TYPE_TpInfo_TMST*)(FIS_vFlashBlockTransponderInfo());
-      if(!pTransp) return -1;
+      if(!pTransp)
+      {
+        #ifdef DEBUG_FIREBIRDLIB
+          CallTraceExit(NULL);
+        #endif
+
+        return -1;
+      }
 
       //Find the location where to insert the new transponder
       pTransp += pSat->NrOfTransponders;
@@ -98,8 +160,17 @@ int FlashTransponderTablesAdd(int SatNum, tFlashTransponderTable *TransponderTab
         NrTransponders = (dword*)(FIS_vFlashBlockTransponderInfo() - 4);
         *NrTransponders = *NrTransponders + 1;
         pSat->NrOfTransponders++;
+
+        #ifdef DEBUG_FIREBIRDLIB
+          CallTraceExit(NULL);
+        #endif
+
         return pSat->NrOfTransponders - 1;
       }
+
+      #ifdef DEBUG_FIREBIRDLIB
+        CallTraceExit(NULL);
+      #endif
 
       return -1;
     }
@@ -111,10 +182,24 @@ int FlashTransponderTablesAdd(int SatNum, tFlashTransponderTable *TransponderTab
       dword                  *NrTransponders;
 
       pSat = (TYPE_SatInfo_TMSC*)(FIS_vFlashBlockSatInfo());
-      if(!pSat) return -1;
+      if(!pSat)
+      {
+        #ifdef DEBUG_FIREBIRDLIB
+          CallTraceExit(NULL);
+        #endif
+
+        return -1;
+      }
 
       pTransp = (TYPE_TpInfo_TMSC*)(FIS_vFlashBlockTransponderInfo());
-      if(!pTransp) return -1;
+      if(!pTransp)
+      {
+        #ifdef DEBUG_FIREBIRDLIB
+          CallTraceExit(NULL);
+        #endif
+
+        return -1;
+      }
 
       //Find the location where to insert the new transponder
       pTransp += pSat->NrOfTransponders;
@@ -126,14 +211,27 @@ int FlashTransponderTablesAdd(int SatNum, tFlashTransponderTable *TransponderTab
         NrTransponders = (dword*)(FIS_vFlashBlockTransponderInfo() - 4);
         *NrTransponders = *NrTransponders + 1;
         pSat->NrOfTransponders++;
+
+        #ifdef DEBUG_FIREBIRDLIB
+          CallTraceExit(NULL);
+        #endif
+
         return pSat->NrOfTransponders - 1;
       }
+
+      #ifdef DEBUG_FIREBIRDLIB
+        CallTraceExit(NULL);
+      #endif
 
       return -1;
     }
 
     case ST_NRTYPES: break;
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return -1;
 }

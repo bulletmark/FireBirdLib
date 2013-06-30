@@ -6,30 +6,59 @@
 #include "FBLib_ini.h"
 #include "../libFireBird.h"
 
-byte INIGetHexByte (char *Key, byte DefaultValue, byte MinValue, byte MaxValue)
+byte INIGetHexByte(char *Key, byte DefaultValue, byte MinValue, byte MaxValue)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("INIGetHexByte");
+  #endif
+
   char                  *i = NULL, *j = NULL, *k;
-  char                  TempKey [80];
+  char                  TempKey[80];
   byte                  l, x;
 
-  if (!Key) return 0;
+  if(!Key)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
 
-  strncpy (TempKey, Key, sizeof(TempKey) - 2);
+    return 0;
+  }
+
+  strncpy(TempKey, Key, sizeof(TempKey) - 2);
   TempKey[sizeof(TempKey) - 2] = '\0';
-  strcat (TempKey, "=");
+  strcat(TempKey, "=");
   l = strlen(TempKey);
 
-  INIFindStartEnd (TempKey, &i, &j, l + sizeof(byte) * 2);
+  INIFindStartEnd(TempKey, &i, &j, l + sizeof(byte) * 2);
 
-  if (!i || !j || (j < i + l)) return DefaultValue;
+  if(!i || !j || (j < i + l))
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
 
-  for (k = i + l; k <= j; k++)
-    if (!isxdigit (*k)) return DefaultValue;
+    return DefaultValue;
+  }
+
+  for(k = i + l; k <= j; k++)
+    if(!isxdigit(*k))
+    {
+      #ifdef DEBUG_FIREBIRDLIB
+        CallTraceExit(NULL);
+      #endif
+
+      return DefaultValue;
+    }
 
   x = (byte) strtoul(i + l, NULL, 16);
 
-  if (x < MinValue) x = MinValue;
-  if (x > MaxValue) x = MaxValue;
+  if(x < MinValue) x = MinValue;
+  if(x > MaxValue) x = MaxValue;
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return x;
 }

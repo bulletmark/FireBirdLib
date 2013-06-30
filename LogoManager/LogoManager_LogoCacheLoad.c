@@ -5,6 +5,10 @@
 
 bool LogoManager_LogoCacheLoad(void)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("LogoManager_LogoCacheLoad");
+  #endif
+
   bool                  Result = FALSE;
   char                  ID[4];
   dword                 Version;
@@ -34,6 +38,11 @@ bool LogoManager_LogoCacheLoad(void)
           {
             if(LogoManager_CB) LogoManager_CB(-1, 0);
             HDD_TAP_PopDir();
+
+            #ifdef DEBUG_FIREBIRDLIB
+              CallTraceExit(NULL);
+            #endif
+
             return FALSE;
           }
           TAP_Hdd_Fread(LogoManager_LogoData, sizeof(tLogoData), LogoManager_NrLogos, f);
@@ -53,6 +62,10 @@ bool LogoManager_LogoCacheLoad(void)
     }
   }
   HDD_TAP_PopDir();
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return Result;
 }

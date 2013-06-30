@@ -5,6 +5,10 @@
 
 void LogoManager_CleanupMemory(void)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("LogoManager_CleanupMemory");
+  #endif
+
   int                   i;
 
   if(LogoManager_LogoData)
@@ -18,4 +22,9 @@ void LogoManager_CleanupMemory(void)
       }
     }
   }
+
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

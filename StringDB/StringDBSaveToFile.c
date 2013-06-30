@@ -3,9 +3,20 @@
 
 bool StringDBSaveToFile(tStringDB *StringDB, TYPE_File *f)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("StringDBSaveToFile");
+  #endif
+
   dword                 l, p;
 
-  if(!StringDB || !f || !StringDB->DB) return FALSE;
+  if(!StringDB || !f || !StringDB->DB)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return FALSE;
+  }
 
   //DB Size
   l = StringDB->DBEnd - StringDB->DB + 1;
@@ -16,6 +27,10 @@ bool StringDBSaveToFile(tStringDB *StringDB, TYPE_File *f)
   TAP_Hdd_Fwrite(&p, sizeof(dword), 1, f);
 
   TAP_Hdd_Fwrite(StringDB->DB, 1, l, f);
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return TRUE;
 }

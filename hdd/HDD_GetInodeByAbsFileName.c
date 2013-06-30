@@ -2,13 +2,28 @@
 #include                "FBLib_hdd.h"
 #include                "../libFireBird.h"
 
-dword HDD_GetInodeByAbsFileName(char *FileName)
+__ino64_t HDD_GetInodeByAbsFileName(char *FileName)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("HDD_GetInodeByAbsFileName");
+  #endif
+
   tstat64               statbuf;
-  int                   status;
+  __ino64_t             ret;
 
-  if(!FileName) return 0;
-  if((status = lstat64(FileName, &statbuf))) return 0;
+  if(FileName)
+  {
+    if(lstat64(FileName, &statbuf))
+      ret = 0;
+    else
+      ret = statbuf.st_ino;
+  }
+  else
+    ret = 0;
 
-  return (dword)statbuf.st_ino;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }

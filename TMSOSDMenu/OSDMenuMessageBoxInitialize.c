@@ -3,16 +3,27 @@
 
 void OSDMenuMessageBoxInitialize(char *Title, char *Text)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("OSDMenuMessageBoxInitialize");
+  #endif
+
   if(InfoBoxOSDRgn)OSDMenuInfoBoxDestroy();
 
   if(MessageBoxOSDRgn) OSDMenuMessageBoxDestroy();
+
+  OSDMenuLoadStdFonts();
+
   MessageBox.NrButtons = 0;
   MessageBox.CurrentButton = 0;
   MessageBoxNoNormalMode = FALSE;
 
-  strncpy(MessageBox.Title, Title, STDSTRINGSIZE);
+  strncpyUC(MessageBox.Title, Title, STDSTRINGSIZE);
   MessageBox.Title[STDSTRINGSIZE - 1] = '\0';
 
-  strncpy(MessageBox.Text, Text, STDSTRINGSIZE);
+  strncpyUC(MessageBox.Text, Text, STDSTRINGSIZE);
   MessageBox.Text[STDSTRINGSIZE - 1] = '\0';
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

@@ -29,6 +29,6 @@
   extern bool                 CallTraceInitialized;
   extern tCallTraceStats     *CallTraceStats;
   extern int                  CallTraceStatsEntries;
-
+  extern bool                 CallTraceDoNotReenter;
 
 #endif

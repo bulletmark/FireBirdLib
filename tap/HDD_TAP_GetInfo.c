@@ -4,32 +4,63 @@
 
 bool HDD_TAP_GetInfo(char *FileName, tTAPInfo *pTAPInfo)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("HDD_TAP_GetInfo");
+  #endif
+
   dword                 Index;
   char                  s[128];
 
-  if(!pTAPInfo) return FALSE;
+  if(!pTAPInfo)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return FALSE;
+  }
 
   if(!ELFOpenFile(FileName))
   {
     ELFCleanup();
+
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
     return FALSE;
   }
 
   if(!ELFReadELFHeader())
   {
     ELFCleanup();
+
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
     return FALSE;
   }
 
   if(!ELFReadSectionHeaders())
   {
     ELFCleanup();
+
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
     return FALSE;
   }
 
   if(!ELFReadShstrtabSection())
   {
     ELFCleanup();
+
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
     return FALSE;
   }
 
@@ -37,6 +68,11 @@ bool HDD_TAP_GetInfo(char *FileName, tTAPInfo *pTAPInfo)
   if((Index == 0) || !ELFReadDWORD(Index, &pTAPInfo->TAPID))
   {
     ELFCleanup();
+
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
     return FALSE;
   }
 
@@ -78,13 +114,17 @@ bool HDD_TAP_GetInfo(char *FileName, tTAPInfo *pTAPInfo)
   Index = ELFGetSectionIndex("._tap_description");
   if(Index) ELFReadData(Index, pTAPInfo->Description);
 
-#ifdef MAX_PROGRAM_VERSION
-  pTAPInfo->TAPVersion[0] = '\0';
-  Index = ELFGetSectionIndex("._tap_program_version");
-  if(Index) ELFReadData(Index, pTAPInfo->TAPVersion);
-#endif
+  #ifdef MAX_PROGRAM_VERSION
+    pTAPInfo->TAPVersion[0] = '\0';
+    Index = ELFGetSectionIndex("._tap_program_version");
+    if(Index) ELFReadData(Index, pTAPInfo->TAPVersion);
+  #endif
 
   ELFCleanup();
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return TRUE;
 }

@@ -3,18 +3,31 @@
 
 bool OSDMenuItemModifyName(int ItemIndex, char *Text)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("OSDMenuItemModifyName");
+  #endif
+
   tMenu                *pMenu;
 
   pMenu = &Menu[CurrentMenuLevel];
 
-  if((pMenu->NrItems == 0) || (ItemIndex >= pMenu->NrItems)) return FALSE;
-  if(!Text || !Text[0]) return FALSE;
+  if((pMenu->NrItems == 0) || (ItemIndex >= pMenu->NrItems) || !Text || !Text[0])
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return FALSE;
+  }
 
   strncpy(pMenu->Item[ItemIndex].Name, Text, ITEMNAMESIZE);
   pMenu->Item[ItemIndex].Name[ITEMNAMESIZE - 1] = '\0';
 
-  //TODO: only when in visible area
   ListDirty = TRUE;
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return TRUE;
 }

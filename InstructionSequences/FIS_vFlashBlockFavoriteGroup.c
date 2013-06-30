@@ -2,13 +2,18 @@
 
 inline dword FIS_vFlashBlockFavoriteGroup(void)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FIS_vFlashBlockFavoriteGroup");
+  #endif
+
   static dword          *vFlashFavGrp = 0;
 
   if(!vFlashFavGrp)
-  {
     vFlashFavGrp = (dword*)TryResolve("_favGrp");
-    if(!vFlashFavGrp) return 0;
-  }
 
-  return *vFlashFavGrp;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return (vFlashFavGrp ? *vFlashFavGrp : 0);
 }

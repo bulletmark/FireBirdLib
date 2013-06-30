@@ -10,7 +10,7 @@ TAP_DESCRIPTION         ("");
 TAP_ETCINFO             (__DATE__);
 
 
-dword TAP_EventHandler (word event, dword param1, dword param2)
+dword TAP_EventHandler(word event, dword param1, dword param2)
 {
   static bool DoNotReenter = FALSE;
 
@@ -60,7 +60,7 @@ dword TAP_EventHandler (word event, dword param1, dword param2)
   return param1;
 }
 
-int TAP_Main (void)
+int TAP_Main(void)
 {
   //This should be one of the first functions called
   //It will increase the crash counter in the file /ProgramFiles/Settings/CrashCheck.ini and...

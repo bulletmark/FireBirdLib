@@ -3,10 +3,21 @@
 
 bool VFD_SetIcon(tVFDIcon VFDIcon, bool On)
 {
-  byte *grid = (byte*)FIS_vGrid();
-  byte GridIndex = 0, OrBit = 0;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("VFD_SetIcon");
+  #endif
 
-  if(!VFDUsedByTAP || !grid) return FALSE;
+  byte GridIndex = 0, OrBit = 0;
+  byte *grid = (byte*)FIS_vGrid();
+
+  if(!VFDUsedByTAP || !grid)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return FALSE;
+  }
 
   switch(VFDIcon)
   {
@@ -47,6 +58,9 @@ bool VFD_SetIcon(tVFDIcon VFDIcon, bool On)
   else
     grid[GridIndex] = grid[GridIndex] & ~(1 << OrBit);
 
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return TRUE;
 }

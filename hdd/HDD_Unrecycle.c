@@ -4,12 +4,16 @@
 
 void HDD_Unrecycle(char *FileName)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("HDD_Unrecycle");
+  #endif
+
   char                  Name[TS_FILE_NAME_SIZE], Ext[TS_FILE_NAME_SIZE];
   char                  OldName[TS_FILE_NAME_SIZE], NewName[TS_FILE_NAME_SIZE];
   bool                  isRec, isDel;
   int                   fNumber;
 
-  if (TAP_Hdd_Exist(FileName))
+  if(TAP_Hdd_Exist(FileName))
   {
     SeparateFileNameComponents(FileName, Name, Ext, &fNumber, &isRec, &isDel);
 
@@ -39,4 +43,8 @@ void HDD_Unrecycle(char *FileName)
       }
     }
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

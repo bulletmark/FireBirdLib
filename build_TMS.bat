@@ -8,12 +8,12 @@ copy %Project%.h %TFROOT%\API\TMS\include
 if exist Compile_TMSEMU goto Compile_TMSEMU
 
 echo Building MIPS FBLib
-bash -i -c "make"
+bash -i -c "make -j 8"
 goto Compile_Done
 
 :Compile_TMSEMU
 echo Building Intel FBLib
-bash -i -c "make --file=Makefile_tmsemu"
+bash -i -c "make -j 8 --file=Makefile_tmsemu"
 
 :Compile_Done
 copy %Project%.a "%TFROOT%\gccForTMS\crosstool\lib\%Project%.a"

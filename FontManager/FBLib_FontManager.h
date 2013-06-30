@@ -1,22 +1,31 @@
 #ifndef FBLIB_FONTMANAGER_H
 #define FBLIB_FONTMANAGER_H
 
-#include "../libFireBird.h"
+  #include              "../libFireBird.h"
 
-typedef struct
-{
-  byte  r;
-  byte  g;
-  byte  b;
-} tAlphaLUT;
+  #define FONTDIR       "/ProgramFiles/Settings/Fonts"
 
-extern tAlphaLUT  AlphaLUT[256];
+  typedef struct
+  {
+    byte  r;
+    byte  g;
+    byte  b;
+  } tAlphaLUT;
 
+  extern tAlphaLUT  AlphaLUT[256];
 
-bool FM_isValidCharacter(byte Char);
-byte FM_CharToIndex(byte Char);
-byte FM_AlphaBlend(byte Alpha, byte FG, byte BG, float AntiAliasFactor);
-void FM_InitAlphaLUT(dword fgColor, dword bgColor, float AntiAliasFactor);
-dword FM_AlphaBlendRGB(byte Alpha, dword FG, dword BG, float AntiAliasFactor);
+  void           *FMUC_ReserveMemory(char *Requester, dword size);
+  void            FMUC_FreeMemory(char *Requester, void *Pointer);
+
+  bool            FM_isValidCharacter(byte Char);
+  byte            FM_CharToIndex(byte Char);
+  byte            FM_AlphaBlend(byte Alpha, byte FG, byte BG, float AntiAliasFactor);
+  void            FM_InitAlphaLUT(dword fgColor, dword bgColor, float AntiAliasFactor);
+  dword           FM_AlphaBlendRGB(byte Alpha, dword FG, dword BG, float AntiAliasFactor);
+
+  tGlyphCacheUC  *FMUC_GetGlyphData(tFontDataUC *FontData, byte *UTF8Character, byte *BytesPerChar);
+  byte           *FMUC_FindUTF8Start(byte *p);
+  byte           *FMUC_FindNextUTF8(byte *p);
+  bool            FMUC_IsDiacriticalMark(dword Character);
 
 #endif

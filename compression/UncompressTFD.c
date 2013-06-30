@@ -19,64 +19,72 @@
 // 8 .. (compressed size + 5) - compressed data (byte array)
 dword UncompressTFD(byte *pSrc, byte *pDest, void *pPercentFinishedCallback)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("UncompressTFD");
+  #endif
+
   word                  compSize = 0, uncompSize = 0, NrBlocks = 0;
   dword                 outSize = 0, i;
 
-#ifdef DEBUG_FIREBIRDLIB
-  CallTraceEnter("UncompressTFD");
-#endif
+  if(!pSrc || !pDest)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return 0;
+  }
 
   //PercentFinishedCallback is called for every block. PercentFinished contains a number between 0 and 100
   void (*PercentFinishedCallback) (dword PercentFinished) = pPercentFinishedCallback;
 
-  if (LOAD_WORD(pSrc) != 8)                                       //Invalid header?
+  if(LOAD_WORD(pSrc) != 8)
   {
-
-#ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-#endif
+    //Invalid header
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
 
     return 0;
   }
 
-  if (CRC16 (0, pSrc + 4, 6) != LOAD_WORD(pSrc + 2))              //Invalid header CRC?
+  if(CRC16 (0, pSrc + 4, 6) != LOAD_WORD(pSrc + 2))
   {
-
-#ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-#endif
+    //Invalid header CRC
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
 
     return 0;
   }
 
-  if (LOAD_WORD(pSrc + 6) != 1)                                   //Invalid file version?
+  if(LOAD_WORD(pSrc + 6) != 1)
   {
-
-#ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-#endif
+    //Invalid file version
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
 
     return 0;
   }
-
 
   NrBlocks = LOAD_WORD(pSrc + 8);
 
   pSrc += 10;
 
-  for (i = 0; i < NrBlocks; i++)
+  for(i = 0; i < NrBlocks; i++)
   {
-    if (PercentFinishedCallback) PercentFinishedCallback (i * 100 / NrBlocks);
+    if(PercentFinishedCallback) PercentFinishedCallback(i * 100 / NrBlocks);
 
     compSize   = LOAD_WORD(pSrc) - 6;
     uncompSize = LOAD_WORD(pSrc + 6);
 
-    if (uncompSize > 0x7ffa)
+    if(uncompSize > 0x7ffa)
     {
-
-#ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-#endif
+      //Size of uncompressed block too large
+      #ifdef DEBUG_FIREBIRDLIB
+        CallTraceExit(NULL);
+      #endif
 
       return 0;
     }
@@ -86,31 +94,31 @@ dword UncompressTFD(byte *pSrc, byte *pDest, void *pPercentFinishedCallback)
     if(compSize == uncompSize)
     {
       // not compressed data, copy it directly
-      if (pDest) memcpy(pDest, pSrc, uncompSize);
+      if(pDest) memcpy(pDest, pSrc, uncompSize);
     }
     else
     {
       // compressed data, uncompress it
-      if (!UncompressBlock (pSrc, compSize, pDest, uncompSize))
+      if(!UncompressBlock(pSrc, compSize, pDest, uncompSize))
       {
-
-#ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-#endif
+        //Uncompress failed
+        #ifdef DEBUG_FIREBIRDLIB
+          CallTraceExit(NULL);
+        #endif
 
         return 0;
       }
     }
 
-    if (pDest) pDest += uncompSize;
+    if(pDest) pDest += uncompSize;
     pSrc += compSize;
     outSize += uncompSize;
   }
-  if (PercentFinishedCallback) PercentFinishedCallback (100);
+  if(PercentFinishedCallback) PercentFinishedCallback(100);
 
-#ifdef DEBUG_FIREBIRDLIB
-  CallTraceExit(NULL);
-#endif
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return outSize;
 }

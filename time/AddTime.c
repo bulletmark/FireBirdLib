@@ -1,7 +1,11 @@
 #include "../libFireBird.h"
 
-dword AddTime (dword date, int add) //add minutes to the day
+dword AddTime(dword date, int add) //add minutes to the day
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("AddTime");
+  #endif
+
   word                  day;
   short                 hour, min;
 
@@ -10,12 +14,12 @@ dword AddTime (dword date, int add) //add minutes to the day
   min = (date) & 0xff;
 
   min += add % 60;
-  if (min < 0)
+  if(min < 0)
   {
     hour-=1;
     min+=60;
   }
-  else if (min > 59)
+  else if(min > 59)
   {
     hour+=1;
     min-=60;
@@ -23,7 +27,7 @@ dword AddTime (dword date, int add) //add minutes to the day
 
   hour += add / 60;
 
-  if (hour < 0)
+  if(hour < 0)
   {
     day-=1;
     hour+=24;
@@ -36,6 +40,10 @@ dword AddTime (dword date, int add) //add minutes to the day
       hour-=24;
     }
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return ((day<<16)|(hour<<8)|min);
 }

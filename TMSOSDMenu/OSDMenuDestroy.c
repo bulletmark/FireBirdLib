@@ -2,6 +2,10 @@
 
 void OSDMenuDestroy(void)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("OSDMenuDestroy");
+  #endif
+
   if(OSDRgn)
   {
     TAP_Osd_Delete(OSDRgn);
@@ -14,5 +18,11 @@ void OSDMenuDestroy(void)
   if((!ProgressBarOSDRgn) && (!InfoBoxOSDRgn) && (!MessageBoxOSDRgn) && (!ColorPickerOSDRgn)) TAP_EnterNormal();
   if(Menu[CurrentMenuLevel].Item) TAP_MemFree(Menu[CurrentMenuLevel].Item);
 
+  OSDMenuFreeStdFonts();
+
   CallbackProcedure = NULL;
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

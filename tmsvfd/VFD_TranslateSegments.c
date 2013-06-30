@@ -5,36 +5,47 @@
 
 dword VFD_TranslateSegments(byte Character, DISPLAYSTYLE DisplayStyle)
 {
-  if (CurrentCharset == CS_8859_5)
-    switch (DisplayStyle)
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("VFD_TranslateSegments");
+  #endif
+
+  dword ret;
+
+  ret = 0;
+  if(CurrentCharset == CS_8859_5)
+    switch(DisplayStyle)
     {
-      case VFD_7:  return VFDSegmentMap7_c[Character];
-      case VFD_14: return VFDSegmentMap14_c[Character];
-      case VFD_17: return VFDSegmentMap17_c[Character];
+      case VFD_7:  ret = VFDSegmentMap7_c[Character]; break;
+      case VFD_14: ret = VFDSegmentMap14_c[Character]; break;
+      case VFD_17: ret = VFDSegmentMap17_c[Character]; break;
 
       default:
         break;
     }
-  else if (CurrentCharset == CS_8859_1_HAPPY)
-    switch (DisplayStyle)
+  else if(CurrentCharset == CS_8859_1_HAPPY)
+    switch(DisplayStyle)
     {
-      case VFD_7:  return VFDSegmentMap7_h[Character];
-      case VFD_14: return VFDSegmentMap14_h[Character];
-      case VFD_17: return VFDSegmentMap17_h[Character];
+      case VFD_7:  ret = VFDSegmentMap7_h[Character]; break;
+      case VFD_14: ret = VFDSegmentMap14_h[Character]; break;
+      case VFD_17: ret = VFDSegmentMap17_h[Character]; break;
 
       default:
         break;
     }
   else
-    switch (DisplayStyle)
+    switch(DisplayStyle)
     {
-      case VFD_7:  return VFDSegmentMap7[Character];
-      case VFD_14: return VFDSegmentMap14[Character];
-      case VFD_17: return VFDSegmentMap17[Character];
+      case VFD_7:  ret = VFDSegmentMap7[Character]; break;
+      case VFD_14: ret = VFDSegmentMap14[Character]; break;
+      case VFD_17: ret = VFDSegmentMap17[Character]; break;
 
       default:
         break;
     }
 
-  return 0;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }

@@ -2,23 +2,55 @@
 
 bool FM_LoadFontFile(char *FontFileName, tFontData *FontData)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FM_LoadFontFile");
+  #endif
+
   TYPE_File            *f;
   dword                 GreyScaleSize;
   dword                 i, j, k;
 
-  if(!FontFileName || !FontFileName[0] || !FontData) return FALSE;
+  if(!FontFileName || !FontFileName[0] || !FontData)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return FALSE;
+  }
 
   memset(FontData, 0, sizeof(tFontData));
 
-  if(!TAP_Hdd_Exist(FontFileName)) return FALSE;
+  if(!TAP_Hdd_Exist(FontFileName))
+  {
+    char                s[120];
+    extern char         __tap_program_name__[MAX_PROGRAM_NAME];
+
+    TAP_SPrint(s, "failed to load %s", FontFileName);
+    LogEntryFBLibPrintf(TRUE, "FontManager: %s", s);
+    ShowMessageWin(__tap_program_name__, s, "Please install the font", 300);
+
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return FALSE;
+  }
 
   f = TAP_Hdd_Fopen(FontFileName);
-  if(f == NULL) return FALSE;
+  if(f == NULL)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return FALSE;
+  }
 
   TAP_Hdd_Fread(FontData->FontDef, sizeof(tFontDef), 191, f);
 
   /* Check for normal or compressed bitmap font */
-  if (FontData->FontDef[0].BitmapIndex == 0)
+  if(FontData->FontDef[0].BitmapIndex == 0)
   {
     /* Normal font file. Last font table entry defines total size */
     GreyScaleSize = FontData->FontDef[190].Width * FontData->FontDef[190].Height + FontData->FontDef[190].BitmapIndex;
@@ -47,6 +79,10 @@ bool FM_LoadFontFile(char *FontFileName, tFontData *FontData)
   }while(j > 0);
 
   TAP_Hdd_Fclose(f);
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return TRUE;
 }

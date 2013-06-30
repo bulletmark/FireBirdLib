@@ -2,8 +2,12 @@
 #include <stdlib.h>
 #include "../libFireBird.h"
 
-char *HDD_MakeNewRecName (char *fname, word sequence)
+char *HDD_MakeNewRecName(char *fname, word sequence)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("HDD_MakeNewRecName");
+  #endif
+
   static char           try[MAX_FILE_NAME_SIZE + 1];
   size_t                len;
   char                  *p;
@@ -15,8 +19,8 @@ char *HDD_MakeNewRecName (char *fname, word sequence)
 
   len = strlen(try);
 
-  if (!(p = strrchr(try, '.'))) p = try + len;
-  if ((j = MAX_FILE_NAME_SIZE - len - 4) < 0)
+  if(!(p = strrchr(try, '.'))) p = try + len;
+  if((j = MAX_FILE_NAME_SIZE - len - 4) < 0)
   {
     strcpy(p + j, p);
     p += j;
@@ -24,7 +28,7 @@ char *HDD_MakeNewRecName (char *fname, word sequence)
 
   memmove(p + 3, p, strlen(p) + 1);
 
-  if (sequence)
+  if(sequence)
   {
     c1 = sequence / 10 % 10 + '0';
     c2 = sequence % 10 + '0';
@@ -40,6 +44,10 @@ char *HDD_MakeNewRecName (char *fname, word sequence)
 
   p[1] = c1;
   p[2] = c2;
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return try;
 }

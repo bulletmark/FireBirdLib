@@ -5,6 +5,10 @@
 
 void LogoManager_ProcessLILAdd(char *AddFileName)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("LogoManager_ProcessLILAdd");
+  #endif
+
   TYPE_File            *f;
   int                   fs;
   char                 *Text, Line[80];
@@ -41,4 +45,8 @@ void LogoManager_ProcessLILAdd(char *AddFileName)
   INISaveFile(LILNAME, INILOCATION_AtCurrentDir, NULL);
   INICloseFile();
   HDD_TAP_PopDir();
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

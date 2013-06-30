@@ -3,26 +3,54 @@
 
 bool StrMkISO(byte *SourceString)
 {
-  char                 *_isostring;
-  int                   Len;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("StrMkISO");
+  #endif
+
+  byte                 *_isostring;
   bool                  hasAnsiChars, hasUTFChars;
 
-  if(!SourceString) return FALSE;
-  if(!*SourceString) return TRUE;
+  if(!SourceString)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return FALSE;
+  }
+
+  if(!*SourceString)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return TRUE;
+  }
 
   GetStringEncoding(SourceString, &hasAnsiChars, &hasUTFChars);
 
   if(!hasAnsiChars && hasUTFChars)
   {
-    Len = strlen(SourceString);
-    _isostring = TAP_MemAlloc(Len + 1);
-    if(!_isostring) return FALSE;
+    StrToISOAlloc(SourceString, &_isostring);
+    if(_isostring)
+    {
+      strcpy(SourceString, _isostring);
+      TAP_MemFree(_isostring);
+    }
+    else
+    {
+      #ifdef DEBUG_FIREBIRDLIB
+        CallTraceExit(NULL);
+      #endif
 
-    memset(_isostring, 0, Len + 1);
-    StrToISO(SourceString, _isostring);
-    memcpy(SourceString, _isostring, Len + 1);
-    TAP_MemFree(_isostring);
+      return FALSE;
+    }
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return TRUE;
 }

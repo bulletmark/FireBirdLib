@@ -6,7 +6,7 @@
 #include                "graphic/status_bad.gd"
 
 #define PROGRAM_NAME    "TMSOSDMenu Demo"
-#define VERSION         "V0.2b"
+#define VERSION         "V0.3"
 
 TAP_ID                  (0x8E0Affff);
 TAP_PROGRAM_NAME        (PROGRAM_NAME" "VERSION);
@@ -52,7 +52,7 @@ dword TAP_EventHandler(word event, dword param1, dword param2)
       OSDMenuItemAdd("10th Name", "10th Value", NULL, NULL, TRUE, TRUE, 0);
       OSDMenuItemAdd("11th Name", "11th Value", NULL, NULL, TRUE, TRUE, 0);
       OSDMenuItemAdd("12th Name", "12th Value", NULL, NULL, TRUE, TRUE, 0);
-      OSDMenuItemAdd("Umlaute", "ABC ƒ÷‹‰ˆ¸ﬂ", NULL, NULL, TRUE, TRUE, 0);
+      OSDMenuItemAdd("Umlaute", "\x5ABC ƒ÷‹‰ˆ¸ﬂ", NULL, NULL, TRUE, TRUE, 0);
       OSDMenuItemAdd("This text is too long for this line", "", NULL, NULL, TRUE, TRUE, 0);
 
       OSDMenuButtonAdd(1, BI_Red,    NULL, "Button 1");
@@ -128,5 +128,6 @@ dword TAP_EventHandler(word event, dword param1, dword param2)
 
 int TAP_Main(void)
 {
+  KeyTranslate(TRUE, &TAP_EventHandler);
   return 1;
 }

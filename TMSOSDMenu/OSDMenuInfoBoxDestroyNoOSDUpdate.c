@@ -2,7 +2,17 @@
 
 void OSDMenuInfoBoxDestroyNoOSDUpdate(void)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("OSDMenuInfoBoxDestroyNoOSDUpdate");
+  #endif
+
   tOSDMapInfo          *OSDMapInfo;
+
+  if(WaitSpinnerRgn)
+  {
+    TAP_Osd_Delete(WaitSpinnerRgn);
+    WaitSpinnerRgn = 0;
+  }
 
   if(InfoBoxOSDRgn)
   {
@@ -24,4 +34,10 @@ void OSDMenuInfoBoxDestroyNoOSDUpdate(void)
       MyOSDRgn = 0;
     }
   }
+
+  OSDMenuFreeStdFonts();
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

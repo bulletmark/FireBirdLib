@@ -3,10 +3,21 @@
 
 bool HDD_TAP_GetInfoByAbsPath(char *AbsFileName, tTAPInfo *pTAPInfo)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("HDD_TAP_GetInfoByAbsPath");
+  #endif
+
   bool                  ret;
   char                 *p, *Slash;
 
-  if(!AbsFileName || !pTAPInfo) return FALSE;
+  if(!AbsFileName || !pTAPInfo)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return FALSE;
+  }
 
   //Let Slash point to the last /
   Slash = AbsFileName;
@@ -30,6 +41,10 @@ bool HDD_TAP_GetInfoByAbsPath(char *AbsFileName, tTAPInfo *pTAPInfo)
 
   //Restore the slash
   *Slash = '/';
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return ret;
 }

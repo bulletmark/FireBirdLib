@@ -3,23 +3,26 @@
 
 byte TunerGet(int MainSub)
 {
-#ifdef DEBUG_FIREBIRDLIB
-  CallTraceEnter("TunerGet");
-#endif
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("TunerGet");
+  #endif
 
   //Parameter sanity check
-  if (MainSub != CHANNEL_Main && MainSub != CHANNEL_Sub)
+  if(MainSub != CHANNEL_Main && MainSub != CHANNEL_Sub)
   {
-
-#ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-#endif
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
 
     return -1;
   }
 
   //Has been forgotten :-)
   extern unsigned char (*TAP_GetActiveTuner)(unsigned char);
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return TAP_GetActiveTuner(MainSub);
 }

@@ -2,6 +2,10 @@
 
 void OSDMenuDestroyNoOSDUpdate(void)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("OSDMenuDestroyNoOSDUpdate");
+  #endif
+
   if(OSDRgn)
   {
     TAP_Osd_Delete(OSDRgn);
@@ -12,5 +16,11 @@ void OSDMenuDestroyNoOSDUpdate(void)
   }
   if(Menu[CurrentMenuLevel].Item) TAP_MemFree(Menu[CurrentMenuLevel].Item);
 
+  OSDMenuFreeStdFonts();
+
   CallbackProcedure = NULL;
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

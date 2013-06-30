@@ -4,6 +4,10 @@ tAlphaLUT  AlphaLUT[256];
 
 void FM_InitAlphaLUT(dword fgColor, dword bgColor, float AntiAliasFactor)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FM_InitAlphaLUT");
+  #endif
+
   int                   i;
   dword                 x;
 
@@ -18,4 +22,8 @@ void FM_InitAlphaLUT(dword fgColor, dword bgColor, float AntiAliasFactor)
     x = FM_AlphaBlend(i,  fgColor        & 0xff,  bgColor        & 0xff, AntiAliasFactor);
     AlphaLUT[i].b = (x > 255) ? 255 : x;
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

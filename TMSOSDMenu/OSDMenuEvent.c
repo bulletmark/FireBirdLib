@@ -2,14 +2,25 @@
 
 bool OSDMenuEvent(word *event, dword *param1, dword *param2)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("OSDMenuEvent");
+  #endif
+
   (void) param2;
 
   if(InfoBoxOSDRgn)
   {
+    if(WaitSpinnerRgn) OSDMenuWaitSpinnerIdle();
+
     if(event && param1 && (*event == EVT_KEY))
     {
       if(*param1 == RKEY_Exit) OSDMenuInfoBoxDestroy();
       *param1 = 0;
+
+      #ifdef DEBUG_FIREBIRDLIB
+        CallTraceExit(NULL);
+      #endif
+
       return TRUE;
     }
 
@@ -17,6 +28,10 @@ bool OSDMenuEvent(word *event, dword *param1, dword *param2)
     {
       if(TAP_GetTick() > InfoBoxTimeOut) OSDMenuInfoBoxDestroy();
     }
+
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
 
     return FALSE;
   }
@@ -67,8 +82,17 @@ bool OSDMenuEvent(word *event, dword *param1, dword *param2)
         }
       }
       *param1 = 0;
+
+      #ifdef DEBUG_FIREBIRDLIB
+        CallTraceExit(NULL);
+      #endif
+
       return TRUE;
     }
+
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
 
     return FALSE;
   }
@@ -232,8 +256,17 @@ bool OSDMenuEvent(word *event, dword *param1, dword *param2)
         }
       }
       *param1 = 0;
+
+      #ifdef DEBUG_FIREBIRDLIB
+        CallTraceExit(NULL);
+      #endif
+
       return TRUE;
     }
+
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
 
     return FALSE;
   }
@@ -249,6 +282,11 @@ bool OSDMenuEvent(word *event, dword *param1, dword *param2)
           OSDMenuScrollUp();
           OSDMenuUpdate(FALSE);
           *param1 = 0;
+
+          #ifdef DEBUG_FIREBIRDLIB
+            CallTraceExit(NULL);
+          #endif
+
           return TRUE;
         }
 
@@ -259,6 +297,11 @@ bool OSDMenuEvent(word *event, dword *param1, dword *param2)
           ret = OSDMenuScrollDown();
           OSDMenuUpdate(FALSE);
           *param1 = 0;
+
+          #ifdef DEBUG_FIREBIRDLIB
+            CallTraceExit(NULL);
+          #endif
+
           return TRUE;
         }
 
@@ -268,6 +311,11 @@ bool OSDMenuEvent(word *event, dword *param1, dword *param2)
           OSDMenuScrollPageDown();
           OSDMenuUpdate(FALSE);
           *param1 = 0;
+
+          #ifdef DEBUG_FIREBIRDLIB
+            CallTraceExit(NULL);
+          #endif
+
           return TRUE;
         }
 
@@ -277,6 +325,11 @@ bool OSDMenuEvent(word *event, dword *param1, dword *param2)
           OSDMenuScrollPageUp();
           OSDMenuUpdate(FALSE);
           *param1 = 0;
+
+          #ifdef DEBUG_FIREBIRDLIB
+            CallTraceExit(NULL);
+          #endif
+
           return TRUE;
         }
 
@@ -287,6 +340,11 @@ bool OSDMenuEvent(word *event, dword *param1, dword *param2)
             OSDMenuScrollPageUp();
             OSDMenuUpdate(FALSE);
             *param1 = 0;
+
+            #ifdef DEBUG_FIREBIRDLIB
+              CallTraceExit(NULL);
+            #endif
+
             return TRUE;
           }
           break;
@@ -299,6 +357,11 @@ bool OSDMenuEvent(word *event, dword *param1, dword *param2)
             OSDMenuScrollPageDown();
             OSDMenuUpdate(FALSE);
             *param1 = 0;
+
+            #ifdef DEBUG_FIREBIRDLIB
+              CallTraceExit(NULL);
+            #endif
+
             return TRUE;
           }
           break;
@@ -306,8 +369,16 @@ bool OSDMenuEvent(word *event, dword *param1, dword *param2)
       }
     }
 
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
     return FALSE;
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return FALSE;
 }

@@ -2,7 +2,20 @@
 
 dword OSDMenuItemGetID(int ItemIndex)
 {
-  if((ItemIndex < 0) || (ItemIndex >= Menu[CurrentMenuLevel].NrItems)) return 0;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("OSDMenuItemGetID");
+  #endif
 
-  return Menu[CurrentMenuLevel].Item[ItemIndex].ID;
+  dword ret;
+
+  if((ItemIndex < 0) || (ItemIndex >= Menu[CurrentMenuLevel].NrItems))
+    ret = 0;
+  else
+    ret = Menu[CurrentMenuLevel].Item[ItemIndex].ID;
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }

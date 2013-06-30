@@ -1,18 +1,26 @@
 #include "FBLib_ini.h"
 #include "../libFireBird.h"
 
-void INICloseFile (void)
+void INICloseFile(void)
 {
-  if (INIBuffer != NULL)
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("INICloseFile");
+  #endif
+
+  if(INIBuffer != NULL)
   {
-    free (INIBuffer);
+    free(INIBuffer);
     INIBuffer = NULL;
     BufferSize = 0;
   }
 
-  if (INICommentBuffer != NULL)
+  if(INICommentBuffer != NULL)
   {
-    free (INICommentBuffer);
+    free(INICommentBuffer);
     INICommentBuffer = NULL;
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

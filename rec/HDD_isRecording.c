@@ -2,7 +2,18 @@
 
 bool HDD_isRecording(byte RecSlot)
 {
-  TYPE_RecInfo          recInfo;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("HDD_isRecording");
+  #endif
 
-  return (TAP_Hdd_GetRecInfo(RecSlot, &recInfo) && (recInfo.recType == RECTYPE_Normal || recInfo.recType == RECTYPE_Copy));
+  TYPE_RecInfo          recInfo;
+  bool                  ret;
+
+  ret = (TAP_Hdd_GetRecInfo(RecSlot, &recInfo) && (recInfo.recType == RECTYPE_Normal || recInfo.recType == RECTYPE_Copy));
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }

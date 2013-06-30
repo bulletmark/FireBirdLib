@@ -10,15 +10,24 @@
 // 2 - compressed size (incl CRC-16) (word)
 // 4 - CRC-16 (word)
 // 6 .. (compressed size + 5) - compressed data (byte array)
-dword UncompressFirmware (byte *pSrc, byte *pDest, void *pPercentFinishedCallback)
+dword UncompressFirmware(byte *pSrc, byte *pDest, void *pPercentFinishedCallback)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("UncompressFirmware");
+  #endif
+
   word                  compSize = 0, uncompSize = 0;
   dword                 outSize = 0, NrBlocks = 0, CurrentBlock = 0;
   byte                  *OrigpSrc;
 
-#ifdef DEBUG_FIREBIRDLIB
-  CallTraceEnter("UncompressFirmware");
-#endif
+  if(!pSrc || !pDest)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return 0;
+  }
 
   //PercentFinishedCallback is called for every block. PercentFinished contains a number between 0 and 100
   void (*PercentFinishedCallback) (dword PercentFinished) = pPercentFinishedCallback;
@@ -28,16 +37,16 @@ dword UncompressFirmware (byte *pSrc, byte *pDest, void *pPercentFinishedCallbac
   compSize   = LOAD_WORD(pSrc + 2);
 
   //Count the number of blocks
-  while (uncompSize != 0xfefe)
+  while(uncompSize != 0xfefe)
   {
     NrBlocks++;
 
-    if (uncompSize > 0x8000)
+    if(uncompSize > 0x8000)
     {
-
-#ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-#endif
+      //Uncompressed data block size too large
+      #ifdef DEBUG_FIREBIRDLIB
+        CallTraceExit(NULL);
+      #endif
 
       return 0;
     }
@@ -53,17 +62,17 @@ dword UncompressFirmware (byte *pSrc, byte *pDest, void *pPercentFinishedCallbac
   uncompSize = LOAD_WORD(pSrc + 0);
   compSize   = LOAD_WORD(pSrc + 2);
 
-  while (uncompSize != 0xfefe)
+  while(uncompSize != 0xfefe)
   {
-    if (PercentFinishedCallback) PercentFinishedCallback (CurrentBlock * 100 / NrBlocks);
+    if(PercentFinishedCallback) PercentFinishedCallback(CurrentBlock * 100 / NrBlocks);
     CurrentBlock++;
 
-    if (uncompSize > 0x8000)
+    if(uncompSize > 0x8000)
     {
-
-#ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-#endif
+      //Uncompressed data block size too large
+      #ifdef DEBUG_FIREBIRDLIB
+        CallTraceExit(NULL);
+      #endif
 
       return 0;
     }
@@ -73,34 +82,34 @@ dword UncompressFirmware (byte *pSrc, byte *pDest, void *pPercentFinishedCallbac
     if(compSize == uncompSize)
     {
       // data not compressed, copy it directly
-      if (pDest) memcpy(pDest, pSrc, uncompSize);
+      if(pDest) memcpy(pDest, pSrc, uncompSize);
     }
     else
     {
       // compressed data, uncompress it
-      if (!UncompressBlock (pSrc, compSize, pDest, uncompSize))
+      if(!UncompressBlock(pSrc, compSize, pDest, uncompSize))
       {
-
-#ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-#endif
+        //Uncompress has failed
+        #ifdef DEBUG_FIREBIRDLIB
+          CallTraceExit(NULL);
+        #endif
 
         return 0;
       }
     }
 
-    if (pDest) pDest += uncompSize;
+    if(pDest) pDest += uncompSize;
     pSrc += compSize;
     outSize += uncompSize;
 
     uncompSize = LOAD_WORD(pSrc + 0);
     compSize   = LOAD_WORD(pSrc + 2);
   }
-  if (PercentFinishedCallback) PercentFinishedCallback (100);
+  if(PercentFinishedCallback) PercentFinishedCallback(100);
 
-#ifdef DEBUG_FIREBIRDLIB
-  CallTraceExit(NULL);
-#endif
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return outSize;
 }

@@ -6,6 +6,10 @@
 
 int LogoManager_UpdateLIL(void)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("LogoManager_UpdateLIL");
+  #endif
+
   typedef struct
   {
     ulong64             ChannelID;
@@ -108,6 +112,11 @@ int LogoManager_UpdateLIL(void)
     {
       HDD_TAP_PopDir();
       if(LogoManager_CB) LogoManager_CB(-1, 3);
+
+      #ifdef DEBUG_FIREBIRDLIB
+        CallTraceExit(NULL);
+      #endif
+
       return -1;
     }
 
@@ -129,6 +138,10 @@ int LogoManager_UpdateLIL(void)
   TAP_MemFree(NewIDs);
 
   HDD_TAP_PopDir();
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return NewIDCount;
 }

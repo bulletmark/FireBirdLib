@@ -3,9 +3,23 @@
 
 bool FlashServiceDecode(void *Data, tFlashService *Service)
 {
-  //Service is NULL
-  if(!Data || !Service) return FALSE;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashServiceDecode");
+  #endif
 
+  bool ret;
+
+  //Service is NULL
+  if(!Data || !Service)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return FALSE;
+  }
+
+  ret = FALSE;
   switch(GetSystemType())
   {
     //Unknown and old 5k/6k systems are not supported
@@ -17,22 +31,29 @@ bool FlashServiceDecode(void *Data, tFlashService *Service)
     case ST_CT:
     case ST_T5700:
     case ST_T5800:
-    case ST_TF7k7HDPVR: return FALSE;
+    case ST_TF7k7HDPVR: break;
 
-    case ST_TMSS: return FlashServiceDecode_ST_TMSS(Data, Service);
-    case ST_TMST: return FlashServiceDecode_ST_TMST(Data, Service);
-    case ST_TMSC: return FlashServiceDecode_ST_TMSC(Data, Service);
+    case ST_TMSS: ret = FlashServiceDecode_ST_TMSS(Data, Service); break;
+    case ST_TMST: ret = FlashServiceDecode_ST_TMST(Data, Service); break;
+    case ST_TMSC: ret = FlashServiceDecode_ST_TMSC(Data, Service); break;
 
     case ST_NRTYPES: break;
   }
 
-  return FALSE;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }
 
 bool FlashServiceDecode_ST_TMSS(TYPE_Service_TMSS *Data, tFlashService *Service)
 {
-
   char                 *Text;
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashServiceDecode_ST_TMSS");
+  #endif
 
   memset(Service, 0, sizeof(tFlashService));
   Service->SatIndex        = Data->SatIdx;
@@ -60,27 +81,69 @@ bool FlashServiceDecode_ST_TMSS(TYPE_Service_TMSS *Data, tFlashService *Service)
   Text = (char*)(FIS_vFlashBlockProviderInfo() + 21 * Data->ProviderIdx);
   strncpy(Service->ProviderName, Text, 20);
 
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
   return TRUE;
 }
 
 bool FlashServiceDecode_ST_TMST(TYPE_Service_TMST *Data, tFlashService *Service)
 {
+  bool ret;
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashServiceDecode_ST_TMST");
+  #endif
+
   //The TV and radio service structures are identical
-  return FlashServiceDecode_ST_TMSS(Data, Service);
+  ret = FlashServiceDecode_ST_TMSS(Data, Service);
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }
 
 bool FlashServiceDecode_ST_TMSC(TYPE_Service_TMSC *Data, tFlashService *Service)
 {
+  bool ret;
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashServiceDecode_ST_TMSC");
+  #endif
+
   //The TV and radio service structures are identical
-  return FlashServiceDecode_ST_TMSS(Data, Service);
+  ret = FlashServiceDecode_ST_TMSS(Data, Service);
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }
 
 
 bool FlashServiceEncode(void *Data, tFlashService *Service)
 {
-  //Service is NULL
-  if(!Data || !Service) return FALSE;
+  bool ret;
 
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashServiceEncode");
+  #endif
+
+  //Service is NULL
+  if(!Data || !Service)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return FALSE;
+  }
+
+  ret = FALSE;
   switch(GetSystemType())
   {
     //Unknown and old 5k/6k systems are not supported
@@ -92,16 +155,20 @@ bool FlashServiceEncode(void *Data, tFlashService *Service)
     case ST_CT:
     case ST_T5700:
     case ST_T5800:
-    case ST_TF7k7HDPVR: return FALSE;
+    case ST_TF7k7HDPVR: break;
 
-    case ST_TMSS: return FlashServiceEncode_ST_TMSS(Data, Service);
-    case ST_TMST: return FlashServiceEncode_ST_TMST(Data, Service);
-    case ST_TMSC: return FlashServiceEncode_ST_TMSC(Data, Service);
+    case ST_TMSS: ret = FlashServiceEncode_ST_TMSS(Data, Service); break;
+    case ST_TMST: ret = FlashServiceEncode_ST_TMST(Data, Service); break;
+    case ST_TMSC: ret = FlashServiceEncode_ST_TMSC(Data, Service); break;
 
     case ST_NRTYPES: break;
   }
 
-  return FALSE;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }
 
 bool FlashServiceEncode_ST_TMSS(TYPE_Service_TMSS *Data, tFlashService *Service)
@@ -113,6 +180,10 @@ bool FlashServiceEncode_ST_TMSS(TYPE_Service_TMSS *Data, tFlashService *Service)
   void  (*Appl_DeleteTvSvcName)(unsigned short, bool);
   void  (*Appl_DeleteRadioSvcName)(unsigned short, bool);
   word  (*Appl_SetProviderName)(char const*);
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashServiceEncode_ST_TMSS");
+  #endif
 
   isRadio = (dword)Data >= FIS_vFlashBlockRadioServices();
 
@@ -157,26 +228,68 @@ bool FlashServiceEncode_ST_TMSS(TYPE_Service_TMSS *Data, tFlashService *Service)
   Appl_SetProviderName = (void*)FIS_fwAppl_SetProviderName();
   if(Appl_SetProviderName) Data->ProviderIdx = Appl_SetProviderName(Service->ProviderName);
 
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
   return TRUE;
 }
 
 bool FlashServiceEncode_ST_TMST(TYPE_Service_TMST *Data, tFlashService *Service)
 {
+  bool ret;
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashServiceEncode_ST_TMST");
+  #endif
+
   //The TV and radio service structures are identical
-  return FlashServiceEncode_ST_TMSS(Data, Service);
+  ret = FlashServiceEncode_ST_TMSS(Data, Service);
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }
 
 bool FlashServiceEncode_ST_TMSC(TYPE_Service_TMSC *Data, tFlashService *Service)
 {
+  bool ret;
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashServiceEncode_ST_TMSC");
+  #endif
+
   //The TV and radio service structures are identical
-  return FlashServiceEncode_ST_TMSS(Data, Service);
+  ret = FlashServiceEncode_ST_TMSS(Data, Service);
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }
 
 bool FlashServiceDelete(void *Data)
 {
-  //Service is NULL
-  if(!Data) return FALSE;
+  bool ret;
 
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashServiceDelete");
+  #endif
+
+  //Service is NULL
+  if(!Data)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return FALSE;
+  }
+
+  ret = FALSE;
   switch(GetSystemType())
   {
     //Unknown and old 5k/6k systems are not supported
@@ -188,21 +301,29 @@ bool FlashServiceDelete(void *Data)
     case ST_CT:
     case ST_T5700:
     case ST_T5800:
-    case ST_TF7k7HDPVR: return FALSE;
+    case ST_TF7k7HDPVR: break;
 
-    case ST_TMSS: return FlashServiceDelete_ST_TMSS(Data);
-    case ST_TMST: return FlashServiceDelete_ST_TMST(Data);
-    case ST_TMSC: return FlashServiceDelete_ST_TMSC(Data);
+    case ST_TMSS: ret = FlashServiceDelete_ST_TMSS(Data); break;
+    case ST_TMST: ret = FlashServiceDelete_ST_TMST(Data); break;
+    case ST_TMSC: ret = FlashServiceDelete_ST_TMSC(Data); break;
 
     case ST_NRTYPES: break;
   }
 
-  return FALSE;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }
 
 bool FlashServiceDelete_ST_TMSS(TYPE_Service_TMSS *Data)
 {
   TYPE_Service_TMSS    *NextData;
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashServiceDelete_ST_TMSS");
+  #endif
 
   NextData = Data + 1;
 
@@ -214,19 +335,47 @@ bool FlashServiceDelete_ST_TMSS(TYPE_Service_TMSS *Data)
   }
   memset(Data, 0, sizeof(TYPE_Service_TMSS));
 
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
   return TRUE;
 }
 
 bool FlashServiceDelete_ST_TMST(TYPE_Service_TMST *Data)
 {
+  bool ret;
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashServiceDelete_ST_TMST");
+  #endif
+
   //The TV and radio service structures are identical
-  return FlashServiceDelete_ST_TMSS(Data);
+  ret = FlashServiceDelete_ST_TMSS(Data);
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }
 
 bool FlashServiceDelete_ST_TMSC(TYPE_Service_TMSC *Data)
 {
+  bool ret;
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashServiceDelete_ST_TMSC");
+  #endif
+
   //The TV and radio service structures are identical
-  return FlashServiceDelete_ST_TMSS(Data);
+  ret = FlashServiceDelete_ST_TMSS(Data);
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }
 
 bool FlashServiceDelServiceName(int SvcType, int SvcNum)
@@ -234,18 +383,40 @@ bool FlashServiceDelServiceName(int SvcType, int SvcNum)
   void (*Appl_DeleteTvSvcName)(unsigned short, bool);
   void (*Appl_DeleteRadioSvcName)(unsigned short, bool);
 
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashServiceDelServiceName");
+  #endif
+
   if(SvcType == SVC_TYPE_Tv)
   {
     Appl_DeleteTvSvcName = (void*)FIS_fwAppl_DeleteTvSvcName();
-    if(!Appl_DeleteTvSvcName) return FALSE;
+    if(!Appl_DeleteTvSvcName)
+    {
+      #ifdef DEBUG_FIREBIRDLIB
+        CallTraceExit(NULL);
+      #endif
+
+      return FALSE;
+    }
     Appl_DeleteTvSvcName(SvcNum, FALSE);
   }
   else
   {
     Appl_DeleteRadioSvcName = (void*)FIS_fwAppl_DeleteRadioSvcName();
-    if(!Appl_DeleteRadioSvcName) return FALSE;
+    if(!Appl_DeleteRadioSvcName)
+    {
+      #ifdef DEBUG_FIREBIRDLIB
+        CallTraceExit(NULL);
+      #endif
+
+      return FALSE;
+    }
     Appl_DeleteRadioSvcName(SvcNum, FALSE);
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return TRUE;
 }
@@ -256,6 +427,10 @@ void FlashReindexFavorites(int SvcType, int FromSvcNum, int ToSvcNum)
 {
   tFavorites           *Favorites;
   int                   i, j;
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashReindexFavorites");
+  #endif
 
   Favorites = (tFavorites*)FIS_vFlashBlockFavoriteGroup();
 
@@ -316,12 +491,21 @@ void FlashReindexFavorites(int SvcType, int FromSvcNum, int ToSvcNum)
     }
     Favorites++;
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
 }
 
 void FlashReindexTimers(int SvcType, int FromSvcNum, int ToSvcNum)
 {
   int                   NrTimer, i;
   TYPE_TimerInfo        TimerInfo;
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashReindexTimers");
+  #endif
 
   NrTimer = TAP_Timer_GetTotalNum();
   for(i = NrTimer - 1; i >= 0; i--)
@@ -390,4 +574,8 @@ void FlashReindexTimers(int SvcType, int FromSvcNum, int ToSvcNum)
       }
     }
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

@@ -1,8 +1,13 @@
 #include "FBLib_hdd.h"
 #include "../libFireBird.h"
 
-int HDD_Smart_DisableAttributeAutoSave (void)
+int HDD_Smart_DisableAttributeAutoSave(void)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("HDD_Smart_DisableAttributeAutoSave");
+  #endif
+
+  int ret;
   unsigned char         CommandBlock[FBHDIO_DRIVE_TASK_HDR_SIZE] = {WIN_SMART,        //COMMAND
                                                                   SMART_AUTOSAVE,   //FEATURE
                                                                   0x00,             //NSECTOR
@@ -12,5 +17,11 @@ int HDD_Smart_DisableAttributeAutoSave (void)
                                                                   0,                //SELECT
                                                                   0};               //COMMAND
 
-  return SendHDDCommand(HDIO_DRIVE_TASK, CommandBlock, 0);
+  ret = SendHDDCommand(HDIO_DRIVE_TASK, CommandBlock, 0);
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }

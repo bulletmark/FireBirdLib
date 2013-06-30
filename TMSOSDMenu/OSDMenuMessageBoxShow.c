@@ -3,6 +3,10 @@
 
 void OSDMenuMessageBoxShow(void)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("OSDMenuMessageBoxShow");
+  #endif
+
   dword                 x, y, dx, dy, i;
   char                 *pText;
   char                 *EndOfText;
@@ -11,7 +15,14 @@ void OSDMenuMessageBoxShow(void)
   TYPE_GrData          *MB;
   tOSDMapInfo          *OSDMapInfo;
 
-  if(MessageBox.NrButtons == 0) return;
+  if(MessageBox.NrButtons == 0)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return;
+  }
 
   MB = &_MessageBoxSelectedButtonBackground_Gd;
 
@@ -40,7 +51,7 @@ void OSDMenuMessageBoxShow(void)
   OSDMenuPutS(MessageBoxOSDRgn, 0, 10, 380, MessageBox.Title, RGB(232,146,17), COLOR_None, 14, FALSE, ALIGN_CENTER);
 
   //Count the number of lines
-  strncpy(s, MessageBox.Text, 256);
+  strncpyUC(s, MessageBox.Text, 255);
   s[255] = '\0';
   pText = s;
   EndOfText = s + strlen(s);
@@ -84,4 +95,8 @@ void OSDMenuMessageBoxShow(void)
   OSDMenuPutS(MessageBoxOSDRgn, x - (MB->width >> 1), 124, x + (MB->width >> 1), MessageBox.Button[MessageBox.CurrentButton], RGB(40,40,40), COLOR_None, 14, FALSE, ALIGN_CENTER);
 
   TAP_Osd_Sync();
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

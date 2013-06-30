@@ -2,7 +2,20 @@
 
 bool StringDBInit(tStringDB *StringDB, dword InitialSize)
 {
-  if(!StringDB) return FALSE;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("StringDBInit");
+  #endif
+
+  bool ret;
+
+  if(!StringDB)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return FALSE;
+  }
 
   StringDB->DBSize = InitialSize;
   if(InitialSize)
@@ -15,6 +28,11 @@ bool StringDBInit(tStringDB *StringDB, dword InitialSize)
 
   StringDB->DBPtr = StringDB->DB;
   StringDB->DBEnd = StringDB->DB;
+  ret  =(StringDB->DB != NULL) || (InitialSize == 0);
 
-  return (StringDB->DB != NULL) || (InitialSize == 0);
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }

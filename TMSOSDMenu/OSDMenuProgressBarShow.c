@@ -8,6 +8,10 @@
 
 void OSDMenuProgressBarShow(char *Title, char *Text, dword Value, dword MaxValue, TYPE_GrData *DifferentProgressBar)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("OSDMenuProgressBarShow");
+  #endif
+
   if(Value != ProgressBarLastValue)
   {
     OSDMenuInfoBoxShow(Title, Text, 0x7fffffff);
@@ -22,4 +26,8 @@ void OSDMenuProgressBarShow(char *Title, char *Text, dword Value, dword MaxValue
     TAP_Osd_Sync();
     ProgressBarLastValue = Value;
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

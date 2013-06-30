@@ -5,6 +5,10 @@
 
 void LogoManager_MoveExternalUpdates(void)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("LogoManager_MoveExternalUpdates");
+  #endif
+
   char                  Files[3][20] = {"LogoPack.tar", "Logos.lil", "lil.add"};
   char                  Drive, Partition;
   int                   File;
@@ -30,4 +34,8 @@ void LogoManager_MoveExternalUpdates(void)
       }
     }
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

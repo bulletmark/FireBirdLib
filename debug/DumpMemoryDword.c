@@ -4,11 +4,26 @@
 
 void DumpMemoryDword(dword *p, dword size)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("DumpMemoryDword");
+  #endif
+
   dword                *StartAddress = p;
   int                   CollectedBytes;
   char                  Header[20];
   char                  s[255];
   int                   Remaining;
+
+  if(!p)
+  {
+    TAP_Print("0x00000000 NULL\n");
+
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return;
+  }
 
   s[0] = '\0';
   CollectedBytes = 0;
@@ -41,4 +56,8 @@ void DumpMemoryDword(dword *p, dword size)
     TAP_Print(Header);
     TAP_Print(s);
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

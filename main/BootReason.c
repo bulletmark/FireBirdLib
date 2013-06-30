@@ -2,7 +2,18 @@
 
 tBootReason BootReason(void)
 {
-  volatile word *reason = (word *)FIS_vBootReason();
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("BootReason");
+  #endif
 
-  return (reason ? (tBootReason)*reason : BOOT_FRONT_PANEL);
+  tBootReason ret;
+
+  volatile word *reason = (word *)FIS_vBootReason();
+  ret = (reason ? (tBootReason)*reason : BOOT_FRONT_PANEL);
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }

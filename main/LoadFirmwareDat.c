@@ -2,35 +2,54 @@
 
 bool LoadFirmwareDat(tFWDATHeader **FWDatHeader, tToppyInfo **ToppyInfo, tFWInfo **FWInfo)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("LoadFirmwareDat");
+  #endif
+
   static byte           *FWDATBin = NULL;
   TYPE_File             *fp;
   dword                 blk;
   tFWDATHeader          *FWDAT;
 
-  if (!HDD_TAP_PushDir()) return FALSE;
+  HDD_TAP_PushDir();
 
-  if (!FWDATBin)
+  if(!FWDATBin)
   {
-    if (INILocateFile (FIRMWAREDAT, NULL) == INILOCATION_NotFound)
+    if(INILocateFile(FIRMWAREDAT, NULL) == INILOCATION_NotFound)
     {
-      (void) HDD_TAP_PopDir();
+      HDD_TAP_PopDir();
+
+      #ifdef DEBUG_FIREBIRDLIB
+        CallTraceExit(NULL);
+      #endif
+
       return FALSE;
     }
 
-    if (!(fp = TAP_Hdd_Fopen (FIRMWAREDAT)))
+    if(!(fp = TAP_Hdd_Fopen(FIRMWAREDAT)))
     {
-      (void) HDD_TAP_PopDir();
+      HDD_TAP_PopDir();
+
+      #ifdef DEBUG_FIREBIRDLIB
+        CallTraceExit(NULL);
+      #endif
+
       return FALSE;
     }
 
-    if (!(FWDATBin = TAP_MemAlloc_Chk("LoadFirmwareDat", TAP_Hdd_Flen (fp))))
+    if(!(FWDATBin = TAP_MemAlloc_Chk("LoadFirmwareDat", TAP_Hdd_Flen(fp))))
     {
-      TAP_Hdd_Fclose (fp);
-      (void) HDD_TAP_PopDir();
+      TAP_Hdd_Fclose(fp);
+      HDD_TAP_PopDir();
+
+      #ifdef DEBUG_FIREBIRDLIB
+        CallTraceExit(NULL);
+      #endif
+
       return FALSE;
     }
 
-    blk = TAP_Hdd_Fread (FWDATBin, TAP_Hdd_Flen(fp), 1, fp);
+    blk = TAP_Hdd_Fread(FWDATBin, TAP_Hdd_Flen(fp), 1, fp);
     TAP_Hdd_Fclose(fp);
   }
   else blk = 1;   // already loaded
@@ -38,23 +57,31 @@ bool LoadFirmwareDat(tFWDATHeader **FWDatHeader, tToppyInfo **ToppyInfo, tFWInfo
   FWDAT = (tFWDATHeader *) FWDATBin;
 
   //Check Magic and other things
-  //TODO: use blk != 1 after the TMS firmware has been fixed
-  if (blk == 0 ||
-      FWDAT->Magic != 0x12345678 ||
-      FWDAT->ToppyInfoLayoutVersion != 0 ||
-      FWDAT->FWInfoLayoutVersion != 0)
+  if(blk == 0 ||
+     FWDAT->Magic != 0x12345678 ||
+     FWDAT->ToppyInfoLayoutVersion != 0 ||
+     FWDAT->FWInfoLayoutVersion != 0)
   {
-    TAP_MemFree (FWDATBin);
+    TAP_MemFree(FWDATBin);
     FWDATBin = NULL;
-    (void) HDD_TAP_PopDir();
+    HDD_TAP_PopDir();
+
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
     return FALSE;
   }
 
-  if (FWDatHeader) *FWDatHeader = FWDAT;
-  if (ToppyInfo)   *ToppyInfo   = (tToppyInfo *) (FWDAT + 1);
-  if (FWInfo)      *FWInfo      = (tFWInfo *) ((tToppyInfo *) (FWDAT + 1) + FWDAT->NrOfToppyInfoEntries);
+  if(FWDatHeader) *FWDatHeader = FWDAT;
+  if(ToppyInfo)   *ToppyInfo   = (tToppyInfo *) (FWDAT + 1);
+  if(FWInfo)      *FWInfo      = (tFWInfo *) ((tToppyInfo *) (FWDAT + 1) + FWDAT->NrOfToppyInfoEntries);
 
   (void) HDD_TAP_PopDir();
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return TRUE;
 }

@@ -1,0 +1,142 @@
+# To add a new language, copy a block and translate it
+# the following codes are supported:
+#
+# LAN_Arab          ar
+# LAN_Czech         cs
+# LAN_Danish        da
+# LAN_Dutch         nl
+# LAN_English       en
+# LAN_French        fr
+# LAN_German        de
+# LAN_Greek         el
+# LAN_Italy         it
+# LAN_Norwegian     no
+# LAN_Persian       fa
+# LAN_Polish        pl
+# LAN_Russian       ru
+# LAN_Slovak        sk
+# LAN_Spain         es
+# LAN_Suomi         fi
+# LAN_Swedish       sv
+# LAN_Thai          th
+# LAN_Turk          tr
+
+#English
+en_000=Configure DST.INI
+
+en_001=Firmware
+en_002=Europe
+en_003=Manual
+
+en_004=First
+en_005=Second
+en_006=Third
+en_007=Fourth
+en_008=Fifth/Last
+
+en_009=Mon
+en_010=Tue
+en_011=Wed
+en_012=Thu
+en_013=Fri
+en_014=Sat
+en_015=Sun
+
+en_016=Jan
+en_017=Feb
+en_018=Mar
+en_019=Apr
+en_020=May
+en_021=Jun
+en_022=Jul
+en_023=Aug
+en_024=Sep
+en_025=Oct
+en_026=Nov
+en_027=Dec
+
+en_028=DST Rule
+en_029=Next DST Start
+en_030=Next DST End
+en_031=Current Time Zone
+
+en_032=Exit
+en_033=Save
+en_034=Reload
+
+en_035=Yes
+en_036=No
+
+en_037=Exit DSTConfig?
+en_038=Save DST Configuration?
+
+en_039=OFF
+en_040=ON
+en_041=Unknown
+
+en_042=  Ordinal
+en_043=  Weekday
+en_044=  Month
+en_045=  Hour
+en_046=  Minute
+
+
+
+#Deutsch
+de_000=DST.INI konfigurieren
+
+de_001=Firmware
+de_002=Europa
+de_003=Manuell
+
+de_004=Erster
+de_005=Zweiter
+de_006=Dritter
+de_007=Vierter
+de_008=Fünfter/Letzter
+
+de_009=Mo
+de_010=Di
+de_011=Mi
+de_012=Do
+de_013=Fr
+de_014=Sa
+de_015=So
+
+de_016=Jan
+de_017=Feb
+de_018=Mär
+de_019=Apr
+de_020=Mai
+de_021=Jun
+de_022=Jul
+de_023=Aug
+de_024=Sep
+de_025=Okt
+de_026=Nov
+de_027=Dez
+
+de_028=Sommerzeitregel
+de_029=Nächster Sommerzeitbeginn
+de_030=Nächstes Sommerzeitende
+de_031=Aktuelle Zeitzone
+
+de_032=Verlassen
+de_033=Speichern
+de_034=Änderungen zurücksetzen
+
+de_035=Ja
+de_036=Nein
+
+de_037=DSTConfig verlassen?
+de_038=DST-Einstellung speichern?
+
+de_039=Aus
+de_040=Ein
+de_041=Unbekannt
+
+de_042=    Anzahl
+de_043=    Wochentag
+de_044=    Monat
+de_045=    Stunde
+de_046=    Minute

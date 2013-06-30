@@ -5,6 +5,10 @@
 
 void OSDMenuDrawCursor(dword x, dword y, dword w)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("OSDMenuDrawCursor");
+  #endif
+
   TYPE_GrData              *OSDMenuLightBlueCursorGd, *OSDMenuDarkBlueCursorGd;
   int                       pb=0, cx, h, hundret=0, hundretModulo=0;
   dword                     Color;
@@ -41,7 +45,7 @@ void OSDMenuDrawCursor(dword x, dword y, dword w)
       //Hunderter
       if(hundret > 0)
       {
-        for (pb=0;pb<hundret;pb++)
+        for(pb=0;pb<hundret;pb++)
         {
           TAP_Osd_Copy(OSDMenuSelectionBarRgn, OSDRgn, 0, 0, 100, h, cx, y, FALSE);
           cx += 100;
@@ -71,7 +75,7 @@ void OSDMenuDrawCursor(dword x, dword y, dword w)
       //Hunderter
       if(hundret > 0)
       {
-        for (pb=0;pb<hundret;pb++)
+        for(pb=0;pb<hundret;pb++)
         {
           TAP_Osd_Copy(OSDMenuSelectionBarRgn, OSDRgn, 0, 0, 100, h, cx, y, FALSE);
           cx += 100;
@@ -82,4 +86,8 @@ void OSDMenuDrawCursor(dword x, dword y, dword w)
       if(hundretModulo > 0) TAP_Osd_Copy(OSDMenuSelectionBarRgn, OSDRgn, 0, 0, hundretModulo, h, cx, y, FALSE);
     }
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

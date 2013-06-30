@@ -1,10 +1,18 @@
 #include "FBLib_ini.h"
 #include "../libFireBird.h"
 
-void INISetInt (char *Key, long int Value)
+void INISetInt(char *Key, long int Value)
 {
-  char                  s [12];
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("INISetInt");
+  #endif
+
+  char                  s[12];
 
   sprintf(s, "%d", Value);
-  INISetString (Key, s);
+  INISetString(Key, s);
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

@@ -1,6 +1,6 @@
 PROJECT = libFireBird
 
-DIRS = av compression debug elf ExtAttribs Firmware flash FontManager hdd ini InstructionSequences LogoManager main rec shutdown string StringDB tap tapcom time TMSOSDMenu TMSOSDKeyboard tmsvfd
+DIRS = av compression debug elf EPG ExtAttribs Firmware flash FontManager hdd ini InstructionSequences LogoManager main rec shutdown string StringDB tap tapcom time TMSOSDMenu TMSOSDKeyboard tmsvfd
 
 BASE = $(shell cd /tapapi/TMS; pwd)
 include ${BASE}/include/tool.mk
@@ -18,7 +18,7 @@ lib:
 	@for i in $(DIRS); \
 	do \
 	  cd $$i; \
-	  make all; \
+	  $(MAKE) all; \
 	  cd ..; \
 	done
 	-$(RM) $(PROJECT).a
@@ -32,7 +32,7 @@ lib:
 
 devutils:
 	cd $@; \
-	make all;
+	$(MAKE) all;
 
 clean:
 	@for i in $(DIRS); do cd $$i; make clean; cd ..; done

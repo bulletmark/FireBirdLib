@@ -2,6 +2,10 @@
 
 int OSDMenuScrollPageUp(void)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("OSDMenuScrollPageUp");
+  #endif
+
   tMenu                *pMenu;
   int                   ret, x;
 
@@ -20,10 +24,21 @@ int OSDMenuScrollPageUp(void)
   else
     ret = OSDMenuFindPreviousSelectableEntry(pMenu->CurrentTopIndex + 1);
 
-  if(ret == -1) return -1;
+  if(ret == -1)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return -1;
+  }
 
   pMenu->CurrentSelection = ret;
   ListDirty = TRUE;
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return ret;
 }

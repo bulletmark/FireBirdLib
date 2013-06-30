@@ -2,25 +2,25 @@
 
 void DrawOSDLine(word OSDRgn, dword Ax, dword Ay, dword Bx, dword By, dword Color)
 {
-  int dX, dY, Xincr, Yincr, dist, Xerr, Yerr, d;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("DrawOSDLine");
+  #endif
 
-#ifdef DEBUG_FIREBIRDLIB
-  CallTraceEnter("DrawOSDLine");
-#endif
+  int dX, dY, Xincr, Yincr, dist, Xerr, Yerr, d;
 
   // distances
   dX = Bx - Ax;
   dY = By - Ay;
 
   // increments
-  if (dX < 0)
+  if(dX < 0)
   {
     dX = -dX;
     Xincr = -1;
   }
   else Xincr = (dX > 0 ? 1 : 0);
 
-  if (dY < 0)
+  if(dY < 0)
   {
     dY = -dY;
     Yincr = -1;
@@ -35,21 +35,20 @@ void DrawOSDLine(word OSDRgn, dword Ax, dword Ay, dword Bx, dword By, dword Colo
   Yerr = dY;
 
   // draw line
-
-  for (d = 0; d < dist; d++)
+  for(d = 0; d < dist; d++)
   {
     TAP_Osd_PutPixel_Chk("DrawOSDLine A", OSDRgn, Ax, Ay, Color);   // plot the pixel
 
     Xerr += dX;
     Yerr += dY;
 
-    if (Xerr > dist)
+    if(Xerr > dist)
     {
       Xerr -= dist;
       Ax += Xincr;
     }
 
-    if (Yerr > dist)
+    if(Yerr > dist)
     {
       Yerr -= dist;
       Ay += Yincr;
@@ -58,7 +57,7 @@ void DrawOSDLine(word OSDRgn, dword Ax, dword Ay, dword Bx, dword By, dword Colo
 
   TAP_Osd_PutPixel_Chk("DrawOSDLine B", OSDRgn, Bx, By, Color);   // plot the pixel
 
-#ifdef DEBUG_FIREBIRDLIB
-  CallTraceExit(NULL);
-#endif
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

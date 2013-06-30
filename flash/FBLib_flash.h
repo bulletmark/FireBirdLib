@@ -10,30 +10,30 @@
 
   typedef struct
   {
-    byte                SatIdx;
-    byte                VideoStreamType;
+    byte                SatIdx;             //0x00
+    byte                VideoStreamType;    //0x01
 
-    word                TPIdx:10;
+    word                TPIdx:10;           //0x02
     word                TunerNum:2;
     word                SkipFlag:1;
     word                LockFlag:1;
     word                CASFlag:1;
     word                DelFlag:1;
 
-    word                SVCID;
-    word                PMTPID;
-    word                PCRPID;
-    word                VideoPID;
-    word                AudioPID;
+    word                SVCID;              //0x04
+    word                PMTPID;             //0x06
+    word                PCRPID;             //0x08
+    word                VideoPID;           //0x0a
+    word                AudioPID;           //0x0c
 
-    word                NameLock:1;
+    word                NameLock:1;         //0x0e
     word                Flags2:15;
 
-    dword               NameOffset;
-    word                ProviderIdx;
-    word                LCN;
-    byte                unknown2[6];
-    word                AudioStreamType;
+    dword               NameOffset;         //0x10
+    word                ProviderIdx;        //0x14
+    word                LCN;                //0x16
+    byte                unknown2[6];        //0x18
+    word                AudioStreamType;    //0x1e
   }TYPE_Service_TMSS;
 
   #define TYPE_Service_TMST   TYPE_Service_TMSS

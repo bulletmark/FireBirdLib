@@ -26,7 +26,6 @@ char                    buffer[1024];
 void PrintLog(char *Text)
 {
   LogEntry(LOGNAME, PROGRAM_NAME, TRUE, TIMESTAMP_NONE, Text);
-  //TAP_PrintNet("%s\n", Text);
 }
 
 dword TAP_EventHandler(word event, dword param1, dword param2)
@@ -57,7 +56,7 @@ void DumpSystemType(void)
 
   HDD_TAP_PushDir();
   Loc = INILocateFile(FIRMWAREDAT, NULL);
-  if (Loc == INILOCATION_NotFound)
+  if(Loc == INILOCATION_NotFound)
   {
     HDD_TAP_PopDir();
 
@@ -75,7 +74,7 @@ void DumpSystemType(void)
       default: strcat(x, "(unhandled)"); break;
     }
 
-    if (!LoadFirmwareDat(&FWDatHeader, &ToppyInfo, &FWInfo))
+    if(!LoadFirmwareDat(&FWDatHeader, &ToppyInfo, &FWInfo))
     {
       HDD_TAP_PopDir();
       PRINTLOG("%s", x);
@@ -96,14 +95,14 @@ void DumpSystemType(void)
     }
     else
     {
-      for (i = 0; i < (int)FWDatHeader->NrOfToppyInfoEntries; i++, ToppyInfo++)
+      for(i = 0; i < (int)FWDatHeader->NrOfToppyInfoEntries; i++, ToppyInfo++)
         if(ToppyInfo->SysID == GetSysID()) break;
 
       PRINTLOG("  SysID         =  %d", ToppyInfo->SysID);
       PRINTLOG("  Device        =  %s", ToppyInfo->Device);
       PRINTLOG("  AppType       =  %s", ToppyInfo->AppType);
 
-      switch (ToppyInfo->SystemType)
+      switch(ToppyInfo->SystemType)
       {
         case ST_UNKNOWN   : break;
         case ST_S         : PRINTLOG("  SystemType    =  ST_S"); break;
@@ -160,7 +159,7 @@ void DumpTVServices(void)
       {
         TAP_SPrint(&s[strlen(s)], "%2.2x ", Channel.unknown2[j]);
       }
-      PRINTLOG("    unknown1=%4.4x, unknown2=%s", Channel.unknown1, s);
+      PRINTLOG("    unknown2=%s", s);
     }
     else
     {
@@ -192,7 +191,7 @@ void DumpRadioServices(void)
       {
         TAP_SPrint(&s[strlen(s)], "%2.2x ", Channel.unknown2[j]);
       }
-      PRINTLOG("    unknown1=%4.4x, unknown2=%s", Channel.unknown1, s);
+      PRINTLOG("    unknown2=%s", s);
     }
     else
     {
@@ -380,7 +379,7 @@ void DumpTimer(void)
 {
   int                   ret, i, j;
   tFlashTimer           TimerInfo;
-  char                  s[100], t[100];
+  char                  t[100];
 
   ret = TAP_Timer_GetTotalNum();
   PRINTLOG("Timer (%d)", ret);
@@ -393,19 +392,11 @@ void DumpTimer(void)
       PRINTLOG("    ReservationType=%d, ServiceID=%4.4x, Duration=%d, StartTime=%4.4x, EndTime=%4.4x", TimerInfo.ReservationType, TimerInfo.ServiceID, TimerInfo.Duration, TimerInfo.StartTime, TimerInfo.EndTime);
       PRINTLOG("    isRec=%d, NameSet=%d, EPGMarker=%d, EventID1=%4.4x, EventID2=%4.4x, ServiceIndex=%d", TimerInfo.isRec, TimerInfo.NameSet, TimerInfo.EPGMarker, TimerInfo.EventID1, TimerInfo.EventID2, TimerInfo.ServiceIndex);
 
-      s[0] = '\0';
-      for(j = 0; j < 6; j++)
-      {
-        TAP_SPrint(&s[strlen(s)], "%2.2x ", TimerInfo.unused5[j]);
-      }
       t[0] = '\0';
       for(j = 0; j < 14; j++)
-      {
         TAP_SPrint(&t[strlen(t)], "%2.2x ", TimerInfo.unused8[j]);
-      }
 
-
-      PRINTLOG("    unused1=%2.2x, unused2=%2.2x, unused3=%2.2x, unused5=%s, unused6=%4.4x, unused7=%4.4x, unused8=%s", TimerInfo.unused1, TimerInfo.unused2, TimerInfo.unused3, s, TimerInfo.unused6, TimerInfo.unused7, t);
+      PRINTLOG("    unused1=%2.2x, unused2=%2.2x, unused3=%2.2x, unused5=%4.4x, unused8=%s", TimerInfo.unused1, TimerInfo.unused2, TimerInfo.unused3, TimerInfo.unused5, t);
     }
     else
     {
@@ -423,7 +414,7 @@ void DumpADTimer(void)
   PRINTLOG("AutoDescramble timer");
   if(FlashADGetInfo(&ADTimer))
   {
-    PRINTLOG("  StartTime=%4.4x, EndTime=%4.4x, Duration=%d, ReservationType=%d, DelOrig=%s, NrOfFiles=%d, TotalTime=%d", ADTimer.StartTime, ADTimer.EndTime, ADTimer.Duration, ADTimer.ReservationType, GetBoolString(ADTimer.DelOrig), ADTimer.NrOfFiles, ADTimer.TotalTime);
+    PRINTLOG("  StartTime=%4.4x, EndTime=%4.4x, Duration=%d, ReservationType=%d, DelOrig=%s, NrOfFiles=%d, AutomaticMode=%d", ADTimer.StartTime, ADTimer.EndTime, ADTimer.Duration, ADTimer.ReservationType, GetBoolString(ADTimer.DelOrig), ADTimer.NrOfFiles, ADTimer.AutomaticMode);
     PRINTLOG("  unknown1=%4.4x, unknown2=%4.4x, unknown3=%4.4x", ADTimer.unknown1, ADTimer.unknown2, ADTimer.unknown3);
 
     for(i = 0; i < ADTimer.NrOfFiles; i++)

@@ -10,7 +10,7 @@ TAP_AUTHOR_NAME         ("FireBird");
 TAP_DESCRIPTION         ("");
 TAP_ETCINFO             (__DATE__);
 
-dword TAP_EventHandler (word event, dword param1, dword param2)
+dword TAP_EventHandler(word event, dword param1, dword param2)
 {
   (void) event;
   (void) param2;
@@ -21,19 +21,19 @@ dword TAP_EventHandler (word event, dword param1, dword param2)
 
 Callee_Parameters       *params = NULL;
 
-int TAP_Main (void)
+int TAP_Main(void)
 {
   //Check if this TAP has been launched by an TAP
-  if (HDD_TAP_StartedByTAP())
+  if(HDD_TAP_StartedByTAP())
   {
     //Get a pointer to the parameter block.
     //If the caller didn't provide any parameters, the pointer == NULL
     //Parameters are valid only during TAP_Main. Copy away whatever you need at a later time.
     params = HDD_TAP_GetStartParameter();
-    if (isValidRAMPtr(params))
+    if(isValidRAMPtr(params))
     {
       //Make sure that the caller doesn't use an old delcaration
-      if (params->StructVersion != Callee_Param_Version)
+      if(params->StructVersion != Callee_Param_Version)
         TAP_Print("Callee: Invalid parameter version %d. Should be %d\n", params->StructVersion, Callee_Param_Version);
       else
         TAP_Print("Callee: AnyText=%s, AnyData=%d\n", params->AnyText, params->AnyData);

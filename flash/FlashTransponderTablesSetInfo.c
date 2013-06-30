@@ -3,14 +3,41 @@
 
 bool FlashTransponderTablesSetInfo(int SatNum, int TransponderNum, tFlashTransponderTable *TransponderTable)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashTransponderTablesSetInfo");
+  #endif
+
+  bool ret;
+
   //SatNum out of range
-  if((SatNum < 0) || (SatNum >= FlashSatTablesGetTotal())) return FALSE;
+  if((SatNum < 0) || (SatNum >= FlashSatTablesGetTotal()))
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return FALSE;
+  }
 
   //TransponderNum out of range
-  if((TransponderNum < 0) || (TransponderNum >= FlashTransponderTablesGetTotal(SatNum))) return FALSE;
+  if((TransponderNum < 0) || (TransponderNum >= FlashTransponderTablesGetTotal(SatNum)))
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return FALSE;
+  }
 
   //TransponderTable is NULL
-  if(!TransponderTable) return FALSE;
+  if(!TransponderTable)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return FALSE;
+  }
 
   switch(GetSystemType())
   {
@@ -23,7 +50,14 @@ bool FlashTransponderTablesSetInfo(int SatNum, int TransponderNum, tFlashTranspo
     case ST_CT:
     case ST_T5700:
     case ST_T5800:
-    case ST_TF7k7HDPVR: return FALSE;
+    case ST_TF7k7HDPVR:
+    {
+      #ifdef DEBUG_FIREBIRDLIB
+        CallTraceExit(NULL);
+      #endif
+
+      return FALSE;
+    }
 
     case ST_TMSS:
     {
@@ -31,7 +65,14 @@ bool FlashTransponderTablesSetInfo(int SatNum, int TransponderNum, tFlashTranspo
       int               d, i, TPIdx;
 
       p = (TYPE_TpInfo_TMSS*)(FIS_vFlashBlockTransponderInfo());
-      if(!p) return FALSE;
+      if(!p)
+      {
+        #ifdef DEBUG_FIREBIRDLIB
+          CallTraceExit(NULL);
+        #endif
+
+        return FALSE;
+      }
 
       d = *(int*)FIS_vFlashBlockTransponderInfo();
       TPIdx = 0;
@@ -45,9 +86,22 @@ bool FlashTransponderTablesSetInfo(int SatNum, int TransponderNum, tFlashTranspo
         }
         p++;
       }
-      if((i >= d) || (p->SatIdx != SatNum) || (TPIdx != TransponderNum)) return FALSE;
+      if((i >= d) || (p->SatIdx != SatNum) || (TPIdx != TransponderNum))
+      {
+        #ifdef DEBUG_FIREBIRDLIB
+          CallTraceExit(NULL);
+        #endif
 
-      return FlashTransponderTablesEncode(p, TransponderTable);
+        return FALSE;
+      }
+
+      ret = FlashTransponderTablesEncode(p, TransponderTable);
+
+      #ifdef DEBUG_FIREBIRDLIB
+        CallTraceExit(NULL);
+      #endif
+
+      return ret;
     }
 
     case ST_TMST:
@@ -55,10 +109,23 @@ bool FlashTransponderTablesSetInfo(int SatNum, int TransponderNum, tFlashTranspo
       TYPE_TpInfo_TMST     *p;
 
       p = (TYPE_TpInfo_TMST*)FIS_vFlashBlockTransponderInfo();
-      if(!p) return FALSE;
-      p = p + TransponderNum;
+      if(!p)
+      {
+        #ifdef DEBUG_FIREBIRDLIB
+          CallTraceExit(NULL);
+        #endif
 
-      return FlashTransponderTablesEncode(p, TransponderTable);
+        return FALSE;
+      }
+
+      p = p + TransponderNum;
+      ret = FlashTransponderTablesEncode(p, TransponderTable);;
+
+      #ifdef DEBUG_FIREBIRDLIB
+        CallTraceExit(NULL);
+      #endif
+
+      return ret;
     }
 
     case ST_TMSC:
@@ -66,14 +133,31 @@ bool FlashTransponderTablesSetInfo(int SatNum, int TransponderNum, tFlashTranspo
       TYPE_TpInfo_TMSC     *p;
 
       p = (TYPE_TpInfo_TMSC*)FIS_vFlashBlockTransponderInfo();
-      if(!p) return FALSE;
-      p = p + TransponderNum;
+      if(!p)
+      {
+        #ifdef DEBUG_FIREBIRDLIB
+          CallTraceExit(NULL);
+        #endif
 
-      return FlashTransponderTablesEncode(p, TransponderTable);
+        return FALSE;
+      }
+
+      p = p + TransponderNum;
+      ret = FlashTransponderTablesEncode(p, TransponderTable);
+
+      #ifdef DEBUG_FIREBIRDLIB
+        CallTraceExit(NULL);
+      #endif
+
+      return ret;
     }
 
     case ST_NRTYPES: break;
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return FALSE;
 }

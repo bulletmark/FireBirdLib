@@ -2,7 +2,25 @@
 
 dword StringDBCurrent(tStringDB *StringDB)
 {
-  if(!StringDB) return '\0';
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("StringDBCurrent");
+  #endif
 
-  return (dword)StringDB->DBPtr - (dword)StringDB->DB;
+  dword ret;
+
+  if(!StringDB)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return '\0';
+  }
+  ret = (dword)StringDB->DBPtr - (dword)StringDB->DB;
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }

@@ -2,9 +2,15 @@
 
 bool isPIPActive(void)
 {
-  byte                 *_isPipActive;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("isPIPActive");
+  #endif
 
-  _isPipActive = (byte*)FIS_vIsPipActive();
+  byte *_isPipActive = (byte*)FIS_vIsPipActive();
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return _isPipActive ? *_isPipActive : FALSE;
 }

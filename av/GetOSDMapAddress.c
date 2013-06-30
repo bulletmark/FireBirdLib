@@ -3,17 +3,15 @@
 
 dword GetOSDMapAddress(void)
 {
-  dword                ret;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("GetOSDMapAddress");
+  #endif
 
-#ifdef DEBUG_FIREBIRDLIB
-  CallTraceEnter("GetOSDMapAddress");
-#endif
+  dword ret = FIS_vOsdMap();
 
-  ret = FIS_vOsdMap();
-
-#ifdef DEBUG_FIREBIRDLIB
-  CallTraceExit(NULL);
-#endif
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return ret;
 }

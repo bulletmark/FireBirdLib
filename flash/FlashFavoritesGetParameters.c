@@ -2,6 +2,10 @@
 
 void FlashFavoritesGetParameters(int *NrGroups, int *NrSvcsPerGroup)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashFavoritesGetParameters");
+  #endif
+
   int                   i;
 
   i = FIS_vFlashBlockGameSaveData() - FIS_vFlashBlockFavoriteGroup();
@@ -18,8 +22,12 @@ void FlashFavoritesGetParameters(int *NrGroups, int *NrSvcsPerGroup)
   }
   else
   {
-    TAP_PrintNet("FlashFavoritesGetParameters: unknown favourite structure variant (%d bytes)\n", i);
+    LogEntryFBLibPrintf(TRUE, "FlashFavoritesGetParameters: unknown favorite structure variant (%d bytes)", i);
     if(NrGroups) *NrGroups  = i;
     if(NrSvcsPerGroup) *NrSvcsPerGroup  = i;
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

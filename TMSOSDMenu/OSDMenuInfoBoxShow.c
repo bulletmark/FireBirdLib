@@ -3,6 +3,10 @@
 
 void OSDMenuInfoBoxShow(char *Title, char *Text, dword Timeout)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("OSDMenuInfoBoxShow");
+  #endif
+
   dword                 x, y, dy, i;
   char                 *pText;
   char                 *EndOfText;
@@ -11,6 +15,8 @@ void OSDMenuInfoBoxShow(char *Title, char *Text, dword Timeout)
   tOSDMapInfo          *OSDMapInfo;
 
   if(MessageBoxOSDRgn)OSDMenuMessageBoxDestroy();
+
+  OSDMenuLoadStdFonts();
 
   if(!InfoBoxOSDRgn)
   {
@@ -68,4 +74,8 @@ void OSDMenuInfoBoxShow(char *Title, char *Text, dword Timeout)
     InfoBoxTimeOut = 0xffffffff;
 
   TAP_Osd_Sync();
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

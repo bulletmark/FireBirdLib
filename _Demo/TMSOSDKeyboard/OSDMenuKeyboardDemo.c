@@ -1,8 +1,9 @@
+#include                <string.h>
 #include                "tap.h"
 #include                "libFireBird.h"
 
 #define PROGRAM_NAME    "OSDKeyboard Demo"
-#define VERSION         "V0.1"
+#define VERSION         "V0.2"
 
 TAP_ID                  (0x8E0Affff);
 TAP_PROGRAM_NAME        (PROGRAM_NAME" "VERSION);
@@ -23,6 +24,7 @@ dword TAP_EventHandler(word event, dword param1, dword param2)
   {
     //Output the text on the telnet console and exit the demo
     TAP_PrintNet("OSD Keyboard = '%s'\n", Text);
+    DumpMemory(Text, strlen(Text), 16);
     TAP_Exit();
   }
 
@@ -34,6 +36,10 @@ dword TAP_EventHandler(word event, dword param1, dword param2)
 
 int TAP_Main(void)
 {
+  KeyTranslate(TRUE, &TAP_EventHandler);
+
+  strcpy(Text, "Test");
+
   //Initialize the Keyboard
   //Right now, there is no save or exit. Whenever the remote control's exit is clicked, the contents of the textbox will be copied into the destination variable.
   OSDMenuKeyboard_Setup("Keyboard Test", Text, sizeof(Text));

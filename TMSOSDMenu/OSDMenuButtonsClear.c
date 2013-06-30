@@ -2,6 +2,10 @@
 
 void OSDMenuButtonsClear(void)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("OSDMenuButtonsClear");
+  #endif
+
   int                   i;
 
   Menu[CurrentMenuLevel].NrButtons = 0;
@@ -10,4 +14,8 @@ void OSDMenuButtonsClear(void)
   ButtonColor = RGB(230, 230, 250);
 
   ButtonsDirty = TRUE;
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

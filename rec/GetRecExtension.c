@@ -2,6 +2,10 @@
 
 char *GetRecExtension(void)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("GetRecExtension");
+  #endif
+
   dword                 i;
   tToppyInfo           *ToppyInfo;
   tFWDATHeader         *FWDatHeader;
@@ -13,7 +17,7 @@ char *GetRecExtension(void)
     {
       for(i = 0; i < FWDatHeader->NrOfToppyInfoEntries; i++, ToppyInfo++)
       {
-        if (ToppyInfo->SysID == TAP_GetSystemId())
+        if(ToppyInfo->SysID == TAP_GetSystemId())
         {
           switch(ToppyInfo->RecExtension)
           {
@@ -27,6 +31,10 @@ char *GetRecExtension(void)
       }
     }
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return RecExtension ? RecExtension : ".rec";
 }

@@ -1,9 +1,14 @@
 #include "../libFireBird.h"
 
-dword AddSec (dword date, byte dateSec, int add)
+dword AddSec(dword date, byte dateSec, int add)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("AddSec");
+  #endif
+
   word                  mjd;
   int                   hour, min, sec;
+  dword                 ret;
 
   mjd = MJD(date);
   hour= HOUR(date);
@@ -12,19 +17,19 @@ dword AddSec (dword date, byte dateSec, int add)
 
   sec += add % 60;
 
-  if (sec < 0) min -= 1;
-  else if (sec > 59) min += 1;
+  if(sec < 0) min -= 1;
+  else if(sec > 59) min += 1;
 
   add /= 60;
 
   min += add % 60;
 
-  if (min < 0)
+  if(min < 0)
   {
     hour -= 1;
     min += 60;
   }
-  else if (min > 59)
+  else if(min > 59)
   {
     hour += 1;
     min -= 60;
@@ -32,16 +37,21 @@ dword AddSec (dword date, byte dateSec, int add)
 
   hour += add / 60;
 
-  if (hour < 0)
+  if(hour < 0)
   {
     mjd -= 1;
     hour += 24;
   }
-  else if (hour > 23)
+  else if(hour > 23)
   {
     mjd += 1;
     hour -= 24;
   }
+  ret = DATE(mjd, hour, min);
 
-  return DATE(mjd, hour, min);
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }

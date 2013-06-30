@@ -13,11 +13,22 @@
 
 byte GetStreamFormat(byte Index)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("GetStreamFormat");
+  #endif
+
+  byte ret;
   byte(*Appl_GetStreamFormat)(byte);
+
+  ret = 0xff;
 
   Appl_GetStreamFormat = (void*)FIS_fwAppl_GetStreamFormat();
 
-  if(Appl_GetStreamFormat) return Appl_GetStreamFormat(Index);
+  if(Appl_GetStreamFormat) ret = Appl_GetStreamFormat(Index);
 
-  return 0xff;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }

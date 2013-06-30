@@ -2,11 +2,15 @@
 
 void VFD_SetDisplayDigit(byte* DisplayBuffer, byte Character, DISPLAYSTYLE DisplayStyle, byte Digit)
 {
-  switch (DisplayStyle)
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("VFD_SetDisplayDigit");
+  #endif
+
+  switch(DisplayStyle)
   {
     case VFD_7:
     {
-      if (Digit < 4) DisplayBuffer[Digit] = VFD_TranslateSegments(Character, VFD_7);
+      if(Digit < 4) DisplayBuffer[Digit] = VFD_TranslateSegments(Character, VFD_7);
       break;
     }
 
@@ -24,7 +28,7 @@ void VFD_SetDisplayDigit(byte* DisplayBuffer, byte Character, DISPLAYSTYLE Displ
       //07			4d	4e	4c	4l	4m	4k
       //08	4g1	4g2	4b	4f	4j	4h	4i	4a
 
-      switch (Digit)
+      switch(Digit)
       {
         //Source: m l   k j i h   g2 g1 f e   d c b a
         case 0:
@@ -133,7 +137,7 @@ void VFD_SetDisplayDigit(byte* DisplayBuffer, byte Character, DISPLAYSTYLE Displ
       dword s = VFD_TranslateSegments(Character, VFD_17);
 
       //Source: m   l k j i   h g3 g2 g1   f e d2 d1   c b a2 a1
-      switch (Digit)
+      switch(Digit)
       {
         case 0:
         {
@@ -389,4 +393,8 @@ void VFD_SetDisplayDigit(byte* DisplayBuffer, byte Character, DISPLAYSTYLE Displ
       break;
     }
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

@@ -3,9 +3,23 @@
 
 bool FlashTimeGetInfo(tFlashTimeInfo *TimeInfo)
 {
-  //TimeInfo is NULL
-  if(!TimeInfo) return FALSE;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashTimeGetInfo");
+  #endif
 
+  bool ret;
+
+  //TimeInfo is NULL
+  if(!TimeInfo)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return FALSE;
+  }
+
+  ret = FALSE;
   switch(GetSystemType())
   {
     //Unknown and old 5k/6k systems are not supported
@@ -17,16 +31,15 @@ bool FlashTimeGetInfo(tFlashTimeInfo *TimeInfo)
     case ST_CT:
     case ST_T5700:
     case ST_T5800:
-    case ST_TF7k7HDPVR: return FALSE;
+    case ST_TF7k7HDPVR: break;
 
     case ST_TMSS:
     {
       tFlashTimeInfo   *p;
 
       p = (tFlashTimeInfo*)(FIS_vFlashBlockTimeInfo());
-      if(!p) return FALSE;
-
-      return FlashTimeDecode(p, TimeInfo);
+      if(p) ret = FlashTimeDecode(p, TimeInfo);
+      break;
     }
 
     case ST_TMST:
@@ -34,9 +47,8 @@ bool FlashTimeGetInfo(tFlashTimeInfo *TimeInfo)
       tFlashTimeInfo   *p;
 
       p = (tFlashTimeInfo*)(FIS_vFlashBlockTimeInfo());
-      if(!p) return FALSE;
-
-      return FlashTimeDecode(p, TimeInfo);
+      if(p) ret = FlashTimeDecode(p, TimeInfo);
+      break;
     }
 
     case ST_TMSC:
@@ -44,22 +56,39 @@ bool FlashTimeGetInfo(tFlashTimeInfo *TimeInfo)
       tFlashTimeInfo   *p;
 
       p = (tFlashTimeInfo*)(FIS_vFlashBlockTimeInfo());
-      if(!p) return FALSE;
-
-      return FlashTimeDecode(p, TimeInfo);
+      if(p) ret = FlashTimeDecode(p, TimeInfo);
+      break;
     }
 
     case ST_NRTYPES: break;
   }
 
-  return FALSE;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }
 
 bool FlashTimeDecode(tFlashTimeInfo *Data, tFlashTimeInfo *TimeInfo)
 {
-  //TimeInfo is NULL
-  if(!Data || !TimeInfo) return FALSE;
+  bool ret;
 
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashTimeDecode");
+  #endif
+
+  //TimeInfo is NULL
+  if(!Data || !TimeInfo)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return FALSE;
+  }
+
+  ret = FALSE;
   switch(GetSystemType())
   {
     //Unknown and old 5k/6k systems are not supported
@@ -71,20 +100,28 @@ bool FlashTimeDecode(tFlashTimeInfo *Data, tFlashTimeInfo *TimeInfo)
     case ST_CT:
     case ST_T5700:
     case ST_T5800:
-    case ST_TF7k7HDPVR: return FALSE;
+    case ST_TF7k7HDPVR: break;
 
-    case ST_TMSS: return FlashTimeDecode_ST_TMSS(Data, TimeInfo);
-    case ST_TMST: return FlashTimeDecode_ST_TMST(Data, TimeInfo);
-    case ST_TMSC: return FlashTimeDecode_ST_TMSC(Data, TimeInfo);
+    case ST_TMSS: ret = FlashTimeDecode_ST_TMSS(Data, TimeInfo); break;
+    case ST_TMST: ret = FlashTimeDecode_ST_TMST(Data, TimeInfo); break;
+    case ST_TMSC: ret = FlashTimeDecode_ST_TMSC(Data, TimeInfo); break;
 
     case ST_NRTYPES: break;
   }
 
-  return FALSE;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }
 
 bool FlashTimeDecode_ST_TMSS(tFlashTimeInfo *Data, tFlashTimeInfo *TimeInfo)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashTimeDecode_ST_TMSS");
+  #endif
+
   memset(TimeInfo, 0, sizeof(tFlashTimeInfo));
   TimeInfo->UTCOffset     = Data->UTCOffset;
   TimeInfo->SleepTimer    = Data->SleepTimer;
@@ -95,17 +132,44 @@ bool FlashTimeDecode_ST_TMSS(tFlashTimeInfo *Data, tFlashTimeInfo *TimeInfo)
   TimeInfo->unknown3      = Data->unknown3;
   TimeInfo->DST           = Data->DST;
   TimeInfo->unknown4      = Data->unknown4;
-  TimeInfo->unknown5      = Data->unknown5;
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return TRUE;
 }
 
 bool FlashTimeDecode_ST_TMST(tFlashTimeInfo *Data, tFlashTimeInfo *TimeInfo)
 {
-  return FlashTimeDecode_ST_TMSS(Data, TimeInfo);
+  bool ret;
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashTimeDecode_ST_TMST");
+  #endif
+
+  ret = FlashTimeDecode_ST_TMSS(Data, TimeInfo);
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }
 
 bool FlashTimeDecode_ST_TMSC(tFlashTimeInfo *Data, tFlashTimeInfo *TimeInfo)
 {
-  return FlashTimeDecode_ST_TMSS(Data, TimeInfo);
+  bool ret;
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashTimeDecode_ST_TMSC");
+  #endif
+
+  ret = FlashTimeDecode_ST_TMSS(Data, TimeInfo);
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }

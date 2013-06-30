@@ -1,9 +1,9 @@
 #ifndef __FBLIB__
   #define __FBLIB__
 
-//  #define DEBUG_FIREBIRDLIB
+  //#define DEBUG_FIREBIRDLIB
 
-  #define __FBLIB_RELEASEDATE__ "2013-02-18"
+  #define __FBLIB_RELEASEDATE__ "2013-06-27"
 
   #ifdef _TMSEMU_
     #define __FBLIB_VERSION__ __FBLIB_RELEASEDATE__" TMSEmulator"
@@ -167,7 +167,6 @@
   bool        InitTAPex(void);
   void        InitTAPexFailedMsg(char *ProgramName);
   tBootReason BootReason(void);
-  void        TAP_EnterNormalNoInfo(void);
   dword       FirmwareDatMJD(void);
   void        FlushCache(dword *pAddr, int Size);
   char       *GetApplVer(void);
@@ -249,15 +248,15 @@
 
   typedef struct
   {
-    word        x;
-    word        y;
-    word        Width;
-    word        Height;
-    dword       pMemoryOSD;
-    byte        byteFormat;
-    byte        lutIdx;
-    byte        plane;
-    byte        unknown;
+    word                x;
+    word                y;
+    word                Width;
+    word                Height;
+    dword               pMemoryOSD;
+    byte                byteFormat;
+    byte                lutIdx;
+    byte                plane;
+    byte                unknown;
   } tOSDMapInfo;
 
   // directions
@@ -295,28 +294,27 @@
   void  DrawOSDLine(word OSDRgn, dword Ax, dword Ay, dword Bx, dword By, dword Color);
   void  EndMessageWin(void);
   void  FreeOSDRegion(word Region);
-  TYPE_TapEvent *GetCurrentEvent(int *curEvent);
   dword GetOSDMapAddress(void);
   word  GetOSDRegionHeight(word Region);
   word  GetOSDRegionWidth(word Region);
   bool  GetPIPPosition(int *North, int *South, int *East, int *West);
   byte  GetStreamFormat(byte Index);
-  bool  isAnyOSDVisible(dword checkX, dword checkY, dword checkW, dword checkH);
-  bool  isAnyOSDVisibleEx(dword checkX, dword checkY, dword checkW, dword checkH, byte Plane);
+  bool  isAnyOSDVisible(dword CheckX, dword CheckY, dword CheckW, dword CheckH);
+  bool  isAnyOSDVisibleEx(dword CheckX, dword CheckY, dword CheckW, dword CheckH, byte Plane);
   bool  isInfoBoxVisible(void);
   bool  isDirectSvcNumVisible(void);
   bool  isOSDRegionAlive(word Region);
   bool  isPIPActive(void);
   void  OSDCopy(word rgn, dword x, dword y, dword w, dword h, word items, eCopyDirection direction);
   dword PlayMediaFile(char *MediaFileName);
-  bool  SaveBitmap(char *strName, int width, int height, byte* pBuffer );
+  bool  SaveBitmap(char *strName, int width, int height, byte* pBuffer);
   void  SetRemoteMode(byte Mode, bool Active);
   void  ShowMessageWin(char* title, char* lpMessage1, char* lpMessage2, dword dwDelay);
   void  ShowMessageWindow(char **content, dword pos_x, dword pos_y, byte fntSize, byte align, dword bdcolor, dword titlecolor, dword msgcolor, dword bgcolor, dword delay);
   bool  ShowPvrList(tPvrListType PvrListType);
   void  SoundSinus(word freq, dword durationInMilliseconds, word Amplitude);
   bool  TAP_GetSysOsdControl(TYPE_TapSysOsdId osdId);
-  int   TAP_Osd_PutFreeColorGd(word rgn, int x, int y, TYPE_GrData * gd, bool sprite, dword FilterColor);
+  int   TAP_Osd_PutFreeColorGd(word rgn, int x, int y, TYPE_GrData *gd, bool sprite, dword FilterColor);
   byte  TunerGet(int MainSub);
   bool  TunerSet(byte Tuner);
 
@@ -342,9 +340,9 @@
   dword CRC32(dword StartValue, void *StartAddress, dword Length);
   bool  MD5String(char *inString, byte *Digest);
   bool  MD5File(char *FileName, byte *Digest);
-  dword OATH(register unsigned char * data, int len, dword hash);
-  dword SuperFastHash(register unsigned char * data, int len, dword hash);
-  word  UncompressBlock(byte *pInput, word compCount, byte *pOutput, word bufSize);
+  dword OATH(register byte *data, int len, dword hash);
+  dword SuperFastHash(register byte *data, int len, dword hash);
+  word  UncompressBlock(byte *pInput, word compCount, byte *pOutput, word BufferSize);
   dword UncompressLoader(byte *pSrc, byte *pDest, void *pPercentFinishedCallback);
   dword UncompressedLoaderSize(byte *pSrc);
   dword UncompressFirmware(byte *pSrc, byte *pDest, void *pPercentFinishedCallback);
@@ -355,15 +353,836 @@
 
 
   /*****************************************************************************************************************************/
+  /* curl                                                                                                                      */
+  /*****************************************************************************************************************************/
+
+  typedef enum
+  {
+    CURLE_OK = 0,
+    CURLE_UNSUPPORTED_PROTOCOL,    /* 1 */
+    CURLE_FAILED_INIT,             /* 2 */
+    CURLE_URL_MALFORMAT,           /* 3 */
+    CURLE_NOT_BUILT_IN,            /* 4 -  [was obsoleted in August 2007 for 7.17.0, reused in                                            April 2011 for 7.21.5] */
+    CURLE_COULDNT_RESOLVE_PROXY,   /* 5 */
+    CURLE_COULDNT_RESOLVE_HOST,    /* 6 */
+    CURLE_COULDNT_CONNECT,         /* 7 */
+    CURLE_FTP_WEIRD_SERVER_REPLY,  /* 8 */
+    CURLE_REMOTE_ACCESS_DENIED,    /* 9 -  a service was denied by the server
+                                           due to lack of access - when login fails
+                                           this is not returned. */
+    CURLE_FTP_ACCEPT_FAILED,       /* 10 - [was obsoleted in April 2006 for 7.15.4, reused in Dec 2011 for 7.24.0]*/
+    CURLE_FTP_WEIRD_PASS_REPLY,    /* 11 */
+    CURLE_FTP_ACCEPT_TIMEOUT,      /* 12 - timeout occurred accepting server
+                                           [was obsoleted in August 2007 for 7.17.0,
+                                           reused in Dec 2011 for 7.24.0]*/
+    CURLE_FTP_WEIRD_PASV_REPLY,    /* 13 */
+    CURLE_FTP_WEIRD_227_FORMAT,    /* 14 */
+    CURLE_FTP_CANT_GET_HOST,       /* 15 */
+    CURLE_OBSOLETE16,              /* 16 - NOT USED */
+    CURLE_FTP_COULDNT_SET_TYPE,    /* 17 */
+    CURLE_PARTIAL_FILE,            /* 18 */
+    CURLE_FTP_COULDNT_RETR_FILE,   /* 19 */
+    CURLE_OBSOLETE20,              /* 20 - NOT USED */
+    CURLE_QUOTE_ERROR,             /* 21 - quote command failure */
+    CURLE_HTTP_RETURNED_ERROR,     /* 22 */
+    CURLE_WRITE_ERROR,             /* 23 */
+    CURLE_OBSOLETE24,              /* 24 - NOT USED */
+    CURLE_UPLOAD_FAILED,           /* 25 - failed upload "command" */
+    CURLE_READ_ERROR,              /* 26 - couldn't open/read from file */
+    CURLE_OUT_OF_MEMORY,           /* 27 */
+    /* Note: CURLE_OUT_OF_MEMORY may sometimes indicate a conversion error
+             instead of a memory allocation error if CURL_DOES_CONVERSIONS
+             is defined */
+    CURLE_OPERATION_TIMEDOUT,      /* 28 - the timeout time was reached */
+    CURLE_OBSOLETE29,              /* 29 - NOT USED */
+    CURLE_FTP_PORT_FAILED,         /* 30 - FTP PORT operation failed */
+    CURLE_FTP_COULDNT_USE_REST,    /* 31 - the REST command failed */
+    CURLE_OBSOLETE32,              /* 32 - NOT USED */
+    CURLE_RANGE_ERROR,             /* 33 - RANGE "command" didn't work */
+    CURLE_HTTP_POST_ERROR,         /* 34 */
+    CURLE_SSL_CONNECT_ERROR,       /* 35 - wrong when connecting with SSL */
+    CURLE_BAD_DOWNLOAD_RESUME,     /* 36 - couldn't resume download */
+    CURLE_FILE_COULDNT_READ_FILE,  /* 37 */
+    CURLE_LDAP_CANNOT_BIND,        /* 38 */
+    CURLE_LDAP_SEARCH_FAILED,      /* 39 */
+    CURLE_OBSOLETE40,              /* 40 - NOT USED */
+    CURLE_FUNCTION_NOT_FOUND,      /* 41 */
+    CURLE_ABORTED_BY_CALLBACK,     /* 42 */
+    CURLE_BAD_FUNCTION_ARGUMENT,   /* 43 */
+    CURLE_OBSOLETE44,              /* 44 - NOT USED */
+    CURLE_INTERFACE_FAILED,        /* 45 - CURLOPT_INTERFACE failed */
+    CURLE_OBSOLETE46,              /* 46 - NOT USED */
+    CURLE_TOO_MANY_REDIRECTS ,     /* 47 - catch endless re-direct loops */
+    CURLE_UNKNOWN_OPTION,          /* 48 - User specified an unknown option */
+    CURLE_TELNET_OPTION_SYNTAX ,   /* 49 - Malformed telnet option */
+    CURLE_OBSOLETE50,              /* 50 - NOT USED */
+    CURLE_PEER_FAILED_VERIFICATION, /* 51 - peer's certificate or fingerprint wasn't verified fine */
+    CURLE_GOT_NOTHING,             /* 52 - when this is a specific error */
+    CURLE_SSL_ENGINE_NOTFOUND,     /* 53 - SSL crypto engine not found */
+    CURLE_SSL_ENGINE_SETFAILED,    /* 54 - can not set SSL crypto engine as default */
+    CURLE_SEND_ERROR,              /* 55 - failed sending network data */
+    CURLE_RECV_ERROR,              /* 56 - failure in receiving network data */
+    CURLE_OBSOLETE57,              /* 57 - NOT IN USE */
+    CURLE_SSL_CERTPROBLEM,         /* 58 - problem with the local certificate */
+    CURLE_SSL_CIPHER,              /* 59 - couldn't use specified cipher */
+    CURLE_SSL_CACERT,              /* 60 - problem with the CA cert (path?) */
+    CURLE_BAD_CONTENT_ENCODING,    /* 61 - Unrecognized/bad encoding */
+    CURLE_LDAP_INVALID_URL,        /* 62 - Invalid LDAP URL */
+    CURLE_FILESIZE_EXCEEDED,       /* 63 - Maximum file size exceeded */
+    CURLE_USE_SSL_FAILED,          /* 64 - Requested FTP SSL level failed */
+    CURLE_SEND_FAIL_REWIND,        /* 65 - Sending the data requires a rewind that failed */
+    CURLE_SSL_ENGINE_INITFAILED,   /* 66 - failed to initialise ENGINE */
+    CURLE_LOGIN_DENIED,            /* 67 - user, password or similar was not accepted and we failed to login */
+    CURLE_TFTP_NOTFOUND,           /* 68 - file not found on server */
+    CURLE_TFTP_PERM,               /* 69 - permission problem on server */
+    CURLE_REMOTE_DISK_FULL,        /* 70 - out of disk space on server */
+    CURLE_TFTP_ILLEGAL,            /* 71 - Illegal TFTP operation */
+    CURLE_TFTP_UNKNOWNID,          /* 72 - Unknown transfer ID */
+    CURLE_REMOTE_FILE_EXISTS,      /* 73 - File already exists */
+    CURLE_TFTP_NOSUCHUSER,         /* 74 - No such user */
+    CURLE_CONV_FAILED,             /* 75 - conversion failed */
+    CURLE_CONV_REQD,               /* 76 - caller must register conversion
+                                      callbacks using curl_easy_setopt options
+                                      CURLOPT_CONV_FROM_NETWORK_FUNCTION,
+                                      CURLOPT_CONV_TO_NETWORK_FUNCTION, and
+                                      CURLOPT_CONV_FROM_UTF8_FUNCTION */
+    CURLE_SSL_CACERT_BADFILE,      /* 77 - could not load CACERT file, missing or wrong format */
+    CURLE_REMOTE_FILE_NOT_FOUND,   /* 78 - remote file not found */
+    CURLE_SSH,                     /* 79 - error from the SSH layer, somewhat
+                                      generic so the error message will be of
+                                      interest when this has happened */
+
+    CURLE_SSL_SHUTDOWN_FAILED,     /* 80 - Failed to shut down the SSL connection */
+    CURLE_AGAIN,                   /* 81 - socket is not ready for send/recv,
+                                      wait till it's ready and try again (Added
+                                      in 7.18.2) */
+    CURLE_SSL_CRL_BADFILE,         /* 82 - could not load CRL file, missing or wrong format (Added in 7.19.0) */
+    CURLE_SSL_ISSUER_ERROR,        /* 83 - Issuer check failed.  (Added in 7.19.0) */
+    CURLE_FTP_PRET_FAILED,         /* 84 - a PRET command failed */
+    CURLE_RTSP_CSEQ_ERROR,         /* 85 - mismatch of RTSP CSeq numbers */
+    CURLE_RTSP_SESSION_ERROR,      /* 86 - mismatch of RTSP Session Ids */
+    CURLE_FTP_BAD_FILE_LIST,       /* 87 - unable to parse FTP file list */
+    CURLE_CHUNK_FAILED,            /* 88 - chunk callback reported error */
+    CURL_LAST /* never use! */
+  } CURLcode;
+
+  /* long may be 32 or 64 bits, but we should never depend on anything else but 32 */
+  #define CURLOPTTYPE_LONG          0
+  #define CURLOPTTYPE_OBJECTPOINT   10000
+  #define CURLOPTTYPE_FUNCTIONPOINT 20000
+  #define CURLOPTTYPE_OFF_T         30000
+
+  #define CINIT(na,t,nu) CURLOPT_ ## na = CURLOPTTYPE_ ## t + nu
+  //#define CINIT(name,type,number) CURLOPT_/**/name = type + number
+  /*
+   * This macro-mania below setups the CURLOPT_[what] enum, to be used with
+   * curl_easy_setopt(). The first argument in the CINIT() macro is the [what]
+   * word.
+   */
+
+  typedef enum
+  {
+    CINIT(FILE, OBJECTPOINT, 1),              /* This is the FILE * or void * the regular output should be written to. */
+    CINIT(URL,  OBJECTPOINT, 2),              /* The full URL to get/put */
+    CINIT(PORT, LONG, 3),                     /* Port number to connect to, if other than default. */
+    CINIT(PROXY, OBJECTPOINT, 4),             /* Name of proxy to use. */
+    CINIT(USERPWD, OBJECTPOINT, 5),           /* "name:password" to use when fetching. */
+    CINIT(PROXYUSERPWD, OBJECTPOINT, 6),      /* "name:password" to use with proxy. */
+    CINIT(RANGE, OBJECTPOINT, 7),             /* Range to get, specified as an ASCII string. */
+                                              /* not used */
+    CINIT(INFILE, OBJECTPOINT, 9),            /* Specified file stream to upload from (use as input): */
+    CINIT(ERRORBUFFER, OBJECTPOINT, 10),      /* Buffer to receive error messages in, must be at least CURL_ERROR_SIZE bytes big. If this is not used,
+                                                 error messages go to stderr instead: */
+    CINIT(WRITEFUNCTION, FUNCTIONPOINT, 11),  /* Function that will be called to store the output (instead of fwrite). The parameters will use
+                                                 fwrite() syntax, make sure to follow them. */
+    CINIT(READFUNCTION, FUNCTIONPOINT, 12),   /* Function that will be called to read the input (instead of fread). The parameters will use fread()
+                                                 syntax, make sure to follow them. */
+    CINIT(TIMEOUT, LONG, 13),                 /* Time-out the read operation after this amount of seconds */
+
+    /* If the CURLOPT_INFILE is used, this can be used to inform libcurl about
+     * how large the file being sent really is. That allows better error
+     * checking and better verifies that the upload was successful. -1 means
+     * unknown size.
+     *
+     * For large file support, there is also a _LARGE version of the key
+     * which takes an off_t type, allowing platforms with larger off_t
+     * sizes to handle larger files.  See below for INFILESIZE_LARGE.
+     */
+
+    CINIT(INFILESIZE, LONG, 14),
+    CINIT(POSTFIELDS, OBJECTPOINT, 15),       /* POST static input fields. */
+    CINIT(REFERER, OBJECTPOINT, 16),          /* Set the referrer page (needed by some CGIs) */
+    CINIT(FTPPORT, OBJECTPOINT, 17),          /* Set the FTP PORT string (interface name, named or numerical IP address) Use i.e '-' to use default address. */
+    CINIT(USERAGENT, OBJECTPOINT, 18),        /* Set the User-Agent string (examined by some CGIs) */
+
+    /* If the download receives less than "low speed limit" bytes/second
+     * during "low speed time" seconds, the operations is aborted.
+     * You could i.e if you have a pretty high speed connection, abort if
+     * it is less than 2000 bytes/sec during 20 seconds.
+     */
+
+    CINIT(LOW_SPEED_LIMIT, LONG, 19),         /* Set the "low speed limit" */
+    CINIT(LOW_SPEED_TIME, LONG, 20),          /* Set the "low speed time" */
+    CINIT(RESUME_FROM, LONG, 21),             /* Set the continuation offset.
+                                                 Note there is also a _LARGE version of this key which uses
+                                                 off_t types, allowing for large file offsets on platforms which
+                                                 use larger-than-32-bit off_t's.  Look below for RESUME_FROM_LARGE. */
+    CINIT(COOKIE, OBJECTPOINT, 22),           /* Set cookie in request: */
+    CINIT(HTTPHEADER, OBJECTPOINT, 23),       /* This points to a linked list of headers, struct curl_slist kind */
+    CINIT(HTTPPOST, OBJECTPOINT, 24),         /* This points to a linked list of post entries, struct curl_httppost */
+    CINIT(SSLCERT, OBJECTPOINT, 25),          /* name of the file keeping your private SSL-certificate */
+    CINIT(KEYPASSWD, OBJECTPOINT, 26),        /* password for the SSL or SSH private key */
+    CINIT(CRLF, LONG, 27),                    /* send TYPE parameter? */
+    CINIT(QUOTE, OBJECTPOINT, 28),            /* send linked-list of QUOTE commands */
+
+    /* send FILE * or void * to store headers to, if you use a callback it
+       is simply passed to the callback unmodified */
+    CINIT(WRITEHEADER, OBJECTPOINT, 29),
+
+    /* point to a file to read the initial cookies from, also enables
+       "cookie awareness" */
+    CINIT(COOKIEFILE, OBJECTPOINT, 31),
+
+    /* What version to specifically try to use.
+       See CURL_SSLVERSION defines below. */
+    CINIT(SSLVERSION, LONG, 32),
+
+    /* What kind of HTTP time condition to use, see defines */
+    CINIT(TIMECONDITION, LONG, 33),
+
+    /* Time to use with the above condition. Specified in number of seconds
+       since 1 Jan 1970 */
+    CINIT(TIMEVALUE, LONG, 34),
+
+    /* 35 = OBSOLETE */
+
+    /* Custom request, for customizing the get command like
+       HTTP: DELETE, TRACE and others
+       FTP: to use a different list command
+       */
+    CINIT(CUSTOMREQUEST, OBJECTPOINT, 36),
+
+    /* HTTP request, for odd commands like DELETE, TRACE and others */
+    CINIT(STDERR, OBJECTPOINT, 37),
+
+    /* 38 is not used */
+
+    /* send linked-list of post-transfer QUOTE commands */
+    CINIT(POSTQUOTE, OBJECTPOINT, 39),
+
+    CINIT(WRITEINFO, OBJECTPOINT, 40), /* DEPRECATED, do not use! */
+
+    CINIT(VERBOSE, LONG, 41),      /* talk a lot */
+    CINIT(HEADER, LONG, 42),       /* throw the header out too */
+    CINIT(NOPROGRESS, LONG, 43),   /* shut off the progress meter */
+    CINIT(NOBODY, LONG, 44),       /* use HEAD to get http document */
+    CINIT(FAILONERROR, LONG, 45),  /* no output on http error codes >= 300 */
+    CINIT(UPLOAD, LONG, 46),       /* this is an upload */
+    CINIT(POST, LONG, 47),         /* HTTP POST method */
+    CINIT(DIRLISTONLY, LONG, 48),  /* bare names when listing directories */
+
+    CINIT(APPEND, LONG, 50),       /* Append instead of overwrite on upload! */
+
+    /* Specify whether to read the user+password from the .netrc or the URL.
+     * This must be one of the CURL_NETRC_* enums below. */
+    CINIT(NETRC, LONG, 51),
+
+    CINIT(FOLLOWLOCATION, LONG, 52),  /* use Location: Luke! */
+
+    CINIT(TRANSFERTEXT, LONG, 53), /* transfer data in text/ASCII format */
+    CINIT(PUT, LONG, 54),          /* HTTP PUT */
+
+    /* 55 = OBSOLETE */
+
+    /* Function that will be called instead of the internal progress display
+     * function. This function should be defined as the curl_progress_callback
+     * prototype defines. */
+    CINIT(PROGRESSFUNCTION, FUNCTIONPOINT, 56),
+
+    /* Data passed to the progress callback */
+    CINIT(PROGRESSDATA, OBJECTPOINT, 57),
+
+    /* We want the referrer field set automatically when following locations */
+    CINIT(AUTOREFERER, LONG, 58),
+
+    /* Port of the proxy, can be set in the proxy string as well with:
+       "[host]:[port]" */
+    CINIT(PROXYPORT, LONG, 59),
+
+    /* size of the POST input data, if strlen() is not good to use */
+    CINIT(POSTFIELDSIZE, LONG, 60),
+
+    /* tunnel non-http operations through a HTTP proxy */
+    CINIT(HTTPPROXYTUNNEL, LONG, 61),
+
+    /* Set the interface string to use as outgoing network interface */
+    CINIT(INTERFACE, OBJECTPOINT, 62),
+
+    /* Set the krb4/5 security level, this also enables krb4/5 awareness.  This
+     * is a string, 'clear', 'safe', 'confidential' or 'private'.  If the string
+     * is set but doesn't match one of these, 'private' will be used.  */
+    CINIT(KRBLEVEL, OBJECTPOINT, 63),
+
+    /* Set if we should verify the peer in ssl handshake, set 1 to verify. */
+    CINIT(SSL_VERIFYPEER, LONG, 64),
+
+    /* The CApath or CAfile used to validate the peer certificate
+       this option is used only if SSL_VERIFYPEER is true */
+    CINIT(CAINFO, OBJECTPOINT, 65),
+
+    /* 66 = OBSOLETE */
+    /* 67 = OBSOLETE */
+
+    /* Maximum number of http redirects to follow */
+    CINIT(MAXREDIRS, LONG, 68),
+
+    /* Pass a long set to 1 to get the date of the requested document (if
+       possible)! Pass a zero to shut it off. */
+    CINIT(FILETIME, LONG, 69),
+
+    /* This points to a linked list of telnet options */
+    CINIT(TELNETOPTIONS, OBJECTPOINT, 70),
+
+    /* Max amount of cached alive connections */
+    CINIT(MAXCONNECTS, LONG, 71),
+
+    CINIT(CLOSEPOLICY, LONG, 72), /* DEPRECATED, do not use! */
+
+    /* 73 = OBSOLETE */
+
+    /* Set to explicitly use a new connection for the upcoming transfer.
+       Do not use this unless you're absolutely sure of this, as it makes the
+       operation slower and is less friendly for the network. */
+    CINIT(FRESH_CONNECT, LONG, 74),
+
+    /* Set to explicitly forbid the upcoming transfer's connection to be re-used
+       when done. Do not use this unless you're absolutely sure of this, as it
+       makes the operation slower and is less friendly for the network. */
+    CINIT(FORBID_REUSE, LONG, 75),
+
+    /* Set to a file name that contains random data for libcurl to use to
+       seed the random engine when doing SSL connects. */
+    CINIT(RANDOM_FILE, OBJECTPOINT, 76),
+
+    /* Set to the Entropy Gathering Daemon socket pathname */
+    CINIT(EGDSOCKET, OBJECTPOINT, 77),
+
+    /* Time-out connect operations after this amount of seconds, if connects are
+       OK within this time, then fine... This only aborts the connect phase. */
+    CINIT(CONNECTTIMEOUT, LONG, 78),
+
+    /* Function that will be called to store headers (instead of fwrite). The
+     * parameters will use fwrite() syntax, make sure to follow them. */
+    CINIT(HEADERFUNCTION, FUNCTIONPOINT, 79),
+
+    /* Set this to force the HTTP request to get back to GET. Only really usable
+       if POST, PUT or a custom request have been used first.
+     */
+    CINIT(HTTPGET, LONG, 80),
+
+    /* Set if we should verify the Common name from the peer certificate in ssl
+     * handshake, set 1 to check existence, 2 to ensure that it matches the
+     * provided hostname. */
+    CINIT(SSL_VERIFYHOST, LONG, 81),
+
+    /* Specify which file name to write all known cookies in after completed
+       operation. Set file name to "-" (dash) to make it go to stdout. */
+    CINIT(COOKIEJAR, OBJECTPOINT, 82),
+
+    /* Specify which SSL ciphers to use */
+    CINIT(SSL_CIPHER_LIST, OBJECTPOINT, 83),
+
+    /* Specify which HTTP version to use! This must be set to one of the
+       CURL_HTTP_VERSION* enums set below. */
+    CINIT(HTTP_VERSION, LONG, 84),
+
+    /* Specifically switch on or off the FTP engine's use of the EPSV command. By
+       default, that one will always be attempted before the more traditional
+       PASV command. */
+    CINIT(FTP_USE_EPSV, LONG, 85),
+
+    /* type of the file keeping your SSL-certificate ("DER", "PEM", "ENG") */
+    CINIT(SSLCERTTYPE, OBJECTPOINT, 86),
+
+    /* name of the file keeping your private SSL-key */
+    CINIT(SSLKEY, OBJECTPOINT, 87),
+
+    /* type of the file keeping your private SSL-key ("DER", "PEM", "ENG") */
+    CINIT(SSLKEYTYPE, OBJECTPOINT, 88),
+
+    /* crypto engine for the SSL-sub system */
+    CINIT(SSLENGINE, OBJECTPOINT, 89),
+
+    /* set the crypto engine for the SSL-sub system as default
+       the param has no meaning...
+     */
+    CINIT(SSLENGINE_DEFAULT, LONG, 90),
+
+    /* Non-zero value means to use the global dns cache */
+    CINIT(DNS_USE_GLOBAL_CACHE, LONG, 91), /* DEPRECATED, do not use! */
+
+    /* DNS cache timeout */
+    CINIT(DNS_CACHE_TIMEOUT, LONG, 92),
+
+    /* send linked-list of pre-transfer QUOTE commands */
+    CINIT(PREQUOTE, OBJECTPOINT, 93),
+
+    /* set the debug function */
+    CINIT(DEBUGFUNCTION, FUNCTIONPOINT, 94),
+
+    /* set the data for the debug function */
+    CINIT(DEBUGDATA, OBJECTPOINT, 95),
+
+    /* mark this as start of a cookie session */
+    CINIT(COOKIESESSION, LONG, 96),
+
+    /* The CApath directory used to validate the peer certificate
+       this option is used only if SSL_VERIFYPEER is true */
+    CINIT(CAPATH, OBJECTPOINT, 97),
+
+    /* Instruct libcurl to use a smaller receive buffer */
+    CINIT(BUFFERSIZE, LONG, 98),
+
+    /* Instruct libcurl to not use any signal/alarm handlers, even when using
+       timeouts. This option is useful for multi-threaded applications.
+       See libcurl-the-guide for more background information. */
+    CINIT(NOSIGNAL, LONG, 99),
+
+    /* Provide a CURLShare for mutexing non-ts data */
+    CINIT(SHARE, OBJECTPOINT, 100),
+
+    /* indicates type of proxy. accepted values are CURLPROXY_HTTP (default),
+       CURLPROXY_SOCKS4, CURLPROXY_SOCKS4A and CURLPROXY_SOCKS5. */
+    CINIT(PROXYTYPE, LONG, 101),
+
+    /* Set the Accept-Encoding string. Use this to tell a server you would like
+       the response to be compressed. Before 7.21.6, this was known as
+       CURLOPT_ENCODING */
+    CINIT(ACCEPT_ENCODING, OBJECTPOINT, 102),
+
+    /* Set pointer to private data */
+    CINIT(PRIVATE, OBJECTPOINT, 103),
+
+    /* Set aliases for HTTP 200 in the HTTP Response header */
+    CINIT(HTTP200ALIASES, OBJECTPOINT, 104),
+
+    /* Continue to send authentication (user+password) when following locations,
+       even when hostname changed. This can potentially send off the name
+       and password to whatever host the server decides. */
+    CINIT(UNRESTRICTED_AUTH, LONG, 105),
+
+    /* Specifically switch on or off the FTP engine's use of the EPRT command (
+       it also disables the LPRT attempt). By default, those ones will always be
+       attempted before the good old traditional PORT command. */
+    CINIT(FTP_USE_EPRT, LONG, 106),
+
+    /* Set this to a bitmask value to enable the particular authentications
+       methods you like. Use this in combination with CURLOPT_USERPWD.
+       Note that setting multiple bits may cause extra network round-trips. */
+    CINIT(HTTPAUTH, LONG, 107),
+
+    /* Set the ssl context callback function, currently only for OpenSSL ssl_ctx
+       in second argument. The function must be matching the
+       curl_ssl_ctx_callback proto. */
+    CINIT(SSL_CTX_FUNCTION, FUNCTIONPOINT, 108),
+
+    /* Set the userdata for the ssl context callback function's third
+       argument */
+    CINIT(SSL_CTX_DATA, OBJECTPOINT, 109),
+
+    /* FTP Option that causes missing dirs to be created on the remote server.
+       In 7.19.4 we introduced the convenience enums for this option using the
+       CURLFTP_CREATE_DIR prefix.
+    */
+    CINIT(FTP_CREATE_MISSING_DIRS, LONG, 110),
+
+    /* Set this to a bitmask value to enable the particular authentications
+       methods you like. Use this in combination with CURLOPT_PROXYUSERPWD.
+       Note that setting multiple bits may cause extra network round-trips. */
+    CINIT(PROXYAUTH, LONG, 111),
+
+    /* FTP option that changes the timeout, in seconds, associated with
+       getting a response.  This is different from transfer timeout time and
+       essentially places a demand on the FTP server to acknowledge commands
+       in a timely manner. */
+    CINIT(FTP_RESPONSE_TIMEOUT, LONG, 112),
+  #define CURLOPT_SERVER_RESPONSE_TIMEOUT CURLOPT_FTP_RESPONSE_TIMEOUT
+
+    /* Set this option to one of the CURL_IPRESOLVE_* defines (see below) to
+       tell libcurl to resolve names to those IP versions only. This only has
+       affect on systems with support for more than one, i.e IPv4 _and_ IPv6. */
+    CINIT(IPRESOLVE, LONG, 113),
+
+    /* Set this option to limit the size of a file that will be downloaded from
+       an HTTP or FTP server.
+
+       Note there is also _LARGE version which adds large file support for
+       platforms which have larger off_t sizes.  See MAXFILESIZE_LARGE below. */
+    CINIT(MAXFILESIZE, LONG, 114),
+
+    /* See the comment for INFILESIZE above, but in short, specifies
+     * the size of the file being uploaded.  -1 means unknown.
+     */
+    CINIT(INFILESIZE_LARGE, OFF_T, 115),
+
+    /* Sets the continuation offset.  There is also a LONG version of this;
+     * look above for RESUME_FROM.
+     */
+    CINIT(RESUME_FROM_LARGE, OFF_T, 116),
+
+    /* Sets the maximum size of data that will be downloaded from
+     * an HTTP or FTP server.  See MAXFILESIZE above for the LONG version.
+     */
+    CINIT(MAXFILESIZE_LARGE, OFF_T, 117),
+
+    /* Set this option to the file name of your .netrc file you want libcurl
+       to parse (using the CURLOPT_NETRC option). If not set, libcurl will do
+       a poor attempt to find the user's home directory and check for a .netrc
+       file in there. */
+    CINIT(NETRC_FILE, OBJECTPOINT, 118),
+
+    /* Enable SSL/TLS for FTP, pick one of:
+       CURLUSESSL_TRY     - try using SSL, proceed anyway otherwise
+       CURLUSESSL_CONTROL - SSL for the control connection or fail
+       CURLUSESSL_ALL     - SSL for all communication or fail
+    */
+    CINIT(USE_SSL, LONG, 119),
+
+    /* The _LARGE version of the standard POSTFIELDSIZE option */
+    CINIT(POSTFIELDSIZE_LARGE, OFF_T, 120),
+
+    /* Enable/disable the TCP Nagle algorithm */
+    CINIT(TCP_NODELAY, LONG, 121),
+
+    /* 122 OBSOLETE, used in 7.12.3. Gone in 7.13.0 */
+    /* 123 OBSOLETE. Gone in 7.16.0 */
+    /* 124 OBSOLETE, used in 7.12.3. Gone in 7.13.0 */
+    /* 125 OBSOLETE, used in 7.12.3. Gone in 7.13.0 */
+    /* 126 OBSOLETE, used in 7.12.3. Gone in 7.13.0 */
+    /* 127 OBSOLETE. Gone in 7.16.0 */
+    /* 128 OBSOLETE. Gone in 7.16.0 */
+
+    /* When FTP over SSL/TLS is selected (with CURLOPT_USE_SSL), this option
+       can be used to change libcurl's default action which is to first try
+       "AUTH SSL" and then "AUTH TLS" in this order, and proceed when a OK
+       response has been received.
+
+       Available parameters are:
+       CURLFTPAUTH_DEFAULT - let libcurl decide
+       CURLFTPAUTH_SSL     - try "AUTH SSL" first, then TLS
+       CURLFTPAUTH_TLS     - try "AUTH TLS" first, then SSL
+    */
+    CINIT(FTPSSLAUTH, LONG, 129),
+
+    CINIT(IOCTLFUNCTION, FUNCTIONPOINT, 130),
+    CINIT(IOCTLDATA, OBJECTPOINT, 131),
+
+    /* 132 OBSOLETE. Gone in 7.16.0 */
+    /* 133 OBSOLETE. Gone in 7.16.0 */
+
+    /* zero terminated string for pass on to the FTP server when asked for
+       "account" info */
+    CINIT(FTP_ACCOUNT, OBJECTPOINT, 134),
+
+    /* feed cookies into cookie engine */
+    CINIT(COOKIELIST, OBJECTPOINT, 135),
+
+    /* ignore Content-Length */
+    CINIT(IGNORE_CONTENT_LENGTH, LONG, 136),
+
+    /* Set to non-zero to skip the IP address received in a 227 PASV FTP server
+       response. Typically used for FTP-SSL purposes but is not restricted to
+       that. libcurl will then instead use the same IP address it used for the
+       control connection. */
+    CINIT(FTP_SKIP_PASV_IP, LONG, 137),
+
+    /* Select "file method" to use when doing FTP, see the curl_ftpmethod
+       above. */
+    CINIT(FTP_FILEMETHOD, LONG, 138),
+
+    /* Local port number to bind the socket to */
+    CINIT(LOCALPORT, LONG, 139),
+
+    /* Number of ports to try, including the first one set with LOCALPORT.
+       Thus, setting it to 1 will make no additional attempts but the first.
+    */
+    CINIT(LOCALPORTRANGE, LONG, 140),
+
+    /* no transfer, set up connection and let application use the socket by
+       extracting it with CURLINFO_LASTSOCKET */
+    CINIT(CONNECT_ONLY, LONG, 141),
+
+    /* Function that will be called to convert from the
+       network encoding (instead of using the iconv calls in libcurl) */
+    CINIT(CONV_FROM_NETWORK_FUNCTION, FUNCTIONPOINT, 142),
+
+    /* Function that will be called to convert to the
+       network encoding (instead of using the iconv calls in libcurl) */
+    CINIT(CONV_TO_NETWORK_FUNCTION, FUNCTIONPOINT, 143),
+
+    /* Function that will be called to convert from UTF8
+       (instead of using the iconv calls in libcurl)
+       Note that this is used only for SSL certificate processing */
+    CINIT(CONV_FROM_UTF8_FUNCTION, FUNCTIONPOINT, 144),
+
+    /* if the connection proceeds too quickly then need to slow it down */
+    /* limit-rate: maximum number of bytes per second to send or receive */
+    CINIT(MAX_SEND_SPEED_LARGE, OFF_T, 145),
+    CINIT(MAX_RECV_SPEED_LARGE, OFF_T, 146),
+
+    /* Pointer to command string to send if USER/PASS fails. */
+    CINIT(FTP_ALTERNATIVE_TO_USER, OBJECTPOINT, 147),
+
+    /* callback function for setting socket options */
+    CINIT(SOCKOPTFUNCTION, FUNCTIONPOINT, 148),
+    CINIT(SOCKOPTDATA, OBJECTPOINT, 149),
+
+    /* set to 0 to disable session ID re-use for this transfer, default is
+       enabled (== 1) */
+    CINIT(SSL_SESSIONID_CACHE, LONG, 150),
+
+    /* allowed SSH authentication methods */
+    CINIT(SSH_AUTH_TYPES, LONG, 151),
+
+    /* Used by scp/sftp to do public/private key authentication */
+    CINIT(SSH_PUBLIC_KEYFILE, OBJECTPOINT, 152),
+    CINIT(SSH_PRIVATE_KEYFILE, OBJECTPOINT, 153),
+
+    /* Send CCC (Clear Command Channel) after authentication */
+    CINIT(FTP_SSL_CCC, LONG, 154),
+
+    /* Same as TIMEOUT and CONNECTTIMEOUT, but with ms resolution */
+    CINIT(TIMEOUT_MS, LONG, 155),
+    CINIT(CONNECTTIMEOUT_MS, LONG, 156),
+
+    /* set to zero to disable the libcurl's decoding and thus pass the raw body
+       data to the application even when it is encoded/compressed */
+    CINIT(HTTP_TRANSFER_DECODING, LONG, 157),
+    CINIT(HTTP_CONTENT_DECODING, LONG, 158),
+
+    /* Permission used when creating new files and directories on the remote
+       server for protocols that support it, SFTP/SCP/FILE */
+    CINIT(NEW_FILE_PERMS, LONG, 159),
+    CINIT(NEW_DIRECTORY_PERMS, LONG, 160),
+
+    /* Set the behaviour of POST when redirecting. Values must be set to one
+       of CURL_REDIR* defines below. This used to be called CURLOPT_POST301 */
+    CINIT(POSTREDIR, LONG, 161),
+
+    /* used by scp/sftp to verify the host's public key */
+    CINIT(SSH_HOST_PUBLIC_KEY_MD5, OBJECTPOINT, 162),
+
+    /* Callback function for opening socket (instead of socket(2)). Optionally,
+       callback is able change the address or refuse to connect returning
+       CURL_SOCKET_BAD.  The callback should have type
+       curl_opensocket_callback */
+    CINIT(OPENSOCKETFUNCTION, FUNCTIONPOINT, 163),
+    CINIT(OPENSOCKETDATA, OBJECTPOINT, 164),
+
+    /* POST volatile input fields. */
+    CINIT(COPYPOSTFIELDS, OBJECTPOINT, 165),
+
+    /* set transfer mode (;type=<a|i>) when doing FTP via an HTTP proxy */
+    CINIT(PROXY_TRANSFER_MODE, LONG, 166),
+
+    /* Callback function for seeking in the input stream */
+    CINIT(SEEKFUNCTION, FUNCTIONPOINT, 167),
+    CINIT(SEEKDATA, OBJECTPOINT, 168),
+
+    /* CRL file */
+    CINIT(CRLFILE, OBJECTPOINT, 169),
+
+    /* Issuer certificate */
+    CINIT(ISSUERCERT, OBJECTPOINT, 170),
+
+    /* (IPv6) Address scope */
+    CINIT(ADDRESS_SCOPE, LONG, 171),
+
+    /* Collect certificate chain info and allow it to get retrievable with
+       CURLINFO_CERTINFO after the transfer is complete. (Unfortunately) only
+       working with OpenSSL-powered builds. */
+    CINIT(CERTINFO, LONG, 172),
+
+    /* "name" and "pwd" to use when fetching. */
+    CINIT(USERNAME, OBJECTPOINT, 173),
+    CINIT(PASSWORD, OBJECTPOINT, 174),
+
+      /* "name" and "pwd" to use with Proxy when fetching. */
+    CINIT(PROXYUSERNAME, OBJECTPOINT, 175),
+    CINIT(PROXYPASSWORD, OBJECTPOINT, 176),
+
+    /* Comma separated list of hostnames defining no-proxy zones. These should
+       match both hostnames directly, and hostnames within a domain. For
+       example, local.com will match local.com and www.local.com, but NOT
+       notlocal.com or www.notlocal.com. For compatibility with other
+       implementations of this, .local.com will be considered to be the same as
+       local.com. A single * is the only valid wildcard, and effectively
+       disables the use of proxy. */
+    CINIT(NOPROXY, OBJECTPOINT, 177),
+
+    /* block size for TFTP transfers */
+    CINIT(TFTP_BLKSIZE, LONG, 178),
+
+    /* Socks Service */
+    CINIT(SOCKS5_GSSAPI_SERVICE, OBJECTPOINT, 179),
+
+    /* Socks Service */
+    CINIT(SOCKS5_GSSAPI_NEC, LONG, 180),
+
+    /* set the bitmask for the protocols that are allowed to be used for the
+       transfer, which thus helps the app which takes URLs from users or other
+       external inputs and want to restrict what protocol(s) to deal
+       with. Defaults to CURLPROTO_ALL. */
+    CINIT(PROTOCOLS, LONG, 181),
+
+    /* set the bitmask for the protocols that libcurl is allowed to follow to,
+       as a subset of the CURLOPT_PROTOCOLS ones. That means the protocol needs
+       to be set in both bitmasks to be allowed to get redirected to. Defaults
+       to all protocols except FILE and SCP. */
+    CINIT(REDIR_PROTOCOLS, LONG, 182),
+
+    /* set the SSH knownhost file name to use */
+    CINIT(SSH_KNOWNHOSTS, OBJECTPOINT, 183),
+
+    /* set the SSH host key callback, must point to a curl_sshkeycallback
+       function */
+    CINIT(SSH_KEYFUNCTION, FUNCTIONPOINT, 184),
+
+    /* set the SSH host key callback custom pointer */
+    CINIT(SSH_KEYDATA, OBJECTPOINT, 185),
+
+    /* set the SMTP mail originator */
+    CINIT(MAIL_FROM, OBJECTPOINT, 186),
+
+    /* set the SMTP mail receiver(s) */
+    CINIT(MAIL_RCPT, OBJECTPOINT, 187),
+
+    /* FTP: send PRET before PASV */
+    CINIT(FTP_USE_PRET, LONG, 188),
+
+    /* RTSP request method (OPTIONS, SETUP, PLAY, etc...) */
+    CINIT(RTSP_REQUEST, LONG, 189),
+
+    /* The RTSP session identifier */
+    CINIT(RTSP_SESSION_ID, OBJECTPOINT, 190),
+
+    /* The RTSP stream URI */
+    CINIT(RTSP_STREAM_URI, OBJECTPOINT, 191),
+
+    /* The Transport: header to use in RTSP requests */
+    CINIT(RTSP_TRANSPORT, OBJECTPOINT, 192),
+
+    /* Manually initialize the client RTSP CSeq for this handle */
+    CINIT(RTSP_CLIENT_CSEQ, LONG, 193),
+
+    /* Manually initialize the server RTSP CSeq for this handle */
+    CINIT(RTSP_SERVER_CSEQ, LONG, 194),
+
+    /* The stream to pass to INTERLEAVEFUNCTION. */
+    CINIT(INTERLEAVEDATA, OBJECTPOINT, 195),
+
+    /* Let the application define a custom write method for RTP data */
+    CINIT(INTERLEAVEFUNCTION, FUNCTIONPOINT, 196),
+
+    /* Turn on wildcard matching */
+    CINIT(WILDCARDMATCH, LONG, 197),
+
+    /* Directory matching callback called before downloading of an
+       individual file (chunk) started */
+    CINIT(CHUNK_BGN_FUNCTION, FUNCTIONPOINT, 198),
+
+    /* Directory matching callback called after the file (chunk)
+       was downloaded, or skipped */
+    CINIT(CHUNK_END_FUNCTION, FUNCTIONPOINT, 199),
+
+    /* Change match (fnmatch-like) callback for wildcard matching */
+    CINIT(FNMATCH_FUNCTION, FUNCTIONPOINT, 200),
+
+    /* Let the application define custom chunk data pointer */
+    CINIT(CHUNK_DATA, OBJECTPOINT, 201),
+
+    /* FNMATCH_FUNCTION user pointer */
+    CINIT(FNMATCH_DATA, OBJECTPOINT, 202),
+
+    /* send linked-list of name:port:address sets */
+    CINIT(RESOLVE, OBJECTPOINT, 203),
+
+    /* Set a username for authenticated TLS */
+    CINIT(TLSAUTH_USERNAME, OBJECTPOINT, 204),
+
+    /* Set a password for authenticated TLS */
+    CINIT(TLSAUTH_PASSWORD, OBJECTPOINT, 205),
+
+    /* Set authentication type for authenticated TLS */
+    CINIT(TLSAUTH_TYPE, OBJECTPOINT, 206),
+
+    /* Set to 1 to enable the "TE:" header in HTTP requests to ask for
+       compressed transfer-encoded responses. Set to 0 to disable the use of TE:
+       in outgoing requests. The current default is 0, but it might change in a
+       future libcurl release.
+
+       libcurl will ask for the compressed methods it knows of, and if that
+       isn't any, it will not ask for transfer-encoding at all even if this
+       option is set to 1.
+
+    */
+    CINIT(TRANSFER_ENCODING, LONG, 207),
+
+    /* Callback function for closing socket (instead of close(2)). The callback
+       should have type curl_closesocket_callback */
+    CINIT(CLOSESOCKETFUNCTION, FUNCTIONPOINT, 208),
+    CINIT(CLOSESOCKETDATA, OBJECTPOINT, 209),
+
+    /* allow GSSAPI credential delegation */
+    CINIT(GSSAPI_DELEGATION, LONG, 210),
+
+    /* Set the name servers to use for DNS resolution */
+    CINIT(DNS_SERVERS, OBJECTPOINT, 211),
+
+    /* Time-out accept operations (currently for FTP only) after this amount
+       of miliseconds. */
+    CINIT(ACCEPTTIMEOUT_MS, LONG, 212),
+
+    /* Set TCP keepalive */
+    CINIT(TCP_KEEPALIVE, LONG, 213),
+
+    /* non-universal keepalive knobs (Linux, AIX, HP-UX, more) */
+    CINIT(TCP_KEEPIDLE, LONG, 214),
+    CINIT(TCP_KEEPINTVL, LONG, 215),
+
+    /* Enable/disable specific SSL features with a bitmask, see CURLSSLOPT_* */
+    CINIT(SSL_OPTIONS, LONG, 216),
+
+    /* set the SMTP auth originator */
+    CINIT(MAIL_AUTH, OBJECTPOINT, 217),
+
+    CURLOPT_LASTENTRY /* the last unused */
+  } CURLoption;
+
+  #define CURLOPT_WRITEDATA CURLOPT_FILE
+
+  typedef void CURL;
+
+  CURL    *curl_easy_init(void);
+  CURLcode curl_easy_perform(CURL *curl);
+  CURLcode curl_easy_setopt(CURL *curl, CURLoption option, void *arg);
+  CURLcode curl_global_init(long flags);
+  void     curl_easy_cleanup(CURL *curl);
+  void     curl_global_cleanup(void);
+
+
+  /*****************************************************************************************************************************/
   /* Debugging                                                                                                                 */
   /*****************************************************************************************************************************/
 
-  void   DumpMemory(unsigned char* p, dword size, int BytesPerLine);
+  void   DumpMemory(byte* p, dword size, int BytesPerLine);
   void   DumpMemoryDword(dword *p, dword size);
   dword *FindGotPointer(dword FunctionAddress);
   void   LogEntry(char *FileName, char *ProgramName, bool Console, eTimeStampFormat TimeStampFormat, char *Text);
+  void   LogEntryPrintf(char *FileName, char *ProgramName, bool Console, eTimeStampFormat TimeStampFormat, char *format, ...);
   void   LogEntryGeneric(char *ProgramName, bool Console, char *Text);
-
+  void   LogEntryGenericPrintf(char *ProgramName, bool Console, char *format, ...);
+  void   LogEntryFBLibPrintf(bool Console, char *format, ...);
   bool   HookFirmware(char *FirmwareFunctionName, void *RedirectTo, dword *PointerToOriginal);
   bool   UnhookFirmware(char *FirmwareFunctionName, void *RedirectTo, dword *PointerToOriginal);
 
@@ -376,10 +1195,11 @@
   void   CallTraceExportStats(char *FileName);
   void   CallTraceResetStats(void);
 
-  bool CrashCheck_Startup(char *TAPName);
-  void CrashCheck_Shutdown(char *TAPName);
+  bool   CrashCheck_Startup(char *TAPName);
+  void   CrashCheck_Shutdown(char *TAPName);
+  bool   CrashCheck_isOK(char *TAPName);
 
-  void* TAP_MemAlloc_Chk(char *Comment, dword size);
+  void *TAP_MemAlloc_Chk(char *Comment, dword size);
   int   TAP_Osd_Copy_Chk(char *Comment, word srcRgnNum, word dstRgnNum, dword srcX, dword srcY, dword w, dword h, dword dstX, dword dstY,  bool sprite);
   int   TAP_Osd_Create_Chk(char *Comment, dword x, dword y, dword w, dword h, byte lutIdx, int flag);
   int   TAP_Osd_FillBox_Chk(char *Comment, word rgn, dword x, dword y, dword w, dword h, dword color);
@@ -387,7 +1207,86 @@
   int   TAP_Osd_PutGd_Chk(char *Comment, word rgn, int x, int y, TYPE_GrData * gd, bool sprite);
   int   TAP_Osd_PutPixel_Chk(char *Comment, word rgn, dword x, dword y, dword pix);
   void  TAP_Osd_RestoreBox_Chk(char *Comment, word rgn, dword x, dword y, dword w, dword h, void *data);
-  byte* TAP_Osd_SaveBox_Chk(char *Comment, word rgn, dword x, dword y, dword w, dword h);
+  byte *TAP_Osd_SaveBox_Chk(char *Comment, word rgn, dword x, dword y, dword w, dword h);
+
+
+  /*****************************************************************************************************************************/
+  /* EPG                                                                                                                       */
+  /*****************************************************************************************************************************/
+
+  typedef enum
+  {
+    RST_undefined,
+    RST_NotRunning,
+    RST_StartsSoon,
+    RST_Pausing,
+    RST_Running,
+    RST_ServiceOffAir,
+    RST_reserved1,
+    RST_reserved2
+  }tRunningStatus;
+
+  typedef struct
+  {
+    word                EventID;
+    byte                DataStatus;
+    tRunningStatus      RunningStatus;
+
+    dword               StartTime;              //Local start time
+    dword               EndTime;                //Local time
+    short               TimeZone;               //Offset from UTC in minutes
+    word                duration;               //duration in minutes
+
+    word                SatIndex;
+    word                NetworkID;
+    word                TSID;
+    word                ServiceID;
+
+    TYPE_ServiceType    ServiceType;
+    int                 ServiceNum;
+
+    byte                lang[4];
+
+    byte                ParentalRate;
+    byte                NameLength;
+    byte                ShortEventTextLength;
+    word                ExtEventTextLength;
+
+    char                EventName[256];
+    char                ShortEventText[256];
+    char                ExtEventText[8192];
+
+    dword               citID;
+
+    byte                ContentIdentifier;      //if sourceFlag == 1 then the nibbles are reversed to ETSI and if sourceFlag == 0 then
+    byte                sourceFlag;             //the nibble represent Australia-specific descriptions
+    word                unknown14;
+    word                iceChannel;
+
+    byte                unknown15[6];
+  } TYPE_EPGInfo;
+
+  void EPGInfo_FilterReset(void);
+  void EPGInfo_FilterTime(dword StartTime, dword EndTime);
+  void EPGInfo_FilterChannelByIndex(TYPE_ServiceType SvcType, int SvcNum, bool StartCurrent);
+  void EPGInfo_FilterDuration(word MinDuration, word MaxDuration);
+  void EPGInfo_FilterGenre(byte *GenreArray, byte GenreArraySize);
+
+  //To prototype for the callback is    bool CallbackFunction(TYPE_EPGInfo*)
+  void EPGInfo_FilterCallback(void *CallbackRoutine);
+  void EPGInfo_AbortLoad(void);
+
+  int   EPGInfo_FindFirst(TYPE_EPGInfo *EPGData);
+  bool  EPGInfo_FindNext(TYPE_EPGInfo *EPGData);
+  bool  EPGInfo_FindPrev(TYPE_EPGInfo *EPGData);
+  bool  EPGInfo_FindLast(TYPE_EPGInfo *EPGData);
+  bool  EPGInfo_FindItem(TYPE_EPGInfo *EPGData, int EPGIndex, bool EPGReset);
+  bool  EPGInfo_FindCurrent(byte SvcType, int SvcNum, TYPE_EPGInfo *EPGData);
+  void  EPGInfo_Free(void);
+  dword EPGInfo_GetNrFreeEntries(void);
+
+  TYPE_TapEvent *GetCurrentEvent(int *curEvent);
+  bool isOnMainTuner(int SvcType, int SvcNum);
 
 
   /*****************************************************************************************************************************/
@@ -421,6 +1320,61 @@
 
 
   /*****************************************************************************************************************************/
+  /* ezXML                                                                                                                     */
+  /*****************************************************************************************************************************/
+
+  typedef struct ezxml *ezxml_t;
+
+  struct ezxml
+  {
+    char               *name;     // tag name
+    char              **attr;     // tag attributes { name, value, name, value, ... NULL }
+    char               *txt;      // tag character content, empty string if none
+    size_t              off;      // tag offset from start of parent tag character content
+    ezxml_t             next;     // next tag with same name in this section at this depth
+    ezxml_t             sibling;  // next tag with different name in same section and depth
+    ezxml_t             ordered;  // next tag, same section and depth, in original order
+    ezxml_t             child;    // head of sub tag list, NULL if none
+    ezxml_t             parent;   // parent tag, NULL if current tag is root tag
+    short               flags;    // additional information
+  };
+
+  // Given a string of xml data and its length, parses it and creates an ezxml
+  // structure. For efficiency, modifies the data by adding null terminators
+  // and decoding ampersand sequences. If you don't want this, copy the data and
+  // pass in the copy. Returns NULL on failure.
+  ezxml_t ezxml_parse_str(char *s, size_t len);
+
+  // a wrapper for ezxml_parse_fd() that accepts a file name
+  ezxml_t ezxml_parse_file(const char *file);
+
+  // returns the first child tag (one level deeper) with the given name or NULL if not found
+  ezxml_t ezxml_child(ezxml_t xml, const char *name);
+
+  // returns the next tag of the same name in the same section and depth or NULL  if not found
+  #define ezxml_next(xml) ((xml) ? xml->next : NULL)
+
+  // Returns the Nth tag with the same name in the same section at the same depth
+  // or NULL if not found. An index of 0 returns the tag given.
+  ezxml_t ezxml_idx(ezxml_t xml, int idx);
+
+  // returns the name of the given tag
+  #define ezxml_name(xml) ((xml) ? xml->name : NULL)
+
+  // returns the given tag's character content or empty string if none
+  #define ezxml_txt(xml) ((xml) ? xml->txt : "")
+
+  // returns the value of the requested tag attribute, or NULL if not found
+  const char *ezxml_attr(ezxml_t xml, const char *attr);
+
+  // frees the memory allocated for an ezxml structure
+  void ezxml_free(ezxml_t xml);
+
+  // returns parser error message or empty string if none
+  const char *ezxml_error(ezxml_t xml);
+
+
+  /*****************************************************************************************************************************/
   /* Firmware functions                                                                                                        */
   /*****************************************************************************************************************************/
 
@@ -438,36 +1392,45 @@
   int    Appl_CheckRecording(int SvcType, int SvcNum, bool Unknown);
   int    Appl_CheckRecording_Tuner(byte TunerIndex, int SvcType, int SvcNum, bool Unknown);
   void   Appl_ClrTimer(byte *TimerHandle);
+  bool   Appl_EvtProc_PincodeKey(dword p1, dword p2);
   bool   Appl_ExportChData(char *FileName);
-  dword  Appl_GetEvtCount(byte SatIdx, word NetID, word TSID, word ServiceID);
+  void  *Appl_GetCurrentEvent(byte SatIndex, word NetID, word TSID, word ServiceID);
+  dword  Appl_GetEvtCount(byte SatIndex, word NetID, word TSID, word ServiceID);
   dword  Appl_GetEvtCountInFreePool(void);
   dword *Appl_GetEvtListHeadInHash(word NetID, word TSID, word ServiceID);
   dword *Appl_GetEvtListHeadInHashByChannelID(ulong64 ChannelID);
   dword *Appl_GetEvtListHeadInUsePool(void);
   bool   Appl_GetIsExternal(void);
   dword  Appl_GetFreeExtRecordSpace(char *MountPath);
+  void  *Appl_GetSameTimeEvent(byte SatIndex, word NetID, word TSID, word ServiceID);
   bool   Appl_ImportChData(char *FileName);
   void   Appl_PvrPause(bool p1);
   void   Appl_RestartTimeShiftSvc(bool p1, dword Block);
   void   Appl_SetIsExternal(bool External);
   void   Appl_SetPlaybackSpeed(byte Mode, int Speed, bool p3);
   void   Appl_ShoutCast(void);
-  byte   Appl_StartPlaybackMedia(char const *FileName, unsigned int p2, bool p3, bool ScaleInPip);
+  byte   Appl_StartPlayback(char *FileName, unsigned int p2, bool p3, bool ScaleInPip);
+  byte   Appl_StartPlaybackMedia(char *FileName, unsigned int p2, bool p3, bool ScaleInPip);
   dword  Appl_StopPlaying(void);
   void   Appl_StopRecPlaying(bool p1);
-  dword  Appl_WaitEvt(uint Event, uint *a1, uint a2, uint a3, uint Timeout);
+  dword  Appl_TimeToLocal(dword UTCTime);
+  dword  Appl_WaitEvt(dword Event, dword *a1, dword a2, dword a3, dword Timeout);
   void   Appl_WriteRecInfo(dword Slot);
-  byte   ApplChannel_GetAgc(unsigned char TunerIndex, unsigned char *AGC);
-  byte   ApplChannel_GetBer(unsigned char TunerIndex, unsigned char *BER);
-  dword  ApplHdd_FileCutPaste(char  const* SourceFileName, unsigned int StartBlock, unsigned int NrBlocks, char const* CutFileName);
+  byte   ApplChannel_GetAgc(byte TunerIndex, byte *AGC);
+  byte   ApplChannel_GetBer(byte TunerIndex, byte *BER);
+  dword  ApplHdd_FileCutPaste(char *SourceFileName, unsigned int StartBlock, unsigned int NrBlocks, char *CutFileName);
   dword  ApplHdd_FreeSize(char *MountPath, bool a1);
   word   ApplHdd_GetFileInfo(word p1, int *TotalBlocks, int *CurrentBlock, byte p4, byte p5);
-  dword  ApplHdd_GetInfoFromExternalDevice(dword *TotalSpaceMB, dword *FreeSpaceMB, char  const *MountPath);
+  dword  ApplHdd_GetInfoFromExternalDevice(dword *TotalSpaceMB, dword *FreeSpaceMB, char *MountPath);
   void   ApplHdd_RestoreWorkFolder(void);
   void   ApplHdd_SaveWorkFolder(void);
-  dword  ApplHdd_SelectFolder(tDirEntry *FolderStruct, char const *FolderPath);
+  dword  ApplHdd_SelectFolder(tDirEntry *FolderStruct, char *FolderPath);
   void   ApplHdd_SetWorkFolder(tDirEntry *FolderStruct);
   void   ApplNewVfd_Stop(void);
+  void   ApplPin_Delete(void);
+  bool   ApplPin_IsLockPopup(void);
+  word   ApplSvc_GetSvcIdx(byte TYPE_ServiceType, byte SatIndex, word TPIndex, word ServiceID, word Start, word NrOfServicesToSearch);
+  word   ApplSvc_GetTpIdx(byte SatIndex, word NetworkID, word TSID);
   int    ApplTap_GetEmptyTask(void);
   void   ApplTimer_OptimizeList(void);
   int    DevService_Mute(bool Mute);
@@ -508,6 +1471,7 @@
   bool FlashServiceSetInfo(int SvcType, int SvcNum, tFlashService *Service);
   bool FlashServiceAdd(int SvcType, tFlashService *Service);
   int  FlashServiceFind(int SvcType, word ServiceID, word PMTPID, word PCRPID, tFlashService *Service);
+  bool FlashServiceFindNum(byte SatIndex, word NetworkID, word TSID, word ServiceID, TYPE_ServiceType *SvcType, int *SvcNum);
   bool FlashServiceDel(int SvcType, int SvcNum);
   bool FlashServiceMove(int SvcType, int FromSvcNum, int ToSvcNum);
 
@@ -593,20 +1557,18 @@
 
   typedef struct
   {
-    short               UTCOffset;
-    word                SleepTimer;
+      short               UTCOffset;
+      word                SleepTimer;
 
-    byte                unknown1:3;
-    byte                GMTCollection:3;        //0=Normal, 1=CAS Only, 2=User Select
-    byte                Mode:1;                 //0=Auto, 1=Manual
-    byte                unknown2:1;
+      byte                unknown1:3;
+      byte                GMTCollection:3;        //0=Normal, 1=CAS Only, 2=User Select
+      byte                Mode:1;                 //0=Auto, 1=Manual
+      byte                unknown2:1;
 
-    byte                unknown3;
+      byte                unknown3;
 
-    byte                DST:2;                  //0=off, 3=on
-    byte                unknown4:6;
-
-    char                unknown5;
+      word                DST:2;                  //0=off, 3=on
+      word                unknown4:14;
   }tFlashTimeInfo;
 
   bool FlashTimeGetInfo(tFlashTimeInfo *TimeInfo);
@@ -751,6 +1713,8 @@
   /* FontManager                                                                                                               */
   /*****************************************************************************************************************************/
 
+  #define FONTSDIR      "/ProgramFiles/Settings/Fonts"
+
   typedef struct
   {
     dword                 Width;
@@ -764,12 +1728,46 @@
     tFontDef              FontDef[191];
   } tFontData;
 
-  dword FM_GetStringWidth(const char *Text, tFontData *FontData);
-  dword FM_GetStringHeight(const char *Text, tFontData *FontData);
-  void  FM_PutString(word rgn, dword x, dword y, dword maxX, const char * str, dword fcolor, dword bcolor, tFontData *FontData, byte bDot, byte align);
-  void  FM_PutStringAA(word rgn, dword x, dword y, dword maxX, const char * str, dword fcolor, dword bcolor, tFontData *FontData, byte bDot, byte align, float AntiAliasFactor);
+  dword FM_GetStringWidth(char *Text, tFontData *FontData);
+  dword FM_GetStringHeight(char *Text, tFontData *FontData);
+  void  FM_PutString(word rgn, dword x, dword y, dword maxX, char * str, dword fcolor, dword bcolor, tFontData *FontData, byte bDot, byte align);
+  void  FM_PutStringAA(word rgn, dword x, dword y, dword maxX, char * str, dword fcolor, dword bcolor, tFontData *FontData, byte bDot, byte align, float AntiAliasFactor);
   bool  FM_LoadFontFile(char *FontFileName, tFontData *FontData);
   void  FM_FreeFontFile(tFontData *FontData);
+
+  //Unicode (UTF-8 encoded) version
+  typedef struct
+  {
+    dword               Unicode;
+    dword               FileOffset;
+    word                Width;
+    word                Height;
+  }tFontDefUC;
+
+  typedef struct
+  {
+    dword               Unicode;
+    byte               *GlyphData;
+    word                Width;
+    word                Height;
+  }tGlyphCacheUC;
+
+  typedef struct
+  {
+    TYPE_File          *FileHandle;
+    dword               FontDefEntries;
+    tFontDefUC         *FontDef;
+    dword               GlyphCacheEntries;
+    tGlyphCacheUC      *GlyphCache;
+  } tFontDataUC;
+
+  void  FM_MakeFontDir(void);
+  bool  FMUC_LoadFontFile(char *FontFileName, tFontDataUC *FontData);
+  dword FMUC_GetStringHeight(char *Text, tFontDataUC *FontData);
+  dword FMUC_GetStringWidth(char *Text, tFontDataUC *FontData);
+  void  FMUC_PutString(word rgn, dword x, dword y, dword maxX, char * str, dword fcolor, dword bcolor, tFontDataUC *FontData, byte bDot, byte align);
+  void  FMUC_PutStringAA(word rgn, dword x, dword y, dword maxX, char *str, dword fcolor, dword bcolor, tFontDataUC *FontData, byte bDot, byte align, float AntiAliasFactor);
+  void  FMUC_FreeFontFile(tFontDataUC *FontData);
 
 
   /*****************************************************************************************************************************/
@@ -819,31 +1817,32 @@
   int        HDD_APM_Enable(byte APMLevel);
   bool       HDD_ChangeDir(char *Dir);
   void       HDD_Delete(char *FileName);
-  TYPE_File *HDD_FappendOpen(char *filename);
+  TYPE_File *HDD_FappendOpen(char *FileName);
   bool       HDD_FappendWrite(TYPE_File *file, char *data);
   bool       HDD_GetAbsolutePathByTypeFile(TYPE_File *File, char *AbsFileName);
-  bool       HDD_GetAbsolutePathByTypeFileUTF8(TYPE_File *File, char *AbsFileName);
+
+  //The following define will be removed in the near future
+  #define HDD_GetAbsolutePathByTypeFileUTF8   HDD_GetAbsolutePathByTypeFile
 
   #ifdef _TMSEMU_
     bool     HDD_GetFileSizeAndInode(char *Directory, char *FileName, dword *CInode, off_t *FileSize);
   #else
-    bool     HDD_GetFileSizeAndInode(char *Directory, char *FileName, dword *CInode, __off64_t *FileSize);
+    bool     HDD_GetFileSizeAndInode(char *Directory, char *FileName, __ino64_t *CInode, __off64_t *FileSize);
   #endif
 
   dword      HDD_GetFileTimeByAbsFileName(char *FileName);
   dword      HDD_GetFileTimeByRelFileName(char *FileName);
   dword      HDD_GetFileTimeByTypeFile(TYPE_File *File);
   bool       HDD_GetHddID(char *ModelNo, char *SerialNo, char *FirmwareNo);
-  dword      HDD_GetInodeByAbsFileName(char *Filename);
-  dword      HDD_GetInodeByRelFileName(char *Filename);
-  dword      HDD_GetInodeByTypeFile(TYPE_File *File);
+  __ino64_t  HDD_GetInodeByAbsFileName(char *Filename);
+  __ino64_t  HDD_GetInodeByRelFileName(char *Filename);
+  __ino64_t  HDD_GetInodeByTypeFile(TYPE_File *File);
   bool       HDD_IdentifyDevice(char *IdentifyDeviceBuffer);
-  bool       HDD_isExtRecording(void);
   bool       HDD_Move(char *FileName, char *FromDir, char *ToDir);
   void       HDD_Recycle(char *FileName);
+  void       HDD_RecycleSF(char *FileName);
   void       HDD_RemoveDir(char *DirPath, bool Recursive);
   void       HDD_Rename(char *FileName, char *NewFileName);
-  word       HDD_SetExtRecording(bool ExtDisk);
   int        HDD_Smart_DisableAttributeAutoSave(void);
   int        HDD_Smart_DisableOperations(void);
   int        HDD_Smart_EnableAttributeAutoSave(void);
@@ -852,6 +1851,7 @@
   int        HDD_Smart_ReadThresholdData(word *DataBuf);
   int        HDD_Smart_ReturnStatus(void);                  ////if 20 is returned then one or more thresholds have been exceeded; -1 upon error
   void       HDD_Unrecycle(char *FileName);
+  void       HDD_UnrecycleSF(char *FileName);
   bool       HDD_Write(void *data, dword length, TYPE_File *f);
   tFileInUse HDD_isFileInUse(char *FileName);
   void       MakeUniqueFileName(char *FileName);
@@ -921,14 +1921,17 @@
   inline dword FIS_fwAppl_DeleteRadioSvcName(void);
   inline dword FIS_fwAppl_DeleteTvSvcName(void);
   inline dword FIS_fwAppl_EnterNormal(void);
+  inline dword FIS_fwAppl_EvtProc_PincodeKey(void);
   inline dword FIS_fwAppl_ExecProgram(void);
   inline dword FIS_fwAppl_ExportChData(void);
+  inline dword FIS_fwAppl_GetCurrentEvent(void);
   inline dword FIS_fwAppl_GetEvtCount(void);
   inline dword FIS_fwAppl_GetEvtCountInFreePool(void);
   inline dword FIS_fwAppl_GetEvtListHeadInHash(void);
   inline dword FIS_fwAppl_GetEvtListHeadInUsePool(void);
   inline dword FIS_fwAppl_GetFreeExtRecordSpace(void);
   inline dword FIS_fwAppl_GetIsExternal(void);
+  inline dword FIS_fwAppl_GetSameTimeEvent(void);
   inline dword FIS_fwAppl_GetStreamFormat(void);
   inline dword FIS_fwAppl_ImportChData(void);
   inline dword FIS_fwAppl_InitTempRec(void);
@@ -943,6 +1946,7 @@
   inline dword FIS_fwAppl_SetProviderName(void);
   inline dword FIS_fwAppl_SetTimeShift(void);
   inline dword FIS_fwAppl_ShoutCast(void);
+  inline dword FIS_fwAppl_StartPlayback(void);
   inline dword FIS_fwAppl_StartPlaybackMedia(void);
   inline dword FIS_fwAppl_StartTempRec(void);
   inline dword FIS_fwAppl_StopPlaying(void);
@@ -964,13 +1968,24 @@
   inline dword FIS_fwApplHdd_SetWorkFolder(void);
   inline dword FIS_fwApplIcelink_EitFromHdd(void);
   inline dword FIS_fwApplOsd_DrawJpeg(void);
+  inline dword FIS_fwApplPin_Delete(void);
+  inline dword FIS_fwApplPin_IsLockPopup(void);
+  inline dword FIS_fwApplSvc_GetSvcIdx(void);
+  inline dword FIS_fwApplSvc_GetTpIdx(void);
   inline dword FIS_fwApplTap_CallEventHandler(void);
   inline dword FIS_fwApplTap_GetEmptyTask(void);
   inline dword FIS_fwApplTimer_OptimizeList(void);
-  inline dword FIS_fwApplTimeToLocal(void);
   inline dword FIS_fwApplVfdSendData(void);
   inline dword FIS_fwApplVfdStart(void);
   inline dword FIS_fwApplVfdStop(void);
+
+  inline dword FIS_fwcurl_easy_cleanup(void);
+  inline dword FIS_fwcurl_easy_init(void);
+  inline dword FIS_fwcurl_easy_perform(void);
+  inline dword FIS_fwcurl_easy_setopt(void);
+  inline dword FIS_fwcurl_global_cleanup(void);
+  inline dword FIS_fwcurl_global_init(void);
+
   inline dword FIS_fwDevEeprom_GetMacAddr(void);
   inline dword FIS_fwDevEeprom_Info(void);
   inline dword FIS_fwDevFront_PowerOffCancel(void);
@@ -980,6 +1995,15 @@
   inline dword FIS_fwDevHdd_DeviceOpen(void);
   inline dword FIS_fwDevService_Mute(void);
   inline dword FIS_fwEeprom_DirectWrite(void);
+
+  inline dword FIS_fwezxml_attr(void);
+  inline dword FIS_fwezxml_child(void);
+  inline dword FIS_fwezxml_error(void);
+  inline dword FIS_fwezxml_free(void);
+  inline dword FIS_fwezxml_idx(void);
+  inline dword FIS_fwezxml_parse_file(void);
+  inline dword FIS_fwezxml_parse_str(void);
+
   inline dword FIS_fwPowerOff(void);
   inline dword FIS_fwPutDevEvt(void);
   inline dword FIS_fwSetIrCode(void);
@@ -1079,7 +2103,7 @@
     LGAR_NRITEMS
   } tLogoAspect;
 
-  void          LogoManager_Initialize(void *Callback);
+  void          LogoManager_Initialize(void *CallbackRoutine);
   void          LogoManager_MoveExternalUpdates(void);
   char         *LogoManager_ChannelNameToLogoName(char *ChannelName);
   void          LogoManager_Cleanup(void);
@@ -1223,6 +2247,8 @@
   bool   HDD_GetRecSlotFiles(byte Slot, TYPE_File **RecFile, TYPE_File **InfFile, TYPE_File **NavFile);
   bool   HDD_isAnyRecording(void);
   bool   HDD_isCryptedStream(char *Buffer, dword BufferSize);
+  bool   HDD_isExtRecording(void);
+  bool   HDD_isRecFileName(char *FileName);
   bool   HDD_isRecording(byte RecSlot);
   char  *HDD_MakeNewRecName(char *fname, word sequence);
   dword  HDD_NumberOfRECSlots(void);
@@ -1230,6 +2256,22 @@
   bool   HDD_RecSlotDecode(byte Slot, tFlashTimer *RecSlot);
   bool   HDD_RecSlotEncode(byte Slot, tFlashTimer *RecSlot);    //The buffer needs to be at least 8kB in size
   bool   HDD_RECSlotSetDuration(byte Slot, word Duration);
+  word   HDD_SetExtRecording(bool ExtDisk);
+
+  //These functions use the current directory
+  bool   infData_isAvail(char *infFileName, char *NameTag, dword *PayloadSize);
+  bool   infData_Get(char *infFileName, char *NameTag, dword *PayloadSize, byte **Payload);
+  bool   infData_GetNameByIndex(char *infFileName, dword NameIndex, char *NameTag);
+  bool   infData_Set(char *infFileName, char *NameTag, dword PayloadSize, byte *Payload);
+  bool   infData_Delete(char *infFileName, char *NameTag);
+
+  //And these accept an absolute path to any device/directory
+  bool   infData_isAvailAbs(char *infFileName, char *NameTag, dword *PayloadSize);
+  bool   infData_GetAbs(char *infFileName, char *NameTag, dword *PayloadSize, byte **Payload);
+  bool   infData_GetNameByIndexAbs(char *infFileName, dword NameIndex, char *NameTag);
+  bool   infData_SetAbs(char *infFileName, char *NameTag, dword PayloadSize, byte *Payload);
+  bool   infData_DeleteAbs(char *infFileName, char *NameTag);
+
 
   /*****************************************************************************************************************************/
   /* Shutdown                                                                                                                  */
@@ -1247,7 +2289,6 @@
   bool Shutdown(TaskEnum Task);
   bool Reboot(bool StopRecordings);
   bool SDS(void);
-  void SDSTerminate(void);
 
 
   /*****************************************************************************************************************************/
@@ -1262,29 +2303,35 @@
     NonPrintableChars    = 8
   } eRemoveChars;
 
-  byte    CharToISO(byte *p);
-  dword   CharToUTF8(byte *p);
-  void    DeleteAt(char *SourceString, int Pos, int Len);
-  void    ExtractLine(char *Text, char *Line);
-  size_t  GetLine(char *data, bool strip);
-  void    GetStringEncoding(char *Text, bool *hasAnsiChars, bool *hasUTFChars);
-  void    InsertAt(char *SourceString, int Pos, char *NewString);
-  bool    isUTF8Char(byte *p);
-  bool    isUTFToppy(void);
-  void    LowerCase(char *string);
-  void    MakeValidFileName(char *strName, eRemoveChars ControlCharacters);
-  char   *ParseLine(char *zeile, size_t *n, char delim);
-  void    ReplaceInvalidFileNameChars(char *strName);
-  char   *RTrim(char *s);
-  void    SeparatePathComponents(char *FullName, char *Path, char *FileName, char *FileExt);
-  bool    StringEndsWith(char *text, char *postfix);
-  void    StrToISO(byte *SourceString, byte *DestString);
-  void    StrToUTF8(byte *SourceString, byte *DestString);
-  bool    StrMkISO(byte *SourceString);
-  bool    StrMkUTF8(byte *SourceString);
-  bool    StrReplace(char *String, char *Find, char *Replace);
-  void    UpperCase(char *string);
-  char   *ValidFileName(char *strName, eRemoveChars ControlCharacters);
+  void        DeleteAt(char *SourceString, int Pos, int Len);
+  void        ExtractLine(char *Text, char *Line);
+  size_t      GetLine(char *data, bool strip);
+  void        GetStringEncoding(char *Text, bool *hasAnsiChars, bool *hasUTFChars);
+  byte       *GetUCPos(byte *String, int CharPos);
+  void        InsertAt(char *SourceString, int Pos, char *NewString);
+  bool        isUTF8Char(byte *p, byte *BytesPerChar);
+  bool        isUTFToppy(void);
+  void        LowerCase(char *string);
+  void        MakeValidFileName(char *strName, eRemoveChars ControlCharacters);
+  char       *ParseLine(char *zeile, size_t *n, char delim);
+  void        ReplaceInvalidFileNameChars(char *strName);
+  char       *RTrim(char *s);
+  void        SeparatePathComponents(char *FullName, char *Path, char *FileName, char *FileExt);
+  byte       *SkipCharTableBytes(byte *p);
+  byte       *strcpyUC(byte *dest, byte *src);
+  bool        StringEndsWith(char *text, char *postfix);
+  int         strlenUC(byte *s);
+  bool        StrMkISO(byte *SourceString);
+  bool        StrMkUTF8(byte *SourceString, byte DefaultISO8859CharSet);
+  byte       *strncpyUC(byte *dest, byte *src, size_t n);
+  bool        StrReplace(char *String, char *Find, char *Replace);
+  void        StrToISO(byte *SourceString, byte *DestString);
+  void        StrToISOAlloc(byte *SourceString, byte **DestString);
+  bool        StrToUTF8(byte *SourceString, byte *DestString, byte DefaultISO8859CharSet);
+  void        UpperCase(char *string);
+  dword       UTF8ToUTF32(byte *UTF8Character, byte *BytesPerChar);
+  void        UTF32ToUTF8(dword UTF32Character, byte *UTF8Character, byte *BytesPerChar);
+  char       *ValidFileName(char *strName, eRemoveChars ControlCharacters);
 
 
   /*****************************************************************************************************************************/
@@ -1359,7 +2406,7 @@
   int   HDD_TAP_GetIndexByID(dword TAPID);
   bool  HDD_TAP_GetInfo(char *FileName, tTAPInfo *pTAPInfo);
   bool  HDD_TAP_GetInfoByAbsPath(char *AbsFileName, tTAPInfo *pTAPInfo);
-  void* HDD_TAP_GetStartParameter(void);
+  void *HDD_TAP_GetStartParameter(void);
   bool  HDD_TAP_PopDir(void);
   bool  HDD_TAP_PushDir(void);
   dword HDD_TAP_SendEvent(dword TAPID, bool AllowParamInterception, word event, dword param1, dword param2);
@@ -1373,11 +2420,12 @@
   bool  HDD_TAP_isRunning(dword TAPID);
   bool  KeyTranslate(bool Enable, void *EventHandler);
   bool  NoAutoStartTAP(void);
+  void *TAP_MemRealloc(void *ptr, size_t OldSize, size_t NewSize, bool InitMemory);
+  void  TAP_EnterNormalNoInfo(void);
 
 
   /*****************************************************************************************************************************/
   /* TAP Comm                                                                                                                  */
-  /*   Mainly developed by asrael                                                                                              */
   /*****************************************************************************************************************************/
 
   #define EVT_TAPCOM           0xFFF
@@ -1394,7 +2442,6 @@
 
   #define TAPCOM_NO_RETURN_VALUE 0x80000000
 
-
   typedef enum
   {
     TAPCOM_Status_OPEN,                   //Sobald der Block angelegt wird
@@ -1406,84 +2453,20 @@
     TAPCOM_Status_NO_CHANNEL              //Keine gültige Verbindung
   } TAPCOM_Status;
 
-  typedef void* TAPCOM_Channel;           // Zeiger, der intern als Kommunikationskanal verwendet wird
-
+  typedef void* TAPCOM_Channel;
 
   //Client Funktionen
-
-  TAPCOM_Channel TAPCOM_OpenChannel(      // setzt Remote Procedure Call an andere Anwendung ab
-
-    dword TargetID,                       // ID der gewählten Anwendung (siehe oben)
-    dword ServiceID,                      // Service-ID der gewählten Anwendung
-    dword ParamBlockVersion,              // Version des Parameterblocks
-    void *ParamBlock                      // Pointer auf die zu übertragenden Daten.
-
-  );                                      // Rückgabewert: Pointer auf (internen) Kommunikationskanal. Dieser muss an die
-
-
-  TAPCOM_Status TAPCOM_GetStatus(         // Liefert den Status des Kommunikationskanals
-
-    TAPCOM_Channel Channel                // der von TAPCOM_OpenChannel zurückgegebene Kanal
-
-  );                                      // Rückgabewert: Status des Kanals
-
-
-  dword TAPCOM_LastAlive(                 // Liefert den Zeitpunkt der letzten Serveraktivität (siehe: TAPCOM_StillAlive)
-
-    TAPCOM_Channel Channel                // der von TAPCOM_OpenChannel zurückgegebene Kanal
-
-  );                                      // Rückgabewert: Tickcount der letzten Serveraktivität
-
-
-  int TAPCOM_GetReturnValue(              // Kann vom Client aus aufgerufen werden, um abzufragen,
-                                          // ob der Server den RPC ausgeführt oder zurückgewiesen hat.
-
-    TAPCOM_Channel Channel                // der von TAPCOM_OpenChannel zurückgegebene Kanal
-
-  );                                      // Rückgabewert: der vom Server gesetzte Rückgabewert
-
-
-  void TAPCOM_CloseChannel(               // Kann vom Client aufgerufen werden, um Message-Puffer nach Abschluss der
-                                          // Kommunikation freizugeben.
-
-    TAPCOM_Channel Channel                // der von TAPCOM_OpenChannel zurückgegebene Kanal
-
-  );
-
+  TAPCOM_Channel  TAPCOM_OpenChannel(dword TargetID, dword ServiceID, dword ParamBlockVersion, void *ParamBlock);
+  TAPCOM_Status   TAPCOM_GetStatus(TAPCOM_Channel Channel);
+  dword           TAPCOM_LastAlive(TAPCOM_Channel Channel);
+  int             TAPCOM_GetReturnValue(TAPCOM_Channel Channel);
+  void            TAPCOM_CloseChannel(TAPCOM_Channel Channel);
 
   //Server-Funktionen
-  TAPCOM_Channel TAPCOM_GetChannel(       // Liefert Informationen über den vom Client gesendeten Befehl
-
-    dword param1,                         // Wird vom Event geliefert und enthält die Adresse zum Messagebuffer
-    dword *CallerID,                      // ID der aufrufenden Clients (siehe oben)
-    dword *ServiceID,                     // ID des gewünschten Services, frei definierbar
-    dword *ParamBlockVersion,             // Version des Parameterblocks
-    void  **ParamBlock                    // Rückgabe der Adresse, an der eventuelle Parameter für den Service stehen
-
-  );                                      // Rückgabewert: Pointer auf (internen) Kommunikationskanal.
-
-
-  void TAPCOM_Reject(                     // Der Server kennt den Befehl nicht oder kann diesen gerade nicht abarbeiten
-
-    TAPCOM_Channel Channel                // der von TAPCOM_GetChannel zurückgegebene Kanal
-
-  );
-
-  void TAPCOM_Finish(                     // Kann vom Server aus aufgerufen werden, um dem Client ein Ergebnis vom Typ int
-                                          // des RPCs zu übermitteln.
-
-    TAPCOM_Channel Channel,               // der von TAPCOM_GetChannel zurückgegebene Kanal
-    int            val                    // der Rückgabewert vom Server
-
-  );
-
-
-  void TAPCOM_StillAlive(                 // Dauert die Befehlsverarbeitung länger, kann der Server dem Client mitteilen,
-                                          // dass er noch aktiv ist (siehe: TAPCOM_LastAlive)
-
-    TAPCOM_Channel Channel                // der von TAPCOM_GetChannel zurückgegebene Kanal
-
-  );
+  TAPCOM_Channel  TAPCOM_GetChannel(dword param1, dword *CallerID, dword *ServiceID, dword *ParamBlockVersion, void  **ParamBlock);                                      // Rückgabewert: Pointer auf (internen) Kommunikationskanal.
+  void            TAPCOM_Reject(TAPCOM_Channel Channel);
+  void            TAPCOM_Finish(TAPCOM_Channel Channel, int val);
+  void            TAPCOM_StillAlive(TAPCOM_Channel Channel);
 
 
   /*****************************************************************************************************************************/
@@ -1503,6 +2486,14 @@
   /* Time Functions                                                                                                            */
   /*****************************************************************************************************************************/
 
+  typedef enum
+  {
+    DSTR_Undefined,
+    DSTR_Firmware,
+    DSTR_Europe,
+    DSTR_Manual
+  } tDSTRule;
+
   #define DATE(mjd, h, m) ((dword) (((mjd) << 16) | ((h) << 8) | (m)))
   #define MJD(d) ((word) (((d) >> 16) & 0xffff))
   #define TIME(d) ((word) ((d) & 0xffff))
@@ -1512,13 +2503,18 @@
   dword  AddSec(dword date, byte dateSec, int add);
   dword  AddTime(dword date, int add);
   char  *DayOfWeek(byte WeekDay);
+  bool   GetCurrentTimeZone(short *TZOffset, bool *DST);
   bool   isMJD(dword MJD);
   dword  Now(byte *Sec);
   dword  TF2UnixTime(dword TFTimeStamp);
   long   TimeDiff(dword FromTime, dword ToTime);
   char  *TimeFormat(dword DateTime, byte Sec, eTimeStampFormat TimeStampFormat);
   dword  Unix2TFTime(dword UnixTimeStamp);
-  dword  UTCtoLocal(dword UTCTime);
+  dword  UTC2LocalTime(dword UTCTime, short *Offset);   //Uses DST_SetDSTRule()
+  dword  LocalTime2UTC(dword LocalTime, short *Offset); //Uses DST_SetDSTRule()
+  void   DST_SetDSTRule(tDSTRule NewDSTRule);
+  dword  DST_FindNextTransition(void);
+  dword  DST_CalcTransition(byte ruleOrdinal, byte ruleDay, byte ruleMonth, byte ruleHour, byte ruleMin);
 
 
   /*****************************************************************************************************************************/
@@ -1536,7 +2532,7 @@
 
   //Main OSD
   void OSDMenuInitialize(bool AllowScrollingOfLongText, bool HasValueColumn, bool NumberedItems, bool ScrollLoop, char *TitleLeft, char *TitleRight);
-  void OSDMenuSetFont(tFontData *LeftTitle, tFontData *RightTitle, tFontData *ListNumber, tFontData *ListName, tFontData *ListValue, tFontData *Buttons, tFontData *Memo);
+  void OSDMenuSetFont(tFontDataUC *LeftTitle, tFontDataUC *RightTitle, tFontDataUC *ListNumber, tFontDataUC *ListName, tFontDataUC *ListValue, tFontDataUC *Buttons, tFontDataUC *Memo);
   void OSDMenuSetCursor(tCursorType CursorType);
   void OSDMenuUpdate(bool SuppressOSDSync);
   void OSDMenuModifyTitleLeft(char *Text);
@@ -1551,7 +2547,7 @@
   bool OSDMenuIsVisible(void);
 
   //Callback function for custom menu drawings
-  void OSDMenuSetCallback(void *OSDCallbackProcedure);
+  void OSDMenuSetCallback(void *OSDCallbackRoutine);
 
   //void OSDCallbackProcedure(tOSDCB OSDCBType, word OSDRgn);
 
@@ -1681,6 +2677,7 @@
 
   //Info box
   void OSDMenuInfoBoxShow(char *Title, char *Text, dword Timeout);
+  void OSDMenuWaitSpinnerInit(void);
   void OSDMenuInfoBoxDestroy(void);
   void OSDMenuInfoBoxDestroyNoOSDUpdate(void);
   bool OSDMenuInfoBoxIsVisible(void);
@@ -1716,7 +2713,7 @@
   /* TMS OSD Keyboard                                                                                                          */
   /*****************************************************************************************************************************/
 
-  void OSDMenuKeyboard_Setup(char *Titel, char *Variable, dword MaxLength);
+  void OSDMenuKeyboard_Setup(char *Title, char *Variable, dword MaxLength);
   void OSDMenuKeyboard_LegendButton(dword Line, tButtonIcon ButtonIcon, char *Text);
   bool OSDMenuKeyboard_EventHandler(word *event, dword *param1, dword *param2);
   void OSDMenuKeyboard_Destroy(void);
@@ -1781,6 +2778,7 @@
   bool VFD_EnableCDAnimation(bool Enable);
   bool VFD_CDAnimation(bool Forward);
   bool VFD_SetCharacterSet(tVFDCharset VFDCharset);
+
 
   /*****************************************************************************************************************************/
   /* USB Keyboard                                                                                                              */

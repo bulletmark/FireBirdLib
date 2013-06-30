@@ -4,26 +4,26 @@
 #include              <ctype.h>
 #include              <ELF.h>
 
-#define VERSION       "V1.2"
+#define VERSION       "V1.3"
 
-char *BadWords[] = {"calloc",   "chdir",     "chmod",    "chown",    "close",
-		    "closedir", "create",    "dlclose",  "dlerror",  "dlopen",
-		    "dlsym",    "dup",       "dupioctl", "environ",  "execl",
-		    "execle",   "execlp",    "execv",    "execve",   "execvp",
-		    "fchdir",   "fchmod",    "fchown",   "fclose",   "fdopen",
-		    "fflush",   "fileno",    "fopen",    "fork",     "fprintf",
-		    "fread",    "free",      "freopen",  "fwrite",   "getcwd",
-		    "getenv",   "getgid",    "getgrp",   "getpid",   "gets",
-		    "getuid",   "ioctl",     "kill",     "killpg",   "lchown",
-		    "listen",   "lstat",     "malloc",   "mkdir",    "mkfifo",
-		    "mknod",    "mkstemp",   "mktemp",   "mktime",   "mlock",
-		    "mlockall", "mmap",      "open",     "opendir",  "pipe",
-		    "poll",     "popen",     "pread",    "pselect",  "read",
-		    "readdir",  "readlink",  "realloc",  "recv",     "recvfrom",
-		    "recvmsg",  "remove",    "rename",   "rewind",   "rewinddir",
-		    "rmdir",    "select",    "socket",   "symlink",  "tmpfile",
-		    "tmpnam",   "truncate",  "unlink",   "utime",    "vfork",
-		    "write",    ""};
+char *BadWords[] = {"calloc",   "chdir",    "chmod",    "chown",
+        "close",    "closedir", "create",   "dlclose",  "dlerror",
+        "dlopen",   "dlsym",    "dup",      "dupioctl", "environ",
+        "execl",    "execle",   "execlp",   "execv",    "execve",
+        "execvp",   "exit",     "fchdir",   "fchmod",   "fchown",
+        "fclose",   "fdopen",   "fflush",   "fileno",   "fopen",
+        "fork",     "fprintf",  "fread",    "free",     "freopen",
+        "fwrite",   "getcwd",   "getenv",   "getgid",   "getgrp",
+        "getpid",   "gets",     "getuid",   "ioctl",    "kill",
+        "killpg",   "lchown",   "link",     "listen",   "lstat",
+        "malloc",   "mkdir",    "mkfifo",   "mknod",    "mkstemp",
+        "mktemp",   "mktime",   "mlock",    "mlockall", "mmap",
+        "open",     "opendir",  "pipe",     "poll",     "popen",
+        "pread",    "pselect",  "read",     "readdir",  "readlink",
+        "realloc",  "recv",     "recvfrom", "recvmsg",  "remove",
+        "rename",   "rewind",   "rewinddir","rmdir",    "select",
+        "socket",   "symlink",  "tmpfile",  "tmpnam",   "truncate",
+        "unlink",   "utime",    "vfork",    "write",    ""};
 
 void Cleanup(char *Message);
 
@@ -91,7 +91,7 @@ int main(int argc, char *argv[])
   if(argc != 2)
   {
     printf("JailBreak  " VERSION "\n");
-    printf("Copyright (c)2009 by FireBird\n\n");
+    printf("Copyright (c)2013 by FireBird\n\n");
     printf("Usage: JailBreak <filename.tap>\n\n");
     return 2;
   }
@@ -99,13 +99,13 @@ int main(int argc, char *argv[])
   //Count the string length of all bad words to reserve enough space
   i = 0;
   j = 0;
-  while(BadWords[j])
+  while(BadWords[j] && BadWords[j][0])
   {
     i += (strlen(BadWords[j]) + 2); //add space and comma
     j++;
   }
   Hits = malloc(i + 5); //Add another 5 characters. Who knows... :-)
-  if (!Hits)
+  if(!Hits)
   {
     Cleanup("Failed to reserve memory for the result information\n");
     return 1;
@@ -132,8 +132,6 @@ int main(int argc, char *argv[])
     Cleanup("Failed to read the ELF header\n");
     return 1;
   }
-
-  //TODO: Check if this is a valid ELF header
 
   if(ELFHeader->e_shnum == 0)
   {
@@ -255,12 +253,10 @@ int main(int argc, char *argv[])
           for(i = 0; i < (int)(psymtabSH->sh_size / psymtabSH->sh_entsize); i++)
           {
             psymtab = &symtab[i];
-            if (psymtab->st_shndx == 0 &&
-                (psymtab->st_info >> 4) == STB_GLOBAL &&
-                (psymtab->st_info & 0x0f) == STT_FUNC)
+            if(psymtab->st_shndx == 0 && (psymtab->st_info >> 4) == STB_GLOBAL && (psymtab->st_info & 0x0f) == STT_FUNC)
             {
               j = 0;
-              while(BadWords[j])
+              while(BadWords[j] && BadWords[j][0])
               {
                 if(!strcmp(BadWords[j], &strtab[psymtab->st_name]))
                 {

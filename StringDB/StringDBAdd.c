@@ -3,18 +3,38 @@
 
 dword StringDBAdd(tStringDB *StringDB, char *Text)
 {
-  char                 *p;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("StringDBAdd");
+  #endif
 
-  if(!StringDB || !Text) return 0;
+  char                 *p;
+  dword                 ret;
+
+  if(!StringDB || !Text)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return 0;
+  }
 
   p = StringDB->DB;
   while(p < StringDB->DBEnd)
   {
-    if(!strcmp(p, Text)) return (dword)p - (dword)StringDB->DB;
+    if(!strcmp(p, Text))
+    {
+      ret = (dword)p - (dword)StringDB->DB;
+
+      #ifdef DEBUG_FIREBIRDLIB
+        CallTraceExit(NULL);
+      #endif
+
+      return ret;
+    }
 
     p += (strlen(p) + 1);
   }
-
 
   if(((StringDB->DBEnd - StringDB->DB) + strlen(Text) + 2) > StringDB->DBSize)
   {
@@ -27,7 +47,14 @@ dword StringDBAdd(tStringDB *StringDB, char *Text)
       NewStringDBSize = StringDB->DBSize + 4096;
 
     NewStringDB = TAP_MemAlloc(NewStringDBSize);
-    if(!NewStringDB) return 0;
+    if(!NewStringDB)
+    {
+      #ifdef DEBUG_FIREBIRDLIB
+        CallTraceExit(NULL);
+      #endif
+
+      return 0;
+    }
 
     memset(NewStringDB, 0, NewStringDBSize);
     memcpy(NewStringDB, StringDB->DB, StringDB->DBSize);
@@ -42,6 +69,11 @@ dword StringDBAdd(tStringDB *StringDB, char *Text)
   p = StringDB->DBEnd;
   strcpy(StringDB->DBEnd, Text);
   StringDB->DBEnd = StringDB->DBEnd + strlen(Text) + 1;
+  ret = (dword)p - (dword)StringDB->DB;
 
-  return (dword)p - (dword)StringDB->DB;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }

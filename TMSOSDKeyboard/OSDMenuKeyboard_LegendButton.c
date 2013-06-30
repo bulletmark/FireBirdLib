@@ -3,6 +3,10 @@
 
 void OSDMenuKeyboard_LegendButton(dword Line, tButtonIcon ButtonIcon, char *Text)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("OSDMenuKeyboard_LegendButton");
+  #endif
+
   if(OSDMenuKeyboard_NrButtons < 20)
   {
     OSDMenuKeyboard_Buttons[OSDMenuKeyboard_NrButtons].Line = Line;
@@ -12,4 +16,8 @@ void OSDMenuKeyboard_LegendButton(dword Line, tButtonIcon ButtonIcon, char *Text
 
     OSDMenuKeyboard_NrButtons++;
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

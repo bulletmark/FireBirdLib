@@ -2,6 +2,10 @@
 
 inline dword FIS_vFlash(void)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FIS_vFlash");
+  #endif
+
   static dword          vFlash = 0;
 
   if(!vFlash)
@@ -11,6 +15,10 @@ inline dword FIS_vFlash(void)
     if(!_applFlashAddr) return 0;
     vFlash = *_applFlashAddr;
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return vFlash;
 }

@@ -4,6 +4,10 @@
 
 dword GetUptime(void)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("GetUptime");
+  #endif
+
   dword                 uptime = 0;
   FILE                 *fp;
   double                upsecs;
@@ -24,8 +28,12 @@ dword GetUptime(void)
       setlocale(LC_NUMERIC, "");
       if(res == 1) uptime = (dword)(upsecs * 100);
     }
-    fclose (fp);
+    fclose(fp);
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return uptime;
 }

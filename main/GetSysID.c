@@ -2,7 +2,15 @@
 
 word GetSysID(void)
 {
-  if (!LibInitialized) InitTAPex();
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("GetSysID");
+  #endif
 
-  return TAP_GetSystemId();
+  word ret = TAP_GetSystemId();
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }

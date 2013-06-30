@@ -2,6 +2,10 @@
 
 dword *Appl_GetEvtListHeadInHashByChannelID(ulong64 ChannelID)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("Appl_GetEvtListHeadInHashByChannelID");
+  #endif
+
   dword *(*__Appl_GetEvtListHeadInHash)(word NetID, word TSID, word ServiceID);
 
   dword                *ret = NULL;
@@ -15,6 +19,10 @@ dword *Appl_GetEvtListHeadInHashByChannelID(ulong64 ChannelID)
     SID = ChannelID & 0xffff;
     ret = __Appl_GetEvtListHeadInHash(NetID, TSID, SID);
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return ret;
 }

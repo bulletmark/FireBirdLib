@@ -4,11 +4,26 @@
 
 dword HDD_GetFileTimeByAbsFileName(char *FileName)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("HDD_GetFileTimeByAbsFileName");
+  #endif
+
   tstat64               statbuf;
-  int                   status;
+  dword                 ret;
 
-  if(!FileName) return 0;
-  if((status = lstat64(FileName, &statbuf))) return 0;
+  if(FileName)
+  {
+    if(lstat64(FileName, &statbuf))
+      ret = 0;
+    else
+      ret = statbuf.st_mtime;
+  }
+  else
+    ret = 0;
 
-  return statbuf.st_mtime;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }

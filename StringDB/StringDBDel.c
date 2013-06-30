@@ -3,12 +3,30 @@
 
 bool StringDBDel(tStringDB *StringDB)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("StringDBDel");
+  #endif
+
   dword                 l;
   char                 *s, *d;
 
-  if(!StringDB || !StringDB->DBPtr) return FALSE;
+  if(!StringDB || !StringDB->DBPtr)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
 
-  if(StringDB->DBPtr >= StringDB->DBEnd) return TRUE;
+    return FALSE;
+  }
+
+  if(StringDB->DBPtr >= StringDB->DBEnd)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return TRUE;
+  }
 
   l = strlen(StringDB->DBPtr) + 1;
   d = StringDB->DBPtr;
@@ -27,6 +45,10 @@ bool StringDBDel(tStringDB *StringDB)
   }
 
   StringDB->DBEnd = StringDB->DBEnd - l;
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return TRUE;
 }

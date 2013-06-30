@@ -2,13 +2,18 @@
 
 inline dword FIS_vFlashBlockTimeInfo(void)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FIS_vFlashBlockTimeInfo");
+  #endif
+
   static dword          *vFlashTimeInfo = 0;
 
   if(!vFlashTimeInfo)
-  {
     vFlashTimeInfo = (dword*)TryResolve("_timeInfo");
-    if(!vFlashTimeInfo) return 0;
-  }
 
-  return *vFlashTimeInfo;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return (vFlashTimeInfo ? *vFlashTimeInfo : 0);
 }

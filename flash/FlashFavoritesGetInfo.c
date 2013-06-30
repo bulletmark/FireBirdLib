@@ -3,18 +3,43 @@
 
 bool FlashFavoritesGetInfo(int FavNum, tFavorites *Favorites)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashFavoritesGetInfo");
+  #endif
+
   tFavorites           *Favs30100;
   tFavorites1050       *Favs1050;
   int                   NrGroups, NrSvcsPerGroup;
 
   //FavNum out of range
-  if((FavNum < 0) || (FavNum >= FlashFavoritesGetTotal())) return FALSE;
+  if((FavNum < 0) || (FavNum >= FlashFavoritesGetTotal()))
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return FALSE;
+  }
 
   //Favorites is NULL
-  if(!Favorites) return FALSE;
+  if(!Favorites)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return FALSE;
+  }
 
   Favs30100 = (tFavorites*)FIS_vFlashBlockFavoriteGroup();
-  if(!Favs30100) return 0;
+  if(!Favs30100)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return 0;
+  }
   Favs1050 = (tFavorites1050*)Favs30100;
 
   FlashFavoritesGetParameters(&NrGroups, &NrSvcsPerGroup);
@@ -38,6 +63,10 @@ bool FlashFavoritesGetInfo(int FavNum, tFavorites *Favorites)
       break;
     }
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return TRUE;
 }

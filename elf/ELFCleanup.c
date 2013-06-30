@@ -3,6 +3,10 @@
 
 void ELFCleanup(void)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("ELFCleanup");
+  #endif
+
   if(fTAP)
   {
     close(fTAP);
@@ -32,4 +36,8 @@ void ELFCleanup(void)
     TAP_MemFree(strtab);
     strtab = NULL;
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

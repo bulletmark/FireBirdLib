@@ -2,21 +2,25 @@
 
 void CallTraceExit(dword *Magic)
 {
-  char                  Spaces [101];
+  char                  Spaces[101];
   int                   i, j;
   dword                 t;
+  extern dword          __tap_ud__;
+
+  if(CallTraceDoNotReenter) return;
+  CallTraceDoNotReenter = TRUE;
 
   t = TAP_GetTick();
 
   if(!CallTraceInitialized) CallTraceInit();
 
-  Spaces [0] = '\0';
+  Spaces[0] = '\0';
 
   if(CallLevel > 0)
   {
     CallLevel--;
 
-    if(CallTraceEnabled && CallTraceStats && CallLevel < CTSTACKSIZE)
+    if(CallTraceStats && CallLevel < CTSTACKSIZE)
     {
       //Check if the proc name is already known by the stats array
       j = -1;
@@ -60,17 +64,19 @@ void CallTraceExit(dword *Magic)
     }
   }
   else
-    TAP_Print("\n\nCallLevel Underflow!\n\n");
+    LogEntryFBLibPrintf(TRUE, "CallLevel Underflow! (TAPID 0x%8.8x)", __tap_ud__);
 
   if(CallTraceEnabled || Magic)
   {
-    memset (Spaces, ' ', CallLevel < CTSTACKSIZE ? CallLevel << 1 : 100);
-    Spaces [CallLevel < CTSTACKSIZE ? CallLevel << 1 : 100] = '\0';
+    memset(Spaces, ' ', CallLevel < CTSTACKSIZE ? CallLevel << 1 : 100);
+    Spaces[CallLevel < CTSTACKSIZE ? CallLevel << 1 : 100] = '\0';
   }
 
   if(Magic && *Magic != DEFAULTMAGIC)
   {
-    TAP_Print("\n\n%sINVALID MAGIC!\n\n", Spaces);
+    TAP_PrintNet("%sINVALID MAGIC!\n", Spaces);
     *Magic = DEFAULTMAGIC;
   }
+
+  CallTraceDoNotReenter = FALSE;
 }

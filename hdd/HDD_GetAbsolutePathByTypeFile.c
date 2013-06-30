@@ -3,12 +3,30 @@
 
 bool HDD_GetAbsolutePathByTypeFile(TYPE_File *File, char *AbsFileName)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("HDD_GetAbsolutePathByTypeFile");
+  #endif
+
+  dword   *d;
+  bool    ret;
+
+  ret = FALSE;
   if(AbsFileName) AbsFileName[0] = '\0';
 
-  if(!File || !AbsFileName) return FALSE;
+  if(File && AbsFileName)
+  {
+    //TYPE_File->handle points to a structure with 4 dwords. The third one points to the absolute path
+    d = File->handle;
+    if(d && d[2])
+    {
+      strcpy(AbsFileName, (char*)d[2]);
+      ret = TRUE;
+    }
+  }
 
-  if(HDD_GetAbsolutePathByTypeFileUTF8(File, AbsFileName))
-    StrMkISO(AbsFileName);
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
-  return TRUE;
+  return ret;
 }

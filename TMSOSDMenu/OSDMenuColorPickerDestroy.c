@@ -2,6 +2,10 @@
 
 void OSDMenuColorPickerDestroy(void)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("OSDMenuColorPickerDestroy");
+  #endif
+
   tOSDMapInfo          *OSDMapInfo;
 
   if(ColorPickerOSDRgn)
@@ -28,4 +32,8 @@ void OSDMenuColorPickerDestroy(void)
 
     if((!OSDRgn) && (!InfoBoxOSDRgn) && (!MessageBoxOSDRgn) && (!ProgressBarOSDRgn)) TAP_EnterNormal();
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

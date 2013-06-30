@@ -2,6 +2,10 @@
 
 void OSDMenuItemModifyValueXPos(dword NewValueXPos)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("OSDMenuItemModifyValueXPos");
+  #endif
+
   tMenu                *pMenu;
 
   pMenu = &Menu[CurrentMenuLevel];
@@ -12,4 +16,8 @@ void OSDMenuItemModifyValueXPos(dword NewValueXPos)
     pMenu->ValueXPos = 350;
 
   ListDirty = TRUE;
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

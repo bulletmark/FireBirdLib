@@ -10,7 +10,7 @@ TAP_AUTHOR_NAME         ("FireBird");
 TAP_DESCRIPTION         ("");
 TAP_ETCINFO             (__DATE__);
 
-dword TAP_EventHandler (word event, dword param1, dword param2)
+dword TAP_EventHandler(word event, dword param1, dword param2)
 {
   (void) event;
   (void) param2;
@@ -21,7 +21,7 @@ dword TAP_EventHandler (word event, dword param1, dword param2)
 Callee_Parameters       params;
 dword                   TAPID;
 
-int TAP_Main (void)
+int TAP_Main(void)
 {
   //Fill the paramsters
   params.StructVersion = Callee_Param_Version;

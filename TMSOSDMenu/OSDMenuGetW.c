@@ -1,15 +1,25 @@
 #include                "FBLib_TMSOSDMenu.h"
 
-int OSDMenuGetW(const char * str, byte fntSize)
+int OSDMenuGetW(char * str, byte fntSize)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("OSDMenuGetW");
+  #endif
+
+  int ret = 0;
+
   switch(fntSize)
   {
-    case 10: return FM_GetStringWidth(str, &Calibri_10_FontData);
-    case 12: return FM_GetStringWidth(str, &Calibri_12_FontData);
-    case 14: return FM_GetStringWidth(str, &Calibri_14_FontData);
-    case 16: return FM_GetStringWidth(str, &Calibri_16_FontData);
-    case 20: return FM_GetStringWidth(str, &Calibri_20_FontData);
+    case 10: ret = FMUC_GetStringWidth(str, &OSDMenuFont_10); break;
+    case 12: ret = FMUC_GetStringWidth(str, &OSDMenuFont_12); break;
+    case 14: ret = FMUC_GetStringWidth(str, &OSDMenuFont_14); break;
+    case 16: ret = FMUC_GetStringWidth(str, &OSDMenuFont_16); break;
+    case 20: ret = FMUC_GetStringWidth(str, &OSDMenuFont_20); break;
   }
 
-  return 0;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }

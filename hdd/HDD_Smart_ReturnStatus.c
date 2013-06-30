@@ -1,8 +1,12 @@
 #include "FBLib_hdd.h"
 #include "../libFireBird.h"
 
-int HDD_Smart_ReturnStatus (void)
+int HDD_Smart_ReturnStatus(void)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("HDD_Smart_ReturnStatus");
+  #endif
+
   unsigned char         CommandBlock[FBHDIO_DRIVE_TASK_HDR_SIZE] = {WIN_SMART,        //COMMAND
                                                                   SMART_STATUS,     //FEATURE
                                                                   0x00,             //NSECTOR
@@ -12,8 +16,36 @@ int HDD_Smart_ReturnStatus (void)
                                                                   0,                //SELECT
                                                                   0};               //COMMAND
 
-  if(SendHDDCommand(HDIO_DRIVE_TASK, CommandBlock, 0)) return 19;
-  if((CommandBlock[4] == 0x4f) && (CommandBlock[5] == 0xc2)) return 0;
-  if((CommandBlock[4] == 0xf4) && (CommandBlock[5] == 0x2c)) return 20;
+  if(SendHDDCommand(HDIO_DRIVE_TASK, CommandBlock, 0))
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return 19;
+  }
+
+  if((CommandBlock[4] == 0x4f) && (CommandBlock[5] == 0xc2))
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return 0;
+  }
+
+  if((CommandBlock[4] == 0xf4) && (CommandBlock[5] == 0x2c))
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return 20;
+  }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
   return 19;
 }

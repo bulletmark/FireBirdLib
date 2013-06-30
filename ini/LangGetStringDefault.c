@@ -3,11 +3,24 @@
 
 char *LangGetStringDefault(dword StringID, char *DefaultString)
 {
-  char *ret;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("LangGetStringDefault");
+  #endif
 
-  ret = LangGetString(StringID);
+  char *ret = LangGetString(StringID);
 
-  if((ret[0] == '\0') && DefaultString) return DefaultString;
+  if((ret[0] == '\0') && DefaultString)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return DefaultString;
+  }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return ret;
 }

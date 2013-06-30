@@ -2,32 +2,47 @@
 #include                "FBLib_hdd.h"
 #include                "../libFireBird.h"
 
-bool HDD_GetHddID (char *ModelNo, char *SerialNo, char *FirmwareNo)
+bool HDD_GetHddID(char *ModelNo, char *SerialNo, char *FirmwareNo)
 {
-  char                  Buffer [512];
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("HDD_GetHddID");
+  #endif
 
-  if (!HDD_IdentifyDevice (Buffer)) return FALSE;
+  char                  Buffer[512];
 
-  if (ModelNo)
+  if(!HDD_IdentifyDevice(Buffer))
   {
-    strncpy (ModelNo, &Buffer [0x36], 40);
-    ModelNo [40] = 0x00;
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return FALSE;
+  }
+
+  if(ModelNo)
+  {
+    strncpy(ModelNo, &Buffer[0x36], 40);
+    ModelNo[40] = 0x00;
     RTrim(ModelNo);
   }
 
-  if (SerialNo)
+  if(SerialNo)
   {
-    strncpy (SerialNo, &Buffer [0x14], 20);
-    SerialNo [20] = 0x00;
+    strncpy(SerialNo, &Buffer[0x14], 20);
+    SerialNo[20] = 0x00;
     RTrim(SerialNo);
   }
 
-  if (FirmwareNo)
+  if(FirmwareNo)
   {
-    strncpy (FirmwareNo, &Buffer [0x2e], 8);
-    FirmwareNo [8] = 0x00;
+    strncpy(FirmwareNo, &Buffer[0x2e], 8);
+    FirmwareNo[8] = 0x00;
     RTrim(FirmwareNo);
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return TRUE;
 }

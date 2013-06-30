@@ -1,10 +1,13 @@
 #include                <string.h>
 #include                "FBLib_TMSOSDMenu.h"
 
-void OSDMenuSetFont(tFontData *LeftTitle, tFontData *RightTitle, tFontData *ListNumber, tFontData *ListName, tFontData *ListValue, tFontData *Buttons, tFontData *Memo)
+void OSDMenuSetFont(tFontDataUC *LeftTitle, tFontDataUC *RightTitle, tFontDataUC *ListNumber, tFontDataUC *ListName, tFontDataUC *ListValue, tFontDataUC *Buttons, tFontDataUC *Memo)
 {
-  tMenu                *pMenu;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("OSDMenuSetFont");
+  #endif
 
+  tMenu                *pMenu;
 
   pMenu = &Menu[CurrentMenuLevel];
 
@@ -49,4 +52,8 @@ void OSDMenuSetFont(tFontData *LeftTitle, tFontData *RightTitle, tFontData *List
     pMenu->FontMemo = Memo;
     ListDirty = TRUE;
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

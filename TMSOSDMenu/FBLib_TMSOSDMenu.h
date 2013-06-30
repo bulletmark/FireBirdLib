@@ -60,13 +60,13 @@ typedef struct
   dword                 LogoY;
   TYPE_GrData          *pLogoGd;
   tOSDMenuDisplayMode  OSDMenuDisplayMode;
-  tFontData            *FontLeftTitle;
-  tFontData            *FontRightTitle;
-  tFontData            *FontListLineNumber;
-  tFontData            *FontListNameColumn;
-  tFontData            *FontListValueColumn;
-  tFontData            *FontButtons;
-  tFontData            *FontMemo;
+  tFontDataUC          *FontLeftTitle;
+  tFontDataUC          *FontRightTitle;
+  tFontDataUC          *FontListLineNumber;
+  tFontDataUC          *FontListNameColumn;
+  tFontDataUC          *FontListValueColumn;
+  tFontDataUC          *FontButtons;
+  tFontDataUC          *FontMemo;
 }tMenu;
 
 typedef struct
@@ -94,13 +94,13 @@ typedef enum
   LCT_NRCURSORS
 } tOSDMenuLastCursorType;
 
-extern tFontData        Calibri_10_FontData;
-extern tFontData        Calibri_12_FontData;
-extern tFontData        Calibri_14_FontData;
-extern tFontData        Calibri_16_FontData;
-extern tFontData        Calibri_18_FontData;
-extern tFontData        Calibri_20_FontData;
-extern tFontData        Calibri_20B_FontData;
+extern tFontDataUC      OSDMenuFont_10;
+extern tFontDataUC      OSDMenuFont_12;
+extern tFontDataUC      OSDMenuFont_14;
+extern tFontDataUC      OSDMenuFont_16;
+extern tFontDataUC      OSDMenuFont_18;
+extern tFontDataUC      OSDMenuFont_20;
+extern tFontDataUC      OSDMenuFont_20B;
 
 extern TYPE_GrData      _Button_0_Gd;
 extern TYPE_GrData      _Button_1_Gd;
@@ -172,6 +172,8 @@ extern TYPE_GrData      _ColorPicker_CursorNone_Gd;
 extern TYPE_GrData      _ColorPicker_CursorDeselected_Gd;
 extern TYPE_GrData      _ColorPicker_ValueBackroundSelected_Gd;
 
+extern TYPE_GrData      _WaitSpinner_All_Gd;
+
 extern word             OSDRgn;
 extern word             MyOSDRgn; //Used by OSDMenuSaveMyRegion()
 extern word             OSDMenuSelectionBarRgn;
@@ -201,11 +203,16 @@ extern dword            ColorPickerDefaultColor;
 extern tCurrentColorSelected  CurrentColorSelected;
 extern int              ColorPickerLastCursorRed, ColorPickerLastCursorGreen, ColorPickerLastCursorBlue;
 
-int  OSDMenuGetW(const char * str, byte fntSize);
+extern word             WaitSpinnerRgn;
+extern int              WaitSpinnerIndex;
+extern dword            WaitSpinnerTimeout;
+
+
+int  OSDMenuGetW(char * str, byte fntSize);
 TYPE_GrData *OSDMenuGetIconPointer(tButtonIcon ButtonIcon, TYPE_GrData *UserDefinedButton);
 int  OSDMenuFindNextSelectableEntry(int CurrentSelection);
 int  OSDMenuFindPreviousSelectableEntry(int CurrentSelection);
-void OSDMenuPutS(word rgn, dword x, dword y, dword maxX, const char * str, dword fcolor, dword bcolor, byte fntSize, byte bDot, byte align);
+void OSDMenuPutS(word rgn, dword x, dword y, dword maxX, char * str, dword fcolor, dword bcolor, byte fntSize, byte bDot, byte align);
 void OSDDrawBackground(void);
 void OSDMenuDrawCursor(dword x, dword y, dword w);
 void OSDDrawTitle(void);
@@ -216,6 +223,9 @@ void OSDDrawScrollBar(void);
 void OSDDrawList(void);
 void OSDDrawMemo(void);
 void OSDMenuColorPickerDrawCursor(tCurrentColorSelected CursorColor, bool Selected);
+void OSDMenuLoadStdFonts(void);
+void OSDMenuFreeStdFonts(void);
+void OSDMenuWaitSpinnerIdle(void);
 
 extern void (*CallbackProcedure)(tOSDCB OSDCBType, word OSDRgn);
 

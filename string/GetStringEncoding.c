@@ -1,29 +1,35 @@
+#include                <string.h>
 #include                "../libFireBird.h"
 
 void GetStringEncoding(char *Text, bool *hasAnsiChars, bool *hasUTFChars)
 {
-  byte           *p;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("GetStringEncoding");
+  #endif
 
-  //Check if the channel name contains UTF or ANSI characters
-  if(hasAnsiChars) *hasAnsiChars = FALSE;
-  if(hasUTFChars) *hasUTFChars = FALSE;
-  if(!Text || !Text[0]) return;
+  byte           *p, *pEnd;
+  byte            BytesPerChar;
+  bool            AC, UC;
 
-  p = Text;
-  while(*p)
+  AC = FALSE;
+  UC = FALSE;
+  if(Text && Text[0])
   {
-    if(*p >= 0x80)
+    p = SkipCharTableBytes(Text);
+    pEnd = p + strlen(p);
+
+    while(p < pEnd)
     {
-      if(isUTF8Char(p))
-      {
-        p++;
-        if(hasUTFChars) *hasUTFChars = TRUE;
-      }
-      else
-      {
-        if(hasAnsiChars) *hasAnsiChars = TRUE;
-      }
+      UC |= isUTF8Char(p, &BytesPerChar);
+      if((*p >= 0xa0) && (BytesPerChar == 1)) AC = TRUE;
+      p += BytesPerChar;
     }
-    p++;
   }
+
+  if(hasAnsiChars) *hasAnsiChars = AC;
+  if(hasUTFChars) *hasUTFChars = UC;
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

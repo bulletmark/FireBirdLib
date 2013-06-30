@@ -5,20 +5,47 @@
 
 tFileInUse HDD_isFileInUse(char *FileName)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("HDD_isFileInUse");
+  #endif
+
   TYPE_PlayInfo         PlayInfo;
   TYPE_RecInfo          RecInfo;
   char                  CorrectedFileName[TS_FILE_NAME_SIZE];
   int                   i, NrRecSlots;
 
+  if(!FileName || !*FileName)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return FIU_No;
+  }
+
   TAP_Hdd_GetPlayInfo(&PlayInfo);
-  if (PlayInfo.playMode && PlayInfo.totalBlock > 0)
+  if(PlayInfo.playMode && PlayInfo.totalBlock > 0)
   {
     strcpy(CorrectedFileName, PlayInfo.file->name);
     if(StringEndsWith(CorrectedFileName, ".rec.inf") || StringEndsWith(CorrectedFileName, ".mpg.inf")) CorrectedFileName[strlen(CorrectedFileName) - 4] = '\0';
     if(!strcmp(FileName, CorrectedFileName))
     {
-      if(PlayInfo.playMode == PLAYMODE_Mp3) return FIU_PlayMP3;
-      else return FIU_Playback;
+      if(PlayInfo.playMode == PLAYMODE_Mp3)
+      {
+        #ifdef DEBUG_FIREBIRDLIB
+          CallTraceExit(NULL);
+        #endif
+
+        return FIU_PlayMP3;
+      }
+      else
+      {
+        #ifdef DEBUG_FIREBIRDLIB
+          CallTraceExit(NULL);
+        #endif
+
+        return FIU_Playback;
+      }
     }
   }
 
@@ -29,9 +56,20 @@ tFileInUse HDD_isFileInUse(char *FileName)
     if(RecInfo.fileName && RecInfo.fileName[0])
     {
       if(StringEndsWith(RecInfo.fileName, ".rec.inf") || StringEndsWith(RecInfo.fileName, ".mpg.inf")) RecInfo.fileName[strlen(RecInfo.fileName) - 4] = '\0';
-      if(!strcmp(FileName, RecInfo.fileName)) return (FIU_RecSlot1 + i);
+      if(!strcmp(FileName, RecInfo.fileName))
+      {
+        #ifdef DEBUG_FIREBIRDLIB
+          CallTraceExit(NULL);
+        #endif
+
+        return (FIU_RecSlot1 + i);
+      }
     }
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return FIU_No;
 }

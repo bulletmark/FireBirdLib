@@ -8,6 +8,10 @@
 
 int HDD_TAP_GetCurrentDir(char *CurrentDir)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("HDD_TAP_GetCurrentDir");
+  #endif
+
   dword                *_curTapTask;
   tTMSTAPTaskTable     *TAPTaskTable;
   dword                *dw;
@@ -19,6 +23,11 @@ int HDD_TAP_GetCurrentDir(char *CurrentDir)
   if(!TAPTaskTable || !_curTapTask)
   {
     if(CurrentDir) CurrentDir[0] = '\0';
+
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
     return -3;
   }
 
@@ -28,6 +37,10 @@ int HDD_TAP_GetCurrentDir(char *CurrentDir)
   //Remove the systems mount point /mnt/hd from the directory
   if(CurrentDir && dw && dw[1])
     strcpy(CurrentDir, (char*)(dw[1] + 7));
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return 0;
 }

@@ -1,18 +1,22 @@
 #include <stdio.h>
 #include "../libFireBird.h"
 
-TYPE_File *HDD_FappendOpen (char *filename)
+TYPE_File *HDD_FappendOpen(char *FileName)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("HDD_FappendOpen");
+  #endif
+
   TYPE_File *file;
   char buffer[512];
   dword pos, blks, i;
   char *end;
 
-  if (!TAP_Hdd_Exist(filename)) TAP_Hdd_Create(filename, ATTR_NORMAL);
+  if(!TAP_Hdd_Exist(FileName)) TAP_Hdd_Create(FileName, ATTR_NORMAL);
 
-  if ((file = TAP_Hdd_Fopen(filename)))
+  if((file = TAP_Hdd_Fopen(FileName)))
   {
-    if (TAP_Hdd_Fseek(file, 0, SEEK_SET) != 0)
+    if(TAP_Hdd_Fseek(file, 0, SEEK_SET) != 0)
     {
       TAP_Hdd_Fclose(file);
       file = NULL;
@@ -26,27 +30,31 @@ TYPE_File *HDD_FappendOpen (char *filename)
         memset(buffer, 0, sizeof(buffer));
         blks = TAP_Hdd_Fread(&buffer, sizeof(buffer), 1, file);
 
-        for (i = 0, end = buffer; i < sizeof(buffer); i++)
-          if (buffer[i] == '\0')
+        for(i = 0, end = buffer; i < sizeof(buffer); i++)
+          if(buffer[i] == '\0')
           {
             end = buffer + i;
             break;
           }
 
-        if (i < sizeof(buffer)) break;
+        if(i < sizeof(buffer)) break;
         else pos += sizeof(buffer);
       }
-      while (blks == 1);
+      while(blks == 1);
 
       pos += end - buffer;
 
-      if (TAP_Hdd_Fseek(file, pos, SEEK_SET) != pos)
+      if(TAP_Hdd_Fseek(file, pos, SEEK_SET) != pos)
       {
         TAP_Hdd_Fclose(file);
         file = NULL;
       }
     }
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return file;
 }

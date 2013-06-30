@@ -2,6 +2,10 @@
 
 void FlushCache(dword *pAddr, int Size)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlushCache");
+  #endif
+
   //Unsupported in the TMSEmu environment
   #ifdef _TMSEMU_
     (void)pAddr;
@@ -19,5 +23,9 @@ void FlushCache(dword *pAddr, int Size)
       : : "r" (pAddr));
       pAddr += 4;
     } while(pAddr < pEnd);
+  #endif
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
   #endif
 }

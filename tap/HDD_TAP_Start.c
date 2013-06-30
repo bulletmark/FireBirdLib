@@ -7,6 +7,10 @@ TYPE_Parametered_Tap   *fbl_parametered_tap = NULL;
 
 dword HDD_TAP_Start(char *TAPFileName, bool BatchMode, void* ParameterBlock, dword *TAPID)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("HDD_TAP_Start");
+  #endif
+
   dword                 ret;
   dword                 _TempWorkFolder[4];
   dword                *_hddTapFolder;
@@ -21,8 +25,16 @@ dword HDD_TAP_Start(char *TAPFileName, bool BatchMode, void* ParameterBlock, dwo
   void  (*Appl_ExecProgram)(char*) = NULL;
 
   //Set the TAPID and batch flag
-  if(!HDD_TAP_GetInfo(TAPFileName, &TAPInfo)) return 0;
-  if (TAPID != NULL) *TAPID = TAPInfo.TAPID;
+  if(!HDD_TAP_GetInfo(TAPFileName, &TAPInfo))
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return 0;
+  }
+
+  if(TAPID != NULL) *TAPID = TAPInfo.TAPID;
 
   //Create a shared memory if batch mode has been selected
   //Just the existence is checked, no data transfered
@@ -85,6 +97,10 @@ dword HDD_TAP_Start(char *TAPFileName, bool BatchMode, void* ParameterBlock, dwo
 
   ApplHdd_SelectFolder(&_hddTapFolder, "mnt/hd/ProgramFiles");
   ApplHdd_SetWorkFolder((void*)*_hddTsFolder);
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return 1;
 }

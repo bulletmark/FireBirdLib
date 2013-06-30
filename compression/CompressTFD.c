@@ -19,64 +19,73 @@
 // 8 .. (compressed size + 5) - compressed data (byte array)
 dword CompressTFD(byte *pSrc, dword SourceBufferSize, byte *pDest, word TFDType, word SysID, void *pPercentFinishedCallback)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("CompressTFD");
+  #endif
+
   word                  OrigSize, CompSize;
   dword                 OutBufferSize, NrBlocks = 0, FullSize = SourceBufferSize;
   byte                  *FileHeader;
 
-#ifdef DEBUG_FIREBIRDLIB
-  CallTraceEnter("CompressTFD");
-#endif
+  if(!pSrc || !pDest)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return 0;
+  }
 
   //PercentFinishedCallback is called for every block. PercentFinished contains a number between 0 and 100
   void (*PercentFinishedCallback) (dword PercentFinished) = pPercentFinishedCallback;
 
   //Build the tfd file header
   FileHeader = pDest;
-  if (pDest)
+  if(pDest)
   {
-    STORE_WORD (pDest    , 0x0008);
-    STORE_WORD (pDest + 4, SysID);
-    STORE_WORD (pDest + 6, 0x0001);
+    STORE_WORD(pDest    , 0x0008);
+    STORE_WORD(pDest + 4, SysID);
+    STORE_WORD(pDest + 6, 0x0001);
     pDest += 10;
   }
   OutBufferSize = 10;
 
-  while (SourceBufferSize)
+  while(SourceBufferSize)
   {
-    if (PercentFinishedCallback) PercentFinishedCallback ((FullSize - SourceBufferSize) * 100 / FullSize);
+    if(PercentFinishedCallback) PercentFinishedCallback((FullSize - SourceBufferSize) * 100 / FullSize);
 
     NrBlocks++;
     OrigSize = (SourceBufferSize > 0x7ffa) ? 0x7ffa : SourceBufferSize;
 
-    if (pDest)
+    if(pDest)
     {
-      CompSize = CompressBlock (pSrc, OrigSize, pDest + 8);
+      CompSize = CompressBlock(pSrc, OrigSize, pDest + 8);
 
       //Build the block header
-      STORE_WORD (pDest    , CompSize + 6);
-      STORE_WORD (pDest + 4, TFDType);
-      STORE_WORD (pDest + 6, OrigSize);
-      STORE_WORD (pDest + 2, CRC16 (0, pDest + 4, 4 + CompSize));
+      STORE_WORD(pDest    , CompSize + 6);
+      STORE_WORD(pDest + 4, TFDType);
+      STORE_WORD(pDest + 6, OrigSize);
+      STORE_WORD(pDest + 2, CRC16(0, pDest + 4, 4 + CompSize));
       pDest += CompSize + 8;
     }
-    else CompSize = CompressBlock (pSrc, OrigSize, NULL);
+    else CompSize = CompressBlock(pSrc, OrigSize, NULL);
 
     OutBufferSize    += CompSize + 8;
     SourceBufferSize -= OrigSize;
     pSrc             += OrigSize;
   }
 
-  if (FileHeader)
+  if(FileHeader)
   {
-    STORE_WORD (FileHeader + 8, NrBlocks);
-    STORE_WORD (FileHeader + 2, CRC16 (0, FileHeader + 4, 6));
+    STORE_WORD(FileHeader + 8, NrBlocks);
+    STORE_WORD(FileHeader + 2, CRC16 (0, FileHeader + 4, 6));
   }
 
-  if (PercentFinishedCallback) PercentFinishedCallback (100);
+  if(PercentFinishedCallback) PercentFinishedCallback(100);
 
-#ifdef DEBUG_FIREBIRDLIB
-  CallTraceExit(NULL);
-#endif
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return OutBufferSize;
 }

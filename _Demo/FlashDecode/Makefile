@@ -16,7 +16,7 @@ endif
 
 #compile options
 CFLAGS += -DLINUX  -D_REENTRANT -MD -W -Wall -O2 -mips32
-CPPFLAGS += -DLINUX  -MD -W -Wall  -O2 -mips32
+CPPFLAGS += -DLINUX -MD -W -Wall  -O2 -mips32
 
 INCLUDE_DIRS = ${BASE}/include /opt/crosstool/include/
 TAP_INCLUDE_DIRS = $(addprefix -I, $(INCLUDE_DIRS))

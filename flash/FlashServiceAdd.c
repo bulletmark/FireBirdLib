@@ -2,8 +2,13 @@
 
 bool FlashServiceAdd(int SvcType, tFlashService *Service)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashServiceAdd");
+  #endif
+
   int                   NrServices;
   word                 *nSvc;
+  bool                  ret;
 
   NrServices = FlashServiceGetTotal(SvcType);
 
@@ -13,6 +18,11 @@ bool FlashServiceAdd(int SvcType, tFlashService *Service)
     nSvc = (word*)FIS_vnRadioSvc();
 
   *nSvc = *nSvc + 1;
+  ret = FlashServiceSetInfo(SvcType, NrServices, Service);
 
-  return FlashServiceSetInfo(SvcType, NrServices, Service);
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }

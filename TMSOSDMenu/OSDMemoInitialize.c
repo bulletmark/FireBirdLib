@@ -3,18 +3,29 @@
 
 void OSDMemoInitialize(bool ScrollLoop, char *TitleLeft, char *TitleRight, char *Text)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("OSDMemoInitialize");
+  #endif
+
   char                 *from, *to, *p, c;
   int                   Width;
   char                 *Buffer;
   tMenu                *pMenu;
 
-#define HORSPACE        550
+  #define HORSPACE      550
 
   OSDMenuInitialize(FALSE, FALSE, FALSE, ScrollLoop, TitleLeft, TitleRight);
   pMenu = &Menu[CurrentMenuLevel];
   pMenu->OSDMenuDisplayMode = OMDM_Memo;
 
-  if(!Text || !Text[0]) return;
+  if(!Text || !Text[0])
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return;
+  }
 
   Buffer = TAP_MemAlloc(strlen(Text) + 2);
   memset(Buffer, 0, strlen(Text) + 2);
@@ -41,7 +52,7 @@ void OSDMemoInitialize(bool ScrollLoop, char *TitleLeft, char *TitleRight, char 
 
       c = *p;
       *p = '\0';
-      Width = FM_GetStringWidth(from, &Calibri_14_FontData);
+      Width = FMUC_GetStringWidth(from, &OSDMenuFont_14);
       if(Width > HORSPACE)
       {
         *to = '\0';
@@ -69,4 +80,8 @@ void OSDMemoInitialize(bool ScrollLoop, char *TitleLeft, char *TitleRight, char 
   }
 
   TAP_MemFree(Buffer);
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

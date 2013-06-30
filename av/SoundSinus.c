@@ -5,10 +5,14 @@ dword                   soundDataLength = 0;
 
 void SoundSinus(word freq, dword durationInMilliseconds, word Amplitude)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("SoundSinus");
+  #endif
+
   dword                 samples, memSize, periode, index;
   short                 *target, *source;
 
-  short                 Sinus [360] = {0x0000, 0x023C, 0x0478, 0x06B3, 0x08EE, 0x0B28, 0x0D61, 0x0F99, 0x11D0, 0x1406, 0x163A, 0x186C, 0x1A9D, 0x1CCB, 0x1EF7, 0x2121,
+  short                 Sinus[360] = {0x0000, 0x023C, 0x0478, 0x06B3, 0x08EE, 0x0B28, 0x0D61, 0x0F99, 0x11D0, 0x1406, 0x163A, 0x186C, 0x1A9D, 0x1CCB, 0x1EF7, 0x2121,
                                       0x2348, 0x256C, 0x278E, 0x29AC, 0x2BC7, 0x2DDF, 0x2FF3, 0x3203, 0x3410, 0x3618, 0x381C, 0x3A1C, 0x3C17, 0x3E0E, 0x4000, 0x41EC,
                                       0x43D4, 0x45B6, 0x4793, 0x496A, 0x4B3C, 0x4D08, 0x4ECD, 0x508D, 0x5246, 0x53F9, 0x55A5, 0x574B, 0x58EA, 0x5A82, 0x5C13, 0x5D9C,
                                       0x5F1F, 0x609A, 0x620D, 0x6379, 0x64DD, 0x6639, 0x678D, 0x68D9, 0x6A1D, 0x6B59, 0x6C8C, 0x6DB7, 0x6ED9, 0x6FF3, 0x7104, 0x720C,
@@ -34,57 +38,51 @@ void SoundSinus(word freq, dword durationInMilliseconds, word Amplitude)
 
   (void) Amplitude;
 
-#ifdef DEBUG_FIREBIRDLIB
-  CallTraceEnter("SoundSinus");
-#endif
-
   samples = durationInMilliseconds * 48;
   memSize = samples * 2;             //Zwei Byte pro Sample (16 bit)
 
-  if ((soundData != NULL) && (soundDataLength < memSize))
+  if((soundData != NULL) && (soundDataLength < memSize))
   {
     TAP_MemFree(soundData);             //Gebe den beim letzten Ton belegten Speicher wieder frei
     soundData = NULL;
   }
 
-  if (soundData == NULL)
+  if(soundData == NULL)
   {
     soundData = (word*) TAP_MemAlloc_Chk("SoundSinus", memSize);
     soundDataLength = memSize;
   }
 
-  if (soundData == NULL)
+  if(soundData == NULL)
   {
-
-#ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-#endif
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
 
     return;
   }
   target = soundData;
   periode = 48000 / freq;            //Anzahl von Samples für eine volle Schwingung
-  if (periode > samples)
+  if(periode > samples)
   {
     //Die Dauer ist zu kurz, um auch nur eine einzelne vollständige Welle abzubilden
-
-#ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-#endif
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
 
     return;
   }
 
   //Berechne die erste vollständige Welle
-  for (index = 0; index < periode; index++)
+  for(index = 0; index < periode; index++)
   {
-    (*target) = Sinus [(index * 360) / periode];
+    (*target) = Sinus[(index * 360) / periode];
     target++;
   }
 
   //Alle weiteren Wellen können einfach kopiert werden
   source = soundData;
-  for (index = periode; index < samples - periode; index++)
+  for(index = periode; index < samples - periode; index++)
   {
     (*target) = (*source);
     target++;
@@ -92,20 +90,20 @@ void SoundSinus(word freq, dword durationInMilliseconds, word Amplitude)
   }
 
   //Erzeuge ein Fade in
-  for (index = 0; index < 480; index ++)
+  for(index = 0; index < 480; index ++)
   {
-    soundData [index] = soundData [index] / 480 * index;
+    soundData[index] = soundData[index] / 480 * index;
   }
 
   //Erzeuge ein Fade out
-  for (index = 0; index < 1680; index ++)
+  for(index = 0; index < 1680; index ++)
   {
-    soundData [samples - index] = soundData [samples - index] / 1680 * index;
+    soundData[samples - index] = soundData[samples - index] / 1680 * index;
   }
 
-  TAP_PlayPCM ((void *) soundData, 2 * samples, FREQ_48K, NULL);
+  TAP_PlayPCM((void *) soundData, 2 * samples, FREQ_48K, NULL);
 
-#ifdef DEBUG_FIREBIRDLIB
+  #ifdef DEBUG_FIREBIRDLIB
     CallTraceExit(NULL);
-#endif
+  #endif
 }

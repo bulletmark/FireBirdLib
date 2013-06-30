@@ -3,13 +3,24 @@
 
 bool OSDMenuKeyboard_EventHandler(word *event, dword *param1, dword *param2)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("OSDMenuKeyboard_EventHandler");
+  #endif
+
   (void) param2;
 
-  if(OSDMenuKeyboard_StringVarOrig == NULL) return FALSE;
+  if(OSDMenuKeyboard_StringVarOrig == NULL)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return FALSE;
+  }
 
   if(!OSDMenuKeyboard_GUIInitialized)
   {
-    OSDMenuKeyboard_CursorPosition = strlen(OSDMenuKeyboard_StringVar);
+    OSDMenuKeyboard_CursorPosition = strlenUC(OSDMenuKeyboard_StringVar);
     OSDMenuKeyboard_TextStartPosition = 0;
     KeyPadPosition = 0;
 
@@ -143,8 +154,12 @@ bool OSDMenuKeyboard_EventHandler(word *event, dword *param1, dword *param2)
             case 28:
             {
               OSDMenuKeyboard_SaveAndFinish();
+
+              #ifdef DEBUG_FIREBIRDLIB
+                CallTraceExit(NULL);
+              #endif
+
               return TRUE;
-              break;
             }
 
             default:
@@ -195,7 +210,8 @@ bool OSDMenuKeyboard_EventHandler(word *event, dword *param1, dword *param2)
         {
           memset(OSDMenuKeyboard_StringVar, 0, OSDMenuKeyboard_StringMaxLen + 4);
           strncpy(OSDMenuKeyboard_StringVar, OSDMenuKeyboard_StringVarOrig, OSDMenuKeyboard_StringMaxLen);
-          OSDMenuKeyboard_CursorPosition = strlen(OSDMenuKeyboard_StringVar);
+          StrMkUTF8(OSDMenuKeyboard_StringVar, 9);
+          OSDMenuKeyboard_CursorPosition = strlenUC(OSDMenuKeyboard_StringVar);
           OSDMenuKeyboard_Draw();
           break;
         }
@@ -219,8 +235,12 @@ bool OSDMenuKeyboard_EventHandler(word *event, dword *param1, dword *param2)
         case RKEY_Exit:       //Speichern und beenden
         {
           OSDMenuKeyboard_SaveAndFinish();
+
+          #ifdef DEBUG_FIREBIRDLIB
+            CallTraceExit(NULL);
+          #endif
+
           return TRUE;
-          break;
         }
       }
       *param1 = 0;
@@ -240,15 +260,23 @@ bool OSDMenuKeyboard_EventHandler(word *event, dword *param1, dword *param2)
         case 0x0D:    //CR
         {
           OSDMenuKeyboard_SaveAndFinish();
+
+          #ifdef DEBUG_FIREBIRDLIB
+            CallTraceExit(NULL);
+          #endif
+
           return TRUE;
-          break;
         }
 
         case 0x1B:    //ESC
         {
           OSDMenuKeyboard_SaveAndFinish();
+
+          #ifdef DEBUG_FIREBIRDLIB
+            CallTraceExit(NULL);
+          #endif
+
           return TRUE;
-          break;
         }
 
         case 0x7f:    //Del
@@ -286,15 +314,23 @@ bool OSDMenuKeyboard_EventHandler(word *event, dword *param1, dword *param2)
         case 0x0170:   //F1 = RED
         {
           OSDMenuKeyboard_Finish();
+
+          #ifdef DEBUG_FIREBIRDLIB
+            CallTraceExit(NULL);
+          #endif
+
           return TRUE;
-          break;
         }
 
         case 0x0171:   //F2 = GREEN
         {
           OSDMenuKeyboard_SaveAndFinish();
+
+          #ifdef DEBUG_FIREBIRDLIB
+            CallTraceExit(NULL);
+          #endif
+
           return TRUE;
-          break;
         }
 
         case 0x0173:   //F4 = BLUE
@@ -312,10 +348,11 @@ bool OSDMenuKeyboard_EventHandler(word *event, dword *param1, dword *param2)
           {
             if(strlen(OSDMenuKeyboard_StringVar) < OSDMenuKeyboard_StringMaxLen)
             {
-              char          ToBeInserted[2];
+              char          ToBeInserted[8];
 
               ToBeInserted[0] = *param1;
               ToBeInserted[1] = '\0';
+              StrMkUTF8(ToBeInserted, 9);
               InsertAt(OSDMenuKeyboard_StringVar, OSDMenuKeyboard_CursorPosition, ToBeInserted);
               OSDMenuKeyboard_CursorPosition++;
               OSDMenuKeyboard_Draw();
@@ -326,6 +363,10 @@ bool OSDMenuKeyboard_EventHandler(word *event, dword *param1, dword *param2)
       break;
     }
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return FALSE;
 }

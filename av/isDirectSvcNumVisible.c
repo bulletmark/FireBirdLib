@@ -2,6 +2,10 @@
 
 bool isDirectSvcNumVisible(void)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("isDirectSvcNumVisible");
+  #endif
+
   byte                 *id;
   bool                  ret;
 
@@ -9,6 +13,10 @@ bool isDirectSvcNumVisible(void)
 
   ret = FALSE;
   if(id) ret = (*id != 0xff);
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return ret;
 }

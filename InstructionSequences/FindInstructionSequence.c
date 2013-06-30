@@ -4,11 +4,22 @@
 
 dword FindInstructionSequence(char *SearchPattern, char *SearchMask, dword StartAddress, dword EndAddress, int EntryPointOffset, bool SearchForPrevADDIUSP)
 {
-  dword                 SP [50], SM [50];
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FindInstructionSequence");
+  #endif
+
+  dword                 SP[50], SM[50];
   dword                 i, p, NrOfInstr;
   bool                  OK;
 
-  if(!StartAddress || !EndAddress || (strlen(SearchPattern) != strlen(SearchMask))) return 0;
+  if(!StartAddress || !EndAddress || (strlen(SearchPattern) != strlen(SearchMask)))
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return 0;
+  }
 
   //Copy the hex string into the dword arrays
   NrOfInstr = 0;
@@ -26,7 +37,7 @@ dword FindInstructionSequence(char *SearchPattern, char *SearchMask, dword Start
     OK = TRUE;
     for(i = 0; i < NrOfInstr; i++)
     {
-      if(((* (dword *) (p + (i << 2))) & SM [i]) != SP [i])
+      if(((* (dword *) (p + (i << 2))) & SM[i]) != SP[i])
       {
         OK = FALSE;
         break;
@@ -43,12 +54,28 @@ dword FindInstructionSequence(char *SearchPattern, char *SearchMask, dword Start
           p -= 4;
 
           //ibbi 2007-01-07: at which address should be stopped anyway if there is no PrevADDIUSP?
-          if (p < StartAddress) return 0;
+          if(p < StartAddress)
+          {
+            #ifdef DEBUG_FIREBIRDLIB
+              CallTraceExit(NULL);
+            #endif
+
+            return 0;
+          }
         }
       }
+
+      #ifdef DEBUG_FIREBIRDLIB
+        CallTraceExit(NULL);
+      #endif
+
       return p + (EntryPointOffset << 2);
     }
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return 0;
 }

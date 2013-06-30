@@ -2,17 +2,28 @@
 #include  <string.h>
 #include  "../libFireBird.h"
 
-void DumpMemory(unsigned char* p, dword size, int BytesPerLine)
+void DumpMemory(byte* p, dword size, int BytesPerLine)
 {
-  unsigned char        *StartAddress = p;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("DumpMemory");
+  #endif
+
+  byte                 *StartAddress = p;
   int                   CollectedBytes, i;
   char                  text[200], Header[20];
   char                  s[255];
   dword                 Remaining;
 
-#ifdef DEBUG_FIREBIRDLIB
-  CallTraceEnter("DumpMemory");
-#endif
+  if(!p)
+  {
+    TAP_Print("0x00000000 NULL\n");
+
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return;
+  }
 
   s[0] = '\0';
   text[0] = '\0';
@@ -59,7 +70,7 @@ void DumpMemory(unsigned char* p, dword size, int BytesPerLine)
     TAP_Print(s);
   }
 
-#ifdef DEBUG_FIREBIRDLIB
-  CallTraceExit(NULL);
-#endif
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

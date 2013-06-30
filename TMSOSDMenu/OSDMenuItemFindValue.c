@@ -3,16 +3,29 @@
 
 int OSDMenuItemFindValue(char *Text)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("OSDMenuItemFindValue");
+  #endif
+
   tMenu                *pMenu;
-  int                   i;
+  int                   i, ret;
 
   pMenu = &Menu[CurrentMenuLevel];
 
-  if(pMenu->NrItems == 0) return -1;
-  if(!Text || !Text[0]) return -1;
+  ret = -1;
+  if((pMenu->NrItems > 0) && Text && Text[0])
+  {
+    for(i = 0; i < pMenu->NrItems; i++)
+      if(strcmp(pMenu->Item[i].Value, Text) == 0)
+      {
+        ret = i;
+        break;
+      }
+  }
 
-  for(i = 0; i < pMenu->NrItems; i++)
-    if(strcmp(pMenu->Item[i].Value, Text) == 0) return i;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
-  return -1;
+  return ret;
 }

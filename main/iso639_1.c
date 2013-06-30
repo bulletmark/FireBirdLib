@@ -1,70 +1,102 @@
 #include "../libFireBird.h"
 
-char *iso639_1 (int OSDLan)
+char *iso639_1(int OSDLan)
 {
-  switch (OSDLan)
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("iso639_1");
+  #endif
+
+  char *lang;
+
+  switch(OSDLan)
   {
     case LAN_English:
-      return "en";
+      lang = "en";
+      break;
 
     case LAN_French:
-      return "fr";
+      lang = "fr";
+      break;
 
     case LAN_German:
-      return "de";
+      lang = "de";
+      break;
 
     case LAN_Italy:
-      return "it";
+      lang = "it";
+      break;
 
     case LAN_Spain:
-      return "es";
+      lang = "es";
+      break;
 
     case LAN_Arab:
-      return "ar";
+      lang = "ar";
+      break;
 
     case LAN_Greek:
-      return "el";
+      lang = "el";
+      break;
 
     case LAN_Turk:
-      return "tr";
+      lang = "tr";
+      break;
 
     case LAN_Danish:
-      return "da";
+      lang = "da";
+      break;
 
     case LAN_Swedish:
-      return "sv";
+      lang = "sv";
+      break;
 
     case LAN_Norwegian:
-      return "no";
+      lang = "no";
+      break;
 
     case LAN_Dutch:
-      return "nl";
+      lang = "nl";
+      break;
 
     case LAN_Russian:
-      return "ru";
+      lang = "ru";
+      break;
 
     case LAN_Polish:
-      return "pl";
+      lang = "pl";
+      break;
 
     case LAN_Persian:
-      return "fa";
+      lang = "fa";
+      break;
 
     case LAN_Suomi:
-      return "fi";
+      lang = "fi";
+      break;
 
     case LAN_Slovak:
-      return "sk";
+      lang = "sk";
+      break;
 
     case LAN_Thai:
-      return "th";
+      lang = "th";
+      break;
 
     case LAN_Czech:
-      return "cs";
+      lang = "cs";
+      break;
 
     case LAN_Bulgarian:
-      return "bg";
+      lang = "bg";
+      break;
 
     default:
-      return NULL;
+      lang = NULL;
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return lang;
 }

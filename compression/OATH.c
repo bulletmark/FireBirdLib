@@ -1,15 +1,12 @@
-//#include <stdio.h>
-//#include <stdlib.h>
-//#include <inttypes.h>
 #include "../libFireBird.h"
 
-dword OATH(register unsigned char * data, int len, dword hash)
+dword OATH(register unsigned char *data, int len, dword hash)
 {
-  register int i;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("OATH");
+  #endif
 
-#ifdef DEBUG_FIREBIRDLIB
-  CallTraceEnter("OATH");
-#endif
+  register int i;
 
   for(i=0; i<len; ++i)
   {
@@ -21,9 +18,9 @@ dword OATH(register unsigned char * data, int len, dword hash)
   hash ^= (hash>>11);
   hash += (hash<<15);
 
-#ifdef DEBUG_FIREBIRDLIB
-  CallTraceExit(NULL);
-#endif
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return hash;
 }

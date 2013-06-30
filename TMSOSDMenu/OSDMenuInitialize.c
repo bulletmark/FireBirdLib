@@ -69,13 +69,7 @@
 #include                "graphic/ColorPicker_CursorDeselected.gd"
 #include                "graphic/ColorPicker_ValueBackroundSelected.gd"
 
-//#include                "fonts/Calibri_10.c"
-//#include                "fonts/Calibri_12.c"
-//#include                "fonts/Calibri_14.c"
-//#include                "fonts/Calibri_16.c"
-//#include                "fonts/Calibri_18.c"
-//#include                "fonts/Calibri_20.c"
-//#include                "fonts/Calibri_20B.c"
+#include                "graphic/WaitSpinner_All.gd"
 
 word                    OSDRgn = 0, MyOSDRgn = 0, OSDMenuSelectionBarRgn = 0;
 bool                    OSDDirty, TitleDirty, ListDirty, ButtonsDirty, LogoDirty;
@@ -104,12 +98,28 @@ dword                   ColorPickerDefaultColor;
 tCurrentColorSelected   CurrentColorSelected;
 int                     ColorPickerLastCursorRed, ColorPickerLastCursorGreen, ColorPickerLastCursorBlue;
 
+word                    WaitSpinnerRgn = 0;
+int                     WaitSpinnerIndex = 0;
+dword                   WaitSpinnerTimeout = 0;
+
 dword                   ButtonColor;
+
+tFontDataUC             OSDMenuFont_10;
+tFontDataUC             OSDMenuFont_12;
+tFontDataUC             OSDMenuFont_14;
+tFontDataUC             OSDMenuFont_16;
+tFontDataUC             OSDMenuFont_18;
+tFontDataUC             OSDMenuFont_20;
+tFontDataUC             OSDMenuFont_20B;
 
 void (*CallbackProcedure)(tOSDCB OSDCBType, word OSDRgn) = NULL;
 
 void OSDMenuInitialize(bool AllowScrollingOfLongText, bool HasValueColumn, bool NumberedItems, bool ScrollLoop, char *TitleLeft, char *TitleRight)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("OSDMenuInitialize");
+  #endif
+
   tMenu                *pMenu;
   int                   i;
 
@@ -124,6 +134,8 @@ void OSDMenuInitialize(bool AllowScrollingOfLongText, bool HasValueColumn, bool 
   OSDRgn = 0;
   MyOSDRgn = 0;
 
+  OSDMenuLoadStdFonts();
+
   pMenu->AllowScrollingOfLongText = AllowScrollingOfLongText;
   pMenu->HasValueColumn = HasValueColumn;
   pMenu->NumberedItems = NumberedItems;
@@ -132,13 +144,13 @@ void OSDMenuInitialize(bool AllowScrollingOfLongText, bool HasValueColumn, bool 
   pMenu->hasValueArrows = FALSE;
   pMenu->Item = TAP_MemAlloc(30 * sizeof(tItem));
 
-  pMenu->FontLeftTitle          = &Calibri_20_FontData;
-  pMenu->FontRightTitle         = &Calibri_16_FontData;
-  pMenu->FontListLineNumber     = &Calibri_14_FontData;
-  pMenu->FontListNameColumn     = &Calibri_14_FontData;
-  pMenu->FontListValueColumn    = &Calibri_14_FontData;
-  pMenu->FontButtons            = &Calibri_12_FontData;
-  pMenu->FontMemo               = &Calibri_14_FontData;
+  pMenu->FontLeftTitle          = &OSDMenuFont_20;
+  pMenu->FontRightTitle         = &OSDMenuFont_16;
+  pMenu->FontListLineNumber     = &OSDMenuFont_14;
+  pMenu->FontListNameColumn     = &OSDMenuFont_14;
+  pMenu->FontListValueColumn    = &OSDMenuFont_14;
+  pMenu->FontButtons            = &OSDMenuFont_12;
+  pMenu->FontMemo               = &OSDMenuFont_14;
 
   pMenu->MaxItems = 30;
   memset(&pMenu->Item[0], 0, pMenu->MaxItems * sizeof(tItem));
@@ -161,4 +173,8 @@ void OSDMenuInitialize(bool AllowScrollingOfLongText, bool HasValueColumn, bool 
   MenuCursorType = CT_Standard;
 
   CallbackProcedure = NULL;
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

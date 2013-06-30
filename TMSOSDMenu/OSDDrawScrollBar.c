@@ -2,6 +2,10 @@
 
 void OSDDrawScrollBar(void)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("OSDDrawScrollBar");
+  #endif
+
   int                   Y;
 
   if(Menu[CurrentMenuLevel].NrItems < 11)
@@ -14,4 +18,8 @@ void OSDDrawScrollBar(void)
     Y = 108 + (Menu[CurrentMenuLevel].CurrentSelection * 321) / (Menu[CurrentMenuLevel].NrItems - 1);
     TAP_Osd_PutGd(OSDRgn, 663, Y, &_ScrollBarKnob_Gd, FALSE);
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

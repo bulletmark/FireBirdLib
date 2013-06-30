@@ -1,26 +1,26 @@
 #include "FBLib_av.h"
 #include "../libFireBird.h"
 
-void VideoToBMP(TYPE_VideoFrame VideoFrame, int BMPwidth, int BMPheight, byte *BMPPixelBuffer, int DstX, int DstY, int DstWidth, int DstHeight)
+void VideoToBMP(TYPE_VideoFrame *VideoFrame, int BMPwidth, int BMPheight, byte *BMPPixelBuffer, int DstX, int DstY, int DstWidth, int DstHeight)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("VideoToBMP");
+  #endif
+
   dword                *VideoData;
   dword                *SrcPixel;
   byte                 *DstPixel;
   int                   SX, SY;
   register int          x, y;
 
-#ifdef DEBUG_FIREBIRDLIB
-  CallTraceEnter("VideoToBMP");
-#endif
-
-  VideoData = (dword*)VideoFrame.data;
+  VideoData = (dword*)VideoFrame->data;
   for(y = DstY; y < (DstY + DstHeight); y++)
   {
-    SY =  (y - DstY) * VideoFrame.height / DstHeight;
+    SY =  (y - DstY) * VideoFrame->height / DstHeight;
     for(x = DstX; x < (DstX + DstWidth); x++)
     {
-      SX =  (x - DstX) * VideoFrame.width / DstWidth;
-      SrcPixel = (dword*)&VideoData[SX + SY * VideoFrame.width];
+      SX =  (x - DstX) * VideoFrame->width / DstWidth;
+      SrcPixel = (dword*)&VideoData[SX + SY * VideoFrame->width];
 
       DstPixel = &BMPPixelBuffer[((BMPheight - y - 1) * BMPwidth + x) * 3];
       DstPixel[0] = B8888(*SrcPixel);
@@ -29,8 +29,7 @@ void VideoToBMP(TYPE_VideoFrame VideoFrame, int BMPwidth, int BMPheight, byte *B
     }
   }
 
-#ifdef DEBUG_FIREBIRDLIB
-  CallTraceExit(NULL);
-#endif
-
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

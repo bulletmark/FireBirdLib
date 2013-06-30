@@ -2,34 +2,29 @@
 
 word GetOSDRegionHeight(word Region)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("GetOSDRegionHeight");
+  #endif
+
   tOSDMapInfo          *OSDMapInfo;
   word                  ret;
 
-#ifdef DEBUG_FIREBIRDLIB
-  char buf[80];
-  TAP_SPrint(buf, "GetOSDRegionHeight(%d)", Region);
-  CallTraceEnter(buf);
-#endif
-
   OSDMapInfo = (tOSDMapInfo*) FIS_vOsdMap();
 
-  if (!OSDMapInfo)
+  if(!OSDMapInfo)
   {
-
-#ifdef DEBUG_FIREBIRDLIB
-    CallTraceExitResult(NULL, "0");
-#endif
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
 
     return 0;
   }
 
   ret = OSDMapInfo[Region].Height;
 
-#ifdef DEBUG_FIREBIRDLIB
-  char buf[80];
-  TAP_SPrint(buf, "%d", ret);
-  CallTraceExitResult(NULL, buf);
-#endif
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return ret;
 }

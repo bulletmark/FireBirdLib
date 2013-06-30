@@ -1,10 +1,14 @@
 #include                "FBLib_tapcom.h"
 
-void TAPCOM_Finish (TAPCOM_Channel Channel, int val)
+void TAPCOM_Finish(TAPCOM_Channel Channel, int val)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("TAPCOM_Finish");
+  #endif
+
   TAPCOM_InternalMesBuf *buf = (TAPCOM_InternalMesBuf *) Channel;
 
-  if (isValidChannel (Channel))
+  if(isValidChannel(Channel))
   {
     buf->Status    = TAPCOM_Status_FINISHED;
     buf->ReturnVal = val;
@@ -12,4 +16,8 @@ void TAPCOM_Finish (TAPCOM_Channel Channel, int val)
     //Server-Timeout zurücksetzen
     buf->ServerAlive = TAP_GetTick();
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

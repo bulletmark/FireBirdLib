@@ -1,8 +1,12 @@
 #include                <string.h>
 #include                "FBLib_FontManager.h"
 
-void FM_PutStringAA(word rgn, dword x, dword y, dword maxX, const char * str, dword fcolor, dword bcolor, tFontData *FontData, byte bDot, byte align, float AntiAliasFactor)
+void FM_PutStringAA(word rgn, dword x, dword y, dword maxX, char *str, dword fcolor, dword bcolor, tFontData *FontData, byte bDot, byte align, float AntiAliasFactor)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FM_PutStringAA");
+  #endif
+
   dword                 XEnd, YEnd;
   dword                *PixelData;
   byte                 *FontBitmap;
@@ -22,7 +26,14 @@ void FM_PutStringAA(word rgn, dword x, dword y, dword maxX, const char * str, dw
   bool                  compressed_font;
   dword                 StrLen;
 
-  if(!str || !str[0] || !FontData || !FontData->pFontData || (maxX <= x)) return;
+  if(!str || !str[0] || !FontData || !FontData->pFontData || (maxX <= x))
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return;
+  }
 
   if(GetOSDRegionWidth(rgn) && GetOSDRegionWidth(rgn) <= maxX) maxX = GetOSDRegionWidth(rgn) - 1;
 
@@ -111,7 +122,14 @@ void FM_PutStringAA(word rgn, dword x, dword y, dword maxX, const char * str, dw
     }
   }
 
-  if(XEnd > maxX) return;
+  if(XEnd > maxX)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return;
+  }
 
   YEnd = y + FM_GetStringHeight(newstr, FontData);
   if(XEnd > maxX) XEnd = maxX;
@@ -158,29 +176,28 @@ void FM_PutStringAA(word rgn, dword x, dword y, dword maxX, const char * str, dw
       if(FM_isValidCharacter(newstr[i]))
       {
         CharIndex = FM_CharToIndex(newstr[i]);
-        FontBitmap = &FontData->pFontData[CharIndex == 0 ? 0 :
-	    FontData->FontDef[CharIndex].BitmapIndex];
+        FontBitmap = &FontData->pFontData[CharIndex == 0 ? 0 : FontData->FontDef[CharIndex].BitmapIndex];
         CW = FontData->FontDef[CharIndex].Width;
         CH = FontData->FontDef[CharIndex].Height;
-	compressed_font = FontData->FontDef[0].BitmapIndex != 0;
+        compressed_font = FontData->FontDef[0].BitmapIndex != 0;
 
-	repcnt = 0;
+        repcnt = 0;
         for(Y = 0; Y < CH; Y++)
         {
           CY = (XEnd - x + 1) * Y;
           for(X = 0; X < CW; X++)
           {
+            if(repcnt == 0)
+            {
+              Grey = *FontBitmap++;
 
-	    if (repcnt == 0) {
-		Grey = *FontBitmap++;
-
-		/* Compressed fonts have repeat counts after every 0x00
-		 * and 0xff bytes */
-		if (compressed_font && (Grey == 0x00 || Grey == 0xff))
-		    repcnt = *FontBitmap++ - 1;
-	    }
-	    else
-	        --repcnt;
+              /* Compressed fonts have repeat counts after every 0x00
+               * and 0xff bytes */
+              if(compressed_font && (Grey == 0x00 || Grey == 0xff))
+                repcnt = *FontBitmap++ - 1;
+            }
+            else
+              --repcnt;
 
             if(Grey != 0x00)
             {
@@ -217,4 +234,8 @@ void FM_PutStringAA(word rgn, dword x, dword y, dword maxX, const char * str, dw
     TAP_Osd_RestoreBox(rgn, SaveBoxX, y, XEnd - x + 1, YEnd - y + 1, PixelData);
     TAP_MemFree(PixelData);
   } // if PixelData
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

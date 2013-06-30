@@ -3,9 +3,23 @@
 
 bool FlashTransponderTablesDecode(void *Data, tFlashTransponderTable *TransponderTable)
 {
-  //TransponderTable is NULL
-  if(!Data || !TransponderTable) return FALSE;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashTransponderTablesDecode");
+  #endif
 
+  bool ret;
+
+  //TransponderTable is NULL
+  if(!Data || !TransponderTable)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return FALSE;
+  }
+
+  ret = FALSE;
   switch(GetSystemType())
   {
     //Unknown and old 5k/6k systems are not supported
@@ -17,20 +31,29 @@ bool FlashTransponderTablesDecode(void *Data, tFlashTransponderTable *Transponde
     case ST_CT:
     case ST_T5700:
     case ST_T5800:
-    case ST_TF7k7HDPVR: return FALSE;
+    case ST_TF7k7HDPVR: break;
 
-    case ST_TMSS: return FlashTransponderTablesDecode_ST_TMSS(Data, TransponderTable);
-    case ST_TMST: return FlashTransponderTablesDecode_ST_TMST(Data, TransponderTable);
-    case ST_TMSC: return FlashTransponderTablesDecode_ST_TMSC(Data, TransponderTable);
+
+    case ST_TMSS: ret = FlashTransponderTablesDecode_ST_TMSS(Data, TransponderTable); break;
+    case ST_TMST: ret = FlashTransponderTablesDecode_ST_TMST(Data, TransponderTable); break;
+    case ST_TMSC: ret = FlashTransponderTablesDecode_ST_TMSC(Data, TransponderTable); break;
 
     case ST_NRTYPES: break;
   }
 
-  return FALSE;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }
 
 bool FlashTransponderTablesDecode_ST_TMSS(TYPE_TpInfo_TMSS *Data, tFlashTransponderTable *TransponderTable)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashTransponderTablesDecode_ST_TMSS");
+  #endif
+
   memset(TransponderTable, 0, sizeof(tFlashTransponderTable));
   TransponderTable->SatIndex          = Data->SatIdx;
   TransponderTable->Polarisation      = Data->Polar;
@@ -48,11 +71,19 @@ bool FlashTransponderTablesDecode_ST_TMSS(TYPE_TpInfo_TMSS *Data, tFlashTranspon
   TransponderTable->unused3           = Data->unused3;
   TransponderTable->unused4           = Data->unused4;
 
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
   return TRUE;
 }
 
 bool FlashTransponderTablesDecode_ST_TMST(TYPE_TpInfo_TMST *Data, tFlashTransponderTable *TransponderTable)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashTransponderTablesDecode_ST_TMST");
+  #endif
+
   memset(TransponderTable, 0, sizeof(tFlashTransponderTable));
   TransponderTable->SatIndex          = Data->SatIdx;
   TransponderTable->ChannelNr         = Data->ChannelNr;
@@ -65,11 +96,19 @@ bool FlashTransponderTablesDecode_ST_TMST(TYPE_TpInfo_TMST *Data, tFlashTranspon
   TransponderTable->unused1           = Data->unused1;
   TransponderTable->unused2           = Data->unused2;
 
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
   return TRUE;
 }
 
 bool FlashTransponderTablesDecode_ST_TMSC(TYPE_TpInfo_TMSC *Data, tFlashTransponderTable *TransponderTable)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashTransponderTablesDecode_ST_TMSC");
+  #endif
+
   memset(TransponderTable, 0, sizeof(tFlashTransponderTable));
   TransponderTable->Frequency         = Data->Frequency >> 8;
   TransponderTable->SymbolRate        = Data->SymbolRate;
@@ -78,14 +117,32 @@ bool FlashTransponderTablesDecode_ST_TMSC(TYPE_TpInfo_TMSC *Data, tFlashTranspon
   TransponderTable->Modulation        = Data->ModulationType;
   TransponderTable->unused1           = Data->unused1;
 
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
   return TRUE;
 }
 
 bool FlashTransponderTablesEncode(void *Data, tFlashTransponderTable *TransponderTable)
 {
-  //TransponderTable is NULL
-  if(!Data || !TransponderTable) return FALSE;
+  bool ret;
 
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashTransponderTablesEncode");
+  #endif
+
+  //TransponderTable is NULL
+  if(!Data || !TransponderTable)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return FALSE;
+  }
+
+  ret = FALSE;
   switch(GetSystemType())
   {
     //Unknown and old 5k/6k systems are not supported
@@ -97,20 +154,28 @@ bool FlashTransponderTablesEncode(void *Data, tFlashTransponderTable *Transponde
     case ST_CT:
     case ST_T5700:
     case ST_T5800:
-    case ST_TF7k7HDPVR: return FALSE;
+    case ST_TF7k7HDPVR: break;
 
-    case ST_TMSS: return FlashTransponderTablesEncode_ST_TMSS(Data, TransponderTable);
-    case ST_TMST: return FlashTransponderTablesEncode_ST_TMST(Data, TransponderTable);
-    case ST_TMSC: return FlashTransponderTablesEncode_ST_TMSC(Data, TransponderTable);
+    case ST_TMSS: ret = FlashTransponderTablesEncode_ST_TMSS(Data, TransponderTable); break;
+    case ST_TMST: ret = FlashTransponderTablesEncode_ST_TMST(Data, TransponderTable); break;
+    case ST_TMSC: ret = FlashTransponderTablesEncode_ST_TMSC(Data, TransponderTable); break;
 
     case ST_NRTYPES: break;
   }
 
-  return FALSE;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return ret;
 }
 
 bool FlashTransponderTablesEncode_ST_TMSS(TYPE_TpInfo_TMSS *Data, tFlashTransponderTable *TransponderTable)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashTransponderTablesEncode_ST_TMSS");
+  #endif
+
   memset(Data, 0, sizeof(TYPE_TpInfo_TMSS));
   Data->SatIdx            = TransponderTable->SatIndex;
   Data->Polar             = TransponderTable->Polarisation;
@@ -128,11 +193,19 @@ bool FlashTransponderTablesEncode_ST_TMSS(TYPE_TpInfo_TMSS *Data, tFlashTranspon
   Data->unused3           = TransponderTable->unused3;
   Data->unused4           = TransponderTable->unused4;
 
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
   return TRUE;
 }
 
 bool FlashTransponderTablesEncode_ST_TMST(TYPE_TpInfo_TMST *Data, tFlashTransponderTable *TransponderTable)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashTransponderTablesEncode_ST_TMST");
+  #endif
+
   memset(Data, 0, sizeof(TYPE_TpInfo_TMST));
   Data->SatIdx            = TransponderTable->SatIndex;
   Data->ChannelNr         = TransponderTable->ChannelNr;
@@ -145,11 +218,19 @@ bool FlashTransponderTablesEncode_ST_TMST(TYPE_TpInfo_TMST *Data, tFlashTranspon
   Data->unused1           = TransponderTable->unused1;
   Data->unused2           = TransponderTable->unused2;
 
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
   return TRUE;
 }
 
 bool FlashTransponderTablesEncode_ST_TMSC(TYPE_TpInfo_TMSC *Data, tFlashTransponderTable *TransponderTable)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("FlashTransponderTablesEncode_ST_TMSC");
+  #endif
+
   memset(Data, 0, sizeof(TYPE_TpInfo_TMSC));
   Data->Frequency         = TransponderTable->Frequency << 8;
   Data->SymbolRate        = TransponderTable->SymbolRate;
@@ -157,6 +238,10 @@ bool FlashTransponderTablesEncode_ST_TMSC(TYPE_TpInfo_TMSC *Data, tFlashTranspon
   Data->OriginalNetworkID = TransponderTable->OriginalNetworkID;
   Data->ModulationType    = TransponderTable->Modulation;
   Data->unused1           = TransponderTable->unused1;
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return TRUE;
 }

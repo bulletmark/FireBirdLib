@@ -5,6 +5,10 @@
 
 void LogoManager_LogoCacheRebuild(void)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("LogoManager_LogoCacheRebuild");
+  #endif
+
   char                  ID[4];
   dword                 Version;
   TYPE_File            *f, *fLogo;
@@ -148,4 +152,8 @@ void LogoManager_LogoCacheRebuild(void)
   }
   HDD_TAP_PopDir();
   if(LogoManager_CB) LogoManager_CB(4, 0);
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 }

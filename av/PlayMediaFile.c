@@ -3,13 +3,24 @@
 
 dword PlayMediaFile(char *MediaFileName)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("PlayMediaFile");
+  #endif
+
   dword                 ret;
   tDirEntry             _TempWorkFolder;
   char                  CurrentDir[FBLIB_DIR_SIZE];
   static dword         *_hddDivxFolder = NULL;
 
   if(!_hddDivxFolder) _hddDivxFolder = (dword*)FIS_vHddDivxFolder();
-  if(!_hddDivxFolder) return 7;
+  if(!_hddDivxFolder)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return 7;
+  }
 
   ApplHdd_SaveWorkFolder();
   strcpy(CurrentDir, "mnt/hd");
@@ -25,6 +36,10 @@ dword PlayMediaFile(char *MediaFileName)
     ret = Appl_StartPlaybackMedia(MediaFileName, 0, TRUE, FALSE);
   }
   ApplHdd_RestoreWorkFolder();
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return ret;
 }

@@ -5,11 +5,17 @@
 
 bool NoAutoStartTAP(void)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("NoAutoStartTAP");
+  #endif
+
   char                  CurrentDir[512];
   char                  *FileName;
   char                  cmd[200];
   dword                *curTapTask;
   int                   ret;
+
+  ret = 1;
 
   HDD_TAP_GetCurrentDir(CurrentDir);
   if(strstr(CurrentDir, "/ProgramFiles/AutoStart") || strstr(CurrentDir, "/ProgramFiles/XStart"))
@@ -19,8 +25,11 @@ bool NoAutoStartTAP(void)
 
     TAP_SPrint(cmd, "mv %s /mnt/hd/ProgramFiles", FileName);
     ret = system(cmd);
-    return (ret == 0);
   }
 
-  return FALSE;
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return (ret == 0);
 }

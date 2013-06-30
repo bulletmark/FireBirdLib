@@ -7,10 +7,21 @@
 
 bool ExtAttribRemoveAbsPath(char *AbsFileName, char *AttrName)
 {
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("ExtAttribRemoveAbsPath");
+  #endif
+
   char                  FullAttrName[128];
   int                   f;
 
-  if(!AbsFileName || !*AbsFileName || !AttrName || !*AttrName) return FALSE;
+  if(!AbsFileName || !*AbsFileName || !AttrName || !*AttrName)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return FALSE;
+  }
 
   f = open(AbsFileName, O_RDWR, 0600);
   if(f)
@@ -18,8 +29,17 @@ bool ExtAttribRemoveAbsPath(char *AbsFileName, char *AttrName)
     TAP_SPrint(FullAttrName, "user.%s", AttrName);
     fremovexattr(f, FullAttrName);
     close(f);
+
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
     return TRUE;
   }
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
 
   return FALSE;
 }

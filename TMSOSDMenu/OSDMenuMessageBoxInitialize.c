@@ -16,6 +16,7 @@ void OSDMenuMessageBoxInitialize(char *Title, char *Text)
   MessageBox.NrButtons = 0;
   MessageBox.CurrentButton = 0;
   MessageBoxNoNormalMode = FALSE;
+  MessageBoxAllowScrollOver = FALSE;
 
   strncpyUC(MessageBox.Title, Title, STDSTRINGSIZE);
   MessageBox.Title[STDSTRINGSIZE - 1] = '\0';

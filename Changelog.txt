@@ -424,7 +424,6 @@ License:  This library is freeware. You may use this code in your own projects f
 2010-01-04  Increased speed of isAnyOSDVisible() by checking every fourth pixel only
             Added isAnyOSDVisibleEx(), which allows to check a specific plane
 2010-01-11  Bugfix: FixInvalidFileName() must not rename files, which are currently being recorded or played
-            Added isAnyOSDVisibleEx(), which allows to specify the OSD plane
 2010-01-12  Bugfix: The TMS produzed a reboot if one did a time shift buffer jump after HDD_TAP_Start() has been called by a TAP
             'Official release'
 
@@ -764,6 +763,8 @@ License:  This library is freeware. You may use this code in your own projects f
                    DST_SetDSTRule(), DST_CalcTransition(), UTC2LocalTime(), LocalTime2UTC(), GetCurrentTimeZone() and Appl_TimeToLocal()
             Removed: UTCtoLocal()
 
+2013-02-24: This is the latest version where Unicode fonts are not needed for the dialogs
+
 2013-03-04  Added: Unicode support. This means that all string handling functions should be able to handle UTF-8 encoded strings.
                    In addition, some function will also be able to handle several different code page encodings defined in EN300468 section A.2.
                    Because of that change a new Unicode FontManager (FMUC) has been created. Also because the Unicode fonts are too large
@@ -826,3 +827,9 @@ License:  This library is freeware. You may use this code in your own projects f
                    except that it uses a GMT time derived from the user clock.
 2013-06-20  Modified HDD_RecycleSF() and HDD_UnrecycleSF() to incorporate the new SmartFiler functionality
 2013-06-27  Fixed: FMUC_PutStringAA() has crashed if the text contained a non-printable character and the text had to be truncated with "…"
+2013-08-24  Added: OSDMenuGetLastUnprocessedKey(). This function allows a TAP to react on non-standard keys. If the user clicks on a key which is not handled by the OSDMenu library, a call to this
+                   function will return the RKEY code of that key.
+2013-09-13  Added: OSDMenuMessageBoxAllowScrollOver()
+2013-10-12  Added: OSDMenuItemModifyCustomIndex(), which allows to display custom specific indices in a list
+2013-10-19  Added: FIS_vPvrPlayInfo()
+2013-10-20  Added: FIS_vPvrRecTempInfo(), HDD_GetPvrRecTsPlayInfoPointer(), FIS_vTempRecSlot()

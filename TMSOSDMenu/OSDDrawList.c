@@ -14,6 +14,7 @@ void OSDDrawList(void)
   int                   i;
   dword                 XStart, XEnd, Y;
   tMenu                *pMenu;
+  tItem                *pItem;
   dword                 ItemColor;
   char                  s[4];
   dword                 MaxNameIconWidth, MaxValueIconWidth;
@@ -38,12 +39,14 @@ void OSDDrawList(void)
 
   for(i = 0; i < 10; i++)
   {
+    pItem = &pMenu->Item[i + pMenu->CurrentTopIndex];
+
     //Draw the background or selection bar and the optional value arrows
     if((i + pMenu->CurrentTopIndex) == pMenu->CurrentSelection)
     {
       OSDMenuDrawCursor(60, 95 + (i * 37), 600);
 
-      if(pMenu->HasValueColumn && pMenu->Item[i + pMenu->CurrentTopIndex].ValueArrows)
+      if(pMenu->HasValueColumn && pItem->ValueArrows)
       {
         TAP_Osd_PutGd(OSDRgn, pMenu->ValueXPos + 20 , 95 + 10 +(i * 37), (MenuCursorType == CT_Standard ? &_pfeil_l_Gd : &_pfeil_l_bright_Gd), TRUE);
         TAP_Osd_PutGd(OSDRgn, 640 , 95 + 10 +(i * 37), (MenuCursorType == CT_Standard ? &_pfeil_r_Gd : &_pfeil_r_bright_Gd), TRUE);
@@ -57,8 +60,8 @@ void OSDDrawList(void)
     XEnd = (pMenu->HasValueColumn ? pMenu->ValueXPos : 645);
     Y = 99 + (i * 37);
 
-    if(pMenu->Item[i + pMenu->CurrentTopIndex].Selectable)
-      ItemColor = pMenu->Item[i + pMenu->CurrentTopIndex].TextColor;
+    if(pItem->Selectable)
+      ItemColor = pItem->TextColor;
     else
       ItemColor = RGB(128, 128, 140);
 
@@ -68,17 +71,40 @@ void OSDDrawList(void)
       int MaxX = 100;
 
       XStart = 101;
-      TAP_SPrint(s, "%2.2d", i + pMenu->CurrentTopIndex + 1);
-      if(i + pMenu->CurrentTopIndex + 1 > 99)
+
+      if(pItem->CustomIndex >= 0)
       {
-        XStart += 10;
-        MaxX += 10;
+        TAP_SPrint(s, "%2.2d", pItem->CustomIndex);
+
+        if(pItem->CustomIndex > 99)
+        {
+          XStart += 10;
+          MaxX += 10;
+        }
+
+        if(pItem->CustomIndex > 999)
+        {
+          XStart += 10;
+          MaxX += 10;
+        }
       }
-      if(i + pMenu->CurrentTopIndex + 1 > 999)
+      else
       {
-        XStart += 10;
-        MaxX += 10;
+        TAP_SPrint(s, "%2.2d", i + pMenu->CurrentTopIndex + 1);
+
+        if(i + pMenu->CurrentTopIndex + 1 > 99)
+        {
+          XStart += 10;
+          MaxX += 10;
+        }
+
+        if(i + pMenu->CurrentTopIndex + 1 > 999)
+        {
+          XStart += 10;
+          MaxX += 10;
+        }
       }
+
       FMUC_PutStringAA(OSDRgn, 71, Y + 5 + FONTYOFFSET, MaxX, s, ItemColor, COLOR_None, pMenu->FontListLineNumber, FALSE, ALIGN_LEFT, 1);
     }
     else
@@ -87,27 +113,27 @@ void OSDDrawList(void)
     }
 
     //Icons on the left column
-    if(pMenu->Item[i + pMenu->CurrentTopIndex].pNameIconGd)
-      TAP_Osd_PutGd(OSDRgn, XStart, Y + 13 - (pMenu->Item[i + pMenu->CurrentTopIndex].pNameIconGd->height >> 1), pMenu->Item[i + pMenu->CurrentTopIndex].pNameIconGd, TRUE);
+    if(pItem->pNameIconGd)
+      TAP_Osd_PutGd(OSDRgn, XStart, Y + 13 - (pItem->pNameIconGd->height >> 1), pItem->pNameIconGd, TRUE);
 
     //The text of the left column
-    FMUC_PutStringAA(OSDRgn, XStart + MaxNameIconWidth, Y + 5 + FONTYOFFSET, XEnd, pMenu->Item[i + pMenu->CurrentTopIndex].Name, ItemColor, COLOR_None, pMenu->FontListNameColumn, TRUE, ALIGN_LEFT, 1);
+    FMUC_PutStringAA(OSDRgn, XStart + MaxNameIconWidth, Y + 5 + FONTYOFFSET, XEnd, pItem->Name, ItemColor, COLOR_None, pMenu->FontListNameColumn, TRUE, ALIGN_LEFT, 1);
 
     if(pMenu->HasValueColumn)
     {
       //The text of the right column
-      FMUC_PutStringAA(OSDRgn, pMenu->ValueXPos + 45 + MaxValueIconWidth, Y + 5 + FONTYOFFSET, 645, pMenu->Item[i + pMenu->CurrentTopIndex].Value, ItemColor, COLOR_None, pMenu->FontListValueColumn, TRUE, ALIGN_LEFT, 1);
+      FMUC_PutStringAA(OSDRgn, pMenu->ValueXPos + 45 + MaxValueIconWidth, Y + 5 + FONTYOFFSET, 645, pItem->Value, ItemColor, COLOR_None, pMenu->FontListValueColumn, TRUE, ALIGN_LEFT, 1);
 
       //The color patch or icon of the right column. The former has priority
-      if(pMenu->Item[i + pMenu->CurrentTopIndex].ColorPatch)
+      if(pItem->ColorPatch)
       {
-        TAP_Osd_FillBox(OSDRgn, pMenu->ValueXPos + 45, Y + 5, 50, 18, (pMenu->Item[i + pMenu->CurrentTopIndex].ColorPatch & 0x00ffffff) | 0xff000000);
+        TAP_Osd_FillBox(OSDRgn, pMenu->ValueXPos + 45, Y + 5, 50, 18, (pItem->ColorPatch & 0x00ffffff) | 0xff000000);
         TAP_Osd_DrawRectangle(OSDRgn, pMenu->ValueXPos + 45, Y + 5, 50, 18, 1, RGB(192,192,192));
       }
       else
       {
-        if(pMenu->Item[i + pMenu->CurrentTopIndex].pValueIconGd)
-          TAP_Osd_PutGd(OSDRgn, pMenu->ValueXPos + 45 , Y + 13 - (pMenu->Item[i + pMenu->CurrentTopIndex].pValueIconGd->height >> 1), pMenu->Item[i + pMenu->CurrentTopIndex].pValueIconGd, TRUE);
+        if(pItem->pValueIconGd)
+          TAP_Osd_PutGd(OSDRgn, pMenu->ValueXPos + 45 , Y + 13 - (pItem->pValueIconGd->height >> 1), pItem->pValueIconGd, TRUE);
       }
     }
   }

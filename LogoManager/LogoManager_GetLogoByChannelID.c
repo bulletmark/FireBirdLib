@@ -12,7 +12,7 @@ TYPE_GrData *LogoManager_GetLogoByChannelID(ulong64 ChannelID, tLogoStyle LogoSt
 
   int                   i;
   TYPE_File            *f;
-  char                  s[20], LogoName[40];
+  char                  s[20], LogoName[120];
   TYPE_GrData          *GrData;
 
   LogoManager_Initialize(LogoManager_CB);
@@ -65,7 +65,7 @@ TYPE_GrData *LogoManager_GetLogoByChannelID(ulong64 ChannelID, tLogoStyle LogoSt
   {
     TAP_SPrint(s, "%16.16llx", ChannelID);
     INIOpenFile(LILNAME, NULL);
-    INIGetString(s, LogoName, "", 40);
+    INIGetString(s, LogoName, "", 119);
     INICloseFile();
     if(LogoName[0])
     {

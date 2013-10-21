@@ -21,6 +21,7 @@ typedef struct
   bool                  Selectable;
   bool                  ValueArrows;
   dword                 ID;
+  int                   CustomIndex;
 }tItem;
 
 typedef struct
@@ -181,6 +182,7 @@ extern bool             OSDDirty, TitleDirty, ListDirty, ButtonsDirty, LogoDirty
 extern tMenu            Menu[NRMENULEVELS];
 extern dword            CurrentMenuLevel;
 extern dword            ButtonColor;
+extern dword            LastUnprocessedOSDMenuKey;
 extern tCursorType      MenuCursorType;
 extern tOSDMenuLastCursorType    OSDMenuLastCursor;
 
@@ -192,6 +194,7 @@ extern dword            InfoBoxSaveAreaX, InfoBoxSaveAreaY;
 extern word             MessageBoxOSDRgn;
 extern tMessageBox      MessageBox;
 extern bool             MessageBoxNoNormalMode;
+extern bool             MessageBoxAllowScrollOver;
 
 extern word             ProgressBarOSDRgn;
 extern word             ProgressBarFullRgn;
@@ -206,7 +209,6 @@ extern int              ColorPickerLastCursorRed, ColorPickerLastCursorGreen, Co
 extern word             WaitSpinnerRgn;
 extern int              WaitSpinnerIndex;
 extern dword            WaitSpinnerTimeout;
-
 
 int  OSDMenuGetW(char * str, byte fntSize);
 TYPE_GrData *OSDMenuGetIconPointer(tButtonIcon ButtonIcon, TYPE_GrData *UserDefinedButton);

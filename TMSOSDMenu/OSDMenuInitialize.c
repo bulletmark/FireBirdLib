@@ -87,6 +87,7 @@ dword                   InfoBoxSaveAreaX, InfoBoxSaveAreaY;
 word                    MessageBoxOSDRgn = 0;
 tMessageBox             MessageBox;
 bool                    MessageBoxNoNormalMode = FALSE;
+bool                    MessageBoxAllowScrollOver = FALSE;
 
 word                    ProgressBarOSDRgn = 0;
 word                    ProgressBarFullRgn = 0;
@@ -103,6 +104,7 @@ int                     WaitSpinnerIndex = 0;
 dword                   WaitSpinnerTimeout = 0;
 
 dword                   ButtonColor;
+dword                   LastUnprocessedOSDMenuKey = 0;
 
 tFontDataUC             OSDMenuFont_10;
 tFontDataUC             OSDMenuFont_12;

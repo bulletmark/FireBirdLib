@@ -326,7 +326,7 @@ void updateTransitionStrings()
     word    year;
     byte    month, day, hour, min, weekDay;
 
-    transition =  DST_CalcTransition(currentStartOrd, currentStartDay, currentStartMonth, currentStartHour, currentStartMin);
+    transition =  DST_CalcTransition(currentStartOrd, currentStartDay, currentStartMonth, currentStartHour, currentStartMin, 0);
 
 	hour = (transition & 0xff00) >>8;
 	min = (transition &0xff);
@@ -336,7 +336,7 @@ void updateTransitionStrings()
 	TAP_SPrint(dstStartHourString, "%02d", hour);
     TAP_SPrint(dstStartMinString, "%02d", min);
 
-    transition =  DST_CalcTransition(currentEndOrd, currentEndDay, currentEndMonth, currentEndHour, currentEndMin);
+    transition =  DST_CalcTransition(currentEndOrd, currentEndDay, currentEndMonth, currentEndHour, currentEndMin, 0);
 
 	hour = (transition & 0xff00) >>8;
 	min = (transition &0xff);

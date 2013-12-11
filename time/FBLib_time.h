@@ -10,9 +10,8 @@
 
   void  DST_GetDefaultDSTRule(void);
   dword DST_GetNextTransition(byte ruleOrdinal, byte ruleDay, byte ruleMonth, byte ruleHour, byte ruleMin, word ruleYear);
-  dword DST_CalcTransition(byte ruleOrdinal, byte ruleDay, byte ruleMonth, byte ruleHour, byte ruleMin);
-  void  DST_ProcessRule(char *dstRule, dword *dstDate);
+  void  DST_ProcessRule(char *dstRule, dword *dstDate, dword StartDate);
   void  DST_GetTransitions_Manual(dword *DSTStartUTC, dword *DSTEndUTC);
-  void  DST_GetTransitions_Europe(dword *DSTStartUTC, dword *DSTEndUTC);
+  void  DST_GetTransitions_Europe(dword *DSTStartUTC, dword *DSTEndUTC, dword StartDate);
 
 #endif

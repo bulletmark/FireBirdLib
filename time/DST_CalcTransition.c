@@ -1,6 +1,6 @@
 #include                "FBLib_time.h"
 
-dword DST_CalcTransition(byte ruleOrdinal, byte ruleDay, byte ruleMonth, byte ruleHour, byte ruleMin)
+dword DST_CalcTransition(byte ruleOrdinal, byte ruleDay, byte ruleMonth, byte ruleHour, byte ruleMin, dword StartDate)
 {
   #ifdef DEBUG_FIREBIRDLIB
     CallTraceEnter("DST_CalcTransition");
@@ -10,7 +10,11 @@ dword DST_CalcTransition(byte ruleOrdinal, byte ruleDay, byte ruleMonth, byte ru
   byte        month, day, weekDay;
   dword       toppyNow, workingDate;
 
-  toppyNow = Now(NULL);
+  if(StartDate == 0)
+    toppyNow = Now(NULL);
+  else
+    toppyNow = StartDate;
+
   TAP_ExtractMjd(toppyNow >> 16, &year, &month, &day, &weekDay);
 
   //If the transition month is less than the current month, then the transition must be next year.

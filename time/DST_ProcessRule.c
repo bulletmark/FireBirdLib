@@ -1,7 +1,7 @@
 #include                <stdio.h>
 #include                "FBLib_time.h"
 
-void DST_ProcessRule(char *dstRuleString, dword *dstDate)
+void DST_ProcessRule(char *dstRuleString, dword *dstDate, dword StartDate)
 {
   #ifdef DEBUG_FIREBIRDLIB
     CallTraceEnter("DST_ProcessRule");
@@ -39,7 +39,7 @@ void DST_ProcessRule(char *dstRuleString, dword *dstDate)
 
   //TAP_PrintNet("Ordinal = %d, Day = %d, Month = %d, Hour = %d, Min = %d.\r\n\r\n", ruleOrdinal, ruleDay, ruleMonth, ruleHour, ruleMin);
 
-  transitionDate = DST_CalcTransition(ruleOrdinal, ruleDay, ruleMonth, ruleHour, ruleMin);
+  transitionDate = DST_CalcTransition(ruleOrdinal, ruleDay, ruleMonth, ruleHour, ruleMin, StartDate);
 
   //    TAP_ExtractMjd(transitionDate>>16, &year, &month, &day, &weekDay) ;
   //    hour = (transitionDate&0xff00)>>8;

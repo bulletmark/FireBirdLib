@@ -22,7 +22,7 @@ dword DST_FindNextTransition(void)
 
     case DSTR_Europe:
     {
-      DST_GetTransitions_Europe(&DSTStartUTC, &DSTEndUTC);
+      DST_GetTransitions_Europe(&DSTStartUTC, &DSTEndUTC, 0);
       ret = (DSTStartUTC < DSTEndUTC) ? DSTStartUTC : DSTEndUTC;
       ret = UTC2LocalTime(ret, NULL);
       break;

@@ -833,3 +833,6 @@ License:  This library is freeware. You may use this code in your own projects f
 2013-10-12  Added: OSDMenuItemModifyCustomIndex(), which allows to display custom specific indices in a list
 2013-10-19  Added: FIS_vPvrPlayInfo()
 2013-10-20  Added: FIS_vPvrRecTempInfo(), HDD_GetPvrRecTsPlayInfoPointer(), FIS_vTempRecSlot()
+2013-10-26  Fixed: DST_GetTransitions_Europe() reported the transition from DST to standard time one hour too early
+2013-11-16  Fixed: Had to add the parameter StartDate to the functions DST_CalcTransition(), DST_GetTransitions_Europe() and DST_ProcessRule(), otherwise it wouldn't have been possible to calculate
+                   offsets in the past. Pass 0 to get the old behaviour.

@@ -39,7 +39,7 @@ void DST_GetTransitions_Manual(dword *DSTStartUTC, dword *DSTEndUTC)
       if(s[0])
       {
         //TAP_PrintNet("Processing start rule.\n");
-        DST_ProcessRule(s, DSTStartUTC);  //This is still in local time
+        DST_ProcessRule(s, DSTStartUTC, 0);  //This is still in local time
         //TAP_PrintNet("Start rule processed.\n");
 
         //Because the DST rule is expressed in local time, the opposite offset needs to be applied.
@@ -60,7 +60,7 @@ void DST_GetTransitions_Manual(dword *DSTStartUTC, dword *DSTEndUTC)
       if(s[0])
       {
         //TAP_PrintNet("Processing end rule.\n");
-        DST_ProcessRule(s, DSTEndUTC);  //This is still in local time
+        DST_ProcessRule(s, DSTEndUTC, 0);  //This is still in local time
         //TAP_PrintNet("End rule processed.\n");
         *DSTEndUTC = AddTime(*DSTEndUTC, -StdOffset);
         //TAP_PrintNet("DST Rule   End: %s.\n", TimeFormat(*DSTEndUTC, 0, TIMESTAMP_YMDHM));

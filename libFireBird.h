@@ -3,7 +3,7 @@
 
   //#define DEBUG_FIREBIRDLIB
 
-  #define __FBLIB_RELEASEDATE__ "2013-10-19"
+  #define __FBLIB_RELEASEDATE__ "2013-11-16"
 
   #ifdef _TMSEMU_
     #define __FBLIB_VERSION__ __FBLIB_RELEASEDATE__" TMSEmulator"
@@ -2521,7 +2521,7 @@
   dword  LocalTime2UTC(dword LocalTime, short *Offset); //Uses DST_SetDSTRule()
   void   DST_SetDSTRule(tDSTRule NewDSTRule);
   dword  DST_FindNextTransition(void);
-  dword  DST_CalcTransition(byte ruleOrdinal, byte ruleDay, byte ruleMonth, byte ruleHour, byte ruleMin);
+  dword  DST_CalcTransition(byte ruleOrdinal, byte ruleDay, byte ruleMonth, byte ruleHour, byte ruleMin, dword StartDate);
 
 
   /*****************************************************************************************************************************/

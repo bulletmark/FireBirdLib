@@ -32,7 +32,7 @@ dword LocalTime2UTC(dword LocalTime, short *Offset)
 
     case DSTR_Europe:
     {
-      DST_GetTransitions_Europe(&DSTStartUTC, &DSTEndUTC);
+      DST_GetTransitions_Europe(&DSTStartUTC, &DSTEndUTC, LocalTime);
       break;
     }
 

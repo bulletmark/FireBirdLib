@@ -115,13 +115,13 @@ int TAP_Main()
   DevHdd_DeviceOpen(NULL, NULL);
   DevService_Mute(FALSE);
   DrawOSDLine(0, 0, 0, 0, 0, 0);
-  DST_CalcTransition(0, 0, 0, 0, 0);
+  DST_CalcTransition(0, 0, 0, 0, 0, 0);
   DST_FindNextTransition();
   DST_GetDefaultDSTRule();
   DST_GetNextTransition(0, 0, 0, 0, 0, 0);
-  DST_GetTransitions_Europe(NULL, NULL);
+  DST_GetTransitions_Europe(NULL, NULL, 0);
   DST_GetTransitions_Manual(NULL, NULL);
-  DST_ProcessRule(NULL, NULL);
+  DST_ProcessRule(NULL, NULL, 0);
   DST_SetDSTRule(0);
   DumpMemory(NULL, 0, 0);
   DumpMemoryDword(NULL, 0);

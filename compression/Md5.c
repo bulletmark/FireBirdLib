@@ -37,6 +37,9 @@
  **********************************************************************
  */
 
+#include <fcntl.h>
+#include <unistd.h>
+
 /* typedef a 32 bit type */
 typedef unsigned long int UINT4;
 
@@ -434,6 +437,51 @@ bool MD5File(char *FileName, byte *Digest)
     MD5Update(&mdContext, data, bytes);
   MD5Final(&mdContext);
   TAP_Hdd_Fclose(inFile);
+
+  if(Digest) memcpy(Digest, mdContext.digest, 16);
+
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceExit(NULL);
+  #endif
+
+  return TRUE;
+}
+
+bool MD5AbsFile(char *AbsFileName, byte *Digest)
+{
+  #ifdef DEBUG_FIREBIRDLIB
+    CallTraceEnter("MD5AbsFile");
+  #endif
+
+  int                   inFile;
+  MD5_CTX               mdContext;
+  int                   bytes;
+  unsigned char         data[1024];
+
+  if(!AbsFileName)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return FALSE;
+  }
+
+  inFile = open(AbsFileName, O_RDONLY, 0600);
+  if(inFile < 0)
+  {
+    #ifdef DEBUG_FIREBIRDLIB
+      CallTraceExit(NULL);
+    #endif
+
+    return FALSE;
+  }
+
+  MD5Init(&mdContext);
+  while((bytes = read(inFile, data, 1024)) != 0)
+    MD5Update(&mdContext, data, bytes);
+  MD5Final(&mdContext);
+  close(inFile);
 
   if(Digest) memcpy(Digest, mdContext.digest, 16);
 

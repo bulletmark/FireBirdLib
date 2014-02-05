@@ -3,7 +3,7 @@
 
   //#define DEBUG_FIREBIRDLIB
 
-  #define __FBLIB_RELEASEDATE__ "2013-11-16"
+  #define __FBLIB_RELEASEDATE__ "2014-02-01"
 
   #ifdef _TMSEMU_
     #define __FBLIB_VERSION__ __FBLIB_RELEASEDATE__" TMSEmulator"
@@ -310,6 +310,7 @@
   bool  isPIPActive(void);
   void  OSDCopy(word rgn, dword x, dword y, dword w, dword h, word items, eCopyDirection direction);
   dword PlayMediaFile(char *MediaFileName);
+  dword PlayMediaFileAbs(char *MediaFileName, char *AbsMediaPathName);
   bool  SaveBitmap(char *strName, int width, int height, byte* pBuffer);
   void  SetRemoteMode(byte Mode, bool Active);
   void  ShowMessageWin(char* title, char* lpMessage1, char* lpMessage2, dword dwDelay);
@@ -343,6 +344,7 @@
   dword CRC32(dword StartValue, void *StartAddress, dword Length);
   bool  MD5String(char *inString, byte *Digest);
   bool  MD5File(char *FileName, byte *Digest);
+  bool  MD5AbsFile(char *AbsFileName, byte *Digest);
   dword OATH(register byte *data, int len, dword hash);
   dword SuperFastHash(register byte *data, int len, dword hash);
   word  UncompressBlock(byte *pInput, word compCount, byte *pOutput, word BufferSize);
@@ -1778,7 +1780,7 @@
   /*****************************************************************************************************************************/
 
   #define TAPFSROOT     "/mnt/hd"
-  #define FBLIB_DIR_SIZE 256
+  #define FBLIB_DIR_SIZE 512
 
   //Some of them are missing in the TF5k hdd.h and alle are missing in the TMS hdd.h
   #ifndef SEEK_SET
@@ -1842,6 +1844,7 @@
   __ino64_t  HDD_GetInodeByTypeFile(TYPE_File *File);
   bool       HDD_IdentifyDevice(char *IdentifyDeviceBuffer);
   bool       HDD_Move(char *FileName, char *FromDir, char *ToDir);
+  bool       HDD_MoveAbs(char *FileName, char *FromDir, char *ToDir);
   void       HDD_Recycle(char *FileName);
   void       HDD_RecycleSF(char *FileName);
   void       HDD_RemoveDir(char *DirPath, bool Recursive);
@@ -1858,6 +1861,7 @@
   bool       HDD_Write(void *data, dword length, TYPE_File *f);
   tFileInUse HDD_isFileInUse(char *FileName);
   void       MakeUniqueFileName(char *FileName);
+  void       MakeUniqueFileNameAbs(char *FileName);
   void       SeparateFileNameComponents(char *FileName, char *Name, char *Ext, int *Index, bool *isRec, bool *isDel);
 
 
@@ -2510,19 +2514,21 @@
   dword  AddSec(dword date, byte dateSec, int add);
   dword  AddTime(dword date, int add);
   char  *DayOfWeek(byte WeekDay);
+  dword  DST_FindNextTransition(void);
+  dword  DST_CalcTransition(byte ruleOrdinal, byte ruleDay, byte ruleMonth, byte ruleHour, byte ruleMin, dword StartDate);
+  void   DST_SetDSTRule(tDSTRule NewDSTRule);
   bool   GetCurrentTimeZone(short *TZOffset, bool *DST);
   bool   isMJD(dword MJD);
+  dword  LocalTime2UTC(dword LocalTime, short *Offset); //Uses DST_SetDSTRule()
   dword  Now(byte *Sec);
   dword  TF2UnixTime(dword TFTimeStamp);
   long   TimeDiff(dword FromTime, dword ToTime);
   char  *TimeFormat(dword DateTime, byte Sec, eTimeStampFormat TimeStampFormat);
+  bool   TimerPaddingAPICheck(void);
+  bool   TimerPaddingGet(short *PrePaddingMin, short *PostPaddingMin);
+  bool   TimerPaddingSet(short *PrePaddingMin, short *PostPaddingMin);
   dword  Unix2TFTime(dword UnixTimeStamp);
   dword  UTC2LocalTime(dword UTCTime, short *Offset);   //Uses DST_SetDSTRule()
-  dword  LocalTime2UTC(dword LocalTime, short *Offset); //Uses DST_SetDSTRule()
-  void   DST_SetDSTRule(tDSTRule NewDSTRule);
-  dword  DST_FindNextTransition(void);
-  dword  DST_CalcTransition(byte ruleOrdinal, byte ruleDay, byte ruleMonth, byte ruleHour, byte ruleMin, dword StartDate);
-
 
   /*****************************************************************************************************************************/
   /* TMS OSD Menu                                                                                                              */

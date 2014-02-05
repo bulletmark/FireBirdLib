@@ -593,6 +593,7 @@ int TAP_Main()
   MakeUniqueFileName(NULL);
   MakeValidFileName(NULL, 0);
   MD5File(NULL, NULL);
+  MD5AbsFile(NULL, NULL);
   MD5String(NULL, NULL);
   NoAutoStartTAP();
   Now(NULL);

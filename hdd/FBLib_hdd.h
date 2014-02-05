@@ -97,6 +97,7 @@ typedef struct
 } tstat64;
 
 extern int lstat64(__const char *__restrict __file, tstat64 *__restrict __buf) __THROW;
+extern int stat64(__const char *__restrict __file, tstat64 *__restrict __buf) __THROW;
 
 extern volatile word *HDD_pData;
 extern volatile byte *HDD_pError;

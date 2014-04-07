@@ -3,9 +3,7 @@
 
 void ReplaceInvalidFileNameChars(char *strName)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("ReplaceInvalidFileNameChars");
-  #endif
+  TRACEENTER();
 
   unsigned char         *s, *d;
 
@@ -36,7 +34,5 @@ void ReplaceInvalidFileNameChars(char *strName)
   }
   *d = '\0';
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

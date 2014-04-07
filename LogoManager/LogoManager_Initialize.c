@@ -12,9 +12,7 @@ void (*LogoManager_CB)(int CallbackType, int Param1) = NULL;
 
 void LogoManager_Initialize(void *CallbackRoutine)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("LogoManager_Initialize");
-  #endif
+  TRACEENTER();
 
   char                  cmd[255];
   TYPE_FolderEntry      FolderEntry;
@@ -68,7 +66,5 @@ void LogoManager_Initialize(void *CallbackRoutine)
 
   HDD_TAP_PopDir();
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

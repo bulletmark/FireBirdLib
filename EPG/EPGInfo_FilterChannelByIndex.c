@@ -2,9 +2,7 @@
 
 void EPGInfo_FilterChannelByIndex(TYPE_ServiceType SvcType, int SvcNum, bool StartCurrent)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("EPGInfo_FilterChannelByIndex");
-  #endif
+  TRACEENTER();
 
   TYPE_TapChInfo        chInfo;
 
@@ -18,7 +16,5 @@ void EPGInfo_FilterChannelByIndex(TYPE_ServiceType SvcType, int SvcNum, bool Sta
 
   EPGFilter.ChannelFilter = TRUE;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

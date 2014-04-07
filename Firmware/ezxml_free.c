@@ -2,9 +2,7 @@
 
 void ezxml_free(ezxml_t xml)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("ezxml_free");
-  #endif
+  TRACEENTER();
 
 	void		(*__ezxml_free)(ezxml_t);
 
@@ -15,7 +13,5 @@ void ezxml_free(ezxml_t xml)
 		__ezxml_free(xml);
 	}
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

@@ -2,9 +2,7 @@
 
 char *iso639_2(int OSDLan)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("iso639_2");
-  #endif
+  TRACEENTER();
 
   char *lang;
 
@@ -94,9 +92,6 @@ char *iso639_2(int OSDLan)
       lang = NULL;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return lang;
 }

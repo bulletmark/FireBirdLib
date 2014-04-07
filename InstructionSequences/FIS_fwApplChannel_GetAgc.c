@@ -2,18 +2,13 @@
 
 inline dword FIS_fwApplChannel_GetAgc(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FIS_fwApplChannel_GetAgc");
-  #endif
+  TRACEENTER();
 
   static dword          _ApplChannel_GetAgc = 0;
 
   if(!_ApplChannel_GetAgc)
     _ApplChannel_GetAgc = TryResolve("_Z18ApplChannel_GetAgchPh");
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return _ApplChannel_GetAgc;
 }

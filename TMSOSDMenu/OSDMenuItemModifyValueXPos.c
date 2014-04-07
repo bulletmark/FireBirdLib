@@ -2,9 +2,7 @@
 
 void OSDMenuItemModifyValueXPos(dword NewValueXPos)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuItemModifyValueXPos");
-  #endif
+  TRACEENTER();
 
   tMenu                *pMenu;
 
@@ -17,7 +15,5 @@ void OSDMenuItemModifyValueXPos(dword NewValueXPos)
 
   ListDirty = TRUE;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

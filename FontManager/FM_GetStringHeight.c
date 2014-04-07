@@ -3,19 +3,14 @@
 
 dword FM_GetStringHeight(char *Text, tFontData *FontData)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FM_GetStringHeight");
-  #endif
+  TRACEENTER();
 
   dword                 i;
   dword                 h, Height = 0;
 
   if(!Text || !Text[0] || !FontData || !FontData->pFontData)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return 0;
   }
 
@@ -28,9 +23,6 @@ dword FM_GetStringHeight(char *Text, tFontData *FontData)
     }
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return Height;
 }

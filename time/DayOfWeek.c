@@ -4,15 +4,10 @@ char                    WDString[8][4] = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sa
 
 char *DayOfWeek(byte WeekDay)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("DayOfWeek");
-  #endif
+  TRACEENTER();
 
   if(WeekDay > 7) WeekDay = 7;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return WDString[WeekDay];
 }

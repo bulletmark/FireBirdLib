@@ -2,9 +2,7 @@
 
 void OSDMenuMessageBoxDestroy(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuMessageBoxDestroy");
-  #endif
+  TRACEENTER();
 
   if(MessageBoxOSDRgn)
   {
@@ -15,7 +13,5 @@ void OSDMenuMessageBoxDestroy(void)
 
   OSDMenuFreeStdFonts();
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

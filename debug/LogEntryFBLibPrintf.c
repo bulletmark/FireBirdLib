@@ -7,9 +7,7 @@ int vsnprintf(char *str, size_t size, const char *format, va_list ap);   //defin
 
 void LogEntryFBLibPrintf(bool Console, char *format, ...)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("LogEntryFBLibPrintf");
-  #endif
+  TRACEENTER();
 
   char                  Text[512];
   TYPE_File            *File;
@@ -21,10 +19,7 @@ void LogEntryFBLibPrintf(bool Console, char *format, ...)
 
   if(!format)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return;
   }
 
@@ -61,7 +56,5 @@ void LogEntryFBLibPrintf(bool Console, char *format, ...)
 
   HDD_TAP_PopDir();
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

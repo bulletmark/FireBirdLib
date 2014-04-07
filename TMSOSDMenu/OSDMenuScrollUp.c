@@ -2,9 +2,7 @@
 
 int OSDMenuScrollUp(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuScrollUp");
-  #endif
+  TRACEENTER();
 
   tMenu                *pMenu;
   int                   ret;
@@ -14,19 +12,13 @@ int OSDMenuScrollUp(void)
   ret = OSDMenuFindPreviousSelectableEntry(pMenu->CurrentSelection);
   if(ret == -1)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return -1;
   }
 
   pMenu->CurrentSelection = ret;
   ListDirty = TRUE;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

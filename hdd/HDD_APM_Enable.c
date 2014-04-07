@@ -3,9 +3,7 @@
 
 int HDD_APM_Enable(byte APMLevel)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_APM_Enable");
-  #endif
+  TRACEENTER();
 
   int ret;
   unsigned char         CommandBlock[FBHDIO_DRIVE_TASK_HDR_SIZE] = {WIN_SETFEATURES,      //COMMAND
@@ -19,9 +17,6 @@ int HDD_APM_Enable(byte APMLevel)
 
   ret = SendHDDCommand(HDIO_DRIVE_TASK, CommandBlock, 0);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

@@ -4,9 +4,7 @@
 //It is not possible to set the tuner for the PIP
 bool TunerSet(byte Tuner)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("TunerSet");
-  #endif
+  TRACEENTER();
 
   int                   tvRadio, chNum;
   byte                 *__etcInfo;
@@ -14,19 +12,13 @@ bool TunerSet(byte Tuner)
   //Parameter sanity check
   if(Tuner > 1)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
   if(!(__etcInfo = (byte*)FIS_vEtcInfo()))
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -36,9 +28,6 @@ bool TunerSet(byte Tuner)
   TAP_Channel_GetCurrent(&tvRadio, &chNum);
   TAP_Channel_Start(CHANNEL_Main, tvRadio, chNum);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }

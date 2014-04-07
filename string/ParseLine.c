@@ -3,9 +3,7 @@
 
 char *ParseLine(char *zeile, size_t *n, char delim)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("ParseLine");
-  #endif
+  TRACEENTER();
 
   char *p;
 
@@ -13,10 +11,7 @@ char *ParseLine(char *zeile, size_t *n, char delim)
   {
     *n = 0;
 
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return NULL;
   }
 
@@ -26,25 +21,17 @@ char *ParseLine(char *zeile, size_t *n, char delim)
   {
     *n = p - zeile;
 
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return zeile;
   }
   else
   {
     *n = strlen(zeile);
 
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
 
     return zeile;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

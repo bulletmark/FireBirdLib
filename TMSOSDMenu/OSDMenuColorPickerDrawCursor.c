@@ -2,9 +2,7 @@
 
 void OSDMenuColorPickerDrawCursor(tCurrentColorSelected CursorColor, bool Selected)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuColorPickerDrawCursor");
-  #endif
+  TRACEENTER();
 
   int                  y = 0, CurrentX = 0, NewX = 0, TextY = 0;
   char                 s[24];
@@ -67,7 +65,5 @@ void OSDMenuColorPickerDrawCursor(tCurrentColorSelected CursorColor, bool Select
     TAP_Osd_DrawRectangle(ColorPickerOSDRgn, 211, 116, 60, 18, 1, RGB(192,192,192));
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

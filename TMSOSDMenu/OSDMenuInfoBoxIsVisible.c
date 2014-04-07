@@ -2,13 +2,8 @@
 
 bool OSDMenuInfoBoxIsVisible(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuInfoBoxIsVisible");
-  #endif
+  TRACEENTER();
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return (InfoBoxOSDRgn != 0);
 }

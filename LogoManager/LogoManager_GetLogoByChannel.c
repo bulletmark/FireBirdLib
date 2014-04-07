@@ -5,9 +5,7 @@
 
 TYPE_GrData *LogoManager_GetLogoByChannel(int SvcType, int SvcNum, tLogoStyle LogoStyle, tLogoSize LogoSize, tLogoAspect LogoAR)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("LogoManager_GetLogoByChannel");
-  #endif
+  TRACEENTER();
 
   ulong64                 ChannelID;
   tFlashService           ServiceInfo;
@@ -17,10 +15,7 @@ TYPE_GrData *LogoManager_GetLogoByChannel(int SvcType, int SvcNum, tLogoStyle Lo
 
   if(!FlashServiceGetInfo(SvcType, SvcNum, &ServiceInfo))
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return NULL;
   }
 
@@ -28,10 +23,7 @@ TYPE_GrData *LogoManager_GetLogoByChannel(int SvcType, int SvcNum, tLogoStyle Lo
   GrData = LogoManager_GetLogoByChannelName(ServiceInfo.ServiceName, LogoStyle, LogoSize, LogoAR);
   if(GrData)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return GrData;
   }
 
@@ -39,9 +31,6 @@ TYPE_GrData *LogoManager_GetLogoByChannel(int SvcType, int SvcNum, tLogoStyle Lo
   ChannelID =  LogoManager_GetChannelID(SvcType, SvcNum);
   GrData = LogoManager_GetLogoByChannelID(ChannelID, LogoStyle, LogoSize, LogoAR);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return GrData;
 }

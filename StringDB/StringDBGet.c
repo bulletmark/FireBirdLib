@@ -2,26 +2,18 @@
 
 char *StringDBGet(tStringDB *StringDB, dword Index)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("StringDBGet");
-  #endif
+  TRACEENTER();
 
   char *ret;
 
   if(!StringDB)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return '\0';
   }
 
   ret = StringDB->DB + Index;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

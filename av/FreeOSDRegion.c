@@ -2,18 +2,13 @@
 
 void FreeOSDRegion(word Region)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FreeOSDRegion");
-  #endif
+  TRACEENTER();
 
   tOSDMapInfo           *OSDMapInfo;
 
   if(!(OSDMapInfo = (tOSDMapInfo*) FIS_vOsdMap()))
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return;
   }
 
@@ -21,7 +16,5 @@ void FreeOSDRegion(word Region)
 
   memset(&OSDMapInfo[Region], 0, sizeof(tOSDMapInfo));
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

@@ -3,9 +3,7 @@
 
 word getWord(void *buffer, bool NeedsByteSwapping)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("getWord");
-  #endif
+  TRACEENTER();
 
   word                  w;
   byte                 *p;
@@ -16,18 +14,13 @@ word getWord(void *buffer, bool NeedsByteSwapping)
   else
     w = (p[0] | (p[1] << 8));
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return w;
 }
 
 dword getDword(void *buffer, bool NeedsByteSwapping)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("getDword");
-  #endif
+  TRACEENTER();
 
   dword                 d;
   byte                 *p;
@@ -38,10 +31,7 @@ dword getDword(void *buffer, bool NeedsByteSwapping)
   else
     d = (p[0] | (p[1] << 8) | (p[2] << 16) | (p[3] << 24));
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return d;
 }
 
@@ -49,9 +39,7 @@ bool                    WrongEndian = FALSE;
 
 void HDD_DecodeRECHeader_ST_S(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_DecodeRECHeader_ST_S");
-  #endif
+  TRACEENTER();
 
   dword                 p;
   word                  TPFlags1;
@@ -135,16 +123,12 @@ void HDD_DecodeRECHeader_ST_S(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
   memcpy(RECHeaderInfo->Bookmark, &Buffer[p + 0x0000], 64 * sizeof(dword));
   RECHeaderInfo->Resume = getDword(&Buffer[p + 0x0100], WrongEndian);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }
 
 void HDD_DecodeRECHeader_ST_T(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_DecodeRECHeader_ST_T");
-  #endif
+  TRACEENTER();
 
   dword                 p;
   byte                  EventTextLength;
@@ -223,16 +207,12 @@ void HDD_DecodeRECHeader_ST_T(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
   memcpy(RECHeaderInfo->Bookmark, &Buffer[p + 0x0000], 64 * sizeof(dword));
   RECHeaderInfo->Resume = getDword(&Buffer[p + 0x0100], WrongEndian);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }
 
 void HDD_DecodeRECHeader_ST_C(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_DecodeRECHeader_ST_C");
-  #endif
+  TRACEENTER();
 
   dword                 p;
   byte                  EventTextLength;
@@ -308,16 +288,12 @@ void HDD_DecodeRECHeader_ST_C(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
   memcpy(RECHeaderInfo->Bookmark, &Buffer[p + 0x0000], 64 * sizeof(dword));
   RECHeaderInfo->Resume = getDword(&Buffer[p + 0x0100], WrongEndian);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }
 
 void HDD_DecodeRECHeader_ST_T5700(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_DecodeRECHeader_ST_T5700");
-  #endif
+  TRACEENTER();
 
   dword                 p;
   byte                  EventTextLength;
@@ -397,16 +373,12 @@ void HDD_DecodeRECHeader_ST_T5700(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
   memcpy(RECHeaderInfo->Bookmark, &Buffer[p + 0x0000], 64 * sizeof(dword));
   RECHeaderInfo->Resume = getDword(&Buffer[p + 0x0100], WrongEndian);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }
 
 void HDD_DecodeRECHeader_ST_T5800(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_DecodeRECHeader_ST_T5800");
-  #endif
+  TRACEENTER();
 
   dword                 p;
   byte                  EventTextLength;
@@ -485,16 +457,12 @@ void HDD_DecodeRECHeader_ST_T5800(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
   memcpy(RECHeaderInfo->Bookmark, &Buffer[p + 0x0000], 64 * sizeof(dword));
   RECHeaderInfo->Resume = getDword(&Buffer[p + 0x0100], WrongEndian);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }
 
 void HDD_DecodeRECHeader_ST_TMSS(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_DecodeRECHeader_ST_TMSS");
-  #endif
+  TRACEENTER();
 
   dword                 p;
   word                  Flags;
@@ -602,16 +570,12 @@ void HDD_DecodeRECHeader_ST_TMSS(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
   memcpy(RECHeaderInfo->Bookmark, &Buffer[p + 0x0004], 177 * sizeof(dword));
   RECHeaderInfo->Resume = getDword(&Buffer[p + 0x02c8], WrongEndian);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }
 
 void HDD_DecodeRECHeader_ST_TMST(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_DecodeRECHeader_ST_TMST");
-  #endif
+  TRACEENTER();
 
   dword                 p;
   word                  Flags;
@@ -704,16 +668,12 @@ void HDD_DecodeRECHeader_ST_TMST(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
   memcpy(RECHeaderInfo->Bookmark, &Buffer[p + 0x0004], 177 * sizeof(dword));
   RECHeaderInfo->Resume = getDword(&Buffer[p + 0x02c8], WrongEndian);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }
 
 void HDD_DecodeRECHeader_ST_TMSC(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_DecodeRECHeader_ST_TMSC");
-  #endif
+  TRACEENTER();
 
   dword                 p;
   word                  Flags;
@@ -801,16 +761,12 @@ void HDD_DecodeRECHeader_ST_TMSC(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
   memcpy(RECHeaderInfo->Bookmark, &Buffer[p + 0x0004], 177 * sizeof(dword));
   RECHeaderInfo->Resume = getDword(&Buffer[p + 0x02c8], WrongEndian);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }
 
 void HDD_DecodeRECHeader_ST_TF7k7HDPVR(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_DecodeRECHeader_ST_TF7k7HDPVR");
-  #endif
+  TRACEENTER();
 
   dword                 p;
   word                  TPFlags1;
@@ -896,17 +852,13 @@ void HDD_DecodeRECHeader_ST_TF7k7HDPVR(byte *Buffer, tRECHeaderInfo *RECHeaderIn
   memcpy(RECHeaderInfo->Bookmark, &Buffer[p + 0x0000], 64 * sizeof(dword));
   RECHeaderInfo->Resume = getDword(&Buffer[p + 0x0100], WrongEndian);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }
 
 
 bool HDD_DecodeRECHeader(byte *Buffer, tRECHeaderInfo *RECHeaderInfo, SYSTEM_TYPE SystemType)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_DecodeRECHeader");
-  #endif
+  TRACEENTER();
 
   bool ret;
 
@@ -918,10 +870,7 @@ bool HDD_DecodeRECHeader(byte *Buffer, tRECHeaderInfo *RECHeaderInfo, SYSTEM_TYP
   RECHeaderInfo->HeaderMagic     = (Buffer[0] << 24) | (Buffer[1] << 16) | (Buffer[2] << 8) | Buffer[3];
   if(RECHeaderInfo->HeaderMagic != 0x54467263)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -949,9 +898,6 @@ bool HDD_DecodeRECHeader(byte *Buffer, tRECHeaderInfo *RECHeaderInfo, SYSTEM_TYP
     case ST_NRTYPES:    ret = FALSE; break;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

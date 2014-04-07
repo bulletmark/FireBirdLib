@@ -2,9 +2,7 @@
 
 bool OSDMenuSelectItem(int ItemIndex)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuSelectItem");
-  #endif
+  TRACEENTER();
 
   tMenu                *pMenu;
 
@@ -12,10 +10,7 @@ bool OSDMenuSelectItem(int ItemIndex)
 
   if(pMenu->NrItems == 0)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -26,10 +21,7 @@ bool OSDMenuSelectItem(int ItemIndex)
   {
     if(!pMenu->Item[ItemIndex].Selectable)
     {
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
-
+      TRACEEXIT();
       return FALSE;
     }
 
@@ -37,9 +29,6 @@ bool OSDMenuSelectItem(int ItemIndex)
     ListDirty = TRUE;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }

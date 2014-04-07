@@ -2,13 +2,8 @@
 
 bool VFD_isInUseByTAP(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("VFD_isInUseByTAP");
-  #endif
+  TRACEENTER();
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return VFDUsedByTAP;
 }

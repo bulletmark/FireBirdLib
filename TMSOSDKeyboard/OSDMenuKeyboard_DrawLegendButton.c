@@ -4,9 +4,7 @@ TYPE_GrData *OSDMenuGetIconPointer(tButtonIcon ButtonIcon, TYPE_GrData *UserDefi
 
 void OSDMenuKeyboard_DrawLegendButton(dword Line, tButtonIcon ButtonIcon, char *Text)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuKeyboard_DrawLegendButton");
-  #endif
+  TRACEENTER();
 
   TYPE_GrData          *IconGd;
   int                   y;
@@ -27,7 +25,5 @@ void OSDMenuKeyboard_DrawLegendButton(dword Line, tButtonIcon ButtonIcon, char *
     OSDMenuKeyboard_ButtonsX[Line - 1] = OSDMenuKeyboard_ButtonsX[Line - 1] + IconGd->width + FMUC_GetStringWidth(Text, &KeyboardFont_12) + 6;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

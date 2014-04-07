@@ -2,18 +2,13 @@
 
 inline dword FIS_vFlashBlockNetwork(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FIS_vFlashBlockNetwork");
-  #endif
+  TRACEENTER();
 
   static dword          *vFlashNetwork = 0;
 
   if(!vFlashNetwork)
    vFlashNetwork = (dword*)TryResolve("_network");
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return (vFlashNetwork ? *vFlashNetwork : 0);
 }

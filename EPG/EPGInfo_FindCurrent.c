@@ -8,9 +8,7 @@ bool EPGInfo_FindCurrent(byte SvcType, int SvcNum, TYPE_EPGInfo *EPGData)
   TYPE_TapChInfo          chInfo;
   bool                    ret;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("EPGInfo_FindCurrent");
-  #endif
+  TRACEENTER();
 
   ret = FALSE;
   if(EPGData)
@@ -18,8 +16,6 @@ bool EPGInfo_FindCurrent(byte SvcType, int SvcNum, TYPE_EPGInfo *EPGData)
     TAP_Channel_GetInfo(SvcType, SvcNum, &chInfo);
 
     memset(EPGData, 0, sizeof(TYPE_EPGInfo));
-
-    //TAP_Print("Getting current event for svctype = %d, svcnum = %d.\r\n", SvcType, SvcNum);
 
     EvtInfo = Appl_GetSameTimeEvent(chInfo.satIdx, chInfo.orgNetId, chInfo.tsId, chInfo.svcId);
     if(EvtInfo)
@@ -31,9 +27,6 @@ bool EPGInfo_FindCurrent(byte SvcType, int SvcNum, TYPE_EPGInfo *EPGData)
     }
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

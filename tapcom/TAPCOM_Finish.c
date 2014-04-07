@@ -2,9 +2,7 @@
 
 void TAPCOM_Finish(TAPCOM_Channel Channel, int val)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("TAPCOM_Finish");
-  #endif
+  TRACEENTER();
 
   TAPCOM_InternalMesBuf *buf = (TAPCOM_InternalMesBuf *) Channel;
 
@@ -17,7 +15,5 @@ void TAPCOM_Finish(TAPCOM_Channel Channel, int val)
     buf->ServerAlive = TAP_GetTick();
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

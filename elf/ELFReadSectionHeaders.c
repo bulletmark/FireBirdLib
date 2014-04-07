@@ -3,42 +3,28 @@
 
 bool ELFReadSectionHeaders(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("ELFReadSectionHeaders");
-  #endif
+  TRACEENTER();
 
   if(ELFHeader->e_shnum == 0)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
   if(!(SectionHeaders = TAP_MemAlloc(ELFHeader->e_shnum * sizeof(Elf32_Shdr))))
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
   lseek(fTAP, ELFHeader->e_shoff, SEEK_SET);
   if(read(fTAP, SectionHeaders, ELFHeader->e_shnum * sizeof(Elf32_Shdr)) != (int)(ELFHeader->e_shnum * sizeof(Elf32_Shdr)))
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }

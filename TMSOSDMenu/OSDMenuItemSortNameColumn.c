@@ -3,9 +3,7 @@
 
 void OSDMenuItemSortNameColumn(bool Ascending, bool CaseSensitive)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuItemSortNameColumn");
-  #endif
+  TRACEENTER();
 
   int                   i, j, NrItems;
   tItem                 TempItem;
@@ -48,7 +46,5 @@ void OSDMenuItemSortNameColumn(bool Ascending, bool CaseSensitive)
 
   ListDirty = TRUE;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

@@ -2,9 +2,7 @@
 
 void OSDMenuWaitSpinnerInit(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuWaitSpinnerInit");
-  #endif
+  TRACEENTER();
 
   if(InfoBoxOSDRgn && WaitSpinnerRgn == 0)
   {
@@ -19,7 +17,5 @@ void OSDMenuWaitSpinnerInit(void)
     }
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

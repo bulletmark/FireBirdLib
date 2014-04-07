@@ -2,9 +2,7 @@
 
 TYPE_TapEvent *GetCurrentEvent(int *nCurEvent)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("GetCurrentEvent");
-  #endif
+  TRACEENTER();
 
   TYPE_TapEvent         *evtInfo;
   unsigned int          eventNum, i;
@@ -27,9 +25,6 @@ TYPE_TapEvent *GetCurrentEvent(int *nCurEvent)
 
   if(evtInfo) TAP_MemFree(evtInfo);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return NULL;
 }

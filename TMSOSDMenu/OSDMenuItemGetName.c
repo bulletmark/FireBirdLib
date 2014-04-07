@@ -2,9 +2,7 @@
 
 char *OSDMenuItemGetName(int ItemIndex)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuItemGetName");
-  #endif
+  TRACEENTER();
 
   char *ret;
 
@@ -13,9 +11,6 @@ char *OSDMenuItemGetName(int ItemIndex)
   else
     ret = Menu[CurrentMenuLevel].Item[ItemIndex].Name;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

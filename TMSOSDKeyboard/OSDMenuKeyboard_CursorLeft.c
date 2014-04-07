@@ -2,9 +2,7 @@
 
 void OSDMenuKeyboard_CursorLeft(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuKeyboard_CursorLeft");
-  #endif
+  TRACEENTER();
 
   if(OSDMenuKeyboard_CursorPosition > 0)
   {
@@ -12,7 +10,5 @@ void OSDMenuKeyboard_CursorLeft(void)
     OSDMenuKeyboard_Draw();
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

@@ -1,28 +1,38 @@
-#ifndef _TMSEMU_
-  #include <ctype.h>
-#endif
+#include <ctype.h>
 #include <string.h>
 #include <stdlib.h>
 #include "../libFireBird.h"
 
-void SeparateFileNameComponents(char *FileName, char *Name, char *Ext, int *Index, bool *isRec, bool *isDel)
+void SeparateFileNameComponents(char *FileName, char *Path, char *Name, char *Ext, int *Index, bool *isRec, bool *isDel)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("SeparateFileNameComponents");
-  #endif
+  TRACEENTER();
 
-  char                 *dot;
+  char                 *dot, *slash;
 
   if(!FileName || !*FileName || !Name)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return;
   }
 
-  strcpy(Name, FileName);
+  slash = strrchr(FileName, '/');
+  if(slash)
+  {
+    if(Path)
+    {
+      char *c;
+
+      strcpy(Path, FileName);
+      c = strrchr(Path, '/');
+      if(c) c[1] = '\0';
+    }
+    strcpy(Name, slash + 1);
+  }
+  else
+  {
+    if(Path) Path[0] = '\0';
+    strcpy(Name, FileName);
+  }
 
   if(isDel)
   {
@@ -62,7 +72,5 @@ void SeparateFileNameComponents(char *FileName, char *Name, char *Ext, int *Inde
     }
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

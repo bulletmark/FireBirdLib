@@ -7,32 +7,37 @@
 
 int ExtAttribExists(char *FileName, char *AttrName)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("ExtAttribExists");
-  #endif
+  TRACEENTER();
 
-  char                  AbsFileName[512];
-  int                   ret;
+  char                  FullAttrName[128];
+  char                  AbsFileName[FBLIB_DIR_SIZE];
+  int                   f, i;
 
-  if(!FileName || !*FileName || !TAP_Hdd_Exist(FileName) || !AttrName || !*AttrName)
+  if(!FileName || !*FileName || !AttrName || !*AttrName)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return 0;
   }
 
-  memset(AbsFileName, 0, sizeof(AbsFileName));
-  strcpy(AbsFileName, TAPFSROOT);
-  HDD_TAP_GetCurrentDir(&AbsFileName[strlen(AbsFileName)]);
-  if(AbsFileName[strlen(AbsFileName) - 1] != '/') strcat(AbsFileName, "/");
-  strcat(AbsFileName, FileName);
-  ret = ExtAttribExistsAbsPath(AbsFileName, AttrName);
+  ConvertPathType(FileName, AbsFileName, PF_FullLinuxPath);
+  if(*AbsFileName)
+  {
+    f = open(AbsFileName, O_RDWR, 0600);
+    if(f >= 0)
+    {
+      TAP_SPrint(FullAttrName, "user.%s", AttrName);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+      if((i = fgetxattr(f, FullAttrName, NULL, 0)) >= 0)
+      {
+        close(f);
 
-  return ret;
+        TRACEEXIT();
+        return i;
+      }
+      close(f);
+    }
+  }
+
+  TRACEEXIT();
+  return 0;
 }

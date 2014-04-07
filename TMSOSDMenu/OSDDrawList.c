@@ -7,9 +7,7 @@
 
 void OSDDrawList(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDDrawList");
-  #endif
+  TRACEENTER();
 
   int                   i;
   dword                 XStart, XEnd, Y;
@@ -140,7 +138,5 @@ void OSDDrawList(void)
 
   if(CallbackProcedure) CallbackProcedure(OSDCB_List, OSDRgn);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

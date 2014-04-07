@@ -6,9 +6,7 @@ REMOTE_TYPE             RemoteType = RT_2100;
 
 dword KeyTranslateHook(word event, dword param1, dword param2)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("KeyTranslateHook");
-  #endif
+  TRACEENTER();
 
   dword                 KeyFlags, NativeKeyCode, TranslatedKeyCode;
   dword                 ret;
@@ -41,19 +39,13 @@ dword KeyTranslateHook(word event, dword param1, dword param2)
 
     ret = Original_TAP_EventHandler(EVT_KEY, TranslatedKeyCode | KeyFlags, param2);
 
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return (ret ? NativeKeyCode | KeyFlags : 0);
   }
 
   ret = Original_TAP_EventHandler(event, param1, param2);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }
 
@@ -65,9 +57,7 @@ bool KeyTranslate(bool Enable, void *EventHandler)
   tToppyInfo           *ToppyInfo;
   tFWDATHeader         *FWDatHeader;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("KeyTranslate");
-  #endif
+  TRACEENTER();
 
   //Get toppy information
   if(LoadFirmwareDat(&FWDatHeader, &ToppyInfo, NULL))
@@ -86,10 +76,7 @@ bool KeyTranslate(bool Enable, void *EventHandler)
   TMSTAPTaskTable = (tTMSTAPTaskTable*)FIS_vTAPTable();
   if(!TMSTAPTaskTable)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -97,10 +84,7 @@ bool KeyTranslate(bool Enable, void *EventHandler)
   curTAPTask = (dword*)FIS_vCurTapTask();
   if(!curTAPTask)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -109,10 +93,7 @@ bool KeyTranslate(bool Enable, void *EventHandler)
     Original_TAP_EventHandler = (void*)TMSTAPTaskTable[*curTAPTask].TAP_EventHandler;
     TMSTAPTaskTable[*curTAPTask].TAP_EventHandler = (dword)&KeyTranslateHook;
 
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return TRUE;
   }
   else if(!Enable && (TMSTAPTaskTable[*curTAPTask].TAP_EventHandler == (dword)KeyTranslateHook))
@@ -120,16 +101,10 @@ bool KeyTranslate(bool Enable, void *EventHandler)
     TMSTAPTaskTable[*curTAPTask].TAP_EventHandler = (dword)Original_TAP_EventHandler;
     Original_TAP_EventHandler = NULL;
 
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return TRUE;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return FALSE;
 }

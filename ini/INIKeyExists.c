@@ -4,9 +4,7 @@
 
 bool INIKeyExists(char *Key)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("INIKeyExists");
-  #endif
+  TRACEENTER();
 
   char                  *i = NULL, *j = NULL;
   char                  TempKey[80];
@@ -24,9 +22,6 @@ bool INIKeyExists(char *Key)
   else
     ret = FALSE;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

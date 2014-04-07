@@ -2,9 +2,7 @@
 
 int FlashFavoritesGetTotal(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FlashFavoritesGetTotal");
-  #endif
+  TRACEENTER();
 
   int                   i, NrGroups, NrSvcsPerGroup;
   tFavorites           *Favs30100;
@@ -15,10 +13,7 @@ int FlashFavoritesGetTotal(void)
 
   if(!Favs30100)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return 0;
   }
 
@@ -50,9 +45,6 @@ int FlashFavoritesGetTotal(void)
     }
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return i;
 }

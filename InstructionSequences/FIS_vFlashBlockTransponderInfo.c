@@ -2,18 +2,13 @@
 
 inline dword FIS_vFlashBlockTransponderInfo(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FIS_vFlashBlockTransponderInfo");
-  #endif
+  TRACEENTER();
 
   static dword          *vFlashTPInfo = 0;
 
   if(!vFlashTPInfo)
     vFlashTPInfo = (dword*)TryResolve("_tpInfo");
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return (vFlashTPInfo ? *vFlashTPInfo : 0);
 }

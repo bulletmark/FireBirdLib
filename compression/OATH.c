@@ -2,9 +2,7 @@
 
 dword OATH(register unsigned char *data, int len, dword hash)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OATH");
-  #endif
+  TRACEENTER();
 
   register int i;
 
@@ -18,9 +16,6 @@ dword OATH(register unsigned char *data, int len, dword hash)
   hash ^= (hash>>11);
   hash += (hash<<15);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return hash;
 }

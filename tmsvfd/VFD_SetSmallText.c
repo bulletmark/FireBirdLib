@@ -3,9 +3,7 @@
 
 bool VFD_SetSmallText(char *Text)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("VFD_SetSmallText");
-  #endif
+  TRACEENTER();
 
   dword                 i;
 
@@ -13,10 +11,7 @@ bool VFD_SetSmallText(char *Text)
 
   if(!VFDUsedByTAP || !grid)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -34,9 +29,6 @@ bool VFD_SetSmallText(char *Text)
          else VFD_SetDisplayDigit(grid, ' ', VFD_14, 3);
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }

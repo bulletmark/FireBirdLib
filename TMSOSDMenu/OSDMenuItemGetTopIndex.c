@@ -2,17 +2,12 @@
 
 dword OSDMenuItemGetTopIndex(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuItemGetTopIndex");
-  #endif
+  TRACEENTER();
 
   dword ret;
 
   ret = Menu[CurrentMenuLevel].CurrentTopIndex;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

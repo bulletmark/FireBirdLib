@@ -3,9 +3,7 @@
 
 void FMUC_PutStringAA(word rgn, dword x, dword y, dword maxX, char *str, dword fcolor, dword bcolor, tFontDataUC *FontData, byte bDot, byte align, float AntiAliasFactor)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FMUC_PutStringAA");
-  #endif
+  TRACEENTER();
 
   dword                 XEnd, YEnd;
   dword                *PixelData;
@@ -31,10 +29,7 @@ void FMUC_PutStringAA(word rgn, dword x, dword y, dword maxX, char *str, dword f
 
   if(!str || !str[0] || !FontData || (maxX <= x))
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return;
   }
 
@@ -47,10 +42,7 @@ void FMUC_PutStringAA(word rgn, dword x, dword y, dword maxX, char *str, dword f
     newstr = TAP_MemAlloc((strlen(str) << 2) + 20);
     if(newstr == NULL)
     {
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
-
+      TRACEEXIT();
       return;
     }
 
@@ -62,10 +54,7 @@ void FMUC_PutStringAA(word rgn, dword x, dword y, dword maxX, char *str, dword f
     newstr = TAP_MemAlloc(newstrlen);
     if(newstr == NULL)
     {
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
-
+      TRACEEXIT();
       return;
     }
 
@@ -165,10 +154,7 @@ void FMUC_PutStringAA(word rgn, dword x, dword y, dword maxX, char *str, dword f
   {
     TAP_MemFree(newstr);
 
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return;
   }
 
@@ -292,7 +278,5 @@ void FMUC_PutStringAA(word rgn, dword x, dword y, dword maxX, char *str, dword f
 
   TAP_MemFree(newstr);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

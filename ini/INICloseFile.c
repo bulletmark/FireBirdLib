@@ -3,9 +3,7 @@
 
 void INICloseFile(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("INICloseFile");
-  #endif
+  TRACEENTER();
 
   if(INIBuffer != NULL)
   {
@@ -20,7 +18,5 @@ void INICloseFile(void)
     INICommentBuffer = NULL;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

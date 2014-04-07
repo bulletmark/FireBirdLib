@@ -2,9 +2,7 @@
 
 bool HDD_isAnyRecording(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_isAnyRecording");
-  #endif
+  TRACEENTER();
 
   int                   i, NrRecSlots;
   bool                  ret;
@@ -18,9 +16,6 @@ bool HDD_isAnyRecording(void)
       break;
     }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

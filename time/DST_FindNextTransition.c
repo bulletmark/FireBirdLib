@@ -2,9 +2,7 @@
 
 dword DST_FindNextTransition(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("DST_FindNextTransition");
-  #endif
+  TRACEENTER();
 
   dword                 DSTStartUTC, DSTEndUTC;
   dword                 ret;
@@ -37,9 +35,6 @@ dword DST_FindNextTransition(void)
     }
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

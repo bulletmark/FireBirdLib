@@ -2,13 +2,8 @@
 
 bool OSDMenuMessageBoxIsVisible(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuMessageBoxIsVisible");
-  #endif
+  TRACEENTER();
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return (MessageBoxOSDRgn != 0);
 }

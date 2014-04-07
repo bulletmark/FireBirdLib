@@ -2,18 +2,13 @@
 
 inline dword FIS_fwDevFront_PowerOffCancel(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FIS_fwDevFront_PowerOffCancel");
-  #endif
+  TRACEENTER();
 
   static dword          fwDevFront_PowerOffCancel = 0;
 
   if(!fwDevFront_PowerOffCancel)
     fwDevFront_PowerOffCancel = TryResolve("DevFront_PowerOffCancel");
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return fwDevFront_PowerOffCancel;
 }

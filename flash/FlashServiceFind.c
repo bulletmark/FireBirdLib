@@ -2,9 +2,7 @@
 
 int FlashServiceFind(int SvcType, word ServiceID, word PMTPID, word PCRPID, tFlashService *Service)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FlashServiceFind");
-  #endif
+  TRACEENTER();
 
   tFlashService         TempService;
   int                   i, NrChannels;
@@ -18,17 +16,12 @@ int FlashServiceFind(int SvcType, word ServiceID, word PMTPID, word PCRPID, tFla
     {
       if(Service) memcpy(Service, &TempService, sizeof(tFlashService));
 
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
+      TRACEEXIT();
 
       return i;
     }
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return -1;
 }

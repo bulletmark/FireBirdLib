@@ -2,9 +2,7 @@
 
 inline dword FIS_vEtcInfo(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FIS_vEtcInfo");
-  #endif
+  TRACEENTER();
 
   static dword          vEtcInfo = 0;
 
@@ -14,9 +12,6 @@ inline dword FIS_vEtcInfo(void)
     if(vEtcInfo) vEtcInfo = *(dword*)vEtcInfo;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return vEtcInfo;
 }

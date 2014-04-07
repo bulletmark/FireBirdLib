@@ -7,32 +7,48 @@
 
 bool ExtAttribSet(char *FileName, char *AttrName, byte *Data, int DataLen)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("ExtAttribSet");
-  #endif
+  TRACEENTER();
 
-  char                  AbsFileName[512];
-  bool                  ret;
+  char                  FullAttrName[128];
+  char                  AbsFileName[FBLIB_DIR_SIZE];
+  int                   f;
 
-  if(!FileName || !*FileName || !TAP_Hdd_Exist(FileName) || !AttrName || !*AttrName)
+  if(!FileName || !*FileName || !AttrName || !*AttrName)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
-  memset(AbsFileName, 0, sizeof(AbsFileName));
-  strcpy(AbsFileName, TAPFSROOT);
-  HDD_TAP_GetCurrentDir(&AbsFileName[strlen(AbsFileName)]);
-  if(AbsFileName[strlen(AbsFileName) - 1] != '/') strcat(AbsFileName, "/");
-  strcat(AbsFileName, FileName);
-  ret = ExtAttribSetAbsPath(AbsFileName, AttrName, Data, DataLen);
+  ConvertPathType(FileName, AbsFileName, PF_FullLinuxPath);
+  if(*AbsFileName)
+  {
+    f = open(AbsFileName, O_RDWR, 0600);
+    if(f >= 0)
+    {
+      TAP_SPrint(FullAttrName, "user.%s", AttrName);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+      if(fsetxattr(f, FullAttrName, Data, DataLen, XATTR_CREATE) == 0)
+      {
+        close(f);
 
-  return ret;
+        TRACEEXIT();
+        return TRUE;
+      }
+      else
+      {
+        //As the attribute may already exist, retry with the replace flag
+        if(fsetxattr(f, FullAttrName, Data, DataLen, XATTR_REPLACE) == 0)
+        {
+          close(f);
+
+          TRACEEXIT();
+          return TRUE;
+        }
+      }
+      close(f);
+    }
+  }
+
+  TRACEEXIT();
+  return FALSE;
 }

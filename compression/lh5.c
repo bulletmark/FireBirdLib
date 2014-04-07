@@ -1262,7 +1262,7 @@ static void Encode(ARDATA *ar)
   // initialize encoder variables
   if(!allocate_memory(ar))
   {
-    TAP_Print("unable to allocate memory\n");
+    LogEntryFBLibPrintf(TRUE, "lh5.Encode: unable to allocate memory");
   }
   else
   {
@@ -1308,16 +1308,11 @@ static void Encode(ARDATA *ar)
 
 word CompressBlock(byte *inputbuffer, word inputsize, byte *outputbuffer)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("CompressBlock");
-  #endif
+  TRACEENTER();
 
   if(!inputbuffer || inputsize > 0x7ffa)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return 0;
   }
 
@@ -1340,35 +1335,24 @@ word CompressBlock(byte *inputbuffer, word inputsize, byte *outputbuffer)
     free(ar);
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return compsize;
 }
 
 word UncompressBlock(byte *inputbuffer, word inputsize, byte *outputbuffer, word BufferSize)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("UncompressBlock");
-  #endif
+  TRACEENTER();
 
   if(!inputbuffer)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return 0;
   }
 
   ARDATA *ar = malloc(sizeof(ARDATA));
   if(!ar)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return 0;
   }
 
@@ -1384,10 +1368,7 @@ word UncompressBlock(byte *inputbuffer, word inputsize, byte *outputbuffer, word
   failed = ar->Failed;
   free(ar);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return !failed;
 
 }

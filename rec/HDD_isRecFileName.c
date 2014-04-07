@@ -2,9 +2,7 @@
 
 bool HDD_isRecFileName(char *FileName)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_isRecFileName");
-  #endif
+  TRACEENTER();
 
   bool ret;
 
@@ -13,9 +11,6 @@ bool HDD_isRecFileName(char *FileName)
   else
     ret = FALSE;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

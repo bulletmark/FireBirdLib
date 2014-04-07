@@ -1,47 +1,40 @@
+#include <fcntl.h>
+#include <unistd.h>
 #include "FBLib_av.h"
 #include "../libFireBird.h"
 
-bool SaveBitmap(char *strName, int width, int height, byte* pBuffer)
+bool SaveBitmap(char *FileName, int width, int height, byte* pBuffer)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("SaveBitmap");
-  #endif
+  TRACEENTER();
 
-  TYPE_File             *pFile;
   dword									rowlength;
+  char                  AbsFilename[FBLIB_DIR_SIZE];
+  int                   FileHandle;
 
-  if(!pBuffer ||!strName)
+  if(!pBuffer ||!FileName || !*FileName)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
-  if(!TAP_Hdd_Exist(strName)) TAP_Hdd_Create(strName, ATTR_NORMAL);
-  pFile = TAP_Hdd_Fopen(strName);
-  if(!pFile)
-  {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
+  ConvertPathType(FileName, AbsFilename, PF_FullLinuxPath);
 
+  FileHandle = open(AbsFilename, O_WRONLY | O_CREAT | O_TRUNC);
+  if(FileHandle == -1)
+  {
+    TRACEEXIT();
     return FALSE;
   }
 
   // Write Header
-  BMP_WriteHeader(pFile, width, height);
+  BMP_WriteHeader(FileHandle, width, height);
 
   // write bitmap data
 	// according to spec.: the rowlength must be a multiple of 4 bytes, if necessary fill up with zero-bytes
 	rowlength = (width*3%4==0) ? width*3 : ((width*3/4)+1)*4;
-  TAP_Hdd_Fwrite(pBuffer, rowlength, height, pFile);
-  TAP_Hdd_Fclose(pFile);
+	write(FileHandle, pBuffer, rowlength * height);
+	close(FileHandle);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }

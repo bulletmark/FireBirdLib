@@ -5,26 +5,18 @@ int                     TAPDirStackDepth = -1;
 
 bool HDD_TAP_PushDir(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_TAP_PushDir");
-  #endif
+  TRACEENTER();
 
   if(++TAPDirStackDepth < TAPDIR_MAX_STACK)
   {
     if(HDD_TAP_GetCurrentDir(TAPDirStack[TAPDirStackDepth]) == 0)
     {
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
-
+      TRACEEXIT();
       return TRUE;
     }
   }
   TAPDirStackDepth--;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return FALSE;
 }

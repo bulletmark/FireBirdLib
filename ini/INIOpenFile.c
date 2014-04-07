@@ -7,9 +7,7 @@ dword                   BufferSize = 0;
 
 INILOCATION INIOpenFile(char *FileName, char *AppName)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("INIOpenFile");
-  #endif
+  TRACEENTER();
 
   TYPE_File             *f;
   dword                 flen, ret = 0;
@@ -24,19 +22,13 @@ INILOCATION INIOpenFile(char *FileName, char *AppName)
     BufferSize = 512;
     if(!(INIBuffer = malloc(BufferSize)))
     {
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
-
+      TRACEEXIT();
       return INILOCATION_NotFound;
     }
 
     memset(INIBuffer, 0, BufferSize);
 
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return INILOCATION_NewFile;
   }
 
@@ -45,10 +37,7 @@ INILOCATION INIOpenFile(char *FileName, char *AppName)
   {
     HDD_TAP_PopDir();
 
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return INILOCATION_NotFound;
   }
 
@@ -74,9 +63,6 @@ INILOCATION INIOpenFile(char *FileName, char *AppName)
 
   HDD_TAP_PopDir();
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return (INIBuffer && (ret > 0) ? INILocation : INILOCATION_NotFound);
 }

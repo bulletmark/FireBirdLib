@@ -3,9 +3,7 @@
 
 void OSDCalcIndices(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDCalcIndices");
-  #endif
+  TRACEENTER();
 
   tMenu                *pMenu;
 
@@ -22,7 +20,5 @@ void OSDCalcIndices(void)
     if(pMenu->CurrentSelection > (pMenu->CurrentTopIndex + 9)) pMenu->CurrentTopIndex = pMenu->CurrentSelection - 9;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

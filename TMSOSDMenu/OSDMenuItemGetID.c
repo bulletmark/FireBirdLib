@@ -2,9 +2,7 @@
 
 dword OSDMenuItemGetID(int ItemIndex)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuItemGetID");
-  #endif
+  TRACEENTER();
 
   dword ret;
 
@@ -13,9 +11,6 @@ dword OSDMenuItemGetID(int ItemIndex)
   else
     ret = Menu[CurrentMenuLevel].Item[ItemIndex].ID;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

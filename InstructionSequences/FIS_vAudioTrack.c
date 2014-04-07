@@ -2,18 +2,13 @@
 
 inline dword FIS_vAudioTrack(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FIS_vAudioTrack");
-  #endif
+  TRACEENTER();
 
   static tAudioTrk     *AudioTracks = NULL;
 
   if(!AudioTracks)
     AudioTracks = (tAudioTrk*)TryResolve("_audioTrk");
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return (dword)AudioTracks;
 }

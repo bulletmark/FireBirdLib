@@ -2,9 +2,7 @@
 
 void OSDDrawLogo(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDDrawLogo");
-  #endif
+  TRACEENTER();
 
   tMenu                *pMenu;
 
@@ -14,7 +12,5 @@ void OSDDrawLogo(void)
 
   if(CallbackProcedure) CallbackProcedure(OSDCB_Logo, OSDRgn);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

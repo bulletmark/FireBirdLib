@@ -3,9 +3,9 @@
 #include <tap.h>
 #include "FBLib_rec.h"
 
-extern FILE            *infDatainfFileAbs;
+extern FILE            *infDatainfFile;
 
-bool infData_LocateSigAbs(char *NameTag, dword *PayloadSize)
+bool infData_LocateSig(char *NameTag, dword *PayloadSize)
 {
   bool                  ret;
   tTFRPlusHdr           TFRPlusHdr;
@@ -19,40 +19,35 @@ bool infData_LocateSigAbs(char *NameTag, dword *PayloadSize)
   //  char NameTag[SigLength]
   //  byte Payload[PayloadSize]
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("infData_LocateSigAbs");
-  #endif
+  TRACEENTER();
 
   ret = FALSE;
   if(PayloadSize) *PayloadSize = 0;
 
-  if(NameTag && *NameTag && infDatainfFileAbs && (infData_FlenAbs() > INFDATASTART))
+  if(NameTag && *NameTag && infDatainfFile && (infData_Flen() > INFDATASTART))
   {
-    fseek(infDatainfFileAbs, INFDATASTART, SEEK_SET);
+    fseek(infDatainfFile, INFDATASTART, SEEK_SET);
 
-    while((CurrentPos = ftell(infDatainfFileAbs)) < infData_FlenAbs())
+    while((CurrentPos = ftell(infDatainfFile)) < infData_Flen())
     {
-      fread(&TFRPlusHdr, sizeof(tTFRPlusHdr), 1, infDatainfFileAbs);
+      fread(&TFRPlusHdr, sizeof(tTFRPlusHdr), 1, infDatainfFile);
 
       //Stop parsing if the magic is invalid
       if(memcmp(TFRPlusHdr.Magic, INFDATMAGIC, 4) != 0) break;
 
-      fread(NameTagHdr, TFRPlusHdr.NameTagLen, 1, infDatainfFileAbs);
+      fread(NameTagHdr, TFRPlusHdr.NameTagLen, 1, infDatainfFile);
 
       if(strcmp(NameTag, NameTagHdr) == 0)
       {
         ret = TRUE;
         if(PayloadSize) *PayloadSize = TFRPlusHdr.PayloadSize;
-        fseek(infDatainfFileAbs, CurrentPos, SEEK_SET);
+        fseek(infDatainfFile, CurrentPos, SEEK_SET);
         break;
       }
-      fseek(infDatainfFileAbs, TFRPlusHdr.PayloadSize, SEEK_CUR);
+      fseek(infDatainfFile, TFRPlusHdr.PayloadSize, SEEK_CUR);
     }
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

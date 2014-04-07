@@ -2,9 +2,7 @@
 
 void FM_MakeFontDir(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FM_MakeFontDir");
-  #endif
+  TRACEENTER();
 
   HDD_TAP_PushDir();
   HDD_ChangeDir("/ProgramFiles");
@@ -14,7 +12,5 @@ void FM_MakeFontDir(void)
   HDD_ChangeDir("Fonts");
   HDD_TAP_PopDir();
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

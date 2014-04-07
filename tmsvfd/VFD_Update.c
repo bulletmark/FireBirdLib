@@ -2,26 +2,18 @@
 
 bool VFD_Update(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("VFD_Update");
-  #endif
+  TRACEENTER();
 
   void (*Vfd_SendData)(void) = (void*)FIS_fwApplVfdSendData();
 
   if(!VFDUsedByTAP || !Vfd_SendData)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
   Vfd_SendData();
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }

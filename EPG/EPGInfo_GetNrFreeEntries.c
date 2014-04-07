@@ -2,15 +2,10 @@
 
 dword EPGInfo_GetNrFreeEntries(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("EPGInfo_GetNrFreeEntries");
-  #endif
+  TRACEENTER();
 
   dword ret = Appl_GetEvtCountInFreePool();
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

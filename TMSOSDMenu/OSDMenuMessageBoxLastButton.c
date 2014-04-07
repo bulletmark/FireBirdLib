@@ -2,13 +2,8 @@
 
 dword OSDMenuMessageBoxLastButton(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuMessageBoxLastButton");
-  #endif
+  TRACEENTER();
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return MessageBox.CurrentButton;
 }

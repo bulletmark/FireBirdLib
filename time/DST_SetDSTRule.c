@@ -5,13 +5,9 @@ dword                   DSTStartUTCsaved = 0, DSTEndUTCsaved = 0;
 
 void DST_SetDSTRule(tDSTRule NewDSTRule)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("DST_SetDSTRule");
-  #endif
+  TRACEENTER();
 
   DSTRule = NewDSTRule;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

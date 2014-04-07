@@ -2,9 +2,7 @@
 
 void TAPCOM_Reject(TAPCOM_Channel Channel)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("TAPCOM_Reject");
-  #endif
+  TRACEENTER();
 
   TAPCOM_InternalMesBuf *buf = (TAPCOM_InternalMesBuf *) Channel;
 
@@ -16,7 +14,5 @@ void TAPCOM_Reject(TAPCOM_Channel Channel)
     buf->ServerAlive = TAP_GetTick();
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

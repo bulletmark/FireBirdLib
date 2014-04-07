@@ -2,9 +2,7 @@
 
 bool HDD_TAP_Disable(dword TAPID, bool DisableEvents)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_TAP_Disable");
-  #endif
+  TRACEENTER();
 
   int                   TAPIndex;
   dword                 isDisabled;
@@ -14,10 +12,7 @@ bool HDD_TAP_Disable(dword TAPID, bool DisableEvents)
   TAPIndex = HDD_TAP_GetIndexByID(TAPID);
   if(TAPIndex == -1)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -25,10 +20,7 @@ bool HDD_TAP_Disable(dword TAPID, bool DisableEvents)
   curTAPTask = (dword*)FIS_vCurTapTask();
   if(!curTAPTask || ((dword)TAPIndex == *curTAPTask))
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -36,48 +28,36 @@ bool HDD_TAP_Disable(dword TAPID, bool DisableEvents)
   isDisabled = HDD_TAP_isDisabled(TAPID);
   if((isDisabled == 1) == DisableEvents)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
   TMSTAPTaskTable = (tTMSTAPTaskTable*)FIS_vTAPTable();
   if(!TMSTAPTaskTable)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
   //The TAP will terminate soon
   if(TMSTAPTaskTable[TAPIndex].Status != 1)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
-  //Abuse tTMSTAPTaskTable.unknown9 as temporary storage for the event handler address
+  //Abuse tTMSTAPTaskTable.unused5 as temporary storage for the event handler address
   if(DisableEvents)
   {
-    TMSTAPTaskTable[TAPIndex].unknown9 = TMSTAPTaskTable[TAPIndex].TAP_EventHandler;
+    TMSTAPTaskTable[TAPIndex].unused5 = TMSTAPTaskTable[TAPIndex].TAP_EventHandler;
     TMSTAPTaskTable[TAPIndex].TAP_EventHandler = (dword)&HDD_TAP_DisabledEventHandler;
   }
   else
   {
-    TMSTAPTaskTable[TAPIndex].TAP_EventHandler = TMSTAPTaskTable[TAPIndex].unknown9;
-    TMSTAPTaskTable[TAPIndex].unknown9 = 0;
+    TMSTAPTaskTable[TAPIndex].TAP_EventHandler = TMSTAPTaskTable[TAPIndex].unused5;
+    TMSTAPTaskTable[TAPIndex].unused5 = 0;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }

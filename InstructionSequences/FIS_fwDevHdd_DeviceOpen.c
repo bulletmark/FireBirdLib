@@ -2,18 +2,13 @@
 
 inline dword FIS_fwDevHdd_DeviceOpen(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FIS_fwDevHdd_DeviceOpen");
-  #endif
+  TRACEENTER();
 
   static dword          _DevHdd_DeviceOpen = 0;
 
   if(!_DevHdd_DeviceOpen)
     _DevHdd_DeviceOpen = TryResolve("DevHdd_DeviceOpen");
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return _DevHdd_DeviceOpen;
 }

@@ -2,16 +2,11 @@
 
 inline dword FIS_vFlashBlockRadioServices(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FIS_vFlashBlockRadioServices");
-  #endif
+  TRACEENTER();
 
   static dword          *vFlashRadioSvc = 0;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   if(!vFlashRadioSvc)
     vFlashRadioSvc = (dword*)TryResolve("_radioSvc");
 

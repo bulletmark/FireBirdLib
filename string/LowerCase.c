@@ -1,14 +1,10 @@
-#ifndef _TMSEMU_
-  #include              <ctype.h>
-#endif
+#include                <ctype.h>
 #include                <string.h>
 #include                "FBLib_string.h"
 
 void LowerCase(char *string)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("LowerCase");
-  #endif
+  TRACEENTER();
 
   char                 *p, *s;
   byte                  UTF8[5];
@@ -42,7 +38,5 @@ void LowerCase(char *string)
 
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

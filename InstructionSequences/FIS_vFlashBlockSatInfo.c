@@ -2,18 +2,13 @@
 
 inline dword FIS_vFlashBlockSatInfo(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FIS_vFlashBlockSatInfo");
-  #endif
+  TRACEENTER();
 
   static dword          *vFlashSatInfo = 0;
 
   if(!vFlashSatInfo)
     vFlashSatInfo = (dword*)TryResolve("_satInfo");
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return (vFlashSatInfo ? *vFlashSatInfo : 0);
 }

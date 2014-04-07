@@ -2,18 +2,13 @@
 
 inline dword FIS_fwAppl_PvrList(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FIS_fwAppl_PvrList");
-  #endif
+  TRACEENTER();
 
   static dword          _Appl_PvrList = 0;
 
   if(!_Appl_PvrList)
     _Appl_PvrList = TryResolve("_Z12Appl_PvrListjj");
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return _Appl_PvrList;
 }

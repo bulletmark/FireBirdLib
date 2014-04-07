@@ -2,29 +2,21 @@
 
 int StringDBCountRecords(tStringDB *StringDB)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("StringDBCountRecords");
-  #endif
+  TRACEENTER();
 
   int                   Cnt;
   char                 *p;
 
   if(!StringDB)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return 0;
   }
 
   p = StringDB->DB;
   if(!p)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return 0;
   }
 
@@ -39,9 +31,6 @@ int StringDBCountRecords(tStringDB *StringDB)
     p++;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return Cnt;
 }

@@ -3,9 +3,7 @@
 
 dword EPGInfo_CalculateStructSize(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("EPGInfo_CalculateStructSize");
-  #endif
+  TRACEENTER();
 
   tTreeEntry           *Entry, *ListStart;
   dword                 MinStructSize, d;
@@ -36,9 +34,6 @@ dword EPGInfo_CalculateStructSize(void)
     }
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return EPGInfoStructSize;
 }

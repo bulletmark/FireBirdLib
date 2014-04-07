@@ -80,7 +80,7 @@ void Test2(void)
   EPGInfo_FilterReset();
   EPGInfo_FilterTime(AddTime(Now(NULL), -180), AddTime(Now(NULL), 180));
   TAP_Channel_GetCurrent(&SvcType, &SvcNum);
-  EPGInfo_FilterChannelByIndex(SvcType, SvcNum);
+  EPGInfo_FilterChannelByIndex(SvcType, SvcNum, FALSE);
   NrEntries = EPGInfo_FindFirst(&EPGData);
   TAP_PrintNet("  %d entries cached\n", NrEntries);
   for(i = 0; i < NrEntries; i++)
@@ -148,7 +148,7 @@ void Test5(void)
 
   EPGInfo_FilterReset();
   TAP_Channel_GetCurrent(&SvcType, &SvcNum);
-  EPGInfo_FilterChannelByIndex(SvcType, SvcNum);
+  EPGInfo_FilterChannelByIndex(SvcType, SvcNum, FALSE);
   NrEntries = EPGInfo_FindFirst(&EPGData);
   TAP_PrintNet("  %d entries cached\n", NrEntries);
   for(i = 0; i < 10; i++)

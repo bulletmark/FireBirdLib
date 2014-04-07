@@ -2,18 +2,13 @@
 
 inline dword FIS_vTempRecSlot(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FIS_vTempRecSlot");
-  #endif
+  TRACEENTER();
 
   static dword          vTempRecSlot = 0;
 
   if(!vTempRecSlot)
     vTempRecSlot = TryResolve("_tempRecSlot");
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return vTempRecSlot;
 }

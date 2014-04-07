@@ -2,18 +2,13 @@
 
 inline dword FIS_vDirectSvcNumTimerId(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FIS_vDirectSvcNumTimerId");
-  #endif
+  TRACEENTER();
 
   static dword          _directSvcNumTimerId = 0;
 
   if(!_directSvcNumTimerId)
     _directSvcNumTimerId = TryResolve("_directSvcNumTimerId");
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return _directSvcNumTimerId;
 }

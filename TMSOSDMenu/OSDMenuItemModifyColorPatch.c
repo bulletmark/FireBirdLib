@@ -3,9 +3,7 @@
 
 bool OSDMenuItemModifyColorPatch(int ItemIndex, dword Color)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuItemModifyColorPatch");
-  #endif
+  TRACEENTER();
 
   tMenu                *pMenu;
 
@@ -13,10 +11,7 @@ bool OSDMenuItemModifyColorPatch(int ItemIndex, dword Color)
 
   if((pMenu->NrItems == 0) || (ItemIndex >= pMenu->NrItems) || (ItemIndex < 0))
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -24,9 +19,6 @@ bool OSDMenuItemModifyColorPatch(int ItemIndex, dword Color)
 
   ListDirty = TRUE;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }

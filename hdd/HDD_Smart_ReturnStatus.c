@@ -3,9 +3,7 @@
 
 int HDD_Smart_ReturnStatus(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_Smart_ReturnStatus");
-  #endif
+  TRACEENTER();
 
   unsigned char         CommandBlock[FBHDIO_DRIVE_TASK_HDR_SIZE] = {WIN_SMART,        //COMMAND
                                                                   SMART_STATUS,     //FEATURE
@@ -18,34 +16,22 @@ int HDD_Smart_ReturnStatus(void)
 
   if(SendHDDCommand(HDIO_DRIVE_TASK, CommandBlock, 0))
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return 19;
   }
 
   if((CommandBlock[4] == 0x4f) && (CommandBlock[5] == 0xc2))
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return 0;
   }
 
   if((CommandBlock[4] == 0xf4) && (CommandBlock[5] == 0x2c))
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return 20;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return 19;
 }

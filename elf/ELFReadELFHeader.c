@@ -3,31 +3,20 @@
 
 bool ELFReadELFHeader(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("ELFReadELFHeader");
-  #endif
+  TRACEENTER();
 
   if(!(ELFHeader = TAP_MemAlloc(sizeof(Elf32_Ehdr))))
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
   if(read(fTAP, ELFHeader, sizeof(Elf32_Ehdr)) != sizeof(Elf32_Ehdr))
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }

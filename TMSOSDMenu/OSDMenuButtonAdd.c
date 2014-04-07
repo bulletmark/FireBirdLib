@@ -3,9 +3,7 @@
 
 void OSDMenuButtonAdd(dword Line, tButtonIcon ButtonIcon, TYPE_GrData *ButtonGd, char *Text)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuButtonAdd");
-  #endif
+  TRACEENTER();
 
   tMenu                *pMenu;
   TYPE_GrData          *IconGd;
@@ -13,10 +11,7 @@ void OSDMenuButtonAdd(dword Line, tButtonIcon ButtonIcon, TYPE_GrData *ButtonGd,
   IconGd = OSDMenuGetIconPointer(ButtonIcon, ButtonGd);
   if((Line == 0) || (Line > 3) || (!IconGd) || (!Text))
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return;
   }
 
@@ -39,7 +34,5 @@ void OSDMenuButtonAdd(dword Line, tButtonIcon ButtonIcon, TYPE_GrData *ButtonGd,
 
   pMenu->ButtonXStart[Line] = pMenu->ButtonXStart[Line] + IconGd->width + OSDMenuGetW(Text, 12) + 8;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

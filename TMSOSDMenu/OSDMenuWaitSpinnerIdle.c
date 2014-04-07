@@ -2,9 +2,7 @@
 
 void OSDMenuWaitSpinnerIdle(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuWaitSpinnerIdle");
-  #endif
+  TRACEENTER();
 
   if(TAP_GetTick() > WaitSpinnerTimeout)
   {
@@ -14,7 +12,5 @@ void OSDMenuWaitSpinnerIdle(void)
     TAP_Osd_Sync();
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

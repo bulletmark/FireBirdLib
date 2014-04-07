@@ -1,24 +1,34 @@
+#include                <string.h>
 #include                <stdio.h>
 #include                "FBLib_hdd.h"
 
-bool HDD_InfBlockSet(char *AbsRecPath, tinfBlock *infBlock)
+bool HDD_InfBlockSet(char *RecPath, tinfBlock *infBlock)
 {
-  #if STACKTRACE == TRUE
-    CallTraceEnter("HDD_InfBlockSet");
-  #endif
+  TRACEENTER();
 
   bool                  ret;
   FILE                 *FileHandle;
   tinfBlock             TempinfBlock;
+  char                  AbsFileName[FBLIB_DIR_SIZE];
+
+  if(!RecPath && !*RecPath)
+  {
+    TRACEEXIT();
+    return FALSE;
+  }
 
   ret = FALSE;
-  if(AbsRecPath && infBlock)
+
+  ConvertPathType(RecPath, AbsFileName, PF_FullLinuxPath);
+  if(*AbsFileName && infBlock)
   {
+    if(!StringEndsWith(AbsFileName, ".inf")) strcat(AbsFileName, ".inf");
+
     //Ein paar Daten updaten
     memcpy(infBlock->Magic, INFBLOCKMAGIC, 4);
     infBlock->Version = INFBLOCKVERSION;
 
-    FileHandle = fopen64(AbsRecPath, "rb+");
+    FileHandle = fopen64(AbsFileName, "rb+");
     if(FileHandle)
     {
       //Prüfen, ob es bereits einen infBlock gibt
@@ -40,8 +50,6 @@ bool HDD_InfBlockSet(char *AbsRecPath, tinfBlock *infBlock)
     }
   }
 
-  #if STACKTRACE == TRUE
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
   return ret;
 }

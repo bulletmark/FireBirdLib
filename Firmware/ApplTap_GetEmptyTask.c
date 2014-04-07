@@ -2,9 +2,7 @@
 
 int ApplTap_GetEmptyTask(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("ApplTap_GetEmptyTask");
-  #endif
+  TRACEENTER();
 
   int (*__ApplTap_GetEmptyTask)(void);
   int ret = 0;
@@ -12,9 +10,6 @@ int ApplTap_GetEmptyTask(void)
   __ApplTap_GetEmptyTask = (void*)FIS_fwApplTap_GetEmptyTask();
   if(__ApplTap_GetEmptyTask) ret = __ApplTap_GetEmptyTask();
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

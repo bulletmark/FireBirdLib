@@ -2,9 +2,7 @@
 
 dword AddTime(dword date, int add) //add minutes to the day
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("AddTime");
-  #endif
+  TRACEENTER();
 
   word                  day;
   short                 hour, min;
@@ -41,9 +39,6 @@ dword AddTime(dword date, int add) //add minutes to the day
     }
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ((day<<16)|(hour<<8)|min);
 }

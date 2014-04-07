@@ -2,9 +2,7 @@
 
 long TimeDiff(dword FromTime, dword ToTime)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("TimeDiff");
-  #endif
+  TRACEENTER();
 
   bool      TimeTravel;
   dword     temp;
@@ -36,9 +34,6 @@ long TimeDiff(dword FromTime, dword ToTime)
 
   ret = (dDate * 1440 + dHour * 60 + dMin) * (TimeTravel ? -1 : 1);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

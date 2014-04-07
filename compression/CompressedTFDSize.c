@@ -3,15 +3,10 @@
 
 dword CompressedTFDSize(byte *pSrc, dword SourceBufferSize, void *pPercentFinishedCallback)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("CompressedTFDSize");
-  #endif
+  TRACEENTER();
 
   dword ret = CompressTFD(pSrc, SourceBufferSize, NULL, 0, 0, pPercentFinishedCallback);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

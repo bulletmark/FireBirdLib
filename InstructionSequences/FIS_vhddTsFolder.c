@@ -2,18 +2,13 @@
 
 inline dword FIS_vHddTsFolder(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FIS_vHddTsFolder");
-  #endif
+  TRACEENTER();
 
   static dword          _hddTsFolder = 0;
 
   if(!_hddTsFolder)
     _hddTsFolder = TryResolve("_hddTsFolder");
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return _hddTsFolder;
 }

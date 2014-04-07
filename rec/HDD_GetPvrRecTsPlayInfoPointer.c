@@ -3,9 +3,7 @@
 
 byte *HDD_GetPvrRecTsPlayInfoPointer(byte Slot)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_GetPvrRecTsPlayInfoPointer");
-  #endif
+  TRACEENTER();
 
   byte                 *__pvrRecTsPlayInfo;
   byte                 *__pvrRecTempInfo;
@@ -14,30 +12,21 @@ byte *HDD_GetPvrRecTsPlayInfoPointer(byte Slot)
 
   if(Slot > HDD_NumberOfRECSlots())
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return NULL;
   }
 
   __pvrRecTempInfo = (byte*)FIS_vPvrRecTempInfo();
   if(!__pvrRecTempInfo)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return NULL;
   }
 
   __pvrRecTsPlayInfo = (byte*)FIS_vPvrRecTsPlayInfo();
   if(!__pvrRecTsPlayInfo)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return NULL;
   }
 
@@ -45,9 +34,6 @@ byte *HDD_GetPvrRecTsPlayInfoPointer(byte Slot)
 
   ret = &__pvrRecTsPlayInfo[StructSize * Slot];
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

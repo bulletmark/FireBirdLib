@@ -2,9 +2,7 @@
 
 dword HDD_NumberOfRECSlots(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_NumberOfRECSlots");
-  #endif
+  TRACEENTER();
 
   static dword          MaxRecStreams = 0;
   dword                 i;
@@ -28,9 +26,6 @@ dword HDD_NumberOfRECSlots(void)
     if(MaxRecStreams == 0) MaxRecStreams = 2;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return MaxRecStreams;
 }

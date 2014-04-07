@@ -2,9 +2,7 @@
 
 void HDD_TAP_Terminate(dword TAPID)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_TAP_Terminate");
-  #endif
+  TRACEENTER();
 
   int                   TAPIndex;
   tTMSTAPTaskTable     *TMSTAPTaskTable;
@@ -13,20 +11,14 @@ void HDD_TAP_Terminate(dword TAPID)
   TAPIndex = HDD_TAP_GetIndexByID(TAPID);
   if(TAPIndex < 0)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return;
   }
 
   TMSTAPTaskTable = (tTMSTAPTaskTable*)FIS_vTAPTable();
   if(!TMSTAPTaskTable)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return;
   }
 
@@ -35,7 +27,5 @@ void HDD_TAP_Terminate(dword TAPID)
 
   TMSTAPTaskTable[TAPIndex].Status = 2;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

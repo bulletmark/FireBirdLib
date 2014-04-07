@@ -2,19 +2,14 @@
 
 inline dword FIS_vFlashBlockServerData(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FIS_vFlashBlockServerData");
-  #endif
+  TRACEENTER();
 
   static dword          *vFlashServerData = 0;
 
   if(!vFlashServerData)
     vFlashServerData = (dword*)TryResolve("_serverData");
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return (vFlashServerData ? *vFlashServerData : 0);
 }
 

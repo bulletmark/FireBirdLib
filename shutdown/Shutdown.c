@@ -3,17 +3,12 @@
 
 bool Shutdown(TaskEnum Task)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("Shutdown");
-  #endif
+  TRACEENTER();
 
   bool ret;
 
   ret = PutDevEvent(Task, 0);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

@@ -3,9 +3,7 @@
 
 int strlenUC(byte *s)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("strlenUC");
-  #endif
+  TRACEENTER();
 
   byte                 *p, *pEnd;
   int                   Count;
@@ -13,10 +11,7 @@ int strlenUC(byte *s)
 
   if(!s || !*s)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return 0;
   }
 
@@ -31,9 +26,6 @@ int strlenUC(byte *s)
     p += BPC;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return Count;
 }

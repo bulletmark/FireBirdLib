@@ -2,18 +2,13 @@
 
 inline dword FIS_fwPowerOff(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FIS_fwPowerOff");
-  #endif
+  TRACEENTER();
 
   static dword          fwPowerOff = 0;
 
   if(!fwPowerOff)
     fwPowerOff = TryResolve("_Z21Appl_EvtProc_PowerOffjj");
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return fwPowerOff;
 }

@@ -3,9 +3,7 @@
 
 void OSDMenuSetFont(tFontDataUC *LeftTitle, tFontDataUC *RightTitle, tFontDataUC *ListNumber, tFontDataUC *ListName, tFontDataUC *ListValue, tFontDataUC *Buttons, tFontDataUC *Memo)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuSetFont");
-  #endif
+  TRACEENTER();
 
   tMenu                *pMenu;
 
@@ -53,7 +51,5 @@ void OSDMenuSetFont(tFontDataUC *LeftTitle, tFontDataUC *RightTitle, tFontDataUC
     ListDirty = TRUE;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

@@ -3,9 +3,7 @@
 
 char *FlashFavoritesGetSelectedGroupName(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FlashFavoritesGetSelectedGroupName");
-  #endif
+  TRACEENTER();
 
   static char           FavName[12];
   tFavorites            Favorites;
@@ -15,9 +13,6 @@ char *FlashFavoritesGetSelectedGroupName(void)
   else
     FavName[0] = '\0';
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return FavName;
 }

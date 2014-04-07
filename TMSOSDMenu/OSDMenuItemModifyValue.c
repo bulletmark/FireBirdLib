@@ -3,9 +3,7 @@
 
 bool OSDMenuItemModifyValue(int ItemIndex, char *Text)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuItemModifyValue");
-  #endif
+  TRACEENTER();
 
   tMenu                *pMenu;
 
@@ -13,19 +11,13 @@ bool OSDMenuItemModifyValue(int ItemIndex, char *Text)
 
   if((pMenu->NrItems == 0) || (ItemIndex >= pMenu->NrItems))
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
   if(!Text)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -34,9 +26,6 @@ bool OSDMenuItemModifyValue(int ItemIndex, char *Text)
 
   ListDirty = TRUE;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }

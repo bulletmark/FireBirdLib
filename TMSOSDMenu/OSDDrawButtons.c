@@ -2,9 +2,7 @@
 
 void OSDDrawButtons(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDDrawButtons");
-  #endif
+  TRACEENTER();
 
   tMenu                *pMenu;
   dword                 i;
@@ -19,7 +17,5 @@ void OSDDrawButtons(void)
 
   if(CallbackProcedure) CallbackProcedure(OSDCB_Buttons, OSDRgn);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

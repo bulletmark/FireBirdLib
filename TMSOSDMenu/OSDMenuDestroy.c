@@ -2,9 +2,7 @@
 
 void OSDMenuDestroy(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuDestroy");
-  #endif
+  TRACEENTER();
 
   if(OSDRgn)
   {
@@ -22,7 +20,5 @@ void OSDMenuDestroy(void)
 
   CallbackProcedure = NULL;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

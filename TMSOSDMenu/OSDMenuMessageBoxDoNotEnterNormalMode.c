@@ -2,13 +2,9 @@
 
 void OSDMenuMessageBoxDoNotEnterNormalMode(bool DoNotEnterNormalMode)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuMessageBoxDoNotEnterNormalMode");
-  #endif
+  TRACEENTER();
 
   MessageBoxNoNormalMode = DoNotEnterNormalMode;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

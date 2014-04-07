@@ -3,9 +3,7 @@
 
 void OSDMenuMessageBoxModifyText(char *Text)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuMessageBoxModifyText");
-  #endif
+  TRACEENTER();
 
   if(MessageBoxOSDRgn)
   {
@@ -13,7 +11,5 @@ void OSDMenuMessageBoxModifyText(char *Text)
     MessageBox.Text[STDSTRINGSIZE - 1] = '\0';
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

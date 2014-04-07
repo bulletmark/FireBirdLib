@@ -3,19 +3,14 @@
 
 dword UncompressedFirmwareSize(byte *pSrc)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("UncompressedFirmwareSize");
-  #endif
+  TRACEENTER();
 
   word                  compSize = 0, uncompSize = 0;
   dword                 outSize = 0;
 
   if(!pSrc)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return 0;
   }
 
@@ -27,9 +22,7 @@ dword UncompressedFirmwareSize(byte *pSrc)
     if(uncompSize > 0x8000)
     {
       //Uncompressed data block size too large
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
+      TRACEEXIT();
 
       return 0;
     }
@@ -41,9 +34,6 @@ dword UncompressedFirmwareSize(byte *pSrc)
     uncompSize = LOAD_WORD(pSrc + 0);
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return outSize;
 }

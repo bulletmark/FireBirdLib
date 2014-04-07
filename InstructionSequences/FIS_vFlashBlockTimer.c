@@ -2,18 +2,13 @@
 
 inline dword FIS_vFlashBlockTimer(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FIS_vFlashBlockTimer");
-  #endif
+  TRACEENTER();
 
   static dword          *vFlashTimer = 0;
 
   if(!vFlashTimer)
     vFlashTimer = (dword*)TryResolve("_timer");
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return (vFlashTimer ? *vFlashTimer : 0);
 }

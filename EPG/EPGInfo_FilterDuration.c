@@ -2,9 +2,7 @@
 
 void EPGInfo_FilterDuration(word MinDuration, word MaxDuration)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("EPGInfo_FilterDuration");
-  #endif
+  TRACEENTER();
 
   if(MinDuration || MaxDuration)
   {
@@ -19,7 +17,5 @@ void EPGInfo_FilterDuration(word MinDuration, word MaxDuration)
     EPGFilter.MaxDuration = 0;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

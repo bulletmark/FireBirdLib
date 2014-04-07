@@ -2,9 +2,7 @@
 
 void DrawOSDLine(word OSDRgn, dword Ax, dword Ay, dword Bx, dword By, dword Color)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("DrawOSDLine");
-  #endif
+  TRACEENTER();
 
   int dX, dY, Xincr, Yincr, dist, Xerr, Yerr, d;
 
@@ -57,7 +55,5 @@ void DrawOSDLine(word OSDRgn, dword Ax, dword Ay, dword Bx, dword By, dword Colo
 
   TAP_Osd_PutPixel_Chk("DrawOSDLine B", OSDRgn, Bx, By, Color);   // plot the pixel
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

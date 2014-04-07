@@ -2,13 +2,8 @@
 
 bool OSDMenuProgressBarIsVisible(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuProgressBarIsVisible");
-  #endif
+  TRACEENTER();
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return (ProgressBarOSDRgn != 0);
 }

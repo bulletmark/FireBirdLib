@@ -3,16 +3,8 @@
 
 int SendHDDCommand(dword Command, byte *CommandBlock, int BufferSize)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("SendHDDCommand");
-  #endif
+  TRACEENTER();
 
-  //Unsupport in the TMSEmu environment
-#ifdef _TMSEMU_
-  (void) Command;
-  (void) CommandBlock;
-  (void) BufferSize;
-#else
   #include                <sys/ioctl.h>
   #include                <unistd.h>
   #include                <linux/hdreg.h>
@@ -27,10 +19,7 @@ int SendHDDCommand(dword Command, byte *CommandBlock, int BufferSize)
   //fd = open("/dev/sdb", O_RDONLY | O_NONBLOCK);
   if(fd < 0)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return 1;
   }
 
@@ -44,10 +33,7 @@ int SendHDDCommand(dword Command, byte *CommandBlock, int BufferSize)
 
   if(ret)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return 1;
   }
 
@@ -61,11 +47,6 @@ int SendHDDCommand(dword Command, byte *CommandBlock, int BufferSize)
     i -= 2;
   }
 
-#endif
-
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return 0;
 }

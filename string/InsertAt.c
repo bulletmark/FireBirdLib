@@ -3,9 +3,7 @@
 
 void InsertAt(char *SourceString, int Pos, char *NewString)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("InsertAt");
-  #endif
+  TRACEENTER();
 
   char                 *dst, *src;
   char                 *Target;
@@ -13,10 +11,7 @@ void InsertAt(char *SourceString, int Pos, char *NewString)
 
   if(!SourceString || !NewString)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return;
   }
 
@@ -26,10 +21,7 @@ void InsertAt(char *SourceString, int Pos, char *NewString)
   {
     strcat(src, NewString);
 
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return;
   }
 
@@ -54,7 +46,5 @@ void InsertAt(char *SourceString, int Pos, char *NewString)
 
   memcpy(Target, NewString, NewLen);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

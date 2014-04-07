@@ -2,9 +2,7 @@
 
 int OSDMenuFindNextSelectableEntry(int CurrentSelection)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuFindNextSelectableEntry");
-  #endif
+  TRACEENTER();
 
   tMenu                *pMenu;
   int                   i, Cnt;
@@ -13,10 +11,7 @@ int OSDMenuFindNextSelectableEntry(int CurrentSelection)
 
   if((CurrentSelection >= (pMenu->NrItems - 1)) && !pMenu->ScrollLoop)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return CurrentSelection;
   }
 
@@ -28,10 +23,7 @@ int OSDMenuFindNextSelectableEntry(int CurrentSelection)
   }
   if(Cnt == 0)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return -1;
   }
 
@@ -44,18 +36,12 @@ int OSDMenuFindNextSelectableEntry(int CurrentSelection)
         CurrentSelection = 0;
       else
       {
-        #ifdef DEBUG_FIREBIRDLIB
-          CallTraceExit(NULL);
-        #endif
-
+        TRACEEXIT();
         return -1;
       }
     }
   } while(!pMenu->Item[CurrentSelection].Selectable);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return CurrentSelection;
 }

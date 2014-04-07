@@ -2,19 +2,14 @@
 
 dword UTF8ToUTF32(byte *UTF8Character, byte *BytesPerChar)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("UTF8ToUTF32");
-  #endif
+  TRACEENTER();
 
   byte c1, c2, c3, c4;
 
   if(BytesPerChar) *BytesPerChar = 1;
   if(!UTF8Character)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return 0;
   }
 
@@ -22,10 +17,7 @@ dword UTF8ToUTF32(byte *UTF8Character, byte *BytesPerChar)
   c1 = UTF8Character[0];
   if((c1 & 0x80) == 0x00)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return c1;
   }
 
@@ -36,10 +28,7 @@ dword UTF8ToUTF32(byte *UTF8Character, byte *BytesPerChar)
   {
     if(BytesPerChar) *BytesPerChar = 2;
 
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return ((c1 & 0x1f) << 6) | (c2 & 0x3f);
   }
 
@@ -51,10 +40,7 @@ dword UTF8ToUTF32(byte *UTF8Character, byte *BytesPerChar)
   {
     if(BytesPerChar) *BytesPerChar = 3;
 
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return ((c1 & 0x0f) << 12) | ((c2 & 0x3f) << 6) | (c3 & 0x3f);
   }
 
@@ -67,17 +53,11 @@ dword UTF8ToUTF32(byte *UTF8Character, byte *BytesPerChar)
   {
     if(BytesPerChar) *BytesPerChar = 4;
 
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return ((c1 & 0x07) << 18) | ((c2 & 0x3f) << 12) | ((c3 & 0x3f) << 6) | (c4 & 0x3f);
   }
 
   //Malformed packet, return that character
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return c1;
 }

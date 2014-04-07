@@ -2,9 +2,7 @@
 
 char *GetToppyString(word SysID)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("GetToppyString");
-  #endif
+  TRACEENTER();
 
   dword                 i;
   tToppyInfo           *ToppyInfo;
@@ -16,18 +14,12 @@ char *GetToppyString(word SysID)
     {
       if(ToppyInfo->SysID == SysID)
       {
-        #ifdef DEBUG_FIREBIRDLIB
-          CallTraceExit(NULL);
-        #endif
-
+        TRACEEXIT();
         return ToppyInfo->Device;
       }
     }
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return "???";
 }

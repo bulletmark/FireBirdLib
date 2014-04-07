@@ -138,9 +138,7 @@ char                    UTF8Lower[64] = "\u00e0\u00e1\u00e2\u00e3\u00e4\u00e5\u0
 
 bool StrToUTF8(byte *SourceString, byte *DestString, byte DefaultISO8859CharSet)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("StrToUTF8");
-  #endif
+  TRACEENTER();
 
   bool                  ret;
   byte                  BytesPerCharacter;
@@ -150,10 +148,7 @@ bool StrToUTF8(byte *SourceString, byte *DestString, byte DefaultISO8859CharSet)
 
   if(!SourceString || !DestString)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -190,10 +185,7 @@ bool StrToUTF8(byte *SourceString, byte *DestString, byte DefaultISO8859CharSet)
         //According to EN300468, this is already in UTF8 encoding
         strcpy(DestString, &SourceString[1]);
 
-        #ifdef DEBUG_FIREBIRDLIB
-          CallTraceExit(NULL);
-        #endif
-
+        TRACEEXIT();
         return FALSE;
       }
 
@@ -207,7 +199,7 @@ bool StrToUTF8(byte *SourceString, byte *DestString, byte DefaultISO8859CharSet)
   }
   else
   {
-    //TAP_PrintNet("StrToUTF8: using default lookup table 8859-%d\n", CharSet);
+    //LogEntryFBLibPrintf(TRUE, "StrToUTF8: using default lookup table 8859-%d", CharSet);
   }
 
   switch(CharSet)
@@ -297,9 +289,6 @@ bool StrToUTF8(byte *SourceString, byte *DestString, byte DefaultISO8859CharSet)
   }
   *DestString = '\0';
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

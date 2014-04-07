@@ -2,9 +2,7 @@
 
 dword FirmwareDatMJD(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FirmwareDatMJD");
-  #endif
+  TRACEENTER();
 
   tFWDATHeader         *FWDatHeader;
   dword                 d;
@@ -13,16 +11,10 @@ dword FirmwareDatMJD(void)
   {
     d = FWDatHeader->CompileDate;
 
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return TAP_MakeMjd(d >>16, (d >> 8) & 0xff, d & 0xff);
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return 0;
 }

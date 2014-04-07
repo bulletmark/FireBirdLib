@@ -2,19 +2,14 @@
 
 int HDD_FindPCR(byte *pBuffer, dword BufferSize, word PID)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_FindPCR");
-  #endif
+  TRACEENTER();
 
   dword		        i = 0;
   dword		        PCR;
 
   if(PID > 0x1ffe)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return -1;
   }
 
@@ -28,18 +23,12 @@ int HDD_FindPCR(byte *pBuffer, dword BufferSize, word PID)
       PCR = (pBuffer[i + 6] << 19) | (pBuffer[i + 7] << 11) | (pBuffer[i + 8] << 3) | (pBuffer[i + 9] >> 5);
       PCR /= 84375;
 
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
-
+      TRACEEXIT();
       return (int) PCR;
     }
     i += 188;
   } while(i < (BufferSize - 188));
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return -1;
 }

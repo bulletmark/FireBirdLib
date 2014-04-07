@@ -4,18 +4,32 @@
 
 char *HDD_MakeNewRecName(char *fname, word sequence)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_MakeNewRecName");
-  #endif
+  TRACEENTER();
 
-  static char           try[MAX_FILE_NAME_SIZE + 1];
+  static char           AbsName[FBLIB_DIR_SIZE], *Slash;
+  char                  try[FBLIB_DIR_SIZE];
   size_t                len;
   char                  *p;
   int                   j;
   char                  c1, c2;
 
+  memset(AbsName, 0, sizeof(AbsName));
   memset(try, 0, sizeof(try));
-  strncpy(try, fname, sizeof(try));
+
+  Slash = strrchr(fname, '/');
+  if(Slash)
+  {
+    int i;
+
+    i = (dword)Slash - (dword)fname + 1;
+    strncpy(AbsName, fname, i);
+
+    strncpy(try, Slash + 1, sizeof(try));
+  }
+  else
+  {
+    strncpy(try, fname, sizeof(try));
+  }
 
   len = strlen(try);
 
@@ -45,9 +59,8 @@ char *HDD_MakeNewRecName(char *fname, word sequence)
   p[1] = c1;
   p[2] = c2;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  strcat(AbsName, try);
 
-  return try;
+  TRACEEXIT();
+  return AbsName;
 }

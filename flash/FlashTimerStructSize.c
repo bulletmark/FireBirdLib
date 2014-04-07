@@ -2,15 +2,10 @@
 
 int FlashTimerStructSize(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FlashTimerStructSize");
-  #endif
+  TRACEENTER();
 
   int ret = FIS_vTimerTempInfo() - FIS_vTimerEditInfo();
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

@@ -7,9 +7,7 @@ void make_crc_table(void);
 
 void make_crc_table(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("make_crc_table");
-  #endif
+  TRACEENTER();
 
   dword                dwCRC;
   dword                CRCPOLY = 0;
@@ -33,27 +31,20 @@ void make_crc_table(void)
   }
   CRCTableOK = TRUE;
 
-#ifdef DEBUG_FIREBIRDLIB
-  CallTraceExit(NULL);
-#endif
+  TRACEEXIT();
 }
 
 
 dword CRC32(dword StartValue, void *StartAddress, dword Length)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("CRC32");
-  #endif
+  TRACEENTER();
 
   volatile byte         *pData;
   dword                 crc = StartValue;   //Normaly 0xffffffff
 
   if(!StartAddress)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return crc;
   }
 
@@ -62,9 +53,6 @@ dword CRC32(dword StartValue, void *StartAddress, dword Length)
   for(pData = StartAddress; pData < (byte *) StartAddress + Length; pData++)
     crc = (crc << 8) ^ CRC32Table[((crc >> 24) ^ *pData) & 0xff];
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return crc;
 }

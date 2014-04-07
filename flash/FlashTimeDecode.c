@@ -3,19 +3,14 @@
 
 bool FlashTimeGetInfo(tFlashTimeInfo *TimeInfo)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FlashTimeGetInfo");
-  #endif
+  TRACEENTER();
 
   bool ret;
 
   //TimeInfo is NULL
   if(!TimeInfo)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -63,10 +58,7 @@ bool FlashTimeGetInfo(tFlashTimeInfo *TimeInfo)
     case ST_NRTYPES: break;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }
 
@@ -74,17 +66,12 @@ bool FlashTimeDecode(tFlashTimeInfo *Data, tFlashTimeInfo *TimeInfo)
 {
   bool ret;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FlashTimeDecode");
-  #endif
+  TRACEENTER();
 
   //TimeInfo is NULL
   if(!Data || !TimeInfo)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -109,18 +96,13 @@ bool FlashTimeDecode(tFlashTimeInfo *Data, tFlashTimeInfo *TimeInfo)
     case ST_NRTYPES: break;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }
 
 bool FlashTimeDecode_ST_TMSS(tFlashTimeInfo *Data, tFlashTimeInfo *TimeInfo)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FlashTimeDecode_ST_TMSS");
-  #endif
+  TRACEENTER();
 
   memset(TimeInfo, 0, sizeof(tFlashTimeInfo));
   TimeInfo->UTCOffset     = Data->UTCOffset;
@@ -133,10 +115,7 @@ bool FlashTimeDecode_ST_TMSS(tFlashTimeInfo *Data, tFlashTimeInfo *TimeInfo)
   TimeInfo->DST           = Data->DST;
   TimeInfo->unknown4      = Data->unknown4;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }
 
@@ -144,16 +123,11 @@ bool FlashTimeDecode_ST_TMST(tFlashTimeInfo *Data, tFlashTimeInfo *TimeInfo)
 {
   bool ret;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FlashTimeDecode_ST_TMST");
-  #endif
+  TRACEENTER();
 
   ret = FlashTimeDecode_ST_TMSS(Data, TimeInfo);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }
 
@@ -161,15 +135,10 @@ bool FlashTimeDecode_ST_TMSC(tFlashTimeInfo *Data, tFlashTimeInfo *TimeInfo)
 {
   bool ret;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FlashTimeDecode_ST_TMSC");
-  #endif
+  TRACEENTER();
 
   ret = FlashTimeDecode_ST_TMSS(Data, TimeInfo);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

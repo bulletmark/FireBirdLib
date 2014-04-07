@@ -2,13 +2,12 @@
 
 dword GetEEPROMAddress(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("GetEEPROMAddress");
-  #endif
+  dword ret;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEENTER();
 
-  return FIS_vEEPROM();
+  ret = FIS_vEEPROM();
+
+  TRACEEXIT();
+  return ret;
 }

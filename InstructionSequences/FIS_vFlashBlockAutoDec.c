@@ -2,18 +2,13 @@
 
 inline dword FIS_vFlashBlockAutoDec(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FIS_vFlashBlockAutoDec");
-  #endif
+  TRACEENTER();
 
   static dword          *vFlashAutoDec = 0;
 
   if(!vFlashAutoDec)
     vFlashAutoDec = (dword*)TryResolve("_autoDec");
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return (vFlashAutoDec ? *vFlashAutoDec : 0);
 }

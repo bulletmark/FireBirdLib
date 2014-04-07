@@ -2,55 +2,58 @@
 #include                <string.h>
 #include                "../libFireBird.h"
 
-void HDD_Rename(char *FileName, char *NewFileName)
+bool HDD_Rename(char *FileName, char *NewFileName)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_Rename");
-  #endif
+  TRACEENTER();
 
-  char                  Name[TS_FILE_NAME_SIZE], Ext[TS_FILE_NAME_SIZE];
-  char                  OldInfName[TS_FILE_NAME_SIZE], NewInfName[TS_FILE_NAME_SIZE];
+  char                  Path[FBLIB_DIR_SIZE], Name[TS_FILE_NAME_SIZE], Ext[TS_FILE_NAME_SIZE];
+  char                  OldName[TS_FILE_NAME_SIZE], NewName[TS_FILE_NAME_SIZE];
   bool                  isRec, isDel;
   int                   fNumber;
+  bool                  ret;
 
-  if(FileName && NewFileName && NewFileName[0] && TAP_Hdd_Exist(FileName))
+  ret = FALSE;
+
+  if(FileName && FileName[0] && NewFileName && NewFileName[0] && HDD_Exist(FileName))
   {
-    MakeUniqueFileName(NewFileName);
-    TAP_Hdd_Rename(FileName, NewFileName);
+    ConvertPathType(FileName, OldName, PF_FullLinuxPath);
+    ConvertPathType(NewFileName, NewName, PF_FullLinuxPath);
+    MakeUniqueFileName(NewName);
 
-    SeparateFileNameComponents(FileName, Name, Ext, &fNumber, &isRec, &isDel);
+    ret = (rename(OldName, NewName) == 0);
+
+    SeparateFileNameComponents(OldName, Path, Name, Ext, &fNumber, &isRec, &isDel);
     if(isRec)
     {
       if(fNumber)
-        TAP_SPrint(OldInfName, "%s-%d%s.inf%s", Name, fNumber, Ext, isDel ? ".del" : "");
+        TAP_SPrint(OldName, "%s%s-%d%s.inf%s", Path, Name, fNumber, Ext, isDel ? ".del" : "");
       else
-        TAP_SPrint(OldInfName, "%s%s.inf%s", Name, Ext, isDel ? ".del" : "");
+        TAP_SPrint(OldName, "%s%s%s.inf%s", Path, Name, Ext, isDel ? ".del" : "");
 
-      SeparateFileNameComponents(NewFileName, Name, Ext, &fNumber, &isRec, &isDel);
+      SeparateFileNameComponents(NewName, Path, Name, Ext, &fNumber, &isRec, &isDel);
       if(fNumber)
-        TAP_SPrint(NewInfName, "%s-%d%s.inf%s", Name, fNumber, Ext, isDel ? ".del" : "");
+        TAP_SPrint(NewName, "%s%s-%d%s.inf%s", Path, Name, fNumber, Ext, isDel ? ".del" : "");
       else
-        TAP_SPrint(NewInfName, "%s%s.inf%s", Name, Ext, isDel ? ".del" : "");
+        TAP_SPrint(NewName, "%s%s%s.inf%s", Path, Name, Ext, isDel ? ".del" : "");
 
-      TAP_Hdd_Rename(OldInfName, NewInfName);
+      rename(OldName, NewName);
 
-      SeparateFileNameComponents(FileName, Name, Ext, &fNumber, &isRec, &isDel);
+      SeparateFileNameComponents(OldName, Path, Name, Ext, &fNumber, &isRec, &isDel);
       if(fNumber)
-        TAP_SPrint(OldInfName, "%s-%d%s.nav%s", Name, fNumber, Ext, isDel ? ".del" : "");
+        TAP_SPrint(OldName, "%s%s-%d%s.nav%s", Path, Name, fNumber, Ext, isDel ? ".del" : "");
       else
-        TAP_SPrint(OldInfName, "%s%s.nav%s", Name, Ext, isDel ? ".del" : "");
+        TAP_SPrint(OldName, "%s%s%s.nav%s", Path, Name, Ext, isDel ? ".del" : "");
 
-      SeparateFileNameComponents(NewFileName, Name, Ext, &fNumber, &isRec, &isDel);
+      SeparateFileNameComponents(NewName, Path, Name, Ext, &fNumber, &isRec, &isDel);
       if(fNumber)
-        TAP_SPrint(NewInfName, "%s-%d%s.nav%s", Name, fNumber, Ext, isDel ? ".del" : "");
+        TAP_SPrint(NewName, "%s%s-%d%s.nav%s", Path, Name, fNumber, Ext, isDel ? ".del" : "");
       else
-        TAP_SPrint(NewInfName, "%s%s.nav%s", Name, Ext, isDel ? ".del" : "");
+        TAP_SPrint(NewName, "%s%s%s.nav%s", Path, Name, Ext, isDel ? ".del" : "");
 
-      TAP_Hdd_Rename(OldInfName, NewInfName);
+      rename(OldName, NewName);
     }
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
+  return ret;
 }

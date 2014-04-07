@@ -2,9 +2,7 @@
 
 void *TAP_MemRealloc(void *ptr, size_t OldSize, size_t NewSize, bool InitMemory)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("TAP_MemRealloc");
-  #endif
+  TRACEENTER();
 
   void *temp;
 
@@ -12,12 +10,9 @@ void *TAP_MemRealloc(void *ptr, size_t OldSize, size_t NewSize, bool InitMemory)
   if(temp == NULL)
   {
     // out of memory!
-    //TAP_Print("not enough memory (alloc returned NULL)\n");
+    LogEntryFBLibPrintf(TRUE, "TAP_MemRealloc: not enough memory (alloc returned NULL)");
 
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return NULL;
   }
 
@@ -29,9 +24,6 @@ void *TAP_MemRealloc(void *ptr, size_t OldSize, size_t NewSize, bool InitMemory)
 
   if(InitMemory) memset(temp + OldSize, 0, NewSize - OldSize);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return temp;
 }

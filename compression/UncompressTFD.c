@@ -19,19 +19,14 @@
 // 8 .. (compressed size + 5) - compressed data (byte array)
 dword UncompressTFD(byte *pSrc, byte *pDest, void *pPercentFinishedCallback)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("UncompressTFD");
-  #endif
+  TRACEENTER();
 
   word                  compSize = 0, uncompSize = 0, NrBlocks = 0;
   dword                 outSize = 0, i;
 
   if(!pSrc || !pDest)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return 0;
   }
 
@@ -41,30 +36,21 @@ dword UncompressTFD(byte *pSrc, byte *pDest, void *pPercentFinishedCallback)
   if(LOAD_WORD(pSrc) != 8)
   {
     //Invalid header
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return 0;
   }
 
   if(CRC16 (0, pSrc + 4, 6) != LOAD_WORD(pSrc + 2))
   {
     //Invalid header CRC
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return 0;
   }
 
   if(LOAD_WORD(pSrc + 6) != 1)
   {
     //Invalid file version
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return 0;
   }
 
@@ -82,9 +68,7 @@ dword UncompressTFD(byte *pSrc, byte *pDest, void *pPercentFinishedCallback)
     if(uncompSize > 0x7ffa)
     {
       //Size of uncompressed block too large
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
+      TRACEEXIT();
 
       return 0;
     }
@@ -102,10 +86,7 @@ dword UncompressTFD(byte *pSrc, byte *pDest, void *pPercentFinishedCallback)
       if(!UncompressBlock(pSrc, compSize, pDest, uncompSize))
       {
         //Uncompress failed
-        #ifdef DEBUG_FIREBIRDLIB
-          CallTraceExit(NULL);
-        #endif
-
+        TRACEEXIT();
         return 0;
       }
     }
@@ -116,9 +97,6 @@ dword UncompressTFD(byte *pSrc, byte *pDest, void *pPercentFinishedCallback)
   }
   if(PercentFinishedCallback) PercentFinishedCallback(100);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return outSize;
 }

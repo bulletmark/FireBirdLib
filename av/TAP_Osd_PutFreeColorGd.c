@@ -2,9 +2,7 @@
 
 int TAP_Osd_PutFreeColorGd(word rgn, int x, int y, TYPE_GrData *gd, bool sprite, dword FilterColor)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("TAP_Osd_PutFreeColorGd");
-  #endif
+  TRACEENTER();
 
   int                   ret;
   int                   R, G, B;
@@ -26,10 +24,7 @@ int TAP_Osd_PutFreeColorGd(word rgn, int x, int y, TYPE_GrData *gd, bool sprite,
   {
     TAP_Osd_Delete(TempRgn);
 
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return(ret ? ret : -1);
   }
 
@@ -68,9 +63,6 @@ int TAP_Osd_PutFreeColorGd(word rgn, int x, int y, TYPE_GrData *gd, bool sprite,
   TAP_MemFree(PixelData);
   TAP_Osd_Delete(TempRgn);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return 0;
 }

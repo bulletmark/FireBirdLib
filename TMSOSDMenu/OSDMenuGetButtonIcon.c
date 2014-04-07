@@ -2,9 +2,7 @@
 
 tButtonIcon OSDMenuGetButtonIcon(dword key)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuGetButtonIcon");
-  #endif
+  TRACEENTER();
 
   tButtonIcon ret = BI_None;
 
@@ -68,9 +66,6 @@ tButtonIcon OSDMenuGetButtonIcon(dword key)
     case RKEY_Yellow:   ret = BI_Yellow; break;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

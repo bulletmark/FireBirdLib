@@ -7,30 +7,20 @@ TYPE_Parametered_Tap   *fbl_parametered_tap = NULL;
 
 dword HDD_TAP_Start(char *TAPFileName, bool BatchMode, void* ParameterBlock, dword *TAPID)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_TAP_Start");
-  #endif
+  TRACEENTER();
 
-  dword                 ret;
-  dword                 _TempWorkFolder[4];
+  dword                 ret, Result;
+  tDirEntry             _TempWorkFolder;
   dword                *_hddTapFolder;
-  dword                *_hddTsFolder;
-  char                  CurrentDir[FBLIB_DIR_SIZE];
+  char                  CurrentDir[FBLIB_DIR_SIZE], FileName[MAX_FILE_NAME_SIZE + 1];
   int                   shmidBatch = 0, shmidParameterBlock = 0;
   char                 *segptrBatch = NULL;
   tTAPInfo              TAPInfo;
 
-  void  (*ApplHdd_SetWorkFolder)(void*) = NULL;
-  dword (*ApplHdd_SelectFolder)(void*, char  const*) = NULL;
-  void  (*Appl_ExecProgram)(char*) = NULL;
-
   //Set the TAPID and batch flag
   if(!HDD_TAP_GetInfo(TAPFileName, &TAPInfo))
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return 0;
   }
 
@@ -59,25 +49,28 @@ dword HDD_TAP_Start(char *TAPFileName, bool BatchMode, void* ParameterBlock, dwo
     fbl_parametered_tap->pParameterBlock = (dword)ParameterBlock;
   }
 
-  Appl_ExecProgram       = (void*)FIS_fwAppl_ExecProgram();
-  ApplHdd_SetWorkFolder  = (void*)FIS_fwApplHdd_SetWorkFolder();
-  ApplHdd_SelectFolder   = (void*)FIS_fwApplHdd_SelectFolder();
-  _hddTapFolder          = (dword*)FIS_vHddTapFolder();
-  _hddTsFolder           = (dword*)FIS_vHddTsFolder();
+  _hddTapFolder = (dword*)FIS_vHddTapFolder();
 
-  //"Calculate" the current absolute directory of the new TAP
-  TAP_SPrint(CurrentDir, "mnt/hd");
-  HDD_TAP_GetCurrentDir(&CurrentDir[strlen(CurrentDir)]);
+  Result = 0;
+  ApplHdd_SaveWorkFolder();
+
+  //"Calculate" the current absolute directory of the new TAP and remove the last /
+  ConvertPathType(TAPFileName, CurrentDir, PF_LinuxPathOnly);
+  if(CurrentDir[strlen(CurrentDir) - 1] == '/') CurrentDir[strlen(CurrentDir) - 1] = '\0';
 
   //Create a new folder structure
-  memset(_TempWorkFolder, 0, sizeof(_TempWorkFolder));
-  _TempWorkFolder[0] = 0xbacaed31;
-  ret = ApplHdd_SelectFolder(&_TempWorkFolder, CurrentDir);
+  memset(&_TempWorkFolder, 0, sizeof(_TempWorkFolder));
+  _TempWorkFolder.Magic = 0xbacaed31;
+  ret = ApplHdd_SelectFolder(&_TempWorkFolder, &CurrentDir[1]);
+
   if(!ret)
   {
-    ApplHdd_SetWorkFolder(_TempWorkFolder);
-    memcpy((void*)_hddTapFolder[0], &_TempWorkFolder[0], sizeof(_TempWorkFolder));
-    Appl_ExecProgram(TAPFileName);
+    ApplHdd_SetWorkFolder(&_TempWorkFolder);
+    memcpy((void*)_hddTapFolder[0], &_TempWorkFolder, sizeof(_TempWorkFolder));
+
+    ConvertPathType(TAPFileName, FileName, PF_FileNameOnly);
+    Appl_ExecProgram(FileName);
+    Result = 1;
   }
 
   if(BatchMode && segptrBatch)
@@ -95,12 +88,8 @@ dword HDD_TAP_Start(char *TAPFileName, bool BatchMode, void* ParameterBlock, dwo
   //Reset the batch flag and start parameters
   memset(&fbl_parametered_tap, 0, sizeof(fbl_parametered_tap));
 
-  ApplHdd_SelectFolder(&_hddTapFolder, "mnt/hd/ProgramFiles");
-  ApplHdd_SetWorkFolder((void*)*_hddTsFolder);
+  ApplHdd_RestoreWorkFolder();
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
-  return 1;
+  TRACEEXIT();
+  return Result;
 }

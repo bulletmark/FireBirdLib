@@ -2,21 +2,16 @@
 
 __ino64_t HDD_GetInodeByTypeFile(TYPE_File *File)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_GetInodeByTypeFile");
-  #endif
+  TRACEENTER();
 
-  char                  AbsFileName[512];
+  char                  AbsFileName[FBLIB_DIR_SIZE];
   __ino64_t             ret;
 
   if(HDD_GetAbsolutePathByTypeFile(File, AbsFileName))
-    ret = HDD_GetInodeByAbsFileName(AbsFileName);
+    ret = HDD_GetInodeByFileName(AbsFileName);
   else
     ret = 0;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

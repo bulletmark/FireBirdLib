@@ -3,9 +3,7 @@
 
 bool CaptureScreen(int BMPwidth, int BMPheight, byte *BMPPixelBuffer, bool bOSD, int Alpha)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("CaptureScreen");
-  #endif
+  TRACEENTER();
 
   TYPE_VideoFrame       videoFrameMain;
   TYPE_VideoFrame       videoFrameSub;
@@ -15,10 +13,7 @@ bool CaptureScreen(int BMPwidth, int BMPheight, byte *BMPPixelBuffer, bool bOSD,
 
   if(!BMPPixelBuffer)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -64,9 +59,6 @@ bool CaptureScreen(int BMPwidth, int BMPheight, byte *BMPPixelBuffer, bool bOSD,
     OSDToBMP(&osdBaseInfo, BMPwidth, BMPheight, BMPPixelBuffer, Alpha);
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }

@@ -4,9 +4,7 @@
 
 void EPGInfo_DestroyCache(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("EPGInfo_DestroyCache");
-  #endif
+  TRACEENTER();
 
   if(EPGInfoCacheMap)
   {
@@ -24,7 +22,5 @@ void EPGInfo_DestroyCache(void)
     unlink(EPGCacheFile);
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

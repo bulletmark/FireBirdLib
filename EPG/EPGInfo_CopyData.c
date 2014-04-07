@@ -3,9 +3,7 @@
 
 void EPGInfo_CopyData(TYPE_EvtInfo *EvtInfo, TYPE_EPGInfo *EPGInfo, dword EventStartTime, dword EventEndTime, short Offset)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("EPGInfo_CopyData");
-  #endif
+  TRACEENTER();
 
   if(EvtInfo && EPGInfo)
   {
@@ -94,7 +92,5 @@ void EPGInfo_CopyData(TYPE_EvtInfo *EvtInfo, TYPE_EPGInfo *EPGInfo, dword EventS
     }
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

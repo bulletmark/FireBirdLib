@@ -366,7 +366,7 @@ void DumpTimeInfo(void)
   if(FlashTimeGetInfo(&TimeInfo))
   {
     PRINTLOG("  UTCOffset=%d, SleepTimer=%d, GMTCollection=%d, Mode=%d, DST=%2.2x", TimeInfo.UTCOffset, TimeInfo.SleepTimer, TimeInfo.GMTCollection, TimeInfo.Mode, TimeInfo.DST);
-    PRINTLOG("  unknown1=%2.2x, unknown2=%2.2x, unknown3=%2.2x, unknown4=%2.2x, unknown5=%2.2x", TimeInfo.unknown1, TimeInfo.unknown2, TimeInfo.unknown3, TimeInfo.unknown4, TimeInfo.unknown5);
+    PRINTLOG("  unknown1=%2.2x, unknown2=%2.2x, unknown3=%2.2x, unknown4=%2.2x", TimeInfo.unknown1, TimeInfo.unknown2, TimeInfo.unknown3, TimeInfo.unknown4);
   }
   else
   {

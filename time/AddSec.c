@@ -2,9 +2,7 @@
 
 dword AddSec(dword date, byte dateSec, int add)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("AddSec");
-  #endif
+  TRACEENTER();
 
   word                  mjd;
   int                   hour, min, sec;
@@ -49,9 +47,6 @@ dword AddSec(dword date, byte dateSec, int add)
   }
   ret = DATE(mjd, hour, min);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

@@ -3,9 +3,7 @@
 
 void OSDMenuKeyboard_DeleteRight(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuKeyboard_DeleteRight");
-  #endif
+  TRACEENTER();
 
   if(OSDMenuKeyboard_CursorPosition < (int)strlenUC(OSDMenuKeyboard_StringVar))
   {
@@ -13,7 +11,5 @@ void OSDMenuKeyboard_DeleteRight(void)
     OSDMenuKeyboard_Draw();
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

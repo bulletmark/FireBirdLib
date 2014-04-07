@@ -3,9 +3,7 @@
 
 void StrToISO(byte *SourceString, byte *DestString)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("StrToISO");
-  #endif
+  TRACEENTER();
 
   int                   Len;
   bool                  hasAnsiChars, hasUTFChars;
@@ -14,10 +12,7 @@ void StrToISO(byte *SourceString, byte *DestString)
 
   if(!SourceString || !DestString)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return;
   }
 
@@ -25,10 +20,7 @@ void StrToISO(byte *SourceString, byte *DestString)
   {
     *DestString = '\0';
 
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return;
   }
 
@@ -60,7 +52,5 @@ void StrToISO(byte *SourceString, byte *DestString)
   else
     strcpy(DestString, SourceString);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

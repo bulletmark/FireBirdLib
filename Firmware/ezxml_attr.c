@@ -2,9 +2,7 @@
 
 const char *ezxml_attr(ezxml_t xml, const char *attr)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("ezxml_attr");
-  #endif
+  TRACEENTER();
 
 	const char *(*__ezxml_attr)(ezxml_t, const char *);
 	const char *ret = NULL;
@@ -16,9 +14,6 @@ const char *ezxml_attr(ezxml_t xml, const char *attr)
 		ret = __ezxml_attr(xml, attr);
 	}
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
 	return ret;
 }

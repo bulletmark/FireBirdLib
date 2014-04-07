@@ -8,9 +8,7 @@ byte FPIRData[] = {0xa5, 0x00, 0x02, 0x34, 0x0a, 0x00,   //Mode 1
 
 void SetRemoteMode(byte Mode, bool Active)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("SetRemoteMode");
-  #endif
+  TRACEENTER();
 
   void (*DevFront_SetIrCode)(byte P1, byte P2, byte P3, byte P4, byte P5);
 
@@ -28,7 +26,5 @@ void SetRemoteMode(byte Mode, bool Active)
     }
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

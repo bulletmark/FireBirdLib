@@ -4,9 +4,7 @@
 
 void LogEntryGeneric(char *ProgramName, bool Console, char *Text)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("LogEntryGeneric");
-  #endif
+  TRACEENTER();
 
   char                 *s;
   int                   l;
@@ -20,10 +18,7 @@ void LogEntryGeneric(char *ProgramName, bool Console, char *Text)
 
   if(!ProgramName || !Text)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return;
   }
 
@@ -68,7 +63,5 @@ void LogEntryGeneric(char *ProgramName, bool Console, char *Text)
   }
   HDD_TAP_PopDir();
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

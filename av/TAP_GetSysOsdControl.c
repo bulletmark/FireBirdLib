@@ -2,19 +2,14 @@
 
 bool TAP_GetSysOsdControl(TYPE_TapSysOsdId osdId)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("TAP_GetSysOsdControl");
-  #endif
+  TRACEENTER();
 
   dword                *__tapSysOsdCtrl = NULL;
 
   __tapSysOsdCtrl = (dword*)FIS_vTapSysOsdCtrl();
   if(!__tapSysOsdCtrl)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -26,9 +21,6 @@ bool TAP_GetSysOsdControl(TYPE_TapSysOsdId osdId)
     case SYSOSD_ServiceStatus:  return *__tapSysOsdCtrl & 0x01000000;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return FALSE;
 }

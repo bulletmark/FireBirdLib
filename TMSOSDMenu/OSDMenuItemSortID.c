@@ -3,9 +3,7 @@
 
 void OSDMenuItemSortID(bool Ascending)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuItemSortID");
-  #endif
+  TRACEENTER();
 
   int                   i, j, NrItems;
   tItem                 TempItem;
@@ -41,7 +39,5 @@ void OSDMenuItemSortID(bool Ascending)
 
   ListDirty = TRUE;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

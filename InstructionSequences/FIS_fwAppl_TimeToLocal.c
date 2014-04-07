@@ -2,18 +2,13 @@
 
 inline dword FIS_fwAppl_TimeToLocal(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FIS_fwAppl_TimeToLocal");
-  #endif
+  TRACEENTER();
 
   static dword          fwAppl_TimeToLocal = 0;
 
   if(!fwAppl_TimeToLocal)
     fwAppl_TimeToLocal = TryResolve("_Z16Appl_TimeToLocalj");
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return fwAppl_TimeToLocal;
 }

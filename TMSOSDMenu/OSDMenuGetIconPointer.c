@@ -2,9 +2,7 @@
 
 TYPE_GrData *OSDMenuGetIconPointer(tButtonIcon ButtonIcon, TYPE_GrData *UserDefinedButton)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuGetIconPointer");
-  #endif
+  TRACEENTER();
 
   TYPE_GrData *ret = NULL;
   switch(ButtonIcon)
@@ -69,9 +67,6 @@ TYPE_GrData *OSDMenuGetIconPointer(tButtonIcon ButtonIcon, TYPE_GrData *UserDefi
     case BI_UserDefined : ret = UserDefinedButton; break;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

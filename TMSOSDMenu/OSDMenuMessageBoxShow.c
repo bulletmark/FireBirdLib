@@ -3,9 +3,7 @@
 
 void OSDMenuMessageBoxShow(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuMessageBoxShow");
-  #endif
+  TRACEENTER();
 
   dword                 x, y, dx, dy, i;
   char                 *pText;
@@ -17,10 +15,7 @@ void OSDMenuMessageBoxShow(void)
 
   if(MessageBox.NrButtons == 0)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return;
   }
 
@@ -96,7 +91,5 @@ void OSDMenuMessageBoxShow(void)
 
   TAP_Osd_Sync();
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

@@ -3,9 +3,7 @@
 
 dword FMUC_GetStringWidth(char *Text, tFontDataUC *FontData)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FMUC_GetStringWidth");
-  #endif
+  TRACEENTER();
 
   dword                 Width = 0;
   tGlyphCacheUC        *GlyphData;
@@ -14,10 +12,7 @@ dword FMUC_GetStringWidth(char *Text, tFontDataUC *FontData)
 
   if(!Text || !Text[0] || !FontData)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return 0;
   }
 
@@ -31,9 +26,6 @@ dword FMUC_GetStringWidth(char *Text, tFontDataUC *FontData)
     p += BytesPerChar;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return Width;
 }

@@ -2,16 +2,11 @@
 
 bool EPGInfo_FindNext(TYPE_EPGInfo *EPGData)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("EPGInfo_FindNext");
-  #endif
+  TRACEENTER();
 
   EPGInfoCurrentEntry++;
   bool ret = EPGInfo_FindItem(EPGData, EPGInfoCurrentEntry, FALSE);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

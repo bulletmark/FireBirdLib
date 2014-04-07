@@ -2,18 +2,13 @@
 
 inline dword FIS_vdupEntry(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FIS_vdupEntry");
-  #endif
+  TRACEENTER();
 
   static dword          vdupEntry = 0;
 
   if(!vdupEntry)
     vdupEntry = TryResolve("_dupEntry");
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return vdupEntry;
 }

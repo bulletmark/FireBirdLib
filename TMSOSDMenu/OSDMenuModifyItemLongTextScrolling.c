@@ -2,13 +2,9 @@
 
 void OSDMenuModifyItemLongTextScrolling(bool AllowScrollingOfLongText)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuModifyItemLongTextScrolling");
-  #endif
+  TRACEENTER();
 
   Menu[CurrentMenuLevel].AllowScrollingOfLongText = AllowScrollingOfLongText;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

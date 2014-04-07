@@ -2,13 +2,8 @@
 
 bool OSDMenuColorPickerIsVisible(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuColorPickerIsVisible");
-  #endif
+  TRACEENTER();
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return (ColorPickerOSDRgn != 0);
 }

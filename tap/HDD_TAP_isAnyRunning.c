@@ -2,9 +2,7 @@
 
 bool HDD_TAP_isAnyRunning(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_TAP_isAnyRunning");
-  #endif
+  TRACEENTER();
 
   dword                 i;
   tTMSTAPTaskTable     *TMSTAPTaskTable;
@@ -12,20 +10,14 @@ bool HDD_TAP_isAnyRunning(void)
   if(!LibInitialized) InitTAPex();
   if(!LibInitialized)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
   TMSTAPTaskTable = (tTMSTAPTaskTable*)FIS_vTAPTable();
   if(!TMSTAPTaskTable)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -33,17 +25,11 @@ bool HDD_TAP_isAnyRunning(void)
   {
     if((TMSTAPTaskTable[i].Status != 0) && (i != TAP_TableIndex))
     {
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
-
+      TRACEEXIT();
       return TRUE;
     }
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return FALSE;
 }

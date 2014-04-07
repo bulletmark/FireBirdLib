@@ -3,18 +3,13 @@
 
 size_t GetLine(char *data, bool strip)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("GetLine");
-  #endif
+  TRACEENTER();
 
   char                  *CRLFPos, *LFPos;
 
   if(!*data)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return 0;
   }
 
@@ -23,10 +18,7 @@ size_t GetLine(char *data, bool strip)
 
   if(CRLFPos == NULL && LFPos == NULL)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return strlen(data);
   }
   else if(CRLFPos == NULL || LFPos < CRLFPos)
@@ -34,10 +26,7 @@ size_t GetLine(char *data, bool strip)
     if(strip) *LFPos = '\0';
     size_t ret = LFPos - data + 1;
 
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return ret;
   }
   else
@@ -46,10 +35,7 @@ size_t GetLine(char *data, bool strip)
 
     size_t ret = CRLFPos - data + 2;
 
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return ret;
   }
 }

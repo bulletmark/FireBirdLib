@@ -2,18 +2,13 @@
 
 inline dword FIS_fwApplHdd_GetInfoFromExternalDevice(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FIS_fwApplHdd_GetInfoFromExternalDevice");
-  #endif
+  TRACEENTER();
 
   static dword          _ApplHdd_GetInfoFromExternalDevice = 0;
 
   if(!_ApplHdd_GetInfoFromExternalDevice)
     _ApplHdd_GetInfoFromExternalDevice = TryResolve("_Z33ApplHdd_GetInfoFromExternalDevicePjS_PKc");
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return _ApplHdd_GetInfoFromExternalDevice;
 }

@@ -3,9 +3,7 @@
 
 bool FlashServiceDel(int SvcType, int SvcNum)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FlashServiceDel");
-  #endif
+  TRACEENTER();
 
   word                 *nSvc;
   bool                  ret;
@@ -13,20 +11,14 @@ bool FlashServiceDel(int SvcType, int SvcNum)
   //SvcType out of range
   if((SvcType < 0) || (SvcType > SVC_TYPE_Radio))
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
   //SvcNum out of range
   if((SvcNum < 0) || (SvcNum >= FlashServiceGetTotal(SvcType)))
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -37,10 +29,7 @@ bool FlashServiceDel(int SvcType, int SvcNum)
     nSvc = (word*)FIS_vnRadioSvc();
   if(!nSvc)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -133,9 +122,6 @@ bool FlashServiceDel(int SvcType, int SvcNum)
     case ST_NRTYPES: break;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

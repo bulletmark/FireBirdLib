@@ -2,9 +2,7 @@
 
 bool OSDMenuItemModifyValueIcon(int ItemIndex, TYPE_GrData *pValueIconGd)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuItemModifyValueIcon");
-  #endif
+  TRACEENTER();
 
   tMenu                *pMenu;
 
@@ -12,10 +10,7 @@ bool OSDMenuItemModifyValueIcon(int ItemIndex, TYPE_GrData *pValueIconGd)
 
   if((pMenu->NrItems == 0) || (ItemIndex >= pMenu->NrItems))
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -23,9 +18,6 @@ bool OSDMenuItemModifyValueIcon(int ItemIndex, TYPE_GrData *pValueIconGd)
 
   ListDirty = TRUE;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }

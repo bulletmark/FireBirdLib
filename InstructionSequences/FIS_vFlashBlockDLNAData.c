@@ -2,18 +2,13 @@
 
 inline dword FIS_vFlashBlockDLNAData(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FIS_vFlashBlockDLNAData");
-  #endif
+  TRACEENTER();
 
   static dword          *vFlashDlnaData = 0;
 
   if(!vFlashDlnaData)
     vFlashDlnaData = (dword*)TryResolve("_dlnaData");
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return (vFlashDlnaData ? *vFlashDlnaData : 0);
 }

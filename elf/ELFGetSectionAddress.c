@@ -3,25 +3,17 @@
 
 bool ELFGetSectionAddress(dword SectionIndex, dword *SectionAddress, dword *SectionSize)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("ELFGetSectionAddress");
-  #endif
+  TRACEENTER();
 
   if(SectionIndex >= ELFHeader->e_shnum)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
   if(SectionAddress) *SectionAddress = SectionHeaders[SectionIndex].sh_addr;
   if(SectionSize)    *SectionSize = SectionHeaders[SectionIndex].sh_size;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }

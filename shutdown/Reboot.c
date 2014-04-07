@@ -3,15 +3,10 @@
 
 bool Reboot(bool StopRecordings)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("Reboot");
-  #endif
+  TRACEENTER();
 
   if(StopRecordings || !HDD_isAnyRecording()) TAP_Reboot();
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }

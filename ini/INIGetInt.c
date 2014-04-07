@@ -1,16 +1,12 @@
 #include <string.h>
 #include <stdlib.h>
-#ifndef _TMSEMU_
-  #include <ctype.h>
-#endif
+#include <ctype.h>
 #include "FBLib_ini.h"
 #include "../libFireBird.h"
 
 long int INIGetInt(char *Key, long int DefaultValue, long int MinValue, long int MaxValue)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("INIGetInt");
-  #endif
+  TRACEENTER();
 
   char                  *i = NULL, *j = NULL, *k;
   char                  TempKey[80];
@@ -18,10 +14,7 @@ long int INIGetInt(char *Key, long int DefaultValue, long int MinValue, long int
 
   if(!Key)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return 0;
   }
 
@@ -34,10 +27,7 @@ long int INIGetInt(char *Key, long int DefaultValue, long int MinValue, long int
 
   if(!i || !j || (j < i + l))
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return DefaultValue;
   }
 
@@ -46,10 +36,7 @@ long int INIGetInt(char *Key, long int DefaultValue, long int MinValue, long int
     if(k == i + l && *k == '-' && k < j) continue;
     if(!isdigit(*k))
     {
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
-
+      TRACEEXIT();
       return DefaultValue;
     }
   }
@@ -59,9 +46,6 @@ long int INIGetInt(char *Key, long int DefaultValue, long int MinValue, long int
   if(x < MinValue) x = MinValue;
   if(x > MaxValue) x = MaxValue;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return x;
 }

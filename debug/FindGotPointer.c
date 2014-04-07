@@ -2,9 +2,7 @@
 
 dword *FindGotPointer(dword FunctionAddress)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FindGotPointer");
-  #endif
+  TRACEENTER();
 
   static dword          gotStart = 0, gotEnd = 0;
   dword                 SectionIndex;
@@ -12,7 +10,7 @@ dword *FindGotPointer(dword FunctionAddress)
 
   if(!gotStart)
   {
-    if(ELFOpenAbsFile("/root/pvr") && ELFReadELFHeader() && ELFReadSectionHeaders() && ELFReadShstrtabSection())
+    if(ELFOpenFile("/root/pvr") && ELFReadELFHeader() && ELFReadSectionHeaders() && ELFReadShstrtabSection())
     {
       SectionIndex = ELFGetSectionIndex(".got");
       if(SectionIndex)
@@ -29,18 +27,13 @@ dword *FindGotPointer(dword FunctionAddress)
   {
     if(*got == FunctionAddress)
     {
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
+      TRACEEXIT();
 
       return got;
     }
     got++;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return 0;
 }

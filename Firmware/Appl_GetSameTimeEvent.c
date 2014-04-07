@@ -2,9 +2,7 @@
 
 void *Appl_GetSameTimeEvent(byte SatIndex, word NetID, word TSID, word ServiceID)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("Appl_GetSameTimeEvent");
-  #endif
+  TRACEENTER();
 
   dword                   CurrentGMT;
   dword                  *TreeByHashStart, *TreeByHashCurrent;
@@ -29,19 +27,13 @@ void *Appl_GetSameTimeEvent(byte SatIndex, word NetID, word TSID, word ServiceID
          (EventInfoCurrent->EndTime > CurrentGMT))
          {
            //Success
-           #ifdef DEBUG_FIREBIRDLIB
-             CallTraceExit(NULL);
-           #endif
-
+           TRACEEXIT();
            return EventInfoCurrent;
          }
       TreeByHashCurrent = (dword*)*TreeByHashCurrent;
     }while(TreeByHashCurrent != TreeByHashStart);
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return NULL;
 }

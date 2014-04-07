@@ -5,25 +5,17 @@
 
 bool LogoManager_LogosAvailable(tLogoStyle LogoStyle)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("LogoManager_LogosAvailable");
-  #endif
+  TRACEENTER();
 
   int                   i;
 
   for(i = 0; i < LogoManager_NrLogos; i++)
     if(LogoManager_LogoData[i].Style  == LogoStyle)
     {
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
-
+      TRACEEXIT();
       return TRUE;
     }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return FALSE;
 }

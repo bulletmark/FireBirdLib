@@ -2,19 +2,14 @@
 
 dword StringDBPrev(tStringDB *StringDB)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("StringDBPrev");
-  #endif
+  TRACEENTER();
 
   char                 *p;
   dword                 ret;
 
   if(!StringDB || !StringDB->DBPtr || (StringDB->DBPtr <= StringDB->DB))
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return '\0';
   }
 
@@ -24,9 +19,6 @@ dword StringDBPrev(tStringDB *StringDB)
   StringDB->DBPtr = p;
   ret = (dword)p - (dword)StringDB->DB;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

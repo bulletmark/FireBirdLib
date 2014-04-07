@@ -2,9 +2,7 @@
 
 inline dword FIS_vRECSlotAddress(byte Slot)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FIS_vRECSlotAddress");
-  #endif
+  TRACEENTER();
 
   static byte          *__pvrRecInfo = NULL;
   dword                 ret;
@@ -22,9 +20,6 @@ inline dword FIS_vRECSlotAddress(byte Slot)
     ret = (dword)&__pvrRecInfo[Slot * FlashTimerStructSize()];
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

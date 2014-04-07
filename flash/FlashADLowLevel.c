@@ -3,19 +3,14 @@
 
 bool FlashADDecode(void *Data, tAutoDescrambleTimer *ADTimer)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FlashADDecode");
-  #endif
+  TRACEENTER();
 
   bool ret;
 
   //ADTimer is NULL
   if(!Data || !ADTimer)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -40,10 +35,7 @@ bool FlashADDecode(void *Data, tAutoDescrambleTimer *ADTimer)
     case ST_NRTYPES: break;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }
 
@@ -51,9 +43,7 @@ bool FlashADDecode_ST_TMSS(TYPE_AutoDescrambleTimer *Data, tAutoDescrambleTimer 
 {
   int                        i;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FlashADDecode_ST_TMSS");
-  #endif
+  TRACEENTER();
 
   memset(ADTimer, 0, sizeof(tAutoDescrambleTimer));
   ADTimer->StartTime        = Data->StartTime;
@@ -70,10 +60,7 @@ bool FlashADDecode_ST_TMSS(TYPE_AutoDescrambleTimer *Data, tAutoDescrambleTimer 
   for(i = 0; i < 50; i++)
     strncpy(ADTimer->FileName[i], Data->FileName[i], MAX_FILE_NAME_SIZE);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }
 
@@ -81,16 +68,11 @@ bool FlashADDecode_ST_TMSC(TYPE_AutoDescrambleTimer *Data, tAutoDescrambleTimer 
 {
   bool ret;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FlashADDecode_ST_TMSC");
-  #endif
+  TRACEENTER();
 
   ret = FlashADDecode_ST_TMSS(Data, ADTimer);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }
 
@@ -98,16 +80,11 @@ bool FlashADDecode_ST_TMST(TYPE_AutoDescrambleTimer *Data, tAutoDescrambleTimer 
 {
   bool ret;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FlashADDecode_ST_TMST");
-  #endif
+  TRACEENTER();
 
   ret = FlashADDecode_ST_TMSS(Data, ADTimer);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }
 
@@ -115,17 +92,12 @@ bool FlashADEncode(void *Data, tAutoDescrambleTimer *ADTimer)
 {
   bool ret;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FlashADEncode");
-  #endif
+  TRACEENTER();
 
   //ADTimer is NULL
   if(!Data || !ADTimer)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -150,10 +122,7 @@ bool FlashADEncode(void *Data, tAutoDescrambleTimer *ADTimer)
     case ST_NRTYPES: break;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }
 
@@ -161,9 +130,7 @@ bool FlashADEncode_ST_TMSS(TYPE_AutoDescrambleTimer *Data, tAutoDescrambleTimer 
 {
   int                   i;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FlashADEncode_ST_TMSS");
-  #endif
+  TRACEENTER();
 
   memset(Data, 0, sizeof(TYPE_AutoDescrambleTimer));
   Data->StartTime        = ADTimer->StartTime;
@@ -180,10 +147,7 @@ bool FlashADEncode_ST_TMSS(TYPE_AutoDescrambleTimer *Data, tAutoDescrambleTimer 
   for(i = 0; i < 50; i++)
     strncpy(Data->FileName[i], ADTimer->FileName[i], MAX_FILE_NAME_SIZE);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }
 
@@ -191,16 +155,11 @@ bool FlashADEncode_ST_TMSC(TYPE_AutoDescrambleTimer *Data, tAutoDescrambleTimer 
 {
   bool ret;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FlashADEncode_ST_TMSC");
-  #endif
+  TRACEENTER();
 
   ret = FlashADEncode_ST_TMSS(Data, ADTimer);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }
 
@@ -208,15 +167,10 @@ bool FlashADEncode_ST_TMST(TYPE_AutoDescrambleTimer *Data, tAutoDescrambleTimer 
 {
   bool ret;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FlashADEncode_ST_TMST");
-  #endif
+  TRACEENTER();
 
   ret = FlashADEncode_ST_TMSS(Data, ADTimer);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

@@ -3,9 +3,7 @@
 
 void YUV2RGB2(word yy, word uu, word vv, int *r, int *g, int *b)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("YUV2RGB2");
-  #endif
+  TRACEENTER();
 
   signed int            _r,_g,_b;
   signed int            y, u, v;
@@ -22,7 +20,5 @@ void YUV2RGB2(word yy, word uu, word vv, int *r, int *g, int *b)
   *g = _Clip(_g);
   *b = _Clip(_b);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

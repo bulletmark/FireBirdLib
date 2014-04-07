@@ -6,9 +6,7 @@
 //                  and 0xf00* for errors
 word HDD_SetExtRecording(bool ExtDisk)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_SetExtRecording");
-  #endif
+  TRACEENTER();
 
   dword                *__nExtPartition;
   textPartitionInfo    *__extPartitionInfo;
@@ -24,60 +22,42 @@ word HDD_SetExtRecording(bool ExtDisk)
   __nExtPartition = (dword*)FIS_vnExtPartition();
   if(!__nExtPartition)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return 0xf000;
   }
 
   Appl_SetIsExternal = (void*)FIS_fwAppl_SetIsExternal();
   if(!Appl_SetIsExternal)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return 0xf001;
   }
 
   __extPartitionInfo = (textPartitionInfo*)FIS_vExtPartitionInfo();
   if(!__extPartitionInfo)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return 0xf002;
   }
 
   __extTsFolder = (dword*)FIS_vExtTsFolder();
   if(!__extTsFolder)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return 0xf003;
   }
 
   __isAllPartitionInvalid = (byte*)FIS_vIsAllPartitionInvalid();
   if(!__isAllPartitionInvalid)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return 0xf004;
   }
 
   __selectedPartition = (int*)FIS_vSelectedPartition();
   if(!__selectedPartition)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return 0xf005;
   }
 
@@ -86,30 +66,21 @@ word HDD_SetExtRecording(bool ExtDisk)
     //Check if an external disk has been mounted
     if(*__nExtPartition == 0)
     {
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
-
+      TRACEEXIT();
       return 0xe000;
     }
 
     //Check if there is at least one partition which can be used for recording
     if(*__isAllPartitionInvalid != 0)
     {
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
-
+      TRACEEXIT();
       return 0xe001;
     }
 
     //Another check to make sure that there is a selectable partition
     if(__selectedPartition[1] < 0)
     {
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
-
+      TRACEEXIT();
       return 0xe002;
     }
 
@@ -120,10 +91,7 @@ word HDD_SetExtRecording(bool ExtDisk)
     DirEntry = TAP_MemAlloc(sizeof(tDirEntry));
     if(!DirEntry)
     {
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
-
+      TRACEEXIT();
       return 0xf006;
     }
 
@@ -131,10 +99,7 @@ word HDD_SetExtRecording(bool ExtDisk)
     DirEntry->Path = TAP_MemAlloc(strlen(ExtDiskPart) + 1);
     if(!DirEntry->Path)
     {
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
-
+      TRACEEXIT();
       return 0xf007;
     }
 
@@ -154,9 +119,6 @@ word HDD_SetExtRecording(bool ExtDisk)
     Appl_SetIsExternal(FALSE);
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return 0x0000;
 }

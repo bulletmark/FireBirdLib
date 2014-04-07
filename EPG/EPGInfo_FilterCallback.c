@@ -2,9 +2,7 @@
 
 void EPGInfo_FilterCallback(void *CallbackRoutine)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("EPGInfo_FilterCallback");
-  #endif
+  TRACEENTER();
 
   if(CallbackRoutine)
   {
@@ -17,7 +15,5 @@ void EPGInfo_FilterCallback(void *CallbackRoutine)
     EPGFilter.Callback = NULL;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

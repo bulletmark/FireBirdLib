@@ -2,18 +2,13 @@
 
 TAPCOM_Channel TAPCOM_GetChannel(dword param1, dword *CallerID, dword *ServiceID, dword *ParamBlockVersion, void **ParamBlock)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("TAPCOM_GetChannel");
-  #endif
+  TRACEENTER();
 
   TAPCOM_InternalMesBuf *mesBuf = (TAPCOM_InternalMesBuf *) param1;
 
   if(!isValidChannel(mesBuf))
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return NULL;
   }
 
@@ -33,10 +28,7 @@ TAPCOM_Channel TAPCOM_GetChannel(dword param1, dword *CallerID, dword *ServiceID
     }
     else
     {
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
-
+      TRACEEXIT();
       return NULL;
     }
   }
@@ -49,9 +41,6 @@ TAPCOM_Channel TAPCOM_GetChannel(dword param1, dword *CallerID, dword *ServiceID
   //Server-Timeout zurücksetzen
   mesBuf->ServerAlive = TAP_GetTick();
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return (TAPCOM_Channel) mesBuf;
 }

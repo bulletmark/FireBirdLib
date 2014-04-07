@@ -2,27 +2,39 @@
 #include <string.h>
 #include "../libFireBird.h"
 
-void FixInvalidFileName(char *FileName)
+bool FixInvalidFileName(char *FileName)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FixInvalidFileName");
-  #endif
+  TRACEENTER();
 
   char                  NewRecName[TS_FILE_NAME_SIZE+1];
+  char                 *Slash, Path[FBLIB_DIR_SIZE];
+  bool                  ret;
 
-  if(FileName && *FileName && TAP_Hdd_Exist(FileName))
+  ret = FALSE;
+  if(FileName && *FileName && HDD_Exist(FileName))
   {
     //Check if the file is busy
     if(HDD_isFileInUse(FileName) != FIU_No)
     {
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
-
-      return;
+      TRACEEXIT();
+      return FALSE;
     }
 
-    strcpy(NewRecName, FileName);
+    Slash = strrchr(FileName, '/');
+    if(Slash)
+    {
+      dword i;
+
+      i = (dword)Slash - (dword)FileName + 1;
+      strncpy(Path, FileName, i);
+      Path[i] = '\0';
+      strcpy(NewRecName, Slash + 1);
+    }
+    else
+    {
+      Path[0] = '\0';
+      strcpy(NewRecName, FileName);
+    }
 
     //If necessary, convert to UTF8
     if(isUTFToppy())
@@ -34,24 +46,20 @@ void FixInvalidFileName(char *FileName)
     {
       MakeValidFileName(NewRecName, ControlChars);
     }
+    if(*Path) InsertAt(NewRecName, 0, Path);
 
     if(!strcmp(FileName, NewRecName))
     {
       //No need to rename
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
-
-      return;
+      TRACEEXIT();
+      return TRUE;
     }
 
     MakeUniqueFileName(NewRecName);
-    HDD_Rename(FileName, NewRecName);
+    ret = HDD_Rename(FileName, NewRecName);
     strcpy(FileName, NewRecName);
-    FileName[strlen(NewRecName)] = '\0';
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
+  return ret;
 }

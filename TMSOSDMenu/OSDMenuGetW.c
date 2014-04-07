@@ -2,9 +2,7 @@
 
 int OSDMenuGetW(char * str, byte fntSize)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuGetW");
-  #endif
+  TRACEENTER();
 
   int ret = 0;
 
@@ -17,9 +15,6 @@ int OSDMenuGetW(char * str, byte fntSize)
     case 20: ret = FMUC_GetStringWidth(str, &OSDMenuFont_20); break;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

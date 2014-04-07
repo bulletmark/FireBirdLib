@@ -3,9 +3,7 @@
 
 bool StringEndsWith(char *text, char *postfix)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("StringEndsWith");
-  #endif
+  TRACEENTER();
 
   char                 *p;
   int                   i;
@@ -13,10 +11,7 @@ bool StringEndsWith(char *text, char *postfix)
 
   if(!text || !*text || !postfix || !*postfix)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -24,9 +19,6 @@ bool StringEndsWith(char *text, char *postfix)
   p = &text[strlen(text) - i];
   ret = (memcmp(p, postfix, i) == 0);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

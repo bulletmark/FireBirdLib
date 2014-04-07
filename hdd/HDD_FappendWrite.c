@@ -4,9 +4,7 @@
 
 bool HDD_FappendWrite(TYPE_File *file, char *data)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_FappendWrite");
-  #endif
+  TRACEENTER();
 
   char      buffer[256 + 512];
   dword     len, pos, extra, blks;
@@ -16,10 +14,7 @@ bool HDD_FappendWrite(TYPE_File *file, char *data)
 
   if(file == NULL || len > 256)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -33,19 +28,13 @@ bool HDD_FappendWrite(TYPE_File *file, char *data)
 
   if((blks = TAP_Hdd_Fwrite(buffer, len + extra, 1, file)) != 1)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
   pos += len;
   ret = (TAP_Hdd_Fseek(file, pos, SEEK_SET) == pos);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

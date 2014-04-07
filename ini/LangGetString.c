@@ -3,9 +3,7 @@
 
 char *LangGetString(dword StringID)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("LangGetString");
-  #endif
+  TRACEENTER();
 
   char *ret;
 
@@ -14,9 +12,6 @@ char *LangGetString(dword StringID)
   else
     ret = &LangStrings[LangStringPtr[StringID]];
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

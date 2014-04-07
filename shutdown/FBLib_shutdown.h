@@ -1,11 +1,7 @@
 #ifndef FBLIB_SHUTDOWN_H
 #define FBLIB_SHUTDOWN_H
 
-#ifdef _TMSEMU_
-  #include "tap_tmsemu.h"
-#else
-  #include "tap.h"
-#endif
+#include "tap.h"
 
 #define HDDIDLE         0xe1
 

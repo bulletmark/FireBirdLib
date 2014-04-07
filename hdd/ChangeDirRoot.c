@@ -4,15 +4,10 @@
 
 bool ChangeDirRoot(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("ChangeDirRoot");
-  #endif
+  TRACEENTER();
 
   HDD_ChangeDir("/");
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }

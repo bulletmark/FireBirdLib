@@ -2,18 +2,13 @@
 
 bool isLegalChar(byte *c, eRemoveChars ControlCharacters)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("isLegalChar");
-  #endif
+  TRACEENTER();
 
   byte s;
 
   if(c == NULL)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -24,10 +19,7 @@ bool isLegalChar(byte *c, eRemoveChars ControlCharacters)
     // Anything below 32 is a control character!
     if((s < 0x20) && (s != 0x0a))
     {
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
-
+      TRACEEXIT();
       return FALSE;
     }
 
@@ -37,10 +29,7 @@ bool isLegalChar(byte *c, eRemoveChars ControlCharacters)
       // these characters are unused in Windows system font and cause trouble
       if((s >= 0x7f) && (s <= 0x9f) && (s != 0x80) && (s != 0x8a) && (s != 0x91) && (s != 0x92))
       {
-        #ifdef DEBUG_FIREBIRDLIB
-          CallTraceExit(NULL);
-        #endif
-
+        TRACEEXIT();
         return FALSE;
       }
     }
@@ -50,10 +39,7 @@ bool isLegalChar(byte *c, eRemoveChars ControlCharacters)
   {
     if((s == 0x0a) || (s == 0x8a))
     {
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
-
+      TRACEEXIT();
       return FALSE;
     }
   }
@@ -77,10 +63,7 @@ bool isLegalChar(byte *c, eRemoveChars ControlCharacters)
       case '>':
       case '|':
       {
-        #ifdef DEBUG_FIREBIRDLIB
-          CallTraceExit(NULL);
-        #endif
-
+        TRACEEXIT();
         return FALSE;
       }
     }
@@ -88,16 +71,10 @@ bool isLegalChar(byte *c, eRemoveChars ControlCharacters)
 
   if((ControlCharacters & NonPrintableChars) != 0)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return (s >= ' ' && s <= '~');
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }

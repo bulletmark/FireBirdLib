@@ -2,49 +2,49 @@
 #include                <string.h>
 #include                "../libFireBird.h"
 
-void HDD_Unrecycle(char *FileName)
+bool HDD_Unrecycle(char *FileName)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_Unrecycle");
-  #endif
+  TRACEENTER();
 
-  char                  Name[TS_FILE_NAME_SIZE], Ext[TS_FILE_NAME_SIZE];
+  char                  Path[FBLIB_DIR_SIZE], Name[TS_FILE_NAME_SIZE], Ext[TS_FILE_NAME_SIZE];
   char                  OldName[TS_FILE_NAME_SIZE], NewName[TS_FILE_NAME_SIZE];
-  bool                  isRec, isDel;
+  bool                  isRec, isDel, ret;
   int                   fNumber;
 
-  if(TAP_Hdd_Exist(FileName))
+  ret = FALSE;
+  if(HDD_Exist(FileName))
   {
-    SeparateFileNameComponents(FileName, Name, Ext, &fNumber, &isRec, &isDel);
+    SeparateFileNameComponents(FileName, Path, Name, Ext, &fNumber, &isRec, &isDel);
 
     if(isDel)
     {
       if(fNumber)
-        TAP_SPrint(NewName, "%s-%d%s", Name, fNumber, Ext);
+        TAP_SPrint(NewName, "%s%s-%d%s", Path, Name, fNumber, Ext);
       else
-        TAP_SPrint(NewName, "%s%s", Name, Ext);
+        TAP_SPrint(NewName, "%s%s%s", Path, Name, Ext);
 
       TAP_SPrint(OldName, "%s.del", NewName);
       MakeUniqueFileName(NewName);
-      TAP_Hdd_Rename(OldName, NewName);
-
-      if(isRec && strcmp(Ext, ".nav"))
+      if(rename(OldName, NewName) == 0)
       {
-        OldName[strlen(OldName) - 4] = '\0';
-        strcat(OldName, ".inf.del");
-        strcat(NewName, ".inf");
-        TAP_Hdd_Rename(OldName, NewName);
+        if(isRec && strcmp(Ext, ".nav"))
+        {
+          OldName[strlen(OldName) - 4] = '\0';
+          strcat(OldName, ".inf.del");
+          strcat(NewName, ".inf");
+          rename(OldName, NewName);
 
-        OldName[strlen(OldName) - 8] = '\0';
-        strcat(OldName, ".nav.del");
-        NewName[strlen(NewName) - 4] = '\0';
-        strcat(NewName, ".nav");
-        TAP_Hdd_Rename(OldName, NewName);
+          OldName[strlen(OldName) - 8] = '\0';
+          strcat(OldName, ".nav.del");
+          NewName[strlen(NewName) - 4] = '\0';
+          strcat(NewName, ".nav");
+          rename(OldName, NewName);
+        }
+        ret = TRUE;
       }
     }
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
+  return ret;
 }

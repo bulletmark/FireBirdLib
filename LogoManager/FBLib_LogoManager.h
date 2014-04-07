@@ -1,11 +1,7 @@
 #ifndef FBLIB_LOGOMANAGER_H
 #define FBLIB_LOGOMANAGER_H
 
-  #ifdef _TMSEMU_
-    #include "tap_tmsemu.h"
-  #else
-    #include "tap.h"
-  #endif
+  #include "tap.h"
 
   #define MAXLOGONAME         40
 

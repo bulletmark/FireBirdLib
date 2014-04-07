@@ -2,18 +2,13 @@
 
 inline dword FIS_vFlashBlockNetworkUpdateConfig(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FIS_vFlashBlockNetworkUpdateConfig");
-  #endif
+  TRACEENTER();
 
   static dword          *vFlashNetworkUpdateConfig = 0;
 
   if(!vFlashNetworkUpdateConfig)
     vFlashNetworkUpdateConfig = (dword*)TryResolve("_networkUpdateConfig");
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return (vFlashNetworkUpdateConfig ? *vFlashNetworkUpdateConfig : 0);
 }

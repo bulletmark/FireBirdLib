@@ -3,9 +3,7 @@
 
 void OSDMenuMessageBoxButtonAdd(char *Text)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuMessageBoxButtonAdd");
-  #endif
+  TRACEENTER();
 
   if(MessageBox.NrButtons < MAXMBBUTTONS)
   {
@@ -14,7 +12,5 @@ void OSDMenuMessageBoxButtonAdd(char *Text)
     MessageBox.NrButtons++;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

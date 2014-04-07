@@ -4,17 +4,13 @@
 
 tAudioTrk *AudioTrackInfo(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("AudioTrackInfo");
-  #endif
+  TRACEENTER();
 
   tAudioTrk  *p;
 
   p = (tAudioTrk*)FIS_vAudioTrack();
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 
   return p;
 }

@@ -1,27 +1,20 @@
 #include                <sys/stat.h>
 #include                <string.h>
 #include                "FBLib_hdd.h"
-#include                "../libFireBird.h"
 
-#ifdef _TMSEMU_
-  bool HDD_GetFileSizeAndInode(char *Directory, char *FileName, dword *CInode, off_t *FileSize)
-#else
-  bool HDD_GetFileSizeAndInode(char *Directory, char *FileName, __ino64_t *CInode, __off64_t *FileSize)
-#endif
+bool HDD_GetFileSizeAndInode(char *FileName, __ino64_t *CInode, __off64_t *FileSize)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_GetFileSizeAndInode");
-  #endif
+  TRACEENTER();
 
-  char                  AbsFileName[512];
+  char                  AbsFileName[FBLIB_DIR_SIZE];
   tstat64               statbuf;
   bool                  ret;
 
   ret = FALSE;
-  if(Directory && FileName)
+  if(FileName && *FileName)
   {
-    TAP_SPrint(AbsFileName, "%s%s/%s", TAPFSROOT, Directory, FileName);
-    if(!lstat64(AbsFileName, &statbuf))
+    ConvertPathType(FileName, AbsFileName, PF_FullLinuxPath);
+    if(*AbsFileName && !lstat64(AbsFileName, &statbuf))
     {
       if(CInode) *CInode = statbuf.st_ino;
       if(FileSize) *FileSize = statbuf.st_size;
@@ -29,9 +22,6 @@
     }
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

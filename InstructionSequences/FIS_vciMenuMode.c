@@ -2,18 +2,13 @@
 
 inline dword FIS_vciMenuMode(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FIS_vciMenuMode");
-  #endif
+  TRACEENTER();
 
   static dword          vciMenuMode = 0;
 
   if(!vciMenuMode)
     vciMenuMode = TryResolve("_ciMenuMode");
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return vciMenuMode;
 }

@@ -5,9 +5,7 @@
 
 TYPE_GrData *LogoManager_GetLogoByLogoName(char *LogoName, tLogoStyle LogoStyle, tLogoSize LogoSize, tLogoAspect LogoAR)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("LogoManager_GetLogoByLogoName");
-  #endif
+  TRACEENTER();
 
   int                   i;
   TYPE_File            *f;
@@ -27,10 +25,7 @@ TYPE_GrData *LogoManager_GetLogoByLogoName(char *LogoName, tLogoStyle LogoStyle,
         LogoManager_LogoData[i].grData = TAP_MemAlloc(LogoManager_LogoData[i].grDataSize);
         if(!LogoManager_LogoData[i].grData)
         {
-          #ifdef DEBUG_FIREBIRDLIB
-            CallTraceExit(NULL);
-          #endif
-
+          TRACEEXIT();
           return NULL;
         }
 
@@ -47,17 +42,11 @@ TYPE_GrData *LogoManager_GetLogoByLogoName(char *LogoName, tLogoStyle LogoStyle,
         HDD_TAP_PopDir();
       }
 
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
-
+      TRACEEXIT();
       return LogoManager_LogoData[i].grData;
     }
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return NULL;
 }

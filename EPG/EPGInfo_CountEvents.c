@@ -2,9 +2,7 @@
 
 dword EPGInfo_CountEvents(dword *TreePointer)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("EPGInfo_CountEvents");
-  #endif
+  TRACEENTER();
 
   dword                 i;
   tTreeEntry           *ListStart, *Entry;
@@ -18,9 +16,7 @@ dword EPGInfo_CountEvents(dword *TreePointer)
     //If the list points to itself, no data is available
     if(ListStart == (tTreeEntry*)ListStart->Next)
     {
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
+      TRACEEXIT();
 
       return 0;
     }
@@ -34,9 +30,6 @@ dword EPGInfo_CountEvents(dword *TreePointer)
     } while(Entry && (Entry->Next != ListStart->Prev));
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return i;
 }

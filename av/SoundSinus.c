@@ -5,9 +5,7 @@ dword                   soundDataLength = 0;
 
 void SoundSinus(word freq, dword durationInMilliseconds, word Amplitude)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("SoundSinus");
-  #endif
+  TRACEENTER();
 
   dword                 samples, memSize, periode, index;
   short                 *target, *source;
@@ -55,10 +53,7 @@ void SoundSinus(word freq, dword durationInMilliseconds, word Amplitude)
 
   if(soundData == NULL)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return;
   }
   target = soundData;
@@ -66,10 +61,7 @@ void SoundSinus(word freq, dword durationInMilliseconds, word Amplitude)
   if(periode > samples)
   {
     //Die Dauer ist zu kurz, um auch nur eine einzelne vollständige Welle abzubilden
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return;
   }
 
@@ -103,7 +95,5 @@ void SoundSinus(word freq, dword durationInMilliseconds, word Amplitude)
 
   TAP_PlayPCM((void *) soundData, 2 * samples, FREQ_48K, NULL);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

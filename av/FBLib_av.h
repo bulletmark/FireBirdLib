@@ -23,7 +23,7 @@ extern dword            RECShadow;
 
 inline void YUV2RGB(word, word, word, byte *, byte *, byte *);
 inline void YUV2RGB2(word, word, word, int *, int *, int *);
-void BMP_WriteHeader(TYPE_File *, int, int);
+void BMP_WriteHeader(int FileHandle, int, int);
 void VideoToBMP(TYPE_VideoFrame *VideoFrame, int BMPwidth, int BMPheight, byte *BMPPixelBuffer, int DstX, int DstY, int DstWidth, int DstHeight);
 void OSDToBMP(TYPE_OsdBaseInfo *OsdBaseInfo, int BMPwidth, int BMPheight, byte *BMPPixelBuffer, int Alpha);
 

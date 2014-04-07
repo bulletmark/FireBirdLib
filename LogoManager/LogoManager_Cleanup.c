@@ -5,9 +5,7 @@
 
 void LogoManager_Cleanup(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("LogoManager_Cleanup");
-  #endif
+  TRACEENTER();
 
   int                   i;
 
@@ -23,7 +21,5 @@ void LogoManager_Cleanup(void)
   LogoManager_NrLogos = 0;
   LogoManager_LUTInitialized = FALSE;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

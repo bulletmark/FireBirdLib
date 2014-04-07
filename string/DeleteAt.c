@@ -3,19 +3,14 @@
 
 void DeleteAt(char *SourceString, int Pos, int Len)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("DeleteAt");
-  #endif
+  TRACEENTER();
 
   char                 *dst, *src;
   int                   l;
 
   if((SourceString == NULL) || (!*SourceString) || (Len == 0))
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return;
   }
 
@@ -24,10 +19,7 @@ void DeleteAt(char *SourceString, int Pos, int Len)
 
   if((Pos >= l))
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return;
   }
 
@@ -42,7 +34,5 @@ void DeleteAt(char *SourceString, int Pos, int Len)
     *dst = *src;
   }while(*dst);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

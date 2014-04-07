@@ -2,9 +2,7 @@
 
 void FM_FreeFontFile(tFontData *FontData)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FM_FreeFontFile");
-  #endif
+  TRACEENTER();
 
   if(FontData->pFontData)
   {
@@ -12,7 +10,5 @@ void FM_FreeFontFile(tFontData *FontData)
   }
   memset(FontData, 0, sizeof(tFontData));
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

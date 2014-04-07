@@ -3,27 +3,19 @@
 
 int FlashTransponderTablesAdd(int SatNum, tFlashTransponderTable *TransponderTable)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FlashTransponderTablesAdd");
-  #endif
+  TRACEENTER();
 
   //SatNum out of range
   if((SatNum < 0) || (SatNum >= FlashSatTablesGetTotal()))
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
-    return FALSE;
+    TRACEEXIT();
+    return -1;
   }
 
   //TransponderTable is NULL
   if(!TransponderTable)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return -1;
   }
 
@@ -40,10 +32,7 @@ int FlashTransponderTablesAdd(int SatNum, tFlashTransponderTable *TransponderTab
     case ST_T5800:
     case ST_TF7k7HDPVR:
     {
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
-
+      TRACEEXIT();
       return -1;
     }
 
@@ -57,10 +46,7 @@ int FlashTransponderTablesAdd(int SatNum, tFlashTransponderTable *TransponderTab
       pSat = (TYPE_SatInfo_TMSS*)(FIS_vFlashBlockSatInfo());
       if(!pSat)
       {
-        #ifdef DEBUG_FIREBIRDLIB
-          CallTraceExit(NULL);
-        #endif
-
+        TRACEEXIT();
         return -1;
       }
 
@@ -69,10 +55,7 @@ int FlashTransponderTablesAdd(int SatNum, tFlashTransponderTable *TransponderTab
       pTransp = (TYPE_TpInfo_TMSS*)(FIS_vFlashBlockTransponderInfo());
       if(!pTransp)
       {
-        #ifdef DEBUG_FIREBIRDLIB
-          CallTraceExit(NULL);
-        #endif
-
+        TRACEEXIT();
         return -1;
       }
 
@@ -110,17 +93,11 @@ int FlashTransponderTablesAdd(int SatNum, tFlashTransponderTable *TransponderTab
         *NrTransponders = *NrTransponders + 1;
         pSat->NrOfTransponders++;
 
-        #ifdef DEBUG_FIREBIRDLIB
-          CallTraceExit(NULL);
-        #endif
-
+        TRACEEXIT();
         return pSat->NrOfTransponders - 1;
       }
 
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
-
+      TRACEEXIT();
       return -1;
     }
 
@@ -133,20 +110,14 @@ int FlashTransponderTablesAdd(int SatNum, tFlashTransponderTable *TransponderTab
       pSat = (TYPE_SatInfo_TMST*)(FIS_vFlashBlockSatInfo());
       if(!pSat)
       {
-        #ifdef DEBUG_FIREBIRDLIB
-          CallTraceExit(NULL);
-        #endif
-
+        TRACEEXIT();
         return -1;
       }
 
       pTransp = (TYPE_TpInfo_TMST*)(FIS_vFlashBlockTransponderInfo());
       if(!pTransp)
       {
-        #ifdef DEBUG_FIREBIRDLIB
-          CallTraceExit(NULL);
-        #endif
-
+        TRACEEXIT();
         return -1;
       }
 
@@ -161,17 +132,11 @@ int FlashTransponderTablesAdd(int SatNum, tFlashTransponderTable *TransponderTab
         *NrTransponders = *NrTransponders + 1;
         pSat->NrOfTransponders++;
 
-        #ifdef DEBUG_FIREBIRDLIB
-          CallTraceExit(NULL);
-        #endif
-
+        TRACEEXIT();
         return pSat->NrOfTransponders - 1;
       }
 
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
-
+      TRACEEXIT();
       return -1;
     }
 
@@ -184,20 +149,14 @@ int FlashTransponderTablesAdd(int SatNum, tFlashTransponderTable *TransponderTab
       pSat = (TYPE_SatInfo_TMSC*)(FIS_vFlashBlockSatInfo());
       if(!pSat)
       {
-        #ifdef DEBUG_FIREBIRDLIB
-          CallTraceExit(NULL);
-        #endif
-
+        TRACEEXIT();
         return -1;
       }
 
       pTransp = (TYPE_TpInfo_TMSC*)(FIS_vFlashBlockTransponderInfo());
       if(!pTransp)
       {
-        #ifdef DEBUG_FIREBIRDLIB
-          CallTraceExit(NULL);
-        #endif
-
+        TRACEEXIT();
         return -1;
       }
 
@@ -212,26 +171,17 @@ int FlashTransponderTablesAdd(int SatNum, tFlashTransponderTable *TransponderTab
         *NrTransponders = *NrTransponders + 1;
         pSat->NrOfTransponders++;
 
-        #ifdef DEBUG_FIREBIRDLIB
-          CallTraceExit(NULL);
-        #endif
-
+        TRACEEXIT();
         return pSat->NrOfTransponders - 1;
       }
 
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
-
+      TRACEEXIT();
       return -1;
     }
 
     case ST_NRTYPES: break;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return -1;
 }

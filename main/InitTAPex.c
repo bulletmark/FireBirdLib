@@ -9,16 +9,11 @@ bool                    LibInitialized = FALSE;
 
 bool InitTAPex()
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("InitTAPex");
-  #endif
+  TRACEENTER();
 
   if(LibInitialized)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return TRUE;
   }
 
@@ -27,15 +22,8 @@ bool InitTAPex()
   dword *pcurTapTask = (dword*)FIS_vCurTapTask();
   if(pcurTapTask) TAP_TableIndex = *pcurTapTask;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    TAP_Print("FireBirdLib: SystemID=%d, Appl=%4.4x\n", GetSysID(), ApplID);
-  #endif
-
   LibInitialized = TRUE;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return LibInitialized;
 }

@@ -4,9 +4,7 @@
 
 void INISetString(char *Key, char *Value)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("INISetString");
-  #endif
+  TRACEENTER();
 
   char                  *i = NULL, *j = NULL;
   char                  TempKey[80];
@@ -15,10 +13,7 @@ void INISetString(char *Key, char *Value)
 
   if(!Key || !Value || !INIBuffer)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return;
   }
 
@@ -40,10 +35,7 @@ void INISetString(char *Key, char *Value)
       {
         INIBuffer = OldBuffer;
 
-        #ifdef DEBUG_FIREBIRDLIB
-          CallTraceExit(NULL);
-        #endif
-
+        TRACEEXIT();
         return;
       }
 
@@ -68,10 +60,7 @@ void INISetString(char *Key, char *Value)
 
     if(l > BS || !(NewBuffer = malloc(BS)))
     {
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
-
+      TRACEEXIT();
       return;
     }
 
@@ -86,7 +75,5 @@ void INISetString(char *Key, char *Value)
     BufferSize = BS;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

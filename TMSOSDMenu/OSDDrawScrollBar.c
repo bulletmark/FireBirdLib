@@ -2,9 +2,7 @@
 
 void OSDDrawScrollBar(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDDrawScrollBar");
-  #endif
+  TRACEENTER();
 
   int                   Y;
 
@@ -19,7 +17,5 @@ void OSDDrawScrollBar(void)
     TAP_Osd_PutGd(OSDRgn, 663, Y, &_ScrollBarKnob_Gd, FALSE);
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

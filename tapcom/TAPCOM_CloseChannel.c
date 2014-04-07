@@ -2,9 +2,7 @@
 
 void TAPCOM_CloseChannel(TAPCOM_Channel Channel)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("TAPCOM_CloseChannel");
-  #endif
+  TRACEENTER();
 
   TAPCOM_InternalMesBuf *buf = (TAPCOM_InternalMesBuf *) Channel;
 
@@ -14,7 +12,5 @@ void TAPCOM_CloseChannel(TAPCOM_Channel Channel)
     TAP_MemFree(Channel);
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

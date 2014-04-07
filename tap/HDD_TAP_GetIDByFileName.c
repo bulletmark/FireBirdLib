@@ -2,24 +2,16 @@
 
 dword HDD_TAP_GetIDByFileName(char *TAPFileName)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_TAP_GetIDByFileName");
-  #endif
+  TRACEENTER();
 
   tTAPInfo              pTAPInfo;
 
   if(HDD_TAP_GetInfo(TAPFileName, &pTAPInfo))
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return pTAPInfo.TAPID;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return 0;
 }

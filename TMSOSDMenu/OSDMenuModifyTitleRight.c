@@ -3,18 +3,13 @@
 
 void OSDMenuModifyTitleRight(char *Text)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuModifyTitleRight");
-  #endif
+  TRACEENTER();
 
   tMenu                *pMenu;
 
   if(!Text)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return;
   }
 
@@ -24,7 +19,5 @@ void OSDMenuModifyTitleRight(char *Text)
   pMenu->TitleRight[STDSTRINGSIZE - 1] = '\0';
   TitleDirty = TRUE;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

@@ -5,9 +5,7 @@
 
 char *LogoManager_ChannelNameToLogoName(char *ChannelName)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("LogoManager_ChannelNameToLogoName");
-  #endif
+  TRACEENTER();
 
   static char           LogoNameA[256];
   char                 *pLogoName;
@@ -31,9 +29,6 @@ char *LogoManager_ChannelNameToLogoName(char *ChannelName)
   StrReplace(LogoNameA, "ö", "oe");
   StrReplace(LogoNameA, "ü", "ue");
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return LogoNameA;
 }

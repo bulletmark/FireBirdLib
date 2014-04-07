@@ -2,9 +2,7 @@
 
 int OSDMenuScrollPageDown(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuScrollPageDown");
-  #endif
+  TRACEENTER();
 
   tMenu                *pMenu;
   int                   ret, x;
@@ -33,19 +31,13 @@ int OSDMenuScrollPageDown(void)
 
   if(ret == -1)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return -1;
   }
 
   pMenu->CurrentSelection = ret;
   ListDirty = TRUE;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

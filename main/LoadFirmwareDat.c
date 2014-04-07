@@ -2,9 +2,7 @@
 
 bool LoadFirmwareDat(tFWDATHeader **FWDatHeader, tToppyInfo **ToppyInfo, tFWInfo **FWInfo)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("LoadFirmwareDat");
-  #endif
+  TRACEENTER();
 
   static byte           *FWDATBin = NULL;
   TYPE_File             *fp;
@@ -19,10 +17,7 @@ bool LoadFirmwareDat(tFWDATHeader **FWDatHeader, tToppyInfo **ToppyInfo, tFWInfo
     {
       HDD_TAP_PopDir();
 
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
-
+      TRACEEXIT();
       return FALSE;
     }
 
@@ -30,10 +25,7 @@ bool LoadFirmwareDat(tFWDATHeader **FWDatHeader, tToppyInfo **ToppyInfo, tFWInfo
     {
       HDD_TAP_PopDir();
 
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
-
+      TRACEEXIT();
       return FALSE;
     }
 
@@ -42,10 +34,7 @@ bool LoadFirmwareDat(tFWDATHeader **FWDatHeader, tToppyInfo **ToppyInfo, tFWInfo
       TAP_Hdd_Fclose(fp);
       HDD_TAP_PopDir();
 
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
-
+      TRACEEXIT();
       return FALSE;
     }
 
@@ -66,10 +55,7 @@ bool LoadFirmwareDat(tFWDATHeader **FWDatHeader, tToppyInfo **ToppyInfo, tFWInfo
     FWDATBin = NULL;
     HDD_TAP_PopDir();
 
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -79,9 +65,6 @@ bool LoadFirmwareDat(tFWDATHeader **FWDatHeader, tToppyInfo **ToppyInfo, tFWInfo
 
   (void) HDD_TAP_PopDir();
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }

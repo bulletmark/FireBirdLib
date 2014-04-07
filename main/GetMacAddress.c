@@ -2,15 +2,10 @@
 
 byte *GetMacAddress(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("GetMacAddress");
-  #endif
+  TRACEENTER();
 
   byte *ret = (byte*)FIS_vMACAddress();
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

@@ -1,22 +1,30 @@
+#include                <string.h>
 #include                <stdio.h>
 #include                "FBLib_hdd.h"
 
-bool HDD_InfBlockGet(char *AbsRecPath, tinfBlock *infBlock)
+bool HDD_InfBlockGet(char *RecPath, tinfBlock *infBlock)
 {
-  #if STACKTRACE == TRUE
-    CallTraceEnter("FilesSystem_InfBlockGet");
-  #endif
+  TRACEENTER();
 
   bool                  ret;
   FILE                 *FileHandle;
   tinfBlock             TempinfBlock;
+  char                  AbsFileName[FBLIB_DIR_SIZE];
+
+  if(!RecPath && !*RecPath)
+  {
+    TRACEEXIT();
+    return FALSE;
+  }
 
   ret = FALSE;
   if(infBlock) memset(infBlock, 0, sizeof(tinfBlock));
 
-  if(AbsRecPath)
+  ConvertPathType(RecPath, AbsFileName, PF_FullLinuxPath);
+  if(*AbsFileName)
   {
-    FileHandle = fopen64(AbsRecPath, "rb");
+    if(!StringEndsWith(AbsFileName, ".inf")) strcat(AbsFileName, ".inf");
+    FileHandle = fopen64(AbsFileName, "rb");
     if(FileHandle)
     {
       fseeko64(FileHandle, -((__off64_t)sizeof(tinfBlock)), SEEK_END);
@@ -30,8 +38,6 @@ bool HDD_InfBlockGet(char *AbsRecPath, tinfBlock *infBlock)
     }
   }
 
-  #if STACKTRACE == TRUE
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
   return ret;
 }

@@ -3,9 +3,7 @@
 
 int OSDMenuItemFindName(char *Text)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuItemFindName");
-  #endif
+  TRACEENTER();
 
   tMenu                *pMenu;
   int                   i, ret;
@@ -23,9 +21,6 @@ int OSDMenuItemFindName(char *Text)
       }
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

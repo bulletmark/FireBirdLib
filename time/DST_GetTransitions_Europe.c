@@ -2,9 +2,7 @@
 
 void DST_GetTransitions_Europe(dword *DSTStartUTC, dword *DSTEndUTC, dword StartDate)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("DST_GetTransitions_Europe");
-  #endif
+  TRACEENTER();
 
   dword       DSTStartLocal, DSTEndLocal;
   short       TZOffset;
@@ -22,7 +20,5 @@ void DST_GetTransitions_Europe(dword *DSTStartUTC, dword *DSTEndUTC, dword Start
   if(DSTStartUTC) *DSTStartUTC = AddTime(DSTStartLocal, -TZOffset);
   if(DSTEndUTC) *DSTEndUTC = AddTime(DSTEndLocal, -TZOffset);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

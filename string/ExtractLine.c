@@ -3,9 +3,7 @@
 
 void ExtractLine(char *Text, char *Line)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("ExtractLine");
-  #endif
+  TRACEENTER();
 
   char                  *CRLFPos, *LFPos;
 
@@ -13,10 +11,7 @@ void ExtractLine(char *Text, char *Line)
   {
     *Line = '\0';
 
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return;
   }
 
@@ -41,7 +36,5 @@ void ExtractLine(char *Text, char *Line)
     Line[CRLFPos - Text] = '\0';
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

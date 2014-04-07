@@ -11,26 +11,18 @@ Elf32_Sym               *symtab = NULL;
 
 bool ELFOpenFile(char *FileName)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("ELFOpenFile");
-  #endif
+  TRACEENTER();
 
-  char                  CurrentFile[512];
   bool                  ret = FALSE;
+  char                  AbsFileName[FBLIB_DIR_SIZE];
 
-  if(FileName)
+  if(FileName && *FileName)
   {
-    memset(CurrentFile, 0, 512);
-    TAP_SPrint(CurrentFile, "%s", TAPFSROOT);
-    HDD_TAP_GetCurrentDir(&CurrentFile[strlen(CurrentFile)]);
-    TAP_SPrint(&CurrentFile[strlen(CurrentFile)], "/%s", FileName);
-
-    ret = ELFOpenAbsFile(CurrentFile);
+    ConvertPathType(FileName, AbsFileName, PF_FullLinuxPath);
+    fTAP = open(AbsFileName, O_RDONLY);
+    ret = (fTAP >= 0);
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

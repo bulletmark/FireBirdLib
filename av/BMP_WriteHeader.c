@@ -1,22 +1,18 @@
+#include <unistd.h>
 #include "FBLib_av.h"
 #include "../libFireBird.h"
 
-void BMP_WriteHeader(TYPE_File *pFile, int width, int height)
+void BMP_WriteHeader(int FileHandle, int width, int height)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("BMP_WriteHeader");
-  #endif
+  TRACEENTER();
 
   static struct BMP_HEAD head;
   static struct BMP_INFO info;
   dword                  i, size, rowlength;
 
-  if(!pFile)
+  if(FileHandle <= 0)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return;
   }
 
@@ -45,10 +41,8 @@ void BMP_WriteHeader(TYPE_File *pFile, int width, int height)
   info.color          = 0;
   info.icolor         = 0;
 
-  TAP_Hdd_Fwrite(&head, sizeof( head ), 1, pFile);
-  TAP_Hdd_Fwrite(&info, sizeof( info ), 1, pFile);
+  write(FileHandle, &head, sizeof(head));
+  write(FileHandle, &info, sizeof(info));
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

@@ -2,25 +2,17 @@
 
 bool OSDMenuPush(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuPush");
-  #endif
+  TRACEENTER();
 
   if(CurrentMenuLevel >= (NRMENULEVELS - 1))
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
   CurrentMenuLevel++;
   memset(&Menu[CurrentMenuLevel], 0, sizeof(tMenu));
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }

@@ -2,9 +2,7 @@
 
 void FMUC_FreeFontFile(tFontDataUC *FontData)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FMUC_FreeFontFile");
-  #endif
+  TRACEENTER();
 
   dword     i;
 
@@ -20,7 +18,5 @@ void FMUC_FreeFontFile(tFontDataUC *FontData)
     memset(FontData, 0, sizeof(tFontDataUC));
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

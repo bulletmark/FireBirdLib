@@ -2,13 +2,9 @@
 
 void EPGInfo_FilterReset(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("EPGInfo_FilterReset");
-  #endif
+  TRACEENTER();
 
   memset(&EPGFilter, 0, sizeof(EPGFilter));
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

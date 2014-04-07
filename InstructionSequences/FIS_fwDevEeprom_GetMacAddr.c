@@ -2,18 +2,13 @@
 
 inline dword FIS_fwDevEeprom_GetMacAddr(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FIS_fwDevEeprom_GetMacAddr");
-  #endif
+  TRACEENTER();
 
   static dword          fwDevEeprom_GetMacAddr = 0;
 
   if(!fwDevEeprom_GetMacAddr)
     fwDevEeprom_GetMacAddr = TryResolve("DevEeprom_GetMacAddr");
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return fwDevEeprom_GetMacAddr;
 }

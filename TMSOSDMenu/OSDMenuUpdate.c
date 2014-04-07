@@ -2,9 +2,7 @@
 
 void OSDMenuUpdate(bool SuppressOSDSync)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuUpdate");
-  #endif
+  TRACEENTER();
 
   //Create an OSD region if not already available
   if(OSDRgn == 0)
@@ -50,7 +48,5 @@ void OSDMenuUpdate(bool SuppressOSDSync)
   //Show OSD
   if(!SuppressOSDSync) TAP_Osd_Sync();
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

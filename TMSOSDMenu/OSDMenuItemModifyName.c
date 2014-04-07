@@ -3,9 +3,7 @@
 
 bool OSDMenuItemModifyName(int ItemIndex, char *Text)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuItemModifyName");
-  #endif
+  TRACEENTER();
 
   tMenu                *pMenu;
 
@@ -13,10 +11,7 @@ bool OSDMenuItemModifyName(int ItemIndex, char *Text)
 
   if((pMenu->NrItems == 0) || (ItemIndex >= pMenu->NrItems) || !Text || !Text[0])
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -25,9 +20,6 @@ bool OSDMenuItemModifyName(int ItemIndex, char *Text)
 
   ListDirty = TRUE;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }

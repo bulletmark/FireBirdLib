@@ -2,9 +2,7 @@
 
 void OSDMenuProgressBarDestroy(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuProgressBarDestroy");
-  #endif
+  TRACEENTER();
 
   if(ProgressBarOSDRgn)
   {
@@ -16,7 +14,5 @@ void OSDMenuProgressBarDestroy(void)
   OSDMenuInfoBoxDestroy();
   ProgressBarLastValue =  0xfff;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

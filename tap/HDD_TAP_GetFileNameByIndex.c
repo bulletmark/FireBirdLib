@@ -2,9 +2,7 @@
 
 bool HDD_TAP_GetFileNameByIndex(int Index, char **TAPFileName)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_TAP_GetFileNameByIndex");
-  #endif
+  TRACEENTER();
 
   tTMSTAPTaskTable      *TMSTAPTaskTable;
   dword                 *FileHandle;
@@ -13,10 +11,7 @@ bool HDD_TAP_GetFileNameByIndex(int Index, char **TAPFileName)
   {
     if(TAPFileName) *TAPFileName = NULL;
 
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -25,20 +20,14 @@ bool HDD_TAP_GetFileNameByIndex(int Index, char **TAPFileName)
   //Check if that TAP is running
   if(TMSTAPTaskTable[Index].Status != 1)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
   //Check if the file pointer is valid
   if(!TMSTAPTaskTable[Index].file)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -46,27 +35,18 @@ bool HDD_TAP_GetFileNameByIndex(int Index, char **TAPFileName)
   FileHandle = (dword*)TMSTAPTaskTable[Index].file->handle;
   if(!FileHandle)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
   if(FileHandle[0] != 0xcdacedaf)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
   *TAPFileName = (char*)FileHandle[2];
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }

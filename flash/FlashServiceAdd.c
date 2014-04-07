@@ -2,9 +2,7 @@
 
 bool FlashServiceAdd(int SvcType, tFlashService *Service)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FlashServiceAdd");
-  #endif
+  TRACEENTER();
 
   int                   NrServices;
   word                 *nSvc;
@@ -20,9 +18,6 @@ bool FlashServiceAdd(int SvcType, tFlashService *Service)
   *nSvc = *nSvc + 1;
   ret = FlashServiceSetInfo(SvcType, NrServices, Service);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

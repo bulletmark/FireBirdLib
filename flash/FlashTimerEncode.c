@@ -3,29 +3,21 @@
 
 bool FlashTimerSetInfo(int TimerIndex, tFlashTimer *TimerInfo)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FlashTimerSetInfo");
-  #endif
+  TRACEENTER();
 
   bool ret;
 
   //TimerIndex out of range
   if((TimerIndex < 0) || (TimerIndex >= TAP_Timer_GetTotalNum()))
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
   //TimerInfo is NULL
   if(!TimerInfo)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -101,10 +93,7 @@ bool FlashTimerSetInfo(int TimerIndex, tFlashTimer *TimerInfo)
     case ST_NRTYPES: break;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }
 
@@ -112,16 +101,11 @@ bool FlashTimerEncode(void *Data, tFlashTimer *TimerInfo)
 {
   bool ret;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FlashTimerEncode");
-  #endif
+  TRACEENTER();
 
   if(!Data || !TimerInfo)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -165,18 +149,13 @@ bool FlashTimerEncode(void *Data, tFlashTimer *TimerInfo)
     case ST_NRTYPES: break;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }
 
 bool FlashTimerEncode_ST_TMSS(TYPE_Timer_TMSS *Data, tFlashTimer *TimerInfo)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FlashTimerEncode_ST_TMSS");
-  #endif
+  TRACEENTER();
 
   memset(Data, 0, sizeof(TYPE_Timer_TMSS));
 
@@ -225,18 +204,13 @@ bool FlashTimerEncode_ST_TMSS(TYPE_Timer_TMSS *Data, tFlashTimer *TimerInfo)
   Data->TpInfo.unused3            = TimerInfo->TpInfo.unused3;
   Data->TpInfo.unused4            = TimerInfo->TpInfo.unused4;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }
 
 bool FlashTimerEncode_ST_TMST(TYPE_Timer_TMST *Data, tFlashTimer *TimerInfo)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FlashTimerEncode_ST_TMST");
-  #endif
+  TRACEENTER();
 
   memset(Data, 0, sizeof(TYPE_Timer_TMST));
 
@@ -280,18 +254,13 @@ bool FlashTimerEncode_ST_TMST(TYPE_Timer_TMST *Data, tFlashTimer *TimerInfo)
   Data->TpInfo.unused1              = TimerInfo->TpInfo.unused1;
   Data->TpInfo.unused2              = TimerInfo->TpInfo.unused2;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }
 
 bool FlashTimerEncode_ST_TMST200(TYPE_Timer_TMST200 *Data, tFlashTimer *TimerInfo)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FlashTimerEncode_ST_TMST200");
-  #endif
+  TRACEENTER();
 
   memset(Data, 0, sizeof(TYPE_Timer_TMST200));
 
@@ -335,18 +304,13 @@ bool FlashTimerEncode_ST_TMST200(TYPE_Timer_TMST200 *Data, tFlashTimer *TimerInf
   Data->TpInfo.unused1              = TimerInfo->TpInfo.unused1;
   Data->TpInfo.unused2              = TimerInfo->TpInfo.unused2;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }
 
 bool FlashTimerEncode_ST_TMSC(TYPE_Timer_TMSC *Data, tFlashTimer *TimerInfo)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FlashTimerEncode_ST_TMSC");
-  #endif
+  TRACEENTER();
 
   memset(Data, 0, sizeof(TYPE_Timer_TMSC));
 
@@ -386,9 +350,6 @@ bool FlashTimerEncode_ST_TMSC(TYPE_Timer_TMSC *Data, tFlashTimer *TimerInfo)
   Data->TpInfo.ModulationType       = TimerInfo->TpInfo.Modulation;
   Data->TpInfo.unused1              = TimerInfo->TpInfo.unused1;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }

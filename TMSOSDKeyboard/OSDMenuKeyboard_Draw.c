@@ -3,9 +3,7 @@
 
 void OSDMenuKeyboard_Draw(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuKeyboard_Draw");
-  #endif
+  TRACEENTER();
 
   int                   i=0;
   int                   j=0;
@@ -161,7 +159,5 @@ void OSDMenuKeyboard_Draw(void)
 
   TAP_Osd_Sync();
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

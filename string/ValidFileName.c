@@ -2,31 +2,43 @@
 
 char *ValidFileName(char *strName, eRemoveChars ControlCharacters)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("ValidFileName");
-  #endif
+  TRACEENTER();
 
   char                  *s, *d, *l;
-  static char           validName[MAX_FILE_NAME_SIZE];
+  byte                  BytesPerCharacter;
+  static char           validName[FBLIB_DIR_SIZE];
 
-  s = strName;
   d = validName;
-  l = d + MAX_FILE_NAME_SIZE - 1;
 
-  while(*s)
+  if(strName && *strName)
   {
-    if(isLegalChar(s, ControlCharacters)) *d++ = *s;
+    s = strName;
+    l = d + MAX_FILE_NAME_SIZE - 1;
 
-    if(d == l) break;
-
-    s++;
+    while(*s)
+    {
+      if(isLegalChar(s, ControlCharacters))
+      {
+        *d = *s;
+        if(isUTF8Char(s, &BytesPerCharacter))
+        {
+          //As this is a multibyte UTF character, copy all bytes
+          memcpy(d, s, BytesPerCharacter);
+          d += BytesPerCharacter;
+          s += (BytesPerCharacter - 1);
+        }
+        else
+        {
+          *d = *s;
+          d++;
+        }
+      }
+      if(d == l) break;
+      s++;
+    }
   }
-
   *d = '\0';
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return validName;
 }

@@ -2,9 +2,7 @@
 
 int TAPCOM_GetReturnValue(TAPCOM_Channel Channel)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("TAPCOM_GetReturnValue");
-  #endif
+  TRACEENTER();
 
   int ret;
   TAPCOM_InternalMesBuf *buf = (TAPCOM_InternalMesBuf *) Channel;
@@ -14,9 +12,6 @@ int TAPCOM_GetReturnValue(TAPCOM_Channel Channel)
   else
     ret = buf->ReturnVal;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

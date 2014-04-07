@@ -4,18 +4,13 @@
 
 bool HDD_GetHddID(char *ModelNo, char *SerialNo, char *FirmwareNo)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_GetHddID");
-  #endif
+  TRACEENTER();
 
-  char                  Buffer[512];
+  char                  Buffer[FBLIB_DIR_SIZE];
 
   if(!HDD_IdentifyDevice(Buffer))
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -40,9 +35,6 @@ bool HDD_GetHddID(char *ModelNo, char *SerialNo, char *FirmwareNo)
     RTrim(FirmwareNo);
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }

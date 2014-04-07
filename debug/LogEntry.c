@@ -1,42 +1,39 @@
+#include  <fcntl.h>
+#include  <unistd.h>
 #include  <stdio.h>
 #include  <string.h>
 #include  "../libFireBird.h"
 
 void LogEntry(char *FileName, char *ProgramName, bool Console, eTimeStampFormat TimeStampFormat, char *Text)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("LogEntry");
-  #endif
+  TRACEENTER();
 
-  TYPE_File             *File;
-  char                  *TS;
+  int                   f;
+  char                 *TS;
   char                  CRLF[] = {'\r', '\n'};
   byte                  Sec;
   byte                 *ISOText;
+  char                  AbsFileName[FBLIB_DIR_SIZE];
 
   if(!Text)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return;
   }
-
 
   TS = TimeFormat(Now(&Sec), Sec, TimeStampFormat);
   if(TS[0]) strcat(TS, " ");
 
   if(FileName && FileName[0])
   {
-    if(!TAP_Hdd_Exist(FileName)) TAP_Hdd_Create(FileName, ATTR_NORMAL);
-    if((File = TAP_Hdd_Fopen(FileName)) != NULL)
+    ConvertPathType(FileName, AbsFileName, PF_FullLinuxPath);
+    f = open(AbsFileName, O_WRONLY | O_CREAT | O_APPEND);
+    if(f >= 0)
     {
-      TAP_Hdd_Fseek(File, 0, SEEK_END);
-      TAP_Hdd_Fwrite(TS, strlen(TS), 1, File);
-      if(Text && Text[0]) TAP_Hdd_Fwrite(Text, strlen(Text), 1, File);
-      TAP_Hdd_Fwrite(CRLF, 2, 1, File);
-      TAP_Hdd_Fclose(File);
+      write(f, TS, strlen(TS));
+      if(Text && Text[0]) write(f, Text, strlen(Text));
+      write(f, CRLF, 2);
+      close(f);
     }
   }
 
@@ -77,7 +74,5 @@ void LogEntry(char *FileName, char *ProgramName, bool Console, eTimeStampFormat 
     TAP_MemFree(ISOText);
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

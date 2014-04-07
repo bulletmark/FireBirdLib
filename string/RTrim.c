@@ -4,9 +4,7 @@
 // take off spaces from a string's end
 char *RTrim(char *s)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("RTrim");
-  #endif
+  TRACEENTER();
 
   char *p;
 
@@ -22,9 +20,6 @@ char *RTrim(char *s)
     }
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return s;
 }

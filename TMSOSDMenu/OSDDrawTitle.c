@@ -2,9 +2,7 @@
 
 void OSDDrawTitle(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDDrawTitle");
-  #endif
+  TRACEENTER();
 
   dword                 tw;
   tMenu                *pMenu;
@@ -18,7 +16,5 @@ void OSDDrawTitle(void)
 
   if(CallbackProcedure) CallbackProcedure(OSDCB_Title, OSDRgn);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

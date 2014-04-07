@@ -2,9 +2,7 @@
 
 SYSTEM_TYPE GetSystemType(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("GetSystemType");
-  #endif
+  TRACEENTER();
 
   static SYSTEM_TYPE    SystemType = ST_UNKNOWN;
   tToppyInfo           *ToppyInfo;
@@ -21,19 +19,13 @@ SYSTEM_TYPE GetSystemType(void)
         {
           SystemType = ToppyInfo->SystemType;
 
-          #ifdef DEBUG_FIREBIRDLIB
-            CallTraceExit(NULL);
-          #endif
-
+          TRACEEXIT();
           return SystemType;
         }
       }
     }
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return SystemType;
 }

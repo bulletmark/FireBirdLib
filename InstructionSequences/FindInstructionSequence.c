@@ -4,9 +4,7 @@
 
 dword FindInstructionSequence(char *SearchPattern, char *SearchMask, dword StartAddress, dword EndAddress, int EntryPointOffset, bool SearchForPrevADDIUSP)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FindInstructionSequence");
-  #endif
+  TRACEENTER();
 
   dword                 SP[50], SM[50];
   dword                 i, p, NrOfInstr;
@@ -14,10 +12,7 @@ dword FindInstructionSequence(char *SearchPattern, char *SearchMask, dword Start
 
   if(!StartAddress || !EndAddress || (strlen(SearchPattern) != strlen(SearchMask)))
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return 0;
   }
 
@@ -56,26 +51,17 @@ dword FindInstructionSequence(char *SearchPattern, char *SearchMask, dword Start
           //ibbi 2007-01-07: at which address should be stopped anyway if there is no PrevADDIUSP?
           if(p < StartAddress)
           {
-            #ifdef DEBUG_FIREBIRDLIB
-              CallTraceExit(NULL);
-            #endif
-
+            TRACEEXIT();
             return 0;
           }
         }
       }
 
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
-
+      TRACEEXIT();
       return p + (EntryPointOffset << 2);
     }
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return 0;
 }

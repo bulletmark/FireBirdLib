@@ -1,41 +1,60 @@
+#include                <fcntl.h>
+#include                <unistd.h>
 #include                <string.h>
 #include                "../libFireBird.h"
 
 bool StringDBLoad(tStringDB *StringDB, char *FileName)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("StringDBLoad");
-  #endif
+  TRACEENTER();
 
-  TYPE_File            *f;
+  int                   f;
   bool                  ret;
+  dword                 l, p;
+  char                  AbsFileName[FBLIB_DIR_SIZE];
 
-  if(!StringDB || !FileName)
+  if(!StringDB || !StringDB->DB || !FileName || !*FileName)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
-  f = TAP_Hdd_Fopen(FileName);
-  if(!f)
-  {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
+  ConvertPathType(FileName, AbsFileName, PF_FullLinuxPath);
 
-    return FALSE;
+  ret = FALSE;
+  if(*AbsFileName)
+  {
+    f = open(AbsFileName, O_RDONLY);
+    if(f >= 0)
+    {
+      if(StringDB->DB) TAP_MemFree(StringDB->DB);
+
+      //DB Size
+      read(f, &l, sizeof(dword));
+      StringDB->DB = TAP_MemAlloc(l);
+
+      if(!StringDB->DB)
+      {
+        StringDB->DBSize = 0;
+        close(f);
+
+        TRACEEXIT();
+        return FALSE;
+      }
+      StringDB->DBSize = l;
+      StringDB->DBEnd = l + StringDB->DB - 1;
+
+      //Current pointer
+      read(f, &p, sizeof(dword));
+      StringDB->DBPtr = p + StringDB->DB;
+
+      read(f, StringDB->DB, l);
+
+      close(f);
+
+      ret = TRUE;
+    }
   }
 
-  ret = StringDBLoadFromFile(StringDB, f);
-
-  TAP_Hdd_Fclose(f);
-
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

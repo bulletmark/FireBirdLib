@@ -2,21 +2,16 @@
 
 dword HDD_GetFileTimeByTypeFile(TYPE_File *File)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_GetFileTimeByTypeFile");
-  #endif
+  TRACEENTER();
 
-  char                  AbsFileName[512];
+  char                  AbsFileName[FBLIB_DIR_SIZE];
   dword                 ret;
 
   if(HDD_GetAbsolutePathByTypeFile(File, AbsFileName))
-    ret = HDD_GetFileTimeByAbsFileName(AbsFileName);
+    ret = HDD_GetFileTimeByFileName(AbsFileName);
   else
     ret = 0;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

@@ -2,24 +2,16 @@
 
 bool HDD_TAP_PopDir(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_TAP_PopDir");
-  #endif
+  TRACEENTER();
 
   if(TAPDirStackDepth >= 0)
   {
     bool ret = HDD_ChangeDir(TAPDirStack[TAPDirStackDepth--]);
 
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return ret;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return FALSE;
 }

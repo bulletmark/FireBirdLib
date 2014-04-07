@@ -2,9 +2,7 @@
 
 int FlashTransponderFindIndex(dword SatIndex, dword NetworkID, dword TSID)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FlashTransponderFindIndex");
-  #endif
+  TRACEENTER();
 
   int                     TrCount, i;
   tFlashTransponderTable  TransponderTable;
@@ -16,18 +14,12 @@ int FlashTransponderFindIndex(dword SatIndex, dword NetworkID, dword TSID)
     {
       if((TransponderTable.OriginalNetworkID == NetworkID) && (TransponderTable.TSID == TSID))
       {
-        #ifdef DEBUG_FIREBIRDLIB
-          CallTraceExit(NULL);
-        #endif
-
+        TRACEEXIT();
         return i;
       }
     }
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return -1;
 }

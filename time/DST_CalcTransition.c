@@ -2,9 +2,7 @@
 
 dword DST_CalcTransition(byte ruleOrdinal, byte ruleDay, byte ruleMonth, byte ruleHour, byte ruleMin, dword StartDate)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("DST_CalcTransition");
-  #endif
+  TRACEENTER();
 
   word        year;
   byte        month, day, weekDay;
@@ -30,9 +28,6 @@ dword DST_CalcTransition(byte ruleOrdinal, byte ruleDay, byte ruleMonth, byte ru
     workingDate = DST_GetNextTransition(ruleOrdinal, ruleDay, ruleMonth, ruleHour, ruleMin, year);
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return workingDate;
 }

@@ -2,9 +2,7 @@
 
 inline dword FIS_vParentalInfo(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FIS_vParentalInfo");
-  #endif
+  TRACEENTER();
 
   static dword          vParentalInfo = 0;
   dword                 *d;
@@ -15,9 +13,6 @@ inline dword FIS_vParentalInfo(void)
     if(d) vParentalInfo = *d;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return vParentalInfo;
 }

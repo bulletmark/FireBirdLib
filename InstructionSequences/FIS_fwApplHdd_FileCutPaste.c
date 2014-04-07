@@ -2,18 +2,13 @@
 
 inline dword FIS_fwApplHdd_FileCutPaste(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FIS_fwApplHdd_FileCutPaste");
-  #endif
+  TRACEENTER();
 
   static dword          _ApplHdd_FileCutPaste = 0;
 
   if(!_ApplHdd_FileCutPaste)
     _ApplHdd_FileCutPaste = TryResolve("_Z20ApplHdd_FileCutPastePKcjjS0_");
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return _ApplHdd_FileCutPaste;
 }

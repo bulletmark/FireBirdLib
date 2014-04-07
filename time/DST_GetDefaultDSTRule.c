@@ -3,9 +3,7 @@
 
 void DST_GetDefaultDSTRule(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("DST_GetDefaultDSTRule");
-  #endif
+  TRACEENTER();
 
   char DefaultRule[80];
 
@@ -24,7 +22,5 @@ void DST_GetDefaultDSTRule(void)
   INICloseFile();
   HDD_TAP_PopDir();
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

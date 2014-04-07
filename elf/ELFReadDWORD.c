@@ -3,9 +3,7 @@
 
 bool ELFReadDWORD(dword SectionIndex, dword *Data)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("ELFReadDWORD");
-  #endif
+  TRACEENTER();
 
   Elf32_Shdr           *pSection = NULL;     //Shortcut to speed up access
 
@@ -13,10 +11,7 @@ bool ELFReadDWORD(dword SectionIndex, dword *Data)
 
   if(pSection->sh_size != sizeof(dword))
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -25,17 +20,12 @@ bool ELFReadDWORD(dword SectionIndex, dword *Data)
     lseek(fTAP, pSection->sh_offset, SEEK_SET);
     if(read(fTAP, Data, pSection->sh_size) != (int)pSection->sh_size)
     {
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
+      TRACEEXIT();
 
       return FALSE;
     }
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }

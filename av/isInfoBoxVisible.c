@@ -2,25 +2,17 @@
 
 bool isInfoBoxVisible(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("isInfoBoxVisible");
-  #endif
+  TRACEENTER();
 
   byte                 *iboxTimerId;
 
   iboxTimerId = (byte*)FIS_vIboxTimerId();
   if(!iboxTimerId)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return (*iboxTimerId != 0xff);
 }

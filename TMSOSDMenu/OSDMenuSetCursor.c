@@ -3,13 +3,9 @@
 
 void OSDMenuSetCursor(tCursorType CursorType)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuSetCursor");
-  #endif
+  TRACEENTER();
 
   MenuCursorType = CursorType;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

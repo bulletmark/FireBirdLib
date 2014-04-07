@@ -2,18 +2,13 @@
 
 inline dword FIS_vnPipSvcNum(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FIS_vnPipSvcNum");
-  #endif
+  TRACEENTER();
 
   static dword          _nPipSvcNum = 0;
 
   if(!_nPipSvcNum)
     _nPipSvcNum = TryResolve("_nPipSvcNum");
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return _nPipSvcNum;
 }

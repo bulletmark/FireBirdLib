@@ -3,9 +3,7 @@
 
 bool HDD_GetAbsolutePathByTypeFile(TYPE_File *File, char *AbsFileName)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_GetAbsolutePathByTypeFile");
-  #endif
+  TRACEENTER();
 
   dword   *d;
   bool    ret;
@@ -24,9 +22,6 @@ bool HDD_GetAbsolutePathByTypeFile(TYPE_File *File, char *AbsFileName)
     }
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

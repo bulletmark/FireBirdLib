@@ -2,16 +2,11 @@
 
 bool OSDMenuPop(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuPop");
-  #endif
+  TRACEENTER();
 
   if(CurrentMenuLevel == 0)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -19,9 +14,6 @@ bool OSDMenuPop(void)
 
   CurrentMenuLevel--;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }

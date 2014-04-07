@@ -5,11 +5,9 @@
 
 bool NoAutoStartTAP(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("NoAutoStartTAP");
-  #endif
+  TRACEENTER();
 
-  char                  CurrentDir[512];
+  char                  CurrentDir[FBLIB_DIR_SIZE];
   char                  *FileName;
   char                  cmd[200];
   dword                *curTapTask;
@@ -27,9 +25,6 @@ bool NoAutoStartTAP(void)
     ret = system(cmd);
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return (ret == 0);
 }

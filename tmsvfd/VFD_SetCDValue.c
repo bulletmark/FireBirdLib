@@ -3,18 +3,13 @@
 
 bool VFD_SetCDValue(int Percent)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("VFD_SetCDValue");
-  #endif
+  TRACEENTER();
 
   byte *grid = (byte*)FIS_vGrid();
 
   if(!VFDUsedByTAP || !grid || !CDEnabled)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -35,9 +30,6 @@ bool VFD_SetCDValue(int Percent)
   if(Percent > 84) grid[27] |= 0x40;
   if(Percent > 92) grid[27] |= 0x20;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }

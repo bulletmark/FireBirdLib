@@ -2,9 +2,7 @@
 
 bool HDD_isCryptedStream(char *Buffer, dword BufferSize)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_isCryptedStream");
-  #endif
+  TRACEENTER();
 
   dword                 i;
   bool                  ret;
@@ -17,9 +15,6 @@ bool HDD_isCryptedStream(char *Buffer, dword BufferSize)
       break;
     }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

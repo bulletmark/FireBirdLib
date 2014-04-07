@@ -2,9 +2,7 @@
 
 bool Appl_GetIsExternal(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("Appl_GetIsExternal");
-  #endif
+  TRACEENTER();
 
   bool(*__Appl_GetIsExternal)(void);
   bool ret = FALSE;
@@ -12,9 +10,6 @@ bool Appl_GetIsExternal(void)
   __Appl_GetIsExternal = (void*)FIS_fwAppl_GetIsExternal();
   if(__Appl_GetIsExternal) ret = __Appl_GetIsExternal();
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

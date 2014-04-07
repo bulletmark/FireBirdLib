@@ -3,9 +3,7 @@
 
 void EPGInfo_CloneToCache(dword *TreePointer, byte StructOffset, tEPGFilter *EPGFilter)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("EPGInfo_CloneToCache");
-  #endif
+  TRACEENTER();
 
   tTreeEntry           *ListStart, *Entry;
   TYPE_EvtInfo         *EvtInfo;
@@ -28,9 +26,7 @@ void EPGInfo_CloneToCache(dword *TreePointer, byte StructOffset, tEPGFilter *EPG
     //If the list points to itself, no data is available
     if(ListStart == (tTreeEntry*)ListStart->Next)
     {
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
+      TRACEEXIT();
 
       return;
     }
@@ -111,7 +107,5 @@ void EPGInfo_CloneToCache(dword *TreePointer, byte StructOffset, tEPGFilter *EPG
     } while(Entry && (Entry->Next != ListStart->Prev));
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

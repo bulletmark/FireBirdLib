@@ -1,14 +1,10 @@
-#ifndef _TMSEMU_
-  #include              <ctype.h>
-#endif
+#include                <ctype.h>
 #include                <string.h>
 #include                "FBLib_string.h"
 
 void UpperCase(char *string)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("UpperCase");
-  #endif
+  TRACEENTER();
 
   char                 *p, *s;
   byte                  UTF8[5];
@@ -39,7 +35,5 @@ void UpperCase(char *string)
     p += BytesPerCharacter;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

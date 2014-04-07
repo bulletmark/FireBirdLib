@@ -2,9 +2,7 @@
 
 void FlashFavoritesGetParameters(int *NrGroups, int *NrSvcsPerGroup)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FlashFavoritesGetParameters");
-  #endif
+  TRACEENTER();
 
   int                   i;
 
@@ -27,7 +25,5 @@ void FlashFavoritesGetParameters(int *NrGroups, int *NrSvcsPerGroup)
     if(NrSvcsPerGroup) *NrSvcsPerGroup  = i;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

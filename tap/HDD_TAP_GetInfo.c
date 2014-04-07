@@ -4,19 +4,14 @@
 
 bool HDD_TAP_GetInfo(char *FileName, tTAPInfo *pTAPInfo)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_TAP_GetInfo");
-  #endif
+  TRACEENTER();
 
   dword                 Index;
   char                  s[128];
 
   if(!pTAPInfo)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -24,10 +19,7 @@ bool HDD_TAP_GetInfo(char *FileName, tTAPInfo *pTAPInfo)
   {
     ELFCleanup();
 
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -35,10 +27,7 @@ bool HDD_TAP_GetInfo(char *FileName, tTAPInfo *pTAPInfo)
   {
     ELFCleanup();
 
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -46,10 +35,7 @@ bool HDD_TAP_GetInfo(char *FileName, tTAPInfo *pTAPInfo)
   {
     ELFCleanup();
 
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -57,10 +43,7 @@ bool HDD_TAP_GetInfo(char *FileName, tTAPInfo *pTAPInfo)
   {
     ELFCleanup();
 
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -69,10 +52,7 @@ bool HDD_TAP_GetInfo(char *FileName, tTAPInfo *pTAPInfo)
   {
     ELFCleanup();
 
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -122,9 +102,6 @@ bool HDD_TAP_GetInfo(char *FileName, tTAPInfo *pTAPInfo)
 
   ELFCleanup();
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }

@@ -2,9 +2,7 @@
 
 bool OSDMenuItemModifyID(int ItemIndex, dword ID)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuItemModifyID");
-  #endif
+  TRACEENTER();
 
   tMenu                *pMenu;
 
@@ -12,18 +10,12 @@ bool OSDMenuItemModifyID(int ItemIndex, dword ID)
 
   if((pMenu->NrItems == 0) || (ItemIndex >= pMenu->NrItems))
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
   pMenu->Item[ItemIndex].ID = ID;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }

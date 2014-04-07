@@ -3,28 +3,20 @@
 
 bool StrMkISO(byte *SourceString)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("StrMkISO");
-  #endif
+  TRACEENTER();
 
   byte                 *_isostring;
   bool                  hasAnsiChars, hasUTFChars;
 
   if(!SourceString)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
   if(!*SourceString)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return TRUE;
   }
 
@@ -40,17 +32,11 @@ bool StrMkISO(byte *SourceString)
     }
     else
     {
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
-
+      TRACEEXIT();
       return FALSE;
     }
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }

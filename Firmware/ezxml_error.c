@@ -2,9 +2,7 @@
 
 const char *ezxml_error(ezxml_t xml)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("ezxml_error");
-  #endif
+  TRACEENTER();
 
 	const char *(*__ezxml_error)(ezxml_t);
 	const char *ret = NULL;
@@ -16,9 +14,6 @@ const char *ezxml_error(ezxml_t xml)
 		ret = __ezxml_error(xml);
 	}
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
 	return ret;
 }

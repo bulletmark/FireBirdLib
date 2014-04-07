@@ -3,9 +3,7 @@
 
 void FM_PutStringAA(word rgn, dword x, dword y, dword maxX, char *str, dword fcolor, dword bcolor, tFontData *FontData, byte bDot, byte align, float AntiAliasFactor)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FM_PutStringAA");
-  #endif
+  TRACEENTER();
 
   dword                 XEnd, YEnd;
   dword                *PixelData;
@@ -28,10 +26,7 @@ void FM_PutStringAA(word rgn, dword x, dword y, dword maxX, char *str, dword fco
 
   if(!str || !str[0] || !FontData || !FontData->pFontData || (maxX <= x))
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return;
   }
 
@@ -124,10 +119,7 @@ void FM_PutStringAA(word rgn, dword x, dword y, dword maxX, char *str, dword fco
 
   if(XEnd > maxX)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return;
   }
 
@@ -235,7 +227,5 @@ void FM_PutStringAA(word rgn, dword x, dword y, dword maxX, char *str, dword fco
     TAP_MemFree(PixelData);
   } // if PixelData
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

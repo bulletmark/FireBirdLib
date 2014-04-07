@@ -2,23 +2,16 @@
 
 void OSDMenuMessageBoxButtonSelect(dword SelectedButton)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuMessageBoxButtonSelect");
-  #endif
+  TRACEENTER();
 
   if(SelectedButton >= MessageBox.NrButtons)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return;
   }
 
   MessageBox.CurrentButton = SelectedButton;
   if(MessageBoxOSDRgn) OSDMenuMessageBoxShow();
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

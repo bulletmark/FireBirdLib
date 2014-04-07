@@ -2,9 +2,7 @@
 
 bool OSDMenuItemModifyCustomIndex(int ItemIndex, int CustomIndex)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuItemModifyCustomIndex");
-  #endif
+  TRACEENTER();
 
   tMenu                *pMenu;
 
@@ -12,10 +10,7 @@ bool OSDMenuItemModifyCustomIndex(int ItemIndex, int CustomIndex)
 
   if((pMenu->NrItems == 0) || (ItemIndex >= pMenu->NrItems))
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -23,9 +18,6 @@ bool OSDMenuItemModifyCustomIndex(int ItemIndex, int CustomIndex)
 
   ListDirty = TRUE;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }

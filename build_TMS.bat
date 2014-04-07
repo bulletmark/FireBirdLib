@@ -1,4 +1,5 @@
 @echo off
+cd /d %~dp0%
 set Project=libFireBird
 set TFROOT=C:\sw\prgm\Topfield
 set PATH=%TFROOT%\gccForTMS\crosstool\bin;C:\sw\OS\cygwin\bin

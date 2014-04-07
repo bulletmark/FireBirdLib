@@ -4,9 +4,7 @@
 
 void DumpMemory(byte* p, dword size, int BytesPerLine)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("DumpMemory");
-  #endif
+  TRACEENTER();
 
   byte                 *StartAddress = p;
   int                   CollectedBytes, i;
@@ -18,10 +16,7 @@ void DumpMemory(byte* p, dword size, int BytesPerLine)
   {
     TAP_Print("0x00000000 NULL\n");
 
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return;
   }
 
@@ -70,7 +65,5 @@ void DumpMemory(byte* p, dword size, int BytesPerLine)
     TAP_Print(s);
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

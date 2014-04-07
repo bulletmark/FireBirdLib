@@ -2,9 +2,7 @@
 
 bool FlashServiceFindNum(byte SatIndex, word NetworkID, word TSID, word ServiceID, TYPE_ServiceType *SvcType, int *SvcNum)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FlashServiceFindNum");
-  #endif
+  TRACEENTER();
 
   word TpIdx;
   word SvcIdx;
@@ -34,9 +32,6 @@ bool FlashServiceFindNum(byte SatIndex, word NetworkID, word TSID, word ServiceI
     }
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

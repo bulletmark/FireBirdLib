@@ -2,17 +2,12 @@
 
 char *OSDMenuItemGetCurrentValue(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuItemGetCurrentValue");
-  #endif
+  TRACEENTER();
 
   char *ret;
 
   ret = OSDMenuItemGetValue(Menu[CurrentMenuLevel].CurrentSelection);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

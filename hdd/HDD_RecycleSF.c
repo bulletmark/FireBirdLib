@@ -1,18 +1,20 @@
+#include                <sys/stat.h>
 #include                <string.h>
 #include                "../libFireBird.h"
 #include                "FBLib_hdd.h"
 
-void HDD_RecycleSF(char *FileName)
+bool HDD_RecycleSF(char *FileName)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_RecycleSF");
-  #endif
+  TRACEENTER();
 
   tFileInUse            FileInUse;
-  char                  CurrentPath[512], AbsPath[512];
+  char                  AbsPath[FBLIB_DIR_SIZE], AbsFileName[MAX_FILE_NAME_SIZE + 1], *Slash;
+  char                  RecycleDir[FBLIB_DIR_SIZE], MountPoint[FBLIB_DIR_SIZE];
   tinfBlock             infBlock;
+  bool                  ret;
 
-  if(FileName && TAP_Hdd_Exist(FileName))
+  ret = FALSE;
+  if(FileName && *FileName && HDD_Exist(FileName))
   {
     FileInUse = HDD_isFileInUse(FileName);
     switch(FileInUse)
@@ -34,26 +36,37 @@ void HDD_RecycleSF(char *FileName)
       case FIU_RecSlot4: TAP_Hdd_StopRecord(3); break;
     }
 
-    HDD_TAP_PushDir();
-    HDD_ChangeDir("/DataFiles");
-    if(!TAP_Hdd_Exist("RecycleBin-")) TAP_Hdd_Create("RecycleBin-", ATTR_FOLDER);
-    HDD_TAP_PopDir();
+    ConvertPathType(FileName, AbsPath, PF_FullLinuxPath);
+    if(*AbsPath)
+    {
+      char c;
 
-    HDD_TAP_GetCurrentDir(CurrentPath);
+      Slash = strrchr(AbsPath, '/');
+      c = *Slash;
+      *Slash = '\0';
 
-    //--------new--------------
-    TAP_SPrint(AbsPath, "%s%s/%s", TAPFSROOT, CurrentPath, FileName);
+      //Set the deletion time in the infBlock
+      HDD_InfBlockGet(FileName, &infBlock);
+      strcpy(infBlock.RecoverPath, AbsPath);
+      infBlock.RecycleDate = Now(NULL);
+      HDD_InfBlockSet(FileName, &infBlock);
 
-    //Löschzeit in den infBlock eintragen
-    HDD_InfBlockGet(AbsPath, &infBlock);
-    TAP_SPrint(infBlock.RecoverPath, "%s%s", TAPFSROOT, CurrentPath);
-    infBlock.RecycleDate = Now(NULL);
-    HDD_InfBlockSet(AbsPath, &infBlock);
+      //Separate
+      *Slash = c;
+      strcpy(AbsFileName, Slash + 1);
+      Slash[1] = '\0';
 
-    HDD_Move(FileName, CurrentPath, RECYCLEPATH);
+      //Find the mount point for that drive and create a RecycleBin folder in the root.
+      //Use DataFiles as root for the internal disk
+      HDD_FindMountPoint(AbsPath, MountPoint);
+      if(strcmp("/mnt/hd/", MountPoint) == 0) strcpy(MountPoint, "/mnt/hd/DataFiles/");
+
+      TAP_SPrint(RecycleDir, "%sRecycleBin-", MountPoint);
+      mkdir(RecycleDir, 0777);
+      ret = HDD_Move(AbsFileName, AbsPath, RecycleDir);
+    }
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
+  return ret;
 }

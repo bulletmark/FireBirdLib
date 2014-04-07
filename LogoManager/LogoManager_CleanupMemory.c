@@ -5,9 +5,7 @@
 
 void LogoManager_CleanupMemory(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("LogoManager_CleanupMemory");
-  #endif
+  TRACEENTER();
 
   int                   i;
 
@@ -24,7 +22,5 @@ void LogoManager_CleanupMemory(void)
   }
 
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

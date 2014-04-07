@@ -2,9 +2,7 @@
 
 bool isUTFToppy(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("isUTFToppy");
-  #endif
+  TRACEENTER();
 
   static bool ret = FALSE;
   static bool FirstCall = TRUE;
@@ -15,9 +13,6 @@ bool isUTFToppy(void)
     FirstCall= FALSE;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

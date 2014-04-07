@@ -2,19 +2,14 @@
 
 byte *GetUCPos(byte *String, int CharPos)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("GetUCPos");
-  #endif
+  TRACEENTER();
 
   byte                  bpc;
   int                   i;
 
   if(!String)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return NULL;
   }
 
@@ -31,9 +26,6 @@ byte *GetUCPos(byte *String, int CharPos)
     i++;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return String;
 }

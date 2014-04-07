@@ -3,29 +3,21 @@
 
 bool FlashSatTablesGetInfo(int SatNum, tFlashSatTable *SatTable)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FlashSatTablesGetInfo");
-  #endif
+  TRACEENTER();
 
   bool ret;
 
   //SatNum out of range
   if((SatNum < 0) || (SatNum >= FlashSatTablesGetTotal()))
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
   //SatTable is NULL
   if(!SatTable)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -77,10 +69,7 @@ bool FlashSatTablesGetInfo(int SatNum, tFlashSatTable *SatTable)
     case ST_NRTYPES: break;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }
 
@@ -88,16 +77,11 @@ bool FlashSatTablesDecode(void *Data, tFlashSatTable *SatTable)
 {
   bool ret;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FlashSatTablesDecode");
-  #endif
+  TRACEENTER();
 
   if(!Data || !SatTable)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -122,25 +106,17 @@ bool FlashSatTablesDecode(void *Data, tFlashSatTable *SatTable)
     case ST_NRTYPES: break;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }
 
 bool FlashSatTablesDecode_ST_TMSS(TYPE_SatInfo_TMSS *Data, tFlashSatTable *SatTable)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FlashSatTablesDecode_ST_TMSS");
-  #endif
+  TRACEENTER();
 
   if(!Data || !SatTable)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -186,25 +162,17 @@ bool FlashSatTablesDecode_ST_TMSS(TYPE_SatInfo_TMSS *Data, tFlashSatTable *SatTa
   memcpy(SatTable->LNB[1].DiSEqC12Flags, Data->LNB[1].DiSEqC12Flags, 3);
   memcpy(SatTable->LNB[1].unused5, Data->LNB[1].unused5, 5);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }
 
 bool FlashSatTablesDecode_ST_TMST(TYPE_SatInfo_TMST *Data, tFlashSatTable *SatTable)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FlashSatTablesDecode_ST_TMST");
-  #endif
+  TRACEENTER();
 
   if(!Data || !SatTable)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -212,25 +180,17 @@ bool FlashSatTablesDecode_ST_TMST(TYPE_SatInfo_TMST *Data, tFlashSatTable *SatTa
   SatTable->NrOfTransponders = Data->NrOfTransponders;
   strncpy(SatTable->SatName, Data->SatName, 15);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }
 
 bool FlashSatTablesDecode_ST_TMSC(TYPE_SatInfo_TMSC *Data, tFlashSatTable *SatTable)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FlashSatTablesDecode_ST_TMSC");
-  #endif
+  TRACEENTER();
 
   if(!Data || !SatTable)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -238,9 +198,6 @@ bool FlashSatTablesDecode_ST_TMSC(TYPE_SatInfo_TMSC *Data, tFlashSatTable *SatTa
   SatTable->NrOfTransponders = Data->NrOfTransponders;
   strncpy(SatTable->SatName, "Cable", 15);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }

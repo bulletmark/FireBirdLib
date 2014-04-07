@@ -2,9 +2,7 @@
 
 void TAPCOM_StillAlive(TAPCOM_Channel Channel)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("TAPCOM_StillAlive");
-  #endif
+  TRACEENTER();
 
   if(isValidChannel(Channel))
   {
@@ -12,7 +10,5 @@ void TAPCOM_StillAlive(TAPCOM_Channel Channel)
     ((TAPCOM_InternalMesBuf *) Channel)->ServerAlive = TAP_GetTick();
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

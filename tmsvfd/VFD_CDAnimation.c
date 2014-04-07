@@ -10,19 +10,14 @@
 
 bool VFD_CDAnimation(bool Forward)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("VFD_CDAnimation");
-  #endif
+  TRACEENTER();
 
   static int            Counter = 0;
   byte *grid = (byte*)FIS_vGrid();
 
   if(!VFDUsedByTAP || !grid || !CDEnabledAnimation)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -95,9 +90,6 @@ bool VFD_CDAnimation(bool Forward)
     }
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }

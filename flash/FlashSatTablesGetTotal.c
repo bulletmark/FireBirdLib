@@ -2,9 +2,7 @@
 
 int FlashSatTablesGetTotal(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FlashSatTablesGetTotal");
-  #endif
+  TRACEENTER();
 
   TYPE_SatInfo_TMSS    *SatInfo_TMSS;
   int                   i, ret;
@@ -49,9 +47,6 @@ int FlashSatTablesGetTotal(void)
     }
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

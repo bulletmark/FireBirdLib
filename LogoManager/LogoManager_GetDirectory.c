@@ -5,11 +5,9 @@
 
 char *LogoManager_GetDirectory(tLogoStyle LogoStyle, tLogoAspect LogoAR)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("LogoManager_GetDirectory");
-  #endif
+  TRACEENTER();
 
-  static char           Path[512];
+  static char           Path[FBLIB_DIR_SIZE];
 
   strcpy(Path, LOGOROOT);
   switch(LogoStyle)
@@ -35,9 +33,6 @@ char *LogoManager_GetDirectory(tLogoStyle LogoStyle, tLogoAspect LogoAR)
       break;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return Path;
 }

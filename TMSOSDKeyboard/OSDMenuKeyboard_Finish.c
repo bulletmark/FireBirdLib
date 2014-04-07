@@ -2,9 +2,7 @@
 
 void OSDMenuKeyboard_Finish(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuKeyboard_Finish");
-  #endif
+  TRACEENTER();
 
   if(OSDMenuKeyboard_rgn)
   {
@@ -22,7 +20,5 @@ void OSDMenuKeyboard_Finish(void)
     FMUC_FreeFontFile(&KeyboardFont_14);
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

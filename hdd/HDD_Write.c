@@ -2,9 +2,7 @@
 
 bool HDD_Write(void *data, dword length, TYPE_File *f)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_Write");
-  #endif
+  TRACEENTER();
 
   static byte           block[512];
   static byte           *b = block;
@@ -48,9 +46,6 @@ bool HDD_Write(void *data, dword length, TYPE_File *f)
     b += length;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return success;
 }

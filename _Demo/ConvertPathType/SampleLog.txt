@@ -1,0 +1,117 @@
+Source       : 'xyz.tap'
+Detected     : PF_FileNameOnly
+
+FileNameOnly : 'xyz.tap'
+TAPPathOnly  : '/ProgramFiles/'
+FullTAPPath  : '/ProgramFiles/xyz.tap'
+LinuxPathOnly: '/mnt/hd/ProgramFiles/'
+FullLinuxPath: '/mnt/hd/ProgramFiles/xyz.tap'
+-------------------------------------------
+Source       : 'Settings/xyz.tap'
+Detected     : PF_FullTAPPath
+
+FileNameOnly : 'xyz.tap'
+TAPPathOnly  : 'Settings/'
+FullTAPPath  : 'Settings/xyz.tap'
+LinuxPathOnly: '/mnt/hd/ProgramFiles/Settings/'
+FullLinuxPath: '/mnt/hd/ProgramFiles/Settings/xyz.tap'
+-------------------------------------------
+Source       : '/ProgramFiles/Settings/xyz.tap'
+Detected     : PF_FullTAPPath
+
+FileNameOnly : 'xyz.tap'
+TAPPathOnly  : '/ProgramFiles/Settings/'
+FullTAPPath  : '/ProgramFiles/Settings/xyz.tap'
+LinuxPathOnly: '/mnt/hd/ProgramFiles/Settings/'
+FullLinuxPath: '/mnt/hd/ProgramFiles/Settings/xyz.tap'
+-------------------------------------------
+Source       : '/mnt/hd/ProgramFiles/Settings/xyz.tap'
+Detected     : PF_FullLinuxPath
+
+FileNameOnly : 'xyz.tap'
+TAPPathOnly  : '/ProgramFiles/Settings/'
+FullTAPPath  : '/ProgramFiles/Settings/xyz.tap'
+LinuxPathOnly: '/mnt/hd/ProgramFiles/Settings/'
+FullLinuxPath: '/mnt/hd/ProgramFiles/Settings/xyz.tap'
+-------------------------------------------
+Source       : 'Settings'
+Detected     : PF_TAPPathOnly
+
+FileNameOnly : ''
+TAPPathOnly  : 'Settings'
+FullTAPPath  : ''
+LinuxPathOnly: '/mnt/hd/ProgramFiles/Settings/'
+FullLinuxPath: ''
+-------------------------------------------
+Source       : 'settings'
+Detected     : PF_FileNameOnly
+
+FileNameOnly : 'settings'
+TAPPathOnly  : '/ProgramFiles/'
+FullTAPPath  : '/ProgramFiles/settings'
+LinuxPathOnly: '/mnt/hd/ProgramFiles/'
+FullLinuxPath: '/mnt/hd/ProgramFiles/settings'
+-------------------------------------------
+Source       : 'Settings/'
+Detected     : PF_TAPPathOnly
+
+FileNameOnly : ''
+TAPPathOnly  : 'Settings/'
+FullTAPPath  : ''
+LinuxPathOnly: '/mnt/hd/ProgramFiles/Settings/'
+FullLinuxPath: ''
+-------------------------------------------
+Source       : '/ProgramFiles/Settings'
+Detected     : PF_TAPPathOnly
+
+FileNameOnly : ''
+TAPPathOnly  : '/ProgramFiles/Settings'
+FullTAPPath  : ''
+LinuxPathOnly: '/mnt/hd/ProgramFiles/Settings'
+FullLinuxPath: ''
+-------------------------------------------
+Source       : '/ProgramFiles/Settings/'
+Detected     : PF_TAPPathOnly
+
+FileNameOnly : ''
+TAPPathOnly  : '/ProgramFiles/Settings/'
+FullTAPPath  : ''
+LinuxPathOnly: '/mnt/hd/ProgramFiles/Settings/'
+FullLinuxPath: ''
+-------------------------------------------
+Source       : '/mnt/hd/ProgramFiles/Settings'
+Detected     : PF_LinuxPathOnly
+
+FileNameOnly : ''
+TAPPathOnly  : '/ProgramFiles/Settings/'
+FullTAPPath  : ''
+LinuxPathOnly: '/mnt/hd/ProgramFiles/Settings'
+FullLinuxPath: ''
+-------------------------------------------
+Source       : '/mnt/hd/ProgramFiles/Settings/'
+Detected     : PF_LinuxPathOnly
+
+FileNameOnly : ''
+TAPPathOnly  : '/ProgramFiles/Settings/'
+FullTAPPath  : ''
+LinuxPathOnly: '/mnt/hd/ProgramFiles/Settings/'
+FullLinuxPath: ''
+-------------------------------------------
+Source       : '..'
+Detected     : PF_TAPPathOnly
+
+FileNameOnly : ''
+TAPPathOnly  : '..'
+FullTAPPath  : ''
+LinuxPathOnly: '/mnt/hd/ProgramFiles/../'
+FullLinuxPath: ''
+-------------------------------------------
+Source       : '/root'
+Detected     : PF_LinuxPathOnly
+
+FileNameOnly : ''
+TAPPathOnly  : ''
+FullTAPPath  : ''
+LinuxPathOnly: '/root'
+FullLinuxPath: ''
+-------------------------------------------

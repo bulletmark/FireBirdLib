@@ -2,9 +2,7 @@
 
 bool ShowPvrList(tPvrListType PvrListType)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("ShowPvrList");
-  #endif
+  TRACEENTER();
 
   void (*__Appl_PvrList)(unsigned int, unsigned int);
   void (*__Appl_PvrList_SetListType)(tPvrListType ListType);
@@ -14,9 +12,7 @@ bool ShowPvrList(tPvrListType PvrListType)
     __Appl_PvrList_SetListType = (void*)FIS_fwAppl_PvrList_SetListType();
     if(!__Appl_PvrList_SetListType)
     {
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
+      TRACEEXIT();
       return FALSE;
     }
     __Appl_PvrList_SetListType(PvrListType - 1);
@@ -25,17 +21,12 @@ bool ShowPvrList(tPvrListType PvrListType)
   __Appl_PvrList = (void*)FIS_fwAppl_PvrList();
   if(!__Appl_PvrList)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
+    TRACEEXIT();
     return FALSE;
   }
 
   __Appl_PvrList(0, 0xffff);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }

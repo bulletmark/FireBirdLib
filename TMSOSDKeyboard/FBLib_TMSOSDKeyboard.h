@@ -12,10 +12,10 @@
     KPM_Standard,
     KPM_CAPS,
     KPM_Num,
+    KPM_Symbols,
     KPM_SpecialChars1,
     KPM_SpecialChars2,
     KPM_SpecialChars3,
-    KPM_Symbols,
     KPM_NrModes
   } tKeyPadMode;
 

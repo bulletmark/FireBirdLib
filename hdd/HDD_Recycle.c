@@ -2,19 +2,18 @@
 #include                <string.h>
 #include                "../libFireBird.h"
 
-void HDD_Recycle(char *FileName)
+bool HDD_Recycle(char *FileName)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_Recycle");
-  #endif
+  TRACEENTER();
 
-  char                  Name[TS_FILE_NAME_SIZE], Ext[TS_FILE_NAME_SIZE];
+  char                  Path[FBLIB_DIR_SIZE], Name[TS_FILE_NAME_SIZE], Ext[TS_FILE_NAME_SIZE];
   char                  OldName[TS_FILE_NAME_SIZE], NewName[TS_FILE_NAME_SIZE];
-  bool                  isRec, isDel;
+  bool                  isRec, isDel, ret;
   int                   fNumber;
   tFileInUse            FileInUse;
 
-  if(FileName && TAP_Hdd_Exist(FileName))
+  ret = FALSE;
+  if(FileName && HDD_Exist(FileName))
   {
     FileInUse = HDD_isFileInUse(FileName);
     switch(FileInUse)
@@ -36,37 +35,38 @@ void HDD_Recycle(char *FileName)
       case FIU_RecSlot4: TAP_Hdd_StopRecord(3); break;
     }
 
-    SeparateFileNameComponents(FileName, Name, Ext, &fNumber, &isRec, &isDel);
+    SeparateFileNameComponents(FileName, Path, Name, Ext, &fNumber, &isRec, &isDel);
 
     if(!isDel)
     {
       if(fNumber)
-        TAP_SPrint(OldName, "%s-%d%s", Name, fNumber, Ext);
+        TAP_SPrint(OldName, "%s%s-%d%s", Path, Name, fNumber, Ext);
       else
-        TAP_SPrint(OldName, "%s%s", Name, Ext);
+        TAP_SPrint(OldName, "%s%s%s", Path, Name, Ext);
 
       TAP_SPrint(NewName, "%s.del", OldName);
       MakeUniqueFileName(NewName);
-      TAP_Hdd_Rename(OldName, NewName);
-
-      if(isRec && HDD_isRecFileName(FileName))
+      if(rename(OldName, NewName) == 0)
       {
-        strcat(OldName, ".inf");
-        NewName[strlen(NewName) - 4] = '\0';
-        strcat(NewName, ".inf.del");
-        TAP_Hdd_Rename(OldName, NewName);
 
-        OldName[strlen(OldName) - 4] = '\0';
-        strcat(OldName, ".nav");
-        NewName[strlen(NewName) - 8] = '\0';
-        strcat(NewName, ".nav.del");
-        TAP_Hdd_Rename(OldName, NewName);
+        if(isRec && HDD_isRecFileName(FileName))
+        {
+          strcat(OldName, ".inf");
+          NewName[strlen(NewName) - 4] = '\0';
+          strcat(NewName, ".inf.del");
+          rename(OldName, NewName);
+
+          OldName[strlen(OldName) - 4] = '\0';
+          strcat(OldName, ".nav");
+          NewName[strlen(NewName) - 8] = '\0';
+          strcat(NewName, ".nav.del");
+          rename(OldName, NewName);
+        }
+        ret = TRUE;
       }
     }
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
+  return ret;
 }

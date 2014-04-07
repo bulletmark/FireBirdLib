@@ -2,18 +2,13 @@
 
 inline dword FIS_vbookmarkTime(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FIS_vbookmarkTime");
-  #endif
+  TRACEENTER();
 
   static dword          vbookmarkTime = 0;
 
   if(!vbookmarkTime)
     vbookmarkTime = TryResolve("_bookmarkTime");
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return vbookmarkTime;
 }

@@ -8,9 +8,7 @@
 
 int HDD_TAP_GetCurrentDir(char *CurrentDir)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_TAP_GetCurrentDir");
-  #endif
+  TRACEENTER();
 
   dword                *_curTapTask;
   tTMSTAPTaskTable     *TAPTaskTable;
@@ -24,10 +22,7 @@ int HDD_TAP_GetCurrentDir(char *CurrentDir)
   {
     if(CurrentDir) CurrentDir[0] = '\0';
 
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return -3;
   }
 
@@ -38,9 +33,6 @@ int HDD_TAP_GetCurrentDir(char *CurrentDir)
   if(CurrentDir && dw && dw[1])
     strcpy(CurrentDir, (char*)(dw[1] + 7));
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return 0;
 }

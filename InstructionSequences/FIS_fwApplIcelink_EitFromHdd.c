@@ -2,9 +2,7 @@
 
 inline dword FIS_fwApplIcelink_EitFromHdd(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FIS_fwApplIcelink_EitFromHdd");
-  #endif
+  TRACEENTER();
 
   static dword          _ApplIcelink_EitFromHdd = 0;
   static bool           FirstCall = TRUE;
@@ -15,9 +13,6 @@ inline dword FIS_fwApplIcelink_EitFromHdd(void)
     FirstCall = FALSE;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return _ApplIcelink_EitFromHdd;
 }

@@ -5,18 +5,13 @@ bool CDEnabled = FALSE;
 
 bool VFD_EnableCD(bool Enable)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("VFD_EnableCD");
-  #endif
+  TRACEENTER();
 
   byte *grid = (byte*)FIS_vGrid();
 
   if(!VFDUsedByTAP || !grid)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -31,9 +26,6 @@ bool VFD_EnableCD(bool Enable)
 
   CDEnabled = Enable;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }

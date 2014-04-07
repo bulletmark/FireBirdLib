@@ -2,9 +2,7 @@
 
 word ApplHdd_GetFileInfo(word p1, int *TotalBlocks, int *CurrentBlock, byte p4, byte p5)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("ApplHdd_GetFileInfo");
-  #endif
+  TRACEENTER();
 
   word (*__ApplHdd_GetFileInfo)(word, int *TotalBlocks, int *CurrentBlock, byte, byte);
   word ret = 0;
@@ -12,9 +10,6 @@ word ApplHdd_GetFileInfo(word p1, int *TotalBlocks, int *CurrentBlock, byte p4, 
   __ApplHdd_GetFileInfo = (void*)FIS_fwApplHdd_GetFileInfo();
   if(__ApplHdd_GetFileInfo) ret = __ApplHdd_GetFileInfo(p1, TotalBlocks, CurrentBlock, p4, p5);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

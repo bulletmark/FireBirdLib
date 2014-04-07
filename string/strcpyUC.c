@@ -3,19 +3,14 @@
 
 byte *strcpyUC(byte *dest, byte *src)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("strcpyUC");
-  #endif
+  TRACEENTER();
 
   byte                 *p;
   int                   CharTableBytes;
 
   if(!src || !dest)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return NULL;
   }
 
@@ -30,9 +25,6 @@ byte *strcpyUC(byte *dest, byte *src)
     strcpy(&dest[CharTableBytes], p);
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return dest;
 }

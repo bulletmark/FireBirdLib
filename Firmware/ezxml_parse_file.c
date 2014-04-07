@@ -2,9 +2,7 @@
 
 ezxml_t ezxml_parse_file(const char *file)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("ezxml_parse_file");
-  #endif
+  TRACEENTER();
 
 	ezxml_t		(*__ezxml_parse_file)(const char *);
 	ezxml_t		ret = 0;
@@ -16,9 +14,6 @@ ezxml_t ezxml_parse_file(const char *file)
 		ret = __ezxml_parse_file(file);
 	}
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
 	return ret;
 }

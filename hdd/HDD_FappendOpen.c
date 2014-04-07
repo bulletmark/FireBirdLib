@@ -3,18 +3,29 @@
 
 TYPE_File *HDD_FappendOpen(char *FileName)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_FappendOpen");
-  #endif
+  TRACEENTER();
 
-  TYPE_File *file;
-  char buffer[512];
-  dword pos, blks, i;
-  char *end;
+  TYPE_File            *file;
+  char                  buffer[512];
+  dword                 pos, blks, i;
+  char                 *end;
+  char                  TAPPath[FBLIB_DIR_SIZE], Name[FBLIB_DIR_SIZE];
 
-  if(!TAP_Hdd_Exist(FileName)) TAP_Hdd_Create(FileName, ATTR_NORMAL);
+  if(!FileName || !*FileName)
+  {
+    TRACEEXIT();
+    return NULL;
+  }
 
-  if((file = TAP_Hdd_Fopen(FileName)))
+  ConvertPathType(FileName, TAPPath, PF_TAPPathOnly);
+  ConvertPathType(FileName, Name, PF_FileNameOnly);
+
+  HDD_TAP_PushDir();
+  if(*TAPPath) HDD_ChangeDir(TAPPath);
+
+  if(!TAP_Hdd_Exist(Name)) TAP_Hdd_Create(Name, ATTR_NORMAL);
+
+  if((file = TAP_Hdd_Fopen(Name)))
   {
     if(TAP_Hdd_Fseek(file, 0, SEEK_SET) != 0)
     {
@@ -52,9 +63,8 @@ TYPE_File *HDD_FappendOpen(char *FileName)
     }
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  HDD_TAP_PopDir();
 
+  TRACEEXIT();
   return file;
 }

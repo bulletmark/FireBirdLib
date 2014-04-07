@@ -3,9 +3,7 @@
 
 void OSDMenuInfoBoxShow(char *Title, char *Text, dword Timeout)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuInfoBoxShow");
-  #endif
+  TRACEENTER();
 
   dword                 x, y, dy, i;
   char                 *pText;
@@ -75,7 +73,5 @@ void OSDMenuInfoBoxShow(char *Title, char *Text, dword Timeout)
 
   TAP_Osd_Sync();
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

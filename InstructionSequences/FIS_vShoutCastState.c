@@ -2,18 +2,13 @@
 
 inline dword FIS_vShoutCastState(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FIS_vShoutCastState");
-  #endif
+  TRACEENTER();
 
   static dword          _shoutCastState = 0;
 
   if(!_shoutCastState)
     _shoutCastState = TryResolve("_shoutCastState");
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return _shoutCastState;
 }

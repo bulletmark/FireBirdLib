@@ -2,9 +2,7 @@
 
 bool CrashCheck_isOK(char *TAPName)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("CrashCheck_isOK");
-  #endif
+  TRACEENTER();
 
   int                   RebootCount = 0;
   INILOCATION           INILocation;
@@ -16,9 +14,6 @@ bool CrashCheck_isOK(char *TAPName)
     INICloseFile();
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return (RebootCount == 0);
 }

@@ -4,18 +4,13 @@
 
 void INIFindStartEnd(char *Key, char **Start, char **End, dword MaxEntrylen)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("INIFindStartEnd");
-  #endif
+  TRACEENTER();
 
   char                  *CR, *LF, *p;
 
   if(!Start || !End || !MaxEntrylen)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return;
   }
 
@@ -23,10 +18,7 @@ void INIFindStartEnd(char *Key, char **Start, char **End, dword MaxEntrylen)
   {
     *Start = NULL;
 
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return;
   }
 
@@ -37,10 +29,7 @@ void INIFindStartEnd(char *Key, char **Start, char **End, dword MaxEntrylen)
     *Start = stricstr(*Start + 1, Key);
     if(*Start == NULL)
     {
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
-
+      TRACEEXIT();
       return;
     }
 
@@ -61,10 +50,7 @@ void INIFindStartEnd(char *Key, char **Start, char **End, dword MaxEntrylen)
       {
         *End = LF - 1;
 
-        #ifdef DEBUG_FIREBIRDLIB
-          CallTraceExit(NULL);
-        #endif
-
+        TRACEEXIT();
         return;
       }
     }
@@ -77,16 +63,11 @@ void INIFindStartEnd(char *Key, char **Start, char **End, dword MaxEntrylen)
     {
       *End = NULL;
 
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
-
+      TRACEEXIT();
       return;
     }
 
   if(*End >= *Start + MaxEntrylen) *End = *Start + MaxEntrylen - 1;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

@@ -15,9 +15,7 @@ int                     EPGAbortLoad = 0;
 
 int EPGInfo_FindFirst(TYPE_EPGInfo *EPGData)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("EPGInfo_FindFirst");
-  #endif
+  TRACEENTER();
 
   dword                *x;
   byte                  PointerOffset;
@@ -52,10 +50,7 @@ int EPGInfo_FindFirst(TYPE_EPGInfo *EPGData)
   {
     if(EPGData) memset(EPGData, 0, sizeof(TYPE_EPGInfo));
 
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return 0;
   }
   EPGInfo_CreateCache(EPGInfoCacheEntries);
@@ -75,9 +70,6 @@ int EPGInfo_FindFirst(TYPE_EPGInfo *EPGData)
     }
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return EPGInfoNrEntries;
 }

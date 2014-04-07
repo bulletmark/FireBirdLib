@@ -4,9 +4,7 @@
 
 dword GetUptime(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("GetUptime");
-  #endif
+  TRACEENTER();
 
   dword                 uptime = 0;
   FILE                 *fp;
@@ -31,9 +29,6 @@ dword GetUptime(void)
     fclose(fp);
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return uptime;
 }

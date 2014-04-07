@@ -5,9 +5,7 @@
 
 void OSDMenuDrawCursor(dword x, dword y, dword w)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuDrawCursor");
-  #endif
+  TRACEENTER();
 
   TYPE_GrData              *OSDMenuLightBlueCursorGd, *OSDMenuDarkBlueCursorGd;
   int                       pb=0, cx, h, hundret=0, hundretModulo=0;
@@ -87,7 +85,5 @@ void OSDMenuDrawCursor(dword x, dword y, dword w)
     }
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

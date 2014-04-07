@@ -5,18 +5,13 @@ bool HDDEnabled = FALSE;
 
 bool VFD_EnableHDD(bool Enable)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("VFD_EnableHDD");
-  #endif
+  TRACEENTER();
 
   byte *grid = (byte*)FIS_vGrid();
 
   if(!VFDUsedByTAP || !grid)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -28,9 +23,6 @@ bool VFD_EnableHDD(bool Enable)
 
   HDDEnabled = Enable;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }

@@ -2,17 +2,12 @@
 
 int FlashServiceGetTotal(int SvcType)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FlashServiceGetTotal");
-  #endif
+  TRACEENTER();
 
   int nTvSvc, nRadioSvc;
 
   TAP_Channel_GetTotalNum(&nTvSvc, &nRadioSvc);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return (SvcType == SVC_TYPE_Tv ? nTvSvc : nRadioSvc);
 }

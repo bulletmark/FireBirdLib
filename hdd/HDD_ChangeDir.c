@@ -4,11 +4,9 @@
 
 bool HDD_ChangeDir(char *Dir)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_ChangeDir");
-  #endif
+  TRACEENTER();
 
-  char                  DirUTF8[256];
+  char                  s[FBLIB_DIR_SIZE], TAPDir[FBLIB_DIR_SIZE], DirUTF8[FBLIB_DIR_SIZE];
   static bool           ReturnTypeToBeChecked = TRUE;
   static int            ChDirSuccessful = 0;
 
@@ -25,35 +23,35 @@ bool HDD_ChangeDir(char *Dir)
     HDD_TAP_PopDir();
   }
 
-  if(Dir)
+  if(Dir && *Dir)
   {
-    if(TAP_Hdd_ChangeDir(Dir) == ChDirSuccessful)
+    strcpy(s, Dir);
+    if(s[strlen(s) - 1] != '/') strcat(s, "/");
+    ConvertPathType(s, TAPDir, PF_TAPPathOnly);
+    if(!*TAPDir)
     {
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
+      TRACEEXIT();
+      return FALSE;
+    }
 
+    if(TAP_Hdd_ChangeDir(TAPDir) == ChDirSuccessful)
+    {
+      TRACEEXIT();
       return TRUE;
     }
 
     //On some versions, TAP_Hdd_ChangeDir() fails to change into directories with German Umlaute. Try it in UTF-8 format instead.
     if(isUTFToppy())
     {
-      StrToUTF8(Dir, DirUTF8, 9);
+      StrToUTF8(TAPDir, DirUTF8, 9);
       if(TAP_Hdd_ChangeDir(DirUTF8) == ChDirSuccessful)
       {
-        #ifdef DEBUG_FIREBIRDLIB
-          CallTraceExit(NULL);
-        #endif
-
+        TRACEEXIT();
         return TRUE;
       }
     }
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return FALSE;
 }

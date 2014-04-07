@@ -2,9 +2,7 @@
 
 dword TAPCOM_LastAlive(TAPCOM_Channel Channel)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("TAPCOM_LastAlive");
-  #endif
+  TRACEENTER();
 
   dword ret;
 
@@ -13,9 +11,6 @@ dword TAPCOM_LastAlive(TAPCOM_Channel Channel)
   else
     ret = 0;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

@@ -2,18 +2,13 @@
 
 byte *SkipCharTableBytes(byte *p)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("SkipCharTableBytes");
-  #endif
+  TRACEENTER();
 
   byte                 *ret;
 
   if((p == NULL) || (*p == '\0'))
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return p;
   }
 
@@ -28,9 +23,6 @@ byte *SkipCharTableBytes(byte *p)
     ret++;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

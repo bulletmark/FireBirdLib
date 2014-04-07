@@ -2,9 +2,7 @@
 
 dword DevHdd_DeviceClose(tDirEntry **hddPlaybackFolder)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("DevHdd_DeviceClose");
-  #endif
+  TRACEENTER();
 
   dword                 (*__DevHdd_DeviceClose)(tDirEntry **hddPlaybackFolder);
   dword                 ret = 0;
@@ -12,9 +10,6 @@ dword DevHdd_DeviceClose(tDirEntry **hddPlaybackFolder)
   __DevHdd_DeviceClose = (void*)FIS_fwDevHdd_DeviceClose();
   if(__DevHdd_DeviceClose) ret = __DevHdd_DeviceClose(hddPlaybackFolder);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

@@ -1,11 +1,7 @@
 #ifndef FBLIB_INI_H
 #define FBLIB_INI_H
 
-#ifdef _TMSEMU_
-  #include "tap_tmsemu.h"
-#else
-  #include "tap.h"
-#endif
+#include "tap.h"
 
 extern dword            LangNrStrings;
 extern dword            *LangStringPtr;

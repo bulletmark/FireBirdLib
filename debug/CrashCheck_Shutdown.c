@@ -2,9 +2,7 @@
 
 void CrashCheck_Shutdown(char *TAPName)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("CrashCheck_Shutdown");
-  #endif
+  TRACEENTER();
 
   INILOCATION           INILocation;
 
@@ -17,7 +15,5 @@ void CrashCheck_Shutdown(char *TAPName)
     INICloseFile();
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

@@ -7,18 +7,13 @@ int vsnprintf(char *str, size_t size, const char *format, va_list ap);   //defin
 
 void LogEntryGenericPrintf(char *ProgramName, bool Console, char *format, ...)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("LogEntryGenericPrintf");
-  #endif
+  TRACEENTER();
 
   char Text[512];
 
   if(!format)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return;
   }
 
@@ -28,7 +23,5 @@ void LogEntryGenericPrintf(char *ProgramName, bool Console, char *format, ...)
   va_end(args);
   LogEntryGeneric(ProgramName, Console, Text);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

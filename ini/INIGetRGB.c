@@ -1,8 +1,6 @@
 #include <string.h>
 #include <stdlib.h>
-#ifndef _TMSEMU_
-  #include <ctype.h>
-#endif
+#include <ctype.h>
 #include "FBLib_ini.h"
 #include "../libFireBird.h"
 
@@ -10,9 +8,7 @@
 
 bool INIGetRGB(char *Key, byte *Red, byte *Green, byte *Blue, dword DefaultValue)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("INIGetRGB");
-  #endif
+  TRACEENTER();
 
   char                  *i = NULL, *j = NULL, *k;
   char                  TempKey[80];
@@ -21,10 +17,7 @@ bool INIGetRGB(char *Key, byte *Red, byte *Green, byte *Blue, dword DefaultValue
 
   if(!Key)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -66,9 +59,6 @@ bool INIGetRGB(char *Key, byte *Red, byte *Green, byte *Blue, dword DefaultValue
   if(Green) *Green = G1555(x);
   if(Blue)  *Blue  = B1555(x);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }

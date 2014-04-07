@@ -4,9 +4,7 @@
 
 void INIKillKey(char *Key)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("INIKillKey");
-  #endif
+  TRACEENTER();
 
   char                  *i = NULL, *j = NULL;
   char                  TempKey[80];
@@ -14,10 +12,7 @@ void INIKillKey(char *Key)
 
   if(!Key || !INIBuffer)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return;
   }
 
@@ -32,10 +27,7 @@ void INIKillKey(char *Key)
     NewBuffer = malloc(BufferSize);
     if(!NewBuffer)
     {
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
-
+      TRACEEXIT();
       return;
     }
     memset(NewBuffer, 0, BufferSize);
@@ -47,7 +39,5 @@ void INIKillKey(char *Key)
     INIBuffer = NewBuffer;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

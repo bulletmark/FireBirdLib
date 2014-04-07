@@ -2,9 +2,7 @@
 
 void OSDMenuDestroyNoOSDUpdate(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuDestroyNoOSDUpdate");
-  #endif
+  TRACEENTER();
 
   if(OSDRgn)
   {
@@ -20,7 +18,5 @@ void OSDMenuDestroyNoOSDUpdate(void)
 
   CallbackProcedure = NULL;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

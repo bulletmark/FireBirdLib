@@ -2,9 +2,7 @@
 
 inline dword FIS_vMACAddress(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FIS_vMACAddress");
-  #endif
+  TRACEENTER();
 
   static dword          MacAddress;
   dword                 MacAddressSize;
@@ -19,9 +17,6 @@ inline dword FIS_vMACAddress(void)
       DevEeprom_GetMacAddr((unsigned char*)&MacAddress, &MacAddressSize);
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return MacAddress;
 }

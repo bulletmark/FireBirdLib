@@ -2,9 +2,7 @@
 
 void OSDMenuLogo(dword X, dword Y, TYPE_GrData *LogoGd)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuLogo");
-  #endif
+  TRACEENTER();
 
   tMenu                *pMenu;
 
@@ -16,7 +14,5 @@ void OSDMenuLogo(dword X, dword Y, TYPE_GrData *LogoGd)
 
   LogoDirty = TRUE;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

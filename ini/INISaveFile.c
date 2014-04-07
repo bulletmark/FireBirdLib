@@ -5,28 +5,20 @@
 
 bool INISaveFile(char *FileName, INILOCATION INILocation, char *AppName)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("INISaveFile");
-  #endif
+  TRACEENTER();
 
   TYPE_File             *f;
   dword                 ret;
 
   if(INIBuffer == NULL || INILocation >= INILOCATION_NrENUMs)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
   if(INILocation == INILOCATION_AtAppName && (!AppName || !AppName[0]))
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -42,10 +34,7 @@ bool INISaveFile(char *FileName, INILOCATION INILocation, char *AppName)
     {
       HDD_TAP_PopDir();
 
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
-
+      TRACEEXIT();
       return FALSE;
     }
   }
@@ -57,10 +46,7 @@ bool INISaveFile(char *FileName, INILOCATION INILocation, char *AppName)
     {
       HDD_TAP_PopDir();
 
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
-
+      TRACEEXIT();
       return FALSE;
     }
   }
@@ -72,10 +58,7 @@ bool INISaveFile(char *FileName, INILOCATION INILocation, char *AppName)
     {
       HDD_TAP_PopDir();
 
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
-
+      TRACEEXIT();
       return FALSE;
     }
   }
@@ -86,10 +69,7 @@ bool INISaveFile(char *FileName, INILOCATION INILocation, char *AppName)
   {
     HDD_TAP_PopDir();
 
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -97,9 +77,6 @@ bool INISaveFile(char *FileName, INILOCATION INILocation, char *AppName)
   TAP_Hdd_Fclose(f);
   HDD_TAP_PopDir();
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return (ret == 1);
 }

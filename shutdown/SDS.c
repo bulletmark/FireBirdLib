@@ -44,9 +44,7 @@ void (*OrigHandler)(word, dword);
 
 void CreateRootDir(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("CreateRootDir");
-  #endif
+  TRACEENTER();
 
   //Check & Create Folders
   HDD_TAP_PushDir();
@@ -56,9 +54,7 @@ void CreateRootDir(void)
   if(!TAP_Hdd_Exist("SDS")) TAP_Hdd_Create("SDS", ATTR_FOLDER);
   HDD_TAP_PopDir();
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }
 
 void WriteLog(char *s)
@@ -71,25 +67,19 @@ void WriteLog(char *s)
 
 void Hooked_ApplEvent_CallHandler(unsigned int a1, unsigned int a2)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("Hooked_ApplEvent_CallHandler");
-  #endif
+  TRACEENTER();
 
   (void)a1;
   (void)a2;
 
   ShutdownHooked = TRUE;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }
 
 bool SetHandler(dword EventID, void *Handler, void **OrigHandler)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("SetHandler");
-  #endif
+  TRACEENTER();
 
   static dword         *__topEvent = NULL;
   tEventQueue          *EventQueue;
@@ -98,10 +88,7 @@ bool SetHandler(dword EventID, void *Handler, void **OrigHandler)
 
   if(!Handler && !(dword*)Handler)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -113,10 +100,7 @@ bool SetHandler(dword EventID, void *Handler, void **OrigHandler)
       if(LastStatus != -10) WriteLog("Failed to resolve _topEvent");
       LastStatus = -10;
 
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
-
+      TRACEEXIT();
       return FALSE;
     }
   }
@@ -139,10 +123,7 @@ bool SetHandler(dword EventID, void *Handler, void **OrigHandler)
             LastStatus = -11;
           }
 
-          #ifdef DEBUG_FIREBIRDLIB
-            CallTraceExit(NULL);
-          #endif
-
+          TRACEEXIT();
           return FALSE;
         }
 
@@ -155,10 +136,7 @@ bool SetHandler(dword EventID, void *Handler, void **OrigHandler)
         if(OrigHandler) *OrigHandler = (void*)EventQueueDetails->Handler;
         EventQueueDetails->Handler = (dword)Handler;
 
-        #ifdef DEBUG_FIREBIRDLIB
-          CallTraceExit(NULL);
-        #endif
-
+        TRACEEXIT();
         return TRUE;
       }
     }
@@ -172,18 +150,13 @@ bool SetHandler(dword EventID, void *Handler, void **OrigHandler)
     LastStatus = -13;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return FALSE;
 }
 
 bool SDS(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("SDS");
-  #endif
+  TRACEENTER();
 
   static dword              Timeout = 0;
   static tHookHandlerState  LastHHS = HHS_Exit;
@@ -225,10 +198,7 @@ bool SDS(void)
           LastStatus = -1;
           HookHandlerState = HHS_Exit;
 
-          #ifdef DEBUG_FIREBIRDLIB
-            CallTraceExit(NULL);
-          #endif
-
+          TRACEEXIT();
           return FALSE;
         }
       }
@@ -242,10 +212,7 @@ bool SDS(void)
           LastStatus = -2;
           HookHandlerState = HHS_Exit;
 
-          #ifdef DEBUG_FIREBIRDLIB
-            CallTraceExit(NULL);
-          #endif
-
+          TRACEEXIT();
           return FALSE;
         }
       }
@@ -253,10 +220,7 @@ bool SDS(void)
       //Modify the handler pointer of the ef00 event queue
       if(!SetHandler(0xef00, Hooked_ApplEvent_CallHandler, (void*)&OrigHandler))
       {
-        #ifdef DEBUG_FIREBIRDLIB
-          CallTraceExit(NULL);
-        #endif
-
+        TRACEEXIT();
         return FALSE;
       }
 
@@ -264,7 +228,7 @@ bool SDS(void)
       Slot = *curTapTask;
       if(HDD_TAP_GetFileNameByIndex(Slot, &TAPFileName))
       {
-        if(!HDD_TAP_GetInfoByAbsPath(TAPFileName, &TAPInfo)) strcpy(TAPInfo.TAPName, "???");
+        if(!HDD_TAP_GetInfo(TAPFileName, &TAPInfo)) strcpy(TAPInfo.TAPName, "???");
       }
       else
         strcpy(TAPInfo.TAPName, "???");
@@ -369,26 +333,18 @@ bool SDS(void)
         LastStatus = -9;
       }
 
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
-
+      TRACEEXIT();
       return FALSE;
     }
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }
 
 void SDSTerminate(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("SDSTerminate");
-  #endif
+  TRACEENTER();
 
   if(LastStatus != -3) WriteLog("SDS termination request received");
   LastStatus = -3;
@@ -402,7 +358,5 @@ void SDSTerminate(void)
   }
   HookHandlerState = HHS_Exit;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

@@ -2,9 +2,7 @@
 
 dword HDD_TAP_DisableAll(bool DisableEvents)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_TAP_DisableAll");
-  #endif
+  TRACEENTER();
 
   dword                 i, TAPID, count = 0;
 
@@ -14,9 +12,6 @@ dword HDD_TAP_DisableAll(bool DisableEvents)
     if((TAPID != 0) && (!HDD_TAP_Disable(TAPID, DisableEvents))) count++;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return count;
 }

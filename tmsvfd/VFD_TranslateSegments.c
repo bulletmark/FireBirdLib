@@ -5,9 +5,7 @@
 
 dword VFD_TranslateSegments(byte Character, DISPLAYSTYLE DisplayStyle)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("VFD_TranslateSegments");
-  #endif
+  TRACEENTER();
 
   dword ret;
 
@@ -43,9 +41,6 @@ dword VFD_TranslateSegments(byte Character, DISPLAYSTYLE DisplayStyle)
         break;
     }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

@@ -2,19 +2,14 @@
 
 TAPCOM_Channel TAPCOM_OpenChannel(dword TargetID, dword ServiceID, dword ParamBlockVersion, void *ParamBlock)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("TAPCOM_OpenChannel");
-  #endif
+  TRACEENTER();
 
   TAPCOM_InternalMesBuf *mesBuf = NULL;
 
   if(!LibInitialized) InitTAPex();
   if(!LibInitialized)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return NULL;
   }
 
@@ -47,9 +42,6 @@ TAPCOM_Channel TAPCOM_OpenChannel(dword TargetID, dword ServiceID, dword ParamBl
     }
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return (TAPCOM_Channel) mesBuf;
 }

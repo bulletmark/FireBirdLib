@@ -6,9 +6,7 @@
 
 INILOCATION INILocateFile(char *FileName, char *AppName)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("INILocateFile");
-  #endif
+  TRACEENTER();
 
   INILOCATION           location = INILOCATION_NotFound;
   char                  dir[200] = "";
@@ -54,9 +52,6 @@ INILOCATION INILocateFile(char *FileName, char *AppName)
   //Restore the directory where the file has been found
   if(*dir) HDD_ChangeDir(dir);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return location;
 }

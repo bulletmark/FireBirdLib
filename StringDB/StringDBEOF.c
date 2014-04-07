@@ -2,25 +2,17 @@
 
 bool StringDBEOF(tStringDB *StringDB)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("StringDBEOF");
-  #endif
+  TRACEENTER();
 
   bool ret;
 
   if(!StringDB)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return TRUE;
   }
   ret = (StringDB->DBPtr[0] == '\0');
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

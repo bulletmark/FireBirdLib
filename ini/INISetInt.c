@@ -3,16 +3,12 @@
 
 void INISetInt(char *Key, long int Value)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("INISetInt");
-  #endif
+  TRACEENTER();
 
   char                  s[12];
 
   sprintf(s, "%d", Value);
   INISetString(Key, s);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

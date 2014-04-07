@@ -3,9 +3,7 @@
 
 bool VFD_SetLargeText(char *Text)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("VFD_SetLargeText");
-  #endif
+  TRACEENTER();
 
   dword                 i;
 
@@ -13,10 +11,7 @@ bool VFD_SetLargeText(char *Text)
 
   if(!VFDUsedByTAP || !grid)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -42,9 +37,6 @@ bool VFD_SetLargeText(char *Text)
          else VFD_SetDisplayDigit(grid, ' ', VFD_17, 7);
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }

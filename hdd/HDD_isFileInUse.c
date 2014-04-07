@@ -5,71 +5,62 @@
 
 tFileInUse HDD_isFileInUse(char *FileName)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_isFileInUse");
-  #endif
+  TRACEENTER();
 
   TYPE_PlayInfo         PlayInfo;
-  TYPE_RecInfo          RecInfo;
-  char                  CorrectedFileName[TS_FILE_NAME_SIZE];
   int                   i, NrRecSlots;
+  char                  WorkingFileName[FBLIB_DIR_SIZE];
+  char                  AbsFileName[FBLIB_DIR_SIZE];
+  TYPE_File            *RecFile;
 
   if(!FileName || !*FileName)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FIU_No;
   }
 
+  //Convert to an Linux path and cut away any .inf or .nav
+  ConvertPathType(FileName, AbsFileName, PF_FullLinuxPath);
+  if(StringEndsWith(AbsFileName, ".inf")) AbsFileName[strlen(AbsFileName) - 4] = '\0';
+
+  //Is any Playback running
   TAP_Hdd_GetPlayInfo(&PlayInfo);
   if(PlayInfo.playMode && PlayInfo.totalBlock > 0)
   {
-    strcpy(CorrectedFileName, PlayInfo.file->name);
-    if(StringEndsWith(CorrectedFileName, ".rec.inf") || StringEndsWith(CorrectedFileName, ".mpg.inf")) CorrectedFileName[strlen(CorrectedFileName) - 4] = '\0';
-    if(!strcmp(FileName, CorrectedFileName))
+    //Compare the full path of both files
+    HDD_GetAbsolutePathByTypeFile(PlayInfo.file, WorkingFileName);
+    if(StringEndsWith(WorkingFileName, ".inf") || StringEndsWith(WorkingFileName, ".nav")) WorkingFileName[strlen(WorkingFileName) - 4] = '\0';
+    if(!strcmp(FileName, WorkingFileName))
     {
       if(PlayInfo.playMode == PLAYMODE_Mp3)
       {
-        #ifdef DEBUG_FIREBIRDLIB
-          CallTraceExit(NULL);
-        #endif
-
+        TRACEEXIT();
         return FIU_PlayMP3;
       }
       else
       {
-        #ifdef DEBUG_FIREBIRDLIB
-          CallTraceExit(NULL);
-        #endif
-
+        TRACEEXIT();
         return FIU_Playback;
       }
     }
   }
 
+  //Loop through all recording slots
   NrRecSlots = (int)HDD_NumberOfRECSlots();
   for(i = 0; i < NrRecSlots; i++)
   {
-    TAP_Hdd_GetRecInfo(i, &RecInfo);
-    if(RecInfo.fileName && RecInfo.fileName[0])
+    //Get the full path of the rec file
+    if(HDD_GetRecSlotFiles(i, &RecFile, NULL, NULL) && HDD_GetAbsolutePathByTypeFile(RecFile, WorkingFileName))
     {
-      if(StringEndsWith(RecInfo.fileName, ".rec.inf") || StringEndsWith(RecInfo.fileName, ".mpg.inf")) RecInfo.fileName[strlen(RecInfo.fileName) - 4] = '\0';
-      if(!strcmp(FileName, RecInfo.fileName))
+      //Check if both paths are equal
+      if(!strcmp(AbsFileName, WorkingFileName))
       {
-        #ifdef DEBUG_FIREBIRDLIB
-          CallTraceExit(NULL);
-        #endif
-
+        TRACEEXIT();
         return (FIU_RecSlot1 + i);
       }
     }
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return FIU_No;
 }

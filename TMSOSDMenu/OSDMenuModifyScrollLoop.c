@@ -2,13 +2,9 @@
 
 void OSDMenuModifyScrollLoop(bool ScrollLoop)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuModifyScrollLoop");
-  #endif
+  TRACEENTER();
 
   Menu[CurrentMenuLevel].ScrollLoop = ScrollLoop;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

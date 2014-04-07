@@ -5,9 +5,7 @@ static char             sTimeStamp[25];      //Log adds a SPACE to sTimeStamp. D
 
 char *TimeFormat(dword DateTime, byte Sec, eTimeStampFormat TimeStampFormat)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("TimeFormat");
-  #endif
+  TRACEENTER();
 
   word                  Mjd, Year;
   byte                  Month, Day, WeekDay, Hour, Min;
@@ -35,9 +33,6 @@ char *TimeFormat(dword DateTime, byte Sec, eTimeStampFormat TimeStampFormat)
     default               : sTimeStamp[0] = '\0'; break;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return sTimeStamp;
 }

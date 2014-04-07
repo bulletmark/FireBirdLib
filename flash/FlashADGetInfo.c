@@ -3,19 +3,14 @@
 
 bool FlashADGetInfo(tAutoDescrambleTimer *ADTimer)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FlashADGetInfo");
-  #endif
+  TRACEENTER();
 
   bool ret;
 
   //ADTimer is NULL
   if(!ADTimer)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -63,9 +58,6 @@ bool FlashADGetInfo(tAutoDescrambleTimer *ADTimer)
     case ST_NRTYPES: break;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

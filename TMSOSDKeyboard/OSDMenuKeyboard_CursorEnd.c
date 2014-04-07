@@ -3,14 +3,10 @@
 
 void OSDMenuKeyboard_CursorEnd(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuKeyboard_CursorEnd");
-  #endif
+  TRACEENTER();
 
   OSDMenuKeyboard_CursorPosition = strlenUC(OSDMenuKeyboard_StringVar);
   OSDMenuKeyboard_Draw();
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

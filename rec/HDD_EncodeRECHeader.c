@@ -3,9 +3,7 @@
 
 void setWord(void *buffer, word Data, bool BigEndian)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("setWord");
-  #endif
+  TRACEENTER();
 
   byte                 *p;
 
@@ -21,16 +19,12 @@ void setWord(void *buffer, word Data, bool BigEndian)
     p[1] = Data >> 8;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }
 
 void setDword(void *buffer, dword Data, bool BigEndian)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("setDword");
-  #endif
+  TRACEENTER();
 
   byte                 *p;
 
@@ -50,16 +44,12 @@ void setDword(void *buffer, dword Data, bool BigEndian)
     p[0] =  Data & 0xff;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }
 
 void HDD_EncodeRECHeader_ST_S(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_EncodeRECHeader_ST_S");
-  #endif
+  TRACEENTER();
 
   dword                 p;
   word                  w;
@@ -147,16 +137,12 @@ void HDD_EncodeRECHeader_ST_S(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
   memcpy(&Buffer[p + 0x0000], RECHeaderInfo->Bookmark, 64 * sizeof(dword));
   setDword(&Buffer[p + 0x0100], RECHeaderInfo->Resume, TRUE);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }
 
 void HDD_EncodeRECHeader_ST_T(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_EncodeRECHeader_ST_T");
-  #endif
+  TRACEENTER();
 
   dword                 p;
   word                  Flags;
@@ -244,16 +230,12 @@ void HDD_EncodeRECHeader_ST_T(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
   memcpy(&Buffer[p + 0x0000], RECHeaderInfo->Bookmark, 64 * sizeof(dword));
   setDword(&Buffer[p + 0x0100], RECHeaderInfo->Resume, TRUE);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }
 
 void HDD_EncodeRECHeader_ST_C(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_EncodeRECHeader_ST_C");
-  #endif
+  TRACEENTER();
 
   dword                 p;
   word                  Flags;
@@ -338,16 +320,12 @@ void HDD_EncodeRECHeader_ST_C(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
   memcpy(&Buffer[p + 0x0000], RECHeaderInfo->Bookmark, 64 * sizeof(dword));
   setDword(&Buffer[p + 0x0100], RECHeaderInfo->Resume, TRUE);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }
 
 void HDD_EncodeRECHeader_ST_T5700(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_EncodeRECHeader_ST_T5700");
-  #endif
+  TRACEENTER();
 
   dword                 p;
   word                  Flags;
@@ -436,16 +414,12 @@ void HDD_EncodeRECHeader_ST_T5700(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
   memcpy(&Buffer[p + 0x0000], RECHeaderInfo->Bookmark, 64 * sizeof(dword));
   setDword(&Buffer[p + 0x0100], RECHeaderInfo->Resume, TRUE);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }
 
 void HDD_EncodeRECHeader_ST_T5800(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_EncodeRECHeader_ST_T5800");
-  #endif
+  TRACEENTER();
 
   dword                 p;
   word                  Flags;
@@ -534,127 +508,12 @@ void HDD_EncodeRECHeader_ST_T5800(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
   memcpy(&Buffer[p + 0x0000], RECHeaderInfo->Bookmark, 64 * sizeof(dword));
   setDword(&Buffer[p + 0x0100], RECHeaderInfo->Resume, TRUE);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }
 
 void HDD_EncodeRECHeader_ST_TMSS(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_EncodeRECHeader_ST_TMSS");
-  #endif
-
-  dword                 p;
-  word                  Flags;
-  word                  TPFlags1;
-  byte                  EventTextLength;
-
-  //Header
-  p = 0;
-  Buffer[p + 0x0000] = 0x54;
-  Buffer[p + 0x0001] = 0x46;
-  Buffer[p + 0x0002] = 0x72;
-  Buffer[p + 0x0003] = 0x63;
-
-  Buffer[p + 0x0004] = 0x00;
-  Buffer[p + 0x0005] = 0x80;
-
-  memcpy(&Buffer[p + 6], RECHeaderInfo->HeaderUnknown2, 2);
-  setDword(&Buffer[p + 0x0008], RECHeaderInfo->HeaderStartTime, FALSE);
-  setWord(&Buffer[p + 0x000c], RECHeaderInfo->HeaderDuration, FALSE);
-  setWord(&Buffer[p + 0x000e], RECHeaderInfo->HeaderDurationSec, FALSE);
-  Buffer[p + 0x0010] = (RECHeaderInfo->HeaderFlags & 0xfc) | (RECHeaderInfo->CryptFlag & 0x03);
-  Buffer[p + 0x0011] = (RECHeaderInfo->HeaderFlags2 & 0x3f) | (RECHeaderInfo->HeaderCopyFlag ? 0x80 : 0x00) | (RECHeaderInfo->HeaderTSFlag ? 0x40 : 0x00);
-  memcpy(&Buffer[p + 0x0012], RECHeaderInfo->HeaderUnknown4, 10);
-
-  //Service Info
-  p = 0x001c;
-  Buffer[p + 0x0000] = RECHeaderInfo->SISatIndex;
-  Buffer[p + 0x0001] = RECHeaderInfo->SIServiceType;
-
-  Flags = (RECHeaderInfo->SISkipFlag << 15) |
-          (RECHeaderInfo->SILockFlag << 14) |
-          (RECHeaderInfo->SICASFlag << 13) |
-          (RECHeaderInfo->SIDelFlag << 12) |
-          (RECHeaderInfo->SITunerNum << 10) |
-          RECHeaderInfo->SITPIdx;
-  setWord(&Buffer[p +0x0002], Flags, FALSE);
-
-  setWord(&Buffer[p + 0x0004], RECHeaderInfo->SIServiceID, FALSE);
-  setWord(&Buffer[p + 0x0006], RECHeaderInfo->SIPMTPID, FALSE);
-  setWord(&Buffer[p + 0x0008], RECHeaderInfo->SIPCRPID, FALSE);
-  setWord(&Buffer[p + 0x000a], RECHeaderInfo->SIVideoPID, FALSE);
-  setWord(&Buffer[p + 0x000c], RECHeaderInfo->SIAudioPID, FALSE);
-
-  strncpy(&Buffer[p + 0x000e], RECHeaderInfo->SISvcName, 24);
-
-  Buffer[p + 0x0026] = RECHeaderInfo->SIVideoStreamType;
-  Buffer[p + 0x0027] = RECHeaderInfo->SIAudioStreamType;
-
-  //Transponder info
-  p = 0x0570;
-  memcpy(&Buffer[p + 0x0000], RECHeaderInfo->TPUnknown1, 4);
-  Buffer[p + 0x0004] = RECHeaderInfo->TPSatIndex;
-
-  TPFlags1 = RECHeaderInfo->TPPolarization |
-            (RECHeaderInfo->TPMode       <<  1) |
-            (RECHeaderInfo->TPSystem     <<  4) |
-            (RECHeaderInfo->TPModulation <<  5) |
-            (RECHeaderInfo->TPFEC        <<  7) |
-            (RECHeaderInfo->TPPilot      << 11);
-  setWord(&Buffer[p + 0x0005], TPFlags1, FALSE);
-
-  Buffer[p + 7] = RECHeaderInfo->TPUnknown2;
-  setDword(&Buffer[p + 0x0008], RECHeaderInfo->TPFrequency, FALSE);
-  setWord(&Buffer [p + 0x000c], RECHeaderInfo->TPSymbolRate, FALSE);
-  setWord(&Buffer [p + 0x000e], RECHeaderInfo->TPTSID, FALSE);
-
-  RECHeaderInfo->TPFlags2 = (RECHeaderInfo->TPFlags2 & 0xfffe) | (RECHeaderInfo->TPClockSync ? 0x0001 : 0x0000);
-  setWord(&Buffer[p + 0x0010], RECHeaderInfo->TPFlags2, FALSE);
-
-  setWord(&Buffer[p + 0x0012], RECHeaderInfo->TPOriginalNetworkID, FALSE);
-
-  //Event Info
-  p = 0x0044;
-  memcpy(&Buffer[p], RECHeaderInfo->EventUnknown1, 2);
-  Buffer[p + 0x0003] = (int)(RECHeaderInfo->EventDuration / 60);
-  Buffer[p + 0x0002] = RECHeaderInfo->EventDuration % 60;
-  setDword(&Buffer[p + 0x0004], RECHeaderInfo->EventEventID, FALSE);
-  setDword(&Buffer[p + 0x0008], RECHeaderInfo->EventStartTime, FALSE);
-  setDword(&Buffer[p + 0x000c], RECHeaderInfo->EventEndTime, FALSE);
-  Buffer[p + 0x0010] = RECHeaderInfo->EventRunningStatus;
-  EventTextLength = strlen(RECHeaderInfo->EventEventName);
-  Buffer[p + 0x0011] = EventTextLength;
-  Buffer[p + 0x0012] = RECHeaderInfo->EventParentalRate;
-  strncpy(&Buffer[p + 0x0013], RECHeaderInfo->EventEventName, EventTextLength);
-  strncpy(&Buffer[p + 0x0013 + EventTextLength], RECHeaderInfo->EventEventDescription, 273 - EventTextLength);
-
-  //Extended Event Info
-  p = 0x0168;
-  setWord(&Buffer[p + 0x0000], RECHeaderInfo->ExtEventServiceID , FALSE);
-  setWord(&Buffer[p + 0x0002], RECHeaderInfo->ExtEventTextLength, FALSE);
-  setDword(&Buffer[p + 0x0004], RECHeaderInfo->ExtEventEventID, FALSE);
-  memcpy(&Buffer[p + 0x0008], RECHeaderInfo->ExtEventText, RECHeaderInfo->ExtEventTextLength);
-
-  //Crypt Info: see header flags
-
-  //Bookmarks
-  p = 0x0584;
-  setDword(&Buffer[p + 0x0000], RECHeaderInfo->NrBookmarks, FALSE);
-  memcpy(&Buffer[p + 0x0004], RECHeaderInfo->Bookmark, 177 * sizeof(dword));
-  setDword(&Buffer[p + 0x02c8], RECHeaderInfo->Resume, FALSE);
-
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-}
-
-void HDD_EncodeRECHeader_ST_TMST(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
-{
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_EncodeRECHeader_ST_TMST");
-  #endif
+  TRACEENTER();
 
   dword                 p;
   word                  Flags;
@@ -746,16 +605,109 @@ void HDD_EncodeRECHeader_ST_TMST(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
   memcpy(&Buffer[p + 0x0004], RECHeaderInfo->Bookmark, 177 * sizeof(dword));
   setDword(&Buffer[p + 0x02c8], RECHeaderInfo->Resume, FALSE);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
+}
+
+void HDD_EncodeRECHeader_ST_TMST(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
+{
+  TRACEENTER();
+
+  dword                 p;
+  word                  Flags;
+  byte                  EventTextLength;
+
+  //Header
+  p = 0;
+  Buffer[p + 0x0000] = 0x54;
+  Buffer[p + 0x0001] = 0x46;
+  Buffer[p + 0x0002] = 0x72;
+  Buffer[p + 0x0003] = 0x63;
+
+  Buffer[p + 0x0004] = 0x00;
+  Buffer[p + 0x0005] = 0x80;
+
+  memcpy(&Buffer[p + 6], RECHeaderInfo->HeaderUnknown2, 2);
+  setDword(&Buffer[p + 0x0008], RECHeaderInfo->HeaderStartTime, FALSE);
+  setWord(&Buffer[p + 0x000c], RECHeaderInfo->HeaderDuration, FALSE);
+  setWord(&Buffer[p + 0x000e], RECHeaderInfo->HeaderDurationSec, FALSE);
+  Buffer[p + 0x0010] = (RECHeaderInfo->HeaderFlags & 0xfc) | (RECHeaderInfo->CryptFlag & 0x03);
+  Buffer[p + 0x0011] = (RECHeaderInfo->HeaderFlags2 & 0x3f) | (RECHeaderInfo->HeaderCopyFlag ? 0x80 : 0x00) | (RECHeaderInfo->HeaderTSFlag ? 0x40 : 0x00);
+  memcpy(&Buffer[p + 0x0012], RECHeaderInfo->HeaderUnknown4, 10);
+
+  //Service Info
+  p = 0x001c;
+  Buffer[p + 0x0000] = RECHeaderInfo->SISatIndex;
+  Buffer[p + 0x0001] = RECHeaderInfo->SIServiceType;
+
+  Flags = (RECHeaderInfo->SISkipFlag << 15) |
+          (RECHeaderInfo->SILockFlag << 14) |
+          (RECHeaderInfo->SICASFlag << 13) |
+          (RECHeaderInfo->SIDelFlag << 12) |
+          (RECHeaderInfo->SITunerNum << 10) |
+          RECHeaderInfo->SITPIdx;
+  setWord(&Buffer[p +0x0002], Flags, FALSE);
+
+  setWord(&Buffer[p + 0x0004], RECHeaderInfo->SIServiceID, FALSE);
+  setWord(&Buffer[p + 0x0006], RECHeaderInfo->SIPMTPID, FALSE);
+  setWord(&Buffer[p + 0x0008], RECHeaderInfo->SIPCRPID, FALSE);
+  setWord(&Buffer[p + 0x000a], RECHeaderInfo->SIVideoPID, FALSE);
+  setWord(&Buffer[p + 0x000c], RECHeaderInfo->SIAudioPID, FALSE);
+
+  strncpy(&Buffer[p + 0x000e], RECHeaderInfo->SISvcName, 24);
+
+  Buffer[p + 0x0026] = RECHeaderInfo->SIVideoStreamType;
+  Buffer[p + 0x0027] = RECHeaderInfo->SIAudioStreamType;
+
+  //Transponder info
+  p = 0x0570;
+  memcpy(&Buffer[p + 0x0000], RECHeaderInfo->TPUnknown1, 4);
+  Buffer[p + 0x0004] = RECHeaderInfo->TPSatIndex;
+  Buffer[p + 0x0005] = RECHeaderInfo->TPChannelNumber;
+  Buffer[p + 0x0006] = RECHeaderInfo->TPBandwidth;
+  Buffer[p + 0x0007] = RECHeaderInfo->TPUnknown2;
+  setDword(&Buffer[p + 0x0008], RECHeaderInfo->TPFrequency, FALSE);
+  setWord(&Buffer[p + 0x000c], RECHeaderInfo->TPTSID, FALSE);
+  Buffer[p + 0x000e] = RECHeaderInfo->TPLPHPStream;
+  Buffer[p + 0x000f] = RECHeaderInfo->TPUnknown4;
+  setWord(&Buffer[p + 0x0010], RECHeaderInfo->TPOriginalNetworkID, FALSE);
+  setWord(&Buffer[p + 0x0012], RECHeaderInfo->TPNetworkID, FALSE);
+
+  //Event Info
+  p = 0x0044;
+  memcpy(&Buffer[p], RECHeaderInfo->EventUnknown1, 2);
+  Buffer[p + 0x0003] = (int)(RECHeaderInfo->EventDuration / 60);
+  Buffer[p + 0x0002] = RECHeaderInfo->EventDuration % 60;
+  setDword(&Buffer[p + 0x0004], RECHeaderInfo->EventEventID, FALSE);
+  setDword(&Buffer[p + 0x0008], RECHeaderInfo->EventStartTime, FALSE);
+  setDword(&Buffer[p + 0x000c], RECHeaderInfo->EventEndTime, FALSE);
+  Buffer[p + 0x0010] = RECHeaderInfo->EventRunningStatus;
+  EventTextLength = strlen(RECHeaderInfo->EventEventName);
+  Buffer[p + 0x0011] = EventTextLength;
+  Buffer[p + 0x0012] = RECHeaderInfo->EventParentalRate;
+  strncpy(&Buffer[p + 0x0013], RECHeaderInfo->EventEventName, EventTextLength);
+  strncpy(&Buffer[p + 0x0013 + EventTextLength], RECHeaderInfo->EventEventDescription, 273 - EventTextLength);
+
+  //Extended Event Info
+  p = 0x0168;
+  setWord(&Buffer[p + 0x0000], RECHeaderInfo->ExtEventServiceID , FALSE);
+  setWord(&Buffer[p + 0x0002], RECHeaderInfo->ExtEventTextLength, FALSE);
+  setDword(&Buffer[p + 0x0004], RECHeaderInfo->ExtEventEventID, FALSE);
+  memcpy(&Buffer[p + 0x0008], RECHeaderInfo->ExtEventText, RECHeaderInfo->ExtEventTextLength);
+
+  //Crypt Info: see header flags
+
+  //Bookmarks
+  p = 0x0584;
+  setDword(&Buffer[p + 0x0000], RECHeaderInfo->NrBookmarks, FALSE);
+  memcpy(&Buffer[p + 0x0004], RECHeaderInfo->Bookmark, 177 * sizeof(dword));
+  setDword(&Buffer[p + 0x02c8], RECHeaderInfo->Resume, FALSE);
+
+  TRACEEXIT();
 }
 
 void HDD_EncodeRECHeader_ST_TMSC(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_EncodeRECHeader_ST_TMSC");
-  #endif
+  TRACEENTER();
 
   dword                 p;
   word                  Flags;
@@ -843,16 +795,12 @@ void HDD_EncodeRECHeader_ST_TMSC(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
   memcpy(&Buffer[p + 0x0004], RECHeaderInfo->Bookmark, 177 * sizeof(dword));
   setDword(&Buffer[p + 0x02c8], RECHeaderInfo->Resume, FALSE);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }
 
 void HDD_EncodeRECHeader_ST_TF7k7HDPVR(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_EncodeRECHeader_ST_TF7k7HDPVR");
-  #endif
+  TRACEENTER();
 
   dword                 p;
   word                  w;
@@ -940,16 +888,12 @@ void HDD_EncodeRECHeader_ST_TF7k7HDPVR(byte *Buffer, tRECHeaderInfo *RECHeaderIn
   memcpy(&Buffer[p + 0x0000], RECHeaderInfo->Bookmark, 64 * sizeof(dword));
   setDword(&Buffer[p + 0x0100], RECHeaderInfo->Resume, FALSE);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }
 
 bool HDD_EncodeRECHeader(byte *Buffer, tRECHeaderInfo *RECHeaderInfo, SYSTEM_TYPE SystemType)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_EncodeRECHeader");
-  #endif
+  TRACEENTER();
 
   bool ret;
 
@@ -974,9 +918,6 @@ bool HDD_EncodeRECHeader(byte *Buffer, tRECHeaderInfo *RECHeaderInfo, SYSTEM_TYP
     case ST_NRTYPES:    ret = FALSE; break;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

@@ -2,11 +2,8 @@
 #define FBLIB_HDD_H
 
 #include                <sys/types.h>
-#ifdef _TMSEMU_
-  #include              "tap_tmsemu.h"
-#else
-  #include              "tap.h"
-#endif
+#include                "tap.h"
+#include                "../libFireBird.h"
 
 //HDD Functions
 //               CCD DD
@@ -142,16 +139,16 @@ inline dword getNextCluster(dword c);
 
 typedef struct
 {
-  char                Magic[4];           //0
-  byte                Version;            //4
-  byte                Filler1;            //5
-  word                Duration;           //6
-  dword               LastBlock;          //8
-  bool                Seen;               //12
-  dword               RecycleDate;        //16
-  char                RecoverPath[512];   //20
-  byte                Filler2[1516];      //532
-                                          //2048
+  char                Magic[4];                     //0
+  byte                Version;                      //4
+  byte                Filler1;                      //5
+  word                Duration;                     //6
+  dword               LastBlock;                    //8
+  bool                Seen;                         //12
+  dword               RecycleDate;                  //16
+  char                RecoverPath[FBLIB_DIR_SIZE];  //20
+  byte                Filler2[1516];                //532
+                                                    //2048
 }tinfBlock;
 
 typedef struct __STDIO_FILE_STRUCT FILE;
@@ -159,7 +156,7 @@ typedef struct __STDIO_FILE_STRUCT FILE;
 extern FILE *fopen64 (__const char *__restrict __filename, __const char *__restrict __modes);
 extern int fseeko64(FILE *__stream, __off64_t  __off, int __whence);
 
-bool HDD_InfBlockGet(char *AbsRecPath, tinfBlock *infBlock);
-bool HDD_InfBlockSet(char *AbsRecPath, tinfBlock *infBlock);
+bool HDD_InfBlockGet(char *RecPath, tinfBlock *infBlock);
+bool HDD_InfBlockSet(char *RecPath, tinfBlock *infBlock);
 
 #endif

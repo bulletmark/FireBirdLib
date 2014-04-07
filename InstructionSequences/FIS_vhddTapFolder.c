@@ -2,18 +2,13 @@
 
 inline dword FIS_vHddTapFolder(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FIS_vHddTapFolder");
-  #endif
+  TRACEENTER();
 
   static dword          _hddTapFolder = 0;
 
   if(!_hddTapFolder)
     _hddTapFolder = TryResolve("_hddTapFolder");
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return _hddTapFolder;
 }

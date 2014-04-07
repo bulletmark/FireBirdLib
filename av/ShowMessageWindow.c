@@ -4,9 +4,7 @@ dword                   fbl_rgn = 0;
 
 void ShowMessageWindow(char **content, dword pos_x, dword pos_y, byte fntSize, byte align, dword bdcolor, dword titlecolor, dword msgcolor, dword bgcolor, dword delay)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("ShowMessageWindow");
-  #endif
+  TRACEENTER();
 
   dword                 extra_x, h_y, w = 0, h = 0, w1, i, j, extra, rahmen, y;
   dword                 extra_y = 10;
@@ -90,7 +88,5 @@ void ShowMessageWindow(char **content, dword pos_x, dword pos_y, byte fntSize, b
     EndMessageWin();   // release rgn handle
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

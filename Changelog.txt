@@ -724,7 +724,7 @@ License:  This library is freeware. You may use this code in your own projects f
             ExtAttribExists(): checks if a named attribute exists and returns the attribute's size in bytes.
             ExtAttribGet(): reads the attribute.
             ExtAttribRemove(): removes the attribute.
-            In addition, all 4 functions are available with a full path for the file name (ExtAttribSetAbsPath(), ExtAttribExistsAbsPath(), ExtAttribGetAbsPath(), ExtAttribRemoveAbsPath())
+            In addition, all 4 functions are available with a full path for the file name (ExtAttribSetAbsPath(), ExtAttribExistsAbsPath(), ExtAttribGet(), ExtAttribRemove())
 2012-07-28  The return of FindInstructionSequence()
 2012-08-31  Some Toppy firmwares have a bug which prevents the display of the main menu on the TV if subtitles are turned on and a TAP creates a memory region. Modified the TMSMenu routines
               so that the cursor, which is loaded into a mem rgn, gets destroyed with OSDMenuDestroy()
@@ -836,9 +836,113 @@ License:  This library is freeware. You may use this code in your own projects f
 2013-10-26  Fixed: DST_GetTransitions_Europe() reported the transition from DST to standard time one hour too early
 2013-11-16  Fixed: Had to add the parameter StartDate to the functions DST_CalcTransition(), DST_GetTransitions_Europe() and DST_ProcessRule(), otherwise it wouldn't have been possible to calculate
                    offsets in the past. Pass 0 to get the old behaviour.
-2014-01-13  Added: HDD_MoveAbs() and MakeUniqueFileNameAbs(), which accepts absolute paths
+2014-01-13  Added: HDD_MoveAbs() and MakeUniqueFileName(), which accepts absolute paths
 2014-01-17  Added: TimerPaddingAPICheck(), TimerPaddingGet(), TimerPaddingSet(). These functions allow to query or set the padding of a recording timer. In addition, newer firmware releases
                    know the new enums SYSVAR_RecPaddingFore and SYSVAR_RecPaddingRear. As there is no easy way to find out if these two exist, TimerPaddingAPICheck() will do the job. These
                    two SYSVARs also mean that tap.h has to be modified. See the _Demo folder for a version with all patches.
 2014-02-01  Added: PlayMediaFileAbs() can start the playback of any media file (.rec, .mpg, .divx,...) from any location, even external drives.
             Modified PlayMediaFile() so that it calls PlayMediaFileAbs() and therefore can playback any media file from the current TAP directory instead of rec files only.
+2014-02-12  Added: The cron functions cronRegisterEvent(), cronEventHandler(), cronUnregisterEvent() and cronUnregisterAllEvents(). Thanks to DMC for the code.
+
+                   int  cronRegisterEvent(long frequency, long firstExecution, void *callback): Registers a new event.
+
+                     frequency:       the frequency in ticks, how often "callback" should be called. If < 0, the event triggers only once and will then be removed. May not be 0.
+                     firstExecution:  when (in ticks) the "callback" should be called for the first time. If 0, the first call will happen in "frequency" ticks.
+                     callback:        the routine that should be called when the event triggers.
+                     return value:    an index >= 0 if the function succeeds or -1 if it fails
+
+                   void cronEventHandler(void): processes all events. If the "callback" routine takes longer than "frequency" to process, all past due events will be discarded.
+
+                   bool cronUnregisterEvent(int Index): removes a single event from the list of cron jobs
+
+                    Index:            the index returned by cronRegisterEvent()
+                    return value:     TRUE if an event has been successfully deactivated
+
+                   void cronUnregisterAllEvents(void): removes all events from the list of cron jobs
+
+2014-02-16  Modified GetApplVer(), which now tries to locate the firmware compile date and includes it to the returned string
+2014-02-20  Fixed: PlayMediaFile() and PlayMediaFileAbs() returned different results, depending on the type of file being started. In addition the result has been changed to bool and now
+                   returns TRUE if the playback could be started.
+            Added: OSDMenuProgressBarDestroyNoOSDUpdate()
+
+2014-03-07: Added: FrontPanelGetPatch(), FrontPanelEEPROMRead(), FrontPanelEEPROMWrite() and FIS_vfrontfd(). These function only make sense with a patched front panel.
+            Added: HDD_TAP_CheckCollision(): checks if the same TAP is already running. This may happen due to a bug in the Topfield's file list. Call it as one of the first functions
+                   in TAP_Main() and exit with return 0 if HDD_TAP_CheckCollision() returns TRUE.
+2014-03-09: Modified tTMSTAPTaskTable.unknown1 to tTMSTAPTaskTable.dlopen . This variable contains the void* returned by dlopen() when loading a TAP. All other unknowns have been renamed to unused*
+2014-03-13: Added: OSDMenuKeyboard_Show() and OSDMenuKeyboard_isVisible()
+2014-03-16: Added: Appl_ExecProgram()
+2014-03-17: Added: the parameter "Path" to SeparatePathComponents(). Pass NULL for the path to get the same behaviour as the old version
+            Added: HDD_Exist(), which is similar to TAP_Hdd_Exist() but accepts the full spectrum of paths
+            Added: HDD_FindMountPoint(), which returns the mount point of the drive that hosts the specified path. HDD_FindMountPoint() does not check if that file or direcory exists.
+
+
+2014-03-20: Added: GetPathType() and ConvertPathType()
+
+
+Major update in the path handling: because many newcomers were confused by the different class of functions, that expected TAP paths and file names, Linux style paths
+or no paths at all, this update tries to automate the conversion process between the different styles. Wherever a file name or directory is expected, the library tries to identify
+the type of path and the functions automatically transforms it into the path they needs. To illustrate this, all the following examples are valid:
+
+
+  HDD_ChangeDir("/DataFiles/Series");
+  PlayMediaFile("abc.rec");
+
+  HDD_ChangeDir("/DataFiles");
+  PlayMediaFile("Series/abc.rec");
+
+  PlayMediaFile("/DataFiles/Series/abc.rec");
+
+  PlayMediaFile("/mnt/hd/DataFiles/Series/abc.rec");
+
+
+Functions, that return a path, will always add the trailing slash and it would be a good idea to keep that system consistent in a TAP. The reason is that GetPathType(),
+which tries to determine the type of path, might interpret the text after the last slash as a file name and a function, the needs to work with a folder, might strip away
+ the supposed file name.
+
+Due to these changes, several functions became duplicates and were removed. Except for 3 functions, where the parameters have changed, the migration is just to rename
+the functions, which can be resolved by the compiler. The following list shows all the changes:
+
+Changed parameters:
+  * HDD_GetFileSizeAndInode: parameter "Directory" removed
+  * SeparatePathComponents: parameter "Path" has been added. Pass NULL for the old behaviour
+  * SeparateFileNameComponents: parameter "Path" has been added. Pass NULL for the old behaviour
+
+Rename functions:
+  * HDD_GetFileTimeByRelFileName: renamed to HDD_GetFileTimeByFileName
+  * HDD_GetInodeByRelFileName: renamed to HDD_GetInodeByFileName
+
+Deleted functions:
+  * ELFOpenAbsFile: use ELFOpenFile
+  * ExtAttribExistsAbsPath: use ExtAttribExists
+  * ExtAttribGetAbsPath: use ExtAttribGet
+  * ExtAttribRemoveAbsPath: use ExtAttribRemove
+  * ExtAttribSetAbsPath: use ExtAttribSet
+  * HDD_GetFileTimeByAbsFileName: use HDD_GetFileTimeByFileName
+  * HDD_GetInodeByAbsFileName: use HDD_GetInodeByFileName
+  * HDD_MoveAbs: use HDD_Move
+  * HDD_TAP_GetInfoByAbsPath: use HDD_TAP_GetInfo
+  * infData_DeleteAbs: use infData_Delete
+  * infData_GetAbs: use infData_Get
+  * infData_GetNameByIndexAbs: use infData_GetNameByIndex
+  * infData_isAvailAbs: use infData_isAvail
+  * infData_SetAbs: use infData_Set
+  * MakeUniqueFileNameAbs: use MakeUniqueFileName
+  * MD5AbsFile: use MD5File
+  * PlayMediaFileAbs: use PlayMediaFile
+
+The following functions accept any form a path. The INI and language INI functions are not yet converted:
+
+  CallTraceExportStats, ELFOpenFile, ExtAttribExists, ExtAttribGet, ExtAttribRemove, ExtAttribSet, FixInvalidFileName, FM_LoadFontFile, FMUC_LoadFontFile,
+  HDD_ChangeDir, HDD_Delete, HDD_FappendOpen, HDD_FindMountPoint, HDD_GetFileSizeAndInode, HDD_GetFileTimeByRelFileName, HDD_GetInodeByRelFileName, HDD_InfBlockGet,
+  HDD_InfBlockSet, HDD_isFileInUse, HDD_isRecFileName, HDD_MakeNewRecName, HDD_Move, HDD_Recycle, HDD_RecycleSF, HDD_RemoveDir, HDD_Rename, HDD_TAP_GetIDByFileName,
+  HDD_TAP_GetInfo, HDD_TAP_Start, HDD_Unrecycle, HDD_UnrecycleSF, infData_Delete, infData_Get, infData_GetNameByIndex, infData_isAvail, infData_OpenFileAbs, infData_Set,
+  infData_TruncateAbs, LogEntry, LogEntryPrintf, MakeUniqueFileName, MD5File, PlayMediaFile, SaveBitmap, SeparateFileNameComponents, SeparatePathComponents, StringDBLoad,
+  StringDBSave, ValidFileName
+
+
+2014-03-22: Fixed: PlayMediaFile() created a path with a double // after the last folder name
+2014-03-28: Fixed: infData*() doesn't enforce a file name with .inf at the end anymore
+            Added: cronGetEvent() and cronModifyEvent()
+2014-04-03: Modified: Added a @ to the TMSOSDKeyboard and rearranged the pages
+
+2014-05-04: Fixed: ConvertPathType() didn't return the trailing / when source was PF_TAPPathOnly and the destination was PF_LinuxPathOnly. This made HDD_Move() fail.

@@ -3,13 +3,9 @@
 
 void OSDMenuMessageBoxAllowScrollOver(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuMessageBoxAllowScrollOver");
-  #endif
+  TRACEENTER();
 
   MessageBoxAllowScrollOver = TRUE;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

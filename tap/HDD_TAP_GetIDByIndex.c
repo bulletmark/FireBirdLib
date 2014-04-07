@@ -2,9 +2,7 @@
 
 dword HDD_TAP_GetIDByIndex(int TAPIndex)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_TAP_GetIDByIndex");
-  #endif
+  TRACEENTER();
 
   tTMSTAPTaskTable     *TMSTAPTaskTable;
   char                  AbsFileName[100];
@@ -12,44 +10,29 @@ dword HDD_TAP_GetIDByIndex(int TAPIndex)
 
   if((TAPIndex < 0) || (TAPIndex >= TAP_MAX))
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return 0;
   }
 
   TMSTAPTaskTable = (tTMSTAPTaskTable*)FIS_vTAPTable();
   if(TMSTAPTaskTable == NULL)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return 0;
   }
 
   if(!HDD_GetAbsolutePathByTypeFile(TMSTAPTaskTable[TAPIndex].file, AbsFileName))
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return 0;
   }
 
-  if(!HDD_TAP_GetInfoByAbsPath(AbsFileName, &pTAPInfo))
+  if(!HDD_TAP_GetInfo(AbsFileName, &pTAPInfo))
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return 0;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return pTAPInfo.TAPID;
 }

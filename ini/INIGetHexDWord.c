@@ -1,16 +1,12 @@
 #include <string.h>
 #include <stdlib.h>
-#ifndef _TMSEMU_
-  #include <ctype.h>
-#endif
+#include <ctype.h>
 #include "FBLib_ini.h"
 #include "../libFireBird.h"
 
 dword INIGetHexDWord(char *Key, dword DefaultValue, dword MinValue, dword MaxValue)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("INIGetHexDWord");
-  #endif
+  TRACEENTER();
 
   char                  *i = NULL, *j = NULL, *k;
   char                  TempKey[80];
@@ -18,10 +14,7 @@ dword INIGetHexDWord(char *Key, dword DefaultValue, dword MinValue, dword MaxVal
 
   if(!Key)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return 0;
   }
 
@@ -34,20 +27,14 @@ dword INIGetHexDWord(char *Key, dword DefaultValue, dword MinValue, dword MaxVal
 
   if(!i || !j || (j < i + l))
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return DefaultValue;
   }
 
   for(k = i + l; k <= j; k++)
     if(!isxdigit(*k))
     {
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
-
+      TRACEEXIT();
       return DefaultValue;
     }
 
@@ -56,9 +43,6 @@ dword INIGetHexDWord(char *Key, dword DefaultValue, dword MinValue, dword MaxVal
   if(x < MinValue) x = MinValue;
   if(x > MaxValue) x = MaxValue;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return x;
 }

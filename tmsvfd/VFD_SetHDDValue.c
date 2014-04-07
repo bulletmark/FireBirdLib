@@ -3,18 +3,13 @@
 
 bool VFD_SetHDDValue(int Percent)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("VFD_SetHDDValue");
-  #endif
+  TRACEENTER();
 
   byte *grid = (byte*)FIS_vGrid();
 
   if(!VFDUsedByTAP || !grid || !HDDEnabled)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -29,9 +24,6 @@ bool VFD_SetHDDValue(int Percent)
   if(Percent > 77) grid[28] |= 0x08;
   if(Percent > 88) grid[28] |= 0x10;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }

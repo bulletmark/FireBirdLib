@@ -2,9 +2,7 @@
 
 void EPGInfo_FilterGenre(byte *GenreArray, byte GenreArraySize)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("EPGInfo_FilterGenre");
-  #endif
+  TRACEENTER();
 
   if(GenreArray && GenreArraySize)
   {
@@ -31,7 +29,5 @@ void EPGInfo_FilterGenre(byte *GenreArray, byte GenreArraySize)
     EPGFilter.GenreArraySize = 0;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

@@ -3,39 +3,28 @@
 
 bool FlashServiceSetInfo(int SvcType, int SvcNum, tFlashService *Service)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FlashServiceSetInfo");
-  #endif
+  TRACEENTER();
 
   bool ret;
 
   //SvcType out of range
   if((SvcType < 0) || (SvcType > SVC_TYPE_Radio))
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
   //SvcNum out of range
   if((SvcNum < 0) || (SvcNum >= FlashServiceGetTotal(SvcType)))
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
   //Service is NULL
   if(!Service)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -92,9 +81,6 @@ bool FlashServiceSetInfo(int SvcType, int SvcNum, tFlashService *Service)
     case ST_NRTYPES: break;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

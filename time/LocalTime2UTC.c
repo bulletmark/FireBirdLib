@@ -2,9 +2,7 @@
 
 dword LocalTime2UTC(dword LocalTime, short *Offset)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("LocalTime2UTC");
-  #endif
+  TRACEENTER();
 
   bool                  DST;
   short                 StdOffset, DSTOffset;
@@ -23,10 +21,7 @@ dword LocalTime2UTC(dword LocalTime, short *Offset)
       UTCTime = AddTime(LocalTime, -StdOffset);
       if(DST) UTCTime = AddTime(UTCTime, -60);
 
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
-
+      TRACEEXIT();
       return UTCTime;
     }
 
@@ -68,9 +63,6 @@ dword LocalTime2UTC(dword LocalTime, short *Offset)
   if(Offset) *Offset = StdOffset + DSTOffset;
   ret = AddTime(UTCTime, -DSTOffset);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

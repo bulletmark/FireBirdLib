@@ -2,18 +2,13 @@
 
 inline dword FIS_vPhotoAlbumInfo(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FIS_vPhotoAlbumInfo");
-  #endif
+  TRACEENTER();
 
   static dword          vphotoAlbumInfo = 0;
 
   if(!vphotoAlbumInfo)
     vphotoAlbumInfo = TryResolve("_photoAlbumInfo");
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return vphotoAlbumInfo;
 }

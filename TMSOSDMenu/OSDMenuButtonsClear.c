@@ -2,9 +2,7 @@
 
 void OSDMenuButtonsClear(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuButtonsClear");
-  #endif
+  TRACEENTER();
 
   int                   i;
 
@@ -15,7 +13,5 @@ void OSDMenuButtonsClear(void)
 
   ButtonsDirty = TRUE;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

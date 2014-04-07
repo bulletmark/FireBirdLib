@@ -3,9 +3,7 @@
 
 void OSDToBMP(TYPE_OsdBaseInfo *OsdBaseInfo, int BMPwidth, int BMPheight, byte *BMPPixelBuffer, int Alpha)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDToBMP");
-  #endif
+  TRACEENTER();
 
   dword                *pixel;
   register int          pos, x, y;
@@ -15,10 +13,7 @@ void OSDToBMP(TYPE_OsdBaseInfo *OsdBaseInfo, int BMPwidth, int BMPheight, byte *
 
   if(BMPPixelBuffer)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return;
   }
 
@@ -44,7 +39,5 @@ void OSDToBMP(TYPE_OsdBaseInfo *OsdBaseInfo, int BMPwidth, int BMPheight, byte *
     }
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

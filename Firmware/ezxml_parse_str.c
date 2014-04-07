@@ -2,9 +2,7 @@
 
 ezxml_t ezxml_parse_str(char *s, size_t len)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("ezxml_parse_str");
-  #endif
+  TRACEENTER();
 
 	ezxml_t		(*__ezxml_parse_str)(char *, size_t);
 	ezxml_t		ret = 0;
@@ -16,9 +14,6 @@ ezxml_t ezxml_parse_str(char *s, size_t len)
 		ret = __ezxml_parse_str(s, len);
 	}
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
 	return ret;
 }

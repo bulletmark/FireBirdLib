@@ -2,9 +2,7 @@
 
 void VFD_SetDisplayDigit(byte* DisplayBuffer, byte Character, DISPLAYSTYLE DisplayStyle, byte Digit)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("VFD_SetDisplayDigit");
-  #endif
+  TRACEENTER();
 
   switch(DisplayStyle)
   {
@@ -394,7 +392,5 @@ void VFD_SetDisplayDigit(byte* DisplayBuffer, byte Character, DISPLAYSTYLE Displ
     }
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

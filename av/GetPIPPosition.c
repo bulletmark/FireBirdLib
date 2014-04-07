@@ -3,9 +3,7 @@
 
 bool GetPIPPosition(int *North, int *South, int *East, int *West)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("GetPIPPosition");
-  #endif
+  TRACEENTER();
 
   byte                 *_isPipActive;
   word                 *_pipX, *_pipY, *_pipW, *_pipH;
@@ -34,9 +32,6 @@ bool GetPIPPosition(int *North, int *South, int *East, int *West)
     }
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return (_isPipActive != 0);
 }

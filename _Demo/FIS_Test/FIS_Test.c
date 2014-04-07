@@ -548,7 +548,7 @@ void ExtractSettingsMTD(void)
   {
     sprintf(fn, "/dev/mtd%d", i);
     fd = open(fn, O_RDONLY);
-    if(fd)
+    if(fd >= 0)
     {
       ret = read(fd, Data, 2);
       close(fd);
@@ -636,7 +636,7 @@ void SearchForFlashPointer(void)
   FlashStart = FIS_vFlashBlockTVServices();
   FlashEnd = FlashStart + 0x200000;
 
-  if(ELFOpenAbsFile("/root/pvr") && ELFReadELFHeader() && ELFReadSectionHeaders() && ELFReadShstrtabSection())
+  if(ELFOpenFile("/root/pvr") && ELFReadELFHeader() && ELFReadSectionHeaders() && ELFReadShstrtabSection())
   {
     SectionIndex = ELFGetSectionIndex(".sbss");
     if(SectionIndex)
@@ -656,7 +656,7 @@ void SearchForFlashPointer(void)
   }
   else
   {
-    TAP_PrintNet("ELFOpenAbsFile() failed on /root/pvr\n");
+    TAP_PrintNet("ELFOpenFile() failed on /root/pvr\n");
   }
 
   ELFCleanup();

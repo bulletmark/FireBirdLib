@@ -2,18 +2,13 @@
 
 inline dword FIS_vFlashBlockGameSaveData(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FIS_vFlashBlockGameSaveData");
-  #endif
+  TRACEENTER();
 
   static dword          *vFlashGameSaveData = 0;
 
   if(!vFlashGameSaveData)
     vFlashGameSaveData = (dword*)TryResolve("_gameSaveData");
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return (vFlashGameSaveData ? *vFlashGameSaveData : 0);
 }

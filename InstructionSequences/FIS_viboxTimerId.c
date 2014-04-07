@@ -2,18 +2,13 @@
 
 inline dword FIS_vIboxTimerId(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FIS_vIboxTimerId");
-  #endif
+  TRACEENTER();
 
   static byte   *iboxTimerId = NULL;
 
   if(!iboxTimerId)
     iboxTimerId = (byte*)TryResolve("_iboxTimerId");
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return (dword)iboxTimerId;
 }

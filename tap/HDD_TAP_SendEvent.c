@@ -2,9 +2,7 @@
 
 dword HDD_TAP_SendEvent(dword TAPID, bool AllowParamInterception, word event, dword param1, dword param2)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_TAP_SendEvent");
-  #endif
+  TRACEENTER();
 
   dword                *curTapTask;
   dword                 OrigCurTapTask;
@@ -16,20 +14,14 @@ dword HDD_TAP_SendEvent(dword TAPID, bool AllowParamInterception, word event, dw
   curTapTask = (dword*)FIS_vCurTapTask();
   if(!curTapTask)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return 0;
   }
 
   TMSTAPTaskTable = (tTMSTAPTaskTable*)FIS_vTAPTable();
   if(!TMSTAPTaskTable)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return 0;
   }
 
@@ -39,10 +31,7 @@ dword HDD_TAP_SendEvent(dword TAPID, bool AllowParamInterception, word event, dw
 
     if(Index < 0 || Index >= TAP_MAX)
     {
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
-
+      TRACEEXIT();
       return 0;
     }
 
@@ -53,10 +42,7 @@ dword HDD_TAP_SendEvent(dword TAPID, bool AllowParamInterception, word event, dw
     *curTapTask = OrigCurTapTask;
     if((Ret == 0) && AllowParamInterception)
     {
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
-
+      TRACEEXIT();
       return 0;
     }
   }
@@ -76,19 +62,13 @@ dword HDD_TAP_SendEvent(dword TAPID, bool AllowParamInterception, word event, dw
         // In this case we don't even call the remaining TAPs
         if((Ret == 0) && AllowParamInterception)
         {
-          #ifdef DEBUG_FIREBIRDLIB
-            CallTraceExit(NULL);
-          #endif
-
+          TRACEEXIT();
           return 0;
         }
       }
     }
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return Ret;
 }

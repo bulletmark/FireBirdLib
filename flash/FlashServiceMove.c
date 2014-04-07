@@ -2,9 +2,7 @@
 
 bool FlashServiceMove(int SvcType, int FromSvcNum, int ToSvcNum)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FlashServiceMove");
-  #endif
+  TRACEENTER();
 
   int                   NrServices;
   tFlashService         Service, tempSvc;
@@ -15,29 +13,20 @@ bool FlashServiceMove(int SvcType, int FromSvcNum, int ToSvcNum)
   //SvcType out of range
   if((SvcType < 0) || (SvcType > SVC_TYPE_Radio))
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
   //SvcNum out of range
   if((FromSvcNum < 0) || (FromSvcNum >= NrServices) || (ToSvcNum < 0) || (ToSvcNum >= NrServices))
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
   if(FromSvcNum == ToSvcNum)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return TRUE;
   }
 
@@ -46,9 +35,7 @@ bool FlashServiceMove(int SvcType, int FromSvcNum, int ToSvcNum)
     //Case 3: a service has been moved up
     if(!FlashServiceGetInfo(SvcType, FromSvcNum, &Service))
     {
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
+      TRACEEXIT();
 
       return FALSE;
     }
@@ -65,9 +52,7 @@ bool FlashServiceMove(int SvcType, int FromSvcNum, int ToSvcNum)
     //Case 4: a service has been moved down
     if(!FlashServiceGetInfo(SvcType, FromSvcNum, &Service))
     {
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
+      TRACEEXIT();
 
       return FALSE;
     }
@@ -83,9 +68,6 @@ bool FlashServiceMove(int SvcType, int FromSvcNum, int ToSvcNum)
   FlashReindexFavorites(SvcType, FromSvcNum, ToSvcNum);
   FlashReindexTimers(SvcType, FromSvcNum, ToSvcNum);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }

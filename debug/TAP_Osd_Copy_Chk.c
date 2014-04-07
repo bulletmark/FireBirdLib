@@ -18,9 +18,7 @@
 
 int TAP_Osd_Copy_Chk(char *Comment, word srcRgnNum, word dstRgnNum, dword srcX, dword srcY, dword w, dword h, dword dstX, dword dstY,  bool sprite)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("TAP_Osd_Copy_Chk");
-  #endif
+  TRACEENTER();
 
   dword                 RgnH, RgnW;
   int                   ret;
@@ -30,10 +28,10 @@ int TAP_Osd_Copy_Chk(char *Comment, word srcRgnNum, word dstRgnNum, dword srcX, 
 
   if(Comment)
   {
-    if(srcX >= RgnW) TAP_Print("TAP_Osd_Copy_Chk Warning: srcX(%d) >= srcRgnW(%d) @ %s\n", srcX, RgnW, Comment);
-    if(srcY >= RgnH) TAP_Print("TAP_Osd_Copy_Chk Warning: srcY(%d) >= srcRgnH(%d) @ %s\n", srcY, RgnH, Comment);
-    if((srcX + w) > RgnW) TAP_Print("TAP_Osd_Copy_Chk Warning: (srcX(%d) + w(%d)) > srcRgnW(%d) @ %s\n", srcX, w, RgnW, Comment);
-    if((srcY + h) > RgnH) TAP_Print("TAP_Osd_Copy_Chk Warning: (srcY(%d) + h(%d)) > srcRgnH(%d) @ %s\n", srcY, h, RgnH, Comment);
+    if(srcX >= RgnW) LogEntryFBLibPrintf(TRUE, "TAP_Osd_Copy_Chk Warning: srcX(%d) >= srcRgnW(%d) @ %s", srcX, RgnW, Comment);
+    if(srcY >= RgnH) LogEntryFBLibPrintf(TRUE, "TAP_Osd_Copy_Chk Warning: srcY(%d) >= srcRgnH(%d) @ %s", srcY, RgnH, Comment);
+    if((srcX + w) > RgnW) LogEntryFBLibPrintf(TRUE, "TAP_Osd_Copy_Chk Warning: (srcX(%d) + w(%d)) > srcRgnW(%d) @ %s", srcX, w, RgnW, Comment);
+    if((srcY + h) > RgnH) LogEntryFBLibPrintf(TRUE, "TAP_Osd_Copy_Chk Warning: (srcY(%d) + h(%d)) > srcRgnH(%d) @ %s", srcY, h, RgnH, Comment);
   }
 
   RgnH = GetOSDRegionHeight(dstRgnNum);
@@ -41,19 +39,16 @@ int TAP_Osd_Copy_Chk(char *Comment, word srcRgnNum, word dstRgnNum, dword srcX, 
 
   if(Comment)
   {
-    if(dstX >= RgnW) TAP_Print("TAP_Osd_Copy_Chk Warning: dstX(%d) >= srcRgnW(%d) @ %s\n", dstX, RgnW, Comment);
-    if(srcY >= RgnH) TAP_Print("TAP_Osd_Copy_Chk Warning: srcY(%d) >= srcRgnH(%d) @ %s\n", srcY, RgnH, Comment);
-    if((dstX + w) > RgnW) TAP_Print("TAP_Osd_Copy_Chk Warning: (dstX(%d) + w(%d)) > dstRgnW(%d) @ %s\n", dstX, w, RgnW, Comment);
-    if((dstY + h) > RgnH) TAP_Print("TAP_Osd_Copy_Chk Warning: (dstY(%d) + h(%d)) > dstRgnH(%d) @ %s\n", dstY, h, RgnH, Comment);
+    if(dstX >= RgnW) LogEntryFBLibPrintf(TRUE, "TAP_Osd_Copy_Chk Warning: dstX(%d) >= srcRgnW(%d) @ %s", dstX, RgnW, Comment);
+    if(srcY >= RgnH) LogEntryFBLibPrintf(TRUE, "TAP_Osd_Copy_Chk Warning: srcY(%d) >= srcRgnH(%d) @ %s", srcY, RgnH, Comment);
+    if((dstX + w) > RgnW) LogEntryFBLibPrintf(TRUE, "TAP_Osd_Copy_Chk Warning: (dstX(%d) + w(%d)) > dstRgnW(%d) @ %s", dstX, w, RgnW, Comment);
+    if((dstY + h) > RgnH) LogEntryFBLibPrintf(TRUE, "TAP_Osd_Copy_Chk Warning: (dstY(%d) + h(%d)) > dstRgnH(%d) @ %s", dstY, h, RgnH, Comment);
   }
 
   ret = TAP_Osd_Copy(srcRgnNum, dstRgnNum, srcX, srcY, w, h, dstX, dstY, sprite);
 
-  if(Comment && ret) TAP_Print("TAP_Osd_Copy_Chk Warning: TAP_Osd_Copy() returned %d @ %s\n", ret, Comment);
+  if(Comment && ret) LogEntryFBLibPrintf(TRUE, "TAP_Osd_Copy_Chk Warning: TAP_Osd_Copy() returned %d @ %s", ret, Comment);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

@@ -2,18 +2,13 @@
 
 bool EPGInfo_FindItem(TYPE_EPGInfo *EPGData, int EPGIndex, bool EPGReset)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("EPGInfo_FindItem");
-  #endif
+  TRACEENTER();
 
   if((EPGIndex >= EPGInfoNrEntries) || (EPGIndex < 0))
   {
     if(EPGData) memset(EPGData, 0, sizeof(TYPE_EPGInfo));
 
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -31,9 +26,6 @@ bool EPGInfo_FindItem(TYPE_EPGInfo *EPGData, int EPGIndex, bool EPGReset)
     }
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }

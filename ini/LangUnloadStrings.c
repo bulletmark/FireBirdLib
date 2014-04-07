@@ -3,9 +3,7 @@
 
 void LangUnloadStrings(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("LangUnloadStrings");
-  #endif
+  TRACEENTER();
 
   if(LangStrings)
   {
@@ -21,7 +19,5 @@ void LangUnloadStrings(void)
 
   LangNrStrings = 0;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

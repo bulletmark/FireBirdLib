@@ -3,18 +3,13 @@
 
 bool StringDBSaveToFile(tStringDB *StringDB, TYPE_File *f)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("StringDBSaveToFile");
-  #endif
+  TRACEENTER();
 
   dword                 l, p;
 
   if(!StringDB || !f || !StringDB->DB)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -28,9 +23,6 @@ bool StringDBSaveToFile(tStringDB *StringDB, TYPE_File *f)
 
   TAP_Hdd_Fwrite(StringDB->DB, 1, l, f);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }

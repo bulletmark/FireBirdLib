@@ -49,11 +49,10 @@ void HDD_EncodeRECHeader_ST_TMSS(byte *Buffer, tRECHeaderInfo *RECHeaderInfo);
 void HDD_EncodeRECHeader_ST_TMST(byte *Buffer, tRECHeaderInfo *RECHeaderInfo);
 void HDD_EncodeRECHeader_ST_TMSC(byte *Buffer, tRECHeaderInfo *RECHeaderInfo);
 
-bool   infData_OpenFileAbs(char *infFileName);
-dword  infData_FlenAbs(void);
-bool   infData_LocateSigAbs(char *NameTag, dword *PayloadSize);
-void   infData_TruncateAbs(char *infFileName, dword Position);
-void   infData_CloseFileAbs(void);
-char  *infData_LocToAbs(char *LocalInfName);
+bool   infData_OpenFile(char *infFileName);
+dword  infData_Flen(void);
+bool   infData_LocateSig(char *NameTag, dword *PayloadSize);
+void   infData_Truncate(char *infFileName, dword Position);
+void   infData_CloseFile(void);
 
 #endif

@@ -2,9 +2,7 @@
 
 void OSDMenuMessageBoxDestroyNoOSDUpdate(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuMessageBoxDestroyNoOSDUpdate");
-  #endif
+  TRACEENTER();
 
   tOSDMapInfo          *OSDMapInfo;
 
@@ -31,7 +29,5 @@ void OSDMenuMessageBoxDestroyNoOSDUpdate(void)
 
   OSDMenuFreeStdFonts();
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

@@ -3,9 +3,7 @@
 
 bool HDD_GetRecSlotFiles(byte Slot, TYPE_File **RecFile, TYPE_File **InfFile, TYPE_File **NavFile)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_GetRecSlotFiles");
-  #endif
+  TRACEENTER();
 
   tHddRecordFile       *HddRecordFile;
 
@@ -18,10 +16,7 @@ bool HDD_GetRecSlotFiles(byte Slot, TYPE_File **RecFile, TYPE_File **InfFile, TY
     if(InfFile) *InfFile = NULL;
     if(NavFile) *NavFile = NULL;
 
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -29,9 +24,6 @@ bool HDD_GetRecSlotFiles(byte Slot, TYPE_File **RecFile, TYPE_File **InfFile, TY
   if(InfFile) *InfFile = HddRecordFile[Slot].InfFile;
   if(NavFile) *NavFile = HddRecordFile[Slot].NavFile;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }

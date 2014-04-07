@@ -2,9 +2,7 @@
 
 dword HDD_TAP_Callback(dword TAPID, void *ProcedureAddress, dword param1, dword param2, dword param3, dword param4)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_TAP_Callback");
-  #endif
+  TRACEENTER();
 
   dword                 Ret = 0;
   dword                *curTapTask;
@@ -17,20 +15,14 @@ dword HDD_TAP_Callback(dword TAPID, void *ProcedureAddress, dword param1, dword 
     curTapTask = (dword*)FIS_vCurTapTask();
     if(!curTapTask)
     {
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
-
+      TRACEEXIT();
       return 0;
     }
 
     int Index = HDD_TAP_GetIndexByID(TAPID);
     if(Index < 0 || Index >= TAP_MAX)
     {
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
-
+      TRACEEXIT();
       return 0;
     }
 
@@ -41,9 +33,6 @@ dword HDD_TAP_Callback(dword TAPID, void *ProcedureAddress, dword param1, dword 
     *curTapTask = OrigCurTapTask;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return Ret;
 }

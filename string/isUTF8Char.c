@@ -2,9 +2,7 @@
 
 bool isUTF8Char(byte *p, byte *BytesPerChar)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("isUTF8Char");
-  #endif
+  TRACEENTER();
 
   bool                  a, b, c;
   byte                  bpc;
@@ -13,10 +11,7 @@ bool isUTF8Char(byte *p, byte *BytesPerChar)
   {
     if(BytesPerChar) *BytesPerChar = 1;
 
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -33,9 +28,6 @@ bool isUTF8Char(byte *p, byte *BytesPerChar)
 
   if(BytesPerChar) *BytesPerChar = bpc;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return (a || b || c);
 }

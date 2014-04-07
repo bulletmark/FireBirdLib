@@ -2,29 +2,21 @@
 
 bool HookFirmware(char *FirmwareFunctionName, void *RedirectTo, dword *PointerToOriginal)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HookFirmware");
-  #endif
+  TRACEENTER();
 
   dword                *got;
   dword                 FirmwareFunction;
 
   if(!FirmwareFunctionName || !RedirectTo || !PointerToOriginal)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
   FirmwareFunction = TryResolve(FirmwareFunctionName);
   if(!FirmwareFunction)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -34,16 +26,10 @@ bool HookFirmware(char *FirmwareFunctionName, void *RedirectTo, dword *PointerTo
     *PointerToOriginal = FirmwareFunction;
     *got = (dword)RedirectTo;
 
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return TRUE;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return FALSE;
 }

@@ -6,17 +6,12 @@ CURL *curl_easy_init(void)
 	CURL*                 (*__curl_easy_init)(void);
 	CURL*                 handle = 0;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("curl_easy_init");
-  #endif
+  TRACEENTER();
 
 	__curl_easy_init = (void*)FIS_fwcurl_easy_init();
 	if(__curl_easy_init)
 		handle = __curl_easy_init();
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
 	return handle;
 }

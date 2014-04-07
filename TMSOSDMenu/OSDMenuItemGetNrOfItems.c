@@ -2,17 +2,12 @@
 
 dword OSDMenuItemGetNrOfItems(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuItemGetNrOfItems");
-  #endif
+  TRACEENTER();
 
   dword ret;
 
   ret = Menu[CurrentMenuLevel].NrItems;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

@@ -2,13 +2,11 @@
 
 bool TimerPaddingAPICheck(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("TimerPaddingAPICheck");
-  #endif
+  TRACEENTER();
 
   static bool           AlreadyChecked = FALSE;
   static bool           SysVarRecPaddingSupported = FALSE;
-  int                   CurrentRecPaddingFore, TempRecPaddingFore;
+  int                   CurrentRecPaddingFore, TempRecPaddingFore, CurrentRecPaddingRear;
 
   //Find out if the firmware already supports the SYSVAR_RecPaddingFore and SYSVAR_RecPaddingRear variables
   if(!AlreadyChecked)
@@ -19,15 +17,13 @@ bool TimerPaddingAPICheck(void)
 
     if(TempRecPaddingFore == (CurrentRecPaddingFore + 1)) SysVarRecPaddingSupported = TRUE;
     TAP_SetSystemVar(SYSVAR_RecPaddingFore, CurrentRecPaddingFore);
+    CurrentRecPaddingRear = TAP_GetSystemVar(SYSVAR_RecPaddingRear);
 
-    TAP_PrintNet("TimerPaddingAPICheck: %d %d %s\n", CurrentRecPaddingFore, TempRecPaddingFore, SysVarRecPaddingSupported ? " true" : "false");
+    LogEntryFBLibPrintf(TRUE, "TimerPaddingAPICheck: %d %d %d %s", CurrentRecPaddingFore, TempRecPaddingFore, CurrentRecPaddingRear, SysVarRecPaddingSupported ? " true" : "false");
 
     AlreadyChecked = TRUE;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return SysVarRecPaddingSupported;
 }

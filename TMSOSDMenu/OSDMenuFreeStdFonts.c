@@ -2,9 +2,7 @@
 
 void OSDMenuFreeStdFonts(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuFreeStdFonts");
-  #endif
+  TRACEENTER();
 
   if(!OSDRgn && !ProgressBarOSDRgn && !InfoBoxOSDRgn && !MessageBoxOSDRgn && !ColorPickerOSDRgn)
   {
@@ -17,7 +15,5 @@ void OSDMenuFreeStdFonts(void)
     FMUC_FreeFontFile(&OSDMenuFont_20B);
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

@@ -1,16 +1,12 @@
 #include <string.h>
 #include <stdlib.h>
-#ifndef _TMSEMU_
-  #include <ctype.h>
-#endif
+#include <ctype.h>
 #include "FBLib_ini.h"
 #include "../libFireBird.h"
 
 byte INIGetHexByte(char *Key, byte DefaultValue, byte MinValue, byte MaxValue)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("INIGetHexByte");
-  #endif
+  TRACEENTER();
 
   char                  *i = NULL, *j = NULL, *k;
   char                  TempKey[80];
@@ -18,10 +14,7 @@ byte INIGetHexByte(char *Key, byte DefaultValue, byte MinValue, byte MaxValue)
 
   if(!Key)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return 0;
   }
 
@@ -34,20 +27,14 @@ byte INIGetHexByte(char *Key, byte DefaultValue, byte MinValue, byte MaxValue)
 
   if(!i || !j || (j < i + l))
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return DefaultValue;
   }
 
   for(k = i + l; k <= j; k++)
     if(!isxdigit(*k))
     {
-      #ifdef DEBUG_FIREBIRDLIB
-        CallTraceExit(NULL);
-      #endif
-
+      TRACEEXIT();
       return DefaultValue;
     }
 
@@ -56,9 +43,6 @@ byte INIGetHexByte(char *Key, byte DefaultValue, byte MinValue, byte MaxValue)
   if(x < MinValue) x = MinValue;
   if(x > MaxValue) x = MaxValue;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return x;
 }

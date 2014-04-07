@@ -1,10 +1,13 @@
+#include <fcntl.h>
+#include <unistd.h>
 #include                <string.h>
 #include                "FBLib_debug.h"
 
 void CallTraceExportStats(char *FileName)
 {
   char                  Output[512];
-  TYPE_File            *f;
+  char                  AbsFileName[FBLIB_DIR_SIZE];
+  int                   f;
   double                t;
   int                   i;
 
@@ -12,13 +15,12 @@ void CallTraceExportStats(char *FileName)
 
   if(CallTraceStats && FileName)
   {
-    if(TAP_Hdd_Exist(FileName)) TAP_Hdd_Delete(FileName);
-    TAP_Hdd_Create(FileName, ATTR_NORMAL);
-    f = TAP_Hdd_Fopen(FileName);
-    if(f)
+    ConvertPathType(FileName, AbsFileName, PF_FullLinuxPath);
+    f = open(AbsFileName, O_WRONLY | O_CREAT | O_TRUNC);
+    if(f >= 0)
     {
       strcpy(Output, "Name;NrCalls;MinTime;MaxTime;TotalTime;AvgTime\r\n");
-      TAP_Hdd_Fwrite(Output, strlen(Output), 1, f);
+      write(f, Output, strlen(Output));
 
       for(i = 0; i < CallTraceStatsEntries;i++)
       {
@@ -27,9 +29,9 @@ void CallTraceExportStats(char *FileName)
         else
           t = 0;
         TAP_SPrint(Output, "%s;%d;%d;%d;%d;%1.1f\r\n", CallTraceStats[i].ProcName, CallTraceStats[i].NrCalls, CallTraceStats[i].MinTime*10, CallTraceStats[i].MaxTime*10, CallTraceStats[i].TotalTime*10, t);
-        TAP_Hdd_Fwrite(Output, strlen(Output), 1, f);
+        write(f, Output, strlen(Output));
       }
-      TAP_Hdd_Fclose(f);
+      close(f);
     }
   }
 }

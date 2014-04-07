@@ -7,9 +7,7 @@
 //
 dword HDD_TAP_isDisabled(dword TAPID)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("HDD_TAP_isDisabled");
-  #endif
+  TRACEENTER();
 
   tTMSTAPTaskTable     *TMSTAPTaskTable;
   int                   TAPIndex;
@@ -18,19 +16,13 @@ dword HDD_TAP_isDisabled(dword TAPID)
   TAPIndex = HDD_TAP_GetIndexByID(TAPID);
   if(TAPIndex == -1)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return 0;
   }
 
   TMSTAPTaskTable = (tTMSTAPTaskTable*)FIS_vTAPTable();
-  ret = (TMSTAPTaskTable[TAPIndex].unknown9 ? 1 : 0);
+  ret = (TMSTAPTaskTable[TAPIndex].unused5 ? 1 : 0);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

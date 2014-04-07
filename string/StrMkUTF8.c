@@ -3,19 +3,14 @@
 
 bool StrMkUTF8(byte *SourceString, byte DefaultISO8859CharSet)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("StrMkUTF8");
-  #endif
+  TRACEENTER();
 
   char                 *_utf8string;
   int                   l;
 
   if(!SourceString)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -24,20 +19,14 @@ bool StrMkUTF8(byte *SourceString, byte DefaultISO8859CharSet)
   {
     *SourceString = '\0';
 
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return TRUE;
   }
 
   _utf8string = TAP_MemAlloc(l);
   if(!_utf8string)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -45,9 +34,6 @@ bool StrMkUTF8(byte *SourceString, byte DefaultISO8859CharSet)
   strcpy(SourceString, _utf8string);
   TAP_MemFree(_utf8string);
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }

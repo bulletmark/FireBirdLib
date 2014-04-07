@@ -4,9 +4,7 @@
 
 bool INIGetString(char *Key, char *Value, char *DefaultValue, dword MaxLength)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("INIGetString");
-  #endif
+  TRACEENTER();
 
   char                  *i = NULL, *j = NULL;
   char                  TempKey[80];
@@ -14,10 +12,7 @@ bool INIGetString(char *Key, char *Value, char *DefaultValue, dword MaxLength)
 
   if(!Key || !Value || !DefaultValue || !MaxLength)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -39,9 +34,6 @@ bool INIGetString(char *Key, char *Value, char *DefaultValue, dword MaxLength)
     Value[j - i - l + 1] = 0;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }

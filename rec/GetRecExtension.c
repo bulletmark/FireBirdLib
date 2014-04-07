@@ -2,9 +2,7 @@
 
 char *GetRecExtension(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("GetRecExtension");
-  #endif
+  TRACEENTER();
 
   dword                 i;
   tToppyInfo           *ToppyInfo;
@@ -32,9 +30,6 @@ char *GetRecExtension(void)
     }
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return RecExtension ? RecExtension : ".rec";
 }

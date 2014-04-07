@@ -3,13 +3,9 @@
 
 void EPGInfo_AbortLoad(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("EPGInfo_AbortLoad");
-  #endif
+  TRACEENTER();
 
   EPGAbortLoad = TRUE;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

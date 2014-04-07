@@ -5,18 +5,13 @@ bool CDEnabledAnimation = FALSE;
 
 bool VFD_EnableCDAnimation(bool Enable)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("VFD_EnableCDAnimation");
-  #endif
+  TRACEENTER();
 
   byte *grid = (byte*)FIS_vGrid();
 
   if(!VFDUsedByTAP || !grid)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -31,9 +26,6 @@ bool VFD_EnableCDAnimation(bool Enable)
 
   CDEnabledAnimation = Enable;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }

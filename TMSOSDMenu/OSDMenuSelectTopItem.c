@@ -2,9 +2,7 @@
 
 bool OSDMenuSelectTopItem(int TopIndex)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuSelectTopItem");
-  #endif
+  TRACEENTER();
 
   tMenu                *pMenu;
 
@@ -12,10 +10,7 @@ bool OSDMenuSelectTopItem(int TopIndex)
 
   if(pMenu->NrItems == 0)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -28,9 +23,6 @@ bool OSDMenuSelectTopItem(int TopIndex)
     ListDirty = TRUE;
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }

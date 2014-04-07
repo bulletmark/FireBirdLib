@@ -1,15 +1,13 @@
 #include <string.h>
-#ifndef _TMSEMU_
-  #include <ctype.h>
-#endif
+#include <ctype.h>
 #include "FBLib_string.h"
+
+extern int strncasecmp(__const char *__s1, __const char *__s2, size_t __n);
 
 // case-insensitive version of strstr()
 char *stricstr(char *s1, char *s2)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("stricstr");
-  #endif
+  TRACEENTER();
 
   bool found = FALSE;
   char start[3];
@@ -17,10 +15,7 @@ char *stricstr(char *s1, char *s2)
 
   if(!s1 || !s2)
   {
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return NULL;
   }
 
@@ -48,9 +43,6 @@ char *stricstr(char *s1, char *s2)
     while(str && !found && *s1);
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return (found ? str : NULL);
 }

@@ -8,9 +8,7 @@
 
 bool EPGInfo_CreateCache(int NrRecords)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("EPGInfo_CreateCache");
-  #endif
+  TRACEENTER();
 
   extern dword __tap_ud__;
 
@@ -30,10 +28,7 @@ bool EPGInfo_CreateCache(int NrRecords)
   {
     LogEntryFBLibPrintf(TRUE, "EPGInfo: failed to create the memory mapped EPG cache");
 
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -44,10 +39,7 @@ bool EPGInfo_CreateCache(int NrRecords)
     close(EPGInfoCacheFile);
     unlink(EPGCacheFile);
 
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
   write(EPGInfoCacheFile, "", 1);
@@ -60,18 +52,12 @@ bool EPGInfo_CreateCache(int NrRecords)
     close(EPGInfoCacheFile);
     unlink(EPGCacheFile);
 
-    #ifdef DEBUG_FIREBIRDLIB
-      CallTraceExit(NULL);
-    #endif
-
+    TRACEEXIT();
     return FALSE;
   }
 
   EPGInfoCache = (TYPE_EPGInfo*)EPGInfoCacheMap;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return TRUE;
 }

@@ -3,9 +3,7 @@
 
 void GetStringEncoding(char *Text, bool *hasAnsiChars, bool *hasUTFChars)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("GetStringEncoding");
-  #endif
+  TRACEENTER();
 
   byte           *p, *pEnd;
   byte            BytesPerChar;
@@ -29,7 +27,5 @@ void GetStringEncoding(char *Text, bool *hasAnsiChars, bool *hasUTFChars)
   if(hasAnsiChars) *hasAnsiChars = AC;
   if(hasUTFChars) *hasUTFChars = UC;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

@@ -2,14 +2,10 @@
 
 void OSDMenuModifyItemNumbered(bool NumberedItems)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuModifyItemNumbered");
-  #endif
+  TRACEENTER();
 
   Menu[CurrentMenuLevel].NumberedItems = NumberedItems;
   ListDirty = TRUE;
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

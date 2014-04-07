@@ -2,18 +2,13 @@
 
 inline dword FIS_fwezxml_attr(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FIS_fwezxml_attr");
-  #endif
+  TRACEENTER();
 
   static dword          _ezxml_attr = 0;
 
   if (!_ezxml_attr)
     _ezxml_attr = TryResolve("ezxml_attr");
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return _ezxml_attr;
 }

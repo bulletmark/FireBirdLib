@@ -3,9 +3,7 @@
 
 void OSDMenuMessageBoxInitialize(char *Title, char *Text)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("OSDMenuMessageBoxInitialize");
-  #endif
+  TRACEENTER();
 
   if(InfoBoxOSDRgn)OSDMenuInfoBoxDestroy();
 
@@ -24,7 +22,5 @@ void OSDMenuMessageBoxInitialize(char *Title, char *Text)
   strncpyUC(MessageBox.Text, Text, STDSTRINGSIZE);
   MessageBox.Text[STDSTRINGSIZE - 1] = '\0';
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

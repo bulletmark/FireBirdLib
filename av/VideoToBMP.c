@@ -3,9 +3,7 @@
 
 void VideoToBMP(TYPE_VideoFrame *VideoFrame, int BMPwidth, int BMPheight, byte *BMPPixelBuffer, int DstX, int DstY, int DstWidth, int DstHeight)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("VideoToBMP");
-  #endif
+  TRACEENTER();
 
   dword                *VideoData;
   dword                *SrcPixel;
@@ -29,7 +27,5 @@ void VideoToBMP(TYPE_VideoFrame *VideoFrame, int BMPwidth, int BMPheight, byte *
     }
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
+  TRACEEXIT();
 }

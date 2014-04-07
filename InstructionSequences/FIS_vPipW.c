@@ -2,18 +2,13 @@
 
 inline dword FIS_vPipW(void)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("FIS_vPipW");
-  #endif
+  TRACEENTER();
 
   static dword          _pipW = 0;
 
   if(!_pipW)
     _pipW = TryResolve("_pipW");
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return _pipW;
 }

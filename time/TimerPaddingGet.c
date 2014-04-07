@@ -2,9 +2,7 @@
 
 bool TimerPaddingGet(short *PrePaddingMin, short *PostPaddingMin)
 {
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceEnter("TimerPaddingGet");
-  #endif
+  TRACEENTER();
 
   bool ret = FALSE;
 
@@ -32,9 +30,6 @@ bool TimerPaddingGet(short *PrePaddingMin, short *PostPaddingMin)
     }
   }
 
-  #ifdef DEBUG_FIREBIRDLIB
-    CallTraceExit(NULL);
-  #endif
-
+  TRACEEXIT();
   return ret;
 }

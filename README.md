@@ -13,6 +13,9 @@ details. I have also added FireBird's JailBreak utility and some of my
 own tap development utilities in [devutils/][devutils]. See
 [devutils/README.md][devread] for details.
 
+Some of my changes and additions here have been retrofitted by FireBird
+back to his original source.
+
 I have added [Doxygen][doxygen] to the make/build to supplement the API
 documentation. You can see the output [here][fbdoxy]. The
 [directory][fbdirs] links are probably the most useful.

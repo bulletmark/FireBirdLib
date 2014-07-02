@@ -38,7 +38,6 @@ bool ExtAttribGet(char *FileName, char *AttrName, byte *Data, int MaxDataLen, in
         close(f);
 
         TRACEEXIT();
-
         return TRUE;
       }
       close(f);

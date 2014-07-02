@@ -1,80 +1,61 @@
 #include                <unistd.h>
-#include                "../libFireBird.h"
+#include                "FBLib_main.h"
 
 bool FrontPanelEEPROMRead(word Address, byte *Data)
 {
   TRACEENTER();
 
-  byte                  ExpectedResponseCode = 0xd1;
-  int                   ExpectedResponseLen = 5;
+  byte                  Buffer[20];
+  int                   WaitTimeout;
 
-  int                  *__frontfd;
-  int                   localfd = 0;
-  ssize_t               ret;
-  dword                 WaitTimeout;
-  byte                  Buffer[128];
-  byte                  InBufferPtr;
-  byte                  Retry;
-  bool                  Timeout, Result;
-
-  Result = FALSE;
-
-  __frontfd = (int*)FIS_vfrontfd();
-
-  if(FrontPanelGetPatch(NULL, NULL) && __frontfd && (Address < 512) && Data)
+  if(!FP_Initialize())
   {
-    //Take over the handle from _frontfd
-    localfd = *__frontfd;
-    *__frontfd = 0;
-    TAP_Delay(20);
-
-    //Flush any bytes which are still in the buffer
-    read(localfd, &Buffer[0], 64);
-
-    Retry = 3;
-    do
-    {
-      InBufferPtr = 0;
-
-      //Query: 02 D2 EAH EAL 03
-      Buffer[0] = 0x00;
-      Buffer[1] = 0x02;
-      Buffer[2] = 0xD2;
-      Buffer[3] = Address >> 8;
-      Buffer[4] = Address & 0xff;
-      Buffer[5] = 0x03;
-
-      write(localfd, Buffer, 6);
-
-      //Wait for the F2 response
-      WaitTimeout = TAP_GetTick() + 10;
-      do
-      {
-        ret = read(localfd, &Buffer[InBufferPtr], 64);
-        if(ret > 0)
-        {
-          InBufferPtr += ret;
-          WaitTimeout = TAP_GetTick() + 5;
-        }
-        Timeout = (TAP_GetTick() > WaitTimeout);
-      }while(!Timeout);
-
-      //DumpMemory(Buffer, InBufferPtr, 16);
-
-      if((InBufferPtr == ExpectedResponseLen) && (Buffer[2] == ExpectedResponseCode))
-      {
-        //Response: 00 02 D1 DTA 03
-        if(Data) *Data = Buffer[3];
-        Result = TRUE;
-      }
-
-      Retry--;
-    }while((InBufferPtr == 0) && (Retry > 0));
-
-    //Restore the communication
-    *__frontfd = localfd;
-    localfd = 0;
+    TRACEEXIT();
+    return FALSE;
   }
 
-  return Result;
+  //Cache the two options so that the FrontPanelEEPROMRead() doesn't need to communicate with the front panel
+  if(Address == 0x01ff)
+  {
+    if(Data) *Data = FPPatchAntiFreezeOption;
+
+    TRACEEXIT();
+    return TRUE;
+  }
+
+  if(Address == 0x01fe)
+  {
+    if(Data) *Data = FPPatchPowerRestoreOption;
+
+    TRACEEXIT();
+    return TRUE;
+  }
+
+  if(!HookFrontTxPacket())
+  {
+    TRACEEXIT();
+    return FALSE;
+  }
+
+  //Read the AntiFreeze Option Byte
+  //ReadEEPROM: Query: D2 EAH EAL; Response: D1 <DTA>
+  Buffer[0] = 0xD2;
+  Buffer[1] = Address >> 8;
+  Buffer[2] = Address & 0xff;
+  FPWaitResponse = 0xD1;
+  Front_TxPacket_hooked(Buffer);
+
+  WaitTimeout = 100;
+  while((FPWaitResponse != 0) && WaitTimeout)
+  {
+    TAP_Delay(1);
+    WaitTimeout--;
+  }
+
+  if(Data) *Data = FPResponse[1];
+
+  UnhookFrontTxPacket();
+
+  TRACEEXIT();
+  return (WaitTimeout != 0);
 }

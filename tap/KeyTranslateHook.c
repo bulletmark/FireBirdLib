@@ -37,6 +37,14 @@ dword KeyTranslateHook(word event, dword param1, dword param2)
       }
     }
 
+    if(RemoteType == RT_7260PLUS)
+    {
+      switch(NativeKeyCode)
+      {
+        case RKEY_F1:       TranslatedKeyCode = RKEY_NewF1;     break;
+      }
+    }
+
     ret = Original_TAP_EventHandler(EVT_KEY, TranslatedKeyCode | KeyFlags, param2);
 
     TRACEEXIT();

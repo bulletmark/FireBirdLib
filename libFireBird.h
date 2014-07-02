@@ -3,7 +3,7 @@
 
   //#define STACKTRACE
 
-  #define __FBLIB_RELEASEDATE__ "2014-04-05"
+  #define __FBLIB_RELEASEDATE__ "2014-06-18"
 
   #define __FBLIB_VERSION__ __FBLIB_RELEASEDATE__
 
@@ -98,7 +98,8 @@
   {
     RT_5000,
     RT_2100,
-    RT_7100PLUS
+    RT_7100PLUS,
+    RT_7260PLUS       //Identical to RT_2100, except that the code for the red key is RKEY_F1
   } REMOTE_TYPE;
 
   typedef struct
@@ -289,6 +290,7 @@
   tAudioTrk *AudioTrackInfo(void);
   bool  CaptureScreen(int BMPwidth, int BMPheight, byte *BMPPixelBuffer, bool bOSD, int Alpha);
   void  DrawOSDLine(word OSDRgn, dword Ax, dword Ay, dword Bx, dword By, dword Color);
+  void  DrawScrollbar(word sbRegion, int sbX, int sbY, int sbHeight, int sbCurrent, int sbWindow, int sbMax);
   void  EndMessageWin(void);
   void  FreeOSDRegion(word Region);
   dword GetOSDMapAddress(void);
@@ -305,7 +307,7 @@
   void  OSDCopy(word rgn, dword x, dword y, dword w, dword h, word items, eCopyDirection direction);
   bool  PlayMediaFile(char *MediaFileName);
   bool  SaveBitmap(char *FileName, int width, int height, byte* pBuffer);
-  void  SetRemoteMode(byte Mode, bool Active);
+  void  SetRemoteMode(byte Mode, byte Index, bool Active);
   void  ShowMessageWin(char* title, char* lpMessage1, char* lpMessage2, dword dwDelay);
   void  ShowMessageWindow(char **content, dword pos_x, dword pos_y, byte fntSize, byte align, dword bdcolor, dword titlecolor, dword msgcolor, dword bgcolor, dword delay);
   bool  ShowPvrList(tPvrListType PvrListType);
@@ -1180,8 +1182,8 @@
   void   LogEntryGeneric(char *ProgramName, bool Console, char *Text);
   void   LogEntryGenericPrintf(char *ProgramName, bool Console, char *format, ...);
   void   LogEntryFBLibPrintf(bool Console, char *format, ...);
-  bool   HookFirmware(char *FirmwareFunctionName, void *RedirectTo, dword *PointerToOriginal);
-  bool   UnhookFirmware(char *FirmwareFunctionName, void *RedirectTo, dword *PointerToOriginal);
+  bool   HookFirmware(char *FirmwareFunctionName, void *RedirectTo, void *PointerToOriginal);
+  bool   UnhookFirmware(char *FirmwareFunctionName, void *RedirectTo, void *PointerToOriginal);
 
   void   CallTraceInit(void);
   void   CallTraceEnable(bool Enable);
@@ -1388,7 +1390,7 @@
   }tDirEntry;
 
   byte   DevFront_SetIlluminate(byte a0, byte Brightness);
-  dword  DevHdd_DeviceClose(tDirEntry **hddPlaybackFolder);
+  dword  DevHdd_DeviceClose(tDirEntry *hddPlaybackFolder);
   dword  DevHdd_DeviceOpen(tDirEntry **hddPlaybackFolder, tDirEntry *DirEntry);
   int    Appl_CheckRecording(int SvcType, int SvcNum, bool Unknown);
   int    Appl_CheckRecording_Tuner(byte TunerIndex, int SvcType, int SvcNum, bool Unknown);
@@ -1834,6 +1836,8 @@
   TYPE_File  *HDD_FappendOpen(char *FileName);
   bool        HDD_FappendWrite(TYPE_File *file, char *data);
   bool        HDD_FindMountPoint(char *File, char *MountPoint);
+  bool        HDD_FindMountPointDevice(char *File, char *MountPoint, char *MountDevice);
+  int         HDD_FindSymbolicLink(char *pathName, char *returnedPath, char *fullPathName);
   bool        HDD_GetAbsolutePathByTypeFile(TYPE_File *File, char *AbsFileName);
   bool        HDD_GetFileSizeAndInode(char *FileName, __ino64_t *CInode, __off64_t *FileSize);
   dword       HDD_GetFileTimeByFileName(char *FileName);
@@ -2129,6 +2133,7 @@
   void          LogoManager_ProcessLILAdd(char *AddFileName);
   ulong64       LogoManager_CalculateChannelID(word SatLongitude, word NetworkID, word TSID, word ServiceID);
   ulong64       LogoManager_GetChannelID(int SvcType, int SvcNum);
+  bool          LogoManager_GetServiceNumByChannelID(ulong64 ChannelID, int *SvcType, int *SvcNum);
 
   //The callback parameter may point to the following prototype
   // void Callback(int CallbackType, int Param);

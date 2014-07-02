@@ -1,8 +1,6 @@
 #include                <string.h>
 #include                "../libFireBird.h"
 
-//Note: on the TMS, make sure that FileName points to .rec and not to .rec.inf
-
 tFileInUse HDD_isFileInUse(char *FileName)
 {
   TRACEENTER();
@@ -30,7 +28,8 @@ tFileInUse HDD_isFileInUse(char *FileName)
     //Compare the full path of both files
     HDD_GetAbsolutePathByTypeFile(PlayInfo.file, WorkingFileName);
     if(StringEndsWith(WorkingFileName, ".inf") || StringEndsWith(WorkingFileName, ".nav")) WorkingFileName[strlen(WorkingFileName) - 4] = '\0';
-    if(!strcmp(FileName, WorkingFileName))
+
+    if(!strcmp(AbsFileName, WorkingFileName))
     {
       if(PlayInfo.playMode == PLAYMODE_Mp3)
       {

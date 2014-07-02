@@ -9,9 +9,14 @@ bool CrashCheck_isOK(char *TAPName)
 
   if(TAPName)
   {
+    HDD_TAP_PushDir();
+    HDD_ChangeDir("/ProgramFiles/Settings");
+
     INILocation = INIOpenFile(CRASHCHECKINI, NULL);
     RebootCount = INIGetInt(TAPName, 0, 0, 100);
     INICloseFile();
+
+    HDD_TAP_PopDir();
   }
 
   TRACEEXIT();

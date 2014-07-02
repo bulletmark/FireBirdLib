@@ -946,3 +946,17 @@ The following functions accept any form a path. The INI and language INI functio
 2014-04-03: Modified: Added a @ to the TMSOSDKeyboard and rearranged the pages
 
 2014-05-04: Fixed: ConvertPathType() didn't return the trailing / when source was PF_TAPPathOnly and the destination was PF_LinuxPathOnly. This made HDD_Move() fail.
+2014-04-09: Fixed: DevHdd_DeviceClose() didn't expect a pointer to a pointer
+2014-04-15: Added: new remote type RT_7260PLUS, which should be identical to RT_2100 except for the red key.
+            Modified KeyTranslateHook() to translate RKEY_F1 to RKEY_NewF1
+            This change needs FirmwareTMS.dat >= 2014-04-15, which contains the TRF-7260+ (SysID 32501) with the new remote type
+
+2014-04-17: Modified the communication with the front panel to make it a bit more stable
+2014-04-27: Added: HDD_FindMountPointDevice(). Thanks to DeltaMikeCharly for the code
+2014-05-01: Modified: with the discovery of remote mode 6, SetRemoteMode() had to be modified because an automated index assingment wasn't possible any more
+2014-05-11: Fixed: a bug in SetRemoteMode()
+2014-06-05: Fixed: HDD_isFileInUse(), which didn't recognize a playing file
+2014-06-07: Fixed: unselectable items where not visible in the OSDMenu if they were at the top or bottom of the list and the list was longer than one page (10 items).
+            Added: HDD_FindSymbolicLink(), which detects a symbolic link inside of a path and returns the "true" path. Thanks to DeltaMikeCharly for the code
+2014-06-15: Added: LogoManager_GetServiceNumByChannelID(), which does the reverse lookup of LogoManager_GetChannelID()
+2014-06-18: Fixed: FlashServiceGetInfo() didn't check the plausibility of the ProviderIdx field and returned random junk if that field was set to ‘no info available’ (0xffff).

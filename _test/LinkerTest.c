@@ -123,6 +123,7 @@ int TAP_Main()
   DevHdd_DeviceOpen(NULL, NULL);
   DevService_Mute(FALSE);
   DrawOSDLine(0, 0, 0, 0, 0, 0);
+  DrawScrollbar(0, 0, 0, 0, 0, 0, 0);
   DST_CalcTransition(0, 0, 0, 0, 0, 0);
   DST_FindNextTransition();
   DST_GetDefaultDSTRule();
@@ -410,9 +411,6 @@ int TAP_Main()
   FMUC_LoadFontFile(NULL, NULL);
   FMUC_PutString(0, 0, 0, 0, NULL, 0, 0, NULL, 0, 0);
   FMUC_PutStringAA(0, 0, 0, 0, NULL, 0, 0, NULL, 0, 0, 0);
-  FMUC_MemoryDump(NULL, NULL);
-  FMUC_MemoryFindFree();
-  FMUC_MemoryFindPointer(NULL);
   FMUC_ReserveMemory(NULL, 0);
   FMUC_FreeMemory(NULL, NULL);
   FreeOSDRegion(0);
@@ -449,6 +447,8 @@ int TAP_Main()
   HDD_FappendOpen(NULL);
   HDD_FappendWrite(NULL, NULL);
   HDD_FindMountPoint(NULL, NULL);
+  HDD_FindMountPointDevice(NULL, NULL, NULL);
+  HDD_FindSymbolicLink(NULL, NULL, NULL);
   HDD_FindPCR(NULL, 0, 0);
   HDD_GetAbsolutePathByTypeFile(NULL, NULL);
   HDD_GetFileSizeAndInode(NULL, NULL, NULL);
@@ -589,6 +589,7 @@ int TAP_Main()
   LogoManager_GetLogoByChannelName(NULL, 0, 0, 0);
   LogoManager_GetLogoByLogoName(NULL, 0, 0, 0);
   LogoManager_GetPathToLogoByChannelID(0, 0, 0, 0);
+  LogoManager_GetServiceNumByChannelID(0, NULL, NULL);
   LogoManager_Initialize(NULL);
   LogoManager_LogoCacheLoad();
   LogoManager_LogoCacheRebuild();
@@ -736,7 +737,7 @@ int TAP_Main()
   SeparateFileNameComponents(NULL, NULL, NULL, NULL, NULL, NULL, NULL);
   SeparatePathComponents(NULL, NULL, NULL, NULL);
   SetEEPROMPin(0);
-  SetRemoteMode(0, FALSE);
+  SetRemoteMode(0, 0, FALSE);
   ShowMessageWin(NULL, NULL, NULL, 0);
   ShowMessageWindow(NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0);
   ShowPvrList(0);

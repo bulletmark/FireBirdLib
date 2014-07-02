@@ -1,6 +1,6 @@
 #include                "../libFireBird.h"
 
-bool HookFirmware(char *FirmwareFunctionName, void *RedirectTo, dword *PointerToOriginal)
+bool HookFirmware(char *FirmwareFunctionName, void *RedirectTo, void *PointerToOriginal)
 {
   TRACEENTER();
 
@@ -23,7 +23,7 @@ bool HookFirmware(char *FirmwareFunctionName, void *RedirectTo, dword *PointerTo
   got = FindGotPointer(FirmwareFunction);
   if(got)
   {
-    *PointerToOriginal = FirmwareFunction;
+    *(dword*)PointerToOriginal = FirmwareFunction;
     *got = (dword)RedirectTo;
 
     TRACEEXIT();

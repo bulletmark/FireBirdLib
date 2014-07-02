@@ -16,4 +16,19 @@ typedef struct
 extern bool             LibInitialized;
 extern int              _appl_version;
 
+extern byte             FPPatchVersion;
+extern byte             FPPatchType;
+extern byte             FPPatchAntiFreezeOption;
+extern byte             FPPatchPowerRestoreOption;
+extern bool             FPPatchInitialized;
+extern byte             FPWaitResponse;
+extern byte             FPResponse[12];
+
+void Front_TxPacket_hooked(byte *Data);
+int  PutMsgQ_hooked(dword *MsgQ, dword *Data);
+void UnhookFrontTxPacket(void);
+bool HookFrontTxPacket(void);
+bool FP_Initialize(void);
+
+
 #endif

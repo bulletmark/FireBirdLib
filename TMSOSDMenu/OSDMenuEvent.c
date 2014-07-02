@@ -309,9 +309,7 @@ bool OSDMenuEvent(word *event, dword *param1, dword *param2)
 
         case RKEY_Down:
         {
-          int ret;
-
-          ret = OSDMenuScrollDown();
+          OSDMenuScrollDown();
           OSDMenuUpdate(FALSE);
           *param1 = 0;
 
@@ -373,8 +371,6 @@ bool OSDMenuEvent(word *event, dword *param1, dword *param2)
       LastUnprocessedOSDMenuKey = *param1;
     }
 
-    TRACEEXIT();
-    return FALSE;
   }
 
   TRACEEXIT();

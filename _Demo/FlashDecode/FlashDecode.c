@@ -131,6 +131,7 @@ void DumpSystemType(void)
         case RT_5000:     PRINTLOG("  RemoteType    =  5000"); break;
         case RT_2100:     PRINTLOG("  RemoteType    =  2100"); break;
         case RT_7100PLUS: PRINTLOG("  RemoteType    =  7100+"); break;
+        case RT_7260PLUS: PRINTLOG("  RemoteType    =  7260+"); break;
       }
     }
   }

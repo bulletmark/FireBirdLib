@@ -196,6 +196,7 @@ void DumpInfo(void)
         case RT_5000:     DEBUG("  RemoteType    =  5000"); break;
         case RT_2100:     DEBUG("  RemoteType    =  2100"); break;
         case RT_7100PLUS: DEBUG("  RemoteType    =  7100+"); break;
+        case RT_7260PLUS: DEBUG("  RemoteType    =  7260+"); break;
       }
 
       DEBUG("  NrRecs        =  %d", ToppyInfo->MaxRecStreams);

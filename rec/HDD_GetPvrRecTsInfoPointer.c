@@ -5,20 +5,18 @@ byte *HDD_GetPvrRecTsInfoPointer(byte Slot)
 {
   TRACEENTER();
 
-  TYPE_RecInfo          RecInfo;
   static byte          *__pvrRecTsInfo = NULL;
   static byte          *__pvrRecTsPlayInfo = NULL;
   static int            infSize = 1412;
   byte                 *ret;
 
-  if(Slot >= HDD_NumberOfRECSlots())
+  if(Slot > HDD_NumberOfRECSlots())
   {
     TRACEEXIT();
     return NULL;
   }
 
-  TAP_Hdd_GetRecInfo(Slot, &RecInfo);
-  if(RecInfo.recType != RECTYPE_Normal)
+  if(!HDD_GetRecSlotFiles(Slot, NULL, NULL, NULL))
   {
     TRACEEXIT();
     return NULL;

@@ -26,7 +26,6 @@ bool ExtAttribSet(char *FileName, char *AttrName, byte *Data, int DataLen)
     if(f >= 0)
     {
       TAP_SPrint(FullAttrName, "user.%s", AttrName);
-
       if(fsetxattr(f, FullAttrName, Data, DataLen, XATTR_CREATE) == 0)
       {
         close(f);

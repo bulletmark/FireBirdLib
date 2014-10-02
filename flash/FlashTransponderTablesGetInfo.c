@@ -7,6 +7,13 @@ bool FlashTransponderTablesGetInfo(int SatNum, int TransponderNum, tFlashTranspo
 
   bool ret;
 
+  //TransponderTable is NULL
+  if(!TransponderTable)
+  {
+    TRACEEXIT();
+    return FALSE;
+  }
+
   //SatNum out of range
   if((SatNum < 0) || (SatNum >= FlashSatTablesGetTotal()))
   {
@@ -16,13 +23,6 @@ bool FlashTransponderTablesGetInfo(int SatNum, int TransponderNum, tFlashTranspo
 
   //TransponderNum out of range
   if((TransponderNum < 0) || (TransponderNum >= FlashTransponderTablesGetTotal(SatNum)))
-  {
-    TRACEEXIT();
-    return FALSE;
-  }
-
-  //TransponderTable is NULL
-  if(!TransponderTable)
   {
     TRACEEXIT();
     return FALSE;

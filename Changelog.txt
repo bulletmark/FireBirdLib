@@ -953,10 +953,19 @@ The following functions accept any form a path. The INI and language INI functio
 
 2014-04-17: Modified the communication with the front panel to make it a bit more stable
 2014-04-27: Added: HDD_FindMountPointDevice(). Thanks to DeltaMikeCharly for the code
-2014-05-01: Modified: with the discovery of remote mode 6, SetRemoteMode() had to be modified because an automated index assingment wasn't possible any more
+2014-05-01: Modified: with the discovery of remote mode 6, SetRemoteMode() had to be modified because an automated index assignment wasn't possible any more
 2014-05-11: Fixed: a bug in SetRemoteMode()
 2014-06-05: Fixed: HDD_isFileInUse(), which didn't recognize a playing file
 2014-06-07: Fixed: unselectable items where not visible in the OSDMenu if they were at the top or bottom of the list and the list was longer than one page (10 items).
             Added: HDD_FindSymbolicLink(), which detects a symbolic link inside of a path and returns the "true" path. Thanks to DeltaMikeCharly for the code
 2014-06-15: Added: LogoManager_GetServiceNumByChannelID(), which does the reverse lookup of LogoManager_GetChannelID()
 2014-06-18: Fixed: FlashServiceGetInfo() didn't check the plausibility of the ProviderIdx field and returned random junk if that field was set to ‘no info available’ (0xffff).
+2014-06-29: Fixed: EPGInfo_CloneToCache() doesn't copy EPG entries, that are marked for garbage collection
+2014-07-13: Fixed: HDD_FindMountPointDevice(), which occasionally reported the wrong device
+            Fixed: modified the Unicode FontManager so that all Font files are opened in read-only mode
+2014-08-22: Fixed: HDD_Delete() didn't delete the .rec/.mpg if the .inf or .nav has been passed as file name
+            Fixed: the internal function EPGInfo_CloneToCache() didn't ignore EPG events, that were already marked for deletion
+            Added: HDD_BuildExtDriveList()
+2014-08-23: Fixed: HDD_Recycle() and HDD_Unrecycle() failed if no path has been provided with FileName
+2014-09-21: Fixed: FlashSatTablesGetTotal() uses the sat name instead of the number of transponders to find the end of the sat list
+2014-09-22: Fixed: EPGInfo_CloneToCache() now checks if the EPG data belongs to a channel, which is still in the channel list. If the channel has been deleted, the EPG data will be discarded

@@ -7,14 +7,15 @@ bool HDD_Unrecycle(char *FileName)
   TRACEENTER();
 
   char                  Path[FBLIB_DIR_SIZE], Name[TS_FILE_NAME_SIZE], Ext[TS_FILE_NAME_SIZE];
-  char                  OldName[TS_FILE_NAME_SIZE], NewName[TS_FILE_NAME_SIZE];
+  char                  OldName[TS_FILE_NAME_SIZE], NewName[TS_FILE_NAME_SIZE], LinuxPath[FBLIB_DIR_SIZE];
   bool                  isRec, isDel, ret;
   int                   fNumber;
 
   ret = FALSE;
   if(HDD_Exist(FileName))
   {
-    SeparateFileNameComponents(FileName, Path, Name, Ext, &fNumber, &isRec, &isDel);
+    ConvertPathType(FileName, LinuxPath, PF_FullLinuxPath);
+    SeparateFileNameComponents(LinuxPath, Path, Name, Ext, &fNumber, &isRec, &isDel);
 
     if(isDel)
     {

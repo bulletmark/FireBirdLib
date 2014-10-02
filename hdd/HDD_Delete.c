@@ -43,10 +43,10 @@ void HDD_Delete(char *FileName)
       case FIU_RecSlot4: TAP_Hdd_StopRecord(3); break;
     }
 
-    if(StringEndsWith(AbsFileName, ".rec.inf")) Name[strlen(AbsFileName) - 4] = '\0';
-    if(StringEndsWith(AbsFileName, ".rec.nav")) Name[strlen(AbsFileName) - 4] = '\0';
-    if(StringEndsWith(AbsFileName, ".mpg.inf")) Name[strlen(AbsFileName) - 4] = '\0';
-    if(StringEndsWith(AbsFileName, ".mpg.nav")) Name[strlen(AbsFileName) - 4] = '\0';
+    if(StringEndsWith(AbsFileName, ".rec.inf")) AbsFileName[strlen(AbsFileName) - 4] = '\0';
+    if(StringEndsWith(AbsFileName, ".rec.nav")) AbsFileName[strlen(AbsFileName) - 4] = '\0';
+    if(StringEndsWith(AbsFileName, ".mpg.inf")) AbsFileName[strlen(AbsFileName) - 4] = '\0';
+    if(StringEndsWith(AbsFileName, ".mpg.nav")) AbsFileName[strlen(AbsFileName) - 4] = '\0';
 
     remove(AbsFileName);
 

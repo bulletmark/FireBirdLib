@@ -1,3 +1,4 @@
+#include <unistd.h>
 #include "FBLib_FontManager.h"
 
 tGlyphCacheUC *FMUC_GetGlyphData(tFontDataUC *FontData, byte *UTF8Character, byte *BytesPerChar)
@@ -58,8 +59,8 @@ tGlyphCacheUC *FMUC_GetGlyphData(tFontDataUC *FontData, byte *UTF8Character, byt
         return NULL;
       }
 
-      TAP_Hdd_Fseek(FontData->FileHandle, FontDef->FileOffset, SEEK_SET);
-      TAP_Hdd_Fread(GlyphCache->GlyphData, FontDef->Width * FontDef->Height, 1, FontData->FileHandle);
+      lseek(FontData->FileHandle, FontDef->FileOffset, SEEK_SET);
+      read(FontData->FileHandle, GlyphCache->GlyphData, FontDef->Width * FontDef->Height);
 
       FontData->GlyphCacheEntries++;
 

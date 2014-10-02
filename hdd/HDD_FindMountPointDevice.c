@@ -28,10 +28,6 @@ bool HDD_FindMountPointDevice(char *File, char *MountPoint, char *MountDevice)
           if(strlen(ent->mnt_dir) > strlen(Root))
           {
             strcpy(Root, ent->mnt_dir);
-          }
-
-          if(strlen(ent->mnt_fsname) > strlen(Dev))
-          {
             strcpy(Dev, ent->mnt_fsname);
           }
         }

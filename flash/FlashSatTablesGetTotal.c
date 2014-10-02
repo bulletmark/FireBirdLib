@@ -26,7 +26,7 @@ int FlashSatTablesGetTotal(void)
       case ST_TMSS:
       {
         i = 0;
-        while(SatInfo_TMSS->NrOfTransponders > 0)
+        while(SatInfo_TMSS->SatName[0])
         {
           i++;
           SatInfo_TMSS++;

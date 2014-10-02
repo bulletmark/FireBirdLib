@@ -7,7 +7,7 @@ bool HDD_Recycle(char *FileName)
   TRACEENTER();
 
   char                  Path[FBLIB_DIR_SIZE], Name[TS_FILE_NAME_SIZE], Ext[TS_FILE_NAME_SIZE];
-  char                  OldName[TS_FILE_NAME_SIZE], NewName[TS_FILE_NAME_SIZE];
+  char                  OldName[TS_FILE_NAME_SIZE], NewName[TS_FILE_NAME_SIZE], LinuxPath[FBLIB_DIR_SIZE];
   bool                  isRec, isDel, ret;
   int                   fNumber;
   tFileInUse            FileInUse;
@@ -35,7 +35,8 @@ bool HDD_Recycle(char *FileName)
       case FIU_RecSlot4: TAP_Hdd_StopRecord(3); break;
     }
 
-    SeparateFileNameComponents(FileName, Path, Name, Ext, &fNumber, &isRec, &isDel);
+    ConvertPathType(FileName, LinuxPath, PF_FullLinuxPath);
+    SeparateFileNameComponents(LinuxPath, Path, Name, Ext, &fNumber, &isRec, &isDel);
 
     if(!isDel)
     {
@@ -46,6 +47,7 @@ bool HDD_Recycle(char *FileName)
 
       TAP_SPrint(NewName, "%s.del", OldName);
       MakeUniqueFileName(NewName);
+
       if(rename(OldName, NewName) == 0)
       {
 

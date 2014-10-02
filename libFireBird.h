@@ -3,7 +3,7 @@
 
   //#define STACKTRACE
 
-  #define __FBLIB_RELEASEDATE__ "2014-06-18"
+  #define __FBLIB_RELEASEDATE__ "2014-09-22"
 
   #define __FBLIB_VERSION__ __FBLIB_RELEASEDATE__
 
@@ -1758,7 +1758,7 @@
 
   typedef struct
   {
-    TYPE_File          *FileHandle;
+    int                 FileHandle;
     dword               FontDefEntries;
     tFontDefUC         *FontDef;
     dword               GlyphCacheEntries;

@@ -27,7 +27,6 @@ void EPGInfo_CloneToCache(dword *TreePointer, byte StructOffset, tEPGFilter *EPG
     if(ListStart == (tTreeEntry*)ListStart->Next)
     {
       TRACEEXIT();
-
       return;
     }
 
@@ -37,70 +36,76 @@ void EPGInfo_CloneToCache(dword *TreePointer, byte StructOffset, tEPGFilter *EPG
     {
       EvtInfo = (TYPE_EvtInfo*)(Entry - EvtInfoOffset);
 
-      //Make the decisions, to add a pool record, here
-      EventStartTime = UTC2LocalTime(EvtInfo->StartTime, &Offset);
-      EventEndTime = UTC2LocalTime(EvtInfo->EndTime, NULL);
-      if(EPGFilter->TimeFilter)
-        isWithinTimeFrame = ((EPGFilter->StartTime == 0) || (EventStartTime >= EPGFilter->StartTime)) && ((EPGFilter->EndTime == 0) || (EventEndTime <= EPGFilter->EndTime));
-      else
-        isWithinTimeFrame = TRUE;
-
-
-      if(EPGFilter->ChannelFilter)
-        isValidChannel = (EvtInfo->SatIndex == EPGFilter->SatIndex) && (EvtInfo->NetworkID == EPGFilter->NetworkID) && (EvtInfo->TSID == EPGFilter->TSID) && (EvtInfo->ServiceID == EPGFilter->ServiceID);
-      else
-        isValidChannel = TRUE;
-
-
-      if(EPGFilter->DurationFilter)
+      if(FlashServiceFindNum(EvtInfo->SatIndex, EvtInfo->NetworkID, EvtInfo->TSID, EvtInfo->ServiceID, NULL, NULL))
       {
-        isWithinDuration = ((EPGFilter->MinDuration == 0) || (EvtInfo->durationHour * 60 + EvtInfo->durationMin >= EPGFilter->MinDuration)) &&
-                           ((EPGFilter->MaxDuration == 0) || (EvtInfo->durationHour * 60 + EvtInfo->durationMin <= EPGFilter->MaxDuration));
-      }
-      else
-        isWithinDuration = TRUE;
-
-      if(EPGFilter->GenreFilter)
-      {
-        byte *pGenre;
-        int   i;
-
-        //Loop through the genre array and check if there is a match
-        isGenreOK = FALSE;
-        pGenre = &EPGFilter->GenreArray[0];
-        for(i = 0; i < EPGFilter->GenreArraySize; i++)
+        if((dword)EvtInfo->TreeFull.Next != 0 && (dword)EvtInfo->TreeFull.Prev != 0)  //Only take events that are not scheduled for garbage collection
         {
-          if(EvtInfo->ContentIdentifier == *pGenre)
+          //Make the decisions, to add a pool record, here
+          EventStartTime = UTC2LocalTime(EvtInfo->StartTime, &Offset);
+          EventEndTime = UTC2LocalTime(EvtInfo->EndTime, NULL);
+          if(EPGFilter->TimeFilter)
+            isWithinTimeFrame = ((EPGFilter->StartTime == 0) || (EventStartTime >= EPGFilter->StartTime)) && ((EPGFilter->EndTime == 0) || (EventEndTime <= EPGFilter->EndTime));
+          else
+            isWithinTimeFrame = TRUE;
+
+
+          if(EPGFilter->ChannelFilter)
+            isValidChannel = (EvtInfo->SatIndex == EPGFilter->SatIndex) && (EvtInfo->NetworkID == EPGFilter->NetworkID) && (EvtInfo->TSID == EPGFilter->TSID) && (EvtInfo->ServiceID == EPGFilter->ServiceID);
+          else
+            isValidChannel = TRUE;
+
+
+          if(EPGFilter->DurationFilter)
           {
+            isWithinDuration = ((EPGFilter->MinDuration == 0) || (EvtInfo->durationHour * 60 + EvtInfo->durationMin >= EPGFilter->MinDuration)) &&
+                ((EPGFilter->MaxDuration == 0) || (EvtInfo->durationHour * 60 + EvtInfo->durationMin <= EPGFilter->MaxDuration));
+          }
+          else
+            isWithinDuration = TRUE;
+
+          if(EPGFilter->GenreFilter)
+          {
+            byte *pGenre;
+            int   i;
+
+            //Loop through the genre array and check if there is a match
+            isGenreOK = FALSE;
+            pGenre = &EPGFilter->GenreArray[0];
+            for(i = 0; i < EPGFilter->GenreArraySize; i++)
+            {
+              if(EvtInfo->ContentIdentifier == *pGenre)
+              {
+                isGenreOK = TRUE;
+                break;
+              }
+              pGenre++;
+            }
+          }
+          else
             isGenreOK = TRUE;
-            break;
-          }
-          pGenre++;
-        }
-      }
-      else
-        isGenreOK = TRUE;
 
-      //Call the Callback only if all other tests passed
-      if(isWithinTimeFrame && isValidChannel && isWithinDuration && isGenreOK)
-      {
-        EPGInfo_CopyData(EvtInfo, CurrentCacheRecord, EventStartTime, EventEndTime, Offset);
-
-        if(EPGFilter->UseCallback)
-        {
-          bool (*EPGFilterCallback)(TYPE_EPGInfo*) = EPGFilter->Callback;
-
-          if(EPGFilterCallback(CurrentCacheRecord))
+          //Call the Callback only if all other tests passed
+          if(isWithinTimeFrame && isValidChannel && isWithinDuration && isGenreOK)
           {
-            CurrentCacheRecord++;
-            EPGInfoNrEntries++;
+            EPGInfo_CopyData(EvtInfo, CurrentCacheRecord, EventStartTime, EventEndTime, Offset);
+
+            if(EPGFilter->UseCallback)
+            {
+              bool (*EPGFilterCallback)(TYPE_EPGInfo*) = EPGFilter->Callback;
+
+              if(EPGFilterCallback(CurrentCacheRecord))
+              {
+                CurrentCacheRecord++;
+                EPGInfoNrEntries++;
+              }
+            }
+            else
+            {
+              CurrentCacheRecord++;
+              EPGInfoNrEntries++;
+            }
           }
-        }
-        else
-        {
-          CurrentCacheRecord++;
-          EPGInfoNrEntries++;
-        }
+        }//END test for garbage collection value
       }
 
       Entry = (tTreeEntry*)Entry->Next;

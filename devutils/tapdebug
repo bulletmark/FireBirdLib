@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 '''
 Program to connect to FTP TAP debug port on specfied Topfield TMS PVR
 host and print all diagnostics.

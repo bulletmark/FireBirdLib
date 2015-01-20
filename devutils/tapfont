@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 '''
 Topfield FireBird library (FireBirdLib) font file compressor/converter.
 Converts an uncompressed C source font file into a compressed C source

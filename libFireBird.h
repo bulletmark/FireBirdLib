@@ -3,7 +3,7 @@
 
   //#define STACKTRACE
 
-  #define __FBLIB_RELEASEDATE__ "2014-09-22"
+  #define __FBLIB_RELEASEDATE__ "2014-11-09"
 
   #define __FBLIB_VERSION__ __FBLIB_RELEASEDATE__
 
@@ -280,11 +280,11 @@
 
   typedef enum
   {
-    PLT_Unchanged,
-    PLT_DataFiles,
-    PLT_ProgramFiles,
-    PLT_MP3Files,
-    PLT_MediaFiles,
+    PLT_Unchanged     = 0,
+    PLT_DataFiles     = 1,
+    PLT_ProgramFiles  = 2,
+    PLT_MP3Files      = 3,
+    PLT_MediaFiles    = 4,
   } tPvrListType;
 
   tAudioTrk *AudioTrackInfo(void);

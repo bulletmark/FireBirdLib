@@ -969,3 +969,4 @@ The following functions accept any form a path. The INI and language INI functio
 2014-08-23: Fixed: HDD_Recycle() and HDD_Unrecycle() failed if no path has been provided with FileName
 2014-09-21: Fixed: FlashSatTablesGetTotal() uses the sat name instead of the number of transponders to find the end of the sat list
 2014-09-22: Fixed: EPGInfo_CloneToCache() now checks if the EPG data belongs to a channel, which is still in the channel list. If the channel has been deleted, the EPG data will be discarded
+2014-11-09: Fixed: Changed the way how ShowPvrList() calls the firmware. The old version might result in a reboot if the function is called and the file list has never been displayed since the last boot

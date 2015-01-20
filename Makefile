@@ -7,12 +7,9 @@ include ${BASE}/include/tool.mk
 
 all: lib devutils
 
-docs: HTMLDOCS
+docs: HTMLDOCS doc
 
-.PHONY: doc
-
-doc:
-	markdown README.md >README.html
+.PHONY: doc devutils HTMLDOCS
 
 lib:
 	@for i in $(DIRS); \
@@ -28,19 +25,18 @@ lib:
 	done
 	@$(RANLIB) $(PROJECT).a
 
-.PHONY:	devutils
-
 devutils:
 	cd $@; \
 	$(MAKE) all;
+
+HTMLDOCS:
+	rm -rf $@
+	doxygen
+
+doc:
+	markdown README.md >README.html
 
 clean:
 	@for i in $(DIRS); do cd $$i; make clean; cd ..; done
 	cd devutils; make clean; cd ..;
 	rm -rf $(PROJECT).a HTMLDOCS README.html
-
-.PHONY: HTMLDOCS
-
-HTMLDOCS:
-	rm -rf $@
-	doxygen

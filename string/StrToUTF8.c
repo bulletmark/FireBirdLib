@@ -256,7 +256,7 @@ bool StrToUTF8(byte *SourceString, byte *DestString, byte DefaultISO8859CharSet)
           int           Index;
 
           memcpy(Dia, SourceString, 2);
-          Dia[3] = '\0';
+          Dia[2] = '\0';
           p = strstr(ISO6937, Dia);
           if(p)
           {

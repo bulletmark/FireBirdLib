@@ -1,5 +1,9 @@
+#include                <stdlib.h>
 #include                <string.h>
 #include                "../libFireBird.h"
+
+#undef malloc
+#undef free
 
 //This function returns 0x0000 on success
 //                      0xe00* for warnings
@@ -88,7 +92,7 @@ word HDD_SetExtRecording(bool ExtDisk)
     ExtDiskPart = __extPartitionInfo[__selectedPartition[1]].MountPath;
 
     //Build the DirEntry struct
-    DirEntry = TAP_MemAlloc(sizeof(tDirEntry));
+    DirEntry = malloc(sizeof(tDirEntry));
     if(!DirEntry)
     {
       TRACEEXIT();
@@ -96,7 +100,7 @@ word HDD_SetExtRecording(bool ExtDisk)
     }
 
     DirEntry->Magic = 0xbacaed31;
-    DirEntry->Path = TAP_MemAlloc(strlen(ExtDiskPart) + 1);
+    DirEntry->Path = malloc(strlen(ExtDiskPart) + 1);
     if(!DirEntry->Path)
     {
       TRACEEXIT();

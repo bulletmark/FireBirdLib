@@ -1,17 +1,18 @@
+#include <string.h>
 #include "FBLib_string.h"
 
-char *ValidFileName(char *strName, eRemoveChars ControlCharacters)
+char *ValidFileName(char *strName, eRemoveChars ControlCharacters, char *Result, int ResultSize)
 {
   TRACEENTER();
 
   char                  *s, *d, *l;
   byte                  BytesPerCharacter;
-  static char           validName[FBLIB_DIR_SIZE];
 
-  d = validName;
+  d = Result;
 
-  if(strName && *strName)
+  if(strName && *strName && Result && (ResultSize > (int)strlen(strName)))
   {
+    strcpy(Result, strName);
     s = strName;
     l = d + MAX_FILE_NAME_SIZE - 1;
 
@@ -37,8 +38,8 @@ char *ValidFileName(char *strName, eRemoveChars ControlCharacters)
       s++;
     }
   }
-  *d = '\0';
+  if(ResultSize) *d = '\0';
 
   TRACEEXIT();
-  return validName;
+  return Result;
 }

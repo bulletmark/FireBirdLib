@@ -12,6 +12,7 @@ dword HDD_TAP_Callback(dword TAPID, void *ProcedureAddress, dword param1, dword 
 
   if(TAPID)
   {
+    //The curTapTask variable is not thread safe!
     curTapTask = (dword*)FIS_vCurTapTask();
     if(!curTapTask)
     {

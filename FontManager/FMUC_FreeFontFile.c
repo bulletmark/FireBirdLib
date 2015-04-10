@@ -1,3 +1,4 @@
+#include                <unistd.h>
 #include                "FBLib_FontManager.h"
 
 void FMUC_FreeFontFile(tFontDataUC *FontData)

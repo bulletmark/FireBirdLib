@@ -1,45 +1,52 @@
+#include                <stdlib.h>
+#include                <stdio.h>
+#include                <fcntl.h>
+#include                <sys/stat.h>
 #include                "FBLib_main.h"
+
+#undef malloc
+#undef free
 
 bool LoadFirmwareDat(tFWDATHeader **FWDatHeader, tToppyInfo **ToppyInfo, tFWInfo **FWInfo)
 {
   TRACEENTER();
 
-  static byte           *FWDATBin = NULL;
-  TYPE_File             *fp;
+  static byte          *FWDATBin = NULL;
+  char                  AbsPath[FBLIB_DIR_SIZE];
+  FILE                 *fp;
   dword                 blk;
-  tFWDATHeader          *FWDAT;
-
-  HDD_TAP_PushDir();
+  tFWDATHeader         *FWDAT;
+  struct stat           statbuf;
 
   if(!FWDATBin)
   {
-    if(INILocateFile(FIRMWAREDAT, NULL) == INILOCATION_NotFound)
+    TAP_SPrint(AbsPath, "%s/ProgramFiles/Settings/%s", TAPFSROOT, FIRMWAREDAT);
+    if(lstat(AbsPath, &statbuf))
     {
-      HDD_TAP_PopDir();
+      TAP_SPrint(AbsPath, "%s/ProgramFiles/%s", TAPFSROOT, FIRMWAREDAT);
+      if(lstat(AbsPath, &statbuf))
+      {
+        TRACEEXIT();
+        return FALSE;
+      }
+    }
+
+    if((fp = fopen(AbsPath, "r")) == NULL)
+    {
+      TRACEEXIT();
+      return FALSE;
+    }
+
+    if((FWDATBin = malloc(statbuf.st_size)) == NULL)
+    {
+      fclose(fp);
 
       TRACEEXIT();
       return FALSE;
     }
 
-    if(!(fp = TAP_Hdd_Fopen(FIRMWAREDAT)))
-    {
-      HDD_TAP_PopDir();
-
-      TRACEEXIT();
-      return FALSE;
-    }
-
-    if(!(FWDATBin = TAP_MemAlloc_Chk("LoadFirmwareDat", TAP_Hdd_Flen(fp))))
-    {
-      TAP_Hdd_Fclose(fp);
-      HDD_TAP_PopDir();
-
-      TRACEEXIT();
-      return FALSE;
-    }
-
-    blk = TAP_Hdd_Fread(FWDATBin, TAP_Hdd_Flen(fp), 1, fp);
-    TAP_Hdd_Fclose(fp);
+    blk = fread(FWDATBin, statbuf.st_size, 1, fp);
+    fclose(fp);
   }
   else blk = 1;   // already loaded
 
@@ -51,9 +58,8 @@ bool LoadFirmwareDat(tFWDATHeader **FWDatHeader, tToppyInfo **ToppyInfo, tFWInfo
      FWDAT->ToppyInfoLayoutVersion != 0 ||
      FWDAT->FWInfoLayoutVersion != 0)
   {
-    TAP_MemFree(FWDATBin);
+    free(FWDATBin);
     FWDATBin = NULL;
-    HDD_TAP_PopDir();
 
     TRACEEXIT();
     return FALSE;
@@ -62,8 +68,6 @@ bool LoadFirmwareDat(tFWDATHeader **FWDatHeader, tToppyInfo **ToppyInfo, tFWInfo
   if(FWDatHeader) *FWDatHeader = FWDAT;
   if(ToppyInfo)   *ToppyInfo   = (tToppyInfo *) (FWDAT + 1);
   if(FWInfo)      *FWInfo      = (tFWInfo *) ((tToppyInfo *) (FWDAT + 1) + FWDAT->NrOfToppyInfoEntries);
-
-  (void) HDD_TAP_PopDir();
 
   TRACEEXIT();
   return TRUE;

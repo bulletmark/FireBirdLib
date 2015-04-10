@@ -1,5 +1,9 @@
+#include                <stdlib.h>
 #include                <string.h>
 #include                "FBLib_TMSOSDMenu.h"
+
+#undef malloc
+#undef free
 
 void OSDMemoInitialize(bool ScrollLoop, char *TitleLeft, char *TitleRight, char *Text)
 {
@@ -22,7 +26,7 @@ void OSDMemoInitialize(bool ScrollLoop, char *TitleLeft, char *TitleRight, char 
     return;
   }
 
-  Buffer = TAP_MemAlloc(strlen(Text) + 2);
+  Buffer = malloc(strlen(Text) + 2);
   memset(Buffer, 0, strlen(Text) + 2);
   strcpy(Buffer, Text);
   StrReplace(Buffer, "\x8d", "\r");
@@ -74,7 +78,7 @@ void OSDMemoInitialize(bool ScrollLoop, char *TitleLeft, char *TitleRight, char 
     }
   }
 
-  TAP_MemFree(Buffer);
+  free(Buffer);
 
   TRACEEXIT();
 }

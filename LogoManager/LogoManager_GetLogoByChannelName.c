@@ -7,7 +7,9 @@ TYPE_GrData *LogoManager_GetLogoByChannelName(char *ChannelName, tLogoStyle Logo
 {
   TRACEENTER();
 
-  TYPE_GrData *ret = LogoManager_GetLogoByLogoName(LogoManager_ChannelNameToLogoName(ChannelName), LogoStyle, LogoSize, LogoAR);
+  char                  LogoName[FBLIB_DIR_SIZE];
+
+  TYPE_GrData *ret = LogoManager_GetLogoByLogoName(LogoManager_ChannelNameToLogoName(ChannelName, LogoName, sizeof(LogoName)), LogoStyle, LogoSize, LogoAR);
 
   TRACEEXIT();
   return ret;

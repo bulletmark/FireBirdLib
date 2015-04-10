@@ -1,5 +1,9 @@
 #include                <string.h>
+#include                <stdlib.h>
 #include                "../libFireBird.h"
+
+#undef malloc
+#undef free
 
 void StrToISOAlloc(byte *SourceString, byte **DestString)
 {
@@ -13,7 +17,7 @@ void StrToISOAlloc(byte *SourceString, byte **DestString)
     return;
   }
 
-  *DestString = TAP_MemAlloc(strlenUC(SourceString) + 1);
+  *DestString = malloc(strlenUC(SourceString) + 1);
   StrToISO(SourceString, *DestString);
 
   TRACEEXIT();

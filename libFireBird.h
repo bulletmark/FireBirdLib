@@ -3,7 +3,7 @@
 
   //#define STACKTRACE
 
-  #define __FBLIB_RELEASEDATE__ "2014-11-09"
+  #define __FBLIB_RELEASEDATE__ "2015-04-05"
 
   #define __FBLIB_VERSION__ __FBLIB_RELEASEDATE__
 
@@ -1650,7 +1650,7 @@
   } tFavorites;
 
   int   FlashFavoritesGetTotal(void);
-  char *FlashFavoritesGetSelectedGroupName(void);
+  char *FlashFavoritesGetSelectedGroupName(char *FavName, byte FavNameSize);
   bool  FlashFavoritesGetInfo(int FavNum, tFavorites *Favorites);
   bool  FlashFavoritesGetInfoCurrent(tFavorites *Favorites);
   bool  FlashFavoritesSetInfo(int FavNum, tFavorites *Favorites);
@@ -1913,7 +1913,7 @@
 
 
   /*****************************************************************************************************************************/
-  /* InstuctionSequences                                                                                                       */
+  /* InstructionSequences                                                                                                      */
   /*****************************************************************************************************************************/
 
   dword TryResolve(char *Function);
@@ -2015,6 +2015,7 @@
   inline dword FIS_fwPowerOff(void);
   inline dword FIS_fwPutDevEvt(void);
   inline dword FIS_fwSetIrCode(void);
+  inline dword FIS_fwTimeToLinux(void);
 
   inline dword FIS_vApplState(void);
   inline dword FIS_vAudioTrack(void);
@@ -2117,7 +2118,7 @@
 
   void          LogoManager_Initialize(void *CallbackRoutine);
   void          LogoManager_MoveExternalUpdates(void);
-  char         *LogoManager_ChannelNameToLogoName(char *ChannelName);
+  char         *LogoManager_ChannelNameToLogoName(char *ChannelName, char *LogoName, int LogoNameSize);
   void          LogoManager_Cleanup(void);
   void          LogoManager_CleanupMemory(void);
   bool          LogoManager_LogoCacheLoad(void);
@@ -2126,8 +2127,8 @@
   TYPE_GrData  *LogoManager_GetLogoByLogoName(char *LogoName, tLogoStyle LogoStyle, tLogoSize LogoSize, tLogoAspect LogoAR);
   TYPE_GrData  *LogoManager_GetLogoByChannelName(char *ChannelName, tLogoStyle LogoStyle, tLogoSize LogoSize, tLogoAspect LogoAR);
   TYPE_GrData  *LogoManager_GetLogoByChannel(int SvcType, int SvcNum, tLogoStyle LogoStyle, tLogoSize LogoSize, tLogoAspect LogoAR);
-  char         *LogoManager_GetDirectory(tLogoStyle LogoStyle, tLogoAspect LogoAR);
-  char         *LogoManager_GetPathToLogoByChannelID(ulong64 ChannelID, tLogoStyle LogoStyle, tLogoSize LogoSize, tLogoAspect LogoAR);
+  char         *LogoManager_GetDirectory(tLogoStyle LogoStyle, tLogoAspect LogoAR, char *LogoPath);
+  char         *LogoManager_GetPathToLogoByChannelID(ulong64 ChannelID, tLogoStyle LogoStyle, tLogoSize LogoSize, tLogoAspect LogoAR, char *LogoPath);
   bool          LogoManager_LogosAvailable(tLogoStyle LogoStyle);
   int           LogoManager_UpdateLIL(void);
   void          LogoManager_ProcessLILAdd(char *AddFileName);
@@ -2260,11 +2261,11 @@
   byte  *HDD_GetPvrRecTsPlayInfoPointer(byte Slot);
   bool   HDD_GetRecSlotFiles(byte Slot, TYPE_File **RecFile, TYPE_File **InfFile, TYPE_File **NavFile);
   bool   HDD_isAnyRecording(void);
-  bool   HDD_isCryptedStream(char *Buffer, dword BufferSize);
+  bool   HDD_isCryptedStream(byte *Buffer, dword BufferSize);
   bool   HDD_isExtRecording(void);
   bool   HDD_isRecFileName(char *FileName);
   bool   HDD_isRecording(byte RecSlot);
-  char  *HDD_MakeNewRecName(char *fname, word sequence);
+  char  *HDD_MakeNewRecName(char *fname, word sequence, char *NewRecname, int NewRecNameSize);
   dword  HDD_NumberOfRECSlots(void);
 
   bool   HDD_RecSlotDecode(byte Slot, tFlashTimer *RecSlot);
@@ -2309,6 +2310,7 @@
     NonPrintableChars    = 8
   } eRemoveChars;
 
+  char       *ansicstr(char *string, int len, int flags, int *sawc, int *rlen);
   void        DeleteAt(char *SourceString, int Pos, int Len);
   void        ExtractLine(char *Text, char *Line);
   size_t      GetLine(char *data, bool strip);
@@ -2337,7 +2339,7 @@
   void        UpperCase(char *string);
   dword       UTF8ToUTF32(byte *UTF8Character, byte *BytesPerChar);
   void        UTF32ToUTF8(dword UTF32Character, byte *UTF8Character, byte *BytesPerChar);
-  char       *ValidFileName(char *strName, eRemoveChars ControlCharacters);
+  char       *ValidFileName(char *strName, eRemoveChars ControlCharacters, char *Result, int ResultSize);
 
 
   /*****************************************************************************************************************************/
@@ -2522,9 +2524,10 @@
   bool   isMJD(dword MJD);
   dword  LocalTime2UTC(dword LocalTime, short *Offset); //Uses DST_SetDSTRule()
   dword  Now(byte *Sec);
+  dword  PvrTimeToLinux(dword PVRTime);
   dword  TF2UnixTime(dword TFTimeStamp);
   long   TimeDiff(dword FromTime, dword ToTime);
-  char  *TimeFormat(dword DateTime, byte Sec, eTimeStampFormat TimeStampFormat);
+  char  *TimeFormat(dword DateTime, byte Sec, eTimeStampFormat TimeStampFormat, char *Result);
   bool   TimerPaddingAPICheck(void);
   bool   TimerPaddingGet(short *PrePaddingMin, short *PostPaddingMin);
   bool   TimerPaddingSet(short *PrePaddingMin, short *PostPaddingMin);

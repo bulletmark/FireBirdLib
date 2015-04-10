@@ -1,4 +1,8 @@
+#include                <stdlib.h>
 #include                "FBLib_TMSOSDKeyboard.h"
+
+#undef malloc
+#undef free
 
 void OSDMenuKeyboard_Finish(void)
 {
@@ -6,9 +10,9 @@ void OSDMenuKeyboard_Finish(void)
 
   if(OSDMenuKeyboard_rgn)
   {
-    TAP_MemFree(OSDMenuKeyboard_StringVar);
+    free(OSDMenuKeyboard_StringVar);
     OSDMenuKeyboard_StringVar = NULL;
-    if(OSDMenuKeyboard_Title) TAP_MemFree(OSDMenuKeyboard_Title);
+    free(OSDMenuKeyboard_Title);
     OSDMenuKeyboard_Title = NULL;
     OSDMenuKeyboard_GUIInitialized = FALSE;
     TAP_Osd_Delete(OSDMenuKeyboard_rgn);

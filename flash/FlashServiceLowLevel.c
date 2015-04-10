@@ -66,7 +66,7 @@ bool FlashServiceDecode_ST_TMSS(TYPE_Service_TMSS *Data, tFlashService *Service)
   memcpy(Service->unknown2, Data->unknown2, 6);
 
   Text = (char*)(FIS_vFlashBlockServiceName() + Data->NameOffset);
-  strncpy(Service->ServiceName, Text, MAX_SvcName - 1);
+  strncpy(Service->ServiceName, Text, MAX_SvcName);
 
   if(Data->ProviderIdx < 256)
   {

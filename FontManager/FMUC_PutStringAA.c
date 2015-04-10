@@ -1,5 +1,9 @@
+#include                <stdlib.h>
 #include                <string.h>
 #include                "FBLib_FontManager.h"
+
+#undef malloc
+#undef free
 
 void FMUC_PutStringAA(word rgn, dword x, dword y, dword maxX, char *str, dword fcolor, dword bcolor, tFontDataUC *FontData, byte bDot, byte align, float AntiAliasFactor)
 {
@@ -39,7 +43,7 @@ void FMUC_PutStringAA(word rgn, dword x, dword y, dword maxX, char *str, dword f
   GetStringEncoding(str, &hasAnsiChars, &hasUTFChars);
   if(hasAnsiChars && !hasUTFChars)
   {
-    newstr = TAP_MemAlloc((strlen(str) << 2) + 20);
+    newstr = malloc((strlen(str) << 2) + 20);
     if(newstr == NULL)
     {
       TRACEEXIT();
@@ -51,7 +55,7 @@ void FMUC_PutStringAA(word rgn, dword x, dword y, dword maxX, char *str, dword f
   else
   {
     newstrlen = strlen(str) + 20;
-    newstr = TAP_MemAlloc(newstrlen);
+    newstr = malloc(newstrlen);
     if(newstr == NULL)
     {
       TRACEEXIT();
@@ -152,7 +156,7 @@ void FMUC_PutStringAA(word rgn, dword x, dword y, dword maxX, char *str, dword f
 
   if(XEnd > maxX)
   {
-    TAP_MemFree(newstr);
+    free(newstr);
 
     TRACEEXIT();
     return;
@@ -276,7 +280,7 @@ void FMUC_PutStringAA(word rgn, dword x, dword y, dword maxX, char *str, dword f
     TAP_MemFree(PixelData);
   }
 
-  TAP_MemFree(newstr);
+  free(newstr);
 
   TRACEEXIT();
 }

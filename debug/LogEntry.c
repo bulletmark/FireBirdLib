@@ -1,19 +1,26 @@
-#include  <fcntl.h>
-#include  <unistd.h>
-#include  <stdio.h>
-#include  <string.h>
-#include  "../libFireBird.h"
+#include                <fcntl.h>
+#include                <stdlib.h>
+#include                <unistd.h>
+#include                <stdio.h>
+#include                <string.h>
+#include                <sys/types.h>
+#include                <utime.h>
+#include                "../libFireBird.h"
+
+#undef malloc
+#undef free
 
 void LogEntry(char *FileName, char *ProgramName, bool Console, eTimeStampFormat TimeStampFormat, char *Text)
 {
   TRACEENTER();
 
   int                   f;
-  char                 *TS;
+  char                  TimeResult[40];
   char                  CRLF[] = {'\r', '\n'};
   byte                  Sec;
   byte                 *ISOText;
   char                  AbsFileName[FBLIB_DIR_SIZE];
+  struct utimbuf        times;
 
   if(!Text)
   {
@@ -21,8 +28,8 @@ void LogEntry(char *FileName, char *ProgramName, bool Console, eTimeStampFormat 
     return;
   }
 
-  TS = TimeFormat(Now(&Sec), Sec, TimeStampFormat);
-  if(TS[0]) strcat(TS, " ");
+  TimeFormat(Now(&Sec), Sec, TimeStampFormat, TimeResult);
+  if(TimeResult[0]) strcat(TimeResult, " ");
 
   if(FileName && FileName[0])
   {
@@ -30,16 +37,21 @@ void LogEntry(char *FileName, char *ProgramName, bool Console, eTimeStampFormat 
     f = open(AbsFileName, O_WRONLY | O_CREAT | O_APPEND);
     if(f >= 0)
     {
-      write(f, TS, strlen(TS));
+      write(f, TimeResult, strlen(TimeResult));
       if(Text && Text[0]) write(f, Text, strlen(Text));
       write(f, CRLF, 2);
       close(f);
+
+      //As the log would receive the Linux time stamp (01.01.2000), adjust to the PVR's time
+      times.actime = PvrTimeToLinux(Now(NULL));
+      times.modtime = times.actime;
+      utime(AbsFileName, &times);
     }
   }
 
   if(Console)
   {
-    if(TimeStampFormat != TIMESTAMP_NONE) TAP_PrintNet(TS);
+    if(TimeStampFormat != TIMESTAMP_NONE) TAP_PrintNet(TimeResult);
     if(ProgramName && ProgramName[0]) TAP_PrintNet("%s: ", ProgramName);
 
     //Max length is 512. If above, a buffer overflow may occur
@@ -71,7 +83,7 @@ void LogEntry(char *FileName, char *ProgramName, bool Console, eTimeStampFormat 
       }
     }
     TAP_PrintNet("\n");
-    TAP_MemFree(ISOText);
+    free(ISOText);
   }
 
   TRACEEXIT();

@@ -12,7 +12,7 @@
 // 8 - number of compressed blocks
 
 //Every block has the following header:
-// 0 - compressed size includeing header (word)
+// 0 - compressed size including header (word)
 // 2 - CRC-16 (word)
 // 4 - block type
 // 6 - uncompressed size (word)

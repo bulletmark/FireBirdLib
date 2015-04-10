@@ -11,6 +11,7 @@ bool HDD_FindMountPointDevice(char *File, char *MountPoint, char *MountDevice)
   struct mntent        *ent;
   FILE                 *aFile;
   char                  AbsFile[FBLIB_DIR_SIZE], Root[FBLIB_DIR_SIZE], Dev[FBLIB_DIR_SIZE];
+  char                 *x;
 
   Root[0] = '\0';
   Dev[0] = '\0';
@@ -23,13 +24,20 @@ bool HDD_FindMountPointDevice(char *File, char *MountPoint, char *MountDevice)
     {
       while(NULL != (ent = getmntent(aFile)))
       {
-        if(strstr(AbsFile, ent->mnt_dir) == AbsFile)
+        x = ansicstr(ent->mnt_dir, strlen(ent->mnt_dir), 0, NULL, NULL);
+        if(x)
         {
-          if(strlen(ent->mnt_dir) > strlen(Root))
+          if((strstr(AbsFile, x) == AbsFile) && (strlen(x) > strlen(Root)))
           {
-            strcpy(Root, ent->mnt_dir);
+            strcpy(Root, x);
             strcpy(Dev, ent->mnt_fsname);
           }
+          TAP_MemFree(x);
+        }
+        else if((strstr(AbsFile, ent->mnt_dir) == AbsFile) && (strlen(ent->mnt_dir) > strlen(Root)))
+        {
+          strcpy(Root, ent->mnt_dir);
+          strcpy(Dev, ent->mnt_fsname);
         }
       }
       endmntent(aFile);

@@ -81,7 +81,7 @@
   {
     word                  NrOfTransponders;
     word                  unused1;
-    char                  SatName[16];
+    char                  SatName[MAX_SatName];
     TYPE_LNB_TMSS         LNB[2];
     byte                  unknown1[22];
     word                  SatPosition;
@@ -91,7 +91,7 @@
   typedef struct
   {
     word                  NrOfTransponders;
-    char                  SatName[16];      //Contains DVBT
+    char                  SatName[MAX_SatName];      //Contains DVBT
   } TYPE_SatInfo_TMST;
 
   typedef struct

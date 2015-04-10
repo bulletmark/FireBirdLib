@@ -3,6 +3,9 @@
 #include                "../libFireBird.h"
 #include                "FBLib_LogoManager.h"
 
+#undef malloc
+#undef free
+
 TYPE_GrData *LogoManager_GetLogoByLogoName(char *LogoName, tLogoStyle LogoStyle, tLogoSize LogoSize, tLogoAspect LogoAR)
 {
   TRACEENTER();
@@ -22,7 +25,7 @@ TYPE_GrData *LogoManager_GetLogoByLogoName(char *LogoName, tLogoStyle LogoStyle,
       if(!LogoManager_LogoData[i].grData)
       {
         //The graphics data is not yet available in memory. Load it
-        LogoManager_LogoData[i].grData = TAP_MemAlloc(LogoManager_LogoData[i].grDataSize);
+        LogoManager_LogoData[i].grData = malloc(LogoManager_LogoData[i].grDataSize);
         if(!LogoManager_LogoData[i].grData)
         {
           TRACEEXIT();

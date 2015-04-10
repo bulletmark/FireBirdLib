@@ -1,4 +1,8 @@
+#include                <stdlib.h>
 #include                "FBLib_tapcom.h"
+
+#undef malloc
+#undef free
 
 TAPCOM_Channel TAPCOM_OpenChannel(dword TargetID, dword ServiceID, dword ParamBlockVersion, void *ParamBlock)
 {
@@ -13,7 +17,7 @@ TAPCOM_Channel TAPCOM_OpenChannel(dword TargetID, dword ServiceID, dword ParamBl
     return NULL;
   }
 
-  mesBuf = (TAPCOM_InternalMesBuf *) TAP_MemAlloc_Chk("TAPCOM_OpenChannel", sizeof(TAPCOM_InternalMesBuf));
+  mesBuf = (TAPCOM_InternalMesBuf *) malloc(sizeof(TAPCOM_InternalMesBuf));
 
   if(mesBuf)
   {

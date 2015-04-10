@@ -10,15 +10,27 @@ int HDD_TAP_GetCurrentDir(char *CurrentDir)
 {
   TRACEENTER();
 
-  dword                *_curTapTask;
   tTMSTAPTaskTable     *TAPTaskTable;
   dword                *dw;
 
   //Get all needed variables
   TAPTaskTable = (tTMSTAPTaskTable*)FIS_vTAPTable();
-  _curTapTask = (dword*)FIS_vCurTapTask();
 
-  if(!TAPTaskTable || !_curTapTask)
+  //The curTapTask variable is not thread safe. Call InitTAPex() if this function will be called from a sub thread
+  if(TAP_TableIndex == 0xffffffff)
+  {
+    dword                *curTapTask;
+
+    curTapTask = (dword*)FIS_vCurTapTask();
+    if(!curTapTask)
+    {
+      TRACEEXIT();
+      return -3;
+    }
+    TAP_TableIndex = *curTapTask;
+  }
+
+  if(!TAPTaskTable)
   {
     if(CurrentDir) CurrentDir[0] = '\0';
 
@@ -27,7 +39,7 @@ int HDD_TAP_GetCurrentDir(char *CurrentDir)
   }
 
   //CurrentDir points to a struct, where the second dword points to NULL terminated string
-  dw = (dword*)TAPTaskTable[*_curTapTask].CurrentDir;
+  dw = (dword*)TAPTaskTable[TAP_TableIndex].CurrentDir;
 
   //Remove the systems mount point /mnt/hd from the directory
   if(CurrentDir && dw && dw[1])

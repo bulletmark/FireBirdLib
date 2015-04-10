@@ -1,5 +1,9 @@
+#include <stdlib.h>
 #include "FBLib_ini.h"
 #include "../libFireBird.h"
+
+#undef malloc
+#undef free
 
 void INICloseFile(void)
 {

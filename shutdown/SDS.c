@@ -181,8 +181,6 @@ bool SDS(void)
   {
     case HHS_Init:
     {
-      dword            *curTapTask;
-      int               Slot;
       char             *TAPFileName;
       tTAPInfo          TAPInfo;
 
@@ -224,9 +222,21 @@ bool SDS(void)
         return FALSE;
       }
 
-      curTapTask = (dword*)FIS_vCurTapTask();
-      Slot = *curTapTask;
-      if(HDD_TAP_GetFileNameByIndex(Slot, &TAPFileName))
+      //The curTapTask variable is not thread safe. Call InitTAPex() if this function will be called from a sub thread
+      if(TAP_TableIndex == 0xffffffff)
+      {
+        dword            *curTapTask;
+
+        curTapTask = (dword*)FIS_vCurTapTask();
+        if(!curTapTask)
+        {
+          TRACEEXIT();
+          return FALSE;
+        }
+        TAP_TableIndex = *curTapTask;
+      }
+
+      if(HDD_TAP_GetFileNameByIndex(TAP_TableIndex, &TAPFileName))
       {
         if(!HDD_TAP_GetInfo(TAPFileName, &TAPInfo)) strcpy(TAPInfo.TAPName, "???");
       }

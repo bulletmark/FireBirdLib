@@ -526,12 +526,8 @@ void HDD_DecodeRECHeader_ST_TMSS(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
   RECHeaderInfo->TPFrequency          = getDword(&Buffer[p +  8], WrongEndian);
   RECHeaderInfo->TPSymbolRate         = getWord(&Buffer [p + 12], WrongEndian);
   RECHeaderInfo->TPTSID               = getWord(&Buffer [p + 14], WrongEndian);
-
-  RECHeaderInfo->TPFlags2             = getWord(&Buffer [p + 16], WrongEndian);
-  RECHeaderInfo->TPClockSync          = RECHeaderInfo->TPFlags2 & 0x0001;
-  RECHeaderInfo->TPFlags2             = RECHeaderInfo->TPFlags2 & 0xfffe;
-
-  RECHeaderInfo->TPOriginalNetworkID  = getWord(&Buffer[p + 18], WrongEndian);
+  RECHeaderInfo->TPNetworkID          = getWord(&Buffer [p + 16], WrongEndian);
+  RECHeaderInfo->TPOriginalNetworkID  = getWord(&Buffer [p + 18], WrongEndian);
 
   //Event Info
   p = 0x0044;

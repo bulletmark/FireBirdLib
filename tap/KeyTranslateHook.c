@@ -60,7 +60,6 @@ dword KeyTranslateHook(word event, dword param1, dword param2)
 bool KeyTranslate(bool Enable, void *EventHandler)
 {
   tTMSTAPTaskTable     *TMSTAPTaskTable;
-  dword                *curTAPTask;
   dword                 i;
   tToppyInfo           *ToppyInfo;
   tFWDATHeader         *FWDatHeader;
@@ -88,25 +87,31 @@ bool KeyTranslate(bool Enable, void *EventHandler)
     return FALSE;
   }
 
-  //Get the pointer to the currently active TAP index
-  curTAPTask = (dword*)FIS_vCurTapTask();
-  if(!curTAPTask)
+  //The curTapTask variable is not thread safe. Call InitTAPex() if this function will be called from a sub thread
+  if(TAP_TableIndex == 0xffffffff)
   {
-    TRACEEXIT();
-    return FALSE;
+    dword                *curTapTask;
+
+    curTapTask = (dword*)FIS_vCurTapTask();
+    if(!curTapTask)
+    {
+      TRACEEXIT();
+      return -3;
+    }
+    TAP_TableIndex = *curTapTask;
   }
 
-  if(Enable && (TMSTAPTaskTable[*curTAPTask].TAP_EventHandler == (dword)EventHandler))
+  if(Enable && (TMSTAPTaskTable[TAP_TableIndex].TAP_EventHandler == (dword)EventHandler))
   {
-    Original_TAP_EventHandler = (void*)TMSTAPTaskTable[*curTAPTask].TAP_EventHandler;
-    TMSTAPTaskTable[*curTAPTask].TAP_EventHandler = (dword)&KeyTranslateHook;
+    Original_TAP_EventHandler = (void*)TMSTAPTaskTable[TAP_TableIndex].TAP_EventHandler;
+    TMSTAPTaskTable[TAP_TableIndex].TAP_EventHandler = (dword)&KeyTranslateHook;
 
     TRACEEXIT();
     return TRUE;
   }
-  else if(!Enable && (TMSTAPTaskTable[*curTAPTask].TAP_EventHandler == (dword)KeyTranslateHook))
+  else if(!Enable && (TMSTAPTaskTable[TAP_TableIndex].TAP_EventHandler == (dword)KeyTranslateHook))
   {
-    TMSTAPTaskTable[*curTAPTask].TAP_EventHandler = (dword)Original_TAP_EventHandler;
+    TMSTAPTaskTable[TAP_TableIndex].TAP_EventHandler = (dword)Original_TAP_EventHandler;
     Original_TAP_EventHandler = NULL;
 
     TRACEEXIT();

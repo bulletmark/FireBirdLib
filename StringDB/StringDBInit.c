@@ -1,4 +1,8 @@
+#include                <stdlib.h>
 #include                "../libFireBird.h"
+
+#undef malloc
+#undef free
 
 bool StringDBInit(tStringDB *StringDB, dword InitialSize)
 {
@@ -15,7 +19,7 @@ bool StringDBInit(tStringDB *StringDB, dword InitialSize)
   StringDB->DBSize = InitialSize;
   if(InitialSize)
   {
-    StringDB->DB = TAP_MemAlloc(InitialSize);
+    StringDB->DB = malloc(InitialSize);
     if(StringDB->DB) TAP_MemSet(StringDB->DB, 0, InitialSize);
   }
   else

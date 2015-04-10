@@ -1,5 +1,9 @@
 #include                <string.h>
+#include                <stdlib.h>
 #include                "FBLib_TMSOSDMenu.h"
+
+#undef malloc
+#undef free
 
 #include                "graphic/ScrollBarInvisible.gd"
 #include                "graphic/ScrollBarVisible.gd"
@@ -142,7 +146,7 @@ void OSDMenuInitialize(bool AllowScrollingOfLongText, bool HasValueColumn, bool 
   pMenu->ScrollLoop = ScrollLoop;
   pMenu->ValueXPos = 350;
   pMenu->hasValueArrows = FALSE;
-  pMenu->Item = TAP_MemAlloc(30 * sizeof(tItem));
+  pMenu->Item = malloc(30 * sizeof(tItem));
 
   pMenu->FontLeftTitle          = &OSDMenuFont_20;
   pMenu->FontRightTitle         = &OSDMenuFont_16;

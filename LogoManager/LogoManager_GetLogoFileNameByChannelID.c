@@ -4,40 +4,42 @@
 #include                "../libFireBird.h"
 #include                "FBLib_LogoManager.h"
 
-char *LogoManager_GetPathToLogoByChannelID(ulong64 ChannelID, tLogoStyle LogoStyle, tLogoSize LogoSize, tLogoAspect LogoAR)
+char *LogoManager_GetPathToLogoByChannelID(ulong64 ChannelID, tLogoStyle LogoStyle, tLogoSize LogoSize, tLogoAspect LogoAR, char *LogoPath)
 {
   TRACEENTER();
 
-  static char           LogoNameB[256];
-  char                  s[20];
+  char                  s[20], LP[FBLIB_DIR_SIZE];
 
-  LogoManager_Initialize(LogoManager_CB);
-
-  TAP_SPrint(LogoNameB, "%s/", LogoManager_GetDirectory(LogoStyle, LogoAR));
-
-  HDD_TAP_PushDir();
-  HDD_ChangeDir(LOGOROOT);
-  if(TAP_Hdd_Exist(LILNAME))
+  if(LogoPath)
   {
-    TAP_SPrint(s, "%16.16llx", ChannelID);
-    INIOpenFile(LILNAME, NULL);
-    INIGetString(s, &LogoNameB[strlen(LogoNameB)], "", 40);
-    INICloseFile();
-    HDD_TAP_PopDir();
+    LogoManager_Initialize(LogoManager_CB);
 
-    switch(LogoSize)
+    TAP_SPrint(LogoPath, "%s/", LogoManager_GetDirectory(LogoStyle, LogoAR, LP));
+
+    HDD_TAP_PushDir();
+    HDD_ChangeDir(LOGOROOT);
+    if(TAP_Hdd_Exist(LILNAME))
     {
-      case LGSZ_qtl: strcat(LogoNameB, ".qtl"); break;
-      case LGSZ_ibl: strcat(LogoNameB, ".ibl"); break;
-      case LGSZ_qsl: strcat(LogoNameB, ".qsl"); break;
-        default:
-          break;
-    }
+      TAP_SPrint(s, "%16.16llx", ChannelID);
+      INIOpenFile(LILNAME, NULL);
+      INIGetString(s, &LogoPath[strlen(LogoPath)], "", 40);
+      INICloseFile();
+      HDD_TAP_PopDir();
 
-    TRACEEXIT();
-    return LogoNameB;
+      switch(LogoSize)
+      {
+        case LGSZ_qtl: strcat(LogoPath, ".qtl"); break;
+        case LGSZ_ibl: strcat(LogoPath, ".ibl"); break;
+        case LGSZ_qsl: strcat(LogoPath, ".qsl"); break;
+          default:
+            break;
+      }
+
+      TRACEEXIT();
+      return LogoPath;
+    }
+    HDD_TAP_PopDir();
   }
-  HDD_TAP_PopDir();
 
   TRACEEXIT();
   return "";

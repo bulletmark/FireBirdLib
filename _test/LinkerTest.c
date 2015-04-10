@@ -99,6 +99,7 @@ int TAP_Main()
   CompressBlock(NULL, 0, NULL);
   CompressedTFDSize(NULL, 0, NULL);
   CompressTFD(NULL, 0, NULL, 0, 0, NULL);
+  ConvertPathType(NULL, NULL, 0);
   CrashCheck_isOK(NULL);
   CrashCheck_Shutdown(NULL);
   CrashCheck_Startup(NULL);
@@ -355,7 +356,7 @@ int TAP_Main()
   FlashFavoritesGetInfo(0, NULL);
   FlashFavoritesGetInfoCurrent(NULL);
   FlashFavoritesGetParameters(NULL, NULL);
-  FlashFavoritesGetSelectedGroupName();
+  FlashFavoritesGetSelectedGroupName(NULL, 0);
   FlashFavoritesGetTotal();
   FlashFavoritesSetInfo(0, NULL);
   FlashProgram();
@@ -427,6 +428,7 @@ int TAP_Main()
   GetOSDMapAddress();
   GetOSDRegionHeight(0);
   GetOSDRegionWidth(0);
+  GetPathType(NULL);
   GetPIPPosition(NULL, NULL, NULL, NULL);
   GetRecExtension();
   GetStreamFormat(0);
@@ -469,7 +471,7 @@ int TAP_Main()
   HDD_isFileInUse(NULL);
   HDD_isRecFileName(NULL);
   HDD_isRecording(0);
-  HDD_MakeNewRecName(NULL, 0);
+  HDD_MakeNewRecName(NULL, 0, NULL, 0);
   HDD_Move(NULL, NULL, NULL);
   HDD_NumberOfRECSlots();
   HDD_RecSlotDecode(0, NULL);
@@ -579,16 +581,16 @@ int TAP_Main()
   LogEntryGenericPrintf(NULL, FALSE, NULL);
   LogEntryPrintf(NULL, NULL, FALSE, 0, NULL);
   LogoManager_CalculateChannelID(0, 0, 0, 0);
-  LogoManager_ChannelNameToLogoName(NULL);
+  LogoManager_ChannelNameToLogoName(NULL, NULL, 0);
   LogoManager_Cleanup();
   LogoManager_CleanupMemory();
   LogoManager_GetChannelID(0, 0);
-  LogoManager_GetDirectory(0, 0);
+  LogoManager_GetDirectory(0, 0, NULL);
   LogoManager_GetLogoByChannel(0, 0, 0, 0, 0);
   LogoManager_GetLogoByChannelID(0, 0, 0, 0);
   LogoManager_GetLogoByChannelName(NULL, 0, 0, 0);
   LogoManager_GetLogoByLogoName(NULL, 0, 0, 0);
-  LogoManager_GetPathToLogoByChannelID(0, 0, 0, 0);
+  LogoManager_GetPathToLogoByChannelID(0, 0, 0, 0, NULL);
   LogoManager_GetServiceNumByChannelID(0, NULL, NULL);
   LogoManager_Initialize(NULL);
   LogoManager_LogoCacheLoad();
@@ -798,7 +800,7 @@ int TAP_Main()
   TF2UnixTime(0);
   TFDSize(NULL);
   TimeDiff(0, 0);
-  TimeFormat(0, 0, 0);
+  TimeFormat(0, 0, 0, NULL);
   TimerPaddingAPICheck();
   TimerPaddingGet(NULL, NULL);
   TimerPaddingSet(NULL, NULL);
@@ -818,7 +820,7 @@ int TAP_Main()
   UTC2LocalTime(0, NULL);
   UTF32ToUTF8(0, NULL, NULL);
   UTF8ToUTF32(NULL, NULL);
-  ValidFileName(NULL, 0);
+  ValidFileName(NULL, 0, NULL, 0);
   VFD_CDAnimation(FALSE);
   VFD_Clear();
   VFD_EnableCD(FALSE);

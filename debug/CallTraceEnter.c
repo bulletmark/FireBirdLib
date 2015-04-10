@@ -1,4 +1,8 @@
+#include                <stdlib.h>
 #include                "FBLib_debug.h"
+
+#undef malloc
+#undef free
 
 void CallTraceEnter(char *ProcName)
 {
@@ -21,7 +25,7 @@ void CallTraceEnter(char *ProcName)
       memset(Spaces, ' ', CallLevel < CTSTACKSIZE ? CallLevel << 1 : 100);
       Spaces[CallLevel < CTSTACKSIZE ? CallLevel << 1 : 100] = '\0';
       TAP_PrintNet("%s%s\n", Spaces, ISOText);
-      TAP_MemFree(ISOText);
+      free(ISOText);
     }
 
     //Add the current routine to the stack

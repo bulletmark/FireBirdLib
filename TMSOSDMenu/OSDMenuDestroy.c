@@ -1,4 +1,8 @@
+#include                <stdlib.h>
 #include                "FBLib_TMSOSDMenu.h"
+
+#undef malloc
+#undef free
 
 void OSDMenuDestroy(void)
 {
@@ -14,7 +18,11 @@ void OSDMenuDestroy(void)
     OSDMenuLastCursor = LCT_NRCURSORS;
   }
   if((!ProgressBarOSDRgn) && (!InfoBoxOSDRgn) && (!MessageBoxOSDRgn) && (!ColorPickerOSDRgn)) TAP_EnterNormal();
-  if(Menu[CurrentMenuLevel].Item) TAP_MemFree(Menu[CurrentMenuLevel].Item);
+  if(Menu[CurrentMenuLevel].Item)
+  {
+    free(Menu[CurrentMenuLevel].Item);
+    Menu[CurrentMenuLevel].Item = NULL;
+  }
 
   OSDMenuFreeStdFonts();
 

@@ -3,6 +3,9 @@
 #include                "../libFireBird.h"
 #include                "FBLib_LogoManager.h"
 
+#undef malloc
+#undef free
+
 void LogoManager_LogoCacheRebuild(void)
 {
   TRACEENTER();
@@ -17,6 +20,7 @@ void LogoManager_LogoCacheRebuild(void)
   dword                 BufferSize, CompressedSize;
   TYPE_GrData          *grData;
   int                   LogosConverted;
+  char                  LogoPath[FBLIB_DIR_SIZE];
 
   if(LogoManager_CB) LogoManager_CB(2, -1);
 
@@ -31,7 +35,7 @@ void LogoManager_LogoCacheRebuild(void)
   {
     for(j = LGAR_43; j < LGAR_NRITEMS; j++)
     {
-      if(HDD_ChangeDir(LogoManager_GetDirectory(i, j)))
+      if(HDD_ChangeDir(LogoManager_GetDirectory(i, j, LogoPath)))
       {
         NrFiles = TAP_Hdd_FindFirst(&FolderEntry, "qtl|qsl|ibl");
         for(k = 0; k < NrFiles; k++)
@@ -51,8 +55,8 @@ void LogoManager_LogoCacheRebuild(void)
 
   //Step 3: build the basic cache file
   LogosConverted = 0;
-  if(LogoManager_LogoData) TAP_MemFree(LogoManager_LogoData);
-  LogoManager_LogoData = TAP_MemAlloc(LogoManager_NrLogos * sizeof(tLogoData));
+  if(LogoManager_LogoData) free(LogoManager_LogoData);
+  LogoManager_LogoData = malloc(LogoManager_NrLogos * sizeof(tLogoData));
   if(LogoManager_LogoData)
   {
     memset(LogoManager_LogoData, 0, LogoManager_NrLogos * sizeof(tLogoData));
@@ -75,7 +79,7 @@ void LogoManager_LogoCacheRebuild(void)
       {
         for(j = LGAR_43; j < LGAR_NRITEMS; j++)
         {
-          if(HDD_ChangeDir(LogoManager_GetDirectory(i, j)))
+          if(HDD_ChangeDir(LogoManager_GetDirectory(i, j, LogoPath)))
           {
             NrFiles = TAP_Hdd_FindFirst(&FolderEntry, "qtl|qsl|ibl");
             for(k = 0; k < NrFiles; k++)
@@ -101,8 +105,8 @@ void LogoManager_LogoCacheRebuild(void)
                 if(fLogo)
                 {
                   BufferSize = TAP_Hdd_Flen(fLogo) - 8;
-                  PixelData = TAP_MemAlloc(BufferSize + 8);
-                  TempBuffer = TAP_MemAlloc(sizeof(TYPE_GrData) + BufferSize);
+                  PixelData = malloc(BufferSize + 8);
+                  TempBuffer = malloc(sizeof(TYPE_GrData) + BufferSize);
                   if(PixelData && TempBuffer)
                   {
                     TAP_Hdd_Fread(PixelData, BufferSize + 8, 1, fLogo);
@@ -124,8 +128,8 @@ void LogoManager_LogoCacheRebuild(void)
                     TAP_Hdd_Fwrite(grData, LogoManager_LogoData[LogoIndex].grDataSize, 1, f);
                     LogoIndex++;
                   }
-                  if(PixelData) TAP_MemFree(PixelData);
-                  if(TempBuffer) TAP_MemFree(TempBuffer);
+                  if(PixelData) free(PixelData);
+                  if(TempBuffer) free(TempBuffer);
                   TAP_Hdd_Fclose(fLogo);
                 }
                 else

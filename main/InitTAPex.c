@@ -4,7 +4,7 @@
 const char              *__fblib_version__ = "__FBLIB_VERSION_TMS__ " __FBLIB_VERSION__;
 
 word                    ApplID;
-dword                   TAP_TableIndex;
+dword                   TAP_TableIndex = 0xffffffff;
 bool                    LibInitialized = FALSE;
 
 bool InitTAPex()

@@ -6,7 +6,6 @@ bool HDD_TAP_Disable(dword TAPID, bool DisableEvents)
 
   int                   TAPIndex;
   dword                 isDisabled;
-  dword                *curTAPTask;
   tTMSTAPTaskTable     *TMSTAPTaskTable;
 
   TAPIndex = HDD_TAP_GetIndexByID(TAPID);
@@ -16,9 +15,22 @@ bool HDD_TAP_Disable(dword TAPID, bool DisableEvents)
     return FALSE;
   }
 
+  //The curTapTask variable is not thread safe. Call InitTAPex() if this function will be called from a sub thread
+  if(TAP_TableIndex == 0xffffffff)
+  {
+    dword                *curTapTask;
+
+    curTapTask = (dword*)FIS_vCurTapTask();
+    if(!curTapTask)
+    {
+      TRACEEXIT();
+      return FALSE;
+    }
+    TAP_TableIndex = *curTapTask;
+  }
+
   //Don't disable ourself
-  curTAPTask = (dword*)FIS_vCurTapTask();
-  if(!curTAPTask || ((dword)TAPIndex == *curTAPTask))
+  if((dword)TAPIndex == TAP_TableIndex)
   {
     TRACEEXIT();
     return FALSE;

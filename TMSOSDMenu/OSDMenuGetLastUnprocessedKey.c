@@ -9,5 +9,6 @@ dword OSDMenuGetLastUnprocessedKey(void)
   ret = LastUnprocessedOSDMenuKey;
   LastUnprocessedOSDMenuKey = 0;
 
-  TRACEEXIT();  return ret;
+  TRACEEXIT();
+  return ret;
 }

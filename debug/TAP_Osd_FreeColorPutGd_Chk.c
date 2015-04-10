@@ -25,12 +25,11 @@ int TAP_Osd_PutFreeColorGd_Chk(char *Comment, word rgn, int x, int y, TYPE_GrDat
     if(y < 0) LogEntryFBLibPrintf(TRUE, "TAP_Osd_PutFreeColorGd_Chk Warning: y(%d) < 0 @ %s", y, Comment);
   }
 
-  RgnH = GetOSDRegionHeight(rgn);
-  RgnW = GetOSDRegionWidth(rgn);
-
-
   if(Comment)
   {
+    RgnH = GetOSDRegionHeight(rgn);
+    RgnW = GetOSDRegionWidth(rgn);
+
     if(x >= RgnW) LogEntryFBLibPrintf(TRUE, "TAP_Osd_PutFreeColorGd_Chk Warning: x(%d) >= RgnW(%d) @ %s", x, RgnW, Comment);
     if(y >= RgnH) LogEntryFBLibPrintf(TRUE, "TAP_Osd_PutFreeColorGd_Chk Warning: y(%d) >= RgnH(%d) @ %s", y, RgnH, Comment);
     if((x + gd->width) > RgnW) LogEntryFBLibPrintf(TRUE, "TAP_Osd_PutFreeColorGd_Chk Warning: (x(%d) + gd->width(%d)) > RgnW(%d) @ %s", x, gd->width, RgnW, Comment);

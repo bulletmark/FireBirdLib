@@ -1,4 +1,8 @@
+#include <stdlib.h>
 #include "../libFireBird.h"
+
+#undef malloc
+#undef free
 
 void FreeOSDRegion(word Region)
 {
@@ -12,8 +16,7 @@ void FreeOSDRegion(word Region)
     return;
   }
 
-  if(OSDMapInfo[Region].pMemoryOSD) TAP_MemFree((void*)OSDMapInfo[Region].pMemoryOSD);
-
+  free((void*)OSDMapInfo[Region].pMemoryOSD);
   memset(&OSDMapInfo[Region], 0, sizeof(tOSDMapInfo));
 
   TRACEEXIT();

@@ -907,7 +907,7 @@ Changed parameters:
   * SeparatePathComponents: parameter "Path" has been added. Pass NULL for the old behaviour
   * SeparateFileNameComponents: parameter "Path" has been added. Pass NULL for the old behaviour
 
-Rename functions:
+Renamed functions:
   * HDD_GetFileTimeByRelFileName: renamed to HDD_GetFileTimeByFileName
   * HDD_GetInodeByRelFileName: renamed to HDD_GetInodeByFileName
 
@@ -970,3 +970,15 @@ The following functions accept any form a path. The INI and language INI functio
 2014-09-21: Fixed: FlashSatTablesGetTotal() uses the sat name instead of the number of transponders to find the end of the sat list
 2014-09-22: Fixed: EPGInfo_CloneToCache() now checks if the EPG data belongs to a channel, which is still in the channel list. If the channel has been deleted, the EPG data will be discarded
 2014-11-09: Fixed: Changed the way how ShowPvrList() calls the firmware. The old version might result in a reboot if the function is called and the file list has never been displayed since the last boot
+2015-01-30: Fixed: TAP_Osd_Create_Chk(), TAP_Osd_FillBox_Chk(), TAP_Osd_PutPixel_Chk(), TAP_Osd_RestoreBox_Chk(), TAP_Osd_SaveBox_Chk() didn't check against their regions or agains wrong coordinates (719/575 instead of 720/576)
+2015-02-06: Changed: several code changes to make as many functions as possible thread safe. In addition the parameters of the following function had to be changed:
+              FlashFavoritesGetSelectedGroupName(), LogoManager_ChannelNameToLogoName(), LogoManager_GetDirectory(), LogoManager_GetPathToLogoByChannelID(), HDD_MakeNewRecName(), ValidFileName(), TimeFormat()
+2015-02-19: Added: FIS_fwTimeToLinux() and PvrTimeToLinux()
+            Fixed: LogEntry() and LogEntryFBLibPrintf(): the log files will get the correct time stamp
+2015-02-20: Fixed: FlashFavoritesGetTotal() used the wrong parameter to prevent an overflow if all favorite groups were in use
+            Fixed: FlashFavoritesSetInfo's() sanity check didn't allow to add new groups
+2015-02-22: Fixed: Additional sanity check for FlashFavoritesSetInfo()
+2015-02-28: Fixed  StrToUTF8(): a string has been terminated outside of its reserved memory
+2015-03-27: Fixed: Several small fixes in FlashSatTablesDecode(), FlashFavoritesSetInfo() and FlashServiceDecode(). (thanks to chris86)
+2015-04-05: Added: ansicstr() taken from the GNU bash project. It is the function that is used for echo to interpret escape sequences
+            Fixed: HDD_FindMountPoint() and HDD_FindMountPointDevice() now work with mounted file systems where the path contains spaces

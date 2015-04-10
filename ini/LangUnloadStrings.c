@@ -1,5 +1,9 @@
+#include <stdlib.h>
 #include "FBLib_ini.h"
 #include "../libFireBird.h"
+
+#undef malloc
+#undef free
 
 void LangUnloadStrings(void)
 {
@@ -7,13 +11,13 @@ void LangUnloadStrings(void)
 
   if(LangStrings)
   {
-    TAP_MemFree(LangStrings);
+    free(LangStrings);
     LangStrings = NULL;
   }
 
   if(LangStringPtr)
   {
-    TAP_MemFree(LangStringPtr);
+    free(LangStringPtr);
     LangStringPtr = NULL;
   }
 

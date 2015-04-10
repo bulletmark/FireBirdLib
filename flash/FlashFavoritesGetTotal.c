@@ -28,7 +28,7 @@ int FlashFavoritesGetTotal(void)
       {
         i++;
         Favs30100++;
-        if(i >= NrSvcsPerGroup) break;
+        if(i >= NrGroups) break;
       }
       break;
     }
@@ -39,7 +39,7 @@ int FlashFavoritesGetTotal(void)
       {
         i++;
         Favs1050++;
-        if(i >= NrSvcsPerGroup) break;
+        if(i >= NrGroups) break;
       }
       break;
     }

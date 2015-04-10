@@ -565,15 +565,22 @@ void HDD_EncodeRECHeader_ST_TMSS(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
   p = 0x0570;
   memcpy(&Buffer[p + 0x0000], RECHeaderInfo->TPUnknown1, 4);
   Buffer[p + 0x0004] = RECHeaderInfo->TPSatIndex;
-  Buffer[p + 0x0005] = RECHeaderInfo->TPChannelNumber;
-  Buffer[p + 0x0006] = RECHeaderInfo->TPBandwidth;
+
+  Flags = (RECHeaderInfo->TPPilot      << 11) |
+          (RECHeaderInfo->TPFEC        <<  7) |
+          (RECHeaderInfo->TPModulation <<  5) |
+          (RECHeaderInfo->TPSystem     <<  4) |
+          (RECHeaderInfo->TPMode       <<  1) |
+           RECHeaderInfo->TPPolarization;
+  setWord(&Buffer[p + 0x0005], Flags, FALSE);
+
   Buffer[p + 0x0007] = RECHeaderInfo->TPUnknown2;
+
   setDword(&Buffer[p + 0x0008], RECHeaderInfo->TPFrequency, FALSE);
-  setWord(&Buffer[p + 0x000c], RECHeaderInfo->TPTSID, FALSE);
-  Buffer[p + 0x000e] = RECHeaderInfo->TPLPHPStream;
-  Buffer[p + 0x000f] = RECHeaderInfo->TPUnknown4;
-  setWord(&Buffer[p + 0x0010], RECHeaderInfo->TPOriginalNetworkID, FALSE);
-  setWord(&Buffer[p + 0x0012], RECHeaderInfo->TPNetworkID, FALSE);
+  setWord(&Buffer[p + 0x000c], RECHeaderInfo->TPSymbolRate, FALSE);
+  setWord(&Buffer[p + 0x000e], RECHeaderInfo->TPTSID, FALSE);
+  setWord(&Buffer[p + 0x0010], RECHeaderInfo->TPNetworkID, FALSE);
+  setWord(&Buffer[p + 0x0012], RECHeaderInfo->TPOriginalNetworkID, FALSE);
 
   //Event Info
   p = 0x0044;

@@ -1,4 +1,8 @@
+#include                <stdlib.h>
 #include                "FBLib_TMSOSDMenu.h"
+
+#undef malloc
+#undef free
 
 void OSDMenuDestroyNoOSDUpdate(void)
 {
@@ -12,7 +16,11 @@ void OSDMenuDestroyNoOSDUpdate(void)
     OSDMenuSelectionBarRgn = 0;
     OSDMenuLastCursor = LCT_NRCURSORS;
   }
-  if(Menu[CurrentMenuLevel].Item) TAP_MemFree(Menu[CurrentMenuLevel].Item);
+  if(Menu[CurrentMenuLevel].Item)
+  {
+    free(Menu[CurrentMenuLevel].Item);
+    Menu[CurrentMenuLevel].Item = NULL;
+  }
 
   OSDMenuFreeStdFonts();
 

@@ -1,4 +1,8 @@
+#include                <stdlib.h>
 #include                "FBLib_debug.h"
+
+#undef malloc
+#undef free
 
 void CallTraceComment(char *Comment)
 {
@@ -18,7 +22,7 @@ void CallTraceComment(char *Comment)
 
       StrToISOAlloc(Comment, &ISOText);
       if(ISOText && *ISOText) TAP_PrintNet("%s# %s\n", Spaces, ISOText);
-      TAP_MemFree(ISOText);
+      free(ISOText);
     }
   }
 }

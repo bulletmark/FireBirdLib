@@ -6,8 +6,8 @@ void BMP_WriteHeader(int FileHandle, int width, int height)
 {
   TRACEENTER();
 
-  static struct BMP_HEAD head;
-  static struct BMP_INFO info;
+  struct BMP_HEAD head;
+  struct BMP_INFO info;
   dword                  i, size, rowlength;
 
   if(FileHandle <= 0)

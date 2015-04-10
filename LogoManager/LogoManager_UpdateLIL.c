@@ -4,6 +4,9 @@
 #include                "../libFireBird.h"
 #include                "FBLib_LogoManager.h"
 
+#undef malloc
+#undef free
+
 int LogoManager_UpdateLIL(void)
 {
   TRACEENTER();
@@ -17,7 +20,7 @@ int LogoManager_UpdateLIL(void)
   int                   nTvSvc, nRadioSvc;
   int                   i;
   TYPE_TapChInfo        chInfo;
-  char                  s[255];
+  char                  s[255], LogoName[MAX_SvcName + 1];
   SYSTEM_TYPE           SystemType;
   tFlashSatTable        SatInfo;
 
@@ -32,7 +35,7 @@ int LogoManager_UpdateLIL(void)
   HDD_ChangeDir(LOGOROOT);
 
   TAP_Channel_GetTotalNum(&nTvSvc, &nRadioSvc);
-  NewIDs = TAP_MemAlloc((nTvSvc + nRadioSvc) * sizeof(tNewIDs));
+  NewIDs = malloc((nTvSvc + nRadioSvc) * sizeof(tNewIDs));
   NewIDCount = 0;
 
   INIOpenFile(LILNAME, NULL);
@@ -61,7 +64,7 @@ int LogoManager_UpdateLIL(void)
     if(!INIKeyExists(s))
     {
       NewIDs[NewIDCount].ChannelID = ChannelID;
-      strcpy(NewIDs[NewIDCount].Name, LogoManager_ChannelNameToLogoName(chInfo.chName));
+      strcpy(NewIDs[NewIDCount].Name, LogoManager_ChannelNameToLogoName(chInfo.chName, LogoName, sizeof(LogoName)));
       if(NewIDs[NewIDCount].Name[0]) NewIDCount++;
     }
   }
@@ -90,7 +93,7 @@ int LogoManager_UpdateLIL(void)
     if(!INIKeyExists(s))
     {
       NewIDs[NewIDCount].ChannelID = ChannelID;
-      TAP_SPrint(NewIDs[NewIDCount].Name, "r_%s", LogoManager_ChannelNameToLogoName(chInfo.chName));
+      TAP_SPrint(NewIDs[NewIDCount].Name, "r_%s", LogoManager_ChannelNameToLogoName(chInfo.chName, LogoName, sizeof(LogoName)));
       if(NewIDs[NewIDCount].Name[0]) NewIDCount++;
     }
   }
@@ -130,7 +133,7 @@ int LogoManager_UpdateLIL(void)
 
   }
 
-  TAP_MemFree(NewIDs);
+  free(NewIDs);
 
   HDD_TAP_PopDir();
 

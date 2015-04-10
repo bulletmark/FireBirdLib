@@ -1,6 +1,6 @@
 #include "../libFireBird.h"
 
-bool HDD_isCryptedStream(char *Buffer, dword BufferSize)
+bool HDD_isCryptedStream(byte *Buffer, dword BufferSize)
 {
   TRACEENTER();
 

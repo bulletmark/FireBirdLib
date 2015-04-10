@@ -1,6 +1,10 @@
-#include  <stdio.h>
-#include  <string.h>
-#include  "../libFireBird.h"
+#include                <stdio.h>
+#include                <stdlib.h>
+#include                <string.h>
+#include                "../libFireBird.h"
+
+#undef malloc
+#undef free
 
 void LogEntryGeneric(char *ProgramName, bool Console, char *Text)
 {
@@ -9,7 +13,7 @@ void LogEntryGeneric(char *ProgramName, bool Console, char *Text)
   char                 *s;
   int                   l;
   TYPE_File             *File;
-  char                  *TS;
+  char                  TimeResult[40];
   char                  CRLF[] = {'\r', '\n'};
   byte                  Sec;
   byte                 *ISOText;
@@ -31,7 +35,7 @@ void LogEntryGeneric(char *ProgramName, bool Console, char *Text)
   }
 
   l = strlen(ProgramName) + strlen(Text) + 4;
-  s = TAP_MemAlloc(l);
+  s = malloc(l);
   if(s)
   {
     memset(s, 0, l);
@@ -39,14 +43,14 @@ void LogEntryGeneric(char *ProgramName, bool Console, char *Text)
     StrToISOAlloc(s, &ISOText);
     if(ISOText)
     {
-      TS = TimeFormat(Now(&Sec), Sec, TIMESTAMP_YMDHMS);
-      strcat(TS, " ");
+      TimeFormat(Now(&Sec), Sec, TIMESTAMP_YMDHMS, TimeResult);
+      strcat(TimeResult, " ");
 
       if(!TAP_Hdd_Exist(FILENAME)) TAP_Hdd_Create(FILENAME, ATTR_NORMAL);
       if((File = TAP_Hdd_Fopen(FILENAME)) != NULL)
       {
         TAP_Hdd_Fseek(File, 0, SEEK_END);
-        TAP_Hdd_Fwrite(TS, strlen(TS), 1, File);
+        TAP_Hdd_Fwrite(TimeResult, strlen(TimeResult), 1, File);
         TAP_Hdd_Fwrite(ISOText, strlen(ISOText), 1, File);
         TAP_Hdd_Fwrite(CRLF, 2, 1, File);
         TAP_Hdd_Fclose(File);
@@ -54,12 +58,12 @@ void LogEntryGeneric(char *ProgramName, bool Console, char *Text)
 
       if(Console)
       {
-        TAP_PrintNet("%s%s\n", TS, ISOText);
+        TAP_PrintNet("%s%s\n", TimeResult, ISOText);
       }
 
-      TAP_MemFree(ISOText);
+      free(ISOText);
     }
-    TAP_MemFree(s);
+    free(s);
   }
   HDD_TAP_PopDir();
 

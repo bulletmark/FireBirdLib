@@ -1,7 +1,11 @@
-#include  <stdio.h>
-#include  <string.h>
-#include "stdarg.h"    //va_list
-#include  "../libFireBird.h"
+#include                <stdio.h>
+#include                <fcntl.h>
+#include                <sys/stat.h>
+#include                <string.h>
+#include                <stdarg.h>
+#include                <sys/types.h>
+#include                <utime.h>
+#include                "../libFireBird.h"
 
 int vsnprintf(char *str, size_t size, const char *format, va_list ap);   //define missing prototype
 
@@ -10,12 +14,13 @@ void LogEntryFBLibPrintf(bool Console, char *format, ...)
   TRACEENTER();
 
   char                  Text[512];
-  TYPE_File            *File;
-  char                 *TS;
+  FILE                 *File;
+  char                  TimeResult[40];
   byte                  Sec;
   char                  CRLF[] = {'\r', '\n'};
+  struct utimbuf        times;
 
-  #define FILENAME      "FBLib.log"
+  #define FILENAME      "/mnt/hd/ProgramFiles/Settings/FBLib.log"
 
   if(!format)
   {
@@ -28,33 +33,29 @@ void LogEntryFBLibPrintf(bool Console, char *format, ...)
   vsnprintf(Text, sizeof(Text), format, args);
   va_end(args);
 
-  HDD_TAP_PushDir();
-  if(!HDD_ChangeDir("/ProgramFiles/Settings"))
-  {
-    HDD_ChangeDir("/ProgramFiles");
-    if(!TAP_Hdd_Exist("Settings")) TAP_Hdd_Create("Settings", ATTR_FOLDER);
-    HDD_ChangeDir("Settings");
-  }
+  mkdir("/mnt/hd/ProgramFiles/Settings", 0777);
 
-  TS = TimeFormat(Now(&Sec), Sec, TIMESTAMP_YMDHMS);
-  strcat(TS, " ");
+  TimeFormat(Now(&Sec), Sec, TIMESTAMP_YMDHMS, TimeResult);
+  strcat(TimeResult, " ");
 
-  if(!TAP_Hdd_Exist(FILENAME)) TAP_Hdd_Create(FILENAME, ATTR_NORMAL);
-  if((File = TAP_Hdd_Fopen(FILENAME)) != NULL)
+  if((File = fopen(FILENAME, "r+")) != NULL)
   {
-    TAP_Hdd_Fseek(File, 0, SEEK_END);
-    TAP_Hdd_Fwrite(TS, strlen(TS), 1, File);
-    TAP_Hdd_Fwrite(Text, strlen(Text), 1, File);
-    TAP_Hdd_Fwrite(CRLF, 2, 1, File);
-    TAP_Hdd_Fclose(File);
+    fseek(File, 0, SEEK_END);
+    fwrite(TimeResult, strlen(TimeResult), 1, File);
+    fwrite(Text, strlen(Text), 1, File);
+    fwrite(CRLF, 2, 1, File);
+    fclose(File);
+
+    //As the log would receive the Linux time stamp (01.01.2000), adjust to the PVR's time
+    times.actime = PvrTimeToLinux(Now(NULL));
+    times.modtime = times.actime;
+    utime(FILENAME, &times);
   }
 
   if(Console)
   {
-    TAP_PrintNet("%s FBLIB - %s\n", TS, Text);
+    TAP_PrintNet("%s FBLIB - %s\n", TimeResult, Text);
   }
-
-  HDD_TAP_PopDir();
 
   TRACEEXIT();
 }

@@ -1,5 +1,9 @@
+#include                <stdlib.h>
 #include                <string.h>
 #include                "../libFireBird.h"
+
+#undef malloc
+#undef free
 
 dword StringDBAdd(tStringDB *StringDB, char *Text)
 {
@@ -38,7 +42,7 @@ dword StringDBAdd(tStringDB *StringDB, char *Text)
     else
       NewStringDBSize = StringDB->DBSize + 4096;
 
-    NewStringDB = TAP_MemAlloc(NewStringDBSize);
+    NewStringDB = malloc(NewStringDBSize);
     if(!NewStringDB)
     {
       TRACEEXIT();
@@ -47,7 +51,7 @@ dword StringDBAdd(tStringDB *StringDB, char *Text)
 
     memset(NewStringDB, 0, NewStringDBSize);
     memcpy(NewStringDB, StringDB->DB, StringDB->DBSize);
-    TAP_MemFree(StringDB->DB);
+    free(StringDB->DB);
 
     StringDB->DBPtr = StringDB->DBPtr - StringDB->DB + NewStringDB;
     StringDB->DBEnd = StringDB->DBEnd - StringDB->DB + NewStringDB;

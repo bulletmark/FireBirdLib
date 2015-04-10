@@ -1,5 +1,9 @@
+#include                <stdlib.h>
 #include                <string.h>
 #include                "../libFireBird.h"
+
+#undef malloc
+#undef free
 
 bool StringDBLoadFromFile(tStringDB *StringDB, TYPE_File *f)
 {
@@ -13,11 +17,11 @@ bool StringDBLoadFromFile(tStringDB *StringDB, TYPE_File *f)
     return FALSE;
   }
 
-  if(StringDB->DB) TAP_MemFree(StringDB->DB);
+  free(StringDB->DB);
 
   //DB Size
   TAP_Hdd_Fread(&l, sizeof(dword), 1, f);
-  StringDB->DB = TAP_MemAlloc(l);
+  StringDB->DB = malloc(l);
 
   if(!StringDB->DB)
   {

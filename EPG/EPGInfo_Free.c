@@ -1,4 +1,8 @@
+#include                <stdlib.h>
 #include                "FBLib_EPG.h"
+
+#undef malloc
+#undef free
 
 void EPGInfo_Free(void)
 {
@@ -6,7 +10,7 @@ void EPGInfo_Free(void)
 
   EPGInfo_DestroyCache();
 
-  if(EPGFilter.GenreArray) TAP_MemFree(EPGFilter.GenreArray);
+  free(EPGFilter.GenreArray);
   memset(&EPGFilter, 0, sizeof(EPGFilter));
 
   TRACEEXIT();

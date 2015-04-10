@@ -124,9 +124,9 @@ bool FlashSatTablesDecode_ST_TMSS(TYPE_SatInfo_TMSS *Data, tFlashSatTable *SatTa
   SatTable->NrOfTransponders = Data->NrOfTransponders;
   SatTable->unused1          = Data->unused1;
   SatTable->SatPosition      = Data->SatPosition;
-  memcpy(SatTable->unknown1, Data->unknown1, 22);
-  memcpy(SatTable->unused2, Data->unused2, 8);
-  strncpy(SatTable->SatName, Data->SatName, 15);
+  memcpy(SatTable->unknown1,   Data->unknown1, 22);
+  memcpy(SatTable->unused2,    Data->unused2, 8);
+  strncpy(SatTable->SatName,   Data->SatName, MAX_SatName - 1);
 
   //LNB 1
   SatTable->LNB[0].LNBSupply    = Data->LNB[0].LNBSupply;
@@ -178,7 +178,7 @@ bool FlashSatTablesDecode_ST_TMST(TYPE_SatInfo_TMST *Data, tFlashSatTable *SatTa
 
   memset(SatTable, 0, sizeof(tFlashSatTable));
   SatTable->NrOfTransponders = Data->NrOfTransponders;
-  strncpy(SatTable->SatName, Data->SatName, 15);
+  strncpy(SatTable->SatName, Data->SatName, MAX_SatName - 1);
 
   TRACEEXIT();
   return TRUE;
@@ -196,7 +196,7 @@ bool FlashSatTablesDecode_ST_TMSC(TYPE_SatInfo_TMSC *Data, tFlashSatTable *SatTa
 
   memset(SatTable, 0, sizeof(tFlashSatTable));
   SatTable->NrOfTransponders = Data->NrOfTransponders;
-  strncpy(SatTable->SatName, "Cable", 15);
+  strncpy(SatTable->SatName, "Cable", MAX_SatName - 1);
 
   TRACEEXIT();
   return TRUE;

@@ -35,7 +35,6 @@ bool FMUC_LoadFontFile(char *FontFileName, tFontDataUC *FontData)
     TAP_SPrint(s, "failed to load %s", FileName);
     LogEntryFBLibPrintf(TRUE, "FontManager UC: %s", s);
     ShowMessageWin(__tap_program_name__, s, "Please install the font", 300);
-    HDD_TAP_PopDir();
 
     TRACEEXIT();
     return FALSE;

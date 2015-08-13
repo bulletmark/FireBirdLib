@@ -20,7 +20,7 @@ I have added [Doxygen][doxygen] to the make/build to supplement the API
 documentation. You can see the output [here][fbdoxy]. The
 [directory][fbdirs] links are probably the most useful.
 
-[fb]: http://www.topfield.cc/files/Firebird/FireBirdLib.zip
+[fb]: http://tap.topfield-europe.com/firebird/FireBirdLib.zip
 [fbgit]: http://github.com/bulletmark/FireBirdLib/
 [commits]: http://github.com/bulletmark/FireBirdLib/commits/master/
 [master]: http://github.com/bulletmark/FireBirdLib/tree/master/

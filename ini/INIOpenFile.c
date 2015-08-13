@@ -3,9 +3,6 @@
 #include                "FBLib_ini.h"
 #include                "../libFireBird.h"
 
-#undef malloc
-#undef free
-
 char                    *INIBuffer = NULL, *INICommentBuffer = NULL;
 dword                   BufferSize = 0;
 
@@ -24,7 +21,7 @@ INILOCATION INIOpenFile(char *FileName, char *AppName)
   {
     HDD_TAP_PopDir();
     BufferSize = 512;
-    if(!(INIBuffer = malloc(BufferSize)))
+    if(!(INIBuffer = TAP_MemAlloc(BufferSize)))
     {
       TRACEEXIT();
       return INILOCATION_NotFound;
@@ -48,7 +45,7 @@ INILOCATION INIOpenFile(char *FileName, char *AppName)
   flen = TAP_Hdd_Flen(f);
   BufferSize = (((flen >> 9) + 2) << 9);
 
-  INIBuffer = malloc(BufferSize);
+  INIBuffer = TAP_MemAlloc(BufferSize);
   if(INIBuffer)
   {
     memset(INIBuffer, 0, BufferSize);

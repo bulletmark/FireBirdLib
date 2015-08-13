@@ -1,9 +1,6 @@
 #include                <stdlib.h>
 #include                "FBLib_TMSOSDMenu.h"
 
-#undef malloc
-#undef free
-
 void OSDMenuDestroy(void)
 {
   TRACEENTER();
@@ -20,7 +17,7 @@ void OSDMenuDestroy(void)
   if((!ProgressBarOSDRgn) && (!InfoBoxOSDRgn) && (!MessageBoxOSDRgn) && (!ColorPickerOSDRgn)) TAP_EnterNormal();
   if(Menu[CurrentMenuLevel].Item)
   {
-    free(Menu[CurrentMenuLevel].Item);
+    TAP_MemFree(Menu[CurrentMenuLevel].Item);
     Menu[CurrentMenuLevel].Item = NULL;
   }
 

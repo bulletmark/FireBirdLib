@@ -7,9 +7,6 @@
 #include                <utime.h>
 #include                "../libFireBird.h"
 
-#undef malloc
-#undef free
-
 void LogEntry(char *FileName, char *ProgramName, bool Console, eTimeStampFormat TimeStampFormat, char *Text)
 {
   TRACEENTER();
@@ -83,7 +80,7 @@ void LogEntry(char *FileName, char *ProgramName, bool Console, eTimeStampFormat 
       }
     }
     TAP_PrintNet("\n");
-    free(ISOText);
+    TAP_MemFree(ISOText);
   }
 
   TRACEEXIT();

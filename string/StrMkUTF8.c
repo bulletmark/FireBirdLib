@@ -2,9 +2,6 @@
 #include                <stdlib.h>
 #include                "../libFireBird.h"
 
-#undef malloc
-#undef free
-
 bool StrMkUTF8(byte *SourceString, byte DefaultISO8859CharSet)
 {
   TRACEENTER();
@@ -27,7 +24,7 @@ bool StrMkUTF8(byte *SourceString, byte DefaultISO8859CharSet)
     return TRUE;
   }
 
-  _utf8string = malloc(l);
+  _utf8string = TAP_MemAlloc(l);
   if(!_utf8string)
   {
     TRACEEXIT();
@@ -36,7 +33,7 @@ bool StrMkUTF8(byte *SourceString, byte DefaultISO8859CharSet)
 
   StrToUTF8(SourceString, _utf8string, DefaultISO8859CharSet);
   strcpy(SourceString, _utf8string);
-  free(_utf8string);
+  TAP_MemFree(_utf8string);
 
   TRACEEXIT();
   return TRUE;

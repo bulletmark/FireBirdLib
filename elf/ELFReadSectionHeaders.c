@@ -2,9 +2,6 @@
 #include                "ELF.h"
 #include                "FBLib_elf.h"
 
-#undef malloc
-#undef free
-
 bool ELFReadSectionHeaders(void)
 {
   TRACEENTER();
@@ -15,7 +12,7 @@ bool ELFReadSectionHeaders(void)
     return FALSE;
   }
 
-  if(!(SectionHeaders = malloc(ELFHeader->e_shnum * sizeof(Elf32_Shdr))))
+  if(!(SectionHeaders = TAP_MemAlloc(ELFHeader->e_shnum * sizeof(Elf32_Shdr))))
   {
     TRACEEXIT();
     return FALSE;

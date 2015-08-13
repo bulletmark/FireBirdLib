@@ -1,6 +1,6 @@
 #include                "FBLib_debug.h"
 
-bool CrashCheck_Startup(char *TAPName)
+void CrashCheck_Startup(char *TAPName, tCrashCheckStatus *CCStatus)
 {
   TRACEENTER();
 
@@ -23,6 +23,12 @@ bool CrashCheck_Startup(char *TAPName)
     HDD_TAP_PopDir();
   }
 
+  if(CCStatus)
+  {
+    if(RebootCount < 2) *CCStatus = CCS_Ok;
+    else if(RebootCount < 4) *CCStatus = CCS_RebootDetected;
+    else *CCStatus = CCS_ExcessiveRebootsDetected;
+  }
+
   TRACEEXIT();
-  return (RebootCount < 3);
 }

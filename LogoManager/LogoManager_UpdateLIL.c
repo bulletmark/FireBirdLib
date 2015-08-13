@@ -4,9 +4,6 @@
 #include                "../libFireBird.h"
 #include                "FBLib_LogoManager.h"
 
-#undef malloc
-#undef free
-
 int LogoManager_UpdateLIL(void)
 {
   TRACEENTER();
@@ -35,7 +32,7 @@ int LogoManager_UpdateLIL(void)
   HDD_ChangeDir(LOGOROOT);
 
   TAP_Channel_GetTotalNum(&nTvSvc, &nRadioSvc);
-  NewIDs = malloc((nTvSvc + nRadioSvc) * sizeof(tNewIDs));
+  NewIDs = TAP_MemAlloc((nTvSvc + nRadioSvc) * sizeof(tNewIDs));
   NewIDCount = 0;
 
   INIOpenFile(LILNAME, NULL);
@@ -133,7 +130,7 @@ int LogoManager_UpdateLIL(void)
 
   }
 
-  free(NewIDs);
+  TAP_MemFree(NewIDs);
 
   HDD_TAP_PopDir();
 

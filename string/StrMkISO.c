@@ -2,9 +2,6 @@
 #include                <stdlib.h>
 #include                "../libFireBird.h"
 
-#undef malloc
-#undef free
-
 bool StrMkISO(byte *SourceString)
 {
   TRACEENTER();
@@ -32,7 +29,7 @@ bool StrMkISO(byte *SourceString)
     if(_isostring)
     {
       strcpy(SourceString, _isostring);
-      free(_isostring);
+      TAP_MemFree(_isostring);
     }
     else
     {

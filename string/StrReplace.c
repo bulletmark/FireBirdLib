@@ -2,9 +2,6 @@
 #include                <stdlib.h>
 #include                "../libFireBird.h"
 
-#undef malloc
-#undef free
-
 bool StrReplace(char *String, char *Find, char *Replace)
 {
   TRACEENTER();
@@ -72,7 +69,7 @@ bool StrReplace(char *String, char *Find, char *Replace)
     } while(p);
 
     l = strlen(String) + NrOfOccurences*(ReplaceLen - FindLen) + 2;
-    TempBuffer = malloc(l);
+    TempBuffer = TAP_MemAlloc(l);
     memset(TempBuffer, 0, l);
 
     s = String;
@@ -95,7 +92,7 @@ bool StrReplace(char *String, char *Find, char *Replace)
     strcpy(d, s);
 
     strcpy(String, TempBuffer);
-    free(TempBuffer);
+    TAP_MemFree(TempBuffer);
   }
 
   TRACEEXIT();

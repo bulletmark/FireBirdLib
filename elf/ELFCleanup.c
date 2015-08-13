@@ -2,9 +2,6 @@
 #include                "ELF.h"
 #include                "FBLib_elf.h"
 
-#undef malloc
-#undef free
-
 void ELFCleanup(void)
 {
   TRACEENTER();
@@ -17,25 +14,25 @@ void ELFCleanup(void)
 
   if(ELFHeader)
   {
-    free(ELFHeader);
+    TAP_MemFree(ELFHeader);
     ELFHeader = NULL;
   }
 
   if(SectionHeaders)
   {
-    free(SectionHeaders);
+    TAP_MemFree(SectionHeaders);
     SectionHeaders = NULL;
   }
 
   if(shstrtab)
   {
-    free(shstrtab);
+    TAP_MemFree(shstrtab);
     shstrtab = NULL;
   }
 
   if(strtab)
   {
-    free(strtab);
+    TAP_MemFree(strtab);
     strtab = NULL;
   }
 

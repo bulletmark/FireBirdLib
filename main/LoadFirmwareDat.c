@@ -4,9 +4,6 @@
 #include                <sys/stat.h>
 #include                "FBLib_main.h"
 
-#undef malloc
-#undef free
-
 bool LoadFirmwareDat(tFWDATHeader **FWDatHeader, tToppyInfo **ToppyInfo, tFWInfo **FWInfo)
 {
   TRACEENTER();
@@ -37,7 +34,7 @@ bool LoadFirmwareDat(tFWDATHeader **FWDatHeader, tToppyInfo **ToppyInfo, tFWInfo
       return FALSE;
     }
 
-    if((FWDATBin = malloc(statbuf.st_size)) == NULL)
+    if((FWDATBin = TAP_MemAlloc(statbuf.st_size)) == NULL)
     {
       fclose(fp);
 
@@ -58,7 +55,7 @@ bool LoadFirmwareDat(tFWDATHeader **FWDatHeader, tToppyInfo **ToppyInfo, tFWInfo
      FWDAT->ToppyInfoLayoutVersion != 0 ||
      FWDAT->FWInfoLayoutVersion != 0)
   {
-    free(FWDATBin);
+    TAP_MemFree(FWDATBin);
     FWDATBin = NULL;
 
     TRACEEXIT();

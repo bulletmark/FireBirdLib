@@ -1,9 +1,6 @@
 #include                <stdlib.h>
 #include                "FBLib_debug.h"
 
-#undef malloc
-#undef free
-
 void CallTraceExitResult(dword *Magic, char *Result)
 {
   char                  Spaces[101];
@@ -77,7 +74,7 @@ void CallTraceExitResult(dword *Magic, char *Result)
     Spaces[CallLevel < CTSTACKSIZE ? CallLevel << 1 : 100] = '\0';
     StrToISOAlloc(Result, &ISOText);
     if(ISOText && *ISOText) TAP_PrintNet("%s  = %s\n", Spaces, ISOText);
-    free(ISOText);
+    TAP_MemFree(ISOText);
   }
 
   if(Magic && *Magic != DEFAULTMAGIC)

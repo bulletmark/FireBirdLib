@@ -3,7 +3,7 @@
 
   //#define STACKTRACE
 
-  #define __FBLIB_RELEASEDATE__ "2015-04-05"
+  #define __FBLIB_RELEASEDATE__ "2015-07-17"
 
   #define __FBLIB_VERSION__ __FBLIB_RELEASEDATE__
 
@@ -1202,9 +1202,15 @@
     #define TRACEEXIT()
   #endif
 
-  bool   CrashCheck_Startup(char *TAPName);
+  typedef enum
+  {
+    CCS_Ok,
+    CCS_RebootDetected,
+    CCS_ExcessiveRebootsDetected
+  }tCrashCheckStatus;
+
+  void   CrashCheck_Startup(char *TAPName, tCrashCheckStatus *CCStatus);
   void   CrashCheck_Shutdown(char *TAPName);
-  bool   CrashCheck_isOK(char *TAPName);
 
   void *TAP_MemAlloc_Chk(char *Comment, dword size);
   int   TAP_Osd_Copy_Chk(char *Comment, word srcRgnNum, word dstRgnNum, dword srcX, dword srcY, dword w, dword h, dword dstX, dword dstY,  bool sprite);
@@ -1389,9 +1395,6 @@
     dword               unknown2;
   }tDirEntry;
 
-  byte   DevFront_SetIlluminate(byte a0, byte Brightness);
-  dword  DevHdd_DeviceClose(tDirEntry *hddPlaybackFolder);
-  dword  DevHdd_DeviceOpen(tDirEntry **hddPlaybackFolder, tDirEntry *DirEntry);
   int    Appl_CheckRecording(int SvcType, int SvcNum, bool Unknown);
   int    Appl_CheckRecording_Tuner(byte TunerIndex, int SvcType, int SvcNum, bool Unknown);
   void   Appl_ClrTimer(byte *TimerHandle);
@@ -1407,6 +1410,7 @@
   bool   Appl_GetIsExternal(void);
   dword  Appl_GetFreeExtRecordSpace(char *MountPath);
   void  *Appl_GetSameTimeEvent(byte SatIndex, word NetID, word TSID, word ServiceID);
+  dword  Appl_KeyCvt(dword NECKeyCode);
   bool   Appl_ImportChData(char *FileName);
   void   Appl_PvrPause(bool p1);
   void   Appl_RestartTimeShiftSvc(bool p1, dword Block);
@@ -1437,6 +1441,10 @@
   word   ApplSvc_GetTpIdx(byte SatIndex, word NetworkID, word TSID);
   int    ApplTap_GetEmptyTask(void);
   void   ApplTimer_OptimizeList(void);
+  byte   DevFront_SetIlluminate(byte a0, byte Brightness);
+  void   DevFront_SetIrCode(byte Index, byte Active, byte MfgID1, byte MfgID2, byte Code0a);
+  dword  DevHdd_DeviceClose(tDirEntry *hddPlaybackFolder);
+  dword  DevHdd_DeviceOpen(tDirEntry **hddPlaybackFolder, tDirEntry *DirEntry);
   int    DevService_Mute(bool Mute);
 
 
@@ -1461,7 +1469,7 @@
     word                  AudioPID;
     word                  LCN;
     word                  AudioStreamType;
-    char                  ServiceName[MAX_SvcName];
+    char                  ServiceName[MAX_SvcName+1];
     char                  ProviderName[40];
     byte                  NameLock;
     word                  Flags2;
@@ -1510,7 +1518,7 @@
   {
     word                  NrOfTransponders;
     word                  unused1;
-    char                  SatName[16];
+    char                  SatName[MAX_SatName];
     tFlashLNB             LNB[2];
     byte                  unknown1[22];
     word                  SatPosition;
@@ -1941,6 +1949,7 @@
   inline dword FIS_fwAppl_GetIsExternal(void);
   inline dword FIS_fwAppl_GetSameTimeEvent(void);
   inline dword FIS_fwAppl_GetStreamFormat(void);
+  inline dword FIS_fwAppl_KeyCvt(void);
   inline dword FIS_fwAppl_ImportChData(void);
   inline dword FIS_fwAppl_InitTempRec(void);
   inline dword FIS_fwAppl_IsTimeShifting(void);
@@ -2509,7 +2518,7 @@
   #define MINUTE(d) ((byte) ((d) & 0xff))
 
   dword  AddSec(dword date, byte dateSec, int add);
-  dword  AddTime(dword date, int add);
+  dword  AddTime(dword pvrDate, int addMinutes);
   int    cronRegisterEvent(long frequency, dword firstExecution, void *callback);
   void   cronEventHandler(void);
   bool   cronGetEvent(int Index, int *frequency, dword *nextExecution);

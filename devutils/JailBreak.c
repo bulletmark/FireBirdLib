@@ -2,9 +2,9 @@
 #include              <string.h>
 #include              <stdio.h>
 #include              <ctype.h>
-#include              <ELF.h>
+#include              <elf.h>
 
-#define VERSION       "V1.3"
+#define VERSION       "V1.3a"
 
 char *BadWords[] = {"calloc",   "chdir",    "chmod",    "chown",
         "close",    "closedir", "create",   "dlclose",  "dlerror",
@@ -159,13 +159,13 @@ int main(int argc, char *argv[])
   }
 
   //Read the .shstrtab section. It contains a "string database" with the names of all sections
-  if(ELFHeader->e_shtrndx >= ELFHeader->e_shnum)
+  if(ELFHeader->e_shstrndx >= ELFHeader->e_shnum)
   {
     Cleanup("Invalid shstrtab index\n");
     return 1;
   }
 
-  pshstrtabSH = &SectionHeaders[ELFHeader->e_shtrndx];
+  pshstrtabSH = &SectionHeaders[ELFHeader->e_shstrndx];
   if(pshstrtabSH->sh_type != SHT_STRTAB)
   {
     Cleanup(".shstrtab index doesn't point to a string table\n");

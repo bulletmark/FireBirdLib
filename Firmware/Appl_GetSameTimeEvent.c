@@ -8,10 +8,10 @@ void *Appl_GetSameTimeEvent(byte SatIndex, word NetID, word TSID, word ServiceID
   dword                  *TreeByHashStart, *TreeByHashCurrent;
   TYPE_EvtInfo           *EventInfoCurrent;
 
+
   TreeByHashStart = Appl_GetEvtListHeadInHash(NetID, TSID, ServiceID);
   CurrentGMT = LocalTime2UTC(Now(NULL), NULL);
   TreeByHashCurrent = (dword*)*TreeByHashStart;
-
   if(TreeByHashCurrent != TreeByHashStart)
   {
     do

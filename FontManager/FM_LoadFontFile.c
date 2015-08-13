@@ -1,9 +1,6 @@
 #include                <stdlib.h>
 #include                "FBLib_FontManager.h"
 
-#undef malloc
-#undef free
-
 bool FM_LoadFontFile(char *FontFileName, tFontData *FontData)
 {
   TRACEENTER();
@@ -69,7 +66,7 @@ bool FM_LoadFontFile(char *FontFileName, tFontData *FontData)
     GreyScaleSize = FontData->FontDef[0].BitmapIndex;
   }
 
-  FontData->pFontData = malloc(GreyScaleSize);
+  FontData->pFontData = TAP_MemAlloc(GreyScaleSize);
 
   i = 0;
   j = GreyScaleSize;

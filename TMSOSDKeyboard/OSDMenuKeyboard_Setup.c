@@ -3,10 +3,6 @@
 #include                "FBLib_TMSOSDKeyboard.h"
 #include                "../TMSOSDMenu/graphic/TextCursor14.gd"
 
-#undef malloc
-#undef free
-
-
 bool                    OSDMenuKeyboard_GUIInitialized = FALSE;
 
 char                   *OSDMenuKeyboard_Title = NULL;
@@ -42,9 +38,9 @@ void OSDMenuKeyboard_Setup(char *Title, char *Variable, dword MaxLength)
 {
   TRACEENTER();
 
-  OSDMenuKeyboard_Title = malloc(strlen(Title) + 1);
+  OSDMenuKeyboard_Title = TAP_MemAlloc(strlen(Title) + 1);
   strcpy(OSDMenuKeyboard_Title, Title);
-  OSDMenuKeyboard_StringVar = malloc(MaxLength + 4);
+  OSDMenuKeyboard_StringVar = TAP_MemAlloc(MaxLength + 4);
   memset(OSDMenuKeyboard_StringVar, 0, MaxLength + 4);
 
   strncpy(OSDMenuKeyboard_StringVar, Variable, MaxLength);

@@ -24,7 +24,7 @@ void INIKillKey(char *Key)
 
   if(i && j)
   {
-    NewBuffer = malloc(BufferSize);
+    NewBuffer = TAP_MemAlloc(BufferSize);
     if(!NewBuffer)
     {
       TRACEEXIT();
@@ -35,7 +35,7 @@ void INIKillKey(char *Key)
     if(*j && (j[1] == '\r')) j++;
     if(*j && (j[1] == '\n')) j++;
     strcat(NewBuffer, ++j);
-    free(INIBuffer);
+    TAP_MemFree(INIBuffer);
     INIBuffer = NewBuffer;
   }
 

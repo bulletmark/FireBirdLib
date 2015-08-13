@@ -2,14 +2,11 @@
 #include                "ELF.h"
 #include                "FBLib_elf.h"
 
-#undef malloc
-#undef free
-
 bool ELFReadELFHeader(void)
 {
   TRACEENTER();
 
-  if(!(ELFHeader = malloc(sizeof(Elf32_Ehdr))))
+  if(!(ELFHeader = TAP_MemAlloc(sizeof(Elf32_Ehdr))))
   {
     TRACEEXIT();
     return FALSE;

@@ -3,9 +3,6 @@
 #include                <string.h>
 #include                "../libFireBird.h"
 
-#undef malloc
-#undef free
-
 void LogEntryGeneric(char *ProgramName, bool Console, char *Text)
 {
   TRACEENTER();
@@ -35,7 +32,7 @@ void LogEntryGeneric(char *ProgramName, bool Console, char *Text)
   }
 
   l = strlen(ProgramName) + strlen(Text) + 4;
-  s = malloc(l);
+  s = TAP_MemAlloc(l);
   if(s)
   {
     memset(s, 0, l);
@@ -61,9 +58,9 @@ void LogEntryGeneric(char *ProgramName, bool Console, char *Text)
         TAP_PrintNet("%s%s\n", TimeResult, ISOText);
       }
 
-      free(ISOText);
+      TAP_MemFree(ISOText);
     }
-    free(s);
+    TAP_MemFree(s);
   }
   HDD_TAP_PopDir();
 

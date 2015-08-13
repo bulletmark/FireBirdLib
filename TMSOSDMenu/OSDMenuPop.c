@@ -1,9 +1,6 @@
 #include                <stdlib.h>
 #include                "FBLib_TMSOSDMenu.h"
 
-#undef malloc
-#undef free
-
 bool OSDMenuPop(void)
 {
   TRACEENTER();
@@ -16,7 +13,7 @@ bool OSDMenuPop(void)
 
   if(Menu[CurrentMenuLevel].Item)
   {
-    free(Menu[CurrentMenuLevel].Item);
+    TAP_MemFree(Menu[CurrentMenuLevel].Item);
     Menu[CurrentMenuLevel].Item = NULL;
   }
 

@@ -3,9 +3,6 @@
 #include                "../libFireBird.h"
 #include                "FBLib_LogoManager.h"
 
-#undef malloc
-#undef free
-
 bool LogoManager_LogoCacheLoad(void)
 {
   TRACEENTER();
@@ -33,8 +30,8 @@ bool LogoManager_LogoCacheLoad(void)
         TAP_Hdd_Fread(&LogoManager_NrLogos, sizeof(dword), 1, f);
         if(LogoManager_NrLogos)
         {
-          free(LogoManager_LogoData);
-          LogoManager_LogoData = malloc(LogoManager_NrLogos * sizeof(tLogoData));
+          TAP_MemFree(LogoManager_LogoData);
+          LogoManager_LogoData = TAP_MemAlloc(LogoManager_NrLogos * sizeof(tLogoData));
           if(!LogoManager_LogoData)
           {
             if(LogoManager_CB) LogoManager_CB(-1, 0);

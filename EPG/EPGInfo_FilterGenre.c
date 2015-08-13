@@ -1,17 +1,14 @@
 #include                <stdlib.h>
 #include                "FBLib_EPG.h"
 
-#undef malloc
-#undef free
-
 void EPGInfo_FilterGenre(byte *GenreArray, byte GenreArraySize)
 {
   TRACEENTER();
 
   if(GenreArray && GenreArraySize)
   {
-    free(EPGFilter.GenreArray);
-    EPGFilter.GenreArray = malloc(GenreArraySize);
+    TAP_MemFree(EPGFilter.GenreArray);
+    EPGFilter.GenreArray = TAP_MemAlloc(GenreArraySize);
     if(EPGFilter.GenreArray)
     {
       memcpy(EPGFilter.GenreArray, GenreArray, GenreArraySize);
@@ -28,7 +25,7 @@ void EPGInfo_FilterGenre(byte *GenreArray, byte GenreArraySize)
   else
   {
     EPGFilter.GenreFilter = FALSE;
-    free(EPGFilter.GenreArray);
+    TAP_MemFree(EPGFilter.GenreArray);
     EPGFilter.GenreArray = NULL;
     EPGFilter.GenreArraySize = 0;
   }

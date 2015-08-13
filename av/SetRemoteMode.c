@@ -11,20 +11,10 @@ void SetRemoteMode(byte Mode, byte Index, bool Active)
 {
   TRACEENTER();
 
-  void (*DevFront_SetIrCode)(byte P1, byte P2, byte P3, byte P4, byte P5);
-
-  DevFront_SetIrCode = (void*)FIS_fwSetIrCode();
-  if(DevFront_SetIrCode)
+  Mode--;
+  if((Mode < 6) && (Index < 4))
   {
-    Mode--;
-    if((Mode < 6) && (Index < 4))
-    {
-      DevFront_SetIrCode(Index,
-                        (Active ? 1 : 0),
-                         FPIRData[Mode * 6 + 2],
-                         FPIRData[Mode * 6 + 3],
-                         FPIRData[Mode * 6 + 4]);
-    }
+    DevFront_SetIrCode(Index, (Active ? 1 : 0), FPIRData[Mode * 6 + 2], FPIRData[Mode * 6 + 3], FPIRData[Mode * 6 + 4]);
   }
 
   TRACEEXIT();

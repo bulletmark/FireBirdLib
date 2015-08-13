@@ -3,9 +3,6 @@
 #include                "../libFireBird.h"
 #include                "FBLib_LogoManager.h"
 
-#undef malloc
-#undef free
-
 void LogoManager_ProcessLILAdd(char *AddFileName)
 {
   TRACEENTER();
@@ -22,7 +19,7 @@ void LogoManager_ProcessLILAdd(char *AddFileName)
   if(f)
   {
     fs = TAP_Hdd_Flen(f);
-    Text = malloc(fs+1);
+    Text = TAP_MemAlloc(fs+1);
     if(Text)
     {
       TAP_Hdd_Fread(Text, 1, fs, f);
@@ -38,7 +35,7 @@ void LogoManager_ProcessLILAdd(char *AddFileName)
           INISetString(&Line[2], &Line[19]);
         }
       }
-      free(Text);
+      TAP_MemFree(Text);
     }
     TAP_Hdd_Fclose(f);
   }

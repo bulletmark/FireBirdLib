@@ -1,9 +1,6 @@
 #include <stdlib.h>
 #include "FBLib_FontManager.h"
 
-#undef malloc
-#undef free
-
 typedef struct
 {
   char                 *Requester;
@@ -73,7 +70,7 @@ void *FMUC_ReserveMemory(char *Requester, dword size)
   void                 *ret;
   dword                 NrReservations, NrTotalSize;
 
-  ret = malloc(size);
+  ret = TAP_MemAlloc(size);
   return ret;
 
   Mem = FMUC_MemoryFindFree();
@@ -99,7 +96,7 @@ void FMUC_FreeMemory(char *Requester, void *Pointer)
   tFMUC_MemDebug       *Mem;
   dword                 NrReservations, NrTotalSize;
 
-  free(Pointer);
+  TAP_MemFree(Pointer);
   return;
 
   Mem = FMUC_MemoryFindPointer(Pointer);

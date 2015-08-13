@@ -39,12 +39,13 @@ int TAP_Main()
 {
   AddSec(0, 0, 0);
   AddTime(0, 0);
+  ansicstr(NULL, 0, 0, NULL, NULL);
   Appl_CheckRecording(0, 0, FALSE);
   Appl_CheckRecording_Tuner(0, 0, 0, FALSE);
   Appl_ClrTimer(NULL);
   Appl_EvtProc_PincodeKey(0, 0);
-  Appl_ExportChData(NULL);
   Appl_ExecProgram(NULL);
+  Appl_ExportChData(NULL);
   Appl_GetCurrentEvent(0, 0, 0, 0);
   Appl_GetEvtCount(0, 0, 0, 0);
   Appl_GetEvtCountInFreePool();
@@ -54,6 +55,7 @@ int TAP_Main()
   Appl_GetFreeExtRecordSpace(NULL);
   Appl_GetIsExternal();
   Appl_ImportChData(NULL);
+  Appl_KeyCvt(0);
   Appl_PvrPause(FALSE);
   Appl_RestartTimeShiftSvc(FALSE, 0);
   Appl_SetIsExternal(FALSE);
@@ -100,9 +102,8 @@ int TAP_Main()
   CompressedTFDSize(NULL, 0, NULL);
   CompressTFD(NULL, 0, NULL, 0, 0, NULL);
   ConvertPathType(NULL, NULL, 0);
-  CrashCheck_isOK(NULL);
   CrashCheck_Shutdown(NULL);
-  CrashCheck_Startup(NULL);
+  CrashCheck_Startup(NULL, NULL);
   CRC16(0, NULL, 0);
   CRC32(0, NULL, 0);
   cronEventHandler();
@@ -120,6 +121,7 @@ int TAP_Main()
   DayOfWeek(0);
   DeleteAt(NULL, 0, 0);
   DevFront_SetIlluminate(0, 0);
+  DevFront_SetIrCode(0, 0, 0, 0, 0);
   DevHdd_DeviceClose(NULL);
   DevHdd_DeviceOpen(NULL, NULL);
   DevService_Mute(FALSE);
@@ -148,8 +150,8 @@ int TAP_Main()
   EPGInfo_AbortLoad();
   EPGInfo_CalculateStructSize();
   EPGInfo_CloneToCache(NULL, 0, NULL);
-  EPGInfo_CountEvents(NULL);
   EPGInfo_CopyData(NULL, NULL, 0, 0, 0);
+  EPGInfo_CountEvents(NULL);
   EPGInfo_CreateCache(0);
   EPGInfo_DestroyCache();
   EPGInfo_FilterCallback(NULL);
@@ -205,6 +207,7 @@ int TAP_Main()
   FIS_fwAppl_ImportChData();
   FIS_fwAppl_InitTempRec();
   FIS_fwAppl_IsTimeShifting();
+  FIS_fwAppl_KeyCvt();
   FIS_fwAppl_PvrList();
   FIS_fwAppl_PvrList_SetListType();
   FIS_fwAppl_PvrPause();
@@ -272,6 +275,7 @@ int TAP_Main()
   FIS_fwPowerOff();
   FIS_fwPutDevEvt();
   FIS_fwSetIrCode();
+  FIS_fwTimeToLinux();
   FIS_vApplState();
   FIS_vAudioTrack();
   FIS_vbookmarkTime();
@@ -405,6 +409,7 @@ int TAP_Main()
   FMUC_FindNextUTF8(NULL);
   FMUC_FindUTF8Start(NULL);
   FMUC_FreeFontFile(NULL);
+  FMUC_FreeMemory(NULL, NULL);
   FMUC_GetGlyphData(NULL, NULL, NULL);
   FMUC_GetStringHeight(NULL, NULL);
   FMUC_GetStringWidth(NULL, NULL);
@@ -413,7 +418,6 @@ int TAP_Main()
   FMUC_PutString(0, 0, 0, 0, NULL, 0, 0, NULL, 0, 0);
   FMUC_PutStringAA(0, 0, 0, 0, NULL, 0, 0, NULL, 0, 0, 0);
   FMUC_ReserveMemory(NULL, 0);
-  FMUC_FreeMemory(NULL, NULL);
   FreeOSDRegion(0);
   FrontPanelEEPROMRead(0, NULL);
   FrontPanelEEPROMWrite(0, 0);
@@ -450,8 +454,8 @@ int TAP_Main()
   HDD_FappendWrite(NULL, NULL);
   HDD_FindMountPoint(NULL, NULL);
   HDD_FindMountPointDevice(NULL, NULL, NULL);
-  HDD_FindSymbolicLink(NULL, NULL, NULL);
   HDD_FindPCR(NULL, 0, 0);
+  HDD_FindSymbolicLink(NULL, NULL, NULL);
   HDD_GetAbsolutePathByTypeFile(NULL, NULL);
   HDD_GetFileSizeAndInode(NULL, NULL, NULL);
   HDD_GetFileTimeByFileName(NULL);
@@ -722,14 +726,15 @@ int TAP_Main()
   OSDMenuSetCallback(NULL);
   OSDMenuSetCursor(0);
   OSDMenuSetFont(NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+  OSDMenuUpdate(FALSE);
   OSDMenuWaitSpinnerIdle();
   OSDMenuWaitSpinnerInit();
-  OSDMenuUpdate(FALSE);
   OSDToBMP(NULL , 0, 0, NULL, 0);
   ParseLine(NULL, NULL, '\0');
   PlayMediaFile(NULL);
   PrintNet(NULL);
   PutDevEvent(0, 0);
+  PvrTimeToLinux(0);
   Reboot(FALSE);
   ReplaceInvalidFileNameChars(NULL);
   RTrim(NULL);

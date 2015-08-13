@@ -2,23 +2,20 @@
 #include "FBLib_ini.h"
 #include "../libFireBird.h"
 
-#undef malloc
-#undef free
-
 void INICloseFile(void)
 {
   TRACEENTER();
 
   if(INIBuffer != NULL)
   {
-    free(INIBuffer);
+    TAP_MemFree(INIBuffer);
     INIBuffer = NULL;
     BufferSize = 0;
   }
 
   if(INICommentBuffer != NULL)
   {
-    free(INICommentBuffer);
+    TAP_MemFree(INICommentBuffer);
     INICommentBuffer = NULL;
   }
 

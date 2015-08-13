@@ -1,9 +1,6 @@
 #include <stdlib.h>
 #include "../libFireBird.h"
 
-#undef malloc
-#undef free
-
 short                   *soundData = NULL;
 dword                   soundDataLength = 0;
 
@@ -45,13 +42,13 @@ void SoundSinus(word freq, dword durationInMilliseconds, word Amplitude)
 
   if((soundData != NULL) && (soundDataLength < memSize))
   {
-    free(soundData);             //Gebe den beim letzten Ton belegten Speicher wieder frei
+    TAP_MemFree(soundData);             //Gebe den beim letzten Ton belegten Speicher wieder frei
     soundData = NULL;
   }
 
   if(soundData == NULL)
   {
-    soundData = (word*) malloc(memSize);
+    soundData = (word*) TAP_MemAlloc(memSize);
     soundDataLength = memSize;
   }
 

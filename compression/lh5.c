@@ -1226,23 +1226,23 @@ static void GetNextMatch(ARDATA *ar)
 
 static int allocate_memory(ARDATA *ar)
 {
-  ar->Text = malloc(2*DICSIZ+MAXMATCH);
-  ar->Level = malloc(DICSIZ+UCHARMAX+1);
-  ar->ChildCount = malloc(DICSIZ+UCHARMAX+1);
+  ar->Text = TAP_MemAlloc(2*DICSIZ+MAXMATCH);
+  ar->Level = TAP_MemAlloc(DICSIZ+UCHARMAX+1);
+  ar->ChildCount = TAP_MemAlloc(DICSIZ+UCHARMAX+1);
 #ifdef PERCOLATE
-  ar->Position = malloc((DICSIZ+UCHARMAX+1) << 1);
+  ar->Position = TAP_MemAlloc((DICSIZ+UCHARMAX+1) << 1);
 #else
-  ar->Position = malloc(DICSIZ << 1);
+  ar->Position = TAP_MemAlloc(DICSIZ << 1);
 #endif
-  ar->Parent = malloc((DICSIZ*2) << 1);
-  ar->Prev = malloc((DICSIZ*2) << 1);
-  ar->Next = malloc((MAXHASHVAL+1) << 1);
+  ar->Parent = TAP_MemAlloc((DICSIZ*2) << 1);
+  ar->Prev = TAP_MemAlloc((DICSIZ*2) << 1);
+  ar->Next = TAP_MemAlloc((MAXHASHVAL+1) << 1);
 
-  ar->Buf = malloc(WINDOWSIZE);
+  ar->Buf = TAP_MemAlloc(WINDOWSIZE);
   return ar->Buf != NULL;
 }
 
-#define FREEMEM(p) if(p) {free(p); p = NULL;}
+#define FREEMEM(p) if(p) {TAP_MemFree(p); p = NULL;}
 
 static void free_memory(ARDATA *ar)
 {
@@ -1317,7 +1317,7 @@ word CompressBlock(byte *inputbuffer, word inputsize, byte *outputbuffer)
   }
 
   int compsize = 0;
-  ARDATA *ar = malloc(sizeof(ARDATA));
+  ARDATA *ar = TAP_MemAlloc(sizeof(ARDATA));
   if(ar)
   {
     InitVars(ar);
@@ -1332,7 +1332,7 @@ word CompressBlock(byte *inputbuffer, word inputsize, byte *outputbuffer)
       if(outputbuffer) memcpy(outputbuffer, inputbuffer, inputsize);
       compsize = inputsize;
     }
-    free(ar);
+    TAP_MemFree(ar);
   }
 
   TRACEEXIT();
@@ -1349,7 +1349,7 @@ word UncompressBlock(byte *inputbuffer, word inputsize, byte *outputbuffer, word
     return 0;
   }
 
-  ARDATA *ar = malloc(sizeof(ARDATA));
+  ARDATA *ar = TAP_MemAlloc(sizeof(ARDATA));
   if(!ar)
   {
     TRACEEXIT();
@@ -1366,7 +1366,7 @@ word UncompressBlock(byte *inputbuffer, word inputsize, byte *outputbuffer, word
   ar->OrigSize = BufferSize;
   Decode(ar);
   failed = ar->Failed;
-  free(ar);
+  TAP_MemFree(ar);
 
   TRACEEXIT();
   return !failed;

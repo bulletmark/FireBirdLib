@@ -2,9 +2,6 @@
 #include                <stdlib.h>
 #include                "FBLib_TMSOSDMenu.h"
 
-#undef malloc
-#undef free
-
 bool OSDMenuItemAdd(char *Name, char *Value, TYPE_GrData *pNameIconGd, TYPE_GrData *pValueIconGd, bool Selectable, bool ValueArrows, dword ID)
 {
   TRACEENTER();
@@ -18,7 +15,7 @@ bool OSDMenuItemAdd(char *Name, char *Value, TYPE_GrData *pNameIconGd, TYPE_GrDa
   if(pMenu->NrItems >= pMenu->MaxItems)
   {
     NewNrItems = pMenu->MaxItems + 30;
-    TempItem = malloc(NewNrItems * sizeof(tItem));
+    TempItem = TAP_MemAlloc(NewNrItems * sizeof(tItem));
     if(!TempItem)
     {
       TRACEEXIT();
@@ -27,7 +24,7 @@ bool OSDMenuItemAdd(char *Name, char *Value, TYPE_GrData *pNameIconGd, TYPE_GrDa
 
     memset(TempItem, 0, NewNrItems * sizeof(tItem));
     memcpy(TempItem, pMenu->Item, pMenu->NrItems * sizeof(tItem));
-    free(pMenu->Item);
+    TAP_MemFree(pMenu->Item);
     pMenu->Item = TempItem;
     pMenu->MaxItems = NewNrItems;
   }

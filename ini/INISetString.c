@@ -3,9 +3,6 @@
 #include "FBLib_ini.h"
 #include "../libFireBird.h"
 
-#undef malloc
-#undef free
-
 void INISetString(char *Key, char *Value)
 {
   TRACEENTER();
@@ -35,7 +32,7 @@ void INISetString(char *Key, char *Value)
       OldBuffer = INIBuffer;
       BS = ((BufferSize >> 10) + 1) << 10;
 
-      if(l > BS || !(INIBuffer = malloc(BS)))
+      if(l > BS || !(INIBuffer = TAP_MemAlloc(BS)))
       {
         INIBuffer = OldBuffer;
 
@@ -46,7 +43,7 @@ void INISetString(char *Key, char *Value)
       memset(INIBuffer, 0, BS);
       memcpy(INIBuffer, OldBuffer, BufferSize);
       BufferSize = BS;
-      free(OldBuffer);
+      TAP_MemFree(OldBuffer);
     }
 
     strcat(INIBuffer, TempKey);
@@ -62,7 +59,7 @@ void INISetString(char *Key, char *Value)
     else
       BS = BufferSize;
 
-    if(l > BS || !(NewBuffer = malloc(BS)))
+    if(l > BS || !(NewBuffer = TAP_MemAlloc(BS)))
     {
       TRACEEXIT();
       return;
@@ -73,7 +70,7 @@ void INISetString(char *Key, char *Value)
     strcat(NewBuffer, TempKey);
     strcat(NewBuffer, Value);
     strcat(NewBuffer, j + 1);
-    free(INIBuffer);
+    TAP_MemFree(INIBuffer);
     INIBuffer = NewBuffer;
 
     BufferSize = BS;

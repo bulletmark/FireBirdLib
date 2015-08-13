@@ -3,9 +3,6 @@
 #include "FBLib_ini.h"
 #include "../libFireBird.h"
 
-#undef malloc
-#undef free
-
 dword                   LangNrStrings = 0;
 dword                   *LangStringPtr = NULL;
 char                    *LangStrings   = NULL;
@@ -45,7 +42,7 @@ INILOCATION LangLoadStrings(char *LangFile, dword NrStrings, int FallbackLang, c
   }
 
   //First loop: count the length of all strings
-  LangStringPtr = malloc(NrStrings * sizeof(dword));
+  LangStringPtr = TAP_MemAlloc(NrStrings * sizeof(dword));
   memset(LangStringPtr, 0, NrStrings * sizeof(dword));
   TotalLength = 0;
   for(i = 0; i < NrStrings; i++)
@@ -75,7 +72,7 @@ INILOCATION LangLoadStrings(char *LangFile, dword NrStrings, int FallbackLang, c
   }
 
   //Second loop: Read the strings
-  LangStrings = malloc(TotalLength);
+  LangStrings = TAP_MemAlloc(TotalLength);
   memset(LangStrings, 0, TotalLength);
   for(i = 0; i < NrStrings; i++)
   {

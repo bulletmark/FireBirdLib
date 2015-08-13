@@ -982,3 +982,12 @@ The following functions accept any form a path. The INI and language INI functio
 2015-03-27: Fixed: Several small fixes in FlashSatTablesDecode(), FlashFavoritesSetInfo() and FlashServiceDecode(). (thanks to chris86)
 2015-04-05: Added: ansicstr() taken from the GNU bash project. It is the function that is used for echo to interpret escape sequences
             Fixed: HDD_FindMountPoint() and HDD_FindMountPointDevice() now work with mounted file systems where the path contains spaces
+2015-04-12: Fixed: Missed to fix the tFlashService structure too (char ServiceName[MAX_SvcName+1])
+2015-04-20: Added: FIS_fwAppl_KeyCvt() and Appl_KeyCvt(). Appl_KeyCvt() converts the NEC key code, received from the RCU, into the system specific RKEY code
+            Added: DevFront_SetIrCode()
+2015-04-28: Fixed: As it is not managable to run larger pieces of TAP code in a separate thread, all malloc()/free() have been changed back to TAP_MemAlloc()/TAP_MemFree()
+2015-04-29: Fixed: The CrashCheck API had a design flaw, which made it to report a reboot even though the last boot wasn’t caused by a reboot. CrashCheck_Startup() has now an additional parameter,
+                   that receives the status, CrashCheck_isOK() has been removed.
+2015-06-07: Fixed: Fixed a typo in elf\elf.h. Elf32_Ehdr contained a field named 'e_shtrndx' instead of 'e_shstrndx'.
+            Fixed: The same typo in JailBreak.c and and ELFReadShstrtabSection.c. This doesn't mean any functional change but prevented the successful compile of JailBreak under Linux
+2015-07-17: Fixed: Fixed an bug in AddTime() when adding negative minutes

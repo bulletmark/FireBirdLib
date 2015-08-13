@@ -1,9 +1,6 @@
 #include                <stdlib.h>
 #include                "../libFireBird.h"
 
-#undef malloc
-#undef free
-
 bool StringDBDestroy(tStringDB *StringDB)
 {
   TRACEENTER();
@@ -14,7 +11,7 @@ bool StringDBDestroy(tStringDB *StringDB)
     return FALSE;
   }
 
-  free(StringDB->DB);
+  TAP_MemFree(StringDB->DB);
   StringDBInit(StringDB, 0);
 
   TRACEEXIT();

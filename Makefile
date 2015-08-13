@@ -7,9 +7,9 @@ include ${BASE}/include/tool.mk
 
 all: lib devutils
 
-docs: HTMLDOCS doc
+docs: HTMLDOCS readme
 
-.PHONY: doc devutils HTMLDOCS
+.PHONY: readme devutils HTMLDOCS
 
 lib:
 	@for i in $(DIRS); \
@@ -33,7 +33,7 @@ HTMLDOCS:
 	rm -rf $@
 	doxygen
 
-doc:
+readme:
 	markdown README.md >README.html
 
 clean:

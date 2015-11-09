@@ -5,9 +5,9 @@ DIRS = av compression debug elf EPG ExtAttribs Firmware flash FontManager hdd in
 BASE = $(shell cd /tapapi/TMS; pwd)
 include ${BASE}/include/tool.mk
 
-all: lib devutils
+all: lib devutils readme
 
-docs: HTMLDOCS readme
+docs: HTMLDOCS
 
 .PHONY: readme devutils HTMLDOCS
 

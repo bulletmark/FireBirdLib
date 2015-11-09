@@ -20,6 +20,8 @@ I have added [Doxygen][doxygen] to the make/build to supplement the API
 documentation. You can see the output [here][fbdoxy]. The
 [directory][fbdirs] links are probably the most useful.
 
+Also refer to the documentation about the standard [Topfield TAP API][tapapi].
+
 [fb]: http://tap.topfield-europe.com/firebird/FireBirdLib.zip
 [fbgit]: http://github.com/bulletmark/FireBirdLib/
 [commits]: http://github.com/bulletmark/FireBirdLib/commits/master/
@@ -33,3 +35,4 @@ documentation. You can see the output [here][fbdoxy]. The
 [doxygen]: http://www.doxygen.org/
 [fbdoxy]: http://markb.homenet.org/misc/FireBirdLib/HTMLDOCS/
 [fbdirs]: http://markb.homenet.org/misc/FireBirdLib/HTMLDOCS/files.html
+[tapapi]: http://www.toppy.org.uk/~r2-d2/api/WebHome.html

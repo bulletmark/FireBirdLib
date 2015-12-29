@@ -1,0 +1,5 @@
+MemLog TODO
+* Report final stats
+* report memory (req?, close?)
+* Ausgabe der Uhrzeit und nicht der Sekunden
+* Marker

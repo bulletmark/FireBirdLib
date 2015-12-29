@@ -3,7 +3,7 @@
 
   //#define STACKTRACE
 
-  #define __FBLIB_RELEASEDATE__ "2015-07-17"
+  #define __FBLIB_RELEASEDATE__ "2015-11-07"
 
   #define __FBLIB_VERSION__ __FBLIB_RELEASEDATE__
 
@@ -1313,6 +1313,7 @@
   bool  ELFReadShstrtabSection(void);
   dword ELFGetSectionIndex(char *SectionName);
   bool  ELFGetSectionAddress(dword SectionIndex, dword *SectionAddress, dword *SectionSize);
+  bool  ELFGetSectionOffset(dword SectionIndex, dword *SectionOffset, dword *SectionSize);
   bool  ELFReadDWORD(dword SectionIndex, dword *Data);
   bool  ELFReadData(dword SectionIndex, byte *Data);
   void  ELFCleanup(void);
@@ -1615,7 +1616,7 @@
     word                ServiceIndex;
     byte                unused8[8];
     byte                IceTV;
-    byte                unused9[13];
+    byte                unused9[165];
     tFlashTransponderTable    TpInfo;
   }tFlashTimer;
 

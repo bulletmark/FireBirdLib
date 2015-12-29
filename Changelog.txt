@@ -990,4 +990,7 @@ The following functions accept any form a path. The INI and language INI functio
                    that receives the status, CrashCheck_isOK() has been removed.
 2015-06-07: Fixed: Fixed a typo in elf\elf.h. Elf32_Ehdr contained a field named 'e_shtrndx' instead of 'e_shstrndx'.
             Fixed: The same typo in JailBreak.c and and ELFReadShstrtabSection.c. This doesn't mean any functional change but prevented the successful compile of JailBreak under Linux
-2015-07-17: Fixed: Fixed an bug in AddTime() when adding negative minutes
+2015-07-17: Fixed: Fixed a bug in AddTime() when adding negative minutes
+
+2015-11-06: Added: a new timer structure (TYPE_Timer_TMST360) for the new Australian TRF-5300
+2015-11-07: Added: ELFGetSectionOffset() returns the position of a section within the elf file. Thanks to DeltaMikeCharly for both updates

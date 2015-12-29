@@ -139,6 +139,7 @@ int TAP_Main()
   DumpMemoryDword(NULL, 0);
   ELFCleanup();
   ELFGetSectionAddress(0, NULL, NULL);
+  ELFGetSectionOffset(0, NULL, NULL);
   ELFGetSectionIndex(NULL);
   ELFOpenFile(NULL);
   ELFReadData(0, NULL);

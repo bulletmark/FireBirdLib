@@ -51,11 +51,24 @@ bool FlashTimerGetInfo(int TimerIndex, tFlashTimer *TimerInfo)
     case ST_TMST:
     {
       //Depending on the firmware, some Australian machines use the sat structures (200 bytes)
+      //DMC 2015-11-06 The new AU 5300 has a 360 byte structure
       if(FlashTimerStructSize() == 200)
       {
         TYPE_Timer_TMST200  *p;
 
         p = (TYPE_Timer_TMST200*)(FIS_vFlashBlockTimer());
+        if(p)
+        {
+          p = p + TimerIndex;
+          ret = FlashTimerDecode(p, TimerInfo);
+        }
+        break;
+      }
+      else if(FlashTimerStructSize() == 360)
+      {
+        TYPE_Timer_TMST360  *p;
+
+        p = (TYPE_Timer_TMST360*)(FIS_vFlashBlockTimer());
         if(p)
         {
           p = p + TimerIndex;
@@ -134,6 +147,8 @@ bool FlashTimerDecode(void *Data, tFlashTimer *TimerInfo)
       //Depending on the firmware, some Australian machines use the sat structures (200 bytes)
       if(FlashTimerStructSize() == 200)
         ret = FlashTimerDecode_ST_TMST200(Data, TimerInfo);
+      else if(FlashTimerStructSize() == 360)
+        ret = FlashTimerDecode_ST_TMST360(Data, TimerInfo);
       else
         ret =  FlashTimerDecode_ST_TMST(Data, TimerInfo);
 
@@ -292,6 +307,56 @@ bool FlashTimerDecode_ST_TMST200(TYPE_Timer_TMST200 *Data, tFlashTimer *TimerInf
   memcpy(TimerInfo->unused8, Data->unused8, 8);
   TimerInfo->IceTV            = Data->IceTV;
   memcpy(TimerInfo->unused9, Data->unused9, 5);
+
+  TimerInfo->TpInfo.SatIndex          = Data->TpInfo.SatIdx;
+  TimerInfo->TpInfo.ChannelNr         = Data->TpInfo.ChannelNr;
+  TimerInfo->TpInfo.Bandwidth         = Data->TpInfo.Bandwidth;
+  TimerInfo->TpInfo.Frequency         = Data->TpInfo.Frequency;
+  TimerInfo->TpInfo.TSID              = Data->TpInfo.TSID;
+  TimerInfo->TpInfo.LPHP              = Data->TpInfo.LPHP;
+  TimerInfo->TpInfo.OriginalNetworkID = Data->TpInfo.OriginalNetworkID;
+  TimerInfo->TpInfo.NetworkID         = Data->TpInfo.NetworkID;
+  TimerInfo->TpInfo.unused1           = Data->TpInfo.unused1;
+  TimerInfo->TpInfo.unused2           = Data->TpInfo.unused2;
+
+  TRACEEXIT();
+  return TRUE;
+}
+
+bool FlashTimerDecode_ST_TMST360(TYPE_Timer_TMST360 *Data, tFlashTimer *TimerInfo)
+{
+  TRACEENTER();
+
+  memset(TimerInfo, 0, sizeof(tFlashTimer));
+
+  TimerInfo->TunerIndex       = Data->TunerIndex;
+  TimerInfo->RecMode          = Data->RecMode;
+  TimerInfo->DemuxPath        = Data->DemuxPath;
+  TimerInfo->ManualRec        = Data->ManualRec;
+  TimerInfo->unused1          = Data->unused1;
+  TimerInfo->SatIndex         = Data->SatIndex;
+  TimerInfo->ServiceType      = Data->ServiceType;
+  TimerInfo->ReservationType  = Data->ReservationType;
+  TimerInfo->unused2          = Data->unused2;
+  TimerInfo->ServiceID        = Data->ServiceID;
+  TimerInfo->Duration         = Data->Duration;
+  TimerInfo->unused3          = Data->unused3;
+  strncpy(TimerInfo->FileName, Data->FileName, 130);
+  TimerInfo->StartTime        = Data->StartTime;
+  TimerInfo->EndTime          = Data->EndTime;
+  TimerInfo->PMTPID           = Data->PMTPID;
+  TimerInfo->isRec            = Data->isRec;
+  TimerInfo->NameSet          = Data->NameSet;
+  TimerInfo->unused4          = Data->unused4;
+  TimerInfo->EPGMarker        = Data->EPGMarker;
+  TimerInfo->unused5          = Data->unused5;
+  TimerInfo->unknown1         = Data->unknown1;
+  TimerInfo->EventID1         = Data->EventID1;
+  TimerInfo->EventID2         = Data->EventID2;
+  TimerInfo->ServiceIndex     = Data->ServiceIndex;
+  memcpy(TimerInfo->unused8, Data->unused8, 8);
+  TimerInfo->IceTV            = Data->IceTV;
+  memcpy(TimerInfo->unused9, Data->unused9, 165);
 
   TimerInfo->TpInfo.SatIndex          = Data->TpInfo.SatIdx;
   TimerInfo->TpInfo.ChannelNr         = Data->TpInfo.ChannelNr;

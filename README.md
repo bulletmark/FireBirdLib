@@ -2,7 +2,7 @@
 
 This is the [FireBirdLib][fb] library for aiding [Topfield][tf] TMS PVR
 TAP development. The original version is maintained by FireBird and
-available at <http://www.topfield.cc/files/Firebird/FireBirdLib.zip>.
+[available here][fb].
 This library augments the [cygwin TAP development tools][cygtools] and
 [linux TAP development tools][lintools] provided by [Topfield][tf].
 

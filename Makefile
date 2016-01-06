@@ -7,8 +7,6 @@ include ${BASE}/include/tool.mk
 
 all: lib devutils readme
 
-docs: HTMLDOCS
-
 .PHONY: readme devutils HTMLDOCS
 
 lib:
@@ -29,7 +27,7 @@ devutils:
 	cd $@; \
 	$(MAKE) all;
 
-HTMLDOCS:
+docs:
 	rm -rf $@
 	doxygen
 

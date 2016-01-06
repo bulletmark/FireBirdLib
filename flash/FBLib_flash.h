@@ -307,7 +307,16 @@
     word                ServiceIndex;
     byte                unused8[8];
     byte                IceTV;
-    byte                unused9[165];
+    byte                unused9[13];
+    dword               rs_timestamp1;
+    char                rs_episodeCRID[64];
+    char                rs_seriesCRID[64];
+    dword               rs_unknown1;
+    dword               rs_unknown2;
+    dword               rs_timestamp2;
+    dword               rs_unknown3;
+    dword               rs_unknown4;
+
     TYPE_TpInfo_TMST    TpInfo;
   }__attribute__((packed)) TYPE_Timer_TMST360;      //DMC 2015-11-06 360 byte structure for the 5300
 

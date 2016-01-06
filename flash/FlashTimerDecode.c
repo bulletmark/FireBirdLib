@@ -356,7 +356,17 @@ bool FlashTimerDecode_ST_TMST360(TYPE_Timer_TMST360 *Data, tFlashTimer *TimerInf
   TimerInfo->ServiceIndex     = Data->ServiceIndex;
   memcpy(TimerInfo->unused8, Data->unused8, 8);
   TimerInfo->IceTV            = Data->IceTV;
-  memcpy(TimerInfo->unused9, Data->unused9, 165);
+  memcpy(TimerInfo->unused9, Data->unused9, sizeof(Data->unused9));
+  TimerInfo->rs_timestamp1    = Data->rs_timestamp1;
+
+  memcpy(TimerInfo->rs_episodeCRID, Data->rs_episodeCRID, sizeof(Data->rs_episodeCRID));
+  memcpy(TimerInfo->rs_seriesCRID, Data->rs_seriesCRID, sizeof(Data->rs_episodeCRID));
+
+  TimerInfo->rs_unknown1         = Data->rs_unknown1;
+  TimerInfo->rs_unknown2         = Data->rs_unknown2;
+  TimerInfo->rs_timestamp2    = Data->rs_timestamp2;
+  TimerInfo->rs_unknown3         = Data->rs_unknown3;
+  TimerInfo->rs_unknown4         = Data->rs_unknown4;
 
   TimerInfo->TpInfo.SatIndex          = Data->TpInfo.SatIdx;
   TimerInfo->TpInfo.ChannelNr         = Data->TpInfo.ChannelNr;

@@ -3,7 +3,7 @@
 
   //#define STACKTRACE
 
-  #define __FBLIB_RELEASEDATE__ "2015-11-07"
+  #define __FBLIB_RELEASEDATE__ "2015-12-29"
 
   #define __FBLIB_VERSION__ __FBLIB_RELEASEDATE__
 
@@ -1616,7 +1616,16 @@
     word                ServiceIndex;
     byte                unused8[8];
     byte                IceTV;
-    byte                unused9[165];
+    byte                unused9[13];
+    dword               rs_timestamp1;			//RS timers are OT timers where (rs_timestamp1 != 0)
+    char                rs_episodeCRID[64];
+    char                rs_seriesCRID[64];
+    dword               rs_unknown1;
+    dword               rs_unknown2;
+    dword               rs_timestamp2;
+    dword               rs_unknown3;
+    dword               rs_unknown4;
+
     tFlashTransponderTable    TpInfo;
   }tFlashTimer;
 

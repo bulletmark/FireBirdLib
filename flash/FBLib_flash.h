@@ -237,7 +237,7 @@
     byte                unused9[13];
 
     TYPE_TpInfo_TMST    TpInfo;
-  }__attribute__((packed)) TYPE_Timer_TMST;
+  }__attribute__((packed)) TYPE_Timer_TMST; //208 Bytes
 
   typedef struct
   {

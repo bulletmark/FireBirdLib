@@ -35,7 +35,6 @@ char *ansicstr (char *string, int len, int flags, int *sawc, int *rlen)
 
   int                   c, temp;
   char                 *ret, *r, *s;
-  unsigned long         v;
 
   if(rlen) *rlen = 0;
   if(sawc) *sawc = 0;

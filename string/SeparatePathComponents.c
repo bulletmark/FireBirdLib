@@ -8,6 +8,10 @@ void SeparatePathComponents(char *FullName, char *Path, char *FileName, char *Fi
   int                   Index;
   bool                  isDel;
 
+  if(Path) Path[0] = '\0';
+  if(FileName) FileName[0] = '\0';
+  if(FileExt) FileExt[0] = '\0';
+
   if(!FullName || !*FullName)
   {
     TRACEEXIT();

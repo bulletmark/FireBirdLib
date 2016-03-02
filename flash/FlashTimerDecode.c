@@ -199,9 +199,9 @@ bool FlashTimerDecode_ST_TMSS(TYPE_Timer_TMSS *Data, tFlashTimer *TimerInfo)
   TimerInfo->EventID1         = Data->EventID1;
   TimerInfo->EventID2         = Data->EventID2;
   TimerInfo->ServiceIndex     = Data->ServiceIndex;
-  memcpy(TimerInfo->unused8, Data->unused8, 8);
+  memcpy(TimerInfo->unused8, Data->unused8, sizeof(Data->unused8));
   TimerInfo->IceTV            = Data->IceTV;
-  memcpy(TimerInfo->unused9, Data->unused9, 5);
+  memcpy(TimerInfo->unused9, Data->unused9, sizeof(Data->unused9));
 
   TimerInfo->TpInfo.SatIndex          = Data->TpInfo.SatIdx;
   TimerInfo->TpInfo.Polarisation      = Data->TpInfo.Polar;
@@ -254,9 +254,9 @@ bool FlashTimerDecode_ST_TMST(TYPE_Timer_TMST *Data, tFlashTimer *TimerInfo)
   TimerInfo->EventID1         = Data->EventID1;
   TimerInfo->EventID2         = Data->EventID2;
   TimerInfo->ServiceIndex     = Data->ServiceIndex;
-  memcpy(TimerInfo->unused8, Data->unused8, 8);
+  memcpy(TimerInfo->unused8, Data->unused8, sizeof(Data->unused8));
   TimerInfo->IceTV            = Data->IceTV;
-  memcpy(TimerInfo->unused9, Data->unused9, 13);
+  memcpy(TimerInfo->unused9, Data->unused9, sizeof(Data->unused9));
 
   TimerInfo->TpInfo.SatIndex          = Data->TpInfo.SatIdx;
   TimerInfo->TpInfo.ChannelNr         = Data->TpInfo.ChannelNr;
@@ -304,9 +304,9 @@ bool FlashTimerDecode_ST_TMST200(TYPE_Timer_TMST200 *Data, tFlashTimer *TimerInf
   TimerInfo->EventID1         = Data->EventID1;
   TimerInfo->EventID2         = Data->EventID2;
   TimerInfo->ServiceIndex     = Data->ServiceIndex;
-  memcpy(TimerInfo->unused8, Data->unused8, 8);
+  memcpy(TimerInfo->unused8, Data->unused8, sizeof(Data->unused8));
   TimerInfo->IceTV            = Data->IceTV;
-  memcpy(TimerInfo->unused9, Data->unused9, 5);
+  memcpy(TimerInfo->unused9, Data->unused9, sizeof(Data->unused9));
 
   TimerInfo->TpInfo.SatIndex          = Data->TpInfo.SatIdx;
   TimerInfo->TpInfo.ChannelNr         = Data->TpInfo.ChannelNr;
@@ -354,7 +354,7 @@ bool FlashTimerDecode_ST_TMST360(TYPE_Timer_TMST360 *Data, tFlashTimer *TimerInf
   TimerInfo->EventID1         = Data->EventID1;
   TimerInfo->EventID2         = Data->EventID2;
   TimerInfo->ServiceIndex     = Data->ServiceIndex;
-  memcpy(TimerInfo->unused8, Data->unused8, 8);
+  memcpy(TimerInfo->unused8, Data->unused8, sizeof(Data->unused8));
   TimerInfo->IceTV            = Data->IceTV;
   memcpy(TimerInfo->unused9, Data->unused9, sizeof(Data->unused9));
   TimerInfo->rs_timestamp1    = Data->rs_timestamp1;
@@ -414,9 +414,9 @@ bool FlashTimerDecode_ST_TMSC(TYPE_Timer_TMSC *Data, tFlashTimer *TimerInfo)
   TimerInfo->EventID1         = Data->EventID1;
   TimerInfo->EventID2         = Data->EventID2;
   TimerInfo->ServiceIndex     = Data->ServiceIndex;
-  memcpy(TimerInfo->unused8, Data->unused8, 8);
+  memcpy(TimerInfo->unused8, Data->unused8, sizeof(Data->unused8));
   TimerInfo->IceTV            = Data->IceTV;
-  memcpy(TimerInfo->unused9, Data->unused9, 5);
+  memcpy(TimerInfo->unused9, Data->unused9, sizeof(Data->unused9));
 
   TimerInfo->TpInfo.Frequency         = Data->TpInfo.Frequency;
   TimerInfo->TpInfo.SymbolRate        = Data->TpInfo.SymbolRate;

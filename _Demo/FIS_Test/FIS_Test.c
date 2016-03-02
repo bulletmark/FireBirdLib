@@ -686,9 +686,33 @@ void CopyInf(void)
   HDD_TAP_PopDir();
 }
 
+void DumpRAMTimer(void)
+{
+  byte                 *p;
+  TYPE_File            *f;
+
+  #define RAMTIMERFN    "RAMTimer.bin"
+
+  p = (byte*)(FIS_vFlashBlockTimer());
+  if(p)
+  {
+    TAP_Hdd_ChangeDir("/ProgramFiles");
+    if(!TAP_Hdd_Exist(RAMTIMERFN)) TAP_Hdd_Create(RAMTIMERFN, ATTR_NORMAL);
+    f = TAP_Hdd_Fopen(RAMTIMERFN);
+    if(!f)
+    {
+      DEBUG("Failed to open %s", RAMTIMERFN);
+      return;
+    }
+
+    TAP_Hdd_Fwrite(p, 20 * 360, 1, f);
+    TAP_Hdd_Fclose(f);
+  }
+}
+
 void PackAndDelete(void)
 {
-  #define FILELIST      "EEPROM.bin FIS_Test.log inf*.inf mtd.log mtd?"
+  #define FILELIST      "EEPROM.bin FIS_Test.log inf*.inf mtd.log mtd? RAMTimer.bin"
   #define ROOTDIR       "/mnt/hd/ProgramFiles"
 
   sprintf(x, "cd "ROOTDIR"; ./busybox tar cvf FIS_Test.tar %s", FILELIST);
@@ -717,6 +741,7 @@ int TAP_Main(void)
   ExtractSettingsMTD();
   GetMTDInfo();
   DumpEEPROM();
+  DumpRAMTimer();
   SearchForFlashPointer();
   CopyInf();
   PackAndDelete();

@@ -152,6 +152,14 @@ bool StrToUTF8(byte *SourceString, byte *DestString, byte DefaultISO8859CharSet)
     return FALSE;
   }
 
+  if(!SourceString[0])
+  {
+    DestString[0] = '\0';
+
+    TRACEEXIT();
+    return TRUE;
+  }
+
   ret = FALSE;
 
   //Is there any encoding marker at the beginning of the text?

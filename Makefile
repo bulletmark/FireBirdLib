@@ -7,7 +7,7 @@ include ${BASE}/include/tool.mk
 
 all: lib devutils readme
 
-.PHONY: readme devutils HTMLDOCS
+.PHONY: readme devutils
 
 lib:
 	@for i in $(DIRS); \

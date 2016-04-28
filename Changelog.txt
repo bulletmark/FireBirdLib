@@ -996,4 +996,7 @@ The following functions accept any form a path. The INI and language INI functio
 2015-11-07: Added: ELFGetSectionOffset() returns the position of a section within the elf file. Thanks to DeltaMikeCharly for both updates
 2015-12-29: Added: RS timer details have been added to the FlashTimer structure (thanks to DMC for decoding the details)
 2016-02-28: Fixed: StrToUTF8() didn't recognise the SourceString as empty if the second character wasn't NULL too
-1026-02-29: Fixed: FlashTimerEncode() damaged the next timer in RAM on DVBt systems with a 200 byte timer structure
+2016-02-29: Fixed: FlashTimerEncode() damaged the next timer in RAM on DVBt systems with a 200 byte timer structure
+2016-04-10: Added: Support for Big5 Traditional Chinese (DVB encoding 0x14)
+            Fixed: UTF32ToUTF8() didn't convert characters >= 0x10000 correctly
+            Fixed: StrMkUTF8(): to handle UTF32 strings correctly, SourceString always needs to be terminated by 4 NULL bytes

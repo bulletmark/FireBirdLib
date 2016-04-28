@@ -331,6 +331,9 @@ bool OSDMenuKeyboard_EventHandler(word *event, dword *param1, dword *param2)
 
                 ToBeInserted[0] = *param1;
                 ToBeInserted[1] = '\0';
+                ToBeInserted[2] = '\0';
+                ToBeInserted[3] = '\0';
+                ToBeInserted[4] = '\0';
                 StrMkUTF8(ToBeInserted, 9);
                 InsertAt(OSDMenuKeyboard_StringVar, OSDMenuKeyboard_CursorPosition, ToBeInserted);
                 OSDMenuKeyboard_CursorPosition++;

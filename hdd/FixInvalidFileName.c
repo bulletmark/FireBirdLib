@@ -6,13 +6,15 @@ bool FixInvalidFileName(char *FileName)
 {
   TRACEENTER();
 
-  char                  NewRecName[TS_FILE_NAME_SIZE+1];
+  char                  NewRecName[TS_FILE_NAME_SIZE+5];
   char                 *Slash, Path[FBLIB_DIR_SIZE];
   bool                  ret;
 
   ret = FALSE;
   if(FileName && *FileName && HDD_Exist(FileName))
   {
+    memset(NewRecName, 0, sizeof(NewRecName));
+
     //Check if the file is busy
     if(HDD_isFileInUse(FileName) != FIU_No)
     {

@@ -135,6 +135,13 @@ char                    AnsiLower[30] = "àáâãäåæçèéêëìíîïðñòóôõöøùúûüý";
 char                    UTF8Upper[64] = "\u00c0\u00c1\u00c2\u00c3\u00c4\u00c5\u00c6\u00c7\u00c8\u00c9\u00ca\u00cb\u00cc\u00cd\u00ce\u00cf\u00d0\u00d1\u00d2\u00d3\u00d4\u00d5\u00d6\u00d8\u00d9\u00da\u00db\u00dc\u00dd\u00de";
 char                    UTF8Lower[64] = "\u00e0\u00e1\u00e2\u00e3\u00e4\u00e5\u00e6\u00e7\u00e8\u00e9\u00ea\u00eb\u00ec\u00ed\u00ee\u00ef\u00f0\u00f1\u00f2\u00f3\u00f4\u00f5\u00f6\u00f8\u00f9\u00fa\u00fb\u00fc\u00fd\u00fe";
 
+typedef struct
+{
+  word                  Big5DBCS;
+  word                  UTF16;
+}tBig5Translation;
+
+#include "Big5Data.h"
 
 bool StrToUTF8(byte *SourceString, byte *DestString, byte DefaultISO8859CharSet)
 {
@@ -188,13 +195,79 @@ bool StrToUTF8(byte *SourceString, byte *DestString, byte DefaultISO8859CharSet)
         break;
       }
 
+      case 0x14:
+      {
+        //Big5 Traditional Chinese
+        //Caller needs to make sure that the source string is terminated by 2 NULL chars
+        word           *pDBCS, w;
+        byte            hb, lb;
+        bool            hbok, lbok;
+
+        pDBCS = (word*)&SourceString[1];
+        while(*pDBCS != 0)
+        {
+          w = (*pDBCS >> 8) | (*pDBCS << 8);
+
+          //is the char inside of the allowed Big5 range?
+          hb = w >> 8;
+          lb = w & 0xff;
+          hbok = ((hb >= 0xA1) && (hb <= 0xC7)) || ((hb >= 0xC9) && (hb <= 0xF9));
+          lbok = ((lb >= 0x40) && (lb <= 0x7E)) || ((lb >= 0xA1) && (lb <= 0xFE));
+
+          if(hbok && lbok)
+          {
+            tBig5Translation  *p;
+            bool                Found;
+
+            //Passed Big5 range check. Look up for Big5 and convert to Unicode
+            p = Big5Translation;
+
+            Found = FALSE;
+            while(p->Big5DBCS != 0)
+            {
+              if(w == p->Big5DBCS)
+              {
+                Found = TRUE;
+                break;
+              }
+              p++;
+            }
+
+            if(Found)
+            {
+              //Found the associated Unicode character. Convert to UTF-8 and copy
+              UTF32ToUTF8((dword)p->UTF16, DestString, &BytesPerCharacter);
+              DestString += BytesPerCharacter;
+            }
+            else
+            {
+              //There's no associated Unicode character. Use an *
+              *DestString = '*';
+              DestString++;
+            }
+          }
+          else
+          {
+            //out of Big5 range. Just copy the word and convert to UTF-8
+            UTF32ToUTF8((dword)w, DestString, &BytesPerCharacter);
+            DestString += BytesPerCharacter;
+          }
+
+          pDBCS++;
+        }
+
+
+        TRACEEXIT();
+        return TRUE;
+      }
+
       case 0x15:
       {
         //According to EN300468, this is already in UTF8 encoding
         strcpy(DestString, &SourceString[1]);
 
         TRACEEXIT();
-        return FALSE;
+        return TRUE;
       }
 
       case 0x1f:

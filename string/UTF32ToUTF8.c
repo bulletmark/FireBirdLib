@@ -32,12 +32,12 @@ void UTF32ToUTF8(dword UTF32Character, byte *UTF8Character, byte *BytesPerChar)
   }
 
   //3 bytes needed
-  if(UTF32Character < 0x1000)
+  if(UTF32Character < 0x10000)
   {
 
     if(UTF8Character)
     {
-      UTF8Character[0] = 0xc0 | ((UTF32Character >> 12) & 0x0f);
+      UTF8Character[0] = 0xe0 | ((UTF32Character >> 12) & 0x0f);
       UTF8Character[1] = 0x80 | ((UTF32Character >> 6) & 0x3f);
       UTF8Character[2] = 0x80 | (UTF32Character & 0x3f);
     }
@@ -51,7 +51,7 @@ void UTF32ToUTF8(dword UTF32Character, byte *UTF8Character, byte *BytesPerChar)
   //4 bytes needed
   if(UTF8Character)
   {
-    UTF8Character[0] = 0xc0 | ((UTF32Character >> 18) & 0x07);
+    UTF8Character[0] = 0xf0 | ((UTF32Character >> 18) & 0x07);
     UTF8Character[1] = 0x80 | ((UTF32Character >> 12) & 0x3f);
     UTF8Character[1] = 0x80 | ((UTF32Character >> 6) & 0x3f);
     UTF8Character[2] = 0x80 | (UTF32Character & 0x3f);

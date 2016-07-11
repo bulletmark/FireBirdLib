@@ -958,6 +958,15 @@ extern  dword   TAP_EventHandler( word event, dword param1, dword param2 );
 
 #ifdef __cplusplus
 };
+// Override C++ global memory allocation to use TAP allocators
+inline void *operator new(size_t size) {
+    return TAP_MemAlloc(size);
+}
+
+inline void operator delete(void *p) {
+    if (p)
+	TAP_MemFree(p);
+}
 #endif
 
 #endif

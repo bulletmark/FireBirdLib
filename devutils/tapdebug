@@ -31,8 +31,7 @@ def main():
     try:
         tn = telnetlib.Telnet(args.host, 21, timeout=args.timeout)
     except:
-        sys.stderr.write('Can not connect to "%s"\n' % args.host)
-        sys.exit(1)
+        sys.exit('Can not connect to "%s"' % args.host)
 
     tn.read_until('Server')
     tn.read_until('\n')

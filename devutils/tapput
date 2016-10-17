@@ -30,8 +30,7 @@ def main():
     try:
         ftp = ftplib.FTP(args.host, args.user, args.password)
     except:
-        sys.stderr.write('Can not connect to "%s"\n' % args.host)
-        sys.exit(1)
+        sys.exit('Can not connect to "%s"' % args.host)
 
     error_code = 0
 

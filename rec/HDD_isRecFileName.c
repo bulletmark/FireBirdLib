@@ -7,7 +7,7 @@ bool HDD_isRecFileName(char *FileName)
   bool ret;
 
   if(FileName && *FileName)
-    ret = StringEndsWith(FileName, ".rec") || StringEndsWith(FileName, ".mpg");
+    ret = StringEndsWith(FileName, ".rec") || StringEndsWith(FileName, ".mpg") || StringEndsWith(FileName, ".ts");
   else
     ret = FALSE;
 

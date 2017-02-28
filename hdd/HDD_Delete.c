@@ -45,8 +45,12 @@ void HDD_Delete(char *FileName)
 
     if(StringEndsWith(AbsFileName, ".rec.inf")) AbsFileName[strlen(AbsFileName) - 4] = '\0';
     if(StringEndsWith(AbsFileName, ".rec.nav")) AbsFileName[strlen(AbsFileName) - 4] = '\0';
+
     if(StringEndsWith(AbsFileName, ".mpg.inf")) AbsFileName[strlen(AbsFileName) - 4] = '\0';
     if(StringEndsWith(AbsFileName, ".mpg.nav")) AbsFileName[strlen(AbsFileName) - 4] = '\0';
+
+    if(StringEndsWith(AbsFileName, ".ts.inf")) AbsFileName[strlen(AbsFileName) - 4] = '\0';
+    if(StringEndsWith(AbsFileName, ".ts.nav")) AbsFileName[strlen(AbsFileName) - 4] = '\0';
 
     remove(AbsFileName);
 

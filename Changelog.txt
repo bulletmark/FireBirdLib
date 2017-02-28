@@ -1000,3 +1000,16 @@ The following functions accept any form a path. The INI and language INI functio
 2016-04-10: Added: Support for Big5 Traditional Chinese (DVB encoding 0x14)
             Fixed: UTF32ToUTF8() didn't convert characters >= 0x10000 correctly
             Fixed: StrMkUTF8(): to handle UTF32 strings correctly, SourceString always needs to be terminated by 4 NULL bytes
+2016-11-01: Fixed: Fixed ConvertPathType(). In cases where the source path was a PF_LinuxPathOnly and a PF_FullLinuxPath was requested,  ConvertPathType() returned an empty string
+                   because it assumed that it can’t extract the file name from a PF_LinuxPathOnly style path. Now source is copied into destination as a folder path is valid for both path formats.
+2016-11-11: Added: Added support for .avi and .divx files in PlayMediaFile()
+2016-11-12: Added: NrBlocks to the tinfBlock struct
+2016-11-19: Added: FIS_fwAppl_StartPlaybackMp3()
+            Added: Appl_StartPlaybackMp3()
+            Fixed: Updated PlayMediaFile() to correctly support mp3s
+2016-11-22: Fixed: Another small change to PlayMediaFile()
+2016-11-30: Fixed: PlayMediaFile() crashed with .avi and .divx files
+2017-01-09: Added: .ts is now fully handled like .rec and .mpg
+2017-01-18: Fixed: PlayMediaFile() used the wrong player for .ts files
+2017-01-21: Fixed: HDD_Rename() might fail if the length of the file name is about max file name size
+2017-01-23: Fixed: LogoManager_CalculateChannelID() created wrong ChannelIDs for some TS IDs

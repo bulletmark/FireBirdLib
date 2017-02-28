@@ -134,22 +134,6 @@ inline dword getNextCluster(dword c);
 //The latest version of the SmartFiler Recycle Bin
 
 #define RECYCLEPATH       "/DataFiles/RecycleBin-/"
-#define INFBLOCKMAGIC     "SFIB"
-#define INFBLOCKVERSION   1
-
-typedef struct
-{
-  char                Magic[4];                     //0
-  byte                Version;                      //4
-  byte                Filler1;                      //5
-  word                Duration;                     //6
-  dword               LastBlock;                    //8
-  bool                Seen;                         //12
-  dword               RecycleDate;                  //16
-  char                RecoverPath[FBLIB_DIR_SIZE];  //20
-  byte                Filler2[1516];                //532
-                                                    //2048
-}tinfBlock;
 
 typedef struct __STDIO_FILE_STRUCT FILE;
 

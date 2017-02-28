@@ -14,6 +14,7 @@ bool HDD_GetFileSizeAndInode(char *FileName, __ino64_t *CInode, __off64_t *FileS
   if(FileName && *FileName)
   {
     ConvertPathType(FileName, AbsFileName, PF_FullLinuxPath);
+
     if(*AbsFileName && !lstat64(AbsFileName, &statbuf))
     {
       if(CInode) *CInode = statbuf.st_ino;

@@ -46,8 +46,11 @@ void SeparateFileNameComponents(char *FileName, char *Path, char *Name, char *Ex
 
   if(StringEndsWith(Name, ".rec.inf")) Name[strlen(Name) - 4] = '\0';
   if(StringEndsWith(Name, ".mpg.inf")) Name[strlen(Name) - 4] = '\0';
+  if(StringEndsWith(Name, ".ts.inf")) Name[strlen(Name) - 4] = '\0';
+
   if(StringEndsWith(Name, ".rec.nav")) Name[strlen(Name) - 4] = '\0';
   if(StringEndsWith(Name, ".mpg.nav")) Name[strlen(Name) - 4] = '\0';
+  if(StringEndsWith(Name, ".ts.nav")) Name[strlen(Name) - 4] = '\0';
 
   if(isRec) *isRec = HDD_isRecFileName(Name);
 

@@ -6,8 +6,8 @@ bool HDD_Rename(char *FileName, char *NewFileName)
 {
   TRACEENTER();
 
-  char                  Path[FBLIB_DIR_SIZE], Name[TS_FILE_NAME_SIZE], Ext[TS_FILE_NAME_SIZE];
-  char                  OldName[TS_FILE_NAME_SIZE], NewName[TS_FILE_NAME_SIZE];
+  char                  Path[FBLIB_DIR_SIZE], Name[512], Ext[512];
+  char                  OldName[512], NewName[512];
   bool                  isRec, isDel;
   int                   fNumber;
   bool                  ret;

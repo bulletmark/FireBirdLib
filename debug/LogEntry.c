@@ -51,17 +51,15 @@ void LogEntry(char *FileName, char *ProgramName, bool Console, eTimeStampFormat 
     if(TimeStampFormat != TIMESTAMP_NONE) TAP_PrintNet(TimeResult);
     if(ProgramName && ProgramName[0]) TAP_PrintNet("%s: ", ProgramName);
 
-    //Max length is 512. If above, a buffer overflow may occur
-    StrToISOAlloc(Text, &ISOText);
-    if(ISOText && ISOText[0])
+    if(isUTFToppy())
     {
-      if(strlen(ISOText) < 510)
+      if(strlen(Text) < 510)
       {
-        TAP_PrintNet("%s", ISOText);
+        TAP_PrintNet("%s", Text);
       }
       else
       {
-        char *p = ISOText;
+        char *p = Text;
 
         while(*p)
         {
@@ -69,8 +67,6 @@ void LogEntry(char *FileName, char *ProgramName, bool Console, eTimeStampFormat 
           char    q;
 
           l = strlen(p);
-          if(l > 510) l = 510;
-
           q = p[l];
           p[l] = '\0';
           TAP_PrintNet("%s", p);
@@ -78,9 +74,41 @@ void LogEntry(char *FileName, char *ProgramName, bool Console, eTimeStampFormat 
           p += l;
         }
       }
+      TAP_PrintNet("\n");
     }
-    TAP_PrintNet("\n");
-    TAP_MemFree(ISOText);
+    else
+    {
+      //Max length is 512. If above, a buffer overflow may occur
+      StrToISOAlloc(Text, &ISOText);
+      if(ISOText && ISOText[0])
+      {
+        if(strlen(ISOText) < 510)
+        {
+          TAP_PrintNet("%s", ISOText);
+        }
+        else
+        {
+          char *p = ISOText;
+
+          while(*p)
+          {
+            int     l;
+            char    q;
+
+            l = strlen(p);
+            if(l > 510) l = 510;
+
+            q = p[l];
+            p[l] = '\0';
+            TAP_PrintNet("%s", p);
+            p[l] = q;
+            p += l;
+          }
+        }
+      }
+      TAP_PrintNet("\n");
+      TAP_MemFree(ISOText);
+    }
   }
 
   TRACEEXIT();

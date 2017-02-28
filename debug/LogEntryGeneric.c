@@ -48,14 +48,24 @@ void LogEntryGeneric(char *ProgramName, bool Console, char *Text)
       {
         TAP_Hdd_Fseek(File, 0, SEEK_END);
         TAP_Hdd_Fwrite(TimeResult, strlen(TimeResult), 1, File);
-        TAP_Hdd_Fwrite(ISOText, strlen(ISOText), 1, File);
+        if(isUTFToppy())
+          TAP_Hdd_Fwrite(s, strlen(s), 1, File);
+        else
+          TAP_Hdd_Fwrite(ISOText, strlen(ISOText), 1, File);
         TAP_Hdd_Fwrite(CRLF, 2, 1, File);
         TAP_Hdd_Fclose(File);
       }
 
       if(Console)
       {
-        TAP_PrintNet("%s%s\n", TimeResult, ISOText);
+        if(isUTFToppy())
+        {
+          TAP_PrintNet("%s%s\n", TimeResult, s);
+        }
+        else
+        {
+          TAP_PrintNet("%s%s\n", TimeResult, ISOText);
+        }
       }
 
       TAP_MemFree(ISOText);

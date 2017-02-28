@@ -166,7 +166,8 @@ void ConvertPathType(char *Source, char *Dest, tPathFormat DestFormat)
         case PF_FullLinuxPath:
         {
           //Not possible, there is no file name in source
-          Dest[0] = '\0';
+          //But it is possible that only a path is needed
+          strcpy(Dest, Source);
           break;
         }
       }

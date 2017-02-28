@@ -10,6 +10,7 @@ bool HDD_InfBlockGet(char *RecPath, tinfBlock *infBlock)
   FILE                 *FileHandle;
   tinfBlock             TempinfBlock;
   char                  AbsFileName[FBLIB_DIR_SIZE];
+  tstat64               statbuf;
 
   if(!RecPath && !*RecPath)
   {
@@ -23,7 +24,17 @@ bool HDD_InfBlockGet(char *RecPath, tinfBlock *infBlock)
   ConvertPathType(RecPath, AbsFileName, PF_FullLinuxPath);
   if(*AbsFileName)
   {
-    if(!StringEndsWith(AbsFileName, ".inf")) strcat(AbsFileName, ".inf");
+    if(!StringEndsWith(AbsFileName, ".inf"))
+    {
+      strcat(AbsFileName, ".inf");
+
+      //Falls es keine .inf gibt, dann die eigentliche Datei nehmen
+      if(stat64(AbsFileName, &statbuf) != 0)
+      {
+        AbsFileName[strlen(AbsFileName) - 4] = '\0';
+      }
+    }
+
     FileHandle = fopen64(AbsFileName, "rb");
     if(FileHandle)
     {

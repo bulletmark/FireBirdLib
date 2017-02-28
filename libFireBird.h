@@ -3,7 +3,7 @@
 
   //#define STACKTRACE
 
-  #define __FBLIB_RELEASEDATE__ "2016-04-10"
+  #define __FBLIB_RELEASEDATE__ "2017-01-23"
 
   #define __FBLIB_VERSION__ __FBLIB_RELEASEDATE__
 
@@ -1419,7 +1419,9 @@
   void   Appl_SetPlaybackSpeed(byte Mode, int Speed, bool p3);
   void   Appl_ShoutCast(void);
   int    Appl_StartPlayback(char *FileName, unsigned int p2, bool p3, bool ScaleInPip);
+  int    Appl_StartPlaybackDivx(char *FileName, unsigned int p2, bool p3);
   int    Appl_StartPlaybackMedia(char *FileName, unsigned int p2, bool p3, bool ScaleInPip);
+  int    Appl_StartPlaybackMp3(char *FileName);
   dword  Appl_StopPlaying(void);
   void   Appl_StopRecPlaying(bool p1);
   dword  Appl_TimeToLocal(dword UTCTime);
@@ -1841,6 +1843,25 @@
     PF_FullLinuxPath      //Get the full absolute Linux path including file name
   }tPathFormat;
 
+  #define INFBLOCKMAGIC     "SFIB"
+  #define INFBLOCKVERSION   1
+
+  typedef struct
+  {
+      char              Magic[4];                     //0
+      byte              Version;                      //4
+      byte              Recognized;                   //5
+      word              Duration;                     //6
+      dword             LastBlock;                    //8
+      bool              Seen;                         //12
+      dword             RecycleDate;                  //16
+      char              RecoverPath[FBLIB_DIR_SIZE];  //20
+      dword             NrBlocks;                     //532
+      byte              Filler2[1512];                //536
+                                                      //2048
+  }tinfBlock;
+
+
   bool        FixInvalidFileName(char *FileName);
   void        ConvertPathType(char *Source, char *Dest, tPathFormat DestFormat);
   tPathFormat GetPathType(char *Source);
@@ -1864,6 +1885,8 @@
   __ino64_t   HDD_GetInodeByFileName(char *Filename);
   __ino64_t   HDD_GetInodeByTypeFile(TYPE_File *File);
   bool        HDD_IdentifyDevice(char *IdentifyDeviceBuffer);
+  bool        HDD_InfBlockGet(char *RecPath, tinfBlock *infBlock);
+  bool        HDD_InfBlockSet(char *RecPath, tinfBlock *infBlock);
   bool        HDD_Move(char *FileName, char *FromDir, char *ToDir);
   bool        HDD_Recycle(char *FileName);
   bool        HDD_RecycleSF(char *FileName);
@@ -1975,6 +1998,7 @@
   inline dword FIS_fwAppl_ShoutCast(void);
   inline dword FIS_fwAppl_StartPlayback(void);
   inline dword FIS_fwAppl_StartPlaybackMedia(void);
+  inline dword FIS_fwAppl_StartPlaybackMp3(void);
   inline dword FIS_fwAppl_StartTempRec(void);
   inline dword FIS_fwAppl_StopPlaying(void);
   inline dword FIS_fwAppl_StopRecPlaying(void);

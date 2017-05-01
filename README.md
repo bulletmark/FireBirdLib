@@ -1,6 +1,6 @@
 ## Topfield TMS PVR FireBirdLib TAP development library
 
-This is the [FireBirdLib][fb] library for aiding [Topfield][tf] TMS PVR
+This is the [FireBirdLib][fbe] library for aiding [Topfield][tf] TMS PVR
 TAP development. The original version is maintained by FireBird and
 [available here][fb].
 This library augments the [cygwin TAP development tools][cygtools] and
@@ -22,7 +22,8 @@ documentation. You can see the output [here][fbdoxy]. The
 
 Also refer to the documentation about the standard [Topfield TAP API][tapapi].
 
-[fb]: http://tap.topfield-europe.com/firebird/FireBirdLib.zip
+[fb]: http://firebird.tms-taps.net/FireBirdLib.zip
+[fbe]: http://firebird.tms-taps.net/FireBirdLib-E.pdf
 [fbgit]: http://github.com/bulletmark/FireBirdLib/
 [commits]: http://github.com/bulletmark/FireBirdLib/commits/master/
 [master]: http://github.com/bulletmark/FireBirdLib/tree/master/

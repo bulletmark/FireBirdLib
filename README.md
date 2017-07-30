@@ -34,6 +34,6 @@ Also refer to the documentation about the standard [Topfield TAP API][tapapi].
 [cygtools]: http://www.topfield.co.kr/eng/download/utility_view.asp?idx=29&tb=&tn=utility
 [lintools]: http://www.topfield.co.kr/eng/download/utility_view.asp?idx=28&tb=&tn=utility
 [doxygen]: http://www.doxygen.org/
-[fbdoxy]: http://markb.homenet.org/misc/FireBirdLib/HTMLDOCS/
-[fbdirs]: http://markb.homenet.org/misc/FireBirdLib/HTMLDOCS/files.html
+[fbdoxy]: http://markb.bullet-systems.net/misc/FireBirdLib/HTMLDOCS/
+[fbdirs]: http://markb.bullet-systems.net/misc/FireBirdLib/HTMLDOCS/files.html
 [tapapi]: http://www.toppy.org.uk/~r2-d2/api/WebHome.html

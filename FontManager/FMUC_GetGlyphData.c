@@ -68,7 +68,7 @@ tGlyphCacheUC *FMUC_GetGlyphData(tFontDataUC *FontData, byte *UTF8Character, byt
       return GlyphCache;
     }
 
-  LogEntryFBLibPrintf(TRUE, "Glyph %x not found", UTF32);
+  //LogEntryFBLibPrintf(TRUE, "Glyph %x not found", UTF32);
 
   TRACEEXIT();
   return NULL;

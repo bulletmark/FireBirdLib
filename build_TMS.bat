@@ -17,5 +17,6 @@ echo Building Intel FBLib
 bash -i -c "make -j 8 --file=Makefile_tmsemu"
 
 :Compile_Done
+
 copy %Project%.a "%TFROOT%\gccForTMS\crosstool\lib\%Project%.a"
 rem copy %Project%_tmsemu.a "%TFROOT%\gccForTMS\crosstool\lib\%Project%_tmsemu.a"

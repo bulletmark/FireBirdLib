@@ -3,7 +3,7 @@
 
   //#define STACKTRACE
 
-  #define __FBLIB_RELEASEDATE__ "2017-01-23"
+  #define __FBLIB_RELEASEDATE__ "2017-06-10"
 
   #define __FBLIB_VERSION__ __FBLIB_RELEASEDATE__
 
@@ -2260,7 +2260,6 @@
     word                TPOriginalNetworkID;         //3467   89a
     word                TPNetworkID;                 //367    9a
     byte                TPClockSync;                 //       8
-    byte                TPUnknown1[4];               //       89a
     byte                TPUnknown2;                  //367    89a
     byte                TPUnknown3[2];               //1
     byte                TPUnknown4;                  //367    9a
@@ -2284,17 +2283,54 @@
     dword               ExtEventEventID;             //13467  89a
     word                ExtEventTextLength;          //13467  89a
     char                ExtEventText[1024];          //13467  89a
-    byte                ExtEventUnknown1[6];         //
     byte                ExtEventUnknown2[2];         //13467
+    byte                ExtEventNrItemizedPairs;     //13467  89a
+    byte                ExtEventUnknown1[3];         //13467  89a
 
     byte                CryptFlag;                   //13467  89a
-    byte                CryptUnknown1[4];           //13467
-    byte                CryptUnknown2[3];           //13467
+    byte                CryptUnknown2[3];            //13467
 
     dword               NrBookmarks;                 //13467
     dword               Bookmark[177];               //13467  89a
     dword               Resume;                      //13467  89a
   } tRECHeaderInfo;
+
+  typedef struct
+  {
+    dword                 SHOffset:24;
+    dword                 FrameType:8;
+    byte                  MPEGType;
+    byte                  FrameCounter;
+    word                  Field5;
+    dword                 PHOffsetHigh;
+    dword                 PHOffset;
+    dword                 PTS2;
+    dword                 NextPH;
+    dword                 Time;
+    dword                 Zero5;
+  } tnavSD;
+
+  typedef struct
+  {
+    dword                 SEIPPS:24;
+    dword                 FrameType:8;
+    byte                  MPEGType;
+    byte                  FrameCounter;
+    word                  PPSLen;
+    dword                 SEIOffsetHigh;
+    dword                 SEIOffsetLow;
+    dword                 SEIPTS;
+    dword                 NextAUD;
+    ulong64               Timems;
+    dword                 SEISPS;
+    dword                 SPSLen;
+    dword                 IFrame;
+    dword                 Zero2;
+    dword                 Zero3;
+    dword                 Zero4;
+    dword                 Zero5;
+    dword                 Zero6;
+  } tnavHD;
 
   char  *GetRecExtension(void);
   bool   HDD_DecodeRECHeader(byte *Buffer, tRECHeaderInfo *RECHeaderInfo, SYSTEM_TYPE SystemType);
@@ -2321,6 +2357,32 @@
   bool   infData_GetNameByIndex(char *infFileName, dword NameIndex, char *NameTag);
   bool   infData_Set(char *infFileName, char *NameTag, dword PayloadSize, byte *Payload);
   bool   infData_Delete(char *infFileName, char *NameTag);
+
+  typedef struct
+  {
+    byte               *PSData;
+    int                 DataLen;
+    ulong64            *FileOffset;
+  } tBuffer;
+
+  typedef struct
+  {
+    word                PID;
+    tBuffer             Buffer[2];
+    tBuffer            *pOutBuffer;
+    byte                InBufferIndex;
+    tBuffer            *pInBuffer;
+    byte               *pInBufferData;
+    int                 BufferSize;
+    int                 InBufferDataIndex;
+    byte                LastContCounter;
+    int                 PSFileCtr;
+    byte                ErrorFlag;
+  } tPSBuffer;
+
+  bool PSBuffer_Init(tPSBuffer *PSBuffer, word PID, int BufferSize);
+  void PSBuffer_Free(tPSBuffer *PSBuffer);
+  bool PSBuffer_ProcessTSPacket(tPSBuffer *PSBuffer, byte *TSBuffer, ulong64 FileOffset);
 
 
   /*****************************************************************************************************************************/

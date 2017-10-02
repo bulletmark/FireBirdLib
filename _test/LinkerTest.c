@@ -738,6 +738,9 @@ int TAP_Main()
   ParseLine(NULL, NULL, '\0');
   PlayMediaFile(NULL);
   PrintNet(NULL);
+  PSBuffer_Init(NULL, 0, 0);
+  PSBuffer_ProcessTSPacket(NULL, NULL, 0);
+  PSBuffer_Free(NULL);
   PutDevEvent(0, 0);
   PvrTimeToLinux(0);
   Reboot(FALSE);

@@ -140,7 +140,4 @@ typedef struct __STDIO_FILE_STRUCT FILE;
 extern FILE *fopen64 (__const char *__restrict __filename, __const char *__restrict __modes);
 extern int fseeko64(FILE *__stream, __off64_t  __off, int __whence);
 
-bool HDD_InfBlockGet(char *RecPath, tinfBlock *infBlock);
-bool HDD_InfBlockSet(char *RecPath, tinfBlock *infBlock);
-
 #endif

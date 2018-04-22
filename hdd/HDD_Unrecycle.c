@@ -30,15 +30,38 @@ bool HDD_Unrecycle(char *FileName)
       {
         if(isRec && strcmp(Ext, ".nav"))
         {
+          //.rec.inf
           OldName[strlen(OldName) - 4] = '\0';
           strcat(OldName, ".inf.del");
           strcat(NewName, ".inf");
           rename(OldName, NewName);
 
+          //.rec.nav
           OldName[strlen(OldName) - 8] = '\0';
           strcat(OldName, ".nav.del");
           NewName[strlen(NewName) - 4] = '\0';
           strcat(NewName, ".nav");
+          rename(OldName, NewName);
+
+          //.cut
+          OldName[strlen(OldName) - 12] = '\0';
+          strcat(OldName, ".cut.del");
+          NewName[strlen(NewName) - 8] = '\0';
+          strcat(NewName, ".cut");
+          rename(OldName, NewName);
+
+          //.cut.bak
+          OldName[strlen(OldName) - 8] = '\0';
+          strcat(OldName, ".cut.bak.del");
+          NewName[strlen(NewName) - 4] = '\0';
+          strcat(NewName, ".cut.bak");
+          rename(OldName, NewName);
+
+          //.srt
+          OldName[strlen(OldName) - 12] = '\0';
+          strcat(OldName, ".srt.del");
+          NewName[strlen(NewName) - 8] = '\0';
+          strcat(NewName, ".srt");
           rename(OldName, NewName);
         }
         ret = TRUE;

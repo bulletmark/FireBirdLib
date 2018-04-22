@@ -28,4 +28,15 @@
   byte           *FMUC_FindNextUTF8(byte *p);
   bool            FMUC_IsDiacriticalMark(dword Character);
 
+  typedef struct
+  {
+    char                 *Requester;
+    dword                 Size;
+    void                 *Alloc;
+  } tFMUC_MemDebug;
+
+  void            FMUC_MemoryDump(dword *NrReservations, dword *NrTotalSize);
+  tFMUC_MemDebug *FMUC_MemoryFindFree(void);
+  tFMUC_MemDebug *FMUC_MemoryFindPointer(void *Pointer);
+
 #endif

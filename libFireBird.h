@@ -3,7 +3,7 @@
 
   //#define STACKTRACE
 
-  #define __FBLIB_RELEASEDATE__ "2017-06-10"
+  #define __FBLIB_RELEASEDATE__ "2018-03-25"
 
   #define __FBLIB_VERSION__ __FBLIB_RELEASEDATE__
 
@@ -1307,7 +1307,6 @@
   /*****************************************************************************************************************************/
 
   bool  ELFOpenFile(char *FileName);
-  bool  ELFOpenAbsFile(char *FileName);
   bool  ELFReadELFHeader(void);
   bool  ELFReadSectionHeaders(void);
   bool  ELFReadShstrtabSection(void);
@@ -1419,7 +1418,6 @@
   void   Appl_SetPlaybackSpeed(byte Mode, int Speed, bool p3);
   void   Appl_ShoutCast(void);
   int    Appl_StartPlayback(char *FileName, unsigned int p2, bool p3, bool ScaleInPip);
-  int    Appl_StartPlaybackDivx(char *FileName, unsigned int p2, bool p3);
   int    Appl_StartPlaybackMedia(char *FileName, unsigned int p2, bool p3, bool ScaleInPip);
   int    Appl_StartPlaybackMp3(char *FileName);
   dword  Appl_StopPlaying(void);
@@ -1514,7 +1512,14 @@
     byte                  unused4:1;
 
     byte                  DiSEqC11;
-    byte                  unused5[5];
+
+    byte                  UniCableSatPosition:1;
+    byte                  UniCableunused:7;
+
+    word                  UniCableUserBand:4;
+    word                  UniCableFrq:12;
+
+    byte                  unused5[2];
   } tFlashLNB;
 
   typedef struct
@@ -1869,6 +1874,7 @@
   int         HDD_AAM_Enable(byte AAMLevel);
   int         HDD_APM_Disable(void);
   int         HDD_APM_Enable(byte APMLevel);
+  bool        HDD_BuildExtDriveList(textPartitionInfo *ExtPartitionList, dword *NrListItems);
   bool        HDD_ChangeDir(char *Dir);
   void        HDD_Delete(char *FileName);
   bool        HDD_Exist(char *FileName);
@@ -1999,6 +2005,7 @@
   inline dword FIS_fwAppl_StartPlayback(void);
   inline dword FIS_fwAppl_StartPlaybackMedia(void);
   inline dword FIS_fwAppl_StartPlaybackMp3(void);
+  inline dword FIS_fwAppl_StartPlaybackDivx(void);
   inline dword FIS_fwAppl_StartTempRec(void);
   inline dword FIS_fwAppl_StopPlaying(void);
   inline dword FIS_fwAppl_StopRecPlaying(void);

@@ -1,13 +1,6 @@
 #include <stdlib.h>
 #include "FBLib_FontManager.h"
 
-typedef struct
-{
-  char                 *Requester;
-  dword                 Size;
-  void                 *Alloc;
-} tFMUC_MemDebug;
-
 tFMUC_MemDebug          FMUC_Memory[10000];
 
 void FMUC_MemoryDump(dword *NrReservations, dword *NrTotalSize)

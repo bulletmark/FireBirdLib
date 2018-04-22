@@ -50,18 +50,40 @@ bool HDD_Recycle(char *FileName)
 
       if(rename(OldName, NewName) == 0)
       {
-
         if(isRec && HDD_isRecFileName(FileName))
         {
+          //.rec.inf
           strcat(OldName, ".inf");
           NewName[strlen(NewName) - 4] = '\0';
           strcat(NewName, ".inf.del");
           rename(OldName, NewName);
 
+          //.rec.nav
           OldName[strlen(OldName) - 4] = '\0';
           strcat(OldName, ".nav");
           NewName[strlen(NewName) - 8] = '\0';
           strcat(NewName, ".nav.del");
+          rename(OldName, NewName);
+
+          //.cut
+          OldName[strlen(OldName) - 8] = '\0';
+          strcat(OldName, ".cut");
+          NewName[strlen(NewName) - 12] = '\0';
+          strcat(NewName, ".cut.del");
+          rename(OldName, NewName);
+
+          //.cut.bak
+          OldName[strlen(OldName) - 4] = '\0';
+          strcat(OldName, ".cut.bak");
+          NewName[strlen(NewName) - 8] = '\0';
+          strcat(NewName, ".cut.bak.del");
+          rename(OldName, NewName);
+
+          //.srt
+          OldName[strlen(OldName) - 8] = '\0';
+          strcat(OldName, ".srt");
+          NewName[strlen(NewName) - 12] = '\0';
+          strcat(NewName, ".srt.del");
           rename(OldName, NewName);
         }
         ret = TRUE;

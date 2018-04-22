@@ -58,18 +58,39 @@ void HDD_Delete(char *FileName)
 
     if(isRec)
     {
+      //.rec.inf
       if(fNumber)
         TAP_SPrint(TempName, "%s%s-%d%s.inf%s", Path, Name, fNumber, Ext, isDel ? ".del" : "");
       else
         TAP_SPrint(TempName, "%s%s%s.inf%s", Path, Name, Ext, isDel ? ".del" : "");
-
       remove(TempName);
 
+      //.rec.nav
       if(fNumber)
         TAP_SPrint(TempName, "%s%s-%d%s.nav%s", Path, Name, fNumber, Ext, isDel ? ".del" : "");
       else
         TAP_SPrint(TempName, "%s%s%s.nav%s", Path, Name, Ext, isDel ? ".del" : "");
+      remove(TempName);
 
+      //.cut
+      if(fNumber)
+        TAP_SPrint(TempName, "%s%s-%d.cut%s", Path, Name, fNumber, isDel ? ".del" : "");
+      else
+        TAP_SPrint(TempName, "%s%s.cut%s", Path, Name, isDel ? ".del" : "");
+      remove(TempName);
+
+      //.cut.bak
+      if(fNumber)
+        TAP_SPrint(TempName, "%s%s-%d.cut.bak%s", Path, Name, fNumber, isDel ? ".del" : "");
+      else
+        TAP_SPrint(TempName, "%s%s.cut.bak%s", Path, Name, isDel ? ".del" : "");
+      remove(TempName);
+
+      //.srt
+      if(fNumber)
+        TAP_SPrint(TempName, "%s%s-%d.srt%s", Path, Name, fNumber, isDel ? ".del" : "");
+      else
+        TAP_SPrint(TempName, "%s%s.srt%s", Path, Name, isDel ? ".del" : "");
       remove(TempName);
     }
   }

@@ -35,6 +35,7 @@ bool HDD_Move(char *FileName, char *FromDir, char *ToDir)
       SeparateFileNameComponents(OldPath, Path, Name, Ext, &fNumber, &isRec, &isDel);
       if(isRec && strcmp(Ext, ".nav"))
       {
+        //.rec.inf
         if(fNumber)
           TAP_SPrint(OldInfName, "%s%s-%d%s.inf%s", Path, Name, fNumber, Ext, isDel ? ".del" : "");
         else
@@ -48,6 +49,7 @@ bool HDD_Move(char *FileName, char *FromDir, char *ToDir)
 
         rename(OldInfName, NewInfName);
 
+        //.rec.nav
         SeparateFileNameComponents(OldPath, Path, Name, Ext, &fNumber, &isRec, &isDel);
         if(fNumber)
           TAP_SPrint(OldInfName, "%s%s-%d%s.nav%s", Path, Name, fNumber, Ext, isDel ? ".del" : "");
@@ -59,6 +61,53 @@ bool HDD_Move(char *FileName, char *FromDir, char *ToDir)
           TAP_SPrint(NewInfName, "%s%s-%d%s.nav%s", Path, Name, fNumber, Ext, isDel ? ".del" : "");
         else
           TAP_SPrint(NewInfName, "%s%s%s.nav%s", Path, Name, Ext, isDel ? ".del" : "");
+
+        rename(OldInfName, NewInfName);
+
+        //.cut
+        SeparateFileNameComponents(OldPath, Path, Name, Ext, &fNumber, &isRec, &isDel);
+        if(fNumber)
+          TAP_SPrint(OldInfName, "%s%s-%d.cut%s", Path, Name, fNumber, isDel ? ".del" : "");
+        else
+          TAP_SPrint(OldInfName, "%s%s.cut%s", Path, Name, isDel ? ".del" : "");
+
+        SeparateFileNameComponents(NewPath, Path, Name, Ext, &fNumber, &isRec, &isDel);
+        if(fNumber)
+          TAP_SPrint(NewInfName, "%s%s-%d.cut%s", Path, Name, fNumber, isDel ? ".del" : "");
+        else
+          TAP_SPrint(NewInfName, "%s%s.cut%s", Path, Name, isDel ? ".del" : "");
+
+        rename(OldInfName, NewInfName);
+
+        //.cut.bak
+        SeparateFileNameComponents(OldPath, Path, Name, Ext, &fNumber, &isRec, &isDel);
+        if(fNumber)
+          TAP_SPrint(OldInfName, "%s%s-%d.cut.bak%s", Path, Name, fNumber, isDel ? ".del" : "");
+        else
+          TAP_SPrint(OldInfName, "%s%s.cut.bak%s", Path, Name, isDel ? ".del" : "");
+
+        SeparateFileNameComponents(NewPath, Path, Name, Ext, &fNumber, &isRec, &isDel);
+        if(fNumber)
+          TAP_SPrint(NewInfName, "%s%s-%d.cut.bak%s", Path, Name, fNumber, isDel ? ".del" : "");
+        else
+          TAP_SPrint(NewInfName, "%s%s.cut.bak%s", Path, Name, isDel ? ".del" : "");
+
+        rename(OldInfName, NewInfName);
+
+        //.srt
+        SeparateFileNameComponents(OldPath, Path, Name, Ext, &fNumber, &isRec, &isDel);
+        if(fNumber)
+          TAP_SPrint(OldInfName, "%s%s-%d.srt%s", Path, Name, fNumber, isDel ? ".del" : "");
+        else
+          TAP_SPrint(OldInfName, "%s%s.srt%s", Path, Name, isDel ? ".del" : "");
+
+        SeparateFileNameComponents(NewPath, Path, Name, Ext, &fNumber, &isRec, &isDel);
+        if(fNumber)
+          TAP_SPrint(NewInfName, "%s%s-%d.srt%s", Path, Name, fNumber, isDel ? ".del" : "");
+        else
+          TAP_SPrint(NewInfName, "%s%s.srt%s", Path, Name, isDel ? ".del" : "");
+
+        TAP_PrintNet("OldInfName='%s'\nNewInfName='%s'\n\n", OldInfName, NewInfName);
 
         rename(OldInfName, NewInfName);
 

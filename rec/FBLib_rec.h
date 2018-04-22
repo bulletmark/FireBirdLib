@@ -50,6 +50,7 @@ void HDD_EncodeRECHeader_ST_TMST(byte *Buffer, tRECHeaderInfo *RECHeaderInfo);
 void HDD_EncodeRECHeader_ST_TMSC(byte *Buffer, tRECHeaderInfo *RECHeaderInfo);
 
 bool   infData_OpenFile(char *infFileName);
+bool   infData_Delete(char *infFileName, char *NameTag);
 dword  infData_Flen(void);
 bool   infData_LocateSig(char *NameTag, dword *PayloadSize);
 void   infData_Truncate(char *infFileName, dword Position);

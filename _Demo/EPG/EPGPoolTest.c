@@ -24,6 +24,7 @@ void BruteForceTimeZoneCheck(void)
   dword   StartTime, EndTime, CurrentTime;
   dword   CalcLocalTime, CalcUTCTime;
   short   Offset1, Offset2;
+  char    TS[24];
 
   StartTime = TAP_MakeMjd(2013, 1, 1) << 16;
   EndTime = TAP_MakeMjd(2014, 1, 1) << 16;
@@ -35,9 +36,9 @@ void BruteForceTimeZoneCheck(void)
     CalcLocalTime = UTC2LocalTime(CurrentTime, &Offset1);
     CalcUTCTime = LocalTime2UTC(CalcLocalTime, &Offset2);
 
-    TAP_PrintNet("%s (UTC)", TimeFormat(CurrentTime, 0, TIMESTAMP_YMDHM));
-    TAP_PrintNet(" -> %s (UTC+%d)", TimeFormat(CalcLocalTime, 0, TIMESTAMP_YMDHM), Offset1);
-    TAP_PrintNet(" -> %s (Local-%d)", TimeFormat(CalcUTCTime, 0, TIMESTAMP_YMDHM), Offset2);
+    TAP_PrintNet("%s (UTC)", TimeFormat(CurrentTime, 0, TIMESTAMP_YMDHM, TS));
+    TAP_PrintNet(" -> %s (UTC+%d)", TimeFormat(CalcLocalTime, 0, TIMESTAMP_YMDHM, TS), Offset1);
+    TAP_PrintNet(" -> %s (Local-%d)", TimeFormat(CalcUTCTime, 0, TIMESTAMP_YMDHM, TS), Offset2);
 
     if(CurrentTime != CalcUTCTime) TAP_PrintNet("  UTC time mismatch!!!");
 
@@ -51,6 +52,7 @@ void Test1(void)
 {
   TYPE_EPGInfo      EPGData;
   dword             NrEntries, i;
+  char              TS[24];
 
   TAP_PrintNet("Test 1: print all available data\n");
 
@@ -62,7 +64,7 @@ void Test1(void)
   TAP_PrintNet("  %d entries cached\n", NrEntries);
   for(i = 0; i < NrEntries; i++)
   {
-    TAP_PrintNet("  %s: (%d) %s (%d')\n", TimeFormat(EPGData.StartTime, 0, TIMESTAMP_YMDHM), EPGData.TimeZone, EPGData.EventName, EPGData.duration);
+    TAP_PrintNet("  %s: (%d) %s (%d')\n", TimeFormat(EPGData.StartTime, 0, TIMESTAMP_YMDHM, TS), EPGData.TimeZone, EPGData.EventName, EPGData.duration);
     EPGInfo_FindNext(&EPGData);
   }
   EPGInfo_Free();
@@ -74,6 +76,7 @@ void Test2(void)
   TYPE_EPGInfo      EPGData;
   dword             NrEntries, i;
   int               SvcType, SvcNum;
+  char              TS[24];
 
   TAP_PrintNet("Test 2: print the events of the current channel +- 3h\n");
 
@@ -85,7 +88,7 @@ void Test2(void)
   TAP_PrintNet("  %d entries cached\n", NrEntries);
   for(i = 0; i < NrEntries; i++)
   {
-    TAP_PrintNet("  %s: (%d) %s (%d')\n", TimeFormat(EPGData.StartTime, 0, TIMESTAMP_YMDHM), EPGData.TimeZone, EPGData.EventName, EPGData.duration);
+    TAP_PrintNet("  %s: (%d) %s (%d')\n", TimeFormat(EPGData.StartTime, 0, TIMESTAMP_YMDHM, TS), EPGData.TimeZone, EPGData.EventName, EPGData.duration);
     EPGInfo_FindNext(&EPGData);
   }
   EPGInfo_Free();
@@ -96,6 +99,7 @@ void Test3(void)
 {
   TYPE_EPGInfo      EPGData;
   dword             NrEntries, i;
+  char              TS[24];
 
   TAP_PrintNet("Test 3: all events with a duration between 60 and 70 minutes\n");
 
@@ -105,7 +109,7 @@ void Test3(void)
   TAP_PrintNet("  %d entries cached\n", NrEntries);
   for(i = 0; i < NrEntries; i++)
   {
-    TAP_PrintNet("  %s: (%d) %s (%d')\n", TimeFormat(EPGData.StartTime, 0, TIMESTAMP_YMDHM), EPGData.TimeZone, EPGData.EventName, EPGData.duration);
+    TAP_PrintNet("  %s: (%d) %s (%d')\n", TimeFormat(EPGData.StartTime, 0, TIMESTAMP_YMDHM, TS), EPGData.TimeZone, EPGData.EventName, EPGData.duration);
     EPGInfo_FindNext(&EPGData);
   }
   EPGInfo_Free();
@@ -121,6 +125,7 @@ void Test4(void)
 {
   TYPE_EPGInfo      EPGData;
   dword             NrEntries, i;
+  char              TS[24];
 
   TAP_PrintNet("Test 4: use a callback function. It will return TRUE for all currently running programmes (running status = running)\n");
 
@@ -131,7 +136,7 @@ void Test4(void)
   TAP_PrintNet("  %d entries cached\n", NrEntries);
   for(i = 0; i < NrEntries; i++)
   {
-    TAP_PrintNet("  %s: (%d) %s (%d')\n", TimeFormat(EPGData.StartTime, 0, TIMESTAMP_YMDHM), EPGData.TimeZone, EPGData.EventName, EPGData.duration);
+    TAP_PrintNet("  %s: (%d) %s (%d')\n", TimeFormat(EPGData.StartTime, 0, TIMESTAMP_YMDHM, TS), EPGData.TimeZone, EPGData.EventName, EPGData.duration);
     EPGInfo_FindNext(&EPGData);
   }
   EPGInfo_Free();
@@ -143,6 +148,7 @@ void Test5(void)
   TYPE_EPGInfo      EPGData;
   dword             NrEntries, i;
   int               SvcType, SvcNum;
+  char              TS[24];
 
   TAP_PrintNet("Test 5a: read all events for the current channel, print the first 10 and then reverse over the previous 5 events\n");
 
@@ -153,7 +159,7 @@ void Test5(void)
   TAP_PrintNet("  %d entries cached\n", NrEntries);
   for(i = 0; i < 10; i++)
   {
-    TAP_PrintNet("  %s: (%d) %s (%d')\n", TimeFormat(EPGData.StartTime, 0, TIMESTAMP_YMDHM), EPGData.TimeZone, EPGData.EventName, EPGData.duration);
+    TAP_PrintNet("  %s: (%d) %s (%d')\n", TimeFormat(EPGData.StartTime, 0, TIMESTAMP_YMDHM, TS), EPGData.TimeZone, EPGData.EventName, EPGData.duration);
     EPGInfo_FindNext(&EPGData);
   }
 
@@ -163,17 +169,17 @@ void Test5(void)
   for(i = 0; i < 5; i++)
   {
     EPGInfo_FindPrev(&EPGData);
-    TAP_PrintNet("  %s: (%d) %s (%d')\n", TimeFormat(EPGData.StartTime, 0, TIMESTAMP_YMDHM), EPGData.TimeZone, EPGData.EventName, EPGData.duration);
+    TAP_PrintNet("  %s: (%d) %s (%d')\n", TimeFormat(EPGData.StartTime, 0, TIMESTAMP_YMDHM, TS), EPGData.TimeZone, EPGData.EventName, EPGData.duration);
     //EPGInfo_FindPrev(&EPGData);
   }
 
   TAP_PrintNet("\nTest 5b: get the first event again\n");
   EPGInfo_FindItem(&EPGData, 0, FALSE);
-  TAP_PrintNet("  %s: (%d) %s (%d')\n", TimeFormat(EPGData.StartTime, 0, TIMESTAMP_YMDHM), EPGData.TimeZone, EPGData.EventName, EPGData.duration);
+  TAP_PrintNet("  %s: (%d) %s (%d')\n", TimeFormat(EPGData.StartTime, 0, TIMESTAMP_YMDHM, TS), EPGData.TimeZone, EPGData.EventName, EPGData.duration);
 
   TAP_PrintNet("\nTest 5c: get the last event again, resetting the current location.\n");
   EPGInfo_FindItem(&EPGData, NrEntries - 1, TRUE);
-  TAP_PrintNet("  %s: (%d) %s (%d')\n", TimeFormat(EPGData.StartTime, 0, TIMESTAMP_YMDHM), EPGData.TimeZone, EPGData.EventName, EPGData.duration);
+  TAP_PrintNet("  %s: (%d) %s (%d')\n", TimeFormat(EPGData.StartTime, 0, TIMESTAMP_YMDHM, TS), EPGData.TimeZone, EPGData.EventName, EPGData.duration);
 
   TAP_PrintNet("\nTest 5d: read back through the last 5 again [Firmware DST Rules].\n");
 
@@ -182,7 +188,7 @@ void Test5(void)
   for(i = 0; i < 5; i++)
   {
     EPGInfo_FindPrev(&EPGData);
-    TAP_PrintNet("  %s: (%d) %s (%d')\n", TimeFormat(EPGData.StartTime, 0, TIMESTAMP_YMDHM), EPGData.TimeZone, EPGData.EventName, EPGData.duration);
+    TAP_PrintNet("  %s: (%d) %s (%d')\n", TimeFormat(EPGData.StartTime, 0, TIMESTAMP_YMDHM, TS), EPGData.TimeZone, EPGData.EventName, EPGData.duration);
   }
   EPGInfo_Free();
 }

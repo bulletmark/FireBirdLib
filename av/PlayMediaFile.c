@@ -1,6 +1,6 @@
 #include <unistd.h>
 #include <string.h>
-#include "../libFireBird.h"
+#include "FBLib_av.h"
 
 bool PlayMediaFile(char *MediaFileName)
 {

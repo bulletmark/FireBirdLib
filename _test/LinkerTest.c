@@ -3,7 +3,6 @@
 /* CHECKS ALL libFireBird FUNCTIONS             */
 /************************************************/
 
-#include "tap.h"
 #include "../av/FBLib_av.h"
 #include "../EPG/FBLib_EPG.h"
 #include "../flash/FBLib_flash.h"
@@ -20,6 +19,7 @@
 #include "../TMSOSDKeyboard/FBLib_TMSOSDKeyboard.h"
 #include "../TMSOSDMenu/FBLib_TMSOSDMenu.h"
 #include "../tmsvfd/FBLib_tmsvfd.h"
+#include "tap.h"
 
 TAP_ID(0);
 TAP_PROGRAM_NAME("");
@@ -54,6 +54,7 @@ int TAP_Main()
   Appl_GetEvtListHeadInUsePool();
   Appl_GetFreeExtRecordSpace(NULL);
   Appl_GetIsExternal();
+  Appl_GetSameTimeEvent(0, 0, 0, 0);
   Appl_ImportChData(NULL);
   Appl_KeyCvt(0);
   Appl_PvrPause(FALSE);
@@ -141,8 +142,8 @@ int TAP_Main()
   DumpMemoryDword(NULL, 0);
   ELFCleanup();
   ELFGetSectionAddress(0, NULL, NULL);
-  ELFGetSectionOffset(0, NULL, NULL);
   ELFGetSectionIndex(NULL);
+  ELFGetSectionOffset(0, NULL, NULL);
   ELFOpenFile(NULL);
   ELFReadData(0, NULL);
   ELFReadDWORD(0, NULL);
@@ -206,6 +207,7 @@ int TAP_Main()
   FIS_fwAppl_GetEvtListHeadInUsePool();
   FIS_fwAppl_GetFreeExtRecordSpace();
   FIS_fwAppl_GetIsExternal();
+  FIS_fwAppl_GetSameTimeEvent();
   FIS_fwAppl_GetStreamFormat();
   FIS_fwAppl_ImportChData();
   FIS_fwAppl_InitTempRec();
@@ -420,10 +422,15 @@ int TAP_Main()
   FMUC_GetStringWidth(NULL, NULL);
   FMUC_IsDiacriticalMark(0);
   FMUC_LoadFontFile(NULL, NULL);
+  FMUC_MemoryDump(NULL, NULL);
+  FMUC_MemoryFindFree();
+  FMUC_MemoryFindPointer(NULL);
   FMUC_PutString(0, 0, 0, 0, NULL, 0, 0, NULL, 0, 0);
   FMUC_PutStringAA(0, 0, 0, 0, NULL, 0, 0, NULL, 0, 0, 0);
   FMUC_ReserveMemory(NULL, 0);
+  FP_Initialize();
   FreeOSDRegion(0);
+  Front_TxPacket_hooked(NULL);
   FrontPanelEEPROMRead(0, NULL);
   FrontPanelEEPROMWrite(0, 0);
   FrontPanelGetPatch(NULL, NULL);
@@ -451,10 +458,12 @@ int TAP_Main()
   HDD_AAM_Enable(0);
   HDD_APM_Disable();
   HDD_APM_Enable(0);
+  HDD_BuildExtDriveList(NULL, NULL);
   HDD_ChangeDir(NULL);
   HDD_DecodeRECHeader(NULL, NULL, 0);
   HDD_Delete(NULL);
   HDD_EncodeRECHeader(NULL, NULL, 0);
+  HDD_Exist(NULL);
   HDD_FappendOpen(NULL);
   HDD_FappendWrite(NULL, NULL);
   HDD_FindMountPoint(NULL, NULL);
@@ -525,6 +534,7 @@ int TAP_Main()
   HDD_UnrecycleSF(NULL);
   HDD_Write(NULL, 0, NULL);
   HookFirmware(NULL, NULL, NULL);
+  HookFrontTxPacket();
   infData_CloseFile();
   infData_Delete(NULL, NULL);
   infData_Flen();
@@ -572,6 +582,7 @@ int TAP_Main()
   isMJD(0);
   iso639_1(0);
   iso639_2(0);
+  isOnMainTuner(0, 0);
   isOSDRegionAlive(0);
   isPIPActive();
   isUTF8Char(NULL, NULL);
@@ -738,10 +749,11 @@ int TAP_Main()
   ParseLine(NULL, NULL, '\0');
   PlayMediaFile(NULL);
   PrintNet(NULL);
+  PSBuffer_Free(NULL);
   PSBuffer_Init(NULL, 0, 0);
   PSBuffer_ProcessTSPacket(NULL, NULL, 0);
-  PSBuffer_Free(NULL);
   PutDevEvent(0, 0);
+  PutMsgQ_hooked(NULL, NULL);
   PvrTimeToLinux(0);
   Reboot(FALSE);
   ReplaceInvalidFileNameChars(NULL);
@@ -828,6 +840,7 @@ int TAP_Main()
   UncompressLoader(NULL, NULL, NULL);
   UncompressTFD(NULL, NULL, NULL);
   UnhookFirmware(NULL, NULL, NULL);
+  UnhookFrontTxPacket();
   Unix2TFTime(0);
   UpperCase(NULL);
   UTC2LocalTime(0, NULL);

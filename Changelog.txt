@@ -1018,3 +1018,8 @@ The following functions accept any form a path. The INI and language INI functio
             Removed: tRECHeaderInfo.TPUnknown1
             Removed: tRECHeaderInfo.CryptUnknown1
 2017-06-10: Added: PSBuffer_Init(), PSBuffer_ProcessTSPacket() and PSBuffer_Free()
+2017-12-24: Added: the following commands will also use these files together with recordings: .cut, .cut.bak (both from MovieCutter) and .srt
+                   HDD_Delete(), HDD_Move(), HDD_Recycle(), HDD_RecycleSF(), HDD_Rename(), HDD_Unrecycle(), HDD_UnrecycleSF(), HDD_MoveAbs()
+2018-01-28: Added: Decoded the UniCable fields in tFlashLNB
+
+2018-03-25: Fixed: forgot to adapt a memcopy to the above UniCable modification. Thanks to chris86.

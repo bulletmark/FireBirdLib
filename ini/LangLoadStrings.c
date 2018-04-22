@@ -13,7 +13,7 @@ INILOCATION LangLoadStrings(char *LangFile, dword NrStrings, int FallbackLang, c
 
   dword                 i;
   int                   OSDLan;
-  char                  Key[10], s[200], *c;
+  char                  Key[10], s[512], *c;
   dword                 TotalLength;
   char                  *OldBuffer, *OldCommentBuffer;
   dword                 OldBufferSize;

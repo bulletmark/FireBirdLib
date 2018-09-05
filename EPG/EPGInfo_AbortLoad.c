@@ -3,9 +3,9 @@
 
 void EPGInfo_AbortLoad(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   EPGAbortLoad = TRUE;
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

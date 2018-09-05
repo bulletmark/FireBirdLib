@@ -2,10 +2,10 @@
 
 dword EPGInfo_GetNrFreeEntries(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   dword ret = Appl_GetEvtCountInFreePool();
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

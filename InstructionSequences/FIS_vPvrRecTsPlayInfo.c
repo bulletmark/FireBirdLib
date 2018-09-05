@@ -1,14 +1,14 @@
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 inline dword FIS_vPvrRecTsPlayInfo(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   static dword          vpvrRecTsPlayInfo = 0;
 
   if(!vpvrRecTsPlayInfo)
     vpvrRecTsPlayInfo = TryResolve("_pvrRecTsPlayInfo");
 
-  TRACEEXIT();
+  TRACEEXIT;
   return vpvrRecTsPlayInfo;
 }

@@ -3,7 +3,7 @@
 
 byte *HDD_GetPvrRecTsInfoPointer(byte Slot)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   static byte          *__pvrRecTsInfo = NULL;
   static byte          *__pvrRecTsPlayInfo = NULL;
@@ -12,13 +12,13 @@ byte *HDD_GetPvrRecTsInfoPointer(byte Slot)
 
   if(Slot > HDD_NumberOfRECSlots())
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return NULL;
   }
 
   if(!HDD_GetRecSlotFiles(Slot, NULL, NULL, NULL))
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return NULL;
   }
 
@@ -27,7 +27,7 @@ byte *HDD_GetPvrRecTsInfoPointer(byte Slot)
     __pvrRecTsInfo = (byte*)FIS_vPvrRecTsInfo();
     if(!__pvrRecTsInfo)
     {
-      TRACEEXIT();
+      TRACEEXIT;
       return NULL;
     }
   }
@@ -37,7 +37,7 @@ byte *HDD_GetPvrRecTsInfoPointer(byte Slot)
     __pvrRecTsPlayInfo = (byte*)FIS_vPvrRecTsPlayInfo();
     if(!__pvrRecTsPlayInfo)
     {
-      TRACEEXIT();
+      TRACEEXIT;
       return NULL;
     }
 
@@ -46,6 +46,6 @@ byte *HDD_GetPvrRecTsInfoPointer(byte Slot)
 
   ret = &__pvrRecTsInfo[infSize * Slot];
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

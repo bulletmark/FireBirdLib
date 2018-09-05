@@ -1,10 +1,9 @@
 #include                <string.h>
-#include                <stdlib.h>
-#include                "../libFireBird.h"
+#include                "libFireBird.h"
 
 bool StrReplace(char *String, char *Find, char *Replace)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   int                   FindLen, ReplaceLen;
   char                 *p;
@@ -13,21 +12,21 @@ bool StrReplace(char *String, char *Find, char *Replace)
   //No NULL pointers?
   if(!String || !Find || !Replace)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
   //No empty strings? Replace may be empty
   if(!String[0] || !Find[0])
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
   //At least one match?
   if(!strstr(String, Find))
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
@@ -52,7 +51,7 @@ bool StrReplace(char *String, char *Find, char *Replace)
   else
   {
     char *TempBuffer, *s, *d;
-    int   NrOfOccurences, l;
+    int   NrOfOccurences;
 
     //Count the number of hits to calculate the buffer size
     NrOfOccurences = 0;
@@ -68,9 +67,7 @@ bool StrReplace(char *String, char *Find, char *Replace)
       }
     } while(p);
 
-    l = strlen(String) + NrOfOccurences*(ReplaceLen - FindLen) + 2;
-    TempBuffer = TAP_MemAlloc(l);
-    memset(TempBuffer, 0, l);
+    TempBuffer = TAP_MemAlloc(strlen(String) + NrOfOccurences*(ReplaceLen - FindLen) + 1);
 
     s = String;
     p = String;
@@ -95,6 +92,6 @@ bool StrReplace(char *String, char *Find, char *Replace)
     TAP_MemFree(TempBuffer);
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

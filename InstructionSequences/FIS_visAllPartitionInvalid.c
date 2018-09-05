@@ -1,14 +1,14 @@
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 inline dword FIS_vIsAllPartitionInvalid(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   static dword          visAllPartitionInvalid = 0;
 
   if(!visAllPartitionInvalid)
     visAllPartitionInvalid = (dword)TryResolve("_isAllPartitionInvalid");
 
-  TRACEEXIT();
+  TRACEEXIT;
   return visAllPartitionInvalid;
 }

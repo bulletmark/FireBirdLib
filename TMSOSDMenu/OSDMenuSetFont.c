@@ -3,7 +3,7 @@
 
 void OSDMenuSetFont(tFontDataUC *LeftTitle, tFontDataUC *RightTitle, tFontDataUC *ListNumber, tFontDataUC *ListName, tFontDataUC *ListValue, tFontDataUC *Buttons, tFontDataUC *Memo)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   tMenu                *pMenu;
 
@@ -51,5 +51,5 @@ void OSDMenuSetFont(tFontDataUC *LeftTitle, tFontDataUC *RightTitle, tFontDataUC
     ListDirty = TRUE;
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

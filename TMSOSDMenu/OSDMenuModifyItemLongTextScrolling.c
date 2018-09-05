@@ -2,9 +2,9 @@
 
 void OSDMenuModifyItemLongTextScrolling(bool AllowScrollingOfLongText)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   Menu[CurrentMenuLevel].AllowScrollingOfLongText = AllowScrollingOfLongText;
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

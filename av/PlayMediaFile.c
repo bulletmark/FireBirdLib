@@ -4,7 +4,7 @@
 
 bool PlayMediaFile(char *MediaFileName)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   bool                  ret;
   tDirEntry             _TempWorkFolder;
@@ -44,6 +44,6 @@ bool PlayMediaFile(char *MediaFileName)
   }
   ApplHdd_RestoreWorkFolder();
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

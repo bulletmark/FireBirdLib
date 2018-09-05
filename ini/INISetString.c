@@ -1,11 +1,11 @@
 #include <string.h>
 #include <stdlib.h>
 #include "FBLib_ini.h"
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 void INISetString(char *Key, char *Value)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   char                  *i = NULL, *j = NULL;
   char                  TempKey[80];
@@ -14,7 +14,7 @@ void INISetString(char *Key, char *Value)
 
   if(!Key || !Value || !INIBuffer)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return;
   }
 
@@ -36,7 +36,7 @@ void INISetString(char *Key, char *Value)
       {
         INIBuffer = OldBuffer;
 
-        TRACEEXIT();
+        TRACEEXIT;
         return;
       }
 
@@ -61,7 +61,7 @@ void INISetString(char *Key, char *Value)
 
     if(l > BS || !(NewBuffer = TAP_MemAlloc(BS)))
     {
-      TRACEEXIT();
+      TRACEEXIT;
       return;
     }
 
@@ -76,5 +76,5 @@ void INISetString(char *Key, char *Value)
     BufferSize = BS;
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

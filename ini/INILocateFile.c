@@ -1,12 +1,12 @@
 #include                <string.h>
-#include                "../libFireBird.h"
+#include                "libFireBird.h"
 
 //Attention: this function will stay in the directory where it has found the file
 //It is up to the caller to use HDD_TAP_PushDir() and HDD_TAP_PopDir()
 
 INILOCATION INILocateFile(char *FileName, char *AppName)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   INILOCATION           location = INILOCATION_NotFound;
   char                  dir[200] = "";
@@ -52,6 +52,6 @@ INILOCATION INILocateFile(char *FileName, char *AppName)
   //Restore the directory where the file has been found
   if(*dir) HDD_ChangeDir(dir);
 
-  TRACEEXIT();
+  TRACEEXIT;
   return location;
 }

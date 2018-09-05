@@ -1,10 +1,10 @@
 #include <string.h>
 #include "FBLib_ini.h"
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 void INIKillKey(char *Key)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   char                  *i = NULL, *j = NULL;
   char                  TempKey[80];
@@ -12,7 +12,7 @@ void INIKillKey(char *Key)
 
   if(!Key || !INIBuffer)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return;
   }
 
@@ -27,7 +27,7 @@ void INIKillKey(char *Key)
     NewBuffer = TAP_MemAlloc(BufferSize);
     if(!NewBuffer)
     {
-      TRACEEXIT();
+      TRACEEXIT;
       return;
     }
     memset(NewBuffer, 0, BufferSize);
@@ -39,5 +39,5 @@ void INIKillKey(char *Key)
     INIBuffer = NewBuffer;
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

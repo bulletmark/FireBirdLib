@@ -2,9 +2,9 @@
 
 void OSDMenuSetCallback(void *OSDCallbackRoutine)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   CallbackProcedure = OSDCallbackRoutine;
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

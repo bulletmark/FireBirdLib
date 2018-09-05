@@ -2,9 +2,9 @@
 
 void OSDMenuModifyScrollLoop(bool ScrollLoop)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   Menu[CurrentMenuLevel].ScrollLoop = ScrollLoop;
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

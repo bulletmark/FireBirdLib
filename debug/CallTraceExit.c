@@ -74,7 +74,7 @@ void CallTraceExit(dword *Magic)
 
   if(Magic && *Magic != DEFAULTMAGIC)
   {
-    TAP_PrintNet("%sINVALID MAGIC!\n", Spaces);
+    TAP_Print("%sINVALID MAGIC!\n", Spaces);
     *Magic = DEFAULTMAGIC;
   }
 

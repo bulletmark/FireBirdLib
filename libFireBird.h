@@ -3,7 +3,7 @@
 
   //#define STACKTRACE
 
-  #define __FBLIB_RELEASEDATE__ "2018-03-25"
+  #define __FBLIB_RELEASEDATE__ "2018-09-01"
 
   #define __FBLIB_VERSION__ __FBLIB_RELEASEDATE__
 
@@ -143,15 +143,16 @@
   #define ATTR_PARENT         0xf0                    //FindFirst/FindNext doesn't know about ..
 
   #ifndef PC_BASED
-    extern char puffer[];
+    extern char PrintNetBuffer[1024];
     void PrintNet(char *puffer);
-    #define TAP_PrintNet(...) {sprintf(puffer, __VA_ARGS__); PrintNet(puffer);}
     // Define the following override if you want to stop FBLIB
     // intercepting TAP_Print() [i.e. printf() from TAPs]. Normally,
     // FBLIB intercepts these messages to a local pseudo terminal.
     // Without the interception, TMS directs these to an FTP debug
     // socket.
     #ifndef FB_NO_TAP_PRINT_OVERRIDE
+      extern int snprintf(char *, size_t, const char *, ...);
+      #define TAP_PrintNet(...) do { snprintf(PrintNetBuffer, sizeof(PrintNetBuffer), __VA_ARGS__); PrintNet(PrintNetBuffer); } while (0)
       #define TAP_Print   TAP_PrintNet
     #endif
   #endif
@@ -1195,11 +1196,11 @@
   void   CallTraceResetStats(void);
 
   #ifdef STACKTRACE
-    #define TRACEENTER()    CallTraceEnter((char*)__FUNCTION__)
-    #define TRACEEXIT()     CallTraceExit(NULL)
+    #define TRACEENTER    CallTraceEnter((char*)__FUNCTION__)
+    #define TRACEEXIT     CallTraceExit(NULL)
   #else
-    #define TRACEENTER()
-    #define TRACEEXIT()
+    #define TRACEENTER    (void) 0
+    #define TRACEEXIT     (void) 0
   #endif
 
   typedef enum
@@ -1419,6 +1420,7 @@
   void   Appl_ShoutCast(void);
   int    Appl_StartPlayback(char *FileName, unsigned int p2, bool p3, bool ScaleInPip);
   int    Appl_StartPlaybackMedia(char *FileName, unsigned int p2, bool p3, bool ScaleInPip);
+  int    Appl_StartPlaybackDivx(char *FileName, unsigned int p2, bool p3);
   int    Appl_StartPlaybackMp3(char *FileName);
   dword  Appl_StopPlaying(void);
   void   Appl_StopRecPlaying(bool p1);
@@ -1427,6 +1429,8 @@
   void   Appl_WriteRecInfo(dword Slot);
   byte   ApplChannel_GetAgc(byte TunerIndex, byte *AGC);
   byte   ApplChannel_GetBer(byte TunerIndex, byte *BER);
+  void   ApplCiplus_CamSelect(byte CamIndex);
+  byte   ApplCiplus_GetSelectedCam(void);
   dword  ApplHdd_FileCutPaste(char *SourceFileName, unsigned int StartBlock, unsigned int NrBlocks, char *CutFileName);
   dword  ApplHdd_FreeSize(char *MountPath, bool a1);
   word   ApplHdd_GetFileInfo(word p1, int *TotalBlocks, int *CurrentBlock, byte p4, byte p5);
@@ -2016,6 +2020,8 @@
   inline dword FIS_fwAppl_WriteRecInfo(void);
   inline dword FIS_fwApplChannel_GetAgc(void);
   inline dword FIS_fwApplChannel_GetBer(void);
+  inline dword FIS_fwApplCiplus_CamSelect(void);
+  inline dword FIS_fwApplCiplus_GetSelectedCam(void);
   inline dword FIS_fwApplHdd_FileCutPaste(void);
   inline dword FIS_fwApplHdd_FreeSize(void);
   inline dword FIS_fwApplHdd_GetFileInfo(void);
@@ -2408,6 +2414,7 @@
   bool Shutdown(TaskEnum Task);
   bool Reboot(bool StopRecordings);
   bool SDS(void);
+  void SDSTerminate(void);
 
 
   /*****************************************************************************************************************************/

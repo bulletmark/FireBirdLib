@@ -1,10 +1,10 @@
 #include <stdlib.h>
 #include "FBLib_ini.h"
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 void LangUnloadStrings(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   if(LangStrings)
   {
@@ -20,5 +20,5 @@ void LangUnloadStrings(void)
 
   LangNrStrings = 0;
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

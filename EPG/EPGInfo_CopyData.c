@@ -3,7 +3,7 @@
 
 void EPGInfo_CopyData(TYPE_EvtInfo *EvtInfo, TYPE_EPGInfo *EPGInfo, dword EventStartTime, dword EventEndTime, short Offset)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   if(EvtInfo && EPGInfo)
   {
@@ -92,5 +92,5 @@ void EPGInfo_CopyData(TYPE_EvtInfo *EvtInfo, TYPE_EPGInfo *EPGInfo, dword EventS
     }
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

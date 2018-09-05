@@ -3,11 +3,11 @@
 #include <sys/types.h>
 #include <fcntl.h>
 #include <sys/xattr.h>
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 bool ExtAttribRemove(char *FileName, char *AttrName)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   char                  FullAttrName[128];
   char                  AbsFileName[FBLIB_DIR_SIZE];
@@ -15,7 +15,7 @@ bool ExtAttribRemove(char *FileName, char *AttrName)
 
   if(!FileName || !*FileName || !AttrName || !*AttrName)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
@@ -29,11 +29,11 @@ bool ExtAttribRemove(char *FileName, char *AttrName)
       fremovexattr(f, FullAttrName);
       close(f);
 
-      TRACEEXIT();
+      TRACEEXIT;
       return TRUE;
     }
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return FALSE;
 }

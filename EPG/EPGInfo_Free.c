@@ -3,12 +3,12 @@
 
 void EPGInfo_Free(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   EPGInfo_DestroyCache();
 
   TAP_MemFree(EPGFilter.GenreArray);
   memset(&EPGFilter, 0, sizeof(EPGFilter));
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

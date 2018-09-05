@@ -2,8 +2,8 @@
 
 dword OSDMenuMessageBoxLastButton(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
-  TRACEEXIT();
+  TRACEEXIT;
   return MessageBox.CurrentButton;
 }

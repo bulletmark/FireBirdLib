@@ -1,18 +1,18 @@
-#include                "../libFireBird.h"
+#include                "libFireBird.h"
 
 bool StringDBEOF(tStringDB *StringDB)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   bool ret;
 
   if(!StringDB)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return TRUE;
   }
   ret = (StringDB->DBPtr[0] == '\0');
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

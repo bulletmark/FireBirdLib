@@ -2,13 +2,13 @@
 
 TAPCOM_Status TAPCOM_GetStatus(TAPCOM_Channel Channel)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   TAPCOM_InternalMesBuf *buf = (TAPCOM_InternalMesBuf *) Channel;
 
   if(!isValidChannel(Channel))
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return TAPCOM_Status_NO_CHANNEL;
   }
 
@@ -16,6 +16,6 @@ TAPCOM_Status TAPCOM_GetStatus(TAPCOM_Channel Channel)
   if(((buf->Status == TAPCOM_Status_OPEN) || (buf->Status == TAPCOM_Status_ACKNOWLEDGED)) && (!HDD_TAP_isRunning(buf->ToID)))
     buf->Status = TAPCOM_Status_SERVER_NOT_AVAILABLE;
 
-  TRACEEXIT();
+  TRACEEXIT;
   return buf->Status;
 }

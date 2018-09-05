@@ -4,7 +4,7 @@ tAlphaLUT  AlphaLUT[256];
 
 void FM_InitAlphaLUT(dword fgColor, dword bgColor, float AntiAliasFactor)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   int                   i;
   dword                 x;
@@ -21,5 +21,5 @@ void FM_InitAlphaLUT(dword fgColor, dword bgColor, float AntiAliasFactor)
     AlphaLUT[i].b = (x > 255) ? 255 : x;
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

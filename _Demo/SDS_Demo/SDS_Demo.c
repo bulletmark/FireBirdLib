@@ -27,7 +27,7 @@ dword TAP_EventHandler(word event, dword param1, dword param2)
       case RKEY_Fav:
       {
         InterceptShutdown = !InterceptShutdown;
-        TAP_PrintNet("Interception = %s\n", InterceptShutdown ? "on" : "off");
+        TAP_Print("Interception = %s\n", InterceptShutdown ? "on" : "off");
         param1 = 0;
         break;
       }
@@ -37,7 +37,7 @@ dword TAP_EventHandler(word event, dword param1, dword param2)
   //Wenn gewünscht, den Shutdown request vom SDS abfangen. Zusätzlich ein Flag setzen, so dass die eigentlich Aufgabe durchgeführt wird.
   if((event == EVT_STOP) && (param1 == 2) && InterceptShutdown)
   {
-    TAP_PrintNet("Shutdown has been intercepted, starting own job\n");
+    TAP_Print("Shutdown has been intercepted, starting own job\n");
     DoOwnJob = TRUE;
     return 0;
   }
@@ -46,7 +46,7 @@ dword TAP_EventHandler(word event, dword param1, dword param2)
   //Dies gilt auch, wenn sich das TAP irgendwo mit TAP_Exit() selbst beendet.
   if((event == EVT_STOP) && (param1 == 1))
   {
-    TAP_PrintNet("User is killing me, stop SDS\n");
+    TAP_Print("User is killing me, stop SDS\n");
     SDSTerminate();
   }
 
@@ -62,7 +62,7 @@ dword TAP_EventHandler(word event, dword param1, dword param2)
     bool ret = SDS();
     if(SDSStatus != (ret ? 1 : 0))
     {
-      TAP_PrintNet("SDS reported to be %s\n", ret ? "active" : "inactive");
+      TAP_Print("SDS reported to be %s\n", ret ? "active" : "inactive");
       SDSStatus = (ret ? 1 : 0);
     }
 
@@ -77,7 +77,7 @@ dword TAP_EventHandler(word event, dword param1, dword param2)
       if(TAP_GetTick() > Timeout)
       {
         //Abfang-Flag zurücksetzen, sonst endet man in einer Endlosschleife
-        TAP_PrintNet("Own job is done, shutting Toppy down\n");
+        TAP_Print("Own job is done, shutting Toppy down\n");
         InterceptShutdown = FALSE;
         DoOwnJob = FALSE;
         Timeout = 0;

@@ -1,10 +1,10 @@
 #include <string.h>
 #include <stdlib.h>
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 char *HDD_MakeNewRecName(char *fname, word sequence, char *NewRecName, int NewRecNameSize)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   char                  try[FBLIB_DIR_SIZE], *Slash;
   size_t                len;
@@ -27,7 +27,7 @@ char *HDD_MakeNewRecName(char *fname, word sequence, char *NewRecName, int NewRe
       if(i >= NewRecNameSize)
       {
         //Not enough space in NewRecName
-        TRACEEXIT();
+        TRACEEXIT;
         return NewRecName;
       }
       strncpy(NewRecName, fname, i);
@@ -69,13 +69,13 @@ char *HDD_MakeNewRecName(char *fname, word sequence, char *NewRecName, int NewRe
     if((strlen(NewRecName) + strlen(try)) >= (dword)NewRecNameSize)
     {
       //Not enough space in NewRecName
-      TRACEEXIT();
+      TRACEEXIT;
       return NewRecName;
     }
 
     strcat(NewRecName, try);
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return NewRecName;
 }

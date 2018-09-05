@@ -1,11 +1,11 @@
 #include                <unistd.h>
 #include                <stdlib.h>
-#include                "../libFireBird.h"
+#include                "libFireBird.h"
 #include                "FBLib_LogoManager.h"
 
 void LogoManager_MoveExternalUpdates(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   char                  Files[3][20] = {"LogoPack.tar", "Logos.lil", "lil.add"};
   char                  Drive, Partition;
@@ -33,5 +33,5 @@ void LogoManager_MoveExternalUpdates(void)
     }
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

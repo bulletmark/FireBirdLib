@@ -1,12 +1,12 @@
 #include "FBLib_av.h"
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 dword GetOSDMapAddress(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   dword ret = FIS_vOsdMap();
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

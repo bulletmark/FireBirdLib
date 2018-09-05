@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <string.h>
-#include <tap.h>
 #include "FBLib_rec.h"
 
 extern FILE            *infDatainfFile;
@@ -19,7 +18,7 @@ bool infData_LocateSig(char *NameTag, dword *PayloadSize)
   //  char NameTag[SigLength]
   //  byte Payload[PayloadSize]
 
-  TRACEENTER();
+  TRACEENTER;
 
   ret = FALSE;
   if(PayloadSize) *PayloadSize = 0;
@@ -48,6 +47,6 @@ bool infData_LocateSig(char *NameTag, dword *PayloadSize)
     }
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

@@ -1,10 +1,10 @@
 #include                <stdio.h>
 #include                <locale.h>
-#include                "../libFireBird.h"
+#include                "libFireBird.h"
 
 dword GetUptime(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   dword                 uptime = 0;
   FILE                 *fp;
@@ -29,6 +29,6 @@ dword GetUptime(void)
     fclose(fp);
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return uptime;
 }

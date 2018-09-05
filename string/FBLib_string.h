@@ -1,7 +1,7 @@
 #ifndef FBLIB_STRING_H
 #define FBLIB_STRING_H
 
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 //see StrToUTF8
 extern char             AnsiUpper[30];

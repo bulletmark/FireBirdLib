@@ -2,7 +2,7 @@
 
 void OSDDrawButtons(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   tMenu                *pMenu;
   dword                 i;
@@ -17,5 +17,5 @@ void OSDDrawButtons(void)
 
   if(CallbackProcedure) CallbackProcedure(OSDCB_Buttons, OSDRgn);
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

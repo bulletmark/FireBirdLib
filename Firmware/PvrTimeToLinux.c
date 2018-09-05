@@ -1,8 +1,8 @@
-#include                "../libFireBird.h"
+#include                "libFireBird.h"
 
 dword PvrTimeToLinux(dword PVRTime)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   dword (*_PvrTimeToLinux)(dword) = NULL;
   dword ret;
@@ -11,6 +11,6 @@ dword PvrTimeToLinux(dword PVRTime)
   _PvrTimeToLinux = (void*)FIS_fwTimeToLinux();
   if(_PvrTimeToLinux) ret = _PvrTimeToLinux(PVRTime);
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

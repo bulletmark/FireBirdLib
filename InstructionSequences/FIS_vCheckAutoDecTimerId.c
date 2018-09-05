@@ -1,14 +1,14 @@
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 inline dword FIS_vCheckAutoDecTimerId(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   static dword          _checkAutoDecTimerId = 0;
 
   if(!_checkAutoDecTimerId)
     _checkAutoDecTimerId = TryResolve("_checkAutoDecTimerId");
 
-  TRACEEXIT();
+  TRACEEXIT;
   return _checkAutoDecTimerId;
 }

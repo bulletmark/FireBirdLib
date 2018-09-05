@@ -1,11 +1,11 @@
 #include                <string.h>
 #include                <stdlib.h>
-#include                "../libFireBird.h"
+#include                "libFireBird.h"
 #include                "FBLib_LogoManager.h"
 
 void LogoManager_CleanupMemory(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   int                   i;
 
@@ -22,5 +22,5 @@ void LogoManager_CleanupMemory(void)
   }
 
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

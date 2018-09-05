@@ -3,11 +3,11 @@
 
 bool OSDMenuPop(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   if(CurrentMenuLevel == 0)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
@@ -19,6 +19,6 @@ bool OSDMenuPop(void)
 
   CurrentMenuLevel--;
 
-  TRACEEXIT();
+  TRACEEXIT;
   return TRUE;
 }

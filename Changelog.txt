@@ -1021,5 +1021,21 @@ The following functions accept any form a path. The INI and language INI functio
 2017-12-24: Added: the following commands will also use these files together with recordings: .cut, .cut.bak (both from MovieCutter) and .srt
                    HDD_Delete(), HDD_Move(), HDD_Recycle(), HDD_RecycleSF(), HDD_Rename(), HDD_Unrecycle(), HDD_UnrecycleSF(), HDD_MoveAbs()
 2018-01-28: Added: Decoded the UniCable fields in tFlashLNB
-
 2018-03-25: Fixed: forgot to adapt a memcopy to the above UniCable modification. Thanks to chris86.
+2018-06-10: Added: ApplCiplus_CamSelect(), ApplCiplus_GetSelectedCam(), FIS_fwApplCiplus_CamSelect() and FIS_fwApplCiplus_GetSelectedCam()
+2018-06-20: Fixed: Potential out-of-bounds read in INIOpenFile()
+2018-06-21: Fixed: Removed unnecessary memset() in StrReplace() and adjusted TempBuffer size
+2018-08-14: Fixed: Made TAP_PrintNet() usable for "if (...) TAP_PrintNet(...); else ...;"
+2018-08-16: Fixed: Cast pointer in TAP_MemRealloc() to avoid using pointer of type 'void *' in arithmetic
+2018-08-19: Fixed: Replaced several TAP_PrintNet() with TAP_Print()
+            Fixed: Added SDSTerminate() back to libFireBird.h
+            Fixed: Moved Appl_StartPlaybackDivx() from FBLib_av.h to libFireBird.h for consistent declarations of firmware functions
+            Fixed: Corrected output for TAP_Print() in FIS_Test.c
+2018-08-20: Fixed: Wrote terminating null byte in PrintNet()
+            Fixed: Added -fPIC compiler flag to all makefiles
+            Fixed: Removed -std=c99 compiler flag from all makefiles except for the string and TMSOSDKeyboard blocks
+            Fixed: the CrashCheck demo
+            Fixed: Added -std=c99 compiler flag only where necessary
+            Fixed: Potential buffer overflow in TAP_PrintNet() (replacing TAP_Print())
+2018-08-31: Fixed: Made empty macro a statement to avoid empty statements
+            Fixed: Handle a possible initialization error in InitTAPex()

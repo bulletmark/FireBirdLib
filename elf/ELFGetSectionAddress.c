@@ -3,17 +3,17 @@
 
 bool ELFGetSectionAddress(dword SectionIndex, dword *SectionAddress, dword *SectionSize)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   if(SectionIndex >= ELFHeader->e_shnum)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
   if(SectionAddress) *SectionAddress = SectionHeaders[SectionIndex].sh_addr;
   if(SectionSize)    *SectionSize = SectionHeaders[SectionIndex].sh_size;
 
-  TRACEEXIT();
+  TRACEEXIT;
   return TRUE;
 }

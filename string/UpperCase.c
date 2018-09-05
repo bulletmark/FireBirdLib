@@ -4,7 +4,7 @@
 
 void UpperCase(char *string)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   char                 *p, *s;
   byte                  UTF8[5];
@@ -35,5 +35,5 @@ void UpperCase(char *string)
     p += BytesPerCharacter;
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

@@ -1,7 +1,7 @@
 #ifndef FBLIB_TMSVFD_H
 #define FBLIB_TMSVFD_H
 
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 typedef enum
 {

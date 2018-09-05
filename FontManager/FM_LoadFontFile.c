@@ -3,7 +3,7 @@
 
 bool FM_LoadFontFile(char *FontFileName, tFontData *FontData)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   TYPE_File            *f;
   dword                 GreyScaleSize;
@@ -15,7 +15,7 @@ bool FM_LoadFontFile(char *FontFileName, tFontData *FontData)
 
   if(!FontFileName || !FontFileName[0] || !FontData)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
@@ -35,7 +35,7 @@ bool FM_LoadFontFile(char *FontFileName, tFontData *FontData)
 
     HDD_TAP_PopDir();
 
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
@@ -44,7 +44,7 @@ bool FM_LoadFontFile(char *FontFileName, tFontData *FontData)
   {
     HDD_TAP_PopDir();
 
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
@@ -83,6 +83,6 @@ bool FM_LoadFontFile(char *FontFileName, tFontData *FontData)
 
   HDD_TAP_PopDir();
 
-  TRACEEXIT();
+  TRACEEXIT;
   return TRUE;
 }

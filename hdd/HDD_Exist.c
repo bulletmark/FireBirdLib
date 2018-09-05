@@ -3,7 +3,7 @@
 
 bool HDD_Exist(char *FileName)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   char                  LinuxPath[FBLIB_DIR_SIZE];
   tstat64               statbuf;
@@ -11,7 +11,7 @@ bool HDD_Exist(char *FileName)
 
   if(!FileName || !*FileName)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
@@ -20,6 +20,6 @@ bool HDD_Exist(char *FileName)
 
   ret = (stat64(LinuxPath, &statbuf) == 0);
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

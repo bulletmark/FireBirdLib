@@ -1,5 +1,5 @@
 #include "FBLib_main.h"
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 const char              *__fblib_version__ = "__FBLIB_VERSION_TMS__ " __FBLIB_VERSION__;
 
@@ -9,21 +9,24 @@ bool                    LibInitialized = FALSE;
 
 bool InitTAPex()
 {
-  TRACEENTER();
+  TRACEENTER;
 
   if(LibInitialized)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return TRUE;
   }
 
   ApplID = TAP_GetVersion();
 
   dword *pcurTapTask = (dword*)FIS_vCurTapTask();
-  if(pcurTapTask) TAP_TableIndex = *pcurTapTask;
 
-  LibInitialized = TRUE;
+  if (pcurTapTask)
+  {
+    TAP_TableIndex = *pcurTapTask;
+    LibInitialized = TRUE;
+  }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return LibInitialized;
 }

@@ -3,7 +3,7 @@
 
 void OSDMenuMessageBoxShow(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   dword                 x, y, dx, dy, i;
   char                 *pText;
@@ -15,7 +15,7 @@ void OSDMenuMessageBoxShow(void)
 
   if(MessageBox.NrButtons == 0)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return;
   }
 
@@ -91,5 +91,5 @@ void OSDMenuMessageBoxShow(void)
 
   TAP_Osd_Sync();
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

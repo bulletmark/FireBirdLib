@@ -1,11 +1,11 @@
 #include                <string.h>
 #include                <stdio.h>
 #include                <stdlib.h>
-#include                "../libFireBird.h"
+#include                "libFireBird.h"
 
 void HDD_RemoveDir(char *DirPath, bool Recursive)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   char                  cmd[512], LinuxPath[FBLIB_DIR_SIZE];
 
@@ -23,5 +23,5 @@ void HDD_RemoveDir(char *DirPath, bool Recursive)
     system(cmd);
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

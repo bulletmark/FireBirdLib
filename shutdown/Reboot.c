@@ -1,12 +1,12 @@
 #include "FBLib_shutdown.h"
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 bool Reboot(bool StopRecordings)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   if(StopRecordings || !HDD_isAnyRecording()) TAP_Reboot();
 
-  TRACEEXIT();
+  TRACEEXIT;
   return TRUE;
 }

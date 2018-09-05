@@ -1,8 +1,8 @@
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 dword OATH(register unsigned char *data, int len, dword hash)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   register int i;
 
@@ -16,6 +16,6 @@ dword OATH(register unsigned char *data, int len, dword hash)
   hash ^= (hash>>11);
   hash += (hash<<15);
 
-  TRACEEXIT();
+  TRACEEXIT;
   return hash;
 }

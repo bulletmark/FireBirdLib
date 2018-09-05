@@ -1,14 +1,14 @@
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 inline dword FIS_vFlashBlockLanIPConfig(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   static dword          *vFlashOldLanIpConfig = 0;
 
   if(!vFlashOldLanIpConfig)
     vFlashOldLanIpConfig = (dword*)TryResolve("_oldLanIpConfig");
 
-  TRACEEXIT();
+  TRACEEXIT;
   return (vFlashOldLanIpConfig ? *vFlashOldLanIpConfig : 0);
 }

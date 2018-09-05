@@ -1,9 +1,8 @@
-#include                <stdio.h>
-#include                "../libFireBird.h"
+#include                "libFireBird.h"
 
 int TAP_Osd_Create_Chk(char *Comment, dword x, dword y, dword w, dword h, byte lutIdx, int flag)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   int ret;
 
@@ -19,6 +18,6 @@ int TAP_Osd_Create_Chk(char *Comment, dword x, dword y, dword w, dword h, byte l
 
   if(Comment && ret < 128) LogEntryFBLibPrintf(TRUE, "TAP_Osd_Create_Chk Warning: TAP_Osd_Create() returned %d @ %s", ret, Comment);
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

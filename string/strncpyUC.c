@@ -1,16 +1,16 @@
 #include                <string.h>
-#include                "../libFireBird.h"
+#include                "libFireBird.h"
 
 byte *strncpyUC(byte *dest, byte *src, size_t n)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   byte                 *p;
   size_t                CharTableBytes;
 
   if(!src || !dest)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return NULL;
   }
 
@@ -25,6 +25,6 @@ byte *strncpyUC(byte *dest, byte *src, size_t n)
     strncpy(&dest[CharTableBytes], p, n - CharTableBytes);
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return dest;
 }

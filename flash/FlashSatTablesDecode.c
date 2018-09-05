@@ -3,21 +3,21 @@
 
 bool FlashSatTablesGetInfo(int SatNum, tFlashSatTable *SatTable)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   bool ret;
 
   //SatNum out of range
   if((SatNum < 0) || (SatNum >= FlashSatTablesGetTotal()))
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
   //SatTable is NULL
   if(!SatTable)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
@@ -69,7 +69,7 @@ bool FlashSatTablesGetInfo(int SatNum, tFlashSatTable *SatTable)
     case ST_NRTYPES: break;
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }
 
@@ -77,11 +77,11 @@ bool FlashSatTablesDecode(void *Data, tFlashSatTable *SatTable)
 {
   bool ret;
 
-  TRACEENTER();
+  TRACEENTER;
 
   if(!Data || !SatTable)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
@@ -106,17 +106,17 @@ bool FlashSatTablesDecode(void *Data, tFlashSatTable *SatTable)
     case ST_NRTYPES: break;
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }
 
 bool FlashSatTablesDecode_ST_TMSS(TYPE_SatInfo_TMSS *Data, tFlashSatTable *SatTable)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   if(!Data || !SatTable)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
@@ -170,17 +170,17 @@ bool FlashSatTablesDecode_ST_TMSS(TYPE_SatInfo_TMSS *Data, tFlashSatTable *SatTa
   SatTable->LNB[1].UniCableFrq          = Data->LNB[1].UniCableFrq;
   memcpy(SatTable->LNB[1].unused5, Data->LNB[1].unused5, 2);
 
-  TRACEEXIT();
+  TRACEEXIT;
   return TRUE;
 }
 
 bool FlashSatTablesDecode_ST_TMST(TYPE_SatInfo_TMST *Data, tFlashSatTable *SatTable)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   if(!Data || !SatTable)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
@@ -188,17 +188,17 @@ bool FlashSatTablesDecode_ST_TMST(TYPE_SatInfo_TMST *Data, tFlashSatTable *SatTa
   SatTable->NrOfTransponders = Data->NrOfTransponders;
   strncpy(SatTable->SatName, Data->SatName, MAX_SatName - 1);
 
-  TRACEEXIT();
+  TRACEEXIT;
   return TRUE;
 }
 
 bool FlashSatTablesDecode_ST_TMSC(TYPE_SatInfo_TMSC *Data, tFlashSatTable *SatTable)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   if(!Data || !SatTable)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
@@ -206,6 +206,6 @@ bool FlashSatTablesDecode_ST_TMSC(TYPE_SatInfo_TMSC *Data, tFlashSatTable *SatTa
   SatTable->NrOfTransponders = Data->NrOfTransponders;
   strncpy(SatTable->SatName, "Cable", MAX_SatName - 1);
 
-  TRACEEXIT();
+  TRACEEXIT;
   return TRUE;
 }

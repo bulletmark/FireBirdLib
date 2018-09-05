@@ -2,7 +2,7 @@
 
 bool OSDMenuSelectItem(int ItemIndex)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   tMenu                *pMenu;
 
@@ -10,7 +10,7 @@ bool OSDMenuSelectItem(int ItemIndex)
 
   if(pMenu->NrItems == 0)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
@@ -21,7 +21,7 @@ bool OSDMenuSelectItem(int ItemIndex)
   {
     if(!pMenu->Item[ItemIndex].Selectable)
     {
-      TRACEEXIT();
+      TRACEEXIT;
       return FALSE;
     }
 
@@ -29,6 +29,6 @@ bool OSDMenuSelectItem(int ItemIndex)
     ListDirty = TRUE;
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return TRUE;
 }

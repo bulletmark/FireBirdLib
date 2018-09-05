@@ -5,13 +5,13 @@ bool CDEnabledAnimation = FALSE;
 
 bool VFD_EnableCDAnimation(bool Enable)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   byte *grid = (byte*)FIS_vGrid();
 
   if(!VFDUsedByTAP || !grid)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
@@ -26,6 +26,6 @@ bool VFD_EnableCDAnimation(bool Enable)
 
   CDEnabledAnimation = Enable;
 
-  TRACEEXIT();
+  TRACEEXIT;
   return TRUE;
 }

@@ -2,7 +2,7 @@
 
 int FlashSatTablesGetTotal(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   TYPE_SatInfo_TMSS    *SatInfo_TMSS;
   int                   i, ret;
@@ -47,6 +47,6 @@ int FlashSatTablesGetTotal(void)
     }
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

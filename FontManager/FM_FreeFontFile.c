@@ -3,10 +3,10 @@
 
 void FM_FreeFontFile(tFontData *FontData)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   TAP_MemFree(FontData->pFontData);
   memset(FontData, 0, sizeof(tFontData));
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

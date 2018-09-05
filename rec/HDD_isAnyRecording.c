@@ -1,8 +1,8 @@
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 bool HDD_isAnyRecording(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   int                   i, NrRecSlots;
   bool                  ret;
@@ -16,6 +16,6 @@ bool HDD_isAnyRecording(void)
       break;
     }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

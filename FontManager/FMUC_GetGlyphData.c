@@ -3,7 +3,7 @@
 
 tGlyphCacheUC *FMUC_GetGlyphData(tFontDataUC *FontData, byte *UTF8Character, byte *BytesPerChar)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   int                   i;
   dword                 UTF32;
@@ -11,7 +11,7 @@ tGlyphCacheUC *FMUC_GetGlyphData(tFontDataUC *FontData, byte *UTF8Character, byt
 
   if(!FontData || !UTF8Character || !*UTF8Character)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return NULL;
   }
 
@@ -20,7 +20,7 @@ tGlyphCacheUC *FMUC_GetGlyphData(tFontDataUC *FontData, byte *UTF8Character, byt
   {
     if(BytesPerChar) *BytesPerChar = 1;
 
-    TRACEEXIT();
+    TRACEEXIT;
     return NULL;
   }
 
@@ -32,7 +32,7 @@ tGlyphCacheUC *FMUC_GetGlyphData(tFontDataUC *FontData, byte *UTF8Character, byt
   {
     if(GC->Unicode == UTF32)
     {
-      TRACEEXIT();
+      TRACEEXIT;
       return GC;
     }
     GC++;
@@ -55,7 +55,7 @@ tGlyphCacheUC *FMUC_GetGlyphData(tFontDataUC *FontData, byte *UTF8Character, byt
       {
         LogEntryFBLibPrintf(TRUE, "FontManager UC: failed to reserve %d bytes for a glyph", FontDef->Width * FontDef->Height);
 
-        TRACEEXIT();
+        TRACEEXIT;
         return NULL;
       }
 
@@ -64,12 +64,12 @@ tGlyphCacheUC *FMUC_GetGlyphData(tFontDataUC *FontData, byte *UTF8Character, byt
 
       FontData->GlyphCacheEntries++;
 
-      TRACEEXIT();
+      TRACEEXIT;
       return GlyphCache;
     }
 
   //LogEntryFBLibPrintf(TRUE, "Glyph %x not found", UTF32);
 
-  TRACEEXIT();
+  TRACEEXIT;
   return NULL;
 }

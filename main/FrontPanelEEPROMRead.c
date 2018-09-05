@@ -3,14 +3,14 @@
 
 bool FrontPanelEEPROMRead(word Address, byte *Data)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   byte                  Buffer[20];
   int                   WaitTimeout;
 
   if(!FP_Initialize())
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
@@ -19,7 +19,7 @@ bool FrontPanelEEPROMRead(word Address, byte *Data)
   {
     if(Data) *Data = FPPatchAntiFreezeOption;
 
-    TRACEEXIT();
+    TRACEEXIT;
     return TRUE;
   }
 
@@ -27,13 +27,13 @@ bool FrontPanelEEPROMRead(word Address, byte *Data)
   {
     if(Data) *Data = FPPatchPowerRestoreOption;
 
-    TRACEEXIT();
+    TRACEEXIT;
     return TRUE;
   }
 
   if(!HookFrontTxPacket())
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
@@ -56,6 +56,6 @@ bool FrontPanelEEPROMRead(word Address, byte *Data)
 
   UnhookFrontTxPacket();
 
-  TRACEEXIT();
+  TRACEEXIT;
   return (WaitTimeout != 0);
 }

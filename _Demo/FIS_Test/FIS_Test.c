@@ -468,7 +468,13 @@ void DumpInfo(void)
   DEBUG("TAP_Osd_Sync                       = %p", TAP_Osd_Sync);
   DEBUG("TAP_Osd_Zoom                       = %p", TAP_Osd_Zoom);
   DEBUG("TAP_PlayPCM                        = %p", TAP_PlayPCM);
-  DEBUG("TAP_Print                          = %p", TAP_PlayPCM);
+#ifndef FB_NO_TAP_PRINT_OVERRIDE
+#undef TAP_Print
+#endif
+  DEBUG("TAP_Print                          = %p", TAP_Print);
+#ifndef FB_NO_TAP_PRINT_OVERRIDE
+#define TAP_Print TAP_PrintNet
+#endif
   DEBUG("TAP_PrintSys                       = %p", TAP_PrintSys);
   DEBUG("TAP_Put12bit                       = %p", TAP_Put12bit);
   DEBUG("TAP_Put13bit                       = %p", TAP_Put13bit);
@@ -657,7 +663,7 @@ void SearchForFlashPointer(void)
   }
   else
   {
-    TAP_PrintNet("ELFOpenFile() failed on /root/pvr\n");
+    TAP_Print("ELFOpenFile() failed on /root/pvr\n");
   }
 
   ELFCleanup();

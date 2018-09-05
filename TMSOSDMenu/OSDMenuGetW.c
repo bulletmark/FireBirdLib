@@ -2,7 +2,7 @@
 
 int OSDMenuGetW(char * str, byte fntSize)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   int ret = 0;
 
@@ -15,6 +15,6 @@ int OSDMenuGetW(char * str, byte fntSize)
     case 20: ret = FMUC_GetStringWidth(str, &OSDMenuFont_20); break;
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

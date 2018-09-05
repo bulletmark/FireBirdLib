@@ -2,8 +2,8 @@
 
 bool OSDMenuProgressBarIsVisible(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
-  TRACEEXIT();
+  TRACEEXIT;
   return (ProgressBarOSDRgn != 0);
 }

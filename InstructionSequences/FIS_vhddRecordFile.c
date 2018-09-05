@@ -1,14 +1,14 @@
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 inline dword FIS_vhddRecordFile(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   static dword          vhddRecordFile = 0;
 
   if(!vhddRecordFile)
     vhddRecordFile = (dword)TryResolve("_hddRecordFile");
 
-  TRACEEXIT();
+  TRACEEXIT;
   return vhddRecordFile;
 }

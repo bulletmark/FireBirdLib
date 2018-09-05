@@ -1,9 +1,9 @@
 #include "FBLib_av.h"
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 bool CaptureScreen(int BMPwidth, int BMPheight, byte *BMPPixelBuffer, bool bOSD, int Alpha)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   TYPE_VideoFrame       videoFrameMain;
   TYPE_VideoFrame       videoFrameSub;
@@ -13,7 +13,7 @@ bool CaptureScreen(int BMPwidth, int BMPheight, byte *BMPPixelBuffer, bool bOSD,
 
   if(!BMPPixelBuffer)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
@@ -59,6 +59,6 @@ bool CaptureScreen(int BMPwidth, int BMPheight, byte *BMPPixelBuffer, bool bOSD,
     OSDToBMP(&osdBaseInfo, BMPwidth, BMPheight, BMPPixelBuffer, Alpha);
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return TRUE;
 }

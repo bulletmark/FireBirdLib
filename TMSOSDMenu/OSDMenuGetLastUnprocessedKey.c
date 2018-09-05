@@ -2,13 +2,13 @@
 
 dword OSDMenuGetLastUnprocessedKey(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   dword                 ret;
 
   ret = LastUnprocessedOSDMenuKey;
   LastUnprocessedOSDMenuKey = 0;
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

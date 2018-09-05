@@ -73,6 +73,8 @@ int TAP_Main()
   Appl_WriteRecInfo(0);
   ApplChannel_GetAgc(0, NULL);
   ApplChannel_GetBer(0, NULL);
+  ApplCiplus_CamSelect(0);
+  ApplCiplus_GetSelectedCam();
   ApplHdd_FileCutPaste(NULL, 0, 0, NULL);
   ApplHdd_FreeSize(NULL, FALSE);
   ApplHdd_GetFileInfo(0, NULL, NULL, 0, 0);
@@ -237,6 +239,8 @@ int TAP_Main()
   FIS_fwAppl_WriteRecInfo();
   FIS_fwApplChannel_GetAgc();
   FIS_fwApplChannel_GetBer();
+  FIS_fwApplCiplus_CamSelect();
+  FIS_fwApplCiplus_GetSelectedCam();
   FIS_fwApplHdd_FileCutPaste();
   FIS_fwApplHdd_FreeSize();
   FIS_fwApplHdd_GetFileInfo();

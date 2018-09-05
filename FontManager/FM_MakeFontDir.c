@@ -2,7 +2,7 @@
 
 void FM_MakeFontDir(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   HDD_TAP_PushDir();
   HDD_ChangeDir("/ProgramFiles");
@@ -12,5 +12,5 @@ void FM_MakeFontDir(void)
   HDD_ChangeDir("Fonts");
   HDD_TAP_PopDir();
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

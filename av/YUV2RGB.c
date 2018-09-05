@@ -1,9 +1,9 @@
 #include "FBLib_av.h"
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 void YUV2RGB(word yy, word uu, word vv, byte *r, byte *g, byte *b)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   signed int            _r,_g,_b;
   signed int            y, u, v;
@@ -20,5 +20,5 @@ void YUV2RGB(word yy, word uu, word vv, byte *r, byte *g, byte *b)
   *g = _Clip(_g);
   *b = _Clip(_b);
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

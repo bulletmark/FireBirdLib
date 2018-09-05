@@ -2,6 +2,8 @@ PROJECT = libFireBird
 
 DIRS = av compression debug elf EPG ExtAttribs Firmware flash FontManager hdd ini InstructionSequences LogoManager main rec shutdown string StringDB tap tapcom time TMSOSDMenu TMSOSDKeyboard tmsvfd
 
+export SRC_DIR = $(shell pwd)
+
 BASE = $(shell cd /tapapi/TMS; pwd)
 include ${BASE}/include/tool.mk
 

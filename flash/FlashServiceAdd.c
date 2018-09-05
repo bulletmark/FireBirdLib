@@ -2,7 +2,7 @@
 
 bool FlashServiceAdd(int SvcType, tFlashService *Service)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   int                   NrServices;
   word                 *nSvc;
@@ -18,6 +18,6 @@ bool FlashServiceAdd(int SvcType, tFlashService *Service)
   *nSvc = *nSvc + 1;
   ret = FlashServiceSetInfo(SvcType, NrServices, Service);
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

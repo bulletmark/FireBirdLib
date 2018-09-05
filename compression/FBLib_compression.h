@@ -3,7 +3,7 @@
 
 #include                <limits.h>
 #include                "type.h"
-#include                "../libFireBird.h"
+#include                "libFireBird.h"
 
 //Uncomment or pass compiler option to get a call history on the serial console
 //#define ARCALLTRACE

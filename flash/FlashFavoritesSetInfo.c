@@ -3,7 +3,7 @@
 
 bool FlashFavoritesSetInfo(int FavNum, tFavorites *Favorites)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   tFavorites           *Favs30100;
   tFavorites1050       *Favs1050;
@@ -14,21 +14,21 @@ bool FlashFavoritesSetInfo(int FavNum, tFavorites *Favorites)
   //FavNum out of range
   if((FavNum < 0) || (FavNum > FlashFavoritesGetTotal()))
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
   //Favorites is NULL
   if(!Favorites)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
   Favs30100 = (tFavorites*)FIS_vFlashBlockFavoriteGroup();
   if(!Favs30100)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
@@ -38,7 +38,7 @@ bool FlashFavoritesSetInfo(int FavNum, tFavorites *Favorites)
 
   if(FavNum >= NrGroups)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
@@ -48,7 +48,7 @@ bool FlashFavoritesSetInfo(int FavNum, tFavorites *Favorites)
   {
     if(((Favorites->SvcType[i] == SVC_TYPE_Tv) && (Favorites->SvcNum[i] >= NrTVServices)) || ((Favorites->SvcType[i] == SVC_TYPE_Radio) && (Favorites->SvcNum[i] >= NrRadioServices)))
     {
-      TRACEEXIT();
+      TRACEEXIT;
       return FALSE;
     }
   }
@@ -74,6 +74,6 @@ bool FlashFavoritesSetInfo(int FavNum, tFavorites *Favorites)
     }
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return TRUE;
 }

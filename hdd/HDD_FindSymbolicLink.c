@@ -1,10 +1,10 @@
 #include                <string.h>
 #include                <unistd.h>
-#include                "../libFireBird.h"
+#include                "libFireBird.h"
 
 int HDD_FindSymbolicLink(char *pathName, char *returnedPath, char *fullPathName)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   int         pathLen = strlen(pathName);
   int         i = 0;
@@ -15,7 +15,7 @@ int HDD_FindSymbolicLink(char *pathName, char *returnedPath, char *fullPathName)
 
   if(!pathName || !*pathName || (!returnedPath && !fullPathName))
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return 0;
   }
 
@@ -42,7 +42,7 @@ int HDD_FindSymbolicLink(char *pathName, char *returnedPath, char *fullPathName)
           if(pathName[i] == '/') strcat(fullPathName, &pathName[i]);
         }
 
-        TRACEEXIT();
+        TRACEEXIT;
         return ret;
       }
     }
@@ -50,7 +50,7 @@ int HDD_FindSymbolicLink(char *pathName, char *returnedPath, char *fullPathName)
     tempPath[i] = pathName[i];
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return 0;
 
 }

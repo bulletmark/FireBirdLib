@@ -3,14 +3,14 @@
 
 bool FlashADDecode(void *Data, tAutoDescrambleTimer *ADTimer)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   bool ret;
 
   //ADTimer is NULL
   if(!Data || !ADTimer)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
@@ -35,7 +35,7 @@ bool FlashADDecode(void *Data, tAutoDescrambleTimer *ADTimer)
     case ST_NRTYPES: break;
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }
 
@@ -43,7 +43,7 @@ bool FlashADDecode_ST_TMSS(TYPE_AutoDescrambleTimer *Data, tAutoDescrambleTimer 
 {
   int                        i;
 
-  TRACEENTER();
+  TRACEENTER;
 
   memset(ADTimer, 0, sizeof(tAutoDescrambleTimer));
   ADTimer->StartTime        = Data->StartTime;
@@ -60,7 +60,7 @@ bool FlashADDecode_ST_TMSS(TYPE_AutoDescrambleTimer *Data, tAutoDescrambleTimer 
   for(i = 0; i < 50; i++)
     strncpy(ADTimer->FileName[i], Data->FileName[i], MAX_FILE_NAME_SIZE);
 
-  TRACEEXIT();
+  TRACEEXIT;
   return TRUE;
 }
 
@@ -68,11 +68,11 @@ bool FlashADDecode_ST_TMSC(TYPE_AutoDescrambleTimer *Data, tAutoDescrambleTimer 
 {
   bool ret;
 
-  TRACEENTER();
+  TRACEENTER;
 
   ret = FlashADDecode_ST_TMSS(Data, ADTimer);
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }
 
@@ -80,11 +80,11 @@ bool FlashADDecode_ST_TMST(TYPE_AutoDescrambleTimer *Data, tAutoDescrambleTimer 
 {
   bool ret;
 
-  TRACEENTER();
+  TRACEENTER;
 
   ret = FlashADDecode_ST_TMSS(Data, ADTimer);
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }
 
@@ -92,12 +92,12 @@ bool FlashADEncode(void *Data, tAutoDescrambleTimer *ADTimer)
 {
   bool ret;
 
-  TRACEENTER();
+  TRACEENTER;
 
   //ADTimer is NULL
   if(!Data || !ADTimer)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
@@ -122,7 +122,7 @@ bool FlashADEncode(void *Data, tAutoDescrambleTimer *ADTimer)
     case ST_NRTYPES: break;
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }
 
@@ -130,7 +130,7 @@ bool FlashADEncode_ST_TMSS(TYPE_AutoDescrambleTimer *Data, tAutoDescrambleTimer 
 {
   int                   i;
 
-  TRACEENTER();
+  TRACEENTER;
 
   memset(Data, 0, sizeof(TYPE_AutoDescrambleTimer));
   Data->StartTime        = ADTimer->StartTime;
@@ -147,7 +147,7 @@ bool FlashADEncode_ST_TMSS(TYPE_AutoDescrambleTimer *Data, tAutoDescrambleTimer 
   for(i = 0; i < 50; i++)
     strncpy(Data->FileName[i], ADTimer->FileName[i], MAX_FILE_NAME_SIZE);
 
-  TRACEEXIT();
+  TRACEEXIT;
   return TRUE;
 }
 
@@ -155,11 +155,11 @@ bool FlashADEncode_ST_TMSC(TYPE_AutoDescrambleTimer *Data, tAutoDescrambleTimer 
 {
   bool ret;
 
-  TRACEENTER();
+  TRACEENTER;
 
   ret = FlashADEncode_ST_TMSS(Data, ADTimer);
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }
 
@@ -167,10 +167,10 @@ bool FlashADEncode_ST_TMST(TYPE_AutoDescrambleTimer *Data, tAutoDescrambleTimer 
 {
   bool ret;
 
-  TRACEENTER();
+  TRACEENTER;
 
   ret = FlashADEncode_ST_TMSS(Data, ADTimer);
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

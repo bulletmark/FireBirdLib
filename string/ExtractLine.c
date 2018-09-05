@@ -1,9 +1,9 @@
 #include <string.h>
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 void ExtractLine(char *Text, char *Line)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   char                  *CRLFPos, *LFPos;
 
@@ -11,7 +11,7 @@ void ExtractLine(char *Text, char *Line)
   {
     *Line = '\0';
 
-    TRACEEXIT();
+    TRACEEXIT;
     return;
   }
 
@@ -36,5 +36,5 @@ void ExtractLine(char *Text, char *Line)
     Line[CRLFPos - Text] = '\0';
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

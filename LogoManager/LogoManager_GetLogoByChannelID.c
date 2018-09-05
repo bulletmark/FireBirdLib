@@ -1,12 +1,12 @@
 #include                <stdio.h>
 #include                <string.h>
 #include                <stdlib.h>
-#include                "../libFireBird.h"
+#include                "libFireBird.h"
 #include                "FBLib_LogoManager.h"
 
 TYPE_GrData *LogoManager_GetLogoByChannelID(ulong64 ChannelID, tLogoStyle LogoStyle, tLogoSize LogoSize, tLogoAspect LogoAR)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   int                   i;
   TYPE_File            *f;
@@ -28,7 +28,7 @@ TYPE_GrData *LogoManager_GetLogoByChannelID(ulong64 ChannelID, tLogoStyle LogoSt
         LogoManager_LogoData[i].grData = TAP_MemAlloc(LogoManager_LogoData[i].grDataSize);
         if(!LogoManager_LogoData[i].grData)
         {
-          TRACEEXIT();
+          TRACEEXIT;
           return NULL;
         }
 
@@ -45,7 +45,7 @@ TYPE_GrData *LogoManager_GetLogoByChannelID(ulong64 ChannelID, tLogoStyle LogoSt
         HDD_TAP_PopDir();
       }
 
-      TRACEEXIT();
+      TRACEEXIT;
       return LogoManager_LogoData[i].grData;
     }
   }
@@ -64,12 +64,12 @@ TYPE_GrData *LogoManager_GetLogoByChannelID(ulong64 ChannelID, tLogoStyle LogoSt
       HDD_TAP_PopDir();
       GrData = LogoManager_GetLogoByLogoName(LogoName, LogoStyle, LogoSize, LogoAR);
 
-      TRACEEXIT();
+      TRACEEXIT;
       return GrData;
     }
   }
   HDD_TAP_PopDir();
 
-  TRACEEXIT();
+  TRACEEXIT;
   return NULL;
 }

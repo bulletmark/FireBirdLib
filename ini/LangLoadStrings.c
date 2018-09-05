@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "FBLib_ini.h"
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 dword                   LangNrStrings = 0;
 dword                   *LangStringPtr = NULL;
@@ -9,7 +9,7 @@ char                    *LangStrings   = NULL;
 
 INILOCATION LangLoadStrings(char *LangFile, dword NrStrings, int FallbackLang, char *AppName)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   dword                 i;
   int                   OSDLan;
@@ -24,7 +24,7 @@ INILOCATION LangLoadStrings(char *LangFile, dword NrStrings, int FallbackLang, c
   OSDLan = TAP_GetSystemVar(SYSVAR_OsdLan);
   if((NrStrings > 999999) || !iso639_1(OSDLan) || (FallbackLang > LAN_Bulgarian))
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return INILOCATION_NotFound;
   }
 
@@ -37,7 +37,7 @@ INILOCATION LangLoadStrings(char *LangFile, dword NrStrings, int FallbackLang, c
     if(LangLocation == INILOCATION_NewFile) INICloseFile();
     HDD_TAP_PopDir();
 
-    TRACEEXIT();
+    TRACEEXIT;
     return INILOCATION_NotFound;
   }
 
@@ -110,6 +110,6 @@ INILOCATION LangLoadStrings(char *LangFile, dword NrStrings, int FallbackLang, c
 
   HDD_TAP_PopDir();
 
-  TRACEEXIT();
+  TRACEEXIT;
   return LangLocation;
 }

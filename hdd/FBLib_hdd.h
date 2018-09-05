@@ -3,7 +3,7 @@
 
 #include                <sys/types.h>
 #include                "tap.h"
-#include                "../libFireBird.h"
+#include                "libFireBird.h"
 
 //HDD Functions
 //               CCD DD

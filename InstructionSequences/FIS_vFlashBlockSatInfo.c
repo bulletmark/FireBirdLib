@@ -1,14 +1,14 @@
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 inline dword FIS_vFlashBlockSatInfo(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   static dword          *vFlashSatInfo = 0;
 
   if(!vFlashSatInfo)
     vFlashSatInfo = (dword*)TryResolve("_satInfo");
 
-  TRACEEXIT();
+  TRACEEXIT;
   return (vFlashSatInfo ? *vFlashSatInfo : 0);
 }

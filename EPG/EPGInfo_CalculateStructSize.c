@@ -3,7 +3,7 @@
 
 dword EPGInfo_CalculateStructSize(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   tTreeEntry           *Entry, *ListStart;
   dword                 MinStructSize, d;
@@ -34,6 +34,6 @@ dword EPGInfo_CalculateStructSize(void)
     }
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return EPGInfoStructSize;
 }

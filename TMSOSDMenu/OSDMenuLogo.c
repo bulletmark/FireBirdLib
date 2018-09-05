@@ -2,7 +2,7 @@
 
 void OSDMenuLogo(dword X, dword Y, TYPE_GrData *LogoGd)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   tMenu                *pMenu;
 
@@ -14,5 +14,5 @@ void OSDMenuLogo(dword X, dword Y, TYPE_GrData *LogoGd)
 
   LogoDirty = TRUE;
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

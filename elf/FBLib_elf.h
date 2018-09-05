@@ -7,7 +7,7 @@
   #include              <fcntl.h>
   #include              <unistd.h>
   #include              "ELF.h"
-  #include              "../libFireBird.h"
+  #include              "libFireBird.h"
 
   extern int            fTAP;
   extern Elf32_Ehdr    *ELFHeader;       //The ELF file header

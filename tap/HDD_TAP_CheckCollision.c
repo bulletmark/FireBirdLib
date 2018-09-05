@@ -1,29 +1,21 @@
 #include <string.h>
-#include "../libFireBird.h"
+#include "FBLib_tap.h"
 
 bool HDD_TAP_CheckCollision(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   char                 *myTAPFileName, *TAPFileName;
   dword                 i;
   bool                  TAPCollision;
 
-  TAPCollision = FALSE;
-
-  //The curTapTask variable is not thread safe. Call InitTAPex() if this function will be called from a sub thread
-  if(TAP_TableIndex == 0xffffffff)
+  if(!LibInitialized && !InitTAPex())
   {
-    dword *curTapTask;
-
-    curTapTask = (dword*)FIS_vCurTapTask();
-    if(!curTapTask)
-    {
-      TRACEEXIT();
-      return FALSE;
-    }
-    TAP_TableIndex = *curTapTask;
+    TRACEEXIT;
+    return FALSE;
   }
+
+  TAPCollision = FALSE;
 
   //Get the path to myself
   if(HDD_TAP_GetFileNameByIndex(TAP_TableIndex, &myTAPFileName) && myTAPFileName)
@@ -37,6 +29,6 @@ bool HDD_TAP_CheckCollision(void)
       }
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return TAPCollision;
 }

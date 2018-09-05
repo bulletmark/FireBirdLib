@@ -3,13 +3,13 @@
 
 bool VFD_SetCDValue(int Percent)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   byte *grid = (byte*)FIS_vGrid();
 
   if(!VFDUsedByTAP || !grid || !CDEnabled)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
@@ -30,6 +30,6 @@ bool VFD_SetCDValue(int Percent)
   if(Percent > 84) grid[27] |= 0x40;
   if(Percent > 92) grid[27] |= 0x20;
 
-  TRACEEXIT();
+  TRACEEXIT;
   return TRUE;
 }

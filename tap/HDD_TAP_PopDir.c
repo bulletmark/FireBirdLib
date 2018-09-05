@@ -2,16 +2,16 @@
 
 bool HDD_TAP_PopDir(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   if(TAPDirStackDepth >= 0)
   {
     bool ret = HDD_ChangeDir(TAPDirStack[TAPDirStackDepth--]);
 
-    TRACEEXIT();
+    TRACEEXIT;
     return ret;
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return FALSE;
 }

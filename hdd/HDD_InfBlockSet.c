@@ -4,7 +4,7 @@
 
 bool HDD_InfBlockSet(char *RecPath, tinfBlock *infBlock)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   bool                  ret;
   FILE                 *FileHandle;
@@ -14,7 +14,7 @@ bool HDD_InfBlockSet(char *RecPath, tinfBlock *infBlock)
 
   if(!RecPath && !*RecPath)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
@@ -60,6 +60,6 @@ bool HDD_InfBlockSet(char *RecPath, tinfBlock *infBlock)
     }
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

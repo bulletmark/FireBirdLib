@@ -1,9 +1,9 @@
 #include "FBLib_av.h"
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 void OSDToBMP(TYPE_OsdBaseInfo *OsdBaseInfo, int BMPwidth, int BMPheight, byte *BMPPixelBuffer, int Alpha)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   dword                *pixel;
   register int          pos, x, y;
@@ -13,7 +13,7 @@ void OSDToBMP(TYPE_OsdBaseInfo *OsdBaseInfo, int BMPwidth, int BMPheight, byte *
 
   if(BMPPixelBuffer)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return;
   }
 
@@ -39,5 +39,5 @@ void OSDToBMP(TYPE_OsdBaseInfo *OsdBaseInfo, int BMPwidth, int BMPheight, byte *
     }
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

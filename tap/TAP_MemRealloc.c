@@ -1,8 +1,8 @@
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 void *TAP_MemRealloc(void *ptr, size_t OldSize, size_t NewSize, bool InitMemory)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   void *temp;
 
@@ -12,7 +12,7 @@ void *TAP_MemRealloc(void *ptr, size_t OldSize, size_t NewSize, bool InitMemory)
     // out of memory!
     LogEntryFBLibPrintf(TRUE, "TAP_MemRealloc: not enough memory (alloc returned NULL)");
 
-    TRACEEXIT();
+    TRACEEXIT;
     return NULL;
   }
 
@@ -22,8 +22,8 @@ void *TAP_MemRealloc(void *ptr, size_t OldSize, size_t NewSize, bool InitMemory)
     TAP_MemFree(ptr);
   }
 
-  if(InitMemory) memset(temp + OldSize, 0, NewSize - OldSize);
+  if(InitMemory) memset((byte *) temp + OldSize, 0, NewSize - OldSize);
 
-  TRACEEXIT();
+  TRACEEXIT;
   return temp;
 }

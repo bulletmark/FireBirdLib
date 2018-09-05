@@ -2,18 +2,18 @@
 
 bool VFD_Update(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   void (*Vfd_SendData)(void) = (void*)FIS_fwApplVfdSendData();
 
   if(!VFDUsedByTAP || !Vfd_SendData)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
   Vfd_SendData();
 
-  TRACEEXIT();
+  TRACEEXIT;
   return TRUE;
 }

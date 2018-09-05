@@ -6,7 +6,7 @@ extern bool                 cronInit;
 
 bool cronUnregisterEvent(int Index)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   bool                  ret = FALSE;
 
@@ -22,6 +22,6 @@ bool cronUnregisterEvent(int Index)
     }
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

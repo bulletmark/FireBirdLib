@@ -16,7 +16,7 @@ TAP_FLAGS += -g -DDEBUG
 endif
 
 #compile options
-CFLAGS += -DLINUX -MD -W -Wall -O2 -mips32 -std=c99
+CFLAGS += -DLINUX -MD -W -Wall -O2 -mips32 -fPIC
 CPPFLAGS += -DLINUX -MD -W -Wall  -O2 -mips32
 
 INCLUDE_DIRS = ${BASE}/include /opt/crosstool/include/

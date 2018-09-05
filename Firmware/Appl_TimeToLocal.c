@@ -1,8 +1,8 @@
-#include                "../libFireBird.h"
+#include                "libFireBird.h"
 
 dword Appl_TimeToLocal(dword UTCTime)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   dword (*__Appl_TimeToLocal)(dword);
   dword ret = 0;
@@ -10,6 +10,6 @@ dword Appl_TimeToLocal(dword UTCTime)
   __Appl_TimeToLocal = (void*)FIS_fwAppl_TimeToLocal();
   if(__Appl_TimeToLocal) ret = __Appl_TimeToLocal(UTCTime);
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

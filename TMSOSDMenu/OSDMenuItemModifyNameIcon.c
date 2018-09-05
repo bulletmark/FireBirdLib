@@ -2,7 +2,7 @@
 
 bool OSDMenuItemModifyNameIcon(int ItemIndex, TYPE_GrData *pNameIconGd)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   tMenu                *pMenu;
 
@@ -10,7 +10,7 @@ bool OSDMenuItemModifyNameIcon(int ItemIndex, TYPE_GrData *pNameIconGd)
 
   if((pMenu->NrItems == 0) || (ItemIndex >= pMenu->NrItems))
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
@@ -18,6 +18,6 @@ bool OSDMenuItemModifyNameIcon(int ItemIndex, TYPE_GrData *pNameIconGd)
 
   ListDirty = TRUE;
 
-  TRACEEXIT();
+  TRACEEXIT;
   return TRUE;
 }

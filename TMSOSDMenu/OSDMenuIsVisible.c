@@ -2,8 +2,8 @@
 
 bool OSDMenuIsVisible(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
-  TRACEEXIT();
+  TRACEEXIT;
   return OSDRgn != 0;
 }

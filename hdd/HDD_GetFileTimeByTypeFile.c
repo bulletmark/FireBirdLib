@@ -1,8 +1,8 @@
-#include                "../libFireBird.h"
+#include                "libFireBird.h"
 
 dword HDD_GetFileTimeByTypeFile(TYPE_File *File)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   char                  AbsFileName[FBLIB_DIR_SIZE];
   dword                 ret;
@@ -12,6 +12,6 @@ dword HDD_GetFileTimeByTypeFile(TYPE_File *File)
   else
     ret = 0;
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

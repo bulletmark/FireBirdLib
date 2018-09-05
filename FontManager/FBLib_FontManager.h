@@ -1,7 +1,7 @@
 #ifndef FBLIB_FONTMANAGER_H
 #define FBLIB_FONTMANAGER_H
 
-  #include              "../libFireBird.h"
+  #include              "libFireBird.h"
 
   #define FONTDIR       "/ProgramFiles/Settings/Fonts"
 

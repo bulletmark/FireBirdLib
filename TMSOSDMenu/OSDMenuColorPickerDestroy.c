@@ -2,7 +2,7 @@
 
 void OSDMenuColorPickerDestroy(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   tOSDMapInfo          *OSDMapInfo;
 
@@ -31,5 +31,5 @@ void OSDMenuColorPickerDestroy(void)
     if((!OSDRgn) && (!InfoBoxOSDRgn) && (!MessageBoxOSDRgn) && (!ProgressBarOSDRgn)) TAP_EnterNormal();
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

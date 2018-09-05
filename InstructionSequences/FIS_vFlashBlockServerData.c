@@ -1,15 +1,15 @@
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 inline dword FIS_vFlashBlockServerData(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   static dword          *vFlashServerData = 0;
 
   if(!vFlashServerData)
     vFlashServerData = (dword*)TryResolve("_serverData");
 
-  TRACEEXIT();
+  TRACEEXIT;
   return (vFlashServerData ? *vFlashServerData : 0);
 }
 

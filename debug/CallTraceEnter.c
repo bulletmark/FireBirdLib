@@ -21,7 +21,7 @@ void CallTraceEnter(char *ProcName)
       StrToISOAlloc(ProcName, &ISOText);
       memset(Spaces, ' ', CallLevel < CTSTACKSIZE ? CallLevel << 1 : 100);
       Spaces[CallLevel < CTSTACKSIZE ? CallLevel << 1 : 100] = '\0';
-      TAP_PrintNet("%s%s\n", Spaces, ISOText);
+      TAP_Print("%s%s\n", Spaces, ISOText);
       TAP_MemFree(ISOText);
     }
 

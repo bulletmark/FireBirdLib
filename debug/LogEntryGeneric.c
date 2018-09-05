@@ -1,11 +1,11 @@
 #include                <stdio.h>
 #include                <stdlib.h>
 #include                <string.h>
-#include                "../libFireBird.h"
+#include                "libFireBird.h"
 
 void LogEntryGeneric(char *ProgramName, bool Console, char *Text)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   char                 *s;
   int                   l;
@@ -19,7 +19,7 @@ void LogEntryGeneric(char *ProgramName, bool Console, char *Text)
 
   if(!ProgramName || !Text)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return;
   }
 
@@ -60,11 +60,11 @@ void LogEntryGeneric(char *ProgramName, bool Console, char *Text)
       {
         if(isUTFToppy())
         {
-          TAP_PrintNet("%s%s\n", TimeResult, s);
+          TAP_Print("%s%s\n", TimeResult, s);
         }
         else
         {
-          TAP_PrintNet("%s%s\n", TimeResult, ISOText);
+          TAP_Print("%s%s\n", TimeResult, ISOText);
         }
       }
 
@@ -74,5 +74,5 @@ void LogEntryGeneric(char *ProgramName, bool Console, char *Text)
   }
   HDD_TAP_PopDir();
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

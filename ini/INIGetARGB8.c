@@ -2,11 +2,11 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include "FBLib_ini.h"
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 bool INIGetARGB8(char *Key, byte *Alpha, byte *Red, byte *Green, byte *Blue, dword DefaultValue)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   char                  *i = NULL, *j = NULL, *k;
   char                  TempKey[80];
@@ -15,7 +15,7 @@ bool INIGetARGB8(char *Key, byte *Alpha, byte *Red, byte *Green, byte *Blue, dwo
 
   if(!Key)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
@@ -78,6 +78,6 @@ bool INIGetARGB8(char *Key, byte *Alpha, byte *Red, byte *Green, byte *Blue, dwo
   if(Green) *Green = G8888(x);
   if(Blue)  *Blue  = B8888(x);
 
-  TRACEEXIT();
+  TRACEEXIT;
   return TRUE;
 }

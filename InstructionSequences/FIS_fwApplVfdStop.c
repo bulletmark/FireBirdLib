@@ -1,14 +1,14 @@
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 inline dword FIS_fwApplVfdStop(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   static dword          ApplNewVfd_Stop = 0;
 
   if(!ApplNewVfd_Stop)
     ApplNewVfd_Stop = TryResolve("_Z15ApplNewVfd_Stopv");
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ApplNewVfd_Stop;
 }

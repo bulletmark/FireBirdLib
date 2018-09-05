@@ -1,14 +1,14 @@
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 inline dword FIS_vEEPROM(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   static dword         *_applEepromAddr;
 
   if(!_applEepromAddr)
     _applEepromAddr = (dword*)TryResolve("_applEepromAddr");
 
-  TRACEEXIT();
+  TRACEEXIT;
   return (_applEepromAddr ? *_applEepromAddr : 0);
 }

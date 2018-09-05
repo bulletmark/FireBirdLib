@@ -2,7 +2,7 @@
 
 int OSDMenuScrollPageDown(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   tMenu                *pMenu;
   int                   ret, x;
@@ -31,13 +31,13 @@ int OSDMenuScrollPageDown(void)
 
   if(ret == -1)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return -1;
   }
 
   pMenu->CurrentSelection = ret;
   ListDirty = TRUE;
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

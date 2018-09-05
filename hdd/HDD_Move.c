@@ -2,11 +2,11 @@
 #include                <string.h>
 #include                <stdlib.h>
 #include                "FBLib_hdd.h"
-#include                "../libFireBird.h"
+#include                "libFireBird.h"
 
 bool HDD_Move(char *FileName, char *FromDir, char *ToDir)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   char                  Path[FBLIB_DIR_SIZE], Name[TS_FILE_NAME_SIZE], Ext[TS_FILE_NAME_SIZE];
   char                  OldInfName[FBLIB_DIR_SIZE], NewInfName[FBLIB_DIR_SIZE];
@@ -28,7 +28,7 @@ bool HDD_Move(char *FileName, char *FromDir, char *ToDir)
       MakeUniqueFileName(NewPath);
       if(rename(OldPath, NewPath) != 0)
       {
-        TRACEEXIT();
+        TRACEEXIT;
         return FALSE;
       }
 
@@ -107,8 +107,6 @@ bool HDD_Move(char *FileName, char *FromDir, char *ToDir)
         else
           TAP_SPrint(NewInfName, "%s%s.srt%s", Path, Name, isDel ? ".del" : "");
 
-        TAP_PrintNet("OldInfName='%s'\nNewInfName='%s'\n\n", OldInfName, NewInfName);
-
         rename(OldInfName, NewInfName);
 
         ret = TRUE;
@@ -116,6 +114,6 @@ bool HDD_Move(char *FileName, char *FromDir, char *ToDir)
     }
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

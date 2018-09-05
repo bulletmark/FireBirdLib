@@ -1,8 +1,8 @@
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 inline dword FIS_vMACAddress(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   static dword          MacAddress;
   dword                 MacAddressSize;
@@ -17,6 +17,6 @@ inline dword FIS_vMACAddress(void)
       DevEeprom_GetMacAddr((unsigned char*)&MacAddress, &MacAddressSize);
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return MacAddress;
 }

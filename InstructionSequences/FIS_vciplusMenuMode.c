@@ -1,14 +1,14 @@
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 inline dword FIS_vciplusMenuMode(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   static dword          vciplusMenuMode = 0;
 
   if(!vciplusMenuMode)
     vciplusMenuMode = TryResolve("_ciplusMenuMode");
 
-  TRACEEXIT();
+  TRACEEXIT;
   return vciplusMenuMode;
 }

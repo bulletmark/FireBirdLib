@@ -1,14 +1,14 @@
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 inline dword FIS_vOsdMap(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   static dword          vOSDMap = 0;
 
   if(!vOSDMap)
     vOSDMap = TryResolve("_osdInfo");
 
-  TRACEEXIT();
+  TRACEEXIT;
   return vOSDMap;
 }

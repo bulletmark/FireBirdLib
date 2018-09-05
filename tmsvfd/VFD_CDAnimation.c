@@ -10,14 +10,14 @@
 
 bool VFD_CDAnimation(bool Forward)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   static int            Counter = 0;
   byte *grid = (byte*)FIS_vGrid();
 
   if(!VFDUsedByTAP || !grid || !CDEnabledAnimation)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
@@ -90,6 +90,6 @@ bool VFD_CDAnimation(bool Forward)
     }
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return TRUE;
 }

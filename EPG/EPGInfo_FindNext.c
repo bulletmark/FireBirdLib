@@ -2,11 +2,11 @@
 
 bool EPGInfo_FindNext(TYPE_EPGInfo *EPGData)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   EPGInfoCurrentEntry++;
   bool ret = EPGInfo_FindItem(EPGData, EPGInfoCurrentEntry, FALSE);
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

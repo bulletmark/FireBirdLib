@@ -1,22 +1,22 @@
 #include                <string.h>
-#include                "../libFireBird.h"
+#include                "libFireBird.h"
 
 bool StringDBDel(tStringDB *StringDB)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   dword                 l;
   char                 *s, *d;
 
   if(!StringDB || !StringDB->DBPtr)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
   if(StringDB->DBPtr >= StringDB->DBEnd)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return TRUE;
   }
 
@@ -38,6 +38,6 @@ bool StringDBDel(tStringDB *StringDB)
 
   StringDB->DBEnd = StringDB->DBEnd - l;
 
-  TRACEEXIT();
+  TRACEEXIT;
   return TRUE;
 }

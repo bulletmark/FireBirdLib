@@ -2,7 +2,7 @@
 
 void EPGInfo_FilterDuration(word MinDuration, word MaxDuration)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   if(MinDuration || MaxDuration)
   {
@@ -17,5 +17,5 @@ void EPGInfo_FilterDuration(word MinDuration, word MaxDuration)
     EPGFilter.MaxDuration = 0;
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

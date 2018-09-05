@@ -2,7 +2,7 @@
 
 void OSDMenuButtonsClear(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   int                   i;
 
@@ -13,5 +13,5 @@ void OSDMenuButtonsClear(void)
 
   ButtonsDirty = TRUE;
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

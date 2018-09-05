@@ -3,7 +3,7 @@
 
 void OSDMenuDestroy(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   if(OSDRgn)
   {
@@ -25,5 +25,5 @@ void OSDMenuDestroy(void)
 
   CallbackProcedure = NULL;
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

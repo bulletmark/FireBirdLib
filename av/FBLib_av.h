@@ -1,7 +1,7 @@
 #ifndef FBLIB_AV_H
 #define FBLIB_AV_H
 
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 extern bool LibInitialized;
 extern dword fbl_rgn;
@@ -26,6 +26,5 @@ inline void YUV2RGB2(word, word, word, int *, int *, int *);
 void BMP_WriteHeader(int FileHandle, int, int);
 void VideoToBMP(TYPE_VideoFrame *VideoFrame, int BMPwidth, int BMPheight, byte *BMPPixelBuffer, int DstX, int DstY, int DstWidth, int DstHeight);
 void OSDToBMP(TYPE_OsdBaseInfo *OsdBaseInfo, int BMPwidth, int BMPheight, byte *BMPPixelBuffer, int Alpha);
-int Appl_StartPlaybackDivx(char *FileName, unsigned int p2, bool p3);
 
 #endif

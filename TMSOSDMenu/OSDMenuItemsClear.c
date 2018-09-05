@@ -2,10 +2,10 @@
 
 void OSDMenuItemsClear(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   Menu[CurrentMenuLevel].NrItems = 0;
   ListDirty = TRUE;
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

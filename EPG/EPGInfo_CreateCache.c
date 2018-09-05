@@ -8,7 +8,7 @@
 
 bool EPGInfo_CreateCache(int NrRecords)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   extern dword __tap_ud__;
 
@@ -28,7 +28,7 @@ bool EPGInfo_CreateCache(int NrRecords)
   {
     LogEntryFBLibPrintf(TRUE, "EPGInfo: failed to create the memory mapped EPG cache");
 
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
@@ -39,7 +39,7 @@ bool EPGInfo_CreateCache(int NrRecords)
     close(EPGInfoCacheFile);
     unlink(EPGCacheFile);
 
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
   write(EPGInfoCacheFile, "", 1);
@@ -52,12 +52,12 @@ bool EPGInfo_CreateCache(int NrRecords)
     close(EPGInfoCacheFile);
     unlink(EPGCacheFile);
 
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
   EPGInfoCache = (TYPE_EPGInfo*)EPGInfoCacheMap;
 
-  TRACEEXIT();
+  TRACEEXIT;
   return TRUE;
 }

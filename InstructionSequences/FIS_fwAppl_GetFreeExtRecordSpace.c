@@ -1,14 +1,14 @@
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 inline dword FIS_fwAppl_GetFreeExtRecordSpace(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   static dword          _Appl_GetFreeExtRecordSpace = 0;
 
   if(!_Appl_GetFreeExtRecordSpace)
     _Appl_GetFreeExtRecordSpace = TryResolve("_Z26Appl_GetFreeExtRecordSpacePc");
 
-  TRACEEXIT();
+  TRACEEXIT;
   return _Appl_GetFreeExtRecordSpace;
 }

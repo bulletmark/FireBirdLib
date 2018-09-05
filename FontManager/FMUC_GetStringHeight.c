@@ -3,7 +3,7 @@
 
 dword FMUC_GetStringHeight(char *Text, tFontDataUC *FontData)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   tGlyphCacheUC        *GlyphData;
   byte                 *p, *pEnd;
@@ -12,7 +12,7 @@ dword FMUC_GetStringHeight(char *Text, tFontDataUC *FontData)
 
   if(!Text || !Text[0] || !FontData)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return 0;
   }
 
@@ -26,6 +26,6 @@ dword FMUC_GetStringHeight(char *Text, tFontDataUC *FontData)
     p += BytesPerChar;
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return Height;
 }

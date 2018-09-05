@@ -3,7 +3,7 @@
 
 void OSDMenuMessageBoxButtonAdd(char *Text)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   if(MessageBox.NrButtons < MAXMBBUTTONS)
   {
@@ -12,5 +12,5 @@ void OSDMenuMessageBoxButtonAdd(char *Text)
     MessageBox.NrButtons++;
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

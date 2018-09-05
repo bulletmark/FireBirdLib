@@ -1,8 +1,8 @@
-#include                "../libFireBird.h"
+#include                "libFireBird.h"
 
 bool TimerPaddingAPICheck(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   static bool           AlreadyChecked = FALSE;
   static bool           SysVarRecPaddingSupported = FALSE;
@@ -24,6 +24,6 @@ bool TimerPaddingAPICheck(void)
     AlreadyChecked = TRUE;
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return SysVarRecPaddingSupported;
 }

@@ -2,10 +2,10 @@
 
 int OSDMenuGetCurrentItem(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   int ret = Menu[CurrentMenuLevel].CurrentSelection;
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

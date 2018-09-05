@@ -4,7 +4,7 @@
 
 void OSDMemoInitialize(bool ScrollLoop, char *TitleLeft, char *TitleRight, char *Text)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   char                 *from, *to, *p, c;
   int                   Width;
@@ -19,7 +19,7 @@ void OSDMemoInitialize(bool ScrollLoop, char *TitleLeft, char *TitleRight, char 
 
   if(!Text || !Text[0])
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return;
   }
 
@@ -77,5 +77,5 @@ void OSDMemoInitialize(bool ScrollLoop, char *TitleLeft, char *TitleRight, char 
 
   TAP_MemFree(Buffer);
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

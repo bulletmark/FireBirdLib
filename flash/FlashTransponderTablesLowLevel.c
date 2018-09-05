@@ -3,14 +3,14 @@
 
 bool FlashTransponderTablesDecode(void *Data, tFlashTransponderTable *TransponderTable)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   bool ret;
 
   //TransponderTable is NULL
   if(!Data || !TransponderTable)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
@@ -36,13 +36,13 @@ bool FlashTransponderTablesDecode(void *Data, tFlashTransponderTable *Transponde
     case ST_NRTYPES: break;
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }
 
 bool FlashTransponderTablesDecode_ST_TMSS(TYPE_TpInfo_TMSS *Data, tFlashTransponderTable *TransponderTable)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   memset(TransponderTable, 0, sizeof(tFlashTransponderTable));
   TransponderTable->SatIndex          = Data->SatIdx;
@@ -61,13 +61,13 @@ bool FlashTransponderTablesDecode_ST_TMSS(TYPE_TpInfo_TMSS *Data, tFlashTranspon
   TransponderTable->unused3           = Data->unused3;
   TransponderTable->unused4           = Data->unused4;
 
-  TRACEEXIT();
+  TRACEEXIT;
   return TRUE;
 }
 
 bool FlashTransponderTablesDecode_ST_TMST(TYPE_TpInfo_TMST *Data, tFlashTransponderTable *TransponderTable)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   memset(TransponderTable, 0, sizeof(tFlashTransponderTable));
   TransponderTable->SatIndex          = Data->SatIdx;
@@ -81,13 +81,13 @@ bool FlashTransponderTablesDecode_ST_TMST(TYPE_TpInfo_TMST *Data, tFlashTranspon
   TransponderTable->unused1           = Data->unused1;
   TransponderTable->unused2           = Data->unused2;
 
-  TRACEEXIT();
+  TRACEEXIT;
   return TRUE;
 }
 
 bool FlashTransponderTablesDecode_ST_TMSC(TYPE_TpInfo_TMSC *Data, tFlashTransponderTable *TransponderTable)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   memset(TransponderTable, 0, sizeof(tFlashTransponderTable));
   TransponderTable->Frequency         = Data->Frequency >> 8;
@@ -97,7 +97,7 @@ bool FlashTransponderTablesDecode_ST_TMSC(TYPE_TpInfo_TMSC *Data, tFlashTranspon
   TransponderTable->Modulation        = Data->ModulationType;
   TransponderTable->unused1           = Data->unused1;
 
-  TRACEEXIT();
+  TRACEEXIT;
   return TRUE;
 }
 
@@ -105,12 +105,12 @@ bool FlashTransponderTablesEncode(void *Data, tFlashTransponderTable *Transponde
 {
   bool ret;
 
-  TRACEENTER();
+  TRACEENTER;
 
   //TransponderTable is NULL
   if(!Data || !TransponderTable)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
@@ -135,13 +135,13 @@ bool FlashTransponderTablesEncode(void *Data, tFlashTransponderTable *Transponde
     case ST_NRTYPES: break;
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }
 
 bool FlashTransponderTablesEncode_ST_TMSS(TYPE_TpInfo_TMSS *Data, tFlashTransponderTable *TransponderTable)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   memset(Data, 0, sizeof(TYPE_TpInfo_TMSS));
   Data->SatIdx            = TransponderTable->SatIndex;
@@ -160,13 +160,13 @@ bool FlashTransponderTablesEncode_ST_TMSS(TYPE_TpInfo_TMSS *Data, tFlashTranspon
   Data->unused3           = TransponderTable->unused3;
   Data->unused4           = TransponderTable->unused4;
 
-  TRACEEXIT();
+  TRACEEXIT;
   return TRUE;
 }
 
 bool FlashTransponderTablesEncode_ST_TMST(TYPE_TpInfo_TMST *Data, tFlashTransponderTable *TransponderTable)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   memset(Data, 0, sizeof(TYPE_TpInfo_TMST));
   Data->SatIdx            = TransponderTable->SatIndex;
@@ -180,13 +180,13 @@ bool FlashTransponderTablesEncode_ST_TMST(TYPE_TpInfo_TMST *Data, tFlashTranspon
   Data->unused1           = TransponderTable->unused1;
   Data->unused2           = TransponderTable->unused2;
 
-  TRACEEXIT();
+  TRACEEXIT;
   return TRUE;
 }
 
 bool FlashTransponderTablesEncode_ST_TMSC(TYPE_TpInfo_TMSC *Data, tFlashTransponderTable *TransponderTable)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   memset(Data, 0, sizeof(TYPE_TpInfo_TMSC));
   Data->Frequency         = TransponderTable->Frequency << 8;
@@ -196,6 +196,6 @@ bool FlashTransponderTablesEncode_ST_TMSC(TYPE_TpInfo_TMSC *Data, tFlashTranspon
   Data->ModulationType    = TransponderTable->Modulation;
   Data->unused1           = TransponderTable->unused1;
 
-  TRACEEXIT();
+  TRACEEXIT;
   return TRUE;
 }

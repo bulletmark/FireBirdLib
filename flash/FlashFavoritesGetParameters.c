@@ -1,8 +1,8 @@
-#include                "../libFireBird.h"
+#include                "libFireBird.h"
 
 void FlashFavoritesGetParameters(int *NrGroups, int *NrSvcsPerGroup)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   int                   i;
 
@@ -25,5 +25,5 @@ void FlashFavoritesGetParameters(int *NrGroups, int *NrSvcsPerGroup)
     if(NrSvcsPerGroup) *NrSvcsPerGroup  = i;
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

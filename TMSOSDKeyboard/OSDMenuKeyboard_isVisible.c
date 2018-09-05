@@ -2,11 +2,11 @@
 
 bool OSDMenuKeyboard_isVisible(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   bool ret = (OSDMenuKeyboard_rgn != 0);
 
-  TRACEEXIT();
+  TRACEEXIT;
 
   return ret;
 }

@@ -3,7 +3,7 @@
 
 void TAPCOM_CloseChannel(TAPCOM_Channel Channel)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   TAPCOM_InternalMesBuf *buf = (TAPCOM_InternalMesBuf *) Channel;
 
@@ -13,5 +13,5 @@ void TAPCOM_CloseChannel(TAPCOM_Channel Channel)
     TAP_MemFree(Channel);
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

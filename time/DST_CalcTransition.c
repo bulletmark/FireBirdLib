@@ -2,7 +2,7 @@
 
 dword DST_CalcTransition(byte ruleOrdinal, byte ruleDay, byte ruleMonth, byte ruleHour, byte ruleMin, dword StartDate)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   word        year;
   byte        month, day, weekDay;
@@ -28,6 +28,6 @@ dword DST_CalcTransition(byte ruleOrdinal, byte ruleDay, byte ruleMonth, byte ru
     workingDate = DST_GetNextTransition(ruleOrdinal, ruleDay, ruleMonth, ruleHour, ruleMin, year);
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return workingDate;
 }

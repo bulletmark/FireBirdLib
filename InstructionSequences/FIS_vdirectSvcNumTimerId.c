@@ -1,14 +1,14 @@
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 inline dword FIS_vDirectSvcNumTimerId(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   static dword          _directSvcNumTimerId = 0;
 
   if(!_directSvcNumTimerId)
     _directSvcNumTimerId = TryResolve("_directSvcNumTimerId");
 
-  TRACEEXIT();
+  TRACEEXIT;
   return _directSvcNumTimerId;
 }

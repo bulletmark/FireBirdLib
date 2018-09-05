@@ -1,12 +1,9 @@
-#include                <sys/ioctl.h>
-#include                <linux/hdreg.h>
-#include                <linux/fs.h>
 #include                <fcntl.h>
 #include                <unistd.h>
 #include                <string.h>
-#include                "tap.h"
+#include                "libFireBird.h"
 
-char puffer[1024];
+char PrintNetBuffer[1024];
 
 void PrintNet(char *puffer)
 {
@@ -14,15 +11,13 @@ void PrintNet(char *puffer)
   int                   fd;
   char                  fn[12];
 
-  int len = strlen(puffer) + 1;
-
   do
   {
     TAP_SPrint(fn, "/dev/pts/%d", i);
     fd = open(fn, O_RDWR);
     if(fd >= 0)
     {
-      write(fd, puffer, len);
+      write(fd, puffer, strlen(puffer));
       close(fd);
 
       return;

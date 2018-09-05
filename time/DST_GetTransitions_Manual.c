@@ -2,7 +2,7 @@
 
 void DST_GetTransitions_Manual(dword *DSTStartUTC, dword *DSTEndUTC)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   if(DSTStartUTCsaved != 0 && DSTEndUTCsaved != 0)
   {
@@ -11,7 +11,7 @@ void DST_GetTransitions_Manual(dword *DSTStartUTC, dword *DSTEndUTC)
       if(DSTStartUTC) *DSTStartUTC = DSTStartUTCsaved;
       if(DSTEndUTC) *DSTEndUTC = DSTEndUTCsaved;
 
-      TRACEEXIT();
+      TRACEEXIT;
       return;
     }
   }
@@ -64,5 +64,5 @@ void DST_GetTransitions_Manual(dword *DSTStartUTC, dword *DSTEndUTC)
   INICloseFile();
   HDD_TAP_PopDir();
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

@@ -1,4 +1,4 @@
-#include "../libFireBird.h"
+#include "FBLib_tap.h"
 
 dword (*Original_TAP_EventHandler)(word event, dword param1, dword param2) = NULL;
 
@@ -6,7 +6,7 @@ REMOTE_TYPE             RemoteType = RT_2100;
 
 dword KeyTranslateHook(word event, dword param1, dword param2)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   dword                 KeyFlags, NativeKeyCode, TranslatedKeyCode;
   dword                 ret;
@@ -47,13 +47,13 @@ dword KeyTranslateHook(word event, dword param1, dword param2)
 
     ret = Original_TAP_EventHandler(EVT_KEY, TranslatedKeyCode | KeyFlags, param2);
 
-    TRACEEXIT();
+    TRACEEXIT;
     return (ret ? NativeKeyCode | KeyFlags : 0);
   }
 
   ret = Original_TAP_EventHandler(event, param1, param2);
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }
 
@@ -64,7 +64,7 @@ bool KeyTranslate(bool Enable, void *EventHandler)
   tToppyInfo           *ToppyInfo;
   tFWDATHeader         *FWDatHeader;
 
-  TRACEENTER();
+  TRACEENTER;
 
   //Get toppy information
   if(LoadFirmwareDat(&FWDatHeader, &ToppyInfo, NULL))
@@ -81,24 +81,10 @@ bool KeyTranslate(bool Enable, void *EventHandler)
 
   //Get the address to the TAP table
   TMSTAPTaskTable = (tTMSTAPTaskTable*)FIS_vTAPTable();
-  if(!TMSTAPTaskTable)
+  if(!TMSTAPTaskTable || (!LibInitialized && !InitTAPex()))
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
-  }
-
-  //The curTapTask variable is not thread safe. Call InitTAPex() if this function will be called from a sub thread
-  if(TAP_TableIndex == 0xffffffff)
-  {
-    dword                *curTapTask;
-
-    curTapTask = (dword*)FIS_vCurTapTask();
-    if(!curTapTask)
-    {
-      TRACEEXIT();
-      return -3;
-    }
-    TAP_TableIndex = *curTapTask;
   }
 
   if(Enable && (TMSTAPTaskTable[TAP_TableIndex].TAP_EventHandler == (dword)EventHandler))
@@ -106,7 +92,7 @@ bool KeyTranslate(bool Enable, void *EventHandler)
     Original_TAP_EventHandler = (void*)TMSTAPTaskTable[TAP_TableIndex].TAP_EventHandler;
     TMSTAPTaskTable[TAP_TableIndex].TAP_EventHandler = (dword)&KeyTranslateHook;
 
-    TRACEEXIT();
+    TRACEEXIT;
     return TRUE;
   }
   else if(!Enable && (TMSTAPTaskTable[TAP_TableIndex].TAP_EventHandler == (dword)KeyTranslateHook))
@@ -114,10 +100,10 @@ bool KeyTranslate(bool Enable, void *EventHandler)
     TMSTAPTaskTable[TAP_TableIndex].TAP_EventHandler = (dword)Original_TAP_EventHandler;
     Original_TAP_EventHandler = NULL;
 
-    TRACEEXIT();
+    TRACEEXIT;
     return TRUE;
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return FALSE;
 }

@@ -1,8 +1,8 @@
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 dword AddTime(dword date, int add) //add minutes to the day
 {
-  TRACEENTER();
+  TRACEENTER;
 
   word                  day;
   short                 hour, min;
@@ -39,6 +39,6 @@ dword AddTime(dword date, int add) //add minutes to the day
     }
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ((day<<16)|(hour<<8)|min);
 }

@@ -5,11 +5,11 @@
 #include                <string.h>
 #include                <sys/types.h>
 #include                <utime.h>
-#include                "../libFireBird.h"
+#include                "libFireBird.h"
 
 void LogEntry(char *FileName, char *ProgramName, bool Console, eTimeStampFormat TimeStampFormat, char *Text)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   int                   f;
   char                  TimeResult[40];
@@ -21,7 +21,7 @@ void LogEntry(char *FileName, char *ProgramName, bool Console, eTimeStampFormat 
 
   if(!Text)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return;
   }
 
@@ -48,14 +48,14 @@ void LogEntry(char *FileName, char *ProgramName, bool Console, eTimeStampFormat 
 
   if(Console)
   {
-    if(TimeStampFormat != TIMESTAMP_NONE) TAP_PrintNet(TimeResult);
-    if(ProgramName && ProgramName[0]) TAP_PrintNet("%s: ", ProgramName);
+    if(TimeStampFormat != TIMESTAMP_NONE) TAP_Print(TimeResult);
+    if(ProgramName && ProgramName[0]) TAP_Print("%s: ", ProgramName);
 
     if(isUTFToppy())
     {
       if(strlen(Text) < 510)
       {
-        TAP_PrintNet("%s", Text);
+        TAP_Print("%s", Text);
       }
       else
       {
@@ -69,12 +69,12 @@ void LogEntry(char *FileName, char *ProgramName, bool Console, eTimeStampFormat 
           l = strlen(p);
           q = p[l];
           p[l] = '\0';
-          TAP_PrintNet("%s", p);
+          TAP_Print("%s", p);
           p[l] = q;
           p += l;
         }
       }
-      TAP_PrintNet("\n");
+      TAP_Print("\n");
     }
     else
     {
@@ -84,7 +84,7 @@ void LogEntry(char *FileName, char *ProgramName, bool Console, eTimeStampFormat 
       {
         if(strlen(ISOText) < 510)
         {
-          TAP_PrintNet("%s", ISOText);
+          TAP_Print("%s", ISOText);
         }
         else
         {
@@ -100,16 +100,16 @@ void LogEntry(char *FileName, char *ProgramName, bool Console, eTimeStampFormat 
 
             q = p[l];
             p[l] = '\0';
-            TAP_PrintNet("%s", p);
+            TAP_Print("%s", p);
             p[l] = q;
             p += l;
           }
         }
       }
-      TAP_PrintNet("\n");
+      TAP_Print("\n");
       TAP_MemFree(ISOText);
     }
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

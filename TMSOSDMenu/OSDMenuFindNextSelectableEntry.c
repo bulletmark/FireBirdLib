@@ -2,7 +2,7 @@
 
 int OSDMenuFindNextSelectableEntry(int CurrentSelection)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   tMenu                *pMenu;
   int                   i, Cnt;
@@ -11,7 +11,7 @@ int OSDMenuFindNextSelectableEntry(int CurrentSelection)
 
   if((CurrentSelection >= (pMenu->NrItems - 1)) && !pMenu->ScrollLoop)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return CurrentSelection;
   }
 
@@ -23,7 +23,7 @@ int OSDMenuFindNextSelectableEntry(int CurrentSelection)
   }
   if(Cnt == 0)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return -1;
   }
 
@@ -36,12 +36,12 @@ int OSDMenuFindNextSelectableEntry(int CurrentSelection)
         CurrentSelection = 0;
       else
       {
-        TRACEEXIT();
+        TRACEEXIT;
         return -1;
       }
     }
   } while(!pMenu->Item[CurrentSelection].Selectable);
 
-  TRACEEXIT();
+  TRACEEXIT;
   return CurrentSelection;
 }

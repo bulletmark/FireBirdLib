@@ -1,10 +1,10 @@
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 #include            <dlfcn.h>
 
 dword TryResolve(char *Function)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   void                *pvr;
   dword               *ret;
@@ -12,21 +12,21 @@ dword TryResolve(char *Function)
   pvr = dlopen(NULL, RTLD_GLOBAL | RTLD_LAZY);
   if(!pvr)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return 0;
   }
 
   ret = dlsym(pvr, Function);
-  if(dlerror() != NULL)
+  if(dlerror())
   {
     dlclose(pvr);
 
-    TRACEEXIT();
+    TRACEEXIT;
     return 0;
   }
 
   dlclose(pvr);
 
-  TRACEEXIT();
+  TRACEEXIT;
   return (dword)ret;
 }

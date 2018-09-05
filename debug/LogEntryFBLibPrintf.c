@@ -5,13 +5,13 @@
 #include                <stdarg.h>
 #include                <sys/types.h>
 #include                <utime.h>
-#include                "../libFireBird.h"
+#include                "libFireBird.h"
 
 int vsnprintf(char *str, size_t size, const char *format, va_list ap);   //define missing prototype
 
 void LogEntryFBLibPrintf(bool Console, char *format, ...)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   char                  Text[512];
   FILE                 *File;
@@ -24,7 +24,7 @@ void LogEntryFBLibPrintf(bool Console, char *format, ...)
 
   if(!format)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return;
   }
 
@@ -54,8 +54,8 @@ void LogEntryFBLibPrintf(bool Console, char *format, ...)
 
   if(Console)
   {
-    TAP_PrintNet("%s FBLIB - %s\n", TimeResult, Text);
+    TAP_Print("%s FBLIB - %s\n", TimeResult, Text);
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

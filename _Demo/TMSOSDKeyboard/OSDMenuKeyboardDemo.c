@@ -23,7 +23,7 @@ dword TAP_EventHandler(word event, dword param1, dword param2)
   if(OSDMenuKeyboard_EventHandler(&event, &param1, &param2))
   {
     //Output the text on the telnet console and exit the demo
-    TAP_PrintNet("OSD Keyboard = '%s'\n", Text);
+    TAP_Print("OSD Keyboard = '%s'\n", Text);
     DumpMemory(Text, strlen(Text), 16);
     TAP_Exit();
   }

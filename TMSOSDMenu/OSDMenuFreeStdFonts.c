@@ -2,7 +2,7 @@
 
 void OSDMenuFreeStdFonts(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   if(!OSDRgn && !ProgressBarOSDRgn && !InfoBoxOSDRgn && !MessageBoxOSDRgn && !ColorPickerOSDRgn)
   {
@@ -15,5 +15,5 @@ void OSDMenuFreeStdFonts(void)
     FMUC_FreeFontFile(&OSDMenuFont_20B);
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

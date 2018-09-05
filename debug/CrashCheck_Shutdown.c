@@ -2,7 +2,7 @@
 
 void CrashCheck_Shutdown(char *TAPName)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   INILOCATION           INILocation;
 
@@ -20,5 +20,5 @@ void CrashCheck_Shutdown(char *TAPName)
     HDD_TAP_PopDir();
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

@@ -1,10 +1,10 @@
 #include                <stdio.h>
 #include                <string.h>
-#include                "../libFireBird.h"
+#include                "libFireBird.h"
 
 bool HDD_Rename(char *FileName, char *NewFileName)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   char                  Path[FBLIB_DIR_SIZE], Name[512], Ext[512];
   char                  OldName[512], NewName[512];
@@ -103,6 +103,6 @@ bool HDD_Rename(char *FileName, char *NewFileName)
     }
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

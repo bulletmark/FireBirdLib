@@ -2,7 +2,7 @@
 
 bool GetCurrentTimeZone(short *TZOffset, bool *DST)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   //TZOffset receives the offset in minutes in the standard time zone
   //DST is set to TRUE if the Toppy is currently in DST mode
@@ -27,6 +27,6 @@ bool GetCurrentTimeZone(short *TZOffset, bool *DST)
     ret = TRUE;
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

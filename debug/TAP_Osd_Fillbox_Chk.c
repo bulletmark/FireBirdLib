@@ -1,9 +1,8 @@
-#include                <stdio.h>
-#include                "../libFireBird.h"
+#include                "libFireBird.h"
 
 int TAP_Osd_FillBox_Chk(char *Comment, word rgn, dword x, dword y, dword w, dword h, dword color)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   int                   ret;
   dword                 RgnH, RgnW;
@@ -24,6 +23,6 @@ int TAP_Osd_FillBox_Chk(char *Comment, word rgn, dword x, dword y, dword w, dwor
 
   if(Comment && ret) LogEntryFBLibPrintf(TRUE, "TAP_Osd_FillBox_Chk Warning: TAP_Osd_Create() returned %d @ %s", ret, Comment);
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

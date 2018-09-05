@@ -1,14 +1,14 @@
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 inline dword FIS_vBootReason(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   static dword          vBootReason = 0;
 
   if(!vBootReason)
     vBootReason = TryResolve("_powerOnSrc");
 
-  TRACEEXIT();
+  TRACEEXIT;
   return vBootReason;
 }

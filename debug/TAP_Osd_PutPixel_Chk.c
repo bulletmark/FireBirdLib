@@ -1,9 +1,8 @@
-#include                <stdio.h>
-#include                "../libFireBird.h"
+#include                "libFireBird.h"
 
 int TAP_Osd_PutPixel_Chk(char *Comment, word rgn, dword x, dword y, dword pix)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   int                   ret;
   dword                 RgnH, RgnW;
@@ -22,6 +21,6 @@ int TAP_Osd_PutPixel_Chk(char *Comment, word rgn, dword x, dword y, dword pix)
 
   if(Comment && ret) LogEntryFBLibPrintf(TRUE, "TAP_Osd_PutPixel_Chk Warning: TAP_Osd_PutPixel() returned %d @ %s", ret, Comment);
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

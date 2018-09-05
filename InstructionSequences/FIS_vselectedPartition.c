@@ -1,13 +1,13 @@
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 inline dword FIS_vSelectedPartition(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   static dword          vselectedPartition = 0;
 
   if(!vselectedPartition) vselectedPartition = (dword)TryResolve("_selectedPartition");
 
-  TRACEEXIT();
+  TRACEEXIT;
   return vselectedPartition;
 }

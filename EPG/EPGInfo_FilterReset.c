@@ -2,9 +2,9 @@
 
 void EPGInfo_FilterReset(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   memset(&EPGFilter, 0, sizeof(EPGFilter));
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

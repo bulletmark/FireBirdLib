@@ -3,14 +3,14 @@
 
 dword FM_GetStringHeight(char *Text, tFontData *FontData)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   dword                 i;
   dword                 h, Height = 0;
 
   if(!Text || !Text[0] || !FontData || !FontData->pFontData)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return 0;
   }
 
@@ -23,6 +23,6 @@ dword FM_GetStringHeight(char *Text, tFontData *FontData)
     }
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return Height;
 }

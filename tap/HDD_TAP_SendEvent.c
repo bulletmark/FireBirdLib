@@ -2,26 +2,20 @@
 
 dword HDD_TAP_SendEvent(dword TAPID, bool AllowParamInterception, word event, dword param1, dword param2)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   dword                *curTapTask;
-  dword                 OrigCurTapTask;
   tTMSTAPTaskTable     *TMSTAPTaskTable;
   dword                 Ret = 0, i;
 
   dword (*TAPEventHandler)(word Event, dword Param1, dword Param2) = NULL;
 
-  curTapTask = (dword*)FIS_vCurTapTask();
-  if(!curTapTask)
-  {
-    TRACEEXIT();
-    return 0;
-  }
-
   TMSTAPTaskTable = (tTMSTAPTaskTable*)FIS_vTAPTable();
-  if(!TMSTAPTaskTable)
+  curTapTask = (dword*)FIS_vCurTapTask();
+
+  if(!TMSTAPTaskTable || !curTapTask || (!LibInitialized && !InitTAPex()))
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return 0;
   }
 
@@ -31,18 +25,17 @@ dword HDD_TAP_SendEvent(dword TAPID, bool AllowParamInterception, word event, dw
 
     if(Index < 0 || Index >= TAP_MAX)
     {
-      TRACEEXIT();
+      TRACEEXIT;
       return 0;
     }
 
     TAPEventHandler = (void*)TMSTAPTaskTable[Index].TAP_EventHandler;
-    OrigCurTapTask = *curTapTask;
     *curTapTask = Index;
     Ret = TAPEventHandler(event, param1, param2);
-    *curTapTask = OrigCurTapTask;
+    *curTapTask = TAP_TableIndex;
     if((Ret == 0) && AllowParamInterception)
     {
-      TRACEEXIT();
+      TRACEEXIT;
       return 0;
     }
   }
@@ -53,22 +46,21 @@ dword HDD_TAP_SendEvent(dword TAPID, bool AllowParamInterception, word event, dw
       TAPEventHandler = (void*)TMSTAPTaskTable[i].TAP_EventHandler;
       if(TAPEventHandler)
       {
-        OrigCurTapTask = *curTapTask;
         *curTapTask = i;
         Ret = TAPEventHandler(event, param1, param2);
-        *curTapTask = OrigCurTapTask;
+        *curTapTask = TAP_TableIndex;
 
         // Zero return value should mean don't pass the value on to other TAPs
         // In this case we don't even call the remaining TAPs
         if((Ret == 0) && AllowParamInterception)
         {
-          TRACEEXIT();
+          TRACEEXIT;
           return 0;
         }
       }
     }
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return Ret;
 }

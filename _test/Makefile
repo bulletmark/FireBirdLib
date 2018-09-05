@@ -16,7 +16,7 @@ TAP_FLAGS += -g -DDEBUG
 endif
 
 #compile options
-CFLAGS += -DLINUX -MD -W -Wall -O2 -mips32 -std=c99
+CFLAGS += -DLINUX -MD -W -Wall -O2 -mips32 -fPIC
 CPPFLAGS += -DLINUX -MD -W -Wall  -O2 -mips32
 
 INCLUDE_DIRS = ${BASE}/include /opt/crosstool/include/
@@ -43,5 +43,5 @@ $(APP1).o: $(APP1).c ${BASE}/include/libFireBird.h
 
 clean:
 	@echo "[Cleaning up...]"
-	@-${RM} *.d *.o
+	@-${RM} *.d
 	@-$(RMDIR) $(BIN_DIR)

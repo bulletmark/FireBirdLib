@@ -1,9 +1,9 @@
 #include                <stdio.h>
-#include                "../libFireBird.h"
+#include                "libFireBird.h"
 
 char *TimeFormat(dword DateTime, byte Sec, eTimeStampFormat TimeStampFormat, char *Result)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   word                  Mjd, Year;
   byte                  Month, Day, WeekDay, Hour, Min;
@@ -34,6 +34,6 @@ char *TimeFormat(dword DateTime, byte Sec, eTimeStampFormat TimeStampFormat, cha
     }
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return Result;
 }

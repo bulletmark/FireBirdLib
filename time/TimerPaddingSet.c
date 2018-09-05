@@ -1,8 +1,8 @@
-#include                "../libFireBird.h"
+#include                "libFireBird.h"
 
 bool TimerPaddingSet(short *PrePaddingMin, short *PostPaddingMin)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   bool ret = FALSE;
 
@@ -25,6 +25,6 @@ bool TimerPaddingSet(short *PrePaddingMin, short *PostPaddingMin)
     }
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

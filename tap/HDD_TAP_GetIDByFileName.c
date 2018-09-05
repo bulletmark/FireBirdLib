@@ -1,17 +1,17 @@
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 dword HDD_TAP_GetIDByFileName(char *TAPFileName)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   tTAPInfo              pTAPInfo;
 
   if(HDD_TAP_GetInfo(TAPFileName, &pTAPInfo))
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return pTAPInfo.TAPID;
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return 0;
 }

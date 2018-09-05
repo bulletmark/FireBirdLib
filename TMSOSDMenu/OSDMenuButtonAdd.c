@@ -3,7 +3,7 @@
 
 void OSDMenuButtonAdd(dword Line, tButtonIcon ButtonIcon, TYPE_GrData *ButtonGd, char *Text)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   tMenu                *pMenu;
   TYPE_GrData          *IconGd;
@@ -11,7 +11,7 @@ void OSDMenuButtonAdd(dword Line, tButtonIcon ButtonIcon, TYPE_GrData *ButtonGd,
   IconGd = OSDMenuGetIconPointer(ButtonIcon, ButtonGd);
   if((Line == 0) || (Line > 3) || (!IconGd) || (!Text))
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return;
   }
 
@@ -34,5 +34,5 @@ void OSDMenuButtonAdd(dword Line, tButtonIcon ButtonIcon, TYPE_GrData *ButtonGd,
 
   pMenu->ButtonXStart[Line] = pMenu->ButtonXStart[Line] + IconGd->width + OSDMenuGetW(Text, 12) + 8;
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

@@ -1,7 +1,7 @@
 #ifndef FBLIB_DEBUG_H
 #define FBLIB_DEBUG_H
 
-  #include "../libFireBird.h"
+  #include "libFireBird.h"
 
   #define DEFAULTMAGIC        0xFB1BB100
   #define CTSTACKSIZE         50

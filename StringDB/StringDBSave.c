@@ -1,11 +1,11 @@
 #include                <fcntl.h>
 #include                <unistd.h>
 #include                <string.h>
-#include                "../libFireBird.h"
+#include                "libFireBird.h"
 
 bool StringDBSave(tStringDB *StringDB, char *FileName)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   int                   f;
   bool                  ret;
@@ -14,7 +14,7 @@ bool StringDBSave(tStringDB *StringDB, char *FileName)
 
   if(!StringDB || !StringDB->DB || !FileName || !*FileName)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
@@ -42,6 +42,6 @@ bool StringDBSave(tStringDB *StringDB, char *FileName)
     }
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

@@ -3,13 +3,13 @@
 
 bool FrontPanelGetPatch(byte *Version, byte *Type)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   FP_Initialize();
 
   if(Version) *Version = FPPatchVersion;
   if(Type) *Type = FPPatchType;
 
-  TRACEEXIT();
+  TRACEEXIT;
   return (FPPatchVersion != 0);
 }

@@ -15,7 +15,7 @@ int                     EPGAbortLoad = 0;
 
 int EPGInfo_FindFirst(TYPE_EPGInfo *EPGData)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   dword                *x;
   byte                  PointerOffset;
@@ -50,7 +50,7 @@ int EPGInfo_FindFirst(TYPE_EPGInfo *EPGData)
   {
     if(EPGData) memset(EPGData, 0, sizeof(TYPE_EPGInfo));
 
-    TRACEEXIT();
+    TRACEEXIT;
     return 0;
   }
   EPGInfo_CreateCache(EPGInfoCacheEntries);
@@ -70,6 +70,6 @@ int EPGInfo_FindFirst(TYPE_EPGInfo *EPGData)
     }
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return EPGInfoNrEntries;
 }

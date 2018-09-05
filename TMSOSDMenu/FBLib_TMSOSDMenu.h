@@ -1,7 +1,7 @@
 #ifndef FBLIB_TMSOSDMENU_H
 #define FBLIB_TMSOSDMENU_H
 
-#include                "../libFireBird.h"
+#include                "libFireBird.h"
 
 #define ITEMNAMESIZE    128
 #define ITEMVALUESIZE   128

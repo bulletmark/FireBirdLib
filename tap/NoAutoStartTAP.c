@@ -1,11 +1,11 @@
-#include                <stdio.h>
-#include                <stdlib.h>
-#include                <string.h>
-#include                "../libFireBird.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "FBLib_tap.h"
 
 bool NoAutoStartTAP(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   char                  CurrentDir[FBLIB_DIR_SIZE];
   char                  *FileName;
@@ -17,18 +17,10 @@ bool NoAutoStartTAP(void)
   HDD_TAP_GetCurrentDir(CurrentDir);
   if(strstr(CurrentDir, "/ProgramFiles/AutoStart") || strstr(CurrentDir, "/ProgramFiles/XStart"))
   {
-    //The curTapTask variable is not thread safe. Call InitTAPex() if this function will be called from a sub thread
-    if(TAP_TableIndex == 0xffffffff)
+    if(!LibInitialized && !InitTAPex())
     {
-      dword                *curTapTask;
-
-      curTapTask = (dword*)FIS_vCurTapTask();
-      if(!curTapTask)
-      {
-        TRACEEXIT();
-        return -3;
-      }
-      TAP_TableIndex = *curTapTask;
+      TRACEEXIT;
+      return -3;
     }
 
     HDD_TAP_GetFileNameByIndex(TAP_TableIndex, &FileName);
@@ -37,6 +29,6 @@ bool NoAutoStartTAP(void)
     ret = system(cmd);
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return (ret == 0);
 }

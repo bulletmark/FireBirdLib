@@ -2,7 +2,7 @@
 
 bool isValidChannel(TAPCOM_Channel Channel)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   //Gültige Signatur?
   bool ret = FALSE;
@@ -13,6 +13,6 @@ bool isValidChannel(TAPCOM_Channel Channel)
   }
 
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

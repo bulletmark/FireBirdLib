@@ -1,14 +1,14 @@
 #include                <string.h>
 #include                <stdlib.h>
 #include                "FBLib_ini.h"
-#include                "../libFireBird.h"
+#include                "libFireBird.h"
 
 char                    *INIBuffer = NULL, *INICommentBuffer = NULL;
 dword                   BufferSize = 0;
 
 INILOCATION INIOpenFile(char *FileName, char *AppName)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   TYPE_File             *f;
   dword                 flen, ret = 0;
@@ -23,13 +23,13 @@ INILOCATION INIOpenFile(char *FileName, char *AppName)
     BufferSize = 512;
     if(!(INIBuffer = TAP_MemAlloc(BufferSize)))
     {
-      TRACEEXIT();
+      TRACEEXIT;
       return INILOCATION_NotFound;
     }
 
     memset(INIBuffer, 0, BufferSize);
 
-    TRACEEXIT();
+    TRACEEXIT;
     return INILOCATION_NewFile;
   }
 
@@ -38,7 +38,7 @@ INILOCATION INIOpenFile(char *FileName, char *AppName)
   {
     HDD_TAP_PopDir();
 
-    TRACEEXIT();
+    TRACEEXIT;
     return INILOCATION_NotFound;
   }
 
@@ -51,7 +51,7 @@ INILOCATION INIOpenFile(char *FileName, char *AppName)
     memset(INIBuffer, 0, BufferSize);
     ret = TAP_Hdd_Fread(INIBuffer, flen, 1, f);
     flen = strlen(INIBuffer);
-    if((INIBuffer[flen - 1] != '\x0d') && (INIBuffer[flen - 1] != '\x0a'))
+    if (flen && (INIBuffer[flen - 1] != '\x0d' && INIBuffer[flen - 1] != '\x0a'))
       strcat(INIBuffer, "\x0d\x0a");
   }
   TAP_Hdd_Fclose(f);
@@ -64,6 +64,6 @@ INILOCATION INIOpenFile(char *FileName, char *AppName)
 
   HDD_TAP_PopDir();
 
-  TRACEEXIT();
+  TRACEEXIT;
   return (INIBuffer && (ret > 0) ? INILocation : INILOCATION_NotFound);
 }

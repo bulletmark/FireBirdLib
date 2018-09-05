@@ -1,4 +1,4 @@
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 // 6: HD[1080i]
 // 7: HD[720p]
@@ -13,7 +13,7 @@
 
 byte GetStreamFormat(byte Index)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   byte ret;
   byte(*Appl_GetStreamFormat)(byte);
@@ -24,6 +24,6 @@ byte GetStreamFormat(byte Index)
 
   if(Appl_GetStreamFormat) ret = Appl_GetStreamFormat(Index);
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

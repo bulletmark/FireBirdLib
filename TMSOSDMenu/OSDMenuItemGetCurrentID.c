@@ -2,12 +2,12 @@
 
 dword OSDMenuItemGetCurrentID(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   dword ret;
 
   ret = OSDMenuItemGetID(Menu[CurrentMenuLevel].CurrentSelection);
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

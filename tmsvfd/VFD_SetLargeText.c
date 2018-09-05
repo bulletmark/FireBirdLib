@@ -3,7 +3,7 @@
 
 bool VFD_SetLargeText(char *Text)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   dword                 i;
 
@@ -11,7 +11,7 @@ bool VFD_SetLargeText(char *Text)
 
   if(!VFDUsedByTAP || !grid)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
@@ -37,6 +37,6 @@ bool VFD_SetLargeText(char *Text)
          else VFD_SetDisplayDigit(grid, ' ', VFD_17, 7);
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return TRUE;
 }

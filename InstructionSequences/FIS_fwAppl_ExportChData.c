@@ -1,14 +1,14 @@
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 inline dword FIS_fwAppl_ExportChData(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   static dword          _Appl_ExportChData = 0;
 
   if(!_Appl_ExportChData)
     _Appl_ExportChData = TryResolve("_Z17Appl_ExportChDataPKc");
 
-  TRACEEXIT();
+  TRACEEXIT;
   return _Appl_ExportChData;
 }

@@ -2,7 +2,7 @@
 
 int TAPCOM_GetReturnValue(TAPCOM_Channel Channel)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   int ret;
   TAPCOM_InternalMesBuf *buf = (TAPCOM_InternalMesBuf *) Channel;
@@ -12,6 +12,6 @@ int TAPCOM_GetReturnValue(TAPCOM_Channel Channel)
   else
     ret = buf->ReturnVal;
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

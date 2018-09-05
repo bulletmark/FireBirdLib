@@ -2,37 +2,23 @@
 
 bool HDD_TAP_Disable(dword TAPID, bool DisableEvents)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   int                   TAPIndex;
   dword                 isDisabled;
   tTMSTAPTaskTable     *TMSTAPTaskTable;
 
   TAPIndex = HDD_TAP_GetIndexByID(TAPID);
-  if(TAPIndex == -1)
+  if((TAPIndex == -1) || (!LibInitialized && !InitTAPex()))
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
-  }
-
-  //The curTapTask variable is not thread safe. Call InitTAPex() if this function will be called from a sub thread
-  if(TAP_TableIndex == 0xffffffff)
-  {
-    dword                *curTapTask;
-
-    curTapTask = (dword*)FIS_vCurTapTask();
-    if(!curTapTask)
-    {
-      TRACEEXIT();
-      return FALSE;
-    }
-    TAP_TableIndex = *curTapTask;
   }
 
   //Don't disable ourself
   if((dword)TAPIndex == TAP_TableIndex)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
@@ -40,21 +26,21 @@ bool HDD_TAP_Disable(dword TAPID, bool DisableEvents)
   isDisabled = HDD_TAP_isDisabled(TAPID);
   if((isDisabled == 1) == DisableEvents)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
   TMSTAPTaskTable = (tTMSTAPTaskTable*)FIS_vTAPTable();
   if(!TMSTAPTaskTable)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
   //The TAP will terminate soon
   if(TMSTAPTaskTable[TAPIndex].Status != 1)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
@@ -70,6 +56,6 @@ bool HDD_TAP_Disable(dword TAPID, bool DisableEvents)
     TMSTAPTaskTable[TAPIndex].unused5 = 0;
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return TRUE;
 }

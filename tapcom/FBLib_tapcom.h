@@ -1,7 +1,7 @@
  #ifndef FBLIB_TAPCOM_H
 #define FBLIB_TAPCOM_H
 
-#include                "../libFireBird.h"
+#include                "libFireBird.h"
 
 extern bool             LibInitialized;
 extern const dword      __tap_ud__;

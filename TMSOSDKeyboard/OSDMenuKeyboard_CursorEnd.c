@@ -3,10 +3,10 @@
 
 void OSDMenuKeyboard_CursorEnd(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   OSDMenuKeyboard_CursorPosition = strlenUC(OSDMenuKeyboard_StringVar);
   OSDMenuKeyboard_Draw();
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

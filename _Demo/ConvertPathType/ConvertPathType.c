@@ -17,35 +17,35 @@ void DoTesting(char *Source)
   tPathFormat           SourceType;
   char                  Dest[FBLIB_DIR_SIZE];
 
-  TAP_PrintNet("Source       : '%s'\n", Source);
+  TAP_Print("Source       : '%s'\n", Source);
 
-  TAP_PrintNet("Detected     : ");
+  TAP_Print("Detected     : ");
   SourceType = GetPathType(Source);
   switch(SourceType)
   {
-    case PF_FileNameOnly:   TAP_PrintNet("PF_FileNameOnly\n\n"); break;
-    case PF_TAPPathOnly:    TAP_PrintNet("PF_TAPPathOnly\n\n"); break;
-    case PF_LinuxPathOnly:  TAP_PrintNet("PF_LinuxPathOnly\n\n"); break;
-    case PF_FullTAPPath:    TAP_PrintNet("PF_FullTAPPath\n\n"); break;
-    case PF_FullLinuxPath:  TAP_PrintNet("PF_FullLinuxPath\n\n"); break;
+    case PF_FileNameOnly:   TAP_Print("PF_FileNameOnly\n\n"); break;
+    case PF_TAPPathOnly:    TAP_Print("PF_TAPPathOnly\n\n"); break;
+    case PF_LinuxPathOnly:  TAP_Print("PF_LinuxPathOnly\n\n"); break;
+    case PF_FullTAPPath:    TAP_Print("PF_FullTAPPath\n\n"); break;
+    case PF_FullLinuxPath:  TAP_Print("PF_FullLinuxPath\n\n"); break;
   }
 
   ConvertPathType(Source, Dest, PF_FileNameOnly);
-  TAP_PrintNet("FileNameOnly : '%s'\n", Dest);
+  TAP_Print("FileNameOnly : '%s'\n", Dest);
 
   ConvertPathType(Source, Dest, PF_TAPPathOnly);
-  TAP_PrintNet("TAPPathOnly  : '%s'\n", Dest);
+  TAP_Print("TAPPathOnly  : '%s'\n", Dest);
 
   ConvertPathType(Source, Dest, PF_FullTAPPath);
-  TAP_PrintNet("FullTAPPath  : '%s'\n", Dest);
+  TAP_Print("FullTAPPath  : '%s'\n", Dest);
 
   ConvertPathType(Source, Dest, PF_LinuxPathOnly);
-  TAP_PrintNet("LinuxPathOnly: '%s'\n", Dest);
+  TAP_Print("LinuxPathOnly: '%s'\n", Dest);
 
   ConvertPathType(Source, Dest, PF_FullLinuxPath);
-  TAP_PrintNet("FullLinuxPath: '%s'\n", Dest);
+  TAP_Print("FullLinuxPath: '%s'\n", Dest);
 
-  TAP_PrintNet("-------------------------------------------\n");
+  TAP_Print("-------------------------------------------\n");
 }
 
 void TestSequence(void)

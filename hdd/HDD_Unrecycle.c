@@ -1,10 +1,10 @@
 #include                <stdio.h>
 #include                <string.h>
-#include                "../libFireBird.h"
+#include                "libFireBird.h"
 
 bool HDD_Unrecycle(char *FileName)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   char                  Path[FBLIB_DIR_SIZE], Name[TS_FILE_NAME_SIZE], Ext[TS_FILE_NAME_SIZE];
   char                  OldName[TS_FILE_NAME_SIZE], NewName[TS_FILE_NAME_SIZE], LinuxPath[FBLIB_DIR_SIZE];
@@ -69,6 +69,6 @@ bool HDD_Unrecycle(char *FileName)
     }
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

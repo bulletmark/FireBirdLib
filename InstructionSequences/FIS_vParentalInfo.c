@@ -1,8 +1,8 @@
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 inline dword FIS_vParentalInfo(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   static dword          vParentalInfo = 0;
   dword                 *d;
@@ -13,6 +13,6 @@ inline dword FIS_vParentalInfo(void)
     if(d) vParentalInfo = *d;
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return vParentalInfo;
 }

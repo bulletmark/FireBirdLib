@@ -1,10 +1,10 @@
 #include <string.h>
 #include "FBLib_ini.h"
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 bool INIGetString(char *Key, char *Value, char *DefaultValue, dword MaxLength)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   char                  *i = NULL, *j = NULL;
   char                  TempKey[80];
@@ -12,7 +12,7 @@ bool INIGetString(char *Key, char *Value, char *DefaultValue, dword MaxLength)
 
   if(!Key || !Value || !DefaultValue || !MaxLength)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
@@ -34,6 +34,6 @@ bool INIGetString(char *Key, char *Value, char *DefaultValue, dword MaxLength)
     Value[j - i - l + 1] = 0;
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return TRUE;
 }

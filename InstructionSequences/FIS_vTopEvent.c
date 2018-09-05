@@ -1,14 +1,14 @@
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 inline dword FIS_vTopEvent(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   static dword          vtopEvent = 0;
 
   if(!vtopEvent)
     vtopEvent = TryResolve("_topEvent");
 
-  TRACEEXIT();
+  TRACEEXIT;
   return vtopEvent;
 }

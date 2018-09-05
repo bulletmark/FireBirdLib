@@ -3,7 +3,7 @@
 
 void OSDMenuItemSortValueColumn(bool Ascending, bool CaseSensitive)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   int                   i, j, NrItems;
   tItem                 TempItem;
@@ -46,5 +46,5 @@ void OSDMenuItemSortValueColumn(bool Ascending, bool CaseSensitive)
 
   ListDirty = TRUE;
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

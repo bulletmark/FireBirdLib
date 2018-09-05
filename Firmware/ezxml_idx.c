@@ -1,8 +1,8 @@
-#include  "../libFireBird.h"
+#include  "libFireBird.h"
 
 ezxml_t ezxml_idx(ezxml_t xml, int idx)
 {
-  TRACEENTER();
+  TRACEENTER;
 
 	ezxml_t		(*__ezxml_idx)(ezxml_t, int);
 	ezxml_t		ret = 0;
@@ -14,6 +14,6 @@ ezxml_t ezxml_idx(ezxml_t xml, int idx)
 		ret = __ezxml_idx(xml, idx);
 	}
 
-  TRACEEXIT();
+  TRACEEXIT;
 	return ret;
 }

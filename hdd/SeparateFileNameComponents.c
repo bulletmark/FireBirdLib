@@ -1,17 +1,17 @@
 #include <ctype.h>
 #include <string.h>
 #include <stdlib.h>
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 void SeparateFileNameComponents(char *FileName, char *Path, char *Name, char *Ext, int *Index, bool *isRec, bool *isDel)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   char                 *dot, *slash;
 
   if(!FileName || !*FileName || !Name)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return;
   }
 
@@ -75,5 +75,5 @@ void SeparateFileNameComponents(char *FileName, char *Path, char *Name, char *Ex
     }
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

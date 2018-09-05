@@ -1,14 +1,14 @@
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 inline dword FIS_vEEPROMPin(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   static dword        vEEPROMPin = 0;
 
   if(!vEEPROMPin)
     vEEPROMPin = TryResolve("_parentalInfo");
 
-  TRACEEXIT();
+  TRACEEXIT;
   return vEEPROMPin;
 }

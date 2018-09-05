@@ -3,7 +3,7 @@
 
 void OSDMenuItemSortID(bool Ascending)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   int                   i, j, NrItems;
   tItem                 TempItem;
@@ -39,5 +39,5 @@ void OSDMenuItemSortID(bool Ascending)
 
   ListDirty = TRUE;
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

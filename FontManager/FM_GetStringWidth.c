@@ -3,14 +3,14 @@
 
 dword FM_GetStringWidth(char *Text, tFontData *FontData)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   dword                 i;
   dword                 Width = 0;
 
   if(!Text || !Text[0] || !FontData || !FontData->pFontData)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return 0;
   }
 
@@ -20,6 +20,6 @@ dword FM_GetStringWidth(char *Text, tFontData *FontData)
       Width += FontData->FontDef[FM_CharToIndex(Text[i])].Width;
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return Width;
 }

@@ -1,7 +1,7 @@
 #ifndef FBLIB_TMSOSDKEYBOARD_H
   #define FBLIB_TMSOSDKEYBOARD_H
 
-  #include              "../libFireBird.h"
+  #include              "libFireBird.h"
   #include              "OSDMenuKeyboard_Colors.h"
   #include              "TMSRemote_TAPCOM.h"
 

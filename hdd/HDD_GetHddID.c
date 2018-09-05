@@ -1,16 +1,16 @@
 #include                <string.h>
 #include                "FBLib_hdd.h"
-#include                "../libFireBird.h"
+#include                "libFireBird.h"
 
 bool HDD_GetHddID(char *ModelNo, char *SerialNo, char *FirmwareNo)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   char                  Buffer[512];
 
   if(!HDD_IdentifyDevice(Buffer))
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
@@ -35,6 +35,6 @@ bool HDD_GetHddID(char *ModelNo, char *SerialNo, char *FirmwareNo)
     RTrim(FirmwareNo);
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return TRUE;
 }

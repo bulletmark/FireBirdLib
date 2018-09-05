@@ -5,13 +5,13 @@ bool HDDEnabled = FALSE;
 
 bool VFD_EnableHDD(bool Enable)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   byte *grid = (byte*)FIS_vGrid();
 
   if(!VFDUsedByTAP || !grid)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
@@ -23,6 +23,6 @@ bool VFD_EnableHDD(bool Enable)
 
   HDDEnabled = Enable;
 
-  TRACEEXIT();
+  TRACEEXIT;
   return TRUE;
 }

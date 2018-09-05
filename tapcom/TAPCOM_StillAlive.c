@@ -2,7 +2,7 @@
 
 void TAPCOM_StillAlive(TAPCOM_Channel Channel)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   if(isValidChannel(Channel))
   {
@@ -10,5 +10,5 @@ void TAPCOM_StillAlive(TAPCOM_Channel Channel)
     ((TAPCOM_InternalMesBuf *) Channel)->ServerAlive = TAP_GetTick();
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

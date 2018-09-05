@@ -2,7 +2,7 @@
 
 int OSDMenuScrollHome(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   tMenu                *pMenu;
   int                   ret;
@@ -12,13 +12,13 @@ int OSDMenuScrollHome(void)
   ret = OSDMenuFindNextSelectableEntry(-1);
   if(ret == -1)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return -1;
   }
 
   pMenu->CurrentSelection = ret;
   ListDirty = TRUE;
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

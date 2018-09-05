@@ -1,11 +1,10 @@
-#include <tap.h>
 #include "FBLib_rec.h"
 
 bool infData_isAvail(char *infFileName, char *NameTag, dword *PayloadSize)
 {
   bool                  ret;
 
-  TRACEENTER();
+  TRACEENTER;
 
   ret = FALSE;
 
@@ -14,6 +13,6 @@ bool infData_isAvail(char *infFileName, char *NameTag, dword *PayloadSize)
 
   infData_CloseFile();
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

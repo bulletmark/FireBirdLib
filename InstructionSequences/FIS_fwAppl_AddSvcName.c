@@ -1,14 +1,14 @@
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 inline dword FIS_fwAppl_AddSvcName(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   static dword          _Appl_AddSvcName = 0;
 
   if(!_Appl_AddSvcName)
     _Appl_AddSvcName = TryResolve("_Z15Appl_AddSvcNamePKc");
 
-  TRACEEXIT();
+  TRACEEXIT;
   return _Appl_AddSvcName;
 }

@@ -1,23 +1,23 @@
 #include                <string.h>
 #include                <stdlib.h>
-#include                "../libFireBird.h"
+#include                "libFireBird.h"
 
 bool StrMkISO(byte *SourceString)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   byte                 *_isostring;
   bool                  hasAnsiChars, hasUTFChars;
 
   if(!SourceString)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
   if(!*SourceString)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return TRUE;
   }
 
@@ -33,11 +33,11 @@ bool StrMkISO(byte *SourceString)
     }
     else
     {
-      TRACEEXIT();
+      TRACEEXIT;
       return FALSE;
     }
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return TRUE;
 }

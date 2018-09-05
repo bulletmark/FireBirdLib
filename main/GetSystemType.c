@@ -1,8 +1,8 @@
-#include                "../libFireBird.h"
+#include                "libFireBird.h"
 
 SYSTEM_TYPE GetSystemType(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   static SYSTEM_TYPE    SystemType = ST_UNKNOWN;
   tToppyInfo           *ToppyInfo;
@@ -19,13 +19,13 @@ SYSTEM_TYPE GetSystemType(void)
         {
           SystemType = ToppyInfo->SystemType;
 
-          TRACEEXIT();
+          TRACEEXIT;
           return SystemType;
         }
       }
     }
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return SystemType;
 }

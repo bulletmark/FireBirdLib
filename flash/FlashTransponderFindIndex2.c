@@ -2,7 +2,7 @@
 
 int FlashTransponderFindIndex2(dword SatIndex, dword NetworkID, dword TSID, byte ModSystem)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   int                     TrCount, i;
   tFlashTransponderTable  TransponderTable;
@@ -14,12 +14,12 @@ int FlashTransponderFindIndex2(dword SatIndex, dword NetworkID, dword TSID, byte
     {
       if((TransponderTable.OriginalNetworkID == NetworkID) && (TransponderTable.TSID == TSID) && (TransponderTable.ModSystem == ModSystem))
       {
-        TRACEEXIT();
+        TRACEEXIT;
         return i;
       }
     }
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return -1;
 }

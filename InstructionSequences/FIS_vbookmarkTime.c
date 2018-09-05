@@ -1,14 +1,14 @@
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 inline dword FIS_vbookmarkTime(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   static dword          vbookmarkTime = 0;
 
   if(!vbookmarkTime)
     vbookmarkTime = TryResolve("_bookmarkTime");
 
-  TRACEEXIT();
+  TRACEEXIT;
   return vbookmarkTime;
 }

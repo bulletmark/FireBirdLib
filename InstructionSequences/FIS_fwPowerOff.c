@@ -1,14 +1,14 @@
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 inline dword FIS_fwPowerOff(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   static dword          fwPowerOff = 0;
 
   if(!fwPowerOff)
     fwPowerOff = TryResolve("_Z21Appl_EvtProc_PowerOffjj");
 
-  TRACEEXIT();
+  TRACEEXIT;
   return fwPowerOff;
 }

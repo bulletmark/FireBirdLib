@@ -2,7 +2,7 @@
 
 dword DST_GetNextTransition(byte ruleOrdinal, byte ruleDay, byte ruleMonth, byte ruleHour, byte ruleMin, word ruleYear)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   word        tempDate;
   dword       returnDate;
@@ -30,6 +30,6 @@ dword DST_GetNextTransition(byte ruleOrdinal, byte ruleDay, byte ruleMonth, byte
 
   returnDate = ((tempDate & 0xffff) << 16) | ((ruleHour & 0xff) << 8) | (ruleMin & 0xff);
 
-  TRACEEXIT();
+  TRACEEXIT;
   return returnDate;
 }

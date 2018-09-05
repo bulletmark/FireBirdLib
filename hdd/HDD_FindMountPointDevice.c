@@ -2,11 +2,11 @@
 #include                <stdlib.h>
 #include                <mntent.h>
 #include                <string.h>
-#include                "../libFireBird.h"
+#include                "libFireBird.h"
 
 bool HDD_FindMountPointDevice(char *File, char *MountPoint, char *MountDevice)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   struct mntent        *ent;
   FILE                 *aFile;
@@ -50,6 +50,6 @@ bool HDD_FindMountPointDevice(char *File, char *MountPoint, char *MountDevice)
   if(MountPoint) strcpy(MountPoint, Root);
   if(MountDevice) strcpy(MountDevice, Dev);
 
-  TRACEEXIT();
+  TRACEEXIT;
   return (Root[0] != '\0' || Dev[0] != '\0');
 }

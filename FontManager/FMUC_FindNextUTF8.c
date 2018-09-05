@@ -2,11 +2,11 @@
 
 byte *FMUC_FindNextUTF8(byte *p)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   if(p == NULL)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return NULL;
   }
 
@@ -14,6 +14,6 @@ byte *FMUC_FindNextUTF8(byte *p)
   p++;
   while((*p & 0xc0) == 0x80) p++;
 
-  TRACEEXIT();
+  TRACEEXIT;
   return p;
 }

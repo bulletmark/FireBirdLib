@@ -6,7 +6,7 @@ bool                    cronInit = FALSE;
 
 void cronEventHandler(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   int                   i;
   long                  next;
@@ -52,5 +52,5 @@ void cronEventHandler(void)
     }
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

@@ -1,14 +1,14 @@
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 inline dword FIS_vPipY(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   static dword          _pipY = 0;
 
   if(!_pipY)
     _pipY = TryResolve("_pipY");
 
-  TRACEEXIT();
+  TRACEEXIT;
   return _pipY;
 }

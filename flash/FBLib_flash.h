@@ -1,7 +1,7 @@
 #ifndef FBLIB_FLASH_H
 #define FBLIB_FLASH_H
 
-  #include "../libFireBird.h"
+  #include "libFireBird.h"
 
   #define TIMER_NAME    "FireBirdLib.rec"
   #define TIMER_DATE    0xffff0000          //22.04.2038 00:00

@@ -2,18 +2,18 @@
 
 bool VFD_Clear(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   byte *grid = (byte*)FIS_vGrid();
 
   if(!VFDUsedByTAP || !grid)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
   memset(grid, 0, 48);
 
-  TRACEEXIT();
+  TRACEEXIT;
   return TRUE;
 }

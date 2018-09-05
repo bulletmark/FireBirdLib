@@ -1,13 +1,13 @@
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 inline dword FIS_vnExtPartition(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   static dword          vnExtPartition = 0;
 
   if(!vnExtPartition) vnExtPartition = (dword)TryResolve("_nExtPartition");
 
-  TRACEEXIT();
+  TRACEEXIT;
   return vnExtPartition;
 }

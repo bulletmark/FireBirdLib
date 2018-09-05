@@ -1,15 +1,15 @@
-#include                "../libFireBird.h"
+#include                "libFireBird.h"
 
 byte *GetUCPos(byte *String, int CharPos)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   byte                  bpc;
   int                   i;
 
   if(!String)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return NULL;
   }
 
@@ -26,6 +26,6 @@ byte *GetUCPos(byte *String, int CharPos)
     i++;
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return String;
 }

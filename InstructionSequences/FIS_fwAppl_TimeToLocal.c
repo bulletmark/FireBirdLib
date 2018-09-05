@@ -1,14 +1,14 @@
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 inline dword FIS_fwAppl_TimeToLocal(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   static dword          fwAppl_TimeToLocal = 0;
 
   if(!fwAppl_TimeToLocal)
     fwAppl_TimeToLocal = TryResolve("_Z16Appl_TimeToLocalj");
 
-  TRACEEXIT();
+  TRACEEXIT;
   return fwAppl_TimeToLocal;
 }

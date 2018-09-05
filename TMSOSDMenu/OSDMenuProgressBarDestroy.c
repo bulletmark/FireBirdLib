@@ -2,7 +2,7 @@
 
 void OSDMenuProgressBarDestroy(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   if(ProgressBarOSDRgn)
   {
@@ -14,5 +14,5 @@ void OSDMenuProgressBarDestroy(void)
   OSDMenuInfoBoxDestroy();
   ProgressBarLastValue =  0xfff;
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

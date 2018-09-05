@@ -3,28 +3,28 @@
 
 bool FlashTransponderTablesSetInfo(int SatNum, int TransponderNum, tFlashTransponderTable *TransponderTable)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   bool ret;
 
   //SatNum out of range
   if((SatNum < 0) || (SatNum >= FlashSatTablesGetTotal()))
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
   //TransponderNum out of range
   if((TransponderNum < 0) || (TransponderNum >= FlashTransponderTablesGetTotal(SatNum)))
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
   //TransponderTable is NULL
   if(!TransponderTable)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
@@ -41,7 +41,7 @@ bool FlashTransponderTablesSetInfo(int SatNum, int TransponderNum, tFlashTranspo
     case ST_T5800:
     case ST_TF7k7HDPVR:
     {
-      TRACEEXIT();
+      TRACEEXIT;
       return FALSE;
     }
 
@@ -53,7 +53,7 @@ bool FlashTransponderTablesSetInfo(int SatNum, int TransponderNum, tFlashTranspo
       p = (TYPE_TpInfo_TMSS*)(FIS_vFlashBlockTransponderInfo());
       if(!p)
       {
-        TRACEEXIT();
+        TRACEEXIT;
         return FALSE;
       }
 
@@ -71,13 +71,13 @@ bool FlashTransponderTablesSetInfo(int SatNum, int TransponderNum, tFlashTranspo
       }
       if((i >= d) || (p->SatIdx != SatNum) || (TPIdx != TransponderNum))
       {
-        TRACEEXIT();
+        TRACEEXIT;
         return FALSE;
       }
 
       ret = FlashTransponderTablesEncode(p, TransponderTable);
 
-      TRACEEXIT();
+      TRACEEXIT;
       return ret;
     }
 
@@ -88,14 +88,14 @@ bool FlashTransponderTablesSetInfo(int SatNum, int TransponderNum, tFlashTranspo
       p = (TYPE_TpInfo_TMST*)FIS_vFlashBlockTransponderInfo();
       if(!p)
       {
-        TRACEEXIT();
+        TRACEEXIT;
         return FALSE;
       }
 
       p = p + TransponderNum;
       ret = FlashTransponderTablesEncode(p, TransponderTable);;
 
-      TRACEEXIT();
+      TRACEEXIT;
       return ret;
     }
 
@@ -106,14 +106,14 @@ bool FlashTransponderTablesSetInfo(int SatNum, int TransponderNum, tFlashTranspo
       p = (TYPE_TpInfo_TMSC*)FIS_vFlashBlockTransponderInfo();
       if(!p)
       {
-        TRACEEXIT();
+        TRACEEXIT;
         return FALSE;
       }
 
       p = p + TransponderNum;
       ret = FlashTransponderTablesEncode(p, TransponderTable);
 
-      TRACEEXIT();
+      TRACEEXIT;
 
       return ret;
     }
@@ -121,6 +121,6 @@ bool FlashTransponderTablesSetInfo(int SatNum, int TransponderNum, tFlashTranspo
     case ST_NRTYPES: break;
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return FALSE;
 }

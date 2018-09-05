@@ -3,7 +3,7 @@
 
 void ReplaceInvalidFileNameChars(char *strName)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   unsigned char         *s, *d;
 
@@ -34,5 +34,5 @@ void ReplaceInvalidFileNameChars(char *strName)
   }
   *d = '\0';
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

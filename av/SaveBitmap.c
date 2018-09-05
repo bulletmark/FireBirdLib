@@ -1,11 +1,11 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include "FBLib_av.h"
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 bool SaveBitmap(char *FileName, int width, int height, byte* pBuffer)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   dword									rowlength;
   char                  AbsFilename[FBLIB_DIR_SIZE];
@@ -13,7 +13,7 @@ bool SaveBitmap(char *FileName, int width, int height, byte* pBuffer)
 
   if(!pBuffer ||!FileName || !*FileName)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
@@ -22,7 +22,7 @@ bool SaveBitmap(char *FileName, int width, int height, byte* pBuffer)
   FileHandle = open(AbsFilename, O_WRONLY | O_CREAT | O_TRUNC);
   if(FileHandle == -1)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
@@ -35,6 +35,6 @@ bool SaveBitmap(char *FileName, int width, int height, byte* pBuffer)
 	write(FileHandle, pBuffer, rowlength * height);
 	close(FileHandle);
 
-  TRACEEXIT();
+  TRACEEXIT;
   return TRUE;
 }

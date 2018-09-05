@@ -1,14 +1,14 @@
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 inline dword FIS_fwAppl_SetTimeShift(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   static dword          fwAppl_SetTimeShift = 0;
 
   if(!fwAppl_SetTimeShift)
     fwAppl_SetTimeShift = TryResolve("_Z17Appl_SetTimeShifti");
 
-  TRACEEXIT();
+  TRACEEXIT;
   return fwAppl_SetTimeShift;
 }

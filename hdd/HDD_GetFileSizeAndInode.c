@@ -4,7 +4,7 @@
 
 bool HDD_GetFileSizeAndInode(char *FileName, __ino64_t *CInode, __off64_t *FileSize)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   char                  AbsFileName[FBLIB_DIR_SIZE];
   tstat64               statbuf;
@@ -23,6 +23,6 @@ bool HDD_GetFileSizeAndInode(char *FileName, __ino64_t *CInode, __off64_t *FileS
     }
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

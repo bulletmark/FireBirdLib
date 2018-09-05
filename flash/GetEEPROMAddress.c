@@ -4,10 +4,10 @@ dword GetEEPROMAddress(void)
 {
   dword ret;
 
-  TRACEENTER();
+  TRACEENTER;
 
   ret = FIS_vEEPROM();
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

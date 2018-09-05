@@ -1,9 +1,8 @@
-#include <stdio.h>
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 void TAP_Osd_RestoreBox_Chk(char *Comment, word rgn, dword x, dword y, dword w, dword h, void *data)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   dword                 RgnH, RgnW;
 
@@ -22,5 +21,5 @@ void TAP_Osd_RestoreBox_Chk(char *Comment, word rgn, dword x, dword y, dword w, 
 
   TAP_Osd_RestoreBox(rgn, x, y, w, h, data);
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

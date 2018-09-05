@@ -2,7 +2,7 @@
 
 bool FlashServiceMove(int SvcType, int FromSvcNum, int ToSvcNum)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   int                   NrServices;
   tFlashService         Service, tempSvc;
@@ -13,20 +13,20 @@ bool FlashServiceMove(int SvcType, int FromSvcNum, int ToSvcNum)
   //SvcType out of range
   if((SvcType < 0) || (SvcType > SVC_TYPE_Radio))
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
   //SvcNum out of range
   if((FromSvcNum < 0) || (FromSvcNum >= NrServices) || (ToSvcNum < 0) || (ToSvcNum >= NrServices))
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
   if(FromSvcNum == ToSvcNum)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return TRUE;
   }
 
@@ -35,7 +35,7 @@ bool FlashServiceMove(int SvcType, int FromSvcNum, int ToSvcNum)
     //Case 3: a service has been moved up
     if(!FlashServiceGetInfo(SvcType, FromSvcNum, &Service))
     {
-      TRACEEXIT();
+      TRACEEXIT;
 
       return FALSE;
     }
@@ -52,7 +52,7 @@ bool FlashServiceMove(int SvcType, int FromSvcNum, int ToSvcNum)
     //Case 4: a service has been moved down
     if(!FlashServiceGetInfo(SvcType, FromSvcNum, &Service))
     {
-      TRACEEXIT();
+      TRACEEXIT;
 
       return FALSE;
     }
@@ -68,6 +68,6 @@ bool FlashServiceMove(int SvcType, int FromSvcNum, int ToSvcNum)
   FlashReindexFavorites(SvcType, FromSvcNum, ToSvcNum);
   FlashReindexTimers(SvcType, FromSvcNum, ToSvcNum);
 
-  TRACEEXIT();
+  TRACEEXIT;
   return TRUE;
 }

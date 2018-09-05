@@ -1,8 +1,8 @@
 #ifndef FBLIB_EPG_H
 #define FBLIB_EPG_H
 
-  #include "../libFireBird.h"
-  #include "../time/FBlib_time.h"
+  #include "libFireBird.h"
+  #include "time/FBLib_time.h"
 
   #define MAXEPGRECORDS   10000
 

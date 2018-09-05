@@ -3,7 +3,7 @@
 
 bool FlashServiceDel(int SvcType, int SvcNum)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   word                 *nSvc;
   bool                  ret;
@@ -11,14 +11,14 @@ bool FlashServiceDel(int SvcType, int SvcNum)
   //SvcType out of range
   if((SvcType < 0) || (SvcType > SVC_TYPE_Radio))
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
   //SvcNum out of range
   if((SvcNum < 0) || (SvcNum >= FlashServiceGetTotal(SvcType)))
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
@@ -29,7 +29,7 @@ bool FlashServiceDel(int SvcType, int SvcNum)
     nSvc = (word*)FIS_vnRadioSvc();
   if(!nSvc)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
@@ -122,6 +122,6 @@ bool FlashServiceDel(int SvcType, int SvcNum)
     case ST_NRTYPES: break;
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

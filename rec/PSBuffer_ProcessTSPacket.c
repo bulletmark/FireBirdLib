@@ -1,8 +1,8 @@
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 bool PSBuffer_ProcessTSPacket(tPSBuffer *PSBuffer, byte *TSBuffer, ulong64 FileOffset)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   word                  PID;
   byte                  PointerField;
@@ -15,7 +15,7 @@ bool PSBuffer_ProcessTSPacket(tPSBuffer *PSBuffer, byte *TSBuffer, ulong64 FileO
 
   //Removed all memset() because they are really slow
 
-  void CopyPayload(int PayloadOffset, int PayloadLen)
+  static void CopyPayload(int PayloadOffset, int PayloadLen)
   {
     int                   i;
     ulong64              *pi64;
@@ -50,7 +50,7 @@ bool PSBuffer_ProcessTSPacket(tPSBuffer *PSBuffer, byte *TSBuffer, ulong64 FileO
     {
       if((PSBuffer->ErrorFlag & 0x01) == 0)
       {
-        TAP_PrintNet("  PS buffer overflow while parsing PID 0x%4.4x", PSBuffer->PID);
+        TAP_Print("  PS buffer overflow while parsing PID 0x%4.4x", PSBuffer->PID);
         PSBuffer->ErrorFlag = PSBuffer->ErrorFlag | 1;
       }
     }
@@ -162,6 +162,6 @@ bool PSBuffer_ProcessTSPacket(tPSBuffer *PSBuffer, byte *TSBuffer, ulong64 FileO
     PSBuffer->LastContCounter = TSBuffer[3] & 0x0f;
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return Result;
 }

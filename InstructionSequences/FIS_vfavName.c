@@ -1,14 +1,14 @@
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 inline dword FIS_vfavName(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   static dword          vfavName = 0;
 
   if(!vfavName)
     vfavName = TryResolve("_favName");
 
-  TRACEEXIT();
+  TRACEEXIT;
   return vfavName;
 }

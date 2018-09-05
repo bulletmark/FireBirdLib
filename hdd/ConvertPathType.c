@@ -1,15 +1,15 @@
 #include                <string.h>
-#include                "../libFireBird.h"
+#include                "libFireBird.h"
 
 void ConvertPathType(char *Source, char *Dest, tPathFormat DestFormat)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   tPathFormat           SourceFormat;
 
   if(!Source || !Dest)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return;
   }
 
@@ -25,7 +25,7 @@ void ConvertPathType(char *Source, char *Dest, tPathFormat DestFormat)
       if(Dest[strlen(Dest) - 1] != '/') strcat(Dest, "/");
     }
 
-    TRACEEXIT();
+    TRACEEXIT;
     return;
   }
 
@@ -329,5 +329,5 @@ void ConvertPathType(char *Source, char *Dest, tPathFormat DestFormat)
     }
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

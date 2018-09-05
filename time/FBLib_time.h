@@ -1,7 +1,7 @@
 #ifndef FBLIB_TIME_H
 #define FBLIB_TIME_H
 
-  #include "../libFireBird.h"
+  #include "libFireBird.h"
 
   #define MANUALDSTINI        "DST.ini"
 

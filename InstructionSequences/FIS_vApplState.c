@@ -1,14 +1,14 @@
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 inline dword FIS_vApplState(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   static dword          vapplState = 0;
 
   if(!vapplState)
     vapplState = TryResolve("_applState");
 
-  TRACEEXIT();
+  TRACEEXIT;
   return vapplState;
 }

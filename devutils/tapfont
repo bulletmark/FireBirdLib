@@ -94,7 +94,7 @@ class FONT(object):
         desc = 'compressed' if self.is_compressed() else 'uncompressed'
 
         # Output new compressed C font file ..
-        print '#include <libFireBird.h>'
+        print '#include "libFireBird.h"'
         sys.stdout.write('static byte %s_Bitmap_%s[] = {' % (nameroot, desc))
         is_count = False
         for i, val in enumerate(self.bitmap):

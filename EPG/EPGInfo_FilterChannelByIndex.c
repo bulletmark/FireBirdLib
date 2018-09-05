@@ -2,7 +2,7 @@
 
 void EPGInfo_FilterChannelByIndex(TYPE_ServiceType SvcType, int SvcNum, bool StartCurrent)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   TYPE_TapChInfo        chInfo;
 
@@ -16,5 +16,5 @@ void EPGInfo_FilterChannelByIndex(TYPE_ServiceType SvcType, int SvcNum, bool Sta
 
   EPGFilter.ChannelFilter = TRUE;
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

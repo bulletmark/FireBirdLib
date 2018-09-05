@@ -3,7 +3,7 @@
 
 void DST_ProcessRule(char *dstRuleString, dword *dstDate, dword StartDate)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   byte        ruleOrdinal = 0;
   byte        ruleDay = 0;
@@ -17,7 +17,7 @@ void DST_ProcessRule(char *dstRuleString, dword *dstDate, dword StartDate)
   {
     if(dstDate) *dstDate = 0;
 
-    TRACEEXIT();
+    TRACEEXIT;
     return;
   }
 
@@ -32,5 +32,5 @@ void DST_ProcessRule(char *dstRuleString, dword *dstDate, dword StartDate)
 
   if(dstDate) *dstDate = transitionDate;
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

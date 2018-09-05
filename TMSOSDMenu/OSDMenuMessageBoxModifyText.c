@@ -3,7 +3,7 @@
 
 void OSDMenuMessageBoxModifyText(char *Text)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   if(MessageBoxOSDRgn)
   {
@@ -11,5 +11,5 @@ void OSDMenuMessageBoxModifyText(char *Text)
     MessageBox.Text[STDSTRINGSIZE - 1] = '\0';
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

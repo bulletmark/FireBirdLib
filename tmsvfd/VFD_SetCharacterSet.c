@@ -4,10 +4,10 @@ tVFDCharset CurrentCharset = CS_8859_1;
 
 bool VFD_SetCharacterSet(tVFDCharset VFDCharset)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   CurrentCharset = VFDCharset;
 
-  TRACEEXIT();
+  TRACEEXIT;
   return TRUE;
 }

@@ -2,18 +2,18 @@
 
 bool SetEEPROMPin(word NewPin)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   word                 *Pin = (word*)FIS_vParentalInfo();
 
   if(!Pin || (NewPin > 9999))
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
   *Pin = NewPin;
 
-  TRACEEXIT();
+  TRACEEXIT;
   return TRUE;
 }

@@ -51,9 +51,9 @@ typedef struct {
   unsigned char digest[16];     /* actual digest after MD5Final call */
 } MD5_CTX;
 
-void MD5Init();
-void MD5Update();
-void MD5Final();
+void MD5Init(MD5_CTX *);
+void MD5Update(MD5_CTX *, unsigned char *, unsigned int);
+void MD5Final(MD5_CTX *);
 
 /*
  **********************************************************************
@@ -98,7 +98,7 @@ void MD5Final();
 /* #include "md5.h" */
 
 /* forward declaration */
-static void Transform();
+static void Transform(UINT4 *, UINT4 *);
 
 static unsigned char PADDING[64] = {
   0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -360,19 +360,18 @@ UINT4 *in;
 #include <sys/types.h>
 #include <time.h>
 #include <string.h>
-#include <tap.h>
 
-#include "../libFireBird.h"
+#include "libFireBird.h"
 /* -- include the following file if the file md5.h is separate -- */
 /* #include "md5.h" */
 
 bool MD5String(char *inString, byte *Digest)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   if(!inString)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
@@ -385,13 +384,13 @@ bool MD5String(char *inString, byte *Digest)
 
   if(Digest) memcpy(Digest, mdContext.digest, 16);
 
-  TRACEEXIT();
+  TRACEEXIT;
   return TRUE;
 }
 
 bool MD5File(char *FileName, byte *Digest)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   int                   inFile;
   MD5_CTX               mdContext;
@@ -401,7 +400,7 @@ bool MD5File(char *FileName, byte *Digest)
 
   if(!FileName || !*FileName)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
@@ -410,7 +409,7 @@ bool MD5File(char *FileName, byte *Digest)
   inFile = open(AbsFileName, O_RDONLY, 0600);
   if(inFile < 0)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
@@ -422,6 +421,6 @@ bool MD5File(char *FileName, byte *Digest)
 
   if(Digest) memcpy(Digest, mdContext.digest, 16);
 
-  TRACEEXIT();
+  TRACEEXIT;
   return TRUE;
 }

@@ -1,16 +1,16 @@
 #include      <string.h>
 #include      "FBLib_av.h"
-#include      "../libFireBird.h"
+#include      "libFireBird.h"
 
 tAudioTrk *AudioTrackInfo(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   tAudioTrk  *p;
 
   p = (tAudioTrk*)FIS_vAudioTrack();
 
-  TRACEEXIT();
+  TRACEEXIT;
 
   return p;
 }

@@ -1,8 +1,8 @@
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 bool HDD_Write(void *data, dword length, TYPE_File *f)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   static byte           block[512];
   static byte           *b = block;
@@ -46,6 +46,6 @@ bool HDD_Write(void *data, dword length, TYPE_File *f)
     b += length;
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return success;
 }

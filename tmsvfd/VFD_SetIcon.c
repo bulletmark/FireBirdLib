@@ -3,14 +3,14 @@
 
 bool VFD_SetIcon(tVFDIcon VFDIcon, bool On)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   byte GridIndex = 0, OrBit = 0;
   byte *grid = (byte*)FIS_vGrid();
 
   if(!VFDUsedByTAP || !grid)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
@@ -53,6 +53,6 @@ bool VFD_SetIcon(tVFDIcon VFDIcon, bool On)
   else
     grid[GridIndex] = grid[GridIndex] & ~(1 << OrBit);
 
-  TRACEEXIT();
+  TRACEEXIT;
   return TRUE;
 }

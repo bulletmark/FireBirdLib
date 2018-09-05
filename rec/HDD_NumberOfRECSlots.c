@@ -2,7 +2,7 @@
 
 dword HDD_NumberOfRECSlots(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   static dword          MaxRecStreams = 0;
   dword                 i;
@@ -26,6 +26,6 @@ dword HDD_NumberOfRECSlots(void)
     if(MaxRecStreams == 0) MaxRecStreams = 2;
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return MaxRecStreams;
 }

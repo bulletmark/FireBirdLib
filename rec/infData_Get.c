@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <tap.h>
 #include "FBLib_rec.h"
 
 extern FILE            *infDatainfFile;
@@ -11,7 +10,7 @@ bool infData_Get(char *infFileName, char *NameTag, dword *PayloadSize, byte **Pa
   tTFRPlusHdr           TFRPlusHdr;
   char                  NameTagHdr[256], s[256];
 
-  TRACEENTER();
+  TRACEENTER;
 
   ret = FALSE;
   if(PayloadSize) *PayloadSize = 0;
@@ -42,6 +41,6 @@ bool infData_Get(char *infFileName, char *NameTag, dword *PayloadSize, byte **Pa
 
   infData_CloseFile();
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

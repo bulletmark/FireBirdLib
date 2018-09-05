@@ -73,13 +73,13 @@ void CallTraceExitResult(dword *Magic, char *Result)
     memset(Spaces, ' ', CallLevel < CTSTACKSIZE ? CallLevel << 1 : 100);
     Spaces[CallLevel < CTSTACKSIZE ? CallLevel << 1 : 100] = '\0';
     StrToISOAlloc(Result, &ISOText);
-    if(ISOText && *ISOText) TAP_PrintNet("%s  = %s\n", Spaces, ISOText);
+    if(ISOText && *ISOText) TAP_Print("%s  = %s\n", Spaces, ISOText);
     TAP_MemFree(ISOText);
   }
 
   if(Magic && *Magic != DEFAULTMAGIC)
   {
-    TAP_PrintNet("%sINVALID MAGIC!\n", Spaces);
+    TAP_Print("%sINVALID MAGIC!\n", Spaces);
     *Magic = DEFAULTMAGIC;
   }
 

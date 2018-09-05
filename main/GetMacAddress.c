@@ -1,11 +1,11 @@
-#include		"../libFireBird.h"
+#include		"libFireBird.h"
 
 byte *GetMacAddress(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   byte *ret = (byte*)FIS_vMACAddress();
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

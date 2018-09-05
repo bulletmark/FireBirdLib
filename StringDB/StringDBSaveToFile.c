@@ -1,15 +1,15 @@
 #include                <string.h>
-#include                "../libFireBird.h"
+#include                "libFireBird.h"
 
 bool StringDBSaveToFile(tStringDB *StringDB, TYPE_File *f)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   dword                 l, p;
 
   if(!StringDB || !f || !StringDB->DB)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
@@ -23,6 +23,6 @@ bool StringDBSaveToFile(tStringDB *StringDB, TYPE_File *f)
 
   TAP_Hdd_Fwrite(StringDB->DB, 1, l, f);
 
-  TRACEEXIT();
+  TRACEEXIT;
   return TRUE;
 }

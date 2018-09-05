@@ -2,8 +2,8 @@
 
 bool OSDMenuMessageBoxIsVisible(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
-  TRACEEXIT();
+  TRACEEXIT;
   return (MessageBoxOSDRgn != 0);
 }

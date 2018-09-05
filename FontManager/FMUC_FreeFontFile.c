@@ -3,7 +3,7 @@
 
 void FMUC_FreeFontFile(tFontDataUC *FontData)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   dword     i;
 
@@ -19,5 +19,5 @@ void FMUC_FreeFontFile(tFontDataUC *FontData)
     memset(FontData, 0, sizeof(tFontDataUC));
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

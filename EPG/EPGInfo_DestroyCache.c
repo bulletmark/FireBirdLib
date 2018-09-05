@@ -4,7 +4,7 @@
 
 void EPGInfo_DestroyCache(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   if(EPGInfoCacheMap)
   {
@@ -22,5 +22,5 @@ void EPGInfo_DestroyCache(void)
     unlink(EPGCacheFile);
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

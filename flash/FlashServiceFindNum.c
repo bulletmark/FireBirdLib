@@ -2,7 +2,7 @@
 
 bool FlashServiceFindNum(byte SatIndex, word NetworkID, word TSID, word ServiceID, TYPE_ServiceType *SvcType, int *SvcNum)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   word                    TpIdx, SvcIdx;
   bool                    ret;
@@ -16,7 +16,7 @@ bool FlashServiceFindNum(byte SatIndex, word NetworkID, word TSID, word ServiceI
     if(SvcType) *SvcType = LastSvcType;
     if(SvcNum) *SvcNum = LastSvcNum;
 
-    TRACEEXIT();
+    TRACEEXIT;
     return TRUE;
   }
 
@@ -60,6 +60,6 @@ bool FlashServiceFindNum(byte SatIndex, word NetworkID, word TSID, word ServiceI
     }
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

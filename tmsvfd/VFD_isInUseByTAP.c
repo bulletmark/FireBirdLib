@@ -2,8 +2,8 @@
 
 bool VFD_isInUseByTAP(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
-  TRACEEXIT();
+  TRACEEXIT;
   return VFDUsedByTAP;
 }

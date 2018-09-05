@@ -3,7 +3,7 @@
 
 void OSDCalcIndices(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   tMenu                *pMenu;
 
@@ -77,5 +77,5 @@ void OSDCalcIndices(void)
     }
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

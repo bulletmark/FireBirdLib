@@ -2,12 +2,12 @@
 
 char *OSDMenuItemGetCurrentValue(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   char *ret;
 
   ret = OSDMenuItemGetValue(Menu[CurrentMenuLevel].CurrentSelection);
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

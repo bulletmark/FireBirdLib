@@ -1,11 +1,11 @@
-#include "FBLib_main.h"
+#include "libFireBird.h"
 
 word GetSysID(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   word ret = TAP_GetSystemId();
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

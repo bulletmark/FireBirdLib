@@ -72,7 +72,7 @@ int PutMsgQ_hooked(dword *MsgQ, dword *Data)
 
 void UnhookFrontTxPacket(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   if(FrontHooked)
   {
@@ -86,12 +86,12 @@ void UnhookFrontTxPacket(void)
     TAP_Delay(10);
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
 }
 
 bool HookFrontTxPacket(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   if(!FrontHooked)
   {
@@ -114,13 +114,13 @@ bool HookFrontTxPacket(void)
     TAP_Delay(10);
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return FrontHooked;
 }
 
 bool FP_Initialize(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   if(!FPPatchInitialized && HookFrontTxPacket())
   {
@@ -153,7 +153,7 @@ bool FP_Initialize(void)
       FPPatchVersion = 0;
       FPPatchType = 0;
 
-      TRACEEXIT();
+      TRACEEXIT;
       return FALSE;
     }
     FPPatchVersion = FPResponse[1];
@@ -208,6 +208,6 @@ bool FP_Initialize(void)
     UnhookFrontTxPacket();
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return TRUE;
 }

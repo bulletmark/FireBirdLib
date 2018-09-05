@@ -1,14 +1,14 @@
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 inline dword FIS_vIboxTimerId(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   static byte   *iboxTimerId = NULL;
 
   if(!iboxTimerId)
     iboxTimerId = (byte*)TryResolve("_iboxTimerId");
 
-  TRACEEXIT();
+  TRACEEXIT;
   return (dword)iboxTimerId;
 }

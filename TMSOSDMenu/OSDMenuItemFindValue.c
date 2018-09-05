@@ -3,7 +3,7 @@
 
 int OSDMenuItemFindValue(char *Text)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   tMenu                *pMenu;
   int                   i, ret;
@@ -21,6 +21,6 @@ int OSDMenuItemFindValue(char *Text)
       }
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

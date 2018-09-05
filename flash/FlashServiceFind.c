@@ -2,7 +2,7 @@
 
 int FlashServiceFind(int SvcType, word ServiceID, word PMTPID, word PCRPID, tFlashService *Service)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   tFlashService         TempService;
   int                   i, NrChannels;
@@ -16,12 +16,12 @@ int FlashServiceFind(int SvcType, word ServiceID, word PMTPID, word PCRPID, tFla
     {
       if(Service) memcpy(Service, &TempService, sizeof(tFlashService));
 
-      TRACEEXIT();
+      TRACEEXIT;
 
       return i;
     }
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return -1;
 }

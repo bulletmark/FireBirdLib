@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <tap.h>
 #include "FBLib_rec.h"
 
 extern FILE            *infDatainfFile;
@@ -12,7 +11,7 @@ bool infData_Delete(char *infFileName, char *NameTag)
   char                  NameTagHdr[512];
   byte                  *Data;
 
-  TRACEENTER();
+  TRACEENTER;
 
   ret = FALSE;
 
@@ -76,6 +75,6 @@ bool infData_Delete(char *infFileName, char *NameTag)
 
   infData_CloseFile();
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

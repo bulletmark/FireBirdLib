@@ -1,18 +1,18 @@
 #include "FBLib_ini.h"
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 char *LangGetStringDefault(dword StringID, char *DefaultString)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   char *ret = LangGetString(StringID);
 
   if((ret[0] == '\0') && DefaultString)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return DefaultString;
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

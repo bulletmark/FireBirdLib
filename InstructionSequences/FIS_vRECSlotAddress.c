@@ -1,8 +1,8 @@
-#include "../flash/FBLib_flash.h"
+#include "flash/FBLib_flash.h"
 
 inline dword FIS_vRECSlotAddress(byte Slot)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   static byte          *__pvrRecInfo = NULL;
   dword                 ret;
@@ -20,6 +20,6 @@ inline dword FIS_vRECSlotAddress(byte Slot)
     ret = (dword)&__pvrRecInfo[Slot * FlashTimerStructSize()];
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

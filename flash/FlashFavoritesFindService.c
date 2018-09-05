@@ -3,7 +3,7 @@
 
 int FlashFavoritesFindService(int SvcType, int SvcNum)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   tFavorites            Favs;
   int                   i, j, NrFavs;
@@ -11,14 +11,14 @@ int FlashFavoritesFindService(int SvcType, int SvcNum)
   //SvcType out of range
   if((SvcType < 0) || (SvcType > SVC_TYPE_Radio))
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
   //SvcNum out of range
   if((SvcNum < 0) || (SvcNum >= FlashServiceGetTotal(SvcType)))
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
@@ -31,12 +31,12 @@ int FlashFavoritesFindService(int SvcType, int SvcNum)
       for(j = 0; j < Favs.NrEntries; j++)
         if((Favs.SvcType[j] == SvcType) && (Favs.SvcNum[j] == SvcNum))
         {
-          TRACEEXIT();
+          TRACEEXIT;
           return i;
         }
     }
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return -1;
 }

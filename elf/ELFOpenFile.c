@@ -11,7 +11,7 @@ Elf32_Sym               *symtab = NULL;
 
 bool ELFOpenFile(char *FileName)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   bool                  ret = FALSE;
   char                  AbsFileName[FBLIB_DIR_SIZE];
@@ -23,6 +23,6 @@ bool ELFOpenFile(char *FileName)
     ret = (fTAP >= 0);
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

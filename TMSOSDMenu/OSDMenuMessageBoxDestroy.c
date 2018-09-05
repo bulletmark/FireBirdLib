@@ -2,7 +2,7 @@
 
 void OSDMenuMessageBoxDestroy(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   if(MessageBoxOSDRgn)
   {
@@ -13,5 +13,5 @@ void OSDMenuMessageBoxDestroy(void)
 
   OSDMenuFreeStdFonts();
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

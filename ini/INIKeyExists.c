@@ -1,10 +1,10 @@
 #include <string.h>
 #include "FBLib_ini.h"
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 bool INIKeyExists(char *Key)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   char                  *i = NULL, *j = NULL;
   char                  TempKey[80];
@@ -22,6 +22,6 @@ bool INIKeyExists(char *Key)
   else
     ret = FALSE;
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

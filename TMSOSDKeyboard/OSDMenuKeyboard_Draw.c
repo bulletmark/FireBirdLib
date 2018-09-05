@@ -3,7 +3,7 @@
 
 void OSDMenuKeyboard_Draw(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   int                   i=0;
   int                   j=0;
@@ -159,5 +159,5 @@ void OSDMenuKeyboard_Draw(void)
 
   TAP_Osd_Sync();
 
-  TRACEEXIT();
+  TRACEEXIT;
 }

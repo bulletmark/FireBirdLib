@@ -2,7 +2,7 @@
 
 dword FirmwareDatMJD(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   tFWDATHeader         *FWDatHeader;
   dword                 d;
@@ -11,10 +11,10 @@ dword FirmwareDatMJD(void)
   {
     d = FWDatHeader->CompileDate;
 
-    TRACEEXIT();
+    TRACEEXIT;
     return TAP_MakeMjd(d >>16, (d >> 8) & 0xff, d & 0xff);
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return 0;
 }

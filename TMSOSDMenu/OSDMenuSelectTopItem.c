@@ -2,7 +2,7 @@
 
 bool OSDMenuSelectTopItem(int TopIndex)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   tMenu                *pMenu;
 
@@ -10,7 +10,7 @@ bool OSDMenuSelectTopItem(int TopIndex)
 
   if(pMenu->NrItems == 0)
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
@@ -23,6 +23,6 @@ bool OSDMenuSelectTopItem(int TopIndex)
     ListDirty = TRUE;
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return TRUE;
 }

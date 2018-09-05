@@ -1,14 +1,14 @@
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 inline dword FIS_vVfdBrightTimerId(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   static dword          _vfdBrightTimerId = 0;
 
   if(!_vfdBrightTimerId)
     _vfdBrightTimerId = TryResolve("_vfdBrightTimerId");
 
-  TRACEEXIT();
+  TRACEEXIT;
   return _vfdBrightTimerId;
 }

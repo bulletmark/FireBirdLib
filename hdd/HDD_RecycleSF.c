@@ -1,11 +1,11 @@
 #include                <sys/stat.h>
 #include                <string.h>
-#include                "../libFireBird.h"
+#include                "libFireBird.h"
 #include                "FBLib_hdd.h"
 
 bool HDD_RecycleSF(char *FileName)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   tFileInUse            FileInUse;
   char                  AbsPath[FBLIB_DIR_SIZE], AbsFileName[MAX_FILE_NAME_SIZE + 1], *Slash;
@@ -67,6 +67,6 @@ bool HDD_RecycleSF(char *FileName)
     }
   }
 
-  TRACEEXIT();
+  TRACEEXIT;
   return ret;
 }

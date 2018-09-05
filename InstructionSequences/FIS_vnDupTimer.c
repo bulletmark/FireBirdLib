@@ -1,13 +1,13 @@
-#include "../libFireBird.h"
+#include "libFireBird.h"
 
 inline dword FIS_vnDupTimer(void)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   static dword          vnDupTimer = 0;
 
   if(!vnDupTimer) vnDupTimer = TryResolve("_nDupTimer");
 
-  TRACEEXIT();
+  TRACEEXIT;
   return vnDupTimer;
 }

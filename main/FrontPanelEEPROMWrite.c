@@ -3,13 +3,13 @@
 
 bool FrontPanelEEPROMWrite(word Address, byte Data)
 {
-  TRACEENTER();
+  TRACEENTER;
 
   byte                  Buffer[8];
 
   if(!FP_Initialize() || !HookFrontTxPacket())
   {
-    TRACEEXIT();
+    TRACEEXIT;
     return FALSE;
   }
 
@@ -26,6 +26,6 @@ bool FrontPanelEEPROMWrite(word Address, byte Data)
   if(Address == 0x01ff) FPPatchAntiFreezeOption = Data;
   if(Address == 0x01fe) FPPatchPowerRestoreOption = Data;
 
-  TRACEEXIT();
+  TRACEEXIT;
   return TRUE;
 }

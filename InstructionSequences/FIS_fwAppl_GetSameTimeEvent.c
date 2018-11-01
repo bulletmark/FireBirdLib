@@ -4,11 +4,11 @@ inline dword FIS_fwAppl_GetSameTimeEvent(void)
 {
   static dword          _Appl_GetSameTimeEvent = 0;
 
-  TRACEENTER;
+  TRACEENTER();
 
   if(!_Appl_GetSameTimeEvent)
     _Appl_GetSameTimeEvent = TryResolve("_Z21Appl_GetSameTimeEventhttt");
 
-  TRACEEXIT;
+  TRACEEXIT();
   return _Appl_GetSameTimeEvent;
 }

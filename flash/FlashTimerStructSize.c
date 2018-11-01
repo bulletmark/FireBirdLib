@@ -2,10 +2,10 @@
 
 int FlashTimerStructSize(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   int ret = FIS_vTimerTempInfo() - FIS_vTimerEditInfo();
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

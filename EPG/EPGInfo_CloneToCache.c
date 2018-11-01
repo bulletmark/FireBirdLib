@@ -3,7 +3,7 @@
 
 void EPGInfo_CloneToCache(dword *TreePointer, byte StructOffset, tEPGFilter *EPGFilter)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   tTreeEntry           *ListStart, *Entry;
   TYPE_EvtInfo         *EvtInfo;
@@ -26,7 +26,7 @@ void EPGInfo_CloneToCache(dword *TreePointer, byte StructOffset, tEPGFilter *EPG
     //If the list points to itself, no data is available
     if(ListStart == (tTreeEntry*)ListStart->Next)
     {
-      TRACEEXIT;
+      TRACEEXIT();
       return;
     }
 
@@ -112,5 +112,5 @@ void EPGInfo_CloneToCache(dword *TreePointer, byte StructOffset, tEPGFilter *EPG
     } while(Entry && (Entry->Next != ListStart->Prev));
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

@@ -2,7 +2,7 @@
 
 void TAPCOM_Reject(TAPCOM_Channel Channel)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   TAPCOM_InternalMesBuf *buf = (TAPCOM_InternalMesBuf *) Channel;
 
@@ -14,5 +14,5 @@ void TAPCOM_Reject(TAPCOM_Channel Channel)
     buf->ServerAlive = TAP_GetTick();
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

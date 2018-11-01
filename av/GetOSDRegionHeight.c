@@ -2,7 +2,7 @@
 
 word GetOSDRegionHeight(word Region)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   tOSDMapInfo          *OSDMapInfo;
   word                  ret;
@@ -11,12 +11,12 @@ word GetOSDRegionHeight(word Region)
 
   if(!OSDMapInfo)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return 0;
   }
 
   ret = OSDMapInfo[Region].Height;
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

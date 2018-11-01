@@ -2,7 +2,7 @@
 
 byte FM_CharToIndex(byte Char)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   //0x20 - 0x7e
   //0xa0 - 0xff
@@ -11,6 +11,6 @@ byte FM_CharToIndex(byte Char)
   if(Char > 0x7e) Char -= 0x21;
   Char -= 0x20;
 
-  TRACEEXIT;
+  TRACEEXIT();
   return (byte)Char;
 }

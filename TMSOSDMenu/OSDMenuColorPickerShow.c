@@ -3,7 +3,7 @@
 
 void OSDMenuColorPickerShow(char *Title, dword Color)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword                 x, y;
   tOSDMapInfo          *OSDMapInfo;
@@ -57,5 +57,5 @@ void OSDMenuColorPickerShow(char *Title, dword Color)
 
   TAP_Osd_Sync();
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

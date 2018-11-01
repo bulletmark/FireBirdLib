@@ -2,7 +2,7 @@
 
 inline dword FIS_vEtcInfo(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   static dword          vEtcInfo = 0;
 
@@ -12,6 +12,6 @@ inline dword FIS_vEtcInfo(void)
     if(vEtcInfo) vEtcInfo = *(dword*)vEtcInfo;
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return vEtcInfo;
 }

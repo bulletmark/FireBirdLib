@@ -2,7 +2,7 @@
 
 dword Appl_WaitEvt(dword Event, dword *a1, dword a2, dword a3, dword Timeout)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword                 (*__Appl_WaitEvt)(dword, dword *, dword, dword, dword);
   dword                 ret = 0;
@@ -10,6 +10,6 @@ dword Appl_WaitEvt(dword Event, dword *a1, dword a2, dword a3, dword Timeout)
   __Appl_WaitEvt = (void*)FIS_fwAppl_WaitEvt();
   if(__Appl_WaitEvt) ret = __Appl_WaitEvt(Event, a1, a2, a3, Timeout);
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

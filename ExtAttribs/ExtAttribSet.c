@@ -7,7 +7,7 @@
 
 bool ExtAttribSet(char *FileName, char *AttrName, byte *Data, int DataLen)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   char                  FullAttrName[128];
   char                  AbsFileName[FBLIB_DIR_SIZE];
@@ -15,7 +15,7 @@ bool ExtAttribSet(char *FileName, char *AttrName, byte *Data, int DataLen)
 
   if(!FileName || !*FileName || !AttrName || !*AttrName)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -30,7 +30,7 @@ bool ExtAttribSet(char *FileName, char *AttrName, byte *Data, int DataLen)
       {
         close(f);
 
-        TRACEEXIT;
+        TRACEEXIT();
         return TRUE;
       }
       else
@@ -40,7 +40,7 @@ bool ExtAttribSet(char *FileName, char *AttrName, byte *Data, int DataLen)
         {
           close(f);
 
-          TRACEEXIT;
+          TRACEEXIT();
           return TRUE;
         }
       }
@@ -48,6 +48,6 @@ bool ExtAttribSet(char *FileName, char *AttrName, byte *Data, int DataLen)
     }
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return FALSE;
 }

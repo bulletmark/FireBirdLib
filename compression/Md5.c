@@ -367,11 +367,11 @@ UINT4 *in;
 
 bool MD5String(char *inString, byte *Digest)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   if(!inString)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -384,13 +384,13 @@ bool MD5String(char *inString, byte *Digest)
 
   if(Digest) memcpy(Digest, mdContext.digest, 16);
 
-  TRACEEXIT;
+  TRACEEXIT();
   return TRUE;
 }
 
 bool MD5File(char *FileName, byte *Digest)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   int                   inFile;
   MD5_CTX               mdContext;
@@ -400,7 +400,7 @@ bool MD5File(char *FileName, byte *Digest)
 
   if(!FileName || !*FileName)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -409,7 +409,7 @@ bool MD5File(char *FileName, byte *Digest)
   inFile = open(AbsFileName, O_RDONLY, 0600);
   if(inFile < 0)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -421,6 +421,6 @@ bool MD5File(char *FileName, byte *Digest)
 
   if(Digest) memcpy(Digest, mdContext.digest, 16);
 
-  TRACEEXIT;
+  TRACEEXIT();
   return TRUE;
 }

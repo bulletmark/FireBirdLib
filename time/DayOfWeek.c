@@ -4,10 +4,10 @@ char                    WDString[8][4] = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sa
 
 char *DayOfWeek(byte WeekDay)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   if(WeekDay > 7) WeekDay = 7;
 
-  TRACEEXIT;
+  TRACEEXIT();
   return WDString[WeekDay];
 }

@@ -3,10 +3,10 @@
 
 dword GetOSDMapAddress(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword ret = FIS_vOsdMap();
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

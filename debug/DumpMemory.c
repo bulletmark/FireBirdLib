@@ -4,7 +4,7 @@
 
 void DumpMemory(byte* p, dword size, int BytesPerLine)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   byte                 *StartAddress = p;
   int                   CollectedBytes, i;
@@ -16,7 +16,7 @@ void DumpMemory(byte* p, dword size, int BytesPerLine)
   {
     TAP_Print("0x00000000 NULL\n");
 
-    TRACEEXIT;
+    TRACEEXIT();
     return;
   }
 
@@ -65,5 +65,5 @@ void DumpMemory(byte* p, dword size, int BytesPerLine)
     TAP_Print(s);
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

@@ -6,7 +6,7 @@
 
 INILOCATION INILocateFile(char *FileName, char *AppName)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   INILOCATION           location = INILOCATION_NotFound;
   char                  dir[200] = "";
@@ -52,6 +52,6 @@ INILOCATION INILocateFile(char *FileName, char *AppName)
   //Restore the directory where the file has been found
   if(*dir) HDD_ChangeDir(dir);
 
-  TRACEEXIT;
+  TRACEEXIT();
   return location;
 }

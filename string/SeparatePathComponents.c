@@ -3,7 +3,7 @@
 
 void SeparatePathComponents(char *FullName, char *Path, char *FileName, char *FileExt)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   int                   Index;
   bool                  isDel;
@@ -14,7 +14,7 @@ void SeparatePathComponents(char *FullName, char *Path, char *FileName, char *Fi
 
   if(!FullName || !*FullName)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return;
   }
 
@@ -23,5 +23,5 @@ void SeparatePathComponents(char *FullName, char *Path, char *FileName, char *Fi
   if(Index && FileName) TAP_SPrint(&FileName[strlen(FileName)], "-%d", Index);
   if(isDel && FileExt) strcat(FileExt, ".del");
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

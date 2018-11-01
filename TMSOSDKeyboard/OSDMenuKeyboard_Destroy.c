@@ -2,9 +2,9 @@
 
 void OSDMenuKeyboard_Destroy(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   OSDMenuKeyboard_Finish();
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

@@ -4,7 +4,7 @@
 
 tPathFormat GetPathType(char *Source)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   byte                  Result;
   tPathFormat           ret;
@@ -13,7 +13,7 @@ tPathFormat GetPathType(char *Source)
 
   if((Source == NULL) || (*Source == '\0'))
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return 0;
   }
 
@@ -26,7 +26,7 @@ tPathFormat GetPathType(char *Source)
   //Catch . and / entries
   if((Source[0] == '.') || (strcmp(Source, "/") == 0))
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return PF_TAPPathOnly;
   }
 
@@ -38,7 +38,7 @@ tPathFormat GetPathType(char *Source)
     else
       Result = PF_FullLinuxPath;
 
-    TRACEEXIT;
+    TRACEEXIT();
     return Result;
   }
 
@@ -80,6 +80,6 @@ tPathFormat GetPathType(char *Source)
     case 7: ret = PF_LinuxPathOnly; break;
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

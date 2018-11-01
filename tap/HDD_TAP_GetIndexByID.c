@@ -5,17 +5,17 @@
 //
 int HDD_TAP_GetIndexByID(dword TAPID)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   int                   i;
 
   for(i = 0; i < TAP_MAX; i++)
     if(HDD_TAP_GetIDByIndex(i) == TAPID)
     {
-      TRACEEXIT;
+      TRACEEXIT();
       return i;
     }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return -1;
 }

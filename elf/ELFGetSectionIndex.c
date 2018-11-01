@@ -3,7 +3,7 @@
 
 dword ELFGetSectionIndex(char *SectionName)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   int                   i;
 
@@ -13,11 +13,11 @@ dword ELFGetSectionIndex(char *SectionName)
     for(i = 1; i < ELFHeader->e_shnum; i++)
       if(!strcmp(&shstrtab[SectionHeaders[i].sh_name], SectionName))
       {
-        TRACEEXIT;
+        TRACEEXIT();
         return i;
       }
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return 0;
 }

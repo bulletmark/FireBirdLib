@@ -2,13 +2,13 @@
 
 inline dword FIS_fwApplHdd_SetWorkFolder(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   static dword          _ApplHdd_SetWorkFolder = 0;
 
   if(!_ApplHdd_SetWorkFolder)
     _ApplHdd_SetWorkFolder = TryResolve("_Z21ApplHdd_SetWorkFolderPv");
 
-  TRACEEXIT;
+  TRACEEXIT();
   return _ApplHdd_SetWorkFolder;
 }

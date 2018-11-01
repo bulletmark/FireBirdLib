@@ -2,7 +2,7 @@
 
 void OSDMenuWaitSpinnerInit(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   if(InfoBoxOSDRgn && WaitSpinnerRgn == 0)
   {
@@ -17,5 +17,5 @@ void OSDMenuWaitSpinnerInit(void)
     }
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

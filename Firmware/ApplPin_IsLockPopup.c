@@ -2,7 +2,7 @@
 
 bool ApplPin_IsLockPopup(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword (*__ApplPin_IsLockPopup)(void);
   bool ret = FALSE;
@@ -10,6 +10,6 @@ bool ApplPin_IsLockPopup(void)
   __ApplPin_IsLockPopup = (void*)FIS_fwApplPin_IsLockPopup();
   if(__ApplPin_IsLockPopup) ret = __ApplPin_IsLockPopup();
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

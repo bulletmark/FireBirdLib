@@ -2,13 +2,13 @@
 
 inline dword FIS_vCurTapTask(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   static dword          vcurTapTask = 0;
 
   if(!vcurTapTask)
     vcurTapTask = TryResolve("_curTapTask");
 
-  TRACEEXIT;
+  TRACEEXIT();
   return vcurTapTask;
 }

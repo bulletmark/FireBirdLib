@@ -3,14 +3,14 @@
 
 void DeleteAt(char *SourceString, int Pos, int Len)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   char                 *dst, *src;
   int                   l;
 
   if((SourceString == NULL) || (!*SourceString) || (Len == 0))
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return;
   }
 
@@ -19,7 +19,7 @@ void DeleteAt(char *SourceString, int Pos, int Len)
 
   if((Pos >= l))
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return;
   }
 
@@ -34,5 +34,5 @@ void DeleteAt(char *SourceString, int Pos, int Len)
     *dst = *src;
   }while(*dst);
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

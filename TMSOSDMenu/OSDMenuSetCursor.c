@@ -3,9 +3,9 @@
 
 void OSDMenuSetCursor(tCursorType CursorType)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   MenuCursorType = CursorType;
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

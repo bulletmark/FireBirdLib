@@ -2,13 +2,13 @@
 
 inline dword FIS_vfrontfd(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   static dword          vfrontfd = 0;
 
   if(!vfrontfd)
     vfrontfd = TryResolve("_frontfd");
 
-  TRACEEXIT;
+  TRACEEXIT();
   return vfrontfd;
 }

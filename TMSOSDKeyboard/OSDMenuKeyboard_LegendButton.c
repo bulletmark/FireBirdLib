@@ -3,7 +3,7 @@
 
 void OSDMenuKeyboard_LegendButton(dword Line, tButtonIcon ButtonIcon, char *Text)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   if(OSDMenuKeyboard_NrButtons < 20)
   {
@@ -15,5 +15,5 @@ void OSDMenuKeyboard_LegendButton(dword Line, tButtonIcon ButtonIcon, char *Text
     OSDMenuKeyboard_NrButtons++;
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

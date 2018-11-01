@@ -2,7 +2,7 @@
 
 dword HDD_TAP_DisableAll(bool DisableEvents)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword                 i, TAPID, count = 0;
 
@@ -12,6 +12,6 @@ dword HDD_TAP_DisableAll(bool DisableEvents)
     if((TAPID != 0) && (!HDD_TAP_Disable(TAPID, DisableEvents))) count++;
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return count;
 }

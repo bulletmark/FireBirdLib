@@ -7,7 +7,7 @@ void make_crc_table(void);
 
 void make_crc_table(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword                dwCRC;
   dword                CRCPOLY = 0;
@@ -31,20 +31,20 @@ void make_crc_table(void)
   }
   CRCTableOK = TRUE;
 
-  TRACEEXIT;
+  TRACEEXIT();
 }
 
 
 dword CRC32(dword StartValue, void *StartAddress, dword Length)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   volatile byte         *pData;
   dword                 crc = StartValue;   //Normaly 0xffffffff
 
   if(!StartAddress)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return crc;
   }
 
@@ -53,6 +53,6 @@ dword CRC32(dword StartValue, void *StartAddress, dword Length)
   for(pData = StartAddress; pData < (byte *) StartAddress + Length; pData++)
     crc = (crc << 8) ^ CRC32Table[((crc >> 24) ^ *pData) & 0xff];
 
-  TRACEEXIT;
+  TRACEEXIT();
   return crc;
 }

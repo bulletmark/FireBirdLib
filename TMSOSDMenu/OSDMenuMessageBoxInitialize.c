@@ -3,7 +3,7 @@
 
 void OSDMenuMessageBoxInitialize(char *Title, char *Text)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   if(InfoBoxOSDRgn)OSDMenuInfoBoxDestroy();
 
@@ -22,5 +22,5 @@ void OSDMenuMessageBoxInitialize(char *Title, char *Text)
   strncpyUC(MessageBox.Text, Text, STDSTRINGSIZE);
   MessageBox.Text[STDSTRINGSIZE - 1] = '\0';
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

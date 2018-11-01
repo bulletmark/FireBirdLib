@@ -7,7 +7,7 @@
 
 bool ExtAttribGet(char *FileName, char *AttrName, byte *Data, int MaxDataLen, int *DataLen)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   char                  FullAttrName[128];
   char                  AbsFileName[FBLIB_DIR_SIZE];
@@ -17,7 +17,7 @@ bool ExtAttribGet(char *FileName, char *AttrName, byte *Data, int MaxDataLen, in
   {
     if(DataLen) *DataLen = 0;
 
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -37,7 +37,7 @@ bool ExtAttribGet(char *FileName, char *AttrName, byte *Data, int MaxDataLen, in
         if(DataLen) *DataLen = i;
         close(f);
 
-        TRACEEXIT;
+        TRACEEXIT();
         return TRUE;
       }
       close(f);
@@ -46,6 +46,6 @@ bool ExtAttribGet(char *FileName, char *AttrName, byte *Data, int MaxDataLen, in
 
   if(DataLen) *DataLen = 0;
 
-  TRACEEXIT;
+  TRACEEXIT();
   return FALSE;
 }

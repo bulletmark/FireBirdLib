@@ -5,7 +5,7 @@
 
 void HDD_RemoveDir(char *DirPath, bool Recursive)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   char                  cmd[512], LinuxPath[FBLIB_DIR_SIZE];
 
@@ -23,5 +23,5 @@ void HDD_RemoveDir(char *DirPath, bool Recursive)
     system(cmd);
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

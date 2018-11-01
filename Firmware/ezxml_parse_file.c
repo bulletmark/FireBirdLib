@@ -2,7 +2,7 @@
 
 ezxml_t ezxml_parse_file(const char *file)
 {
-  TRACEENTER;
+  TRACEENTER();
 
 	ezxml_t		(*__ezxml_parse_file)(const char *);
 	ezxml_t		ret = 0;
@@ -14,6 +14,6 @@ ezxml_t ezxml_parse_file(const char *file)
 		ret = __ezxml_parse_file(file);
 	}
 
-  TRACEEXIT;
+  TRACEEXIT();
 	return ret;
 }

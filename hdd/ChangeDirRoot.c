@@ -4,10 +4,10 @@
 
 bool ChangeDirRoot(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   HDD_ChangeDir("/");
 
-  TRACEEXIT;
+  TRACEEXIT();
   return TRUE;
 }

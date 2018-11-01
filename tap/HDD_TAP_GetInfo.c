@@ -4,14 +4,14 @@
 
 bool HDD_TAP_GetInfo(char *FileName, tTAPInfo *pTAPInfo)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword                 Index;
   char                  s[128];
 
   if(!pTAPInfo)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -19,7 +19,7 @@ bool HDD_TAP_GetInfo(char *FileName, tTAPInfo *pTAPInfo)
   {
     ELFCleanup();
 
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -27,7 +27,7 @@ bool HDD_TAP_GetInfo(char *FileName, tTAPInfo *pTAPInfo)
   {
     ELFCleanup();
 
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -35,7 +35,7 @@ bool HDD_TAP_GetInfo(char *FileName, tTAPInfo *pTAPInfo)
   {
     ELFCleanup();
 
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -43,7 +43,7 @@ bool HDD_TAP_GetInfo(char *FileName, tTAPInfo *pTAPInfo)
   {
     ELFCleanup();
 
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -52,7 +52,7 @@ bool HDD_TAP_GetInfo(char *FileName, tTAPInfo *pTAPInfo)
   {
     ELFCleanup();
 
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -102,6 +102,6 @@ bool HDD_TAP_GetInfo(char *FileName, tTAPInfo *pTAPInfo)
 
   ELFCleanup();
 
-  TRACEEXIT;
+  TRACEEXIT();
   return TRUE;
 }

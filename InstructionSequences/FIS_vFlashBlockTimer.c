@@ -2,13 +2,13 @@
 
 inline dword FIS_vFlashBlockTimer(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   static dword          *vFlashTimer = 0;
 
   if(!vFlashTimer)
     vFlashTimer = (dword*)TryResolve("_timer");
 
-  TRACEEXIT;
+  TRACEEXIT();
   return (vFlashTimer ? *vFlashTimer : 0);
 }

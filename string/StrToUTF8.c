@@ -145,7 +145,7 @@ typedef struct
 
 bool StrToUTF8(byte *SourceString, byte *DestString, byte DefaultISO8859CharSet)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   bool                  ret;
   byte                  BytesPerCharacter;
@@ -155,7 +155,7 @@ bool StrToUTF8(byte *SourceString, byte *DestString, byte DefaultISO8859CharSet)
 
   if(!SourceString || !DestString)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -163,7 +163,7 @@ bool StrToUTF8(byte *SourceString, byte *DestString, byte DefaultISO8859CharSet)
   {
     DestString[0] = '\0';
 
-    TRACEEXIT;
+    TRACEEXIT();
     return TRUE;
   }
 
@@ -257,7 +257,7 @@ bool StrToUTF8(byte *SourceString, byte *DestString, byte DefaultISO8859CharSet)
         }
 
 
-        TRACEEXIT;
+        TRACEEXIT();
         return TRUE;
       }
 
@@ -266,7 +266,7 @@ bool StrToUTF8(byte *SourceString, byte *DestString, byte DefaultISO8859CharSet)
         //According to EN300468, this is already in UTF8 encoding
         strcpy(DestString, &SourceString[1]);
 
-        TRACEEXIT;
+        TRACEEXIT();
         return TRUE;
       }
 
@@ -370,6 +370,6 @@ bool StrToUTF8(byte *SourceString, byte *DestString, byte DefaultISO8859CharSet)
   }
   *DestString = '\0';
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

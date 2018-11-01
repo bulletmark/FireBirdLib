@@ -2,7 +2,7 @@
 
 tButtonIcon OSDMenuGetButtonIcon(dword key)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   tButtonIcon ret = BI_None;
 
@@ -66,6 +66,6 @@ tButtonIcon OSDMenuGetButtonIcon(dword key)
     case RKEY_Yellow:   ret = BI_Yellow; break;
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

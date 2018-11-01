@@ -2,7 +2,7 @@
 
 void OSDDrawMemo(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   int                   i;
   dword                 Y;
@@ -24,5 +24,5 @@ void OSDDrawMemo(void)
 
   if(CallbackProcedure) CallbackProcedure(OSDCB_List, OSDRgn);
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

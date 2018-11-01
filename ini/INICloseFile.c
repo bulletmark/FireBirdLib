@@ -4,7 +4,7 @@
 
 void INICloseFile(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   if(INIBuffer != NULL)
   {
@@ -19,5 +19,5 @@ void INICloseFile(void)
     INICommentBuffer = NULL;
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

@@ -5,18 +5,18 @@ int                     TAPDirStackDepth = -1;
 
 bool HDD_TAP_PushDir(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   if(++TAPDirStackDepth < TAPDIR_MAX_STACK)
   {
     if(HDD_TAP_GetCurrentDir(TAPDirStack[TAPDirStackDepth]) == 0)
     {
-      TRACEEXIT;
+      TRACEEXIT();
       return TRUE;
     }
   }
   TAPDirStackDepth--;
 
-  TRACEEXIT;
+  TRACEEXIT();
   return FALSE;
 }

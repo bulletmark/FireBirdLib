@@ -6,7 +6,7 @@
 
 char *LogoManager_GetPathToLogoByChannelID(ulong64 ChannelID, tLogoStyle LogoStyle, tLogoSize LogoSize, tLogoAspect LogoAR, char *LogoPath)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   char                  s[20], LP[FBLIB_DIR_SIZE];
 
@@ -35,12 +35,12 @@ char *LogoManager_GetPathToLogoByChannelID(ulong64 ChannelID, tLogoStyle LogoSty
             break;
       }
 
-      TRACEEXIT;
+      TRACEEXIT();
       return LogoPath;
     }
     HDD_TAP_PopDir();
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return "";
 }

@@ -5,7 +5,7 @@
 
 void LogEntryGeneric(char *ProgramName, bool Console, char *Text)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   char                 *s;
   int                   l;
@@ -19,7 +19,7 @@ void LogEntryGeneric(char *ProgramName, bool Console, char *Text)
 
   if(!ProgramName || !Text)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return;
   }
 
@@ -74,5 +74,5 @@ void LogEntryGeneric(char *ProgramName, bool Console, char *Text)
   }
   HDD_TAP_PopDir();
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

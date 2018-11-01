@@ -2,7 +2,7 @@
 
 dword HDD_TAP_SendEvent(dword TAPID, bool AllowParamInterception, word event, dword param1, dword param2)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword                *curTapTask;
   tTMSTAPTaskTable     *TMSTAPTaskTable;
@@ -15,7 +15,7 @@ dword HDD_TAP_SendEvent(dword TAPID, bool AllowParamInterception, word event, dw
 
   if(!TMSTAPTaskTable || !curTapTask || (!LibInitialized && !InitTAPex()))
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return 0;
   }
 
@@ -25,7 +25,7 @@ dword HDD_TAP_SendEvent(dword TAPID, bool AllowParamInterception, word event, dw
 
     if(Index < 0 || Index >= TAP_MAX)
     {
-      TRACEEXIT;
+      TRACEEXIT();
       return 0;
     }
 
@@ -35,7 +35,7 @@ dword HDD_TAP_SendEvent(dword TAPID, bool AllowParamInterception, word event, dw
     *curTapTask = TAP_TableIndex;
     if((Ret == 0) && AllowParamInterception)
     {
-      TRACEEXIT;
+      TRACEEXIT();
       return 0;
     }
   }
@@ -54,13 +54,13 @@ dword HDD_TAP_SendEvent(dword TAPID, bool AllowParamInterception, word event, dw
         // In this case we don't even call the remaining TAPs
         if((Ret == 0) && AllowParamInterception)
         {
-          TRACEEXIT;
+          TRACEEXIT();
           return 0;
         }
       }
     }
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return Ret;
 }

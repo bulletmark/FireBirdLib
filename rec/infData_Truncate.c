@@ -3,7 +3,7 @@
 
 void infData_Truncate(char *infFileName, dword Position)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   char                  AbsFileName[FBLIB_DIR_SIZE];
 
@@ -13,5 +13,5 @@ void infData_Truncate(char *infFileName, dword Position)
     if(*AbsFileName) truncate(AbsFileName, Position);
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

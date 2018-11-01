@@ -7,7 +7,7 @@
 //                  and 0xf00* for errors
 word HDD_SetExtRecording(bool ExtDisk)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword                *__nExtPartition;
   textPartitionInfo    *__extPartitionInfo;
@@ -23,42 +23,42 @@ word HDD_SetExtRecording(bool ExtDisk)
   __nExtPartition = (dword*)FIS_vnExtPartition();
   if(!__nExtPartition)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return 0xf000;
   }
 
   Appl_SetIsExternal = (void*)FIS_fwAppl_SetIsExternal();
   if(!Appl_SetIsExternal)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return 0xf001;
   }
 
   __extPartitionInfo = (textPartitionInfo*)FIS_vExtPartitionInfo();
   if(!__extPartitionInfo)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return 0xf002;
   }
 
   __extTsFolder = (dword*)FIS_vExtTsFolder();
   if(!__extTsFolder)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return 0xf003;
   }
 
   __isAllPartitionInvalid = (byte*)FIS_vIsAllPartitionInvalid();
   if(!__isAllPartitionInvalid)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return 0xf004;
   }
 
   __selectedPartition = (int*)FIS_vSelectedPartition();
   if(!__selectedPartition)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return 0xf005;
   }
 
@@ -67,21 +67,21 @@ word HDD_SetExtRecording(bool ExtDisk)
     //Check if an external disk has been mounted
     if(*__nExtPartition == 0)
     {
-      TRACEEXIT;
+      TRACEEXIT();
       return 0xe000;
     }
 
     //Check if there is at least one partition which can be used for recording
     if(*__isAllPartitionInvalid != 0)
     {
-      TRACEEXIT;
+      TRACEEXIT();
       return 0xe001;
     }
 
     //Another check to make sure that there is a selectable partition
     if(__selectedPartition[1] < 0)
     {
-      TRACEEXIT;
+      TRACEEXIT();
       return 0xe002;
     }
 
@@ -92,7 +92,7 @@ word HDD_SetExtRecording(bool ExtDisk)
     DirEntry = TAP_MemAlloc(sizeof(tDirEntry));
     if(!DirEntry)
     {
-      TRACEEXIT;
+      TRACEEXIT();
       return 0xf006;
     }
 
@@ -100,7 +100,7 @@ word HDD_SetExtRecording(bool ExtDisk)
     DirEntry->Path = TAP_MemAlloc(strlen(ExtDiskPart) + 1);
     if(!DirEntry->Path)
     {
-      TRACEEXIT;
+      TRACEEXIT();
       return 0xf007;
     }
 
@@ -120,6 +120,6 @@ word HDD_SetExtRecording(bool ExtDisk)
     Appl_SetIsExternal(FALSE);
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return 0x0000;
 }

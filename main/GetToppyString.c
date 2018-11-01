@@ -2,7 +2,7 @@
 
 char *GetToppyString(word SysID)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword                 i;
   tToppyInfo           *ToppyInfo;
@@ -14,12 +14,12 @@ char *GetToppyString(word SysID)
     {
       if(ToppyInfo->SysID == SysID)
       {
-        TRACEEXIT;
+        TRACEEXIT();
         return ToppyInfo->Device;
       }
     }
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return "???";
 }

@@ -3,7 +3,7 @@
 
 bool OSDMenuItemModifyName(int ItemIndex, char *Text)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   tMenu                *pMenu;
 
@@ -11,7 +11,7 @@ bool OSDMenuItemModifyName(int ItemIndex, char *Text)
 
   if((pMenu->NrItems == 0) || (ItemIndex >= pMenu->NrItems) || !Text || !Text[0])
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -20,6 +20,6 @@ bool OSDMenuItemModifyName(int ItemIndex, char *Text)
 
   ListDirty = TRUE;
 
-  TRACEEXIT;
+  TRACEEXIT();
   return TRUE;
 }

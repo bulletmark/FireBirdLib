@@ -5,7 +5,7 @@
 
 ulong64 LogoManager_GetChannelID(int SvcType, int SvcNum)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   tFlashService           ServiceInfo;
   tFlashSatTable          SatInfo;
@@ -14,24 +14,24 @@ ulong64 LogoManager_GetChannelID(int SvcType, int SvcNum)
 
   if(!FlashServiceGetInfo(SvcType, SvcNum, &ServiceInfo))
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return 0;
   }
 
   if(!FlashSatTablesGetInfo(ServiceInfo.SatIndex, &SatInfo))
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return 0;
   }
 
   if(!FlashTransponderTablesGetInfo(ServiceInfo.SatIndex, ServiceInfo.TransponderIndex, &TransponderInfo))
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return 0;
   }
 
   ChannelID =  LogoManager_CalculateChannelID(SatInfo.SatPosition, TransponderInfo.OriginalNetworkID, TransponderInfo.TSID, ServiceInfo.ServiceID);
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ChannelID;
 }

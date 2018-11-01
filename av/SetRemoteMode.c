@@ -9,7 +9,7 @@ byte FPIRData[] = {0xa5, 0x00, 0x02, 0x34, 0x0a, 0x00,   //Mode 1
 
 void SetRemoteMode(byte Mode, byte Index, bool Active)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   Mode--;
   if((Mode < 6) && (Index < 4))
@@ -17,5 +17,5 @@ void SetRemoteMode(byte Mode, byte Index, bool Active)
     DevFront_SetIrCode(Index, (Active ? 1 : 0), FPIRData[Mode * 6 + 2], FPIRData[Mode * 6 + 3], FPIRData[Mode * 6 + 4]);
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

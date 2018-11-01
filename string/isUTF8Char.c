@@ -2,7 +2,7 @@
 
 bool isUTF8Char(byte *p, byte *BytesPerChar)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   bool                  a, b, c;
   byte                  bpc;
@@ -11,7 +11,7 @@ bool isUTF8Char(byte *p, byte *BytesPerChar)
   {
     if(BytesPerChar) *BytesPerChar = 1;
 
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -28,6 +28,6 @@ bool isUTF8Char(byte *p, byte *BytesPerChar)
 
   if(BytesPerChar) *BytesPerChar = bpc;
 
-  TRACEEXIT;
+  TRACEEXIT();
   return (a || b || c);
 }

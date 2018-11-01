@@ -2,7 +2,7 @@
 
 const char *ezxml_error(ezxml_t xml)
 {
-  TRACEENTER;
+  TRACEENTER();
 
 	const char *(*__ezxml_error)(ezxml_t);
 	const char *ret = NULL;
@@ -14,6 +14,6 @@ const char *ezxml_error(ezxml_t xml)
 		ret = __ezxml_error(xml);
 	}
 
-  TRACEEXIT;
+  TRACEEXIT();
 	return ret;
 }

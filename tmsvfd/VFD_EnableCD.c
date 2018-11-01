@@ -5,13 +5,13 @@ bool CDEnabled = FALSE;
 
 bool VFD_EnableCD(bool Enable)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   byte *grid = (byte*)FIS_vGrid();
 
   if(!VFDUsedByTAP || !grid)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -26,6 +26,6 @@ bool VFD_EnableCD(bool Enable)
 
   CDEnabled = Enable;
 
-  TRACEEXIT;
+  TRACEEXIT();
   return TRUE;
 }

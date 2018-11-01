@@ -2,7 +2,7 @@
 
 void OSDDrawLogo(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   tMenu                *pMenu;
 
@@ -12,5 +12,5 @@ void OSDDrawLogo(void)
 
   if(CallbackProcedure) CallbackProcedure(OSDCB_Logo, OSDRgn);
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

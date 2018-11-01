@@ -12,7 +12,7 @@ void (*LogoManager_CB)(int CallbackType, int Param1) = NULL;
 
 void LogoManager_Initialize(void *CallbackRoutine)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   char                  cmd[255];
   TYPE_FolderEntry      FolderEntry;
@@ -66,5 +66,5 @@ void LogoManager_Initialize(void *CallbackRoutine)
 
   HDD_TAP_PopDir();
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

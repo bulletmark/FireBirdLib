@@ -6,11 +6,11 @@ extern bool                 cronInit;
 
 void cronUnregisterAllEvents(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   memset(cronTable, 0, MAX_CRON_EVENTS * sizeof(TYPE_CRONTAB));
   cronItemCount = 0;
   cronInit = TRUE;
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

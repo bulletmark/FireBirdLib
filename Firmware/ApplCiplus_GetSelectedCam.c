@@ -2,7 +2,7 @@
 
 byte ApplCiplus_GetSelectedCam(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   byte                  (*__ApplCiplus_GetSelectedCam)(void);
   byte                  ret = 0;
@@ -10,6 +10,6 @@ byte ApplCiplus_GetSelectedCam(void)
   __ApplCiplus_GetSelectedCam = (void*)FIS_fwApplCiplus_GetSelectedCam();
   if(__ApplCiplus_GetSelectedCam) ret = __ApplCiplus_GetSelectedCam();
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

@@ -2,14 +2,14 @@
 
 inline dword FIS_vFlashBlockServiceName(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   static dword          *vFlashSvcName = 0;
 
   if(!vFlashSvcName)
     vFlashSvcName = (dword*)TryResolve("_svcName");
 
-  TRACEEXIT;
+  TRACEEXIT();
   return (vFlashSvcName ? *vFlashSvcName : 0);
 }
 

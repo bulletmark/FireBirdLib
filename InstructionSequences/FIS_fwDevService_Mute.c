@@ -2,13 +2,13 @@
 
 inline dword FIS_fwDevService_Mute(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   static dword          _DevService_Mute = 0;
 
   if(!_DevService_Mute)
     _DevService_Mute = TryResolve("DevService_Mute");
 
-  TRACEEXIT;
+  TRACEEXIT();
   return _DevService_Mute;
 }

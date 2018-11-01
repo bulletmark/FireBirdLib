@@ -4,11 +4,11 @@ inline dword FIS_fwcurl_easy_setopt(void)
 {
   static dword          _curl_easy_setopt = 0;
 
-  TRACEENTER;
+  TRACEENTER();
 
   if(!_curl_easy_setopt)
     _curl_easy_setopt = TryResolve("curl_easy_setopt");
 
-  TRACEEXIT;
+  TRACEEXIT();
   return _curl_easy_setopt;
 }

@@ -3,7 +3,7 @@
 
 dword FMUC_GetStringWidth(char *Text, tFontDataUC *FontData)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword                 Width = 0;
   tGlyphCacheUC        *GlyphData;
@@ -12,7 +12,7 @@ dword FMUC_GetStringWidth(char *Text, tFontDataUC *FontData)
 
   if(!Text || !Text[0] || !FontData)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return 0;
   }
 
@@ -26,6 +26,6 @@ dword FMUC_GetStringWidth(char *Text, tFontDataUC *FontData)
     p += BytesPerChar;
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return Width;
 }

@@ -8,7 +8,7 @@
 
 void OSDMenuProgressBarShow(char *Title, char *Text, dword Value, dword MaxValue, TYPE_GrData *DifferentProgressBar)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   if(Value != ProgressBarLastValue)
   {
@@ -25,5 +25,5 @@ void OSDMenuProgressBarShow(char *Title, char *Text, dword Value, dword MaxValue
     ProgressBarLastValue = Value;
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

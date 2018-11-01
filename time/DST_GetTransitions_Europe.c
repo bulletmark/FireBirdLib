@@ -2,7 +2,7 @@
 
 void DST_GetTransitions_Europe(dword *DSTStartUTC, dword *DSTEndUTC, dword StartDate)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword       DSTStartLocal, DSTEndLocal;
   short       TZOffset;
@@ -20,5 +20,5 @@ void DST_GetTransitions_Europe(dword *DSTStartUTC, dword *DSTEndUTC, dword Start
   if(DSTStartUTC) *DSTStartUTC = AddTime(DSTStartLocal, -TZOffset);
   if(DSTEndUTC) *DSTEndUTC = AddTime(DSTEndLocal, -TZOffset);
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

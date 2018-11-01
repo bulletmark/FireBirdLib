@@ -2,13 +2,13 @@
 
 inline dword FIS_vFlashBlockFavoriteGroup(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   static dword          *vFlashFavGrp = 0;
 
   if(!vFlashFavGrp)
     vFlashFavGrp = (dword*)TryResolve("_favGrp");
 
-  TRACEEXIT;
+  TRACEEXIT();
   return (vFlashFavGrp ? *vFlashFavGrp : 0);
 }

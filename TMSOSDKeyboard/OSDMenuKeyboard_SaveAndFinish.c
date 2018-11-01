@@ -3,10 +3,10 @@
 
 void OSDMenuKeyboard_SaveAndFinish(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   strcpy(OSDMenuKeyboard_StringVarOrig, OSDMenuKeyboard_StringVar);
   OSDMenuKeyboard_Finish();
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

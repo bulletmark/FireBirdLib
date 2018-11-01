@@ -2,7 +2,7 @@
 
 bool PutDevEvent(word Event, dword Param1)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   bool(*__PutDevEvt)(word, dword);
   bool ret;
@@ -12,6 +12,6 @@ bool PutDevEvent(word Event, dword Param1)
   __PutDevEvt = (void*)FIS_fwPutDevEvt();
   if(__PutDevEvt) ret = __PutDevEvt(Event, Param1);
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

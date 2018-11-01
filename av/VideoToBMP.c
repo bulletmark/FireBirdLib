@@ -3,7 +3,7 @@
 
 void VideoToBMP(TYPE_VideoFrame *VideoFrame, int BMPwidth, int BMPheight, byte *BMPPixelBuffer, int DstX, int DstY, int DstWidth, int DstHeight)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword                *VideoData;
   dword                *SrcPixel;
@@ -27,5 +27,5 @@ void VideoToBMP(TYPE_VideoFrame *VideoFrame, int BMPwidth, int BMPheight, byte *
     }
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

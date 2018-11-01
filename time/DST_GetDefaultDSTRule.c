@@ -3,7 +3,7 @@
 
 void DST_GetDefaultDSTRule(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   char DefaultRule[80];
 
@@ -22,5 +22,5 @@ void DST_GetDefaultDSTRule(void)
   INICloseFile();
   HDD_TAP_PopDir();
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

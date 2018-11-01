@@ -2,7 +2,7 @@
 
 bool OSDMenuItemModifyID(int ItemIndex, dword ID)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   tMenu                *pMenu;
 
@@ -10,12 +10,12 @@ bool OSDMenuItemModifyID(int ItemIndex, dword ID)
 
   if((pMenu->NrItems == 0) || (ItemIndex >= pMenu->NrItems))
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
   pMenu->Item[ItemIndex].ID = ID;
 
-  TRACEEXIT;
+  TRACEEXIT();
   return TRUE;
 }

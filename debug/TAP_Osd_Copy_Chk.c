@@ -17,7 +17,7 @@
 
 int TAP_Osd_Copy_Chk(char *Comment, word srcRgnNum, word dstRgnNum, dword srcX, dword srcY, dword w, dword h, dword dstX, dword dstY,  bool sprite)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword                 RgnH, RgnW;
   int                   ret;
@@ -48,6 +48,6 @@ int TAP_Osd_Copy_Chk(char *Comment, word srcRgnNum, word dstRgnNum, dword srcX, 
 
   if(Comment && ret) LogEntryFBLibPrintf(TRUE, "TAP_Osd_Copy_Chk Warning: TAP_Osd_Copy() returned %d @ %s", ret, Comment);
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

@@ -2,7 +2,7 @@
 
 dword Now(byte *Sec)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   word      MJD;
   byte      Hour, Min, DummySec;
@@ -11,6 +11,6 @@ dword Now(byte *Sec)
   TAP_GetTime(&MJD, &Hour, &Min, (Sec != NULL) ? Sec : &DummySec);
   ret = DATE(MJD, Hour, Min);
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

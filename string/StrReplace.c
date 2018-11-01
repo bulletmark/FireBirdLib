@@ -3,7 +3,7 @@
 
 bool StrReplace(char *String, char *Find, char *Replace)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   int                   FindLen, ReplaceLen;
   char                 *p;
@@ -12,21 +12,21 @@ bool StrReplace(char *String, char *Find, char *Replace)
   //No NULL pointers?
   if(!String || !Find || !Replace)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
   //No empty strings? Replace may be empty
   if(!String[0] || !Find[0])
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
   //At least one match?
   if(!strstr(String, Find))
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -92,6 +92,6 @@ bool StrReplace(char *String, char *Find, char *Replace)
     TAP_MemFree(TempBuffer);
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

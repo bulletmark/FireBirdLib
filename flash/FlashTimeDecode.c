@@ -3,14 +3,14 @@
 
 bool FlashTimeGetInfo(tFlashTimeInfo *TimeInfo)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   bool ret;
 
   //TimeInfo is NULL
   if(!TimeInfo)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -58,7 +58,7 @@ bool FlashTimeGetInfo(tFlashTimeInfo *TimeInfo)
     case ST_NRTYPES: break;
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }
 
@@ -66,12 +66,12 @@ bool FlashTimeDecode(tFlashTimeInfo *Data, tFlashTimeInfo *TimeInfo)
 {
   bool ret;
 
-  TRACEENTER;
+  TRACEENTER();
 
   //TimeInfo is NULL
   if(!Data || !TimeInfo)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -96,13 +96,13 @@ bool FlashTimeDecode(tFlashTimeInfo *Data, tFlashTimeInfo *TimeInfo)
     case ST_NRTYPES: break;
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }
 
 bool FlashTimeDecode_ST_TMSS(tFlashTimeInfo *Data, tFlashTimeInfo *TimeInfo)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   memset(TimeInfo, 0, sizeof(tFlashTimeInfo));
   TimeInfo->UTCOffset     = Data->UTCOffset;
@@ -115,7 +115,7 @@ bool FlashTimeDecode_ST_TMSS(tFlashTimeInfo *Data, tFlashTimeInfo *TimeInfo)
   TimeInfo->DST           = Data->DST;
   TimeInfo->unknown4      = Data->unknown4;
 
-  TRACEEXIT;
+  TRACEEXIT();
   return TRUE;
 }
 
@@ -123,11 +123,11 @@ bool FlashTimeDecode_ST_TMST(tFlashTimeInfo *Data, tFlashTimeInfo *TimeInfo)
 {
   bool ret;
 
-  TRACEENTER;
+  TRACEENTER();
 
   ret = FlashTimeDecode_ST_TMSS(Data, TimeInfo);
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }
 
@@ -135,10 +135,10 @@ bool FlashTimeDecode_ST_TMSC(tFlashTimeInfo *Data, tFlashTimeInfo *TimeInfo)
 {
   bool ret;
 
-  TRACEENTER;
+  TRACEENTER();
 
   ret = FlashTimeDecode_ST_TMSS(Data, TimeInfo);
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

@@ -3,12 +3,12 @@
 
 void INISetRGB(char *Key, byte Red, byte Green, byte Blue)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   char rgb[10];
 
   sprintf(rgb, "%2.2d,%2.2d,%2.2d", Red & 0x1f, Green & 0x1f, Blue & 0x1f);
   INISetString(Key, rgb);
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

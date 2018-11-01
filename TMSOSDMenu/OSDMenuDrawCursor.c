@@ -5,7 +5,7 @@
 
 void OSDMenuDrawCursor(dword x, dword y, dword w)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   TYPE_GrData              *OSDMenuLightBlueCursorGd, *OSDMenuDarkBlueCursorGd;
   int                       pb=0, cx, h, hundret=0, hundretModulo=0;
@@ -85,5 +85,5 @@ void OSDMenuDrawCursor(dword x, dword y, dword w)
     }
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

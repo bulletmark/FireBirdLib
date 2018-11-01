@@ -3,13 +3,13 @@
 
 size_t GetLine(char *data, bool strip)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   char                  *CRLFPos, *LFPos;
 
   if(!*data)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return 0;
   }
 
@@ -18,7 +18,7 @@ size_t GetLine(char *data, bool strip)
 
   if(CRLFPos == NULL && LFPos == NULL)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return strlen(data);
   }
   else if(CRLFPos == NULL || LFPos < CRLFPos)
@@ -26,7 +26,7 @@ size_t GetLine(char *data, bool strip)
     if(strip) *LFPos = '\0';
     size_t ret = LFPos - data + 1;
 
-    TRACEEXIT;
+    TRACEEXIT();
     return ret;
   }
   else
@@ -35,7 +35,7 @@ size_t GetLine(char *data, bool strip)
 
     size_t ret = CRLFPos - data + 2;
 
-    TRACEEXIT;
+    TRACEEXIT();
     return ret;
   }
 }

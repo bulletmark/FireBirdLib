@@ -2,17 +2,17 @@
 
 dword StringDBCurrent(tStringDB *StringDB)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword ret;
 
   if(!StringDB)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return '\0';
   }
   ret = (dword)StringDB->DBPtr - (dword)StringDB->DB;
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

@@ -4,7 +4,7 @@
 
 bool HDD_ChangeDir(char *Dir)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   char                  s[FBLIB_DIR_SIZE], TAPDir[FBLIB_DIR_SIZE], DirUTF8[FBLIB_DIR_SIZE];
   static bool           ReturnTypeToBeChecked = TRUE;
@@ -30,13 +30,13 @@ bool HDD_ChangeDir(char *Dir)
     ConvertPathType(s, TAPDir, PF_TAPPathOnly);
     if(!*TAPDir)
     {
-      TRACEEXIT;
+      TRACEEXIT();
       return FALSE;
     }
 
     if(TAP_Hdd_ChangeDir(TAPDir) == ChDirSuccessful)
     {
-      TRACEEXIT;
+      TRACEEXIT();
       return TRUE;
     }
 
@@ -46,12 +46,12 @@ bool HDD_ChangeDir(char *Dir)
       StrToUTF8(TAPDir, DirUTF8, 9);
       if(TAP_Hdd_ChangeDir(DirUTF8) == ChDirSuccessful)
       {
-        TRACEEXIT;
+        TRACEEXIT();
         return TRUE;
       }
     }
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return FALSE;
 }

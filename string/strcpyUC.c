@@ -3,14 +3,14 @@
 
 byte *strcpyUC(byte *dest, byte *src)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   byte                 *p;
   int                   CharTableBytes;
 
   if(!src || !dest)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return NULL;
   }
 
@@ -25,6 +25,6 @@ byte *strcpyUC(byte *dest, byte *src)
     strcpy(&dest[CharTableBytes], p);
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return dest;
 }

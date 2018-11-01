@@ -2,7 +2,7 @@
 
 void OSDMenuWaitSpinnerIdle(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   if(TAP_GetTick() > WaitSpinnerTimeout)
   {
@@ -12,5 +12,5 @@ void OSDMenuWaitSpinnerIdle(void)
     TAP_Osd_Sync();
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

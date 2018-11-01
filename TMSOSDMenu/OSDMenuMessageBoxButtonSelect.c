@@ -2,16 +2,16 @@
 
 void OSDMenuMessageBoxButtonSelect(dword SelectedButton)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   if(SelectedButton >= MessageBox.NrButtons)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return;
   }
 
   MessageBox.CurrentButton = SelectedButton;
   if(MessageBoxOSDRgn) OSDMenuMessageBoxShow();
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

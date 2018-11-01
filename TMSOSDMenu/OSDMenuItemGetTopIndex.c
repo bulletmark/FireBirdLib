@@ -2,12 +2,12 @@
 
 dword OSDMenuItemGetTopIndex(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword ret;
 
   ret = Menu[CurrentMenuLevel].CurrentTopIndex;
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

@@ -2,8 +2,8 @@
 
 dword OSDMenuColorPickerColor(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ColorPickerColor;
 }

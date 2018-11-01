@@ -6,7 +6,7 @@
 
 dword INIGetHexDWord(char *Key, dword DefaultValue, dword MinValue, dword MaxValue)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   char                  *i = NULL, *j = NULL, *k;
   char                  TempKey[80];
@@ -14,7 +14,7 @@ dword INIGetHexDWord(char *Key, dword DefaultValue, dword MinValue, dword MaxVal
 
   if(!Key)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return 0;
   }
 
@@ -27,14 +27,14 @@ dword INIGetHexDWord(char *Key, dword DefaultValue, dword MinValue, dword MaxVal
 
   if(!i || !j || (j < i + l))
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return DefaultValue;
   }
 
   for(k = i + l; k <= j; k++)
     if(!isxdigit(*k))
     {
-      TRACEEXIT;
+      TRACEEXIT();
       return DefaultValue;
     }
 
@@ -43,6 +43,6 @@ dword INIGetHexDWord(char *Key, dword DefaultValue, dword MinValue, dword MaxVal
   if(x < MinValue) x = MinValue;
   if(x > MaxValue) x = MaxValue;
 
-  TRACEEXIT;
+  TRACEEXIT();
   return x;
 }

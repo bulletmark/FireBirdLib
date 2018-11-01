@@ -2,7 +2,7 @@
 
 void VFD_SetDisplayDigit(byte* DisplayBuffer, byte Character, DISPLAYSTYLE DisplayStyle, byte Digit)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   switch(DisplayStyle)
   {
@@ -392,5 +392,5 @@ void VFD_SetDisplayDigit(byte* DisplayBuffer, byte Character, DISPLAYSTYLE Displ
     }
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

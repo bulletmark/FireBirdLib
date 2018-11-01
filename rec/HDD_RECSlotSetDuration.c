@@ -3,7 +3,7 @@
 
 bool HDD_RECSlotSetDuration(byte Slot, word Duration)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   //Because only the TP struct differes, we may use one timer struct for all systems
   TYPE_Timer_TMSS     *RECSlot;
@@ -11,26 +11,26 @@ bool HDD_RECSlotSetDuration(byte Slot, word Duration)
   //Sanity check of the parameters
   if(Slot > HDD_NumberOfRECSlots())
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
   RECSlot = (TYPE_Timer_TMSS*)FIS_vRECSlotAddress(Slot);
   if(RECSlot == NULL)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
   //Check if the selected REC-slot is currently in use
   if(RECSlot->Duration == 0)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
   RECSlot->Duration = Duration;
 
-  TRACEEXIT;
+  TRACEEXIT();
   return TRUE;
 }

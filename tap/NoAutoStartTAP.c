@@ -5,7 +5,7 @@
 
 bool NoAutoStartTAP(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   char                  CurrentDir[FBLIB_DIR_SIZE];
   char                  *FileName;
@@ -19,7 +19,7 @@ bool NoAutoStartTAP(void)
   {
     if(!LibInitialized && !InitTAPex())
     {
-      TRACEEXIT;
+      TRACEEXIT();
       return -3;
     }
 
@@ -29,6 +29,6 @@ bool NoAutoStartTAP(void)
     ret = system(cmd);
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return (ret == 0);
 }

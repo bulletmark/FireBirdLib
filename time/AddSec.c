@@ -2,7 +2,7 @@
 
 dword AddSec(dword date, byte dateSec, int add)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   word                  mjd;
   int                   hour, min, sec;
@@ -47,6 +47,6 @@ dword AddSec(dword date, byte dateSec, int add)
   }
   ret = DATE(mjd, hour, min);
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

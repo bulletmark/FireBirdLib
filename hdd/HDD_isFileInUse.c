@@ -3,7 +3,7 @@
 
 tFileInUse HDD_isFileInUse(char *FileName)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   TYPE_PlayInfo         PlayInfo;
   int                   i, NrRecSlots;
@@ -13,7 +13,7 @@ tFileInUse HDD_isFileInUse(char *FileName)
 
   if(!FileName || !*FileName)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FIU_No;
   }
 
@@ -33,12 +33,12 @@ tFileInUse HDD_isFileInUse(char *FileName)
     {
       if(PlayInfo.playMode == PLAYMODE_Mp3)
       {
-        TRACEEXIT;
+        TRACEEXIT();
         return FIU_PlayMP3;
       }
       else
       {
-        TRACEEXIT;
+        TRACEEXIT();
         return FIU_Playback;
       }
     }
@@ -54,12 +54,12 @@ tFileInUse HDD_isFileInUse(char *FileName)
       //Check if both paths are equal
       if(!strcmp(AbsFileName, WorkingFileName))
       {
-        TRACEEXIT;
+        TRACEEXIT();
         return (FIU_RecSlot1 + i);
       }
     }
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return FIU_No;
 }

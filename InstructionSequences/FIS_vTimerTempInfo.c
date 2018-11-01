@@ -2,13 +2,13 @@
 
 inline dword FIS_vTimerTempInfo(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   static dword          vtimerTempInfo = 0;
 
   if(!vtimerTempInfo)
     vtimerTempInfo = TryResolve("_timerTempInfo");
 
-  TRACEEXIT;
+  TRACEEXIT();
   return vtimerTempInfo;
 }

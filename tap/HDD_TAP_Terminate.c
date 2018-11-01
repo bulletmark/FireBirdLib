@@ -2,7 +2,7 @@
 
 void HDD_TAP_Terminate(dword TAPID)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   int                   TAPIndex;
   tTMSTAPTaskTable     *TMSTAPTaskTable;
@@ -11,14 +11,14 @@ void HDD_TAP_Terminate(dword TAPID)
   TAPIndex = HDD_TAP_GetIndexByID(TAPID);
   if(TAPIndex < 0)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return;
   }
 
   TMSTAPTaskTable = (tTMSTAPTaskTable*)FIS_vTAPTable();
   if(!TMSTAPTaskTable)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return;
   }
 
@@ -27,5 +27,5 @@ void HDD_TAP_Terminate(dword TAPID)
 
   TMSTAPTaskTable[TAPIndex].Status = 2;
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

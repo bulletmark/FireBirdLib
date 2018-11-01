@@ -3,14 +3,14 @@
 
 dword UncompressedLoaderSize(byte *pSrc)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   word                  compSize, uncompSize;
   dword                 outSize = 0;
 
   if(!pSrc)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return 0;
   }
 
@@ -22,7 +22,7 @@ dword UncompressedLoaderSize(byte *pSrc)
     if(uncompSize > 0x8000)
     {
       //Uncompressed data block size too large
-      TRACEEXIT;
+      TRACEEXIT();
 
       return 0;
     }
@@ -33,6 +33,6 @@ dword UncompressedLoaderSize(byte *pSrc)
     compSize   = LOAD_WORDLE(pSrc + 2);
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return outSize;
 }

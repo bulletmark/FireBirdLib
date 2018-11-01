@@ -2,13 +2,13 @@
 
 inline dword FIS_vIsPipActive(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   static dword          _isPipActive = 0;
 
   if(!_isPipActive)
     _isPipActive = TryResolve("_isPipActive");
 
-  TRACEEXIT;
+  TRACEEXIT();
   return _isPipActive;
 }

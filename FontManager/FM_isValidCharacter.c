@@ -2,13 +2,13 @@
 
 bool FM_isValidCharacter(byte Char)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   bool ret = TRUE;
 
   if(Char < 0x20) ret = FALSE;
   if((Char > 0x7e) && (Char < 0xa0)) ret = FALSE;
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

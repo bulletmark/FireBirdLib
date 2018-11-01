@@ -6,7 +6,7 @@ CURLcode curl_easy_setopt(CURL *curl, CURLoption option, void *arg)
 	CURLcode       (*__curl_easy_setopt)(CURL *, CURLoption, void *);
 	CURLcode       result = 0;
 
-  TRACEENTER;
+  TRACEENTER();
 
 	__curl_easy_setopt = (void*)FIS_fwcurl_easy_setopt();
 	if(__curl_easy_setopt)
@@ -14,6 +14,6 @@ CURLcode curl_easy_setopt(CURL *curl, CURLoption option, void *arg)
 		result = __curl_easy_setopt(curl, option, arg);
 	}
 
-  TRACEEXIT;
+  TRACEEXIT();
 	return result;
 }

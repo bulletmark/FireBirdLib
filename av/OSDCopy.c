@@ -2,7 +2,7 @@
 
 void OSDCopy(word rgn, dword x, dword y, dword w, dword h, word items, eCopyDirection direction)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   word                  n;
   dword                 nw, nh;
@@ -55,5 +55,5 @@ void OSDCopy(word rgn, dword x, dword y, dword w, dword h, word items, eCopyDire
     TAP_Osd_Copy_Chk("OSDCopy B", rgn, rgn, x, y, xw, xh, dx, dy, TRUE);
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

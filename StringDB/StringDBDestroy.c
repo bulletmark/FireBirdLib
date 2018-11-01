@@ -3,17 +3,17 @@
 
 bool StringDBDestroy(tStringDB *StringDB)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   if(!StringDB)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
   TAP_MemFree(StringDB->DB);
   StringDBInit(StringDB, 0);
 
-  TRACEEXIT;
+  TRACEEXIT();
   return TRUE;
 }

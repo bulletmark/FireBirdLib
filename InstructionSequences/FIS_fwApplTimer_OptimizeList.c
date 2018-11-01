@@ -2,13 +2,13 @@
 
 inline dword FIS_fwApplTimer_OptimizeList(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   static dword          _ApplTimer_OptimizeList = 0;
 
   if(!_ApplTimer_OptimizeList)
     _ApplTimer_OptimizeList = TryResolve("_Z22ApplTimer_OptimizeListv");
 
-  TRACEEXIT;
+  TRACEEXIT();
   return _ApplTimer_OptimizeList;
 }

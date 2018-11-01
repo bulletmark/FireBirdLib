@@ -3,7 +3,7 @@
 
 int SendHDDCommand(dword Command, byte *CommandBlock, int BufferSize)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   #include                <sys/ioctl.h>
   #include                <unistd.h>
@@ -19,7 +19,7 @@ int SendHDDCommand(dword Command, byte *CommandBlock, int BufferSize)
   //fd = open("/dev/sdb", O_RDONLY | O_NONBLOCK);
   if(fd < 0)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return 1;
   }
 
@@ -33,7 +33,7 @@ int SendHDDCommand(dword Command, byte *CommandBlock, int BufferSize)
 
   if(ret)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return 1;
   }
 
@@ -47,6 +47,6 @@ int SendHDDCommand(dword Command, byte *CommandBlock, int BufferSize)
     i -= 2;
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return 0;
 }

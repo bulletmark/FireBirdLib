@@ -2,7 +2,7 @@
 
 dword DST_FindNextTransition(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword                 DSTStartUTC, DSTEndUTC;
   dword                 ret;
@@ -35,6 +35,6 @@ dword DST_FindNextTransition(void)
     }
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

@@ -2,7 +2,7 @@
 
 bool HDD_TAP_Disable(dword TAPID, bool DisableEvents)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   int                   TAPIndex;
   dword                 isDisabled;
@@ -11,14 +11,14 @@ bool HDD_TAP_Disable(dword TAPID, bool DisableEvents)
   TAPIndex = HDD_TAP_GetIndexByID(TAPID);
   if((TAPIndex == -1) || (!LibInitialized && !InitTAPex()))
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
   //Don't disable ourself
   if((dword)TAPIndex == TAP_TableIndex)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -26,21 +26,21 @@ bool HDD_TAP_Disable(dword TAPID, bool DisableEvents)
   isDisabled = HDD_TAP_isDisabled(TAPID);
   if((isDisabled == 1) == DisableEvents)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
   TMSTAPTaskTable = (tTMSTAPTaskTable*)FIS_vTAPTable();
   if(!TMSTAPTaskTable)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
   //The TAP will terminate soon
   if(TMSTAPTaskTable[TAPIndex].Status != 1)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -56,6 +56,6 @@ bool HDD_TAP_Disable(dword TAPID, bool DisableEvents)
     TMSTAPTaskTable[TAPIndex].unused5 = 0;
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return TRUE;
 }

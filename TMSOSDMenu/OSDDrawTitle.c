@@ -2,7 +2,7 @@
 
 void OSDDrawTitle(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword                 tw;
   tMenu                *pMenu;
@@ -16,5 +16,5 @@ void OSDDrawTitle(void)
 
   if(CallbackProcedure) CallbackProcedure(OSDCB_Title, OSDRgn);
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

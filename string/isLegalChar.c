@@ -2,13 +2,13 @@
 
 bool isLegalChar(byte *c, eRemoveChars ControlCharacters)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   byte s;
 
   if(c == NULL)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -19,7 +19,7 @@ bool isLegalChar(byte *c, eRemoveChars ControlCharacters)
     // Anything below 32 is a control character!
     if((s < 0x20) && (s != 0x0a))
     {
-      TRACEEXIT;
+      TRACEEXIT();
       return FALSE;
     }
 
@@ -29,7 +29,7 @@ bool isLegalChar(byte *c, eRemoveChars ControlCharacters)
       // these characters are unused in Windows system font and cause trouble
       if((s >= 0x7f) && (s <= 0x9f) && (s != 0x80) && (s != 0x8a) && (s != 0x91) && (s != 0x92))
       {
-        TRACEEXIT;
+        TRACEEXIT();
         return FALSE;
       }
     }
@@ -39,7 +39,7 @@ bool isLegalChar(byte *c, eRemoveChars ControlCharacters)
   {
     if((s == 0x0a) || (s == 0x8a))
     {
-      TRACEEXIT;
+      TRACEEXIT();
       return FALSE;
     }
   }
@@ -63,7 +63,7 @@ bool isLegalChar(byte *c, eRemoveChars ControlCharacters)
       case '>':
       case '|':
       {
-        TRACEEXIT;
+        TRACEEXIT();
         return FALSE;
       }
     }
@@ -71,10 +71,10 @@ bool isLegalChar(byte *c, eRemoveChars ControlCharacters)
 
   if((ControlCharacters & NonPrintableChars) != 0)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return (s >= ' ' && s <= '~');
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return TRUE;
 }

@@ -5,7 +5,7 @@ extern FILE            *infDatainfFile;
 
 void infData_CloseFile(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   if(infDatainfFile)
   {
@@ -13,5 +13,5 @@ void infData_CloseFile(void)
     infDatainfFile = NULL;
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

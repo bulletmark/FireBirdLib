@@ -2,13 +2,13 @@
 
 inline dword FIS_fwAppl_InitTempRec(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   static dword          fwAppl_InitTempRec = 0;
 
   if(!fwAppl_InitTempRec)
     fwAppl_InitTempRec = TryResolve("_Z16Appl_InitTempRecv");
 
-  TRACEEXIT;
+  TRACEEXIT();
   return fwAppl_InitTempRec;
 }

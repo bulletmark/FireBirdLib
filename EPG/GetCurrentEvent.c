@@ -2,7 +2,7 @@
 
 TYPE_TapEvent *GetCurrentEvent(int *nCurEvent)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   TYPE_TapEvent         *evtInfo;
   unsigned int          eventNum, i;
@@ -25,6 +25,6 @@ TYPE_TapEvent *GetCurrentEvent(int *nCurEvent)
 
   if(evtInfo) TAP_MemFree(evtInfo);
 
-  TRACEEXIT;
+  TRACEEXIT();
   return NULL;
 }

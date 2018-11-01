@@ -4,7 +4,7 @@
 //It is not possible to set the tuner for the PIP
 bool TunerSet(byte Tuner)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   int                   tvRadio, chNum;
   byte                 *__etcInfo;
@@ -12,13 +12,13 @@ bool TunerSet(byte Tuner)
   //Parameter sanity check
   if(Tuner > 1)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
   if(!(__etcInfo = (byte*)FIS_vEtcInfo()))
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -28,6 +28,6 @@ bool TunerSet(byte Tuner)
   TAP_Channel_GetCurrent(&tvRadio, &chNum);
   TAP_Channel_Start(CHANNEL_Main, tvRadio, chNum);
 
-  TRACEEXIT;
+  TRACEEXIT();
   return TRUE;
 }

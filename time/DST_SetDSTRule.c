@@ -5,9 +5,9 @@ dword                   DSTStartUTCsaved = 0, DSTEndUTCsaved = 0;
 
 void DST_SetDSTRule(tDSTRule NewDSTRule)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   DSTRule = NewDSTRule;
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

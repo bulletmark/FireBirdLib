@@ -2,7 +2,7 @@
 
 bool isUTFToppy(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   static bool ret = FALSE;
   static bool FirstCall = TRUE;
@@ -13,6 +13,6 @@ bool isUTFToppy(void)
     FirstCall= FALSE;
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

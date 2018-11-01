@@ -2,21 +2,21 @@
 
 int StringDBCountRecords(tStringDB *StringDB)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   int                   Cnt;
   char                 *p;
 
   if(!StringDB)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return 0;
   }
 
   p = StringDB->DB;
   if(!p)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return 0;
   }
 
@@ -31,6 +31,6 @@ int StringDBCountRecords(tStringDB *StringDB)
     p++;
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return Cnt;
 }

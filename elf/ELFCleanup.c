@@ -4,7 +4,7 @@
 
 void ELFCleanup(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   if(fTAP)
   {
@@ -36,5 +36,5 @@ void ELFCleanup(void)
     strtab = NULL;
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

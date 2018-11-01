@@ -2,13 +2,13 @@
 
 inline dword FIS_fwApplCiplus_CamSelect(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   static dword          _ApplCiplus_CamSelect = 0;
 
   if(!_ApplCiplus_CamSelect)
     _ApplCiplus_CamSelect = TryResolve("_Z20ApplCiplus_CamSelecth");
 
-  TRACEEXIT;
+  TRACEEXIT();
   return _ApplCiplus_CamSelect;
 }

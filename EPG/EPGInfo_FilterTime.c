@@ -2,11 +2,11 @@
 
 void EPGInfo_FilterTime(dword StartTime, dword EndTime)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   EPGFilter.StartTime = StartTime;
   EPGFilter.EndTime = EndTime;
   EPGFilter.TimeFilter = (StartTime || EndTime);
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

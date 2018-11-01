@@ -2,7 +2,7 @@
 
 bool ShowPvrList(tPvrListType PvrListType)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   void (*__Appl_PvrList)(unsigned int, unsigned int);
   void (*__Appl_PvrList_SetListType)(tPvrListType ListType);
@@ -20,7 +20,7 @@ bool ShowPvrList(tPvrListType PvrListType)
 
     if(!__Appl_PvrList_SetListType)
     {
-      TRACEEXIT;
+      TRACEEXIT();
       return FALSE;
     }
     __Appl_PvrList_SetListType(PvrListType - 1);
@@ -29,13 +29,13 @@ bool ShowPvrList(tPvrListType PvrListType)
   __Appl_PvrList = (void*)FIS_fwAppl_PvrList();
   if(!__Appl_PvrList)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
   __Appl_PvrList(0, 0xffff);
 
 
-  TRACEEXIT;
+  TRACEEXIT();
   return TRUE;
 }

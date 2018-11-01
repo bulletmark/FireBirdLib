@@ -6,12 +6,12 @@
 
 bool HDD_FindMountPoint(char *File, char *MountPoint)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   bool ret;
 
   ret = HDD_FindMountPointDevice(File, MountPoint, NULL);
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

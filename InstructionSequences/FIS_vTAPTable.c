@@ -2,12 +2,12 @@
 
 inline dword FIS_vTAPTable(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   static dword          *vTAP_TableAddress = NULL;
 
   if(!vTAP_TableAddress) vTAP_TableAddress = (dword*)TryResolve("_tapTask");
 
-  TRACEEXIT;
+  TRACEEXIT();
   return (dword)vTAP_TableAddress;
 }

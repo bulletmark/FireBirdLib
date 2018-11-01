@@ -7,7 +7,7 @@
 
 int ExtAttribExists(char *FileName, char *AttrName)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   char                  FullAttrName[128];
   char                  AbsFileName[FBLIB_DIR_SIZE];
@@ -15,7 +15,7 @@ int ExtAttribExists(char *FileName, char *AttrName)
 
   if(!FileName || !*FileName || !AttrName || !*AttrName)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return 0;
   }
 
@@ -31,13 +31,13 @@ int ExtAttribExists(char *FileName, char *AttrName)
       {
         close(f);
 
-        TRACEEXIT;
+        TRACEEXIT();
         return i;
       }
       close(f);
     }
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return 0;
 }

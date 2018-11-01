@@ -2,13 +2,13 @@
 
 inline dword FIS_vnTvSvc(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   static dword          vnTvSvc = 0;
 
   if(!vnTvSvc)
     vnTvSvc = TryResolve("_nTvSvc");
 
-  TRACEEXIT;
+  TRACEEXIT();
   return vnTvSvc;
 }

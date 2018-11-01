@@ -2,11 +2,11 @@
 
 inline dword FIS_vFlashBlockRadioServices(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   static dword          *vFlashRadioSvc = 0;
 
-  TRACEEXIT;
+  TRACEEXIT();
   if(!vFlashRadioSvc)
     vFlashRadioSvc = (dword*)TryResolve("_radioSvc");
 

@@ -2,7 +2,7 @@
 
 char *GetRecExtension(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword                 i;
   tToppyInfo           *ToppyInfo;
@@ -30,6 +30,6 @@ char *GetRecExtension(void)
     }
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return RecExtension ? RecExtension : ".rec";
 }

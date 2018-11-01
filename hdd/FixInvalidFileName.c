@@ -4,7 +4,7 @@
 
 bool FixInvalidFileName(char *FileName)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   char                  NewRecName[TS_FILE_NAME_SIZE+5];
   char                 *Slash, Path[FBLIB_DIR_SIZE];
@@ -18,7 +18,7 @@ bool FixInvalidFileName(char *FileName)
     //Check if the file is busy
     if(HDD_isFileInUse(FileName) != FIU_No)
     {
-      TRACEEXIT;
+      TRACEEXIT();
       return FALSE;
     }
 
@@ -53,7 +53,7 @@ bool FixInvalidFileName(char *FileName)
     if(!strcmp(FileName, NewRecName))
     {
       //No need to rename
-      TRACEEXIT;
+      TRACEEXIT();
       return TRUE;
     }
 
@@ -62,6 +62,6 @@ bool FixInvalidFileName(char *FileName)
     strcpy(FileName, NewRecName);
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

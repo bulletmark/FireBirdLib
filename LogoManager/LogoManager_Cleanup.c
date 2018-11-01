@@ -5,7 +5,7 @@
 
 void LogoManager_Cleanup(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   int                   i;
 
@@ -21,5 +21,5 @@ void LogoManager_Cleanup(void)
   LogoManager_NrLogos = 0;
   LogoManager_LUTInitialized = FALSE;
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

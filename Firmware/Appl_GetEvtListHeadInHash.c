@@ -2,7 +2,7 @@
 
 dword *Appl_GetEvtListHeadInHash(word NetID, word TSID, word ServiceID)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword *(*__Appl_GetEvtListHeadInHash)(word NetID, word TSID, word ServiceID);
   dword *ret = NULL;
@@ -10,6 +10,6 @@ dword *Appl_GetEvtListHeadInHash(word NetID, word TSID, word ServiceID)
   __Appl_GetEvtListHeadInHash = (void*)FIS_fwAppl_GetEvtListHeadInHash();
   if(__Appl_GetEvtListHeadInHash) ret = __Appl_GetEvtListHeadInHash(NetID, TSID, ServiceID);
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

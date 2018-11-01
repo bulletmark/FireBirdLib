@@ -9,7 +9,7 @@ bool infData_Set(char *infFileName, char *NameTag, dword PayloadSize, byte *Payl
   bool                  ret;
   tTFRPlusHdr           TFRPlusHdr;
 
-  TRACEENTER;
+  TRACEENTER();
 
   ret = FALSE;
 
@@ -48,6 +48,6 @@ bool infData_Set(char *infFileName, char *NameTag, dword PayloadSize, byte *Payl
   }
   infData_CloseFile();
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

@@ -3,7 +3,7 @@
 
 void OSDMenuKeyboard_Finish(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   if(OSDMenuKeyboard_rgn)
   {
@@ -21,5 +21,5 @@ void OSDMenuKeyboard_Finish(void)
     FMUC_FreeFontFile(&KeyboardFont_14);
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

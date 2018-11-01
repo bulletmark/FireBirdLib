@@ -3,7 +3,7 @@
 
 void StrToISO(byte *SourceString, byte *DestString)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   int                   Len;
   bool                  hasAnsiChars, hasUTFChars;
@@ -12,7 +12,7 @@ void StrToISO(byte *SourceString, byte *DestString)
 
   if(!SourceString || !DestString)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return;
   }
 
@@ -20,7 +20,7 @@ void StrToISO(byte *SourceString, byte *DestString)
   {
     *DestString = '\0';
 
-    TRACEEXIT;
+    TRACEEXIT();
     return;
   }
 
@@ -52,5 +52,5 @@ void StrToISO(byte *SourceString, byte *DestString)
   else
     strcpy(DestString, SourceString);
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

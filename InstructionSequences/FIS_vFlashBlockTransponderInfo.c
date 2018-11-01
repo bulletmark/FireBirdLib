@@ -2,13 +2,13 @@
 
 inline dword FIS_vFlashBlockTransponderInfo(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   static dword          *vFlashTPInfo = 0;
 
   if(!vFlashTPInfo)
     vFlashTPInfo = (dword*)TryResolve("_tpInfo");
 
-  TRACEEXIT;
+  TRACEEXIT();
   return (vFlashTPInfo ? *vFlashTPInfo : 0);
 }

@@ -5,7 +5,7 @@
 
 TYPE_GrData *LogoManager_GetLogoByChannel(int SvcType, int SvcNum, tLogoStyle LogoStyle, tLogoSize LogoSize, tLogoAspect LogoAR)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   ulong64                 ChannelID;
   tFlashService           ServiceInfo;
@@ -15,7 +15,7 @@ TYPE_GrData *LogoManager_GetLogoByChannel(int SvcType, int SvcNum, tLogoStyle Lo
 
   if(!FlashServiceGetInfo(SvcType, SvcNum, &ServiceInfo))
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return NULL;
   }
 
@@ -23,7 +23,7 @@ TYPE_GrData *LogoManager_GetLogoByChannel(int SvcType, int SvcNum, tLogoStyle Lo
   GrData = LogoManager_GetLogoByChannelName(ServiceInfo.ServiceName, LogoStyle, LogoSize, LogoAR);
   if(GrData)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return GrData;
   }
 
@@ -31,6 +31,6 @@ TYPE_GrData *LogoManager_GetLogoByChannel(int SvcType, int SvcNum, tLogoStyle Lo
   ChannelID =  LogoManager_GetChannelID(SvcType, SvcNum);
   GrData = LogoManager_GetLogoByChannelID(ChannelID, LogoStyle, LogoSize, LogoAR);
 
-  TRACEEXIT;
+  TRACEEXIT();
   return GrData;
 }

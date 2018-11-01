@@ -4,7 +4,7 @@
 
 void FMUC_PutStringAA(word rgn, dword x, dword y, dword maxX, char *str, dword fcolor, dword bcolor, tFontDataUC *FontData, byte bDot, byte align, float AntiAliasFactor)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword                 XEnd, YEnd;
   dword                *PixelData;
@@ -30,7 +30,7 @@ void FMUC_PutStringAA(word rgn, dword x, dword y, dword maxX, char *str, dword f
 
   if(!str || !str[0] || !FontData || (maxX <= x))
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return;
   }
 
@@ -43,7 +43,7 @@ void FMUC_PutStringAA(word rgn, dword x, dword y, dword maxX, char *str, dword f
     newstr = TAP_MemAlloc((strlen(str) << 2) + 20);
     if(newstr == NULL)
     {
-      TRACEEXIT;
+      TRACEEXIT();
       return;
     }
 
@@ -55,7 +55,7 @@ void FMUC_PutStringAA(word rgn, dword x, dword y, dword maxX, char *str, dword f
     newstr = TAP_MemAlloc(newstrlen);
     if(newstr == NULL)
     {
-      TRACEEXIT;
+      TRACEEXIT();
       return;
     }
 
@@ -155,7 +155,7 @@ void FMUC_PutStringAA(word rgn, dword x, dword y, dword maxX, char *str, dword f
   {
     TAP_MemFree(newstr);
 
-    TRACEEXIT;
+    TRACEEXIT();
     return;
   }
 
@@ -279,5 +279,5 @@ void FMUC_PutStringAA(word rgn, dword x, dword y, dword maxX, char *str, dword f
 
   TAP_MemFree(newstr);
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

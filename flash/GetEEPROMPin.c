@@ -2,13 +2,13 @@
 
 word GetEEPROMPin(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   word                 *Pin = (word*)FIS_vParentalInfo();
   word                  ret;
 
   ret = (Pin ? *Pin : 0);
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

@@ -2,7 +2,7 @@
 
 void OSDMenuItemModifyValueXPos(dword NewValueXPos)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   tMenu                *pMenu;
 
@@ -15,5 +15,5 @@ void OSDMenuItemModifyValueXPos(dword NewValueXPos)
 
   ListDirty = TRUE;
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

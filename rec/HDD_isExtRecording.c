@@ -2,7 +2,7 @@
 
 bool HDD_isExtRecording(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   bool ret;
   bool(*Appl_GetIsExternal)(void);
@@ -11,6 +11,6 @@ bool HDD_isExtRecording(void)
   Appl_GetIsExternal = (void*)FIS_fwAppl_GetIsExternal();
   if(Appl_GetIsExternal) ret = Appl_GetIsExternal();
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

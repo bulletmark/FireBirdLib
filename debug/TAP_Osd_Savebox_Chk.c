@@ -2,7 +2,7 @@
 
 byte* TAP_Osd_SaveBox_Chk(char *Comment, word rgn, dword x, dword y, dword w, dword h)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   byte                 *ret;
   dword                 RgnH, RgnW;
@@ -23,6 +23,6 @@ byte* TAP_Osd_SaveBox_Chk(char *Comment, word rgn, dword x, dword y, dword w, dw
 
   if(Comment) if(ret == NULL) LogEntryFBLibPrintf(TRUE, "TAP_Osd_SaveBox_Chk Warning: TAP_Osd_SaveBox() returned a NULL pointer @ %s", Comment);
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

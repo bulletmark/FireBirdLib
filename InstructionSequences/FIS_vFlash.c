@@ -2,7 +2,7 @@
 
 inline dword FIS_vFlash(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   static dword          vFlash = 0;
 
@@ -14,6 +14,6 @@ inline dword FIS_vFlash(void)
     vFlash = *_applFlashAddr;
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return vFlash;
 }

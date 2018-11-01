@@ -2,7 +2,7 @@
 
 bool OSDMenuEvent(word *event, dword *param1, dword *param2)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   (void) param2;
 
@@ -20,7 +20,7 @@ bool OSDMenuEvent(word *event, dword *param1, dword *param2)
 
       LastUnprocessedOSDMenuKey = *param1;
 
-      TRACEEXIT;
+      TRACEEXIT();
       return TRUE;
     }
 
@@ -29,7 +29,7 @@ bool OSDMenuEvent(word *event, dword *param1, dword *param2)
       if(TAP_GetTick() > InfoBoxTimeOut) OSDMenuInfoBoxDestroy();
     }
 
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -99,11 +99,11 @@ bool OSDMenuEvent(word *event, dword *param1, dword *param2)
 
       LastUnprocessedOSDMenuKey = *param1;
 
-      TRACEEXIT;
+      TRACEEXIT();
       return TRUE;
     }
 
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -281,11 +281,11 @@ bool OSDMenuEvent(word *event, dword *param1, dword *param2)
 
       LastUnprocessedOSDMenuKey = *param1;
 
-      TRACEEXIT;
+      TRACEEXIT();
       return TRUE;
     }
 
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -303,7 +303,7 @@ bool OSDMenuEvent(word *event, dword *param1, dword *param2)
           OSDMenuUpdate(FALSE);
           *param1 = 0;
 
-          TRACEEXIT;
+          TRACEEXIT();
           return TRUE;
         }
 
@@ -313,7 +313,7 @@ bool OSDMenuEvent(word *event, dword *param1, dword *param2)
           OSDMenuUpdate(FALSE);
           *param1 = 0;
 
-          TRACEEXIT;
+          TRACEEXIT();
           return TRUE;
         }
 
@@ -324,7 +324,7 @@ bool OSDMenuEvent(word *event, dword *param1, dword *param2)
           OSDMenuUpdate(FALSE);
           *param1 = 0;
 
-          TRACEEXIT;
+          TRACEEXIT();
           return TRUE;
         }
 
@@ -335,7 +335,7 @@ bool OSDMenuEvent(word *event, dword *param1, dword *param2)
           OSDMenuUpdate(FALSE);
           *param1 = 0;
 
-          TRACEEXIT;
+          TRACEEXIT();
           return TRUE;
         }
 
@@ -347,7 +347,7 @@ bool OSDMenuEvent(word *event, dword *param1, dword *param2)
             OSDMenuUpdate(FALSE);
             *param1 = 0;
 
-            TRACEEXIT;
+            TRACEEXIT();
             return TRUE;
           }
           break;
@@ -361,7 +361,7 @@ bool OSDMenuEvent(word *event, dword *param1, dword *param2)
             OSDMenuUpdate(FALSE);
             *param1 = 0;
 
-            TRACEEXIT;
+            TRACEEXIT();
             return TRUE;
           }
           break;
@@ -373,6 +373,6 @@ bool OSDMenuEvent(word *event, dword *param1, dword *param2)
 
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return FALSE;
 }

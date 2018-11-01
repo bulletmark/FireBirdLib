@@ -2,7 +2,7 @@
 
 void OSDDrawScrollBar(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   int                   Y;
 
@@ -17,5 +17,5 @@ void OSDDrawScrollBar(void)
     TAP_Osd_PutGd(OSDRgn, 663, Y, &_ScrollBarKnob_Gd, FALSE);
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

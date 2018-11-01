@@ -3,14 +3,14 @@
 
 dword UncompressedFirmwareSize(byte *pSrc)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   word                  compSize = 0, uncompSize = 0;
   dword                 outSize = 0;
 
   if(!pSrc)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return 0;
   }
 
@@ -22,7 +22,7 @@ dword UncompressedFirmwareSize(byte *pSrc)
     if(uncompSize > 0x8000)
     {
       //Uncompressed data block size too large
-      TRACEEXIT;
+      TRACEEXIT();
 
       return 0;
     }
@@ -34,6 +34,6 @@ dword UncompressedFirmwareSize(byte *pSrc)
     uncompSize = LOAD_WORD(pSrc + 0);
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return outSize;
 }

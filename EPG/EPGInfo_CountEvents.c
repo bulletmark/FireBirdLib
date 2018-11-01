@@ -2,7 +2,7 @@
 
 dword EPGInfo_CountEvents(dword *TreePointer)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword                 i;
   tTreeEntry           *ListStart, *Entry;
@@ -16,7 +16,7 @@ dword EPGInfo_CountEvents(dword *TreePointer)
     //If the list points to itself, no data is available
     if(ListStart == (tTreeEntry*)ListStart->Next)
     {
-      TRACEEXIT;
+      TRACEEXIT();
 
       return 0;
     }
@@ -30,6 +30,6 @@ dword EPGInfo_CountEvents(dword *TreePointer)
     } while(Entry && (Entry->Next != ListStart->Prev));
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return i;
 }

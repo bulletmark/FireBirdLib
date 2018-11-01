@@ -4,7 +4,7 @@
 
 bool OSDMenuItemAdd(char *Name, char *Value, TYPE_GrData *pNameIconGd, TYPE_GrData *pValueIconGd, bool Selectable, bool ValueArrows, dword ID)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   tMenu                *pMenu;
   int                   NewNrItems;
@@ -18,7 +18,7 @@ bool OSDMenuItemAdd(char *Name, char *Value, TYPE_GrData *pNameIconGd, TYPE_GrDa
     TempItem = TAP_MemAlloc(NewNrItems * sizeof(tItem));
     if(!TempItem)
     {
-      TRACEEXIT;
+      TRACEEXIT();
       return FALSE;
     }
 
@@ -31,7 +31,7 @@ bool OSDMenuItemAdd(char *Name, char *Value, TYPE_GrData *pNameIconGd, TYPE_GrDa
 
   if(!Name || !Name[0])
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -61,6 +61,6 @@ bool OSDMenuItemAdd(char *Name, char *Value, TYPE_GrData *pNameIconGd, TYPE_GrDa
 
   ListDirty = TRUE;
 
-  TRACEEXIT;
+  TRACEEXIT();
   return TRUE;
 }

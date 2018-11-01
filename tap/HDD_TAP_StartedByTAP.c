@@ -5,10 +5,10 @@
 
 bool HDD_TAP_StartedByTAP(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   bool ret = (shmget(PARAMBLOCKKEY, sizeof(TYPE_Parametered_Tap), 0) != -1);
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

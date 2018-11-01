@@ -2,7 +2,7 @@
 
 dword *Appl_GetEvtListHeadInUsePool(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword *(*__Appl_GetEvtListHeadInUsePool)(void);
   dword *ret = NULL;
@@ -10,6 +10,6 @@ dword *Appl_GetEvtListHeadInUsePool(void)
   __Appl_GetEvtListHeadInUsePool = (void*)FIS_fwAppl_GetEvtListHeadInUsePool();
   if(__Appl_GetEvtListHeadInUsePool) ret = __Appl_GetEvtListHeadInUsePool();
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

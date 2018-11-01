@@ -2,7 +2,7 @@
 
 bool HDD_TAP_GetFileNameByIndex(int Index, char **TAPFileName)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   tTMSTAPTaskTable      *TMSTAPTaskTable;
   dword                 *FileHandle;
@@ -11,7 +11,7 @@ bool HDD_TAP_GetFileNameByIndex(int Index, char **TAPFileName)
   {
     if(TAPFileName) *TAPFileName = NULL;
 
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -20,14 +20,14 @@ bool HDD_TAP_GetFileNameByIndex(int Index, char **TAPFileName)
   //Check if that TAP is running
   if(TMSTAPTaskTable[Index].Status != 1)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
   //Check if the file pointer is valid
   if(!TMSTAPTaskTable[Index].file)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -35,18 +35,18 @@ bool HDD_TAP_GetFileNameByIndex(int Index, char **TAPFileName)
   FileHandle = (dword*)TMSTAPTaskTable[Index].file->handle;
   if(!FileHandle)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
   if(FileHandle[0] != 0xcdacedaf)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
   *TAPFileName = (char*)FileHandle[2];
 
-  TRACEEXIT;
+  TRACEEXIT();
   return TRUE;
 }

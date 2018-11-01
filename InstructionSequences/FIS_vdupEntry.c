@@ -2,13 +2,13 @@
 
 inline dword FIS_vdupEntry(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   static dword          vdupEntry = 0;
 
   if(!vdupEntry)
     vdupEntry = TryResolve("_dupEntry");
 
-  TRACEEXIT;
+  TRACEEXIT();
   return vdupEntry;
 }

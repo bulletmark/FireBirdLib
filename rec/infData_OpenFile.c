@@ -5,7 +5,7 @@ FILE                   *infDatainfFile = NULL;
 
 bool infData_OpenFile(char *infFileName)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   char                  AbsFileName[FBLIB_DIR_SIZE];
 
@@ -16,6 +16,6 @@ bool infData_OpenFile(char *infFileName)
     if(*AbsFileName) infDatainfFile = fopen(AbsFileName, "r+");
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return (infDatainfFile != NULL);
 }

@@ -2,18 +2,18 @@
 
 char *StringDBGet(tStringDB *StringDB, dword Index)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   char *ret;
 
   if(!StringDB)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return '\0';
   }
 
   ret = StringDB->DB + Index;
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

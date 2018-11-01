@@ -3,7 +3,7 @@
 
 void InsertAt(char *SourceString, int Pos, char *NewString)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   char                 *dst, *src;
   char                 *Target;
@@ -11,7 +11,7 @@ void InsertAt(char *SourceString, int Pos, char *NewString)
 
   if(!SourceString || !NewString)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return;
   }
 
@@ -21,7 +21,7 @@ void InsertAt(char *SourceString, int Pos, char *NewString)
   {
     strcat(src, NewString);
 
-    TRACEEXIT;
+    TRACEEXIT();
     return;
   }
 
@@ -46,5 +46,5 @@ void InsertAt(char *SourceString, int Pos, char *NewString)
 
   memcpy(Target, NewString, NewLen);
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

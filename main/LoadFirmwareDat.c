@@ -6,7 +6,7 @@
 
 bool LoadFirmwareDat(tFWDATHeader **FWDatHeader, tToppyInfo **ToppyInfo, tFWInfo **FWInfo)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   static byte          *FWDATBin = NULL;
   char                  AbsPath[FBLIB_DIR_SIZE];
@@ -23,14 +23,14 @@ bool LoadFirmwareDat(tFWDATHeader **FWDatHeader, tToppyInfo **ToppyInfo, tFWInfo
       TAP_SPrint(AbsPath, "%s/ProgramFiles/%s", TAPFSROOT, FIRMWAREDAT);
       if(lstat(AbsPath, &statbuf))
       {
-        TRACEEXIT;
+        TRACEEXIT();
         return FALSE;
       }
     }
 
     if((fp = fopen(AbsPath, "r")) == NULL)
     {
-      TRACEEXIT;
+      TRACEEXIT();
       return FALSE;
     }
 
@@ -38,7 +38,7 @@ bool LoadFirmwareDat(tFWDATHeader **FWDatHeader, tToppyInfo **ToppyInfo, tFWInfo
     {
       fclose(fp);
 
-      TRACEEXIT;
+      TRACEEXIT();
       return FALSE;
     }
 
@@ -58,7 +58,7 @@ bool LoadFirmwareDat(tFWDATHeader **FWDatHeader, tToppyInfo **ToppyInfo, tFWInfo
     TAP_MemFree(FWDATBin);
     FWDATBin = NULL;
 
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -66,6 +66,6 @@ bool LoadFirmwareDat(tFWDATHeader **FWDatHeader, tToppyInfo **ToppyInfo, tFWInfo
   if(ToppyInfo)   *ToppyInfo   = (tToppyInfo *) (FWDAT + 1);
   if(FWInfo)      *FWInfo      = (tFWInfo *) ((tToppyInfo *) (FWDAT + 1) + FWDAT->NrOfToppyInfoEntries);
 
-  TRACEEXIT;
+  TRACEEXIT();
   return TRUE;
 }

@@ -3,13 +3,13 @@
 
 bool VFD_SetHDDValue(int Percent)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   byte *grid = (byte*)FIS_vGrid();
 
   if(!VFDUsedByTAP || !grid || !HDDEnabled)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -24,6 +24,6 @@ bool VFD_SetHDDValue(int Percent)
   if(Percent > 77) grid[28] |= 0x08;
   if(Percent > 88) grid[28] |= 0x10;
 
-  TRACEEXIT;
+  TRACEEXIT();
   return TRUE;
 }

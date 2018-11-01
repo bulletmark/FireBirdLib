@@ -2,7 +2,7 @@
 
 dword UTC2LocalTime(dword UTCTime, short *Offset)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   short                 StdOffset, DSTOffset;
   dword                 DSTStartUTC, DSTEndUTC;
@@ -24,7 +24,7 @@ dword UTC2LocalTime(dword UTCTime, short *Offset)
 
       ret = Appl_TimeToLocal(UTCTime);
 
-      TRACEEXIT;
+      TRACEEXIT();
       return ret;
     }
 
@@ -62,6 +62,6 @@ dword UTC2LocalTime(dword UTCTime, short *Offset)
   if(Offset) *Offset = StdOffset + DSTOffset;
   ret = AddTime(UTCTime, StdOffset + DSTOffset);
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

@@ -2,7 +2,7 @@
 
 __ino64_t HDD_GetInodeByTypeFile(TYPE_File *File)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   char                  AbsFileName[FBLIB_DIR_SIZE];
   __ino64_t             ret;
@@ -12,6 +12,6 @@ __ino64_t HDD_GetInodeByTypeFile(TYPE_File *File)
   else
     ret = 0;
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

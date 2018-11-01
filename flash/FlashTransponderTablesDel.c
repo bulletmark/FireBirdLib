@@ -3,21 +3,21 @@
 
 bool FlashTransponderTablesDel(int SatNum, int TransponderNum)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   bool ret;
 
   //SatNum out of range
   if((SatNum < 0) || (SatNum >= FlashSatTablesGetTotal()))
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
   //TransponderNum out of range
   if((TransponderNum < 0) || (TransponderNum >= FlashTransponderTablesGetTotal(SatNum)))
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -45,7 +45,7 @@ bool FlashTransponderTablesDel(int SatNum, int TransponderNum)
       pSat = (TYPE_SatInfo_TMSS*)(FIS_vFlashBlockSatInfo());
       if(!pSat)
       {
-        TRACEEXIT;
+        TRACEEXIT();
         return FALSE;
       }
 
@@ -54,7 +54,7 @@ bool FlashTransponderTablesDel(int SatNum, int TransponderNum)
       pTransp = (TYPE_TpInfo_TMSS*)(FIS_vFlashBlockTransponderInfo());
       if(!pTransp)
       {
-        TRACEEXIT;
+        TRACEEXIT();
         return FALSE;
       }
 
@@ -101,14 +101,14 @@ bool FlashTransponderTablesDel(int SatNum, int TransponderNum)
       pSat = (TYPE_SatInfo_TMST*)(FIS_vFlashBlockSatInfo());
       if(!pSat)
       {
-        TRACEEXIT;
+        TRACEEXIT();
         return FALSE;
       }
 
       pTransp = (TYPE_TpInfo_TMST*)(FIS_vFlashBlockTransponderInfo());
       if(!pTransp)
       {
-        TRACEEXIT;
+        TRACEEXIT();
         return FALSE;
       }
 
@@ -144,14 +144,14 @@ bool FlashTransponderTablesDel(int SatNum, int TransponderNum)
       pSat = (TYPE_SatInfo_TMSC*)(FIS_vFlashBlockSatInfo());
       if(!pSat)
       {
-        TRACEEXIT;
+        TRACEEXIT();
         return FALSE;
       }
 
       pTransp = (TYPE_TpInfo_TMSC*)(FIS_vFlashBlockTransponderInfo());
       if(!pTransp)
       {
-        TRACEEXIT;
+        TRACEEXIT();
         return FALSE;
       }
 
@@ -181,6 +181,6 @@ bool FlashTransponderTablesDel(int SatNum, int TransponderNum)
     case ST_NRTYPES: break;
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

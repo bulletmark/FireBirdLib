@@ -2,13 +2,13 @@
 
 inline dword FIS_vFlashBlockNetwork(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   static dword          *vFlashNetwork = 0;
 
   if(!vFlashNetwork)
    vFlashNetwork = (dword*)TryResolve("_network");
 
-  TRACEEXIT;
+  TRACEEXIT();
   return (vFlashNetwork ? *vFlashNetwork : 0);
 }

@@ -4,28 +4,28 @@
 
 bool ELFReadSectionHeaders(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   if(ELFHeader->e_shnum == 0)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
   if(!(SectionHeaders = TAP_MemAlloc(ELFHeader->e_shnum * sizeof(Elf32_Shdr))))
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
   lseek(fTAP, ELFHeader->e_shoff, SEEK_SET);
   if(read(fTAP, SectionHeaders, ELFHeader->e_shnum * sizeof(Elf32_Shdr)) != (int)(ELFHeader->e_shnum * sizeof(Elf32_Shdr)))
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
 
-  TRACEEXIT;
+  TRACEEXIT();
   return TRUE;
 }

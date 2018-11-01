@@ -2,13 +2,13 @@
 
 inline dword FIS_fwPutDevEvt(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   static dword          fwPutDevEvt = 0;
 
   if(!fwPutDevEvt)
     fwPutDevEvt = TryResolve("PutDevEvt");
 
-  TRACEEXIT;
+  TRACEEXIT();
   return fwPutDevEvt;
 }

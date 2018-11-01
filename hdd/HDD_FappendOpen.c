@@ -3,7 +3,7 @@
 
 TYPE_File *HDD_FappendOpen(char *FileName)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   TYPE_File            *file;
   char                  buffer[512];
@@ -13,7 +13,7 @@ TYPE_File *HDD_FappendOpen(char *FileName)
 
   if(!FileName || !*FileName)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return NULL;
   }
 
@@ -65,6 +65,6 @@ TYPE_File *HDD_FappendOpen(char *FileName)
 
   HDD_TAP_PopDir();
 
-  TRACEEXIT;
+  TRACEEXIT();
   return file;
 }

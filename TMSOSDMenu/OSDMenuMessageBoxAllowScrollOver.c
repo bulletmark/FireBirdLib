@@ -3,9 +3,9 @@
 
 void OSDMenuMessageBoxAllowScrollOver(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   MessageBoxAllowScrollOver = TRUE;
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

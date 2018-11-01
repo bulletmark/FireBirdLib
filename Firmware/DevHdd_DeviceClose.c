@@ -2,7 +2,7 @@
 
 dword DevHdd_DeviceClose(tDirEntry *hddPlaybackFolder)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword                 (*__DevHdd_DeviceClose)(tDirEntry *hddPlaybackFolder);
   dword                 ret = 0;
@@ -10,6 +10,6 @@ dword DevHdd_DeviceClose(tDirEntry *hddPlaybackFolder)
   __DevHdd_DeviceClose = (void*)FIS_fwDevHdd_DeviceClose();
   if(__DevHdd_DeviceClose) ret = __DevHdd_DeviceClose(hddPlaybackFolder);
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

@@ -2,10 +2,10 @@
 
 bool isIceTVToppy(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   bool ret = FIS_fwApplIcelink_EitFromHdd() != 0;
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

@@ -3,7 +3,7 @@
 
 bool FlashFavoritesGetInfo(int FavNum, tFavorites *Favorites)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   tFavorites           *Favs30100;
   tFavorites1050       *Favs1050;
@@ -12,21 +12,21 @@ bool FlashFavoritesGetInfo(int FavNum, tFavorites *Favorites)
   //FavNum out of range
   if((FavNum < 0) || (FavNum >= FlashFavoritesGetTotal()))
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
   //Favorites is NULL
   if(!Favorites)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
   Favs30100 = (tFavorites*)FIS_vFlashBlockFavoriteGroup();
   if(!Favs30100)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return 0;
   }
   Favs1050 = (tFavorites1050*)Favs30100;
@@ -53,6 +53,6 @@ bool FlashFavoritesGetInfo(int FavNum, tFavorites *Favorites)
     }
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return TRUE;
 }

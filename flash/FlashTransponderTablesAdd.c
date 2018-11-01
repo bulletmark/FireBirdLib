@@ -3,19 +3,19 @@
 
 int FlashTransponderTablesAdd(int SatNum, tFlashTransponderTable *TransponderTable)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   //SatNum out of range
   if((SatNum < 0) || (SatNum >= FlashSatTablesGetTotal()))
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return -1;
   }
 
   //TransponderTable is NULL
   if(!TransponderTable)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return -1;
   }
 
@@ -32,7 +32,7 @@ int FlashTransponderTablesAdd(int SatNum, tFlashTransponderTable *TransponderTab
     case ST_T5800:
     case ST_TF7k7HDPVR:
     {
-      TRACEEXIT;
+      TRACEEXIT();
       return -1;
     }
 
@@ -46,7 +46,7 @@ int FlashTransponderTablesAdd(int SatNum, tFlashTransponderTable *TransponderTab
       pSat = (TYPE_SatInfo_TMSS*)(FIS_vFlashBlockSatInfo());
       if(!pSat)
       {
-        TRACEEXIT;
+        TRACEEXIT();
         return -1;
       }
 
@@ -55,7 +55,7 @@ int FlashTransponderTablesAdd(int SatNum, tFlashTransponderTable *TransponderTab
       pTransp = (TYPE_TpInfo_TMSS*)(FIS_vFlashBlockTransponderInfo());
       if(!pTransp)
       {
-        TRACEEXIT;
+        TRACEEXIT();
         return -1;
       }
 
@@ -93,11 +93,11 @@ int FlashTransponderTablesAdd(int SatNum, tFlashTransponderTable *TransponderTab
         *NrTransponders = *NrTransponders + 1;
         pSat->NrOfTransponders++;
 
-        TRACEEXIT;
+        TRACEEXIT();
         return pSat->NrOfTransponders - 1;
       }
 
-      TRACEEXIT;
+      TRACEEXIT();
       return -1;
     }
 
@@ -110,14 +110,14 @@ int FlashTransponderTablesAdd(int SatNum, tFlashTransponderTable *TransponderTab
       pSat = (TYPE_SatInfo_TMST*)(FIS_vFlashBlockSatInfo());
       if(!pSat)
       {
-        TRACEEXIT;
+        TRACEEXIT();
         return -1;
       }
 
       pTransp = (TYPE_TpInfo_TMST*)(FIS_vFlashBlockTransponderInfo());
       if(!pTransp)
       {
-        TRACEEXIT;
+        TRACEEXIT();
         return -1;
       }
 
@@ -132,11 +132,11 @@ int FlashTransponderTablesAdd(int SatNum, tFlashTransponderTable *TransponderTab
         *NrTransponders = *NrTransponders + 1;
         pSat->NrOfTransponders++;
 
-        TRACEEXIT;
+        TRACEEXIT();
         return pSat->NrOfTransponders - 1;
       }
 
-      TRACEEXIT;
+      TRACEEXIT();
       return -1;
     }
 
@@ -149,14 +149,14 @@ int FlashTransponderTablesAdd(int SatNum, tFlashTransponderTable *TransponderTab
       pSat = (TYPE_SatInfo_TMSC*)(FIS_vFlashBlockSatInfo());
       if(!pSat)
       {
-        TRACEEXIT;
+        TRACEEXIT();
         return -1;
       }
 
       pTransp = (TYPE_TpInfo_TMSC*)(FIS_vFlashBlockTransponderInfo());
       if(!pTransp)
       {
-        TRACEEXIT;
+        TRACEEXIT();
         return -1;
       }
 
@@ -171,17 +171,17 @@ int FlashTransponderTablesAdd(int SatNum, tFlashTransponderTable *TransponderTab
         *NrTransponders = *NrTransponders + 1;
         pSat->NrOfTransponders++;
 
-        TRACEEXIT;
+        TRACEEXIT();
         return pSat->NrOfTransponders - 1;
       }
 
-      TRACEEXIT;
+      TRACEEXIT();
       return -1;
     }
 
     case ST_NRTYPES: break;
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return -1;
 }

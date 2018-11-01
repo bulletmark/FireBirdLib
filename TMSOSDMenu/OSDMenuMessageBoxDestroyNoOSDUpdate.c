@@ -2,7 +2,7 @@
 
 void OSDMenuMessageBoxDestroyNoOSDUpdate(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   tOSDMapInfo          *OSDMapInfo;
 
@@ -29,5 +29,5 @@ void OSDMenuMessageBoxDestroyNoOSDUpdate(void)
 
   OSDMenuFreeStdFonts();
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

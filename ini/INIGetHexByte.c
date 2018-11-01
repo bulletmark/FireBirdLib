@@ -6,7 +6,7 @@
 
 byte INIGetHexByte(char *Key, byte DefaultValue, byte MinValue, byte MaxValue)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   char                  *i = NULL, *j = NULL, *k;
   char                  TempKey[80];
@@ -14,7 +14,7 @@ byte INIGetHexByte(char *Key, byte DefaultValue, byte MinValue, byte MaxValue)
 
   if(!Key)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return 0;
   }
 
@@ -27,14 +27,14 @@ byte INIGetHexByte(char *Key, byte DefaultValue, byte MinValue, byte MaxValue)
 
   if(!i || !j || (j < i + l))
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return DefaultValue;
   }
 
   for(k = i + l; k <= j; k++)
     if(!isxdigit(*k))
     {
-      TRACEEXIT;
+      TRACEEXIT();
       return DefaultValue;
     }
 
@@ -43,6 +43,6 @@ byte INIGetHexByte(char *Key, byte DefaultValue, byte MinValue, byte MaxValue)
   if(x < MinValue) x = MinValue;
   if(x > MaxValue) x = MaxValue;
 
-  TRACEEXIT;
+  TRACEEXIT();
   return x;
 }

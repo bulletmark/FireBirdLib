@@ -4,11 +4,11 @@ inline dword FIS_fwcurl_global_cleanup(void)
 {
   static dword          _curl_global_cleanup = 0;
 
-  TRACEENTER;
+  TRACEENTER();
 
   if(!_curl_global_cleanup)
     _curl_global_cleanup = TryResolve("curl_global_cleanup");
 
-  TRACEEXIT;
+  TRACEEXIT();
   return _curl_global_cleanup;
 }

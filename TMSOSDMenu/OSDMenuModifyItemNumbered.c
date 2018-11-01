@@ -2,10 +2,10 @@
 
 void OSDMenuModifyItemNumbered(bool NumberedItems)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   Menu[CurrentMenuLevel].NumberedItems = NumberedItems;
   ListDirty = TRUE;
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

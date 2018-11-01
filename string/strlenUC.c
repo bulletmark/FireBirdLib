@@ -3,7 +3,7 @@
 
 int strlenUC(byte *s)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   byte                 *p, *pEnd;
   int                   Count;
@@ -11,7 +11,7 @@ int strlenUC(byte *s)
 
   if(!s || !*s)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return 0;
   }
 
@@ -26,6 +26,6 @@ int strlenUC(byte *s)
     p += BPC;
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return Count;
 }

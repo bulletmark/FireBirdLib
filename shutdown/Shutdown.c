@@ -3,12 +3,12 @@
 
 bool Shutdown(TaskEnum Task)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   bool ret;
 
   ret = PutDevEvent(Task, 0);
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

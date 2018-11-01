@@ -2,13 +2,13 @@
 
 inline dword FIS_vIsPopUpOn(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   static dword          visPopUpOn = 0;
 
   if(!visPopUpOn)
     visPopUpOn = TryResolve("_isPopUpOn");
 
-  TRACEEXIT;
+  TRACEEXIT();
   return visPopUpOn;
 }

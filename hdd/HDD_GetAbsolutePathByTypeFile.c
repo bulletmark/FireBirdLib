@@ -3,7 +3,7 @@
 
 bool HDD_GetAbsolutePathByTypeFile(TYPE_File *File, char *AbsFileName)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword   *d;
   bool    ret;
@@ -22,6 +22,6 @@ bool HDD_GetAbsolutePathByTypeFile(TYPE_File *File, char *AbsFileName)
     }
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

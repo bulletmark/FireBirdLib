@@ -4,13 +4,13 @@
 
 void INIFindStartEnd(char *Key, char **Start, char **End, dword MaxEntrylen)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   char                  *CR, *LF, *p;
 
   if(!Start || !End || !MaxEntrylen)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return;
   }
 
@@ -18,7 +18,7 @@ void INIFindStartEnd(char *Key, char **Start, char **End, dword MaxEntrylen)
   {
     *Start = NULL;
 
-    TRACEEXIT;
+    TRACEEXIT();
     return;
   }
 
@@ -29,7 +29,7 @@ void INIFindStartEnd(char *Key, char **Start, char **End, dword MaxEntrylen)
     *Start = stricstr(*Start + 1, Key);
     if(*Start == NULL)
     {
-      TRACEEXIT;
+      TRACEEXIT();
       return;
     }
 
@@ -50,7 +50,7 @@ void INIFindStartEnd(char *Key, char **Start, char **End, dword MaxEntrylen)
       {
         *End = LF - 1;
 
-        TRACEEXIT;
+        TRACEEXIT();
         return;
       }
     }
@@ -63,11 +63,11 @@ void INIFindStartEnd(char *Key, char **Start, char **End, dword MaxEntrylen)
     {
       *End = NULL;
 
-      TRACEEXIT;
+      TRACEEXIT();
       return;
     }
 
   if(*End >= *Start + MaxEntrylen) *End = *Start + MaxEntrylen - 1;
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

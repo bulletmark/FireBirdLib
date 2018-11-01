@@ -4,12 +4,12 @@
 
 __ino64_t HDD_GetInodeByFileName(char *FileName)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   __ino64_t             ret;
 
   HDD_GetFileSizeAndInode(FileName, &ret, NULL);
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

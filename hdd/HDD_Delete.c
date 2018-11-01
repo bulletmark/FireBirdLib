@@ -4,7 +4,7 @@
 
 void HDD_Delete(char *FileName)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   char                  Path[FBLIB_DIR_SIZE], Name[TS_FILE_NAME_SIZE], Ext[TS_FILE_NAME_SIZE];
   char                  TempName[FBLIB_DIR_SIZE];
@@ -15,7 +15,7 @@ void HDD_Delete(char *FileName)
 
   if(!FileName || !*FileName)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return;
   }
 
@@ -95,5 +95,5 @@ void HDD_Delete(char *FileName)
     }
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

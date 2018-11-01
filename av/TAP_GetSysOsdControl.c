@@ -2,14 +2,14 @@
 
 bool TAP_GetSysOsdControl(TYPE_TapSysOsdId osdId)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword                *__tapSysOsdCtrl = NULL;
 
   __tapSysOsdCtrl = (dword*)FIS_vTapSysOsdCtrl();
   if(!__tapSysOsdCtrl)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -21,6 +21,6 @@ bool TAP_GetSysOsdControl(TYPE_TapSysOsdId osdId)
     case SYSOSD_ServiceStatus:  return *__tapSysOsdCtrl & 0x01000000;
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return FALSE;
 }

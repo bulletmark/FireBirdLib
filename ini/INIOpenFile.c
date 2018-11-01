@@ -8,7 +8,7 @@ dword                   BufferSize = 0;
 
 INILOCATION INIOpenFile(char *FileName, char *AppName)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   TYPE_File             *f;
   dword                 flen, ret = 0;
@@ -23,13 +23,13 @@ INILOCATION INIOpenFile(char *FileName, char *AppName)
     BufferSize = 512;
     if(!(INIBuffer = TAP_MemAlloc(BufferSize)))
     {
-      TRACEEXIT;
+      TRACEEXIT();
       return INILOCATION_NotFound;
     }
 
     memset(INIBuffer, 0, BufferSize);
 
-    TRACEEXIT;
+    TRACEEXIT();
     return INILOCATION_NewFile;
   }
 
@@ -38,7 +38,7 @@ INILOCATION INIOpenFile(char *FileName, char *AppName)
   {
     HDD_TAP_PopDir();
 
-    TRACEEXIT;
+    TRACEEXIT();
     return INILOCATION_NotFound;
   }
 
@@ -64,6 +64,6 @@ INILOCATION INIOpenFile(char *FileName, char *AppName)
 
   HDD_TAP_PopDir();
 
-  TRACEEXIT;
+  TRACEEXIT();
   return (INIBuffer && (ret > 0) ? INILocation : INILOCATION_NotFound);
 }

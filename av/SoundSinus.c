@@ -6,7 +6,7 @@ dword                   soundDataLength = 0;
 
 void SoundSinus(word freq, dword durationInMilliseconds, word Amplitude)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword                 samples, memSize, periode, index;
   short                 *target, *source;
@@ -54,7 +54,7 @@ void SoundSinus(word freq, dword durationInMilliseconds, word Amplitude)
 
   if(soundData == NULL)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return;
   }
   target = soundData;
@@ -62,7 +62,7 @@ void SoundSinus(word freq, dword durationInMilliseconds, word Amplitude)
   if(periode > samples)
   {
     //Die Dauer ist zu kurz, um auch nur eine einzelne vollständige Welle abzubilden
-    TRACEEXIT;
+    TRACEEXIT();
     return;
   }
 
@@ -96,5 +96,5 @@ void SoundSinus(word freq, dword durationInMilliseconds, word Amplitude)
 
   TAP_PlayPCM((void *) soundData, 2 * samples, FREQ_48K, NULL);
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

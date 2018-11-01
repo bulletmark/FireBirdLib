@@ -6,12 +6,12 @@ CURL *curl_easy_init(void)
 	CURL*                 (*__curl_easy_init)(void);
 	CURL*                 handle = 0;
 
-  TRACEENTER;
+  TRACEENTER();
 
 	__curl_easy_init = (void*)FIS_fwcurl_easy_init();
 	if(__curl_easy_init)
 		handle = __curl_easy_init();
 
-  TRACEEXIT;
+  TRACEEXIT();
 	return handle;
 }

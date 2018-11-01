@@ -5,7 +5,7 @@
 
 char *LogoManager_ChannelNameToLogoName(char *ChannelName, char *LogoName, int LogoNameSize)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   char                 *pLogoName;
   char                  AllowedChars[] = "abcdefghijklmnoprqstuvwxyz0123456789הצü+";
@@ -31,6 +31,6 @@ char *LogoManager_ChannelNameToLogoName(char *ChannelName, char *LogoName, int L
     StrReplace(LogoName, "ü", "ue");
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return LogoName;
 }

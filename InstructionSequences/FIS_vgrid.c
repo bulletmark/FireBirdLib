@@ -2,13 +2,13 @@
 
 inline dword FIS_vGrid(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   static dword          _grid = 0;
 
   if(!_grid)
     _grid = TryResolve("_grid");
 
-  TRACEEXIT;
+  TRACEEXIT();
   return _grid;
 }

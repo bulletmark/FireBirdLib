@@ -7,7 +7,7 @@
 //
 dword HDD_TAP_isDisabled(dword TAPID)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   tTMSTAPTaskTable     *TMSTAPTaskTable;
   int                   TAPIndex;
@@ -16,13 +16,13 @@ dword HDD_TAP_isDisabled(dword TAPID)
   TAPIndex = HDD_TAP_GetIndexByID(TAPID);
   if(TAPIndex == -1)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return 0;
   }
 
   TMSTAPTaskTable = (tTMSTAPTaskTable*)FIS_vTAPTable();
   ret = (TMSTAPTaskTable[TAPIndex].unused5 ? 1 : 0);
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

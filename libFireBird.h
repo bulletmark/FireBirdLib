@@ -3,7 +3,7 @@
 
   //#define STACKTRACE
 
-  #define __FBLIB_RELEASEDATE__ "2018-09-01"
+  #define __FBLIB_RELEASEDATE__ "2018-09-08"
 
   #define __FBLIB_VERSION__ __FBLIB_RELEASEDATE__
 
@@ -1196,11 +1196,11 @@
   void   CallTraceResetStats(void);
 
   #ifdef STACKTRACE
-    #define TRACEENTER    CallTraceEnter((char*)__FUNCTION__)
-    #define TRACEEXIT     CallTraceExit(NULL)
+    #define TRACEENTER()    CallTraceEnter((char*)__FUNCTION__)
+    #define TRACEEXIT()     CallTraceExit(NULL)
   #else
-    #define TRACEENTER    (void) 0
-    #define TRACEEXIT     (void) 0
+    #define TRACEENTER()
+    #define TRACEEXIT()
   #endif
 
   typedef enum

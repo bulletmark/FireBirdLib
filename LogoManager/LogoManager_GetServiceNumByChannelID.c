@@ -3,7 +3,7 @@
 
 bool LogoManager_GetServiceNumByChannelID(ulong64 ChannelID, int *SvcType, int *SvcNum)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   int                   i, NrTVChannels, NrRadioChannels;
 
@@ -15,7 +15,7 @@ bool LogoManager_GetServiceNumByChannelID(ulong64 ChannelID, int *SvcType, int *
       if(SvcType) *SvcType = SVC_TYPE_Tv;
       if(SvcNum) *SvcNum = i;
 
-      TRACEEXIT;
+      TRACEEXIT();
       return TRUE;
     }
 
@@ -25,11 +25,11 @@ bool LogoManager_GetServiceNumByChannelID(ulong64 ChannelID, int *SvcType, int *
       if(SvcType) *SvcType = SVC_TYPE_Radio;
       if(SvcNum) *SvcNum = i;
 
-      TRACEEXIT;
+      TRACEEXIT();
       return TRUE;
     }
 
 
-  TRACEEXIT;
+  TRACEEXIT();
   return FALSE;
 }

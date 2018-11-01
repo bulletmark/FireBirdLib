@@ -2,13 +2,13 @@
 
 inline dword FIS_vFlashBlockTVServices(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   static dword          *vFlashTVService = 0;
 
   if(!vFlashTVService)
     vFlashTVService = (dword*)TryResolve("_tvSvc");
 
-  TRACEEXIT;
+  TRACEEXIT();
   return (vFlashTVService ? *vFlashTVService : 0);
 }

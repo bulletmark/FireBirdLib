@@ -3,21 +3,21 @@
 
 bool FlashTimerSetInfo(int TimerIndex, tFlashTimer *TimerInfo)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   bool ret;
 
   //TimerIndex out of range
   if((TimerIndex < 0) || (TimerIndex >= TAP_Timer_GetTotalNum()))
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
   //TimerInfo is NULL
   if(!TimerInfo)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -105,7 +105,7 @@ bool FlashTimerSetInfo(int TimerIndex, tFlashTimer *TimerInfo)
     case ST_NRTYPES: break;
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }
 
@@ -113,11 +113,11 @@ bool FlashTimerEncode(void *Data, tFlashTimer *TimerInfo)
 {
   bool ret;
 
-  TRACEENTER;
+  TRACEENTER();
 
   if(!Data || !TimerInfo)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -163,13 +163,13 @@ bool FlashTimerEncode(void *Data, tFlashTimer *TimerInfo)
     case ST_NRTYPES: break;
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }
 
 bool FlashTimerEncode_ST_TMSS(TYPE_Timer_TMSS *Data, tFlashTimer *TimerInfo)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   memset(Data, 0, sizeof(TYPE_Timer_TMSS));
 
@@ -218,13 +218,13 @@ bool FlashTimerEncode_ST_TMSS(TYPE_Timer_TMSS *Data, tFlashTimer *TimerInfo)
   Data->TpInfo.unused3            = TimerInfo->TpInfo.unused3;
   Data->TpInfo.unused4            = TimerInfo->TpInfo.unused4;
 
-  TRACEEXIT;
+  TRACEEXIT();
   return TRUE;
 }
 
 bool FlashTimerEncode_ST_TMST(TYPE_Timer_TMST *Data, tFlashTimer *TimerInfo)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   memset(Data, 0, sizeof(TYPE_Timer_TMST));
 
@@ -268,13 +268,13 @@ bool FlashTimerEncode_ST_TMST(TYPE_Timer_TMST *Data, tFlashTimer *TimerInfo)
   Data->TpInfo.unused1              = TimerInfo->TpInfo.unused1;
   Data->TpInfo.unused2              = TimerInfo->TpInfo.unused2;
 
-  TRACEEXIT;
+  TRACEEXIT();
   return TRUE;
 }
 
 bool FlashTimerEncode_ST_TMST200(TYPE_Timer_TMST200 *Data, tFlashTimer *TimerInfo)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   memset(Data, 0, sizeof(TYPE_Timer_TMST200));
 
@@ -318,13 +318,13 @@ bool FlashTimerEncode_ST_TMST200(TYPE_Timer_TMST200 *Data, tFlashTimer *TimerInf
   Data->TpInfo.unused1              = TimerInfo->TpInfo.unused1;
   Data->TpInfo.unused2              = TimerInfo->TpInfo.unused2;
 
-  TRACEEXIT;
+  TRACEEXIT();
   return TRUE;
 }
 
 bool FlashTimerEncode_ST_TMST360(TYPE_Timer_TMST360 *Data, tFlashTimer *TimerInfo)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   memset(Data, 0, sizeof(TYPE_Timer_TMST360));
 
@@ -379,13 +379,13 @@ bool FlashTimerEncode_ST_TMST360(TYPE_Timer_TMST360 *Data, tFlashTimer *TimerInf
   Data->TpInfo.unused1              = TimerInfo->TpInfo.unused1;
   Data->TpInfo.unused2              = TimerInfo->TpInfo.unused2;
 
-  TRACEEXIT;
+  TRACEEXIT();
   return TRUE;
 }
 
 bool FlashTimerEncode_ST_TMSC(TYPE_Timer_TMSC *Data, tFlashTimer *TimerInfo)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   memset(Data, 0, sizeof(TYPE_Timer_TMSC));
 
@@ -425,6 +425,6 @@ bool FlashTimerEncode_ST_TMSC(TYPE_Timer_TMSC *Data, tFlashTimer *TimerInfo)
   Data->TpInfo.ModulationType       = TimerInfo->TpInfo.Modulation;
   Data->TpInfo.unused1              = TimerInfo->TpInfo.unused1;
 
-  TRACEEXIT;
+  TRACEEXIT();
   return TRUE;
 }

@@ -2,13 +2,13 @@
 
 bool EPGInfo_FindItem(TYPE_EPGInfo *EPGData, int EPGIndex, bool EPGReset)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   if((EPGIndex >= EPGInfoNrEntries) || (EPGIndex < 0))
   {
     if(EPGData) memset(EPGData, 0, sizeof(TYPE_EPGInfo));
 
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -26,6 +26,6 @@ bool EPGInfo_FindItem(TYPE_EPGInfo *EPGData, int EPGIndex, bool EPGReset)
     }
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return TRUE;
 }

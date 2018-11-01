@@ -2,7 +2,7 @@
 
 bool PSBuffer_ProcessTSPacket(tPSBuffer *PSBuffer, byte *TSBuffer, ulong64 FileOffset)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   word                  PID;
   byte                  PointerField;
@@ -162,6 +162,6 @@ bool PSBuffer_ProcessTSPacket(tPSBuffer *PSBuffer, byte *TSBuffer, ulong64 FileO
     PSBuffer->LastContCounter = TSBuffer[3] & 0x0f;
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return Result;
 }

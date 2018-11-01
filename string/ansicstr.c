@@ -31,7 +31,7 @@
 
 char *ansicstr (char *string, int len, int flags, int *sawc, int *rlen)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   int                   c, temp;
   char                 *ret, *r, *s;
@@ -41,14 +41,14 @@ char *ansicstr (char *string, int len, int flags, int *sawc, int *rlen)
 
   if((string == 0) || (len == 0) || (*string == '\0'))
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return NULL;
   }
 
   ret = (char*)TAP_MemAlloc(4*len + 1);
   if(ret == NULL)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return NULL;
   }
 
@@ -209,6 +209,6 @@ char *ansicstr (char *string, int len, int flags, int *sawc, int *rlen)
   *r = '\0';
   if(rlen) *rlen = r - ret;
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

@@ -12,7 +12,7 @@
 // 6 .. (compressed size + 5) - compressed data (byte array)
 dword UncompressFirmware(byte *pSrc, byte *pDest, void *pPercentFinishedCallback)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   word                  compSize = 0, uncompSize = 0;
   dword                 outSize = 0, NrBlocks = 0, CurrentBlock = 0;
@@ -20,7 +20,7 @@ dword UncompressFirmware(byte *pSrc, byte *pDest, void *pPercentFinishedCallback
 
   if(!pSrc || !pDest)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return 0;
   }
 
@@ -39,7 +39,7 @@ dword UncompressFirmware(byte *pSrc, byte *pDest, void *pPercentFinishedCallback
     if(uncompSize > 0x8000)
     {
       //Uncompressed data block size too large
-      TRACEEXIT;
+      TRACEEXIT();
 
       return 0;
     }
@@ -63,7 +63,7 @@ dword UncompressFirmware(byte *pSrc, byte *pDest, void *pPercentFinishedCallback
     if(uncompSize > 0x8000)
     {
       //Uncompressed data block size too large
-      TRACEEXIT;
+      TRACEEXIT();
 
       return 0;
     }
@@ -81,7 +81,7 @@ dword UncompressFirmware(byte *pSrc, byte *pDest, void *pPercentFinishedCallback
       if(!UncompressBlock(pSrc, compSize, pDest, uncompSize))
       {
         //Uncompress has failed
-        TRACEEXIT;
+        TRACEEXIT();
         return 0;
       }
     }
@@ -95,6 +95,6 @@ dword UncompressFirmware(byte *pSrc, byte *pDest, void *pPercentFinishedCallback
   }
   if(PercentFinishedCallback) PercentFinishedCallback(100);
 
-  TRACEEXIT;
+  TRACEEXIT();
   return outSize;
 }

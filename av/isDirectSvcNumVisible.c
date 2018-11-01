@@ -2,7 +2,7 @@
 
 bool isDirectSvcNumVisible(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   byte                 *id;
   bool                  ret;
@@ -12,6 +12,6 @@ bool isDirectSvcNumVisible(void)
   ret = FALSE;
   if(id) ret = (*id != 0xff);
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

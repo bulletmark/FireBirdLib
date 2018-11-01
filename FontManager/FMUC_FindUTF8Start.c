@@ -2,17 +2,17 @@
 
 byte *FMUC_FindUTF8Start(byte *p)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   if(p == NULL)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return NULL;
   }
 
   //Find the first byte of a multibyte UTF-8 character
   while((*p & 0xc0) == 0x80) p--;
 
-  TRACEEXIT;
+  TRACEEXIT();
   return p;
 }

@@ -2,7 +2,7 @@
 
 bool Appl_ExportChData(char *FileName)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   bool (*__Appl_ExportChData)(char*);
   bool ret = FALSE;
@@ -10,6 +10,6 @@ bool Appl_ExportChData(char *FileName)
   __Appl_ExportChData = (void*)FIS_fwAppl_ExportChData();
   if(__Appl_ExportChData) ret = __Appl_ExportChData(FileName);
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

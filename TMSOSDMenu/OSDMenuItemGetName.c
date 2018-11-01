@@ -2,7 +2,7 @@
 
 char *OSDMenuItemGetName(int ItemIndex)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   char *ret;
 
@@ -11,6 +11,6 @@ char *OSDMenuItemGetName(int ItemIndex)
   else
     ret = Menu[CurrentMenuLevel].Item[ItemIndex].Name;
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

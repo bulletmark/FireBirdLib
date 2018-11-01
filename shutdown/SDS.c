@@ -44,7 +44,7 @@ void (*OrigHandler)(word, dword);
 
 void CreateRootDir(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   //Check & Create Folders
   HDD_TAP_PushDir();
@@ -54,7 +54,7 @@ void CreateRootDir(void)
   if(!TAP_Hdd_Exist("SDS")) TAP_Hdd_Create("SDS", ATTR_FOLDER);
   HDD_TAP_PopDir();
 
-  TRACEEXIT;
+  TRACEEXIT();
 }
 
 void WriteLog(char *s)
@@ -67,19 +67,19 @@ void WriteLog(char *s)
 
 void Hooked_ApplEvent_CallHandler(unsigned int a1, unsigned int a2)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   (void)a1;
   (void)a2;
 
   ShutdownHooked = TRUE;
 
-  TRACEEXIT;
+  TRACEEXIT();
 }
 
 bool SetHandler(dword EventID, void *Handler, void **OrigHandler)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   static dword         *__topEvent = NULL;
   tEventQueue          *EventQueue;
@@ -88,7 +88,7 @@ bool SetHandler(dword EventID, void *Handler, void **OrigHandler)
 
   if(!Handler && !(dword*)Handler)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -100,7 +100,7 @@ bool SetHandler(dword EventID, void *Handler, void **OrigHandler)
       if(LastStatus != -10) WriteLog("Failed to resolve _topEvent");
       LastStatus = -10;
 
-      TRACEEXIT;
+      TRACEEXIT();
       return FALSE;
     }
   }
@@ -123,7 +123,7 @@ bool SetHandler(dword EventID, void *Handler, void **OrigHandler)
             LastStatus = -11;
           }
 
-          TRACEEXIT;
+          TRACEEXIT();
           return FALSE;
         }
 
@@ -136,7 +136,7 @@ bool SetHandler(dword EventID, void *Handler, void **OrigHandler)
         if(OrigHandler) *OrigHandler = (void*)EventQueueDetails->Handler;
         EventQueueDetails->Handler = (dword)Handler;
 
-        TRACEEXIT;
+        TRACEEXIT();
         return TRUE;
       }
     }
@@ -150,13 +150,13 @@ bool SetHandler(dword EventID, void *Handler, void **OrigHandler)
     LastStatus = -13;
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return FALSE;
 }
 
 bool SDS(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   static dword              Timeout = 0;
   static tHookHandlerState  LastHHS = HHS_Exit;
@@ -196,7 +196,7 @@ bool SDS(void)
           LastStatus = -1;
           HookHandlerState = HHS_Exit;
 
-          TRACEEXIT;
+          TRACEEXIT();
           return FALSE;
         }
       }
@@ -210,7 +210,7 @@ bool SDS(void)
           LastStatus = -2;
           HookHandlerState = HHS_Exit;
 
-          TRACEEXIT;
+          TRACEEXIT();
           return FALSE;
         }
       }
@@ -218,13 +218,13 @@ bool SDS(void)
       //Modify the handler pointer of the ef00 event queue
       if(!SetHandler(0xef00, Hooked_ApplEvent_CallHandler, (void*)&OrigHandler))
       {
-        TRACEEXIT;
+        TRACEEXIT();
         return FALSE;
       }
 
       if(!LibInitialized && !InitTAPex())
       {
-        TRACEEXIT;
+        TRACEEXIT();
         return FALSE;
       }
 
@@ -335,18 +335,18 @@ bool SDS(void)
         LastStatus = -9;
       }
 
-      TRACEEXIT;
+      TRACEEXIT();
       return FALSE;
     }
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return TRUE;
 }
 
 void SDSTerminate(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   if(LastStatus != -3) WriteLog("SDS termination request received");
   LastStatus = -3;
@@ -360,5 +360,5 @@ void SDSTerminate(void)
   }
   HookHandlerState = HHS_Exit;
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

@@ -2,17 +2,17 @@
 
 bool OSDMenuPush(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   if(CurrentMenuLevel >= (NRMENULEVELS - 1))
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
   CurrentMenuLevel++;
   memset(&Menu[CurrentMenuLevel], 0, sizeof(tMenu));
 
-  TRACEEXIT;
+  TRACEEXIT();
   return TRUE;
 }

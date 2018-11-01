@@ -2,12 +2,12 @@
 
 dword OSDMenuItemGetNrOfItems(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword ret;
 
   ret = Menu[CurrentMenuLevel].NrItems;
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

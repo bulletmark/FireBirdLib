@@ -2,13 +2,13 @@
 
 inline dword FIS_fwAppl_SetApplVer(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   static dword          fwAppl_SetApplVer = 0;
 
   if(!fwAppl_SetApplVer)
     fwAppl_SetApplVer = TryResolve("_Z15Appl_SetApplVerPc");
 
-  TRACEEXIT;
+  TRACEEXIT();
   return fwAppl_SetApplVer;
 }

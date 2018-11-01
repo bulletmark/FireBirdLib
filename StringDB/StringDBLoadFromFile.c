@@ -4,13 +4,13 @@
 
 bool StringDBLoadFromFile(tStringDB *StringDB, TYPE_File *f)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword                 l, p;
 
   if(!StringDB || !f)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -25,7 +25,7 @@ bool StringDBLoadFromFile(tStringDB *StringDB, TYPE_File *f)
     StringDB->DBSize = 0;
     TAP_Hdd_Fclose(f);
 
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
   StringDB->DBSize = l;
@@ -37,6 +37,6 @@ bool StringDBLoadFromFile(tStringDB *StringDB, TYPE_File *f)
 
   TAP_Hdd_Fread(StringDB->DB, 1, l, f);
 
-  TRACEEXIT;
+  TRACEEXIT();
   return TRUE;
 }

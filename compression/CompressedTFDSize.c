@@ -3,10 +3,10 @@
 
 dword CompressedTFDSize(byte *pSrc, dword SourceBufferSize, void *pPercentFinishedCallback)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword ret = CompressTFD(pSrc, SourceBufferSize, NULL, 0, 0, pPercentFinishedCallback);
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

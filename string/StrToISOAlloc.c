@@ -4,18 +4,18 @@
 
 void StrToISOAlloc(byte *SourceString, byte **DestString)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   if((SourceString == NULL) || (DestString == NULL))
   {
     if(DestString) *DestString =  NULL;
 
-    TRACEEXIT;
+    TRACEEXIT();
     return;
   }
 
   *DestString = TAP_MemAlloc(strlenUC(SourceString) + 1);
   StrToISO(SourceString, *DestString);
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

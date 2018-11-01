@@ -8,7 +8,7 @@ bool EPGInfo_FindCurrent(byte SvcType, int SvcNum, TYPE_EPGInfo *EPGData)
   TYPE_TapChInfo          chInfo;
   bool                    ret;
 
-  TRACEENTER;
+  TRACEENTER();
 
   ret = FALSE;
   if(EPGData)
@@ -27,6 +27,6 @@ bool EPGInfo_FindCurrent(byte SvcType, int SvcNum, TYPE_EPGInfo *EPGData)
     }
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

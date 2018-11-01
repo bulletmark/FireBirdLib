@@ -6,7 +6,7 @@ CURLcode curl_global_init(long flags)
 	CURLcode        (*__curl_global_init)(long);
 	CURLcode			result = CURLE_FAILED_INIT;
 
-  TRACEENTER;
+  TRACEENTER();
 
 	__curl_global_init = (void*)FIS_fwcurl_global_init();
 	if(__curl_global_init)
@@ -15,6 +15,6 @@ CURLcode curl_global_init(long flags)
 		result = __curl_global_init(flags);
 	}
 
-  TRACEEXIT;
+  TRACEEXIT();
 	return result;
 }

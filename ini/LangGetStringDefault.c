@@ -3,16 +3,16 @@
 
 char *LangGetStringDefault(dword StringID, char *DefaultString)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   char *ret = LangGetString(StringID);
 
   if((ret[0] == '\0') && DefaultString)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return DefaultString;
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

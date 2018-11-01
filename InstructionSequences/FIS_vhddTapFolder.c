@@ -2,13 +2,13 @@
 
 inline dword FIS_vHddTapFolder(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   static dword          _hddTapFolder = 0;
 
   if(!_hddTapFolder)
     _hddTapFolder = TryResolve("_hddTapFolder");
 
-  TRACEEXIT;
+  TRACEEXIT();
   return _hddTapFolder;
 }

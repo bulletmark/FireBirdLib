@@ -3,11 +3,11 @@
 
 void MakeValidFileName(char *strName, eRemoveChars ControlCharacters)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   char                  Result[FBLIB_DIR_SIZE];
 
   strcpy(strName, ValidFileName(strName, ControlCharacters, Result, sizeof(Result)));
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

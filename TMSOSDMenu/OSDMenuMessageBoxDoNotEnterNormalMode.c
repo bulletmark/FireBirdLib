@@ -2,9 +2,9 @@
 
 void OSDMenuMessageBoxDoNotEnterNormalMode(bool DoNotEnterNormalMode)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   MessageBoxNoNormalMode = DoNotEnterNormalMode;
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

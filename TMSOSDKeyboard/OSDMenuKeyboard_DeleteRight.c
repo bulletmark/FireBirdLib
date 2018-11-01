@@ -3,7 +3,7 @@
 
 void OSDMenuKeyboard_DeleteRight(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   if(OSDMenuKeyboard_CursorPosition < (int)strlenUC(OSDMenuKeyboard_StringVar))
   {
@@ -11,5 +11,5 @@ void OSDMenuKeyboard_DeleteRight(void)
     OSDMenuKeyboard_Draw();
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

@@ -4,13 +4,13 @@
 
 tAudioTrk *AudioTrackInfo(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   tAudioTrk  *p;
 
   p = (tAudioTrk*)FIS_vAudioTrack();
 
-  TRACEEXIT;
+  TRACEEXIT();
 
   return p;
 }

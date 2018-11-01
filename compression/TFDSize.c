@@ -3,7 +3,7 @@
 
 dword TFDSize(byte *pTFD)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   word                  NrBlocks = 0;
   dword                 i;
@@ -11,28 +11,28 @@ dword TFDSize(byte *pTFD)
 
   if(!pTFD)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return 0;
   }
 
   if(LOAD_WORD(p) != 8)
   {
     //Invalid header
-    TRACEEXIT;
+    TRACEEXIT();
     return 0;
   }
 
   if(CRC16 (0, p + 4, 6) != LOAD_WORD(p + 2))
   {
     //Invalid header CRC
-    TRACEEXIT;
+    TRACEEXIT();
     return 0;
   }
 
   if(LOAD_WORD(p + 6) != 1)
   {
     //Invalid file version
-    TRACEEXIT;
+    TRACEEXIT();
     return 0;
   }
 
@@ -41,6 +41,6 @@ dword TFDSize(byte *pTFD)
   for(i = 0; i < NrBlocks; i++)
     p += LOAD_WORD(p) + 2;
 
-  TRACEEXIT;
+  TRACEEXIT();
   return p - pTFD;
 }

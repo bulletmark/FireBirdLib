@@ -5,7 +5,7 @@
 
 void LogoManager_LogoCacheRebuild(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   char                  ID[4];
   dword                 Version;
@@ -152,5 +152,5 @@ void LogoManager_LogoCacheRebuild(void)
   HDD_TAP_PopDir();
   if(LogoManager_CB) LogoManager_CB(4, 0);
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

@@ -2,7 +2,7 @@
 
 void ezxml_free(ezxml_t xml)
 {
-  TRACEENTER;
+  TRACEENTER();
 
 	void		(*__ezxml_free)(ezxml_t);
 
@@ -13,5 +13,5 @@ void ezxml_free(ezxml_t xml)
 		__ezxml_free(xml);
 	}
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

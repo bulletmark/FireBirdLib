@@ -5,7 +5,7 @@
 
 void LogoManager_CleanupMemory(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   int                   i;
 
@@ -22,5 +22,5 @@ void LogoManager_CleanupMemory(void)
   }
 
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

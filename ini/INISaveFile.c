@@ -5,20 +5,20 @@
 
 bool INISaveFile(char *FileName, INILOCATION INILocation, char *AppName)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   TYPE_File             *f;
   dword                 ret;
 
   if(INIBuffer == NULL || INILocation >= INILOCATION_NrENUMs)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
   if(INILocation == INILOCATION_AtAppName && (!AppName || !AppName[0]))
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -34,7 +34,7 @@ bool INISaveFile(char *FileName, INILOCATION INILocation, char *AppName)
     {
       HDD_TAP_PopDir();
 
-      TRACEEXIT;
+      TRACEEXIT();
       return FALSE;
     }
   }
@@ -46,7 +46,7 @@ bool INISaveFile(char *FileName, INILOCATION INILocation, char *AppName)
     {
       HDD_TAP_PopDir();
 
-      TRACEEXIT;
+      TRACEEXIT();
       return FALSE;
     }
   }
@@ -58,7 +58,7 @@ bool INISaveFile(char *FileName, INILOCATION INILocation, char *AppName)
     {
       HDD_TAP_PopDir();
 
-      TRACEEXIT;
+      TRACEEXIT();
       return FALSE;
     }
   }
@@ -69,7 +69,7 @@ bool INISaveFile(char *FileName, INILOCATION INILocation, char *AppName)
   {
     HDD_TAP_PopDir();
 
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -77,6 +77,6 @@ bool INISaveFile(char *FileName, INILOCATION INILocation, char *AppName)
   TAP_Hdd_Fclose(f);
   HDD_TAP_PopDir();
 
-  TRACEEXIT;
+  TRACEEXIT();
   return (ret == 1);
 }

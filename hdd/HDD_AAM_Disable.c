@@ -3,7 +3,7 @@
 
 int HDD_AAM_Disable(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   int ret;
   unsigned char         CommandBlock[FBHDIO_DRIVE_TASK_HDR_SIZE] = {WIN_SETFEATURES,      //COMMAND
@@ -17,7 +17,7 @@ int HDD_AAM_Disable(void)
 
   ret = SendHDDCommand(HDIO_DRIVE_TASK, CommandBlock, 0);
 
-  TRACEEXIT;
+  TRACEEXIT();
 
   return ret;
 }

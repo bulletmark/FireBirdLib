@@ -18,7 +18,7 @@ bool infData_LocateSig(char *NameTag, dword *PayloadSize)
   //  char NameTag[SigLength]
   //  byte Payload[PayloadSize]
 
-  TRACEENTER;
+  TRACEENTER();
 
   ret = FALSE;
   if(PayloadSize) *PayloadSize = 0;
@@ -47,6 +47,6 @@ bool infData_LocateSig(char *NameTag, dword *PayloadSize)
     }
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

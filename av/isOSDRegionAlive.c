@@ -2,10 +2,10 @@
 
 bool isOSDRegionAlive(word Region)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   bool ret = (GetOSDRegionWidth(Region) != 0 && GetOSDRegionHeight(Region) != 0);
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

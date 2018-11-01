@@ -3,7 +3,7 @@
 
 void FM_PutStringAA(word rgn, dword x, dword y, dword maxX, char *str, dword fcolor, dword bcolor, tFontData *FontData, byte bDot, byte align, float AntiAliasFactor)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword                 XEnd, YEnd;
   dword                *PixelData;
@@ -26,7 +26,7 @@ void FM_PutStringAA(word rgn, dword x, dword y, dword maxX, char *str, dword fco
 
   if(!str || !str[0] || !FontData || !FontData->pFontData || (maxX <= x))
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return;
   }
 
@@ -119,7 +119,7 @@ void FM_PutStringAA(word rgn, dword x, dword y, dword maxX, char *str, dword fco
 
   if(XEnd > maxX)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return;
   }
 
@@ -227,5 +227,5 @@ void FM_PutStringAA(word rgn, dword x, dword y, dword maxX, char *str, dword fco
     TAP_MemFree(PixelData);
   } // if PixelData
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

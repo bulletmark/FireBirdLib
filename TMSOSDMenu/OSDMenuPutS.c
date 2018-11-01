@@ -2,7 +2,7 @@
 
 void OSDMenuPutS(word rgn, dword x, dword y, dword maxX, char * str, dword fcolor, dword bcolor, byte fntSize, byte bDot, byte align)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   switch(fntSize)
   {
@@ -13,5 +13,5 @@ void OSDMenuPutS(word rgn, dword x, dword y, dword maxX, char * str, dword fcolo
     case 20: FMUC_PutStringAA(rgn, x, y + FONTYOFFSET, maxX, str, fcolor, bcolor, &OSDMenuFont_20, bDot, align, 1); break;
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

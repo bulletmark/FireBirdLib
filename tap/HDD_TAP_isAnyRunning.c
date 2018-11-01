@@ -2,7 +2,7 @@
 
 bool HDD_TAP_isAnyRunning(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword                 i;
   tTMSTAPTaskTable     *TMSTAPTaskTable;
@@ -11,7 +11,7 @@ bool HDD_TAP_isAnyRunning(void)
 
   if(!TMSTAPTaskTable || (!LibInitialized && !InitTAPex()))
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -19,11 +19,11 @@ bool HDD_TAP_isAnyRunning(void)
   {
     if((TMSTAPTaskTable[i].Status != 0) && (i != TAP_TableIndex))
     {
-      TRACEEXIT;
+      TRACEEXIT();
       return TRUE;
     }
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return FALSE;
 }

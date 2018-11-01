@@ -2,7 +2,7 @@
 
 dword *Appl_GetEvtListHeadInHashByChannelID(ulong64 ChannelID)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword *(*__Appl_GetEvtListHeadInHash)(word NetID, word TSID, word ServiceID);
 
@@ -18,6 +18,6 @@ dword *Appl_GetEvtListHeadInHashByChannelID(ulong64 ChannelID)
     ret = __Appl_GetEvtListHeadInHash(NetID, TSID, SID);
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

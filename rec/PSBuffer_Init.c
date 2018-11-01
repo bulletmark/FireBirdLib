@@ -6,11 +6,11 @@
 
 bool PSBuffer_Init(tPSBuffer *PSBuffer, word PID, int BufferSize)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   if(!PSBuffer)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -30,7 +30,7 @@ bool PSBuffer_Init(tPSBuffer *PSBuffer, word PID, int BufferSize)
   PSBuffer->pInBuffer = &PSBuffer->Buffer[0];
   PSBuffer->pInBufferData = &PSBuffer->pInBuffer->PSData[0];
 
-  TRACEEXIT;
+  TRACEEXIT();
 
   //Make sure all buffers have an valid pointer
   return(PSBuffer->Buffer[0].PSData && PSBuffer->Buffer[0].FileOffset && PSBuffer->Buffer[1].PSData && PSBuffer->Buffer[1].FileOffset);

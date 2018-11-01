@@ -2,13 +2,13 @@
 
 inline dword FIS_vPhotoAlbumInfo(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   static dword          vphotoAlbumInfo = 0;
 
   if(!vphotoAlbumInfo)
     vphotoAlbumInfo = TryResolve("_photoAlbumInfo");
 
-  TRACEEXIT;
+  TRACEEXIT();
   return vphotoAlbumInfo;
 }

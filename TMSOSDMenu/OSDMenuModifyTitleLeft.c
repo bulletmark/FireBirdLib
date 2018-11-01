@@ -3,13 +3,13 @@
 
 void OSDMenuModifyTitleLeft(char *Text)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   tMenu                *pMenu;
 
   if(!Text)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return;
   }
 
@@ -19,5 +19,5 @@ void OSDMenuModifyTitleLeft(char *Text)
   pMenu->TitleLeft[STDSTRINGSIZE - 1] = '\0';
   TitleDirty = TRUE;
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

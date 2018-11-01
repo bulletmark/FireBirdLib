@@ -2,10 +2,10 @@
 
 void OSDMenuModifyItemValueColumn(bool HasValueColumn)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   Menu[CurrentMenuLevel].HasValueColumn = HasValueColumn;
   ListDirty = TRUE;
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

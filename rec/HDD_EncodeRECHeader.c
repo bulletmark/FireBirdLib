@@ -3,7 +3,7 @@
 
 void setWord(void *buffer, word Data, bool BigEndian)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   byte                 *p;
 
@@ -19,12 +19,12 @@ void setWord(void *buffer, word Data, bool BigEndian)
     p[1] = Data >> 8;
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
 }
 
 void setDword(void *buffer, dword Data, bool BigEndian)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   byte                 *p;
 
@@ -44,12 +44,12 @@ void setDword(void *buffer, dword Data, bool BigEndian)
     p[0] =  Data & 0xff;
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
 }
 
 void EncodeExtInfo(byte *Buffer, dword p, tRECHeaderInfo *RECHeaderInfo, bool BigEndian)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   //The extended info structure is identical on all Toppies
   setWord(&Buffer[p + 0x0000], RECHeaderInfo->ExtEventServiceID , BigEndian);
@@ -82,12 +82,12 @@ void EncodeExtInfo(byte *Buffer, dword p, tRECHeaderInfo *RECHeaderInfo, bool Bi
     memcpy(pInfo, pStart, pItems - pStart + 1);
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
 }
 
 void HDD_EncodeRECHeader_ST_S(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword                 p;
   word                  w;
@@ -171,12 +171,12 @@ void HDD_EncodeRECHeader_ST_S(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
   memcpy(&Buffer[p + 0x0000], RECHeaderInfo->Bookmark, 64 * sizeof(dword));
   setDword(&Buffer[p + 0x0100], RECHeaderInfo->Resume, TRUE);
 
-  TRACEEXIT;
+  TRACEEXIT();
 }
 
 void HDD_EncodeRECHeader_ST_T(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword                 p;
   word                  Flags;
@@ -260,12 +260,12 @@ void HDD_EncodeRECHeader_ST_T(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
   memcpy(&Buffer[p + 0x0000], RECHeaderInfo->Bookmark, 64 * sizeof(dword));
   setDword(&Buffer[p + 0x0100], RECHeaderInfo->Resume, TRUE);
 
-  TRACEEXIT;
+  TRACEEXIT();
 }
 
 void HDD_EncodeRECHeader_ST_C(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword                 p;
   word                  Flags;
@@ -346,12 +346,12 @@ void HDD_EncodeRECHeader_ST_C(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
   memcpy(&Buffer[p + 0x0000], RECHeaderInfo->Bookmark, 64 * sizeof(dword));
   setDword(&Buffer[p + 0x0100], RECHeaderInfo->Resume, TRUE);
 
-  TRACEEXIT;
+  TRACEEXIT();
 }
 
 void HDD_EncodeRECHeader_ST_T5700(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword                 p;
   word                  Flags;
@@ -436,12 +436,12 @@ void HDD_EncodeRECHeader_ST_T5700(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
   memcpy(&Buffer[p + 0x0000], RECHeaderInfo->Bookmark, 64 * sizeof(dword));
   setDword(&Buffer[p + 0x0100], RECHeaderInfo->Resume, TRUE);
 
-  TRACEEXIT;
+  TRACEEXIT();
 }
 
 void HDD_EncodeRECHeader_ST_T5800(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword                 p;
   word                  Flags;
@@ -526,12 +526,12 @@ void HDD_EncodeRECHeader_ST_T5800(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
   memcpy(&Buffer[p + 0x0000], RECHeaderInfo->Bookmark, 64 * sizeof(dword));
   setDword(&Buffer[p + 0x0100], RECHeaderInfo->Resume, TRUE);
 
-  TRACEEXIT;
+  TRACEEXIT();
 }
 
 void HDD_EncodeRECHeader_ST_TMSS(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword                 p;
   word                  Flags;
@@ -626,12 +626,12 @@ void HDD_EncodeRECHeader_ST_TMSS(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
   memcpy(&Buffer[p + 0x0004], RECHeaderInfo->Bookmark, 177 * sizeof(dword));
   setDword(&Buffer[p + 0x02c8], RECHeaderInfo->Resume, FALSE);
 
-  TRACEEXIT;
+  TRACEEXIT();
 }
 
 void HDD_EncodeRECHeader_ST_TMST(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword                 p;
   word                  Flags;
@@ -719,12 +719,12 @@ void HDD_EncodeRECHeader_ST_TMST(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
   memcpy(&Buffer[p + 0x0004], RECHeaderInfo->Bookmark, 177 * sizeof(dword));
   setDword(&Buffer[p + 0x02c8], RECHeaderInfo->Resume, FALSE);
 
-  TRACEEXIT;
+  TRACEEXIT();
 }
 
 void HDD_EncodeRECHeader_ST_TMSC(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword                 p;
   word                  Flags;
@@ -808,12 +808,12 @@ void HDD_EncodeRECHeader_ST_TMSC(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
   memcpy(&Buffer[p + 0x0004], RECHeaderInfo->Bookmark, 177 * sizeof(dword));
   setDword(&Buffer[p + 0x02c8], RECHeaderInfo->Resume, FALSE);
 
-  TRACEEXIT;
+  TRACEEXIT();
 }
 
 void HDD_EncodeRECHeader_ST_TF7k7HDPVR(byte *Buffer, tRECHeaderInfo *RECHeaderInfo)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword                 p;
   word                  w;
@@ -897,12 +897,12 @@ void HDD_EncodeRECHeader_ST_TF7k7HDPVR(byte *Buffer, tRECHeaderInfo *RECHeaderIn
   memcpy(&Buffer[p + 0x0000], RECHeaderInfo->Bookmark, 64 * sizeof(dword));
   setDword(&Buffer[p + 0x0100], RECHeaderInfo->Resume, FALSE);
 
-  TRACEEXIT;
+  TRACEEXIT();
 }
 
 bool HDD_EncodeRECHeader(byte *Buffer, tRECHeaderInfo *RECHeaderInfo, SYSTEM_TYPE SystemType)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   bool ret;
 
@@ -927,6 +927,6 @@ bool HDD_EncodeRECHeader(byte *Buffer, tRECHeaderInfo *RECHeaderInfo, SYSTEM_TYP
     case ST_NRTYPES:    ret = FALSE; break;
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

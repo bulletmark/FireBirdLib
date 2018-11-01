@@ -4,7 +4,7 @@
 
 dword FindInstructionSequence(char *SearchPattern, char *SearchMask, dword StartAddress, dword EndAddress, int EntryPointOffset, bool SearchForPrevADDIUSP)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword                 SP[50], SM[50];
   dword                 i, p, NrOfInstr;
@@ -12,7 +12,7 @@ dword FindInstructionSequence(char *SearchPattern, char *SearchMask, dword Start
 
   if(!StartAddress || !EndAddress || (strlen(SearchPattern) != strlen(SearchMask)))
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return 0;
   }
 
@@ -51,17 +51,17 @@ dword FindInstructionSequence(char *SearchPattern, char *SearchMask, dword Start
           //ibbi 2007-01-07: at which address should be stopped anyway if there is no PrevADDIUSP?
           if(p < StartAddress)
           {
-            TRACEEXIT;
+            TRACEEXIT();
             return 0;
           }
         }
       }
 
-      TRACEEXIT;
+      TRACEEXIT();
       return p + (EntryPointOffset << 2);
     }
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return 0;
 }

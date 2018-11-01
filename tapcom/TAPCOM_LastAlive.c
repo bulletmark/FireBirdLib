@@ -2,7 +2,7 @@
 
 dword TAPCOM_LastAlive(TAPCOM_Channel Channel)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword ret;
 
@@ -11,6 +11,6 @@ dword TAPCOM_LastAlive(TAPCOM_Channel Channel)
   else
     ret = 0;
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

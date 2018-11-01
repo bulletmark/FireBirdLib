@@ -3,13 +3,13 @@
 
 bool OSDMenuKeyboard_EventHandler(word *event, dword *param1, dword *param2)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   (void) param2;
 
   if(OSDMenuKeyboard_StringVarOrig == NULL)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -152,7 +152,7 @@ bool OSDMenuKeyboard_EventHandler(word *event, dword *param1, dword *param2)
               {
                 OSDMenuKeyboard_SaveAndFinish();
 
-                TRACEEXIT;
+                TRACEEXIT();
                 return TRUE;
               }
 
@@ -230,7 +230,7 @@ bool OSDMenuKeyboard_EventHandler(word *event, dword *param1, dword *param2)
           {
             OSDMenuKeyboard_SaveAndFinish();
 
-            TRACEEXIT;
+            TRACEEXIT();
             return TRUE;
           }
         }
@@ -252,7 +252,7 @@ bool OSDMenuKeyboard_EventHandler(word *event, dword *param1, dword *param2)
           {
             OSDMenuKeyboard_SaveAndFinish();
 
-            TRACEEXIT;
+            TRACEEXIT();
             return TRUE;
           }
 
@@ -260,7 +260,7 @@ bool OSDMenuKeyboard_EventHandler(word *event, dword *param1, dword *param2)
           {
             OSDMenuKeyboard_SaveAndFinish();
 
-            TRACEEXIT;
+            TRACEEXIT();
             return TRUE;
           }
 
@@ -300,7 +300,7 @@ bool OSDMenuKeyboard_EventHandler(word *event, dword *param1, dword *param2)
           {
             OSDMenuKeyboard_Finish();
 
-            TRACEEXIT;
+            TRACEEXIT();
             return TRUE;
           }
 
@@ -308,7 +308,7 @@ bool OSDMenuKeyboard_EventHandler(word *event, dword *param1, dword *param2)
           {
             OSDMenuKeyboard_SaveAndFinish();
 
-            TRACEEXIT;
+            TRACEEXIT();
             return TRUE;
           }
 
@@ -347,6 +347,6 @@ bool OSDMenuKeyboard_EventHandler(word *event, dword *param1, dword *param2)
     }
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return FALSE;
 }

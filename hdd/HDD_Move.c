@@ -6,7 +6,7 @@
 
 bool HDD_Move(char *FileName, char *FromDir, char *ToDir)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   char                  Path[FBLIB_DIR_SIZE], Name[TS_FILE_NAME_SIZE], Ext[TS_FILE_NAME_SIZE];
   char                  OldInfName[FBLIB_DIR_SIZE], NewInfName[FBLIB_DIR_SIZE];
@@ -28,7 +28,7 @@ bool HDD_Move(char *FileName, char *FromDir, char *ToDir)
       MakeUniqueFileName(NewPath);
       if(rename(OldPath, NewPath) != 0)
       {
-        TRACEEXIT;
+        TRACEEXIT();
         return FALSE;
       }
 
@@ -114,6 +114,6 @@ bool HDD_Move(char *FileName, char *FromDir, char *ToDir)
     }
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

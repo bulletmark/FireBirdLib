@@ -2,7 +2,7 @@
 
 int FlashFavoritesGetTotal(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   int                   i, NrGroups, NrSvcsPerGroup;
   tFavorites           *Favs30100;
@@ -13,7 +13,7 @@ int FlashFavoritesGetTotal(void)
 
   if(!Favs30100)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return 0;
   }
 
@@ -45,6 +45,6 @@ int FlashFavoritesGetTotal(void)
     }
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return i;
 }

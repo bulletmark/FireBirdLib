@@ -3,7 +3,7 @@
 
 int HDD_Smart_ReturnStatus(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   unsigned char         CommandBlock[FBHDIO_DRIVE_TASK_HDR_SIZE] = {WIN_SMART,        //COMMAND
                                                                   SMART_STATUS,     //FEATURE
@@ -16,22 +16,22 @@ int HDD_Smart_ReturnStatus(void)
 
   if(SendHDDCommand(HDIO_DRIVE_TASK, CommandBlock, 0))
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return 19;
   }
 
   if((CommandBlock[4] == 0x4f) && (CommandBlock[5] == 0xc2))
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return 0;
   }
 
   if((CommandBlock[4] == 0xf4) && (CommandBlock[5] == 0x2c))
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return 20;
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return 19;
 }

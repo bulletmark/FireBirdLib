@@ -2,7 +2,7 @@
 
 void FlushCache(dword *pAddr, int Size)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword *pEnd = pAddr + Size;
 
@@ -16,5 +16,5 @@ void FlushCache(dword *pAddr, int Size)
     pAddr += 4;
   } while(pAddr < pEnd);
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

@@ -8,7 +8,7 @@
 
 bool INIGetRGB(char *Key, byte *Red, byte *Green, byte *Blue, dword DefaultValue)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   char                  *i = NULL, *j = NULL, *k;
   char                  TempKey[80];
@@ -17,7 +17,7 @@ bool INIGetRGB(char *Key, byte *Red, byte *Green, byte *Blue, dword DefaultValue
 
   if(!Key)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -59,6 +59,6 @@ bool INIGetRGB(char *Key, byte *Red, byte *Green, byte *Blue, dword DefaultValue
   if(Green) *Green = G1555(x);
   if(Blue)  *Blue  = B1555(x);
 
-  TRACEEXIT;
+  TRACEEXIT();
   return TRUE;
 }

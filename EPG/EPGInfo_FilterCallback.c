@@ -2,7 +2,7 @@
 
 void EPGInfo_FilterCallback(void *CallbackRoutine)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   if(CallbackRoutine)
   {
@@ -15,5 +15,5 @@ void EPGInfo_FilterCallback(void *CallbackRoutine)
     EPGFilter.Callback = NULL;
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

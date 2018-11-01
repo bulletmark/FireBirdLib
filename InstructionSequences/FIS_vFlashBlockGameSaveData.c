@@ -2,13 +2,13 @@
 
 inline dword FIS_vFlashBlockGameSaveData(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   static dword          *vFlashGameSaveData = 0;
 
   if(!vFlashGameSaveData)
     vFlashGameSaveData = (dword*)TryResolve("_gameSaveData");
 
-  TRACEEXIT;
+  TRACEEXIT();
   return (vFlashGameSaveData ? *vFlashGameSaveData : 0);
 }

@@ -2,13 +2,13 @@
 
 inline dword FIS_vShoutCastInfo(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   static dword          _shoutCastInfo = 0;
 
   if(!_shoutCastInfo)
     _shoutCastInfo = TryResolve("_shoutCastInfo");
 
-  TRACEEXIT;
+  TRACEEXIT();
   return _shoutCastInfo;
 }

@@ -2,10 +2,10 @@
 
 bool isPIPActive(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   byte *_isPipActive = (byte*)FIS_vIsPipActive();
 
-  TRACEEXIT;
+  TRACEEXIT();
   return _isPipActive ? *_isPipActive : FALSE;
 }

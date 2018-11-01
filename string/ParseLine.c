@@ -3,7 +3,7 @@
 
 char *ParseLine(char *zeile, size_t *n, char delim)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   char *p;
 
@@ -11,7 +11,7 @@ char *ParseLine(char *zeile, size_t *n, char delim)
   {
     *n = 0;
 
-    TRACEEXIT;
+    TRACEEXIT();
     return NULL;
   }
 
@@ -21,17 +21,17 @@ char *ParseLine(char *zeile, size_t *n, char delim)
   {
     *n = p - zeile;
 
-    TRACEEXIT;
+    TRACEEXIT();
     return zeile;
   }
   else
   {
     *n = strlen(zeile);
 
-    TRACEEXIT;
+    TRACEEXIT();
 
     return zeile;
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

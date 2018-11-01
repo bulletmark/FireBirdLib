@@ -2,8 +2,8 @@
 
 bool OSDMenuColorPickerIsVisible(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
-  TRACEEXIT;
+  TRACEEXIT();
   return (ColorPickerOSDRgn != 0);
 }

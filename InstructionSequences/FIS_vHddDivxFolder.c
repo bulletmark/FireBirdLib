@@ -2,13 +2,13 @@
 
 inline dword FIS_vHddDivxFolder(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   static dword          vhddDivxFolder = 0;
 
   if(!vhddDivxFolder)
     vhddDivxFolder = TryResolve("_hddDivxFolder");
 
-  TRACEEXIT;
+  TRACEEXIT();
   return vhddDivxFolder;
 }

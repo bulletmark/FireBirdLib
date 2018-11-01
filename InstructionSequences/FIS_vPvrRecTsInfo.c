@@ -2,13 +2,13 @@
 
 inline dword FIS_vPvrRecTsInfo(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   static dword          vpvrRecTsInfo = 0;
 
   if(!vpvrRecTsInfo)
     vpvrRecTsInfo = TryResolve("_pvrRecTsInfo");
 
-  TRACEEXIT;
+  TRACEEXIT();
   return vpvrRecTsInfo;
 }

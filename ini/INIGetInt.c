@@ -6,7 +6,7 @@
 
 long int INIGetInt(char *Key, long int DefaultValue, long int MinValue, long int MaxValue)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   char                  *i = NULL, *j = NULL, *k;
   char                  TempKey[80];
@@ -14,7 +14,7 @@ long int INIGetInt(char *Key, long int DefaultValue, long int MinValue, long int
 
   if(!Key)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return 0;
   }
 
@@ -27,7 +27,7 @@ long int INIGetInt(char *Key, long int DefaultValue, long int MinValue, long int
 
   if(!i || !j || (j < i + l))
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return DefaultValue;
   }
 
@@ -36,7 +36,7 @@ long int INIGetInt(char *Key, long int DefaultValue, long int MinValue, long int
     if(k == i + l && *k == '-' && k < j) continue;
     if(!isdigit(*k))
     {
-      TRACEEXIT;
+      TRACEEXIT();
       return DefaultValue;
     }
   }
@@ -46,6 +46,6 @@ long int INIGetInt(char *Key, long int DefaultValue, long int MinValue, long int
   if(x < MinValue) x = MinValue;
   if(x > MaxValue) x = MaxValue;
 
-  TRACEEXIT;
+  TRACEEXIT();
   return x;
 }

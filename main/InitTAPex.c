@@ -9,11 +9,11 @@ bool                    LibInitialized = FALSE;
 
 bool InitTAPex()
 {
-  TRACEENTER;
+  TRACEENTER();
 
   if(LibInitialized)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return TRUE;
   }
 
@@ -27,6 +27,6 @@ bool InitTAPex()
     LibInitialized = TRUE;
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return LibInitialized;
 }

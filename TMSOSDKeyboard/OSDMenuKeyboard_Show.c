@@ -2,9 +2,9 @@
 
 void OSDMenuKeyboard_Show(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   OSDMenuKeyboard_EventHandler(NULL, NULL, NULL);
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

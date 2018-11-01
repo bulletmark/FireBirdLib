@@ -3,10 +3,10 @@
 
 bool Reboot(bool StopRecordings)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   if(StopRecordings || !HDD_isAnyRecording()) TAP_Reboot();
 
-  TRACEEXIT;
+  TRACEEXIT();
   return TRUE;
 }

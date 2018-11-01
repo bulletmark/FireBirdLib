@@ -4,7 +4,7 @@
 // take off spaces from a string's end
 char *RTrim(char *s)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   char *p;
 
@@ -20,6 +20,6 @@ char *RTrim(char *s)
     }
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return s;
 }

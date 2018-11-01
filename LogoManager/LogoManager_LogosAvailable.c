@@ -5,17 +5,17 @@
 
 bool LogoManager_LogosAvailable(tLogoStyle LogoStyle)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   int                   i;
 
   for(i = 0; i < LogoManager_NrLogos; i++)
     if(LogoManager_LogoData[i].Style  == LogoStyle)
     {
-      TRACEEXIT;
+      TRACEEXIT();
       return TRUE;
     }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return FALSE;
 }

@@ -2,7 +2,7 @@
 
 bool HDD_RecSlotEncode(byte Slot, tFlashTimer *RecSlot)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword                 RSA;
   bool                  ret;
@@ -10,19 +10,19 @@ bool HDD_RecSlotEncode(byte Slot, tFlashTimer *RecSlot)
   //Sanity check of the parameters
   if(Slot > HDD_NumberOfRECSlots())
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
   RSA = FIS_vRECSlotAddress(Slot);
   if(RSA == 0)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
   ret = FlashTimerEncode((void*)RSA, RecSlot);
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

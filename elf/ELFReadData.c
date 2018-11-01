@@ -3,7 +3,7 @@
 
 bool ELFReadData(dword SectionIndex, byte *Data)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   Elf32_Shdr           *pSection = NULL;     //Shortcut to speed up access
 
@@ -14,12 +14,12 @@ bool ELFReadData(dword SectionIndex, byte *Data)
     lseek(fTAP, pSection->sh_offset, SEEK_SET);
     if(read(fTAP, Data, pSection->sh_size) != (int)pSection->sh_size)
     {
-      TRACEEXIT;
+      TRACEEXIT();
 
       return FALSE;
     }
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return TRUE;
 }

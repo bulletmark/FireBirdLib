@@ -4,13 +4,13 @@
 
 bool HDD_GetHddID(char *ModelNo, char *SerialNo, char *FirmwareNo)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   char                  Buffer[512];
 
   if(!HDD_IdentifyDevice(Buffer))
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -35,6 +35,6 @@ bool HDD_GetHddID(char *ModelNo, char *SerialNo, char *FirmwareNo)
     RTrim(FirmwareNo);
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return TRUE;
 }

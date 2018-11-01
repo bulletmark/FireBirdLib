@@ -3,7 +3,7 @@
 
 void MakeUniqueFileName(char *FileName)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   char                  Path[FBLIB_DIR_SIZE], Name[TS_FILE_NAME_SIZE], Ext[TS_FILE_NAME_SIZE];
   bool                  isRec, isDel;
@@ -18,5 +18,5 @@ void MakeUniqueFileName(char *FileName)
     TAP_SPrint(FileName, "%s%s-%d%s%s", Path, Name, fNumber++, Ext, isDel ? ".del" : "");
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

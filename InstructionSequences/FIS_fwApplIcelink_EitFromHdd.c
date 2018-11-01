@@ -2,7 +2,7 @@
 
 inline dword FIS_fwApplIcelink_EitFromHdd(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   static dword          _ApplIcelink_EitFromHdd = 0;
   static bool           FirstCall = TRUE;
@@ -13,6 +13,6 @@ inline dword FIS_fwApplIcelink_EitFromHdd(void)
     FirstCall = FALSE;
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return _ApplIcelink_EitFromHdd;
 }

@@ -2,7 +2,7 @@
 
 long TimeDiff(dword FromTime, dword ToTime)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   bool      TimeTravel;
   dword     temp;
@@ -34,6 +34,6 @@ long TimeDiff(dword FromTime, dword ToTime)
 
   ret = (dDate * 1440 + dHour * 60 + dMin) * (TimeTravel ? -1 : 1);
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

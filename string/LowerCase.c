@@ -4,7 +4,7 @@
 
 void LowerCase(char *string)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   char                 *p, *s;
   byte                  UTF8[5];
@@ -38,5 +38,5 @@ void LowerCase(char *string)
 
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

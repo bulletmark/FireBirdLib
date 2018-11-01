@@ -3,7 +3,7 @@
 
 char *GetApplVer(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   void (*Appl_SetApplVer)(char *);
 
@@ -15,7 +15,7 @@ char *GetApplVer(void)
 
   if(FWVersion[0])
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FWVersion;
   }
 
@@ -24,7 +24,7 @@ char *GetApplVer(void)
 
   if(!osdOutBuf || !Appl_SetApplVer)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return NULL;
   }
 
@@ -59,6 +59,6 @@ char *GetApplVer(void)
   }
   ELFCleanup();
 
-  TRACEEXIT;
+  TRACEEXIT();
   return FWVersion;
 }

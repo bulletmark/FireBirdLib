@@ -11,7 +11,7 @@ bool infData_GetNameByIndex(char *infFileName, dword NameIndex, char *NameTag)
   char                  NameTagHdr[256];
   dword                 CurrentIndex;
 
-  TRACEENTER;
+  TRACEENTER();
 
   ret = FALSE;
 
@@ -43,6 +43,6 @@ bool infData_GetNameByIndex(char *infFileName, dword NameIndex, char *NameTag)
 
   infData_CloseFile();
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

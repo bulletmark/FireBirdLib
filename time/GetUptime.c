@@ -4,7 +4,7 @@
 
 dword GetUptime(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword                 uptime = 0;
   FILE                 *fp;
@@ -29,6 +29,6 @@ dword GetUptime(void)
     fclose(fp);
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return uptime;
 }

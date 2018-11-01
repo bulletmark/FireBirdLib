@@ -2,7 +2,7 @@
 
 void UTF32ToUTF8(dword UTF32Character, byte *UTF8Character, byte *BytesPerChar)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   //Just 1 byte needed
   if(UTF32Character < 0x80)
@@ -11,7 +11,7 @@ void UTF32ToUTF8(dword UTF32Character, byte *UTF8Character, byte *BytesPerChar)
 
     if(BytesPerChar) *BytesPerChar = 1;
 
-    TRACEEXIT;
+    TRACEEXIT();
     return;
   }
 
@@ -27,7 +27,7 @@ void UTF32ToUTF8(dword UTF32Character, byte *UTF8Character, byte *BytesPerChar)
 
     if(BytesPerChar) *BytesPerChar = 2;
 
-    TRACEEXIT;
+    TRACEEXIT();
     return;
   }
 
@@ -44,7 +44,7 @@ void UTF32ToUTF8(dword UTF32Character, byte *UTF8Character, byte *BytesPerChar)
 
     if(BytesPerChar) *BytesPerChar = 3;
 
-    TRACEEXIT;
+    TRACEEXIT();
     return;
   }
 
@@ -59,5 +59,5 @@ void UTF32ToUTF8(dword UTF32Character, byte *UTF8Character, byte *BytesPerChar)
 
   if(BytesPerChar) *BytesPerChar = 4;
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

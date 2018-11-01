@@ -19,7 +19,7 @@
 // 8 .. (compressed size + 5) - compressed data (byte array)
 dword CompressTFD(byte *pSrc, dword SourceBufferSize, byte *pDest, word TFDType, word SysID, void *pPercentFinishedCallback)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   word                  OrigSize, CompSize;
   dword                 OutBufferSize, NrBlocks = 0, FullSize = SourceBufferSize;
@@ -27,7 +27,7 @@ dword CompressTFD(byte *pSrc, dword SourceBufferSize, byte *pDest, word TFDType,
 
   if(!pSrc || !pDest)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return 0;
   }
 
@@ -78,6 +78,6 @@ dword CompressTFD(byte *pSrc, dword SourceBufferSize, byte *pDest, word TFDType,
 
   if(PercentFinishedCallback) PercentFinishedCallback(100);
 
-  TRACEEXIT;
+  TRACEEXIT();
   return OutBufferSize;
 }

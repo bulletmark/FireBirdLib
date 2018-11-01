@@ -5,7 +5,7 @@
 
 void LogoManager_ProcessLILAdd(char *AddFileName)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   TYPE_File            *f;
   int                   fs;
@@ -44,5 +44,5 @@ void LogoManager_ProcessLILAdd(char *AddFileName)
   INICloseFile();
   HDD_TAP_PopDir();
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

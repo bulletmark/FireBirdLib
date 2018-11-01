@@ -7,13 +7,13 @@ int vsnprintf(char *str, size_t size, const char *format, va_list ap);   //defin
 
 void LogEntryPrintf(char *FileName, char *ProgramName, bool Console, eTimeStampFormat TimeStampFormat, char *format, ...)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   char Text[512];
 
   if(!format)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return;
   }
 
@@ -23,5 +23,5 @@ void LogEntryPrintf(char *FileName, char *ProgramName, bool Console, eTimeStampF
   va_end(args);
   LogEntry(FileName, ProgramName, Console, TimeStampFormat, Text);
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

@@ -3,7 +3,7 @@
 
 void OSDMenuInfoBoxShow(char *Title, char *Text, dword Timeout)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword                 x, y, dy, i;
   char                 *pText;
@@ -73,5 +73,5 @@ void OSDMenuInfoBoxShow(char *Title, char *Text, dword Timeout)
 
   TAP_Osd_Sync();
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

@@ -3,7 +3,7 @@
 
 bool GetPIPPosition(int *North, int *South, int *East, int *West)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   byte                 *_isPipActive;
   word                 *_pipX, *_pipY, *_pipW, *_pipH;
@@ -32,6 +32,6 @@ bool GetPIPPosition(int *North, int *South, int *East, int *West)
     }
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return (_isPipActive != 0);
 }

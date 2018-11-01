@@ -119,7 +119,7 @@ void (*CallbackProcedure)(tOSDCB OSDCBType, word OSDRgn) = NULL;
 
 void OSDMenuInitialize(bool AllowScrollingOfLongText, bool HasValueColumn, bool NumberedItems, bool ScrollLoop, char *TitleLeft, char *TitleRight)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   tMenu                *pMenu;
   int                   i;
@@ -175,5 +175,5 @@ void OSDMenuInitialize(bool AllowScrollingOfLongText, bool HasValueColumn, bool 
 
   CallbackProcedure = NULL;
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

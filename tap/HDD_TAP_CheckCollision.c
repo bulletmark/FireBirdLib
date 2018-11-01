@@ -3,7 +3,7 @@
 
 bool HDD_TAP_CheckCollision(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   char                 *myTAPFileName, *TAPFileName;
   dword                 i;
@@ -11,7 +11,7 @@ bool HDD_TAP_CheckCollision(void)
 
   if(!LibInitialized && !InitTAPex())
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -29,6 +29,6 @@ bool HDD_TAP_CheckCollision(void)
       }
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return TAPCollision;
 }

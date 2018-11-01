@@ -6,7 +6,7 @@
 
 int LogoManager_UpdateLIL(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   typedef struct
   {
@@ -111,7 +111,7 @@ int LogoManager_UpdateLIL(void)
       HDD_TAP_PopDir();
       if(LogoManager_CB) LogoManager_CB(-1, 3);
 
-      TRACEEXIT;
+      TRACEEXIT();
       return -1;
     }
 
@@ -134,6 +134,6 @@ int LogoManager_UpdateLIL(void)
 
   HDD_TAP_PopDir();
 
-  TRACEEXIT;
+  TRACEEXIT();
   return NewIDCount;
 }

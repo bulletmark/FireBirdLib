@@ -4,7 +4,7 @@
 
 void BMP_WriteHeader(int FileHandle, int width, int height)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   struct BMP_HEAD head;
   struct BMP_INFO info;
@@ -12,7 +12,7 @@ void BMP_WriteHeader(int FileHandle, int width, int height)
 
   if(FileHandle <= 0)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return;
   }
 
@@ -44,5 +44,5 @@ void BMP_WriteHeader(int FileHandle, int width, int height)
   write(FileHandle, &head, sizeof(head));
   write(FileHandle, &info, sizeof(info));
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

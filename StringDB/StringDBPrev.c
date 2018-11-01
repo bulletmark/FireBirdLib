@@ -2,14 +2,14 @@
 
 dword StringDBPrev(tStringDB *StringDB)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   char                 *p;
   dword                 ret;
 
   if(!StringDB || !StringDB->DBPtr || (StringDB->DBPtr <= StringDB->DB))
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return '\0';
   }
 
@@ -19,6 +19,6 @@ dword StringDBPrev(tStringDB *StringDB)
   StringDB->DBPtr = p;
   ret = (dword)p - (dword)StringDB->DB;
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

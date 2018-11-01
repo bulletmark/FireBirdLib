@@ -7,7 +7,7 @@ extern bool                 cronInit;
 
 int cronRegisterEvent(long frequency, dword firstExecution, void *callback)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   bool                  ret;
   int                   i;
@@ -36,6 +36,6 @@ int cronRegisterEvent(long frequency, dword firstExecution, void *callback)
     }
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

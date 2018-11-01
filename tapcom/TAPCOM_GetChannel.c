@@ -2,13 +2,13 @@
 
 TAPCOM_Channel TAPCOM_GetChannel(dword param1, dword *CallerID, dword *ServiceID, dword *ParamBlockVersion, void **ParamBlock)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   TAPCOM_InternalMesBuf *mesBuf = (TAPCOM_InternalMesBuf *) param1;
 
   if(!isValidChannel(mesBuf))
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return NULL;
   }
 
@@ -28,7 +28,7 @@ TAPCOM_Channel TAPCOM_GetChannel(dword param1, dword *CallerID, dword *ServiceID
     }
     else
     {
-      TRACEEXIT;
+      TRACEEXIT();
       return NULL;
     }
   }
@@ -41,6 +41,6 @@ TAPCOM_Channel TAPCOM_GetChannel(dword param1, dword *CallerID, dword *ServiceID
   //Server-Timeout zurücksetzen
   mesBuf->ServerAlive = TAP_GetTick();
 
-  TRACEEXIT;
+  TRACEEXIT();
   return (TAPCOM_Channel) mesBuf;
 }

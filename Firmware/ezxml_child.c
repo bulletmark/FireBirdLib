@@ -2,7 +2,7 @@
 
 ezxml_t ezxml_child(ezxml_t xml, const char *name)
 {
-  TRACEENTER;
+  TRACEENTER();
 
 	ezxml_t		(*__ezxml_child)(ezxml_t, const char *);
 	ezxml_t		ret = 0;
@@ -14,6 +14,6 @@ ezxml_t ezxml_child(ezxml_t xml, const char *name)
 		ret = __ezxml_child(xml, name);
 	}
 
-  TRACEEXIT;
+  TRACEEXIT();
 	return ret;
 }

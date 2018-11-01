@@ -3,35 +3,35 @@
 
 dword UncompressedTFDSize(byte *pSrc)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   word                  compSize = 0, uncompSize = 0, NrBlocks = 0;
   dword                 outSize = 0, i;
 
   if(!pSrc)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return 0;
   }
 
   if(LOAD_WORD(pSrc) != 8)
   {
     //Invalid header
-    TRACEEXIT;
+    TRACEEXIT();
     return 0;
   }
 
   if(CRC16 (0, pSrc + 4, 6) != LOAD_WORD(pSrc + 2))
   {
     //Invalid header CRC
-    TRACEEXIT;
+    TRACEEXIT();
     return 0;
   }
 
   if(LOAD_WORD(pSrc + 6) != 1)
   {
     //Invalid file version
-    TRACEEXIT;
+    TRACEEXIT();
     return 0;
   }
 
@@ -47,7 +47,7 @@ dword UncompressedTFDSize(byte *pSrc)
     if(uncompSize > 0x7ffa)
     {
       //Uncompressed data block size too large
-      TRACEEXIT;
+      TRACEEXIT();
 
       return 0;
     }
@@ -56,6 +56,6 @@ dword UncompressedTFDSize(byte *pSrc)
     outSize += uncompSize;
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return outSize;
 }

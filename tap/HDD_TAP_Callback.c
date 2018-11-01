@@ -2,7 +2,7 @@
 
 dword HDD_TAP_Callback(dword TAPID, void *ProcedureAddress, dword param1, dword param2, dword param3, dword param4)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword                 Ret = 0;
   dword                *curTapTask;
@@ -15,14 +15,14 @@ dword HDD_TAP_Callback(dword TAPID, void *ProcedureAddress, dword param1, dword 
 
     if(!curTapTask || (!LibInitialized && !InitTAPex()))
     {
-      TRACEEXIT;
+      TRACEEXIT();
       return FALSE;
     }
 
     int Index = HDD_TAP_GetIndexByID(TAPID);
     if(Index < 0 || Index >= TAP_MAX)
     {
-      TRACEEXIT;
+      TRACEEXIT();
       return 0;
     }
 
@@ -32,6 +32,6 @@ dword HDD_TAP_Callback(dword TAPID, void *ProcedureAddress, dword param1, dword 
     *curTapTask = TAP_TableIndex;
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return Ret;
 }

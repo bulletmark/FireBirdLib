@@ -11,7 +11,7 @@ int vsnprintf(char *str, size_t size, const char *format, va_list ap);   //defin
 
 void LogEntryFBLibPrintf(bool Console, char *format, ...)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   char                  Text[512];
   FILE                 *File;
@@ -24,7 +24,7 @@ void LogEntryFBLibPrintf(bool Console, char *format, ...)
 
   if(!format)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return;
   }
 
@@ -57,5 +57,5 @@ void LogEntryFBLibPrintf(bool Console, char *format, ...)
     TAP_Print("%s FBLIB - %s\n", TimeResult, Text);
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

@@ -4,14 +4,14 @@
 
 bool StrMkUTF8(byte *SourceString, byte DefaultISO8859CharSet)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   char                 *_utf8string, *pEOS;
   int                   l;
 
   if(!SourceString)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -25,14 +25,14 @@ bool StrMkUTF8(byte *SourceString, byte DefaultISO8859CharSet)
   {
     *SourceString = '\0';
 
-    TRACEEXIT;
+    TRACEEXIT();
     return TRUE;
   }
 
   _utf8string = TAP_MemAlloc(l);
   if(!_utf8string)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -41,6 +41,6 @@ bool StrMkUTF8(byte *SourceString, byte DefaultISO8859CharSet)
   strcpy(SourceString, _utf8string);
   TAP_MemFree(_utf8string);
 
-  TRACEEXIT;
+  TRACEEXIT();
   return TRUE;
 }

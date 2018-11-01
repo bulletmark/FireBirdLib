@@ -4,10 +4,10 @@
 
 bool HDD_TAP_isBatchMode(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   bool ret = (shmget(BATCHMODEKEY, 1, 0) != -1);
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

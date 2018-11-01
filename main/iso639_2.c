@@ -2,7 +2,7 @@
 
 char *iso639_2(int OSDLan)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   char *lang;
 
@@ -92,6 +92,6 @@ char *iso639_2(int OSDLan)
       lang = NULL;
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return lang;
 }

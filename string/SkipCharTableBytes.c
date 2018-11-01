@@ -2,13 +2,13 @@
 
 byte *SkipCharTableBytes(byte *p)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   byte                 *ret;
 
   if((p == NULL) || (*p == '\0'))
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return p;
   }
 
@@ -23,6 +23,6 @@ byte *SkipCharTableBytes(byte *p)
     ret++;
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

@@ -2,22 +2,22 @@
 
 int FlashTransponderTablesGetTotal(int SatNum)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   tFlashSatTable        SatTable;
 
   if((SatNum < 0) || (SatNum >= FlashSatTablesGetTotal()))
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return 0;
   }
 
   if(!FlashSatTablesGetInfo(SatNum, &SatTable))
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return 0;
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return SatTable.NrOfTransponders;
 }

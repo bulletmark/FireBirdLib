@@ -2,13 +2,13 @@
 
 inline dword FIS_vOsdOutBuf(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   static dword          vosdOutBuf = 0;
 
   if(!vosdOutBuf)
     vosdOutBuf = TryResolve("_osdOutBuf");
 
-  TRACEEXIT;
+  TRACEEXIT();
   return vosdOutBuf;
 }

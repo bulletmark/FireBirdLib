@@ -2,10 +2,10 @@
 
 word GetSysID(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   word ret = TAP_GetSystemId();
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

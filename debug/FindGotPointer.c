@@ -2,7 +2,7 @@
 
 dword *FindGotPointer(dword FunctionAddress)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   static dword          gotStart = 0, gotEnd = 0;
   dword                 SectionIndex;
@@ -27,13 +27,13 @@ dword *FindGotPointer(dword FunctionAddress)
   {
     if(*got == FunctionAddress)
     {
-      TRACEEXIT;
+      TRACEEXIT();
 
       return got;
     }
     got++;
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return 0;
 }

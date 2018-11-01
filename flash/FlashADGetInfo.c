@@ -3,14 +3,14 @@
 
 bool FlashADGetInfo(tAutoDescrambleTimer *ADTimer)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   bool ret;
 
   //ADTimer is NULL
   if(!ADTimer)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -58,6 +58,6 @@ bool FlashADGetInfo(tAutoDescrambleTimer *ADTimer)
     case ST_NRTYPES: break;
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

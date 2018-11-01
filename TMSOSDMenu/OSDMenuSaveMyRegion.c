@@ -2,9 +2,9 @@
 
 void OSDMenuSaveMyRegion(word Rgn)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   MyOSDRgn = Rgn;
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

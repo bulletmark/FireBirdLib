@@ -88,7 +88,7 @@ dword   sbArrow = RGB(176, 177, 177);
 
 void DrawScrollbar(word sbRegion, int sbX, int sbY, int sbHeight, int sbCurrent, int sbWindow, int sbMax)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   if(sbWindow > sbMax) sbWindow = sbMax;
 
@@ -131,5 +131,5 @@ void DrawScrollbar(word sbRegion, int sbX, int sbY, int sbHeight, int sbCurrent,
     TAP_Osd_FillBox(sbRegion, (sbX + 1 + i), sbY + ((sbHeight-26) * sbCurrent / sbMax) + 13, 1, ((sbHeight-26) * sbWindow / sbMax), RGB(sbSlider[i][0], sbSlider[i][1], sbSlider[i][2]));
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

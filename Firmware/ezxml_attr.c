@@ -2,7 +2,7 @@
 
 const char *ezxml_attr(ezxml_t xml, const char *attr)
 {
-  TRACEENTER;
+  TRACEENTER();
 
 	const char *(*__ezxml_attr)(ezxml_t, const char *);
 	const char *ret = NULL;
@@ -14,6 +14,6 @@ const char *ezxml_attr(ezxml_t xml, const char *attr)
 		ret = __ezxml_attr(xml, attr);
 	}
 
-  TRACEEXIT;
+  TRACEEXIT();
 	return ret;
 }

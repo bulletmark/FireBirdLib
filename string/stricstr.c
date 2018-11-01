@@ -7,7 +7,7 @@ extern int strncasecmp(__const char *__s1, __const char *__s2, size_t __n);
 // case-insensitive version of strstr()
 char *stricstr(char *s1, char *s2)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   bool found = FALSE;
   char start[3];
@@ -15,7 +15,7 @@ char *stricstr(char *s1, char *s2)
 
   if(!s1 || !s2)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return NULL;
   }
 
@@ -43,6 +43,6 @@ char *stricstr(char *s1, char *s2)
     while(str && !found && *s1);
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return (found ? str : NULL);
 }

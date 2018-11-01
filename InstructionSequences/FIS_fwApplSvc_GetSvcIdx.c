@@ -2,13 +2,13 @@
 
 inline dword FIS_fwApplSvc_GetSvcIdx(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   static dword          fwApplSvc_GetSvcIdx = 0;
 
   if(!fwApplSvc_GetSvcIdx)
     fwApplSvc_GetSvcIdx = TryResolve("_Z17ApplSvc_GetSvcIdxhhtttt");
 
-  TRACEEXIT;
+  TRACEEXIT();
   return fwApplSvc_GetSvcIdx;
 }

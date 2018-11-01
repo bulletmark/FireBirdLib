@@ -3,7 +3,7 @@
 
 bool FlashFavoritesGetInfoCurrent(tFavorites *Favorites)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   byte                 *EEPROM;  //Size = 128
   byte                  NrGrps, CurrentGroup;
@@ -16,6 +16,6 @@ bool FlashFavoritesGetInfoCurrent(tFavorites *Favorites)
   ret = FALSE;
   if((NrGrps != 0) && Favorites && (CurrentGroup != 0xFF)) ret = FlashFavoritesGetInfo(CurrentGroup, Favorites);
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

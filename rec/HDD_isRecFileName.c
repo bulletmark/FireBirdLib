@@ -2,7 +2,7 @@
 
 bool HDD_isRecFileName(char *FileName)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   bool ret;
 
@@ -11,6 +11,6 @@ bool HDD_isRecFileName(char *FileName)
   else
     ret = FALSE;
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

@@ -2,7 +2,7 @@
 
 void *Appl_GetSameTimeEvent(byte SatIndex, word NetID, word TSID, word ServiceID)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword                   CurrentGMT;
   dword                  *TreeByHashStart, *TreeByHashCurrent;
@@ -27,13 +27,13 @@ void *Appl_GetSameTimeEvent(byte SatIndex, word NetID, word TSID, word ServiceID
          (EventInfoCurrent->EndTime > CurrentGMT))
          {
            //Success
-           TRACEEXIT;
+           TRACEEXIT();
            return EventInfoCurrent;
          }
       TreeByHashCurrent = (dword*)*TreeByHashCurrent;
     }while(TreeByHashCurrent != TreeByHashStart);
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return NULL;
 }

@@ -2,7 +2,7 @@
 
 dword OSDMenuItemGetID(int ItemIndex)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword ret;
 
@@ -11,6 +11,6 @@ dword OSDMenuItemGetID(int ItemIndex)
   else
     ret = Menu[CurrentMenuLevel].Item[ItemIndex].ID;
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

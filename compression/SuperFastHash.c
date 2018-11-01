@@ -13,14 +13,14 @@
 
 dword SuperFastHash(register unsigned char * data, int len, dword hash)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   register dword tmp, tmp2;
   int rem;
 
   if(len <= 0 || data == NULL)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return 0;
   }
 
@@ -77,6 +77,6 @@ dword SuperFastHash(register unsigned char * data, int len, dword hash)
   hash ^= hash << 10;
   hash += (hash << 16) | (hash >> 16);
 
-  TRACEEXIT;
+  TRACEEXIT();
   return hash;
 }

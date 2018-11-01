@@ -9,7 +9,7 @@
 
 void LogEntry(char *FileName, char *ProgramName, bool Console, eTimeStampFormat TimeStampFormat, char *Text)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   int                   f;
   char                  TimeResult[40];
@@ -21,7 +21,7 @@ void LogEntry(char *FileName, char *ProgramName, bool Console, eTimeStampFormat 
 
   if(!Text)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return;
   }
 
@@ -111,5 +111,5 @@ void LogEntry(char *FileName, char *ProgramName, bool Console, eTimeStampFormat 
     }
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

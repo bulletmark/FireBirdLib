@@ -1308,11 +1308,11 @@ static void Encode(ARDATA *ar)
 
 word CompressBlock(byte *inputbuffer, word inputsize, byte *outputbuffer)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   if(!inputbuffer || inputsize > 0x7ffa)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return 0;
   }
 
@@ -1335,24 +1335,24 @@ word CompressBlock(byte *inputbuffer, word inputsize, byte *outputbuffer)
     TAP_MemFree(ar);
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return compsize;
 }
 
 word UncompressBlock(byte *inputbuffer, word inputsize, byte *outputbuffer, word BufferSize)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   if(!inputbuffer)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return 0;
   }
 
   ARDATA *ar = TAP_MemAlloc(sizeof(ARDATA));
   if(!ar)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return 0;
   }
 
@@ -1368,7 +1368,7 @@ word UncompressBlock(byte *inputbuffer, word inputsize, byte *outputbuffer, word
   failed = ar->Failed;
   TAP_MemFree(ar);
 
-  TRACEEXIT;
+  TRACEEXIT();
   return !failed;
 
 }

@@ -2,10 +2,10 @@
 
 bool HDD_TAP_isRunning(dword TAPID)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   bool ret = (HDD_TAP_GetIndexByID(TAPID) >= 0);
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

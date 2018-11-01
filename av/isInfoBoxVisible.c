@@ -2,17 +2,17 @@
 
 bool isInfoBoxVisible(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   byte                 *iboxTimerId;
 
   iboxTimerId = (byte*)FIS_vIboxTimerId();
   if(!iboxTimerId)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return (*iboxTimerId != 0xff);
 }

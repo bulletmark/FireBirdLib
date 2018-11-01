@@ -4,7 +4,7 @@
 
 bool HDD_FappendWrite(TYPE_File *file, char *data)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   char      buffer[256 + 512];
   dword     len, pos, extra, blks;
@@ -14,7 +14,7 @@ bool HDD_FappendWrite(TYPE_File *file, char *data)
 
   if(file == NULL || len > 256)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -28,13 +28,13 @@ bool HDD_FappendWrite(TYPE_File *file, char *data)
 
   if((blks = TAP_Hdd_Fwrite(buffer, len + extra, 1, file)) != 1)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
   pos += len;
   ret = (TAP_Hdd_Fseek(file, pos, SEEK_SET) == pos);
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

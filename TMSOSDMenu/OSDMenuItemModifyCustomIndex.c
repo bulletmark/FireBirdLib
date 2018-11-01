@@ -2,7 +2,7 @@
 
 bool OSDMenuItemModifyCustomIndex(int ItemIndex, int CustomIndex)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   tMenu                *pMenu;
 
@@ -10,7 +10,7 @@ bool OSDMenuItemModifyCustomIndex(int ItemIndex, int CustomIndex)
 
   if((pMenu->NrItems == 0) || (ItemIndex >= pMenu->NrItems))
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -18,6 +18,6 @@ bool OSDMenuItemModifyCustomIndex(int ItemIndex, int CustomIndex)
 
   ListDirty = TRUE;
 
-  TRACEEXIT;
+  TRACEEXIT();
   return TRUE;
 }

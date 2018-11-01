@@ -19,14 +19,14 @@
 // 8 .. (compressed size + 5) - compressed data (byte array)
 dword UncompressTFD(byte *pSrc, byte *pDest, void *pPercentFinishedCallback)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   word                  compSize = 0, uncompSize = 0, NrBlocks = 0;
   dword                 outSize = 0, i;
 
   if(!pSrc || !pDest)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return 0;
   }
 
@@ -36,21 +36,21 @@ dword UncompressTFD(byte *pSrc, byte *pDest, void *pPercentFinishedCallback)
   if(LOAD_WORD(pSrc) != 8)
   {
     //Invalid header
-    TRACEEXIT;
+    TRACEEXIT();
     return 0;
   }
 
   if(CRC16 (0, pSrc + 4, 6) != LOAD_WORD(pSrc + 2))
   {
     //Invalid header CRC
-    TRACEEXIT;
+    TRACEEXIT();
     return 0;
   }
 
   if(LOAD_WORD(pSrc + 6) != 1)
   {
     //Invalid file version
-    TRACEEXIT;
+    TRACEEXIT();
     return 0;
   }
 
@@ -68,7 +68,7 @@ dword UncompressTFD(byte *pSrc, byte *pDest, void *pPercentFinishedCallback)
     if(uncompSize > 0x7ffa)
     {
       //Size of uncompressed block too large
-      TRACEEXIT;
+      TRACEEXIT();
 
       return 0;
     }
@@ -86,7 +86,7 @@ dword UncompressTFD(byte *pSrc, byte *pDest, void *pPercentFinishedCallback)
       if(!UncompressBlock(pSrc, compSize, pDest, uncompSize))
       {
         //Uncompress failed
-        TRACEEXIT;
+        TRACEEXIT();
         return 0;
       }
     }
@@ -97,6 +97,6 @@ dword UncompressTFD(byte *pSrc, byte *pDest, void *pPercentFinishedCallback)
   }
   if(PercentFinishedCallback) PercentFinishedCallback(100);
 
-  TRACEEXIT;
+  TRACEEXIT();
   return outSize;
 }

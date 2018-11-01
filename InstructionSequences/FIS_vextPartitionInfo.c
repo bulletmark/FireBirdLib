@@ -2,13 +2,13 @@
 
 inline dword FIS_vExtPartitionInfo(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   static dword          vextPartitionInfo = 0;
 
   if(!vextPartitionInfo)
     vextPartitionInfo = (dword)TryResolve("_extPartitionInfo");
 
-  TRACEEXIT;
+  TRACEEXIT();
   return vextPartitionInfo;
 }

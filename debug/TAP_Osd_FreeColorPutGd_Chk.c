@@ -13,7 +13,7 @@
 
 int TAP_Osd_PutFreeColorGd_Chk(char *Comment, word rgn, int x, int y, TYPE_GrData * gd, bool sprite, dword FilterColor)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   int                   RgnH, RgnW;
   int                   ret;
@@ -39,6 +39,6 @@ int TAP_Osd_PutFreeColorGd_Chk(char *Comment, word rgn, int x, int y, TYPE_GrDat
 
   if(Comment && ret) LogEntryFBLibPrintf(TRUE, "TAP_Osd_PutFreeColorGd_Chk Warning: TAP_Osd_PutFreeColorGd() returned %d @ %s", ret, Comment);
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

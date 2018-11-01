@@ -5,7 +5,7 @@
 
 bool HDD_UnrecycleSF(char *FileName)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   tFileInUse            FileInUse;
   char                  AbsPath[FBLIB_DIR_SIZE], AbsFileName[MAX_FILE_NAME_SIZE + 1], *Slash;
@@ -80,6 +80,6 @@ bool HDD_UnrecycleSF(char *FileName)
     }
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

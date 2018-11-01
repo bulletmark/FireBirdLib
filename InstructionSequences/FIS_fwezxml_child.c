@@ -2,13 +2,13 @@
 
 inline dword FIS_fwezxml_child(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   static dword          _ezxml_child = 0;
 
   if (!_ezxml_child)
     _ezxml_child = TryResolve("ezxml_child");
 
-  TRACEEXIT;
+  TRACEEXIT();
   return _ezxml_child;
 }

@@ -2,13 +2,13 @@
 
 inline dword FIS_fwDevFront_SetIlluminate(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   static dword          _DevFront_SetIlluminate = 0;
 
   if(!_DevFront_SetIlluminate)
     _DevFront_SetIlluminate = TryResolve("DevFront_SetIlluminate");
 
-  TRACEEXIT;
+  TRACEEXIT();
   return _DevFront_SetIlluminate;
 }

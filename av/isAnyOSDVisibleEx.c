@@ -2,7 +2,7 @@
 
 bool isAnyOSDVisibleEx(dword CheckX, dword CheckY, dword CheckW, dword CheckH, byte Plane)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   TYPE_OsdBaseInfo      OSDBaseInfo;
   dword                *pOSD;
@@ -11,7 +11,7 @@ bool isAnyOSDVisibleEx(dword CheckX, dword CheckY, dword CheckW, dword CheckH, b
   TAP_Osd_GetPlaneBaseInfo(&OSDBaseInfo, Plane);
   if(OSDBaseInfo.frameBuffer == NULL)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -23,13 +23,13 @@ bool isAnyOSDVisibleEx(dword CheckX, dword CheckY, dword CheckW, dword CheckH, b
     {
       if(*pOSD != 0x00000000)
       {
-        TRACEEXIT;
+        TRACEEXIT();
         return TRUE;
       }
       pOSD += 4;
     }
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return FALSE;
 }

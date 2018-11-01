@@ -2,7 +2,7 @@
 
 int TAP_Osd_PutFreeColorGd(word rgn, int x, int y, TYPE_GrData *gd, bool sprite, dword FilterColor)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   int                   ret;
   int                   R, G, B;
@@ -24,7 +24,7 @@ int TAP_Osd_PutFreeColorGd(word rgn, int x, int y, TYPE_GrData *gd, bool sprite,
   {
     TAP_Osd_Delete(TempRgn);
 
-    TRACEEXIT;
+    TRACEEXIT();
     return(ret ? ret : -1);
   }
 
@@ -63,6 +63,6 @@ int TAP_Osd_PutFreeColorGd(word rgn, int x, int y, TYPE_GrData *gd, bool sprite,
   TAP_MemFree(PixelData);
   TAP_Osd_Delete(TempRgn);
 
-  TRACEEXIT;
+  TRACEEXIT();
   return 0;
 }

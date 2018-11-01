@@ -3,7 +3,7 @@
 
 bool OSDMenuItemModifyTextColor(int ItemIndex, dword Color)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   tMenu                *pMenu;
 
@@ -11,7 +11,7 @@ bool OSDMenuItemModifyTextColor(int ItemIndex, dword Color)
 
   if((pMenu->NrItems == 0) || (ItemIndex >= pMenu->NrItems) || (ItemIndex < 0))
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -19,6 +19,6 @@ bool OSDMenuItemModifyTextColor(int ItemIndex, dword Color)
 
   ListDirty = TRUE;
 
-  TRACEEXIT;
+  TRACEEXIT();
   return TRUE;
 }

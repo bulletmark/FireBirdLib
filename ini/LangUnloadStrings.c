@@ -4,7 +4,7 @@
 
 void LangUnloadStrings(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   if(LangStrings)
   {
@@ -20,5 +20,5 @@ void LangUnloadStrings(void)
 
   LangNrStrings = 0;
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

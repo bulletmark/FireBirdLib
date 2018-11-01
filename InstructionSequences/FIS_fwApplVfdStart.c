@@ -2,13 +2,13 @@
 
 inline dword FIS_fwApplVfdStart(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   static dword          ApplNewVfd_Start = 0;
 
   if(!ApplNewVfd_Start)
     ApplNewVfd_Start = TryResolve("_Z16ApplNewVfd_Startv");
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ApplNewVfd_Start;
 }

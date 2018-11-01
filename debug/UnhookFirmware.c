@@ -2,21 +2,21 @@
 
 bool UnhookFirmware(char *FirmwareFunctionName, void *RedirectTo, void *PointerToOriginal)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword                *got;
   dword                 FirmwareFunction;
 
   if(!FirmwareFunctionName || !RedirectTo || !PointerToOriginal)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
   FirmwareFunction = TryResolve(FirmwareFunctionName);
   if(!FirmwareFunction)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -25,10 +25,10 @@ bool UnhookFirmware(char *FirmwareFunctionName, void *RedirectTo, void *PointerT
   {
     *got = *(dword*)PointerToOriginal;
 
-    TRACEEXIT;
+    TRACEEXIT();
     return TRUE;
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return FALSE;
 }

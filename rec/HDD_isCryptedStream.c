@@ -2,7 +2,7 @@
 
 bool HDD_isCryptedStream(byte *Buffer, dword BufferSize)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword                 i;
   bool                  ret;
@@ -15,6 +15,6 @@ bool HDD_isCryptedStream(byte *Buffer, dword BufferSize)
       break;
     }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

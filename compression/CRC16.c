@@ -22,20 +22,20 @@ word CRC16Table[] =
 
 word CRC16(word StartValue, void *StartAddress, dword Length)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   volatile byte         *pData;
   word                  CRC = StartValue;
 
   if(!StartAddress)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return CRC;
   }
 
   for(pData = StartAddress; pData < (byte *) StartAddress + Length; pData++)
     CRC = CRC16Table[*pData ^ (CRC & 0x00FF)] ^ (CRC >> 8);
 
-  TRACEEXIT;
+  TRACEEXIT();
   return CRC;
 }

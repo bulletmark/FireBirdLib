@@ -5,7 +5,7 @@
 
 char *LogoManager_GetDirectory(tLogoStyle LogoStyle, tLogoAspect LogoAR, char *LogoPath)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   if(LogoPath)
   {
@@ -34,6 +34,6 @@ char *LogoManager_GetDirectory(tLogoStyle LogoStyle, tLogoAspect LogoAR, char *L
     }
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return LogoPath;
 }

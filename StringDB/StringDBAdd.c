@@ -4,14 +4,14 @@
 
 dword StringDBAdd(tStringDB *StringDB, char *Text)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   char                 *p;
   dword                 ret;
 
   if(!StringDB || !Text)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return 0;
   }
 
@@ -22,7 +22,7 @@ dword StringDBAdd(tStringDB *StringDB, char *Text)
     {
       ret = (dword)p - (dword)StringDB->DB;
 
-      TRACEEXIT;
+      TRACEEXIT();
       return ret;
     }
 
@@ -42,7 +42,7 @@ dword StringDBAdd(tStringDB *StringDB, char *Text)
     NewStringDB = TAP_MemAlloc(NewStringDBSize);
     if(!NewStringDB)
     {
-      TRACEEXIT;
+      TRACEEXIT();
       return 0;
     }
 
@@ -61,6 +61,6 @@ dword StringDBAdd(tStringDB *StringDB, char *Text)
   StringDB->DBEnd = StringDB->DBEnd + strlen(Text) + 1;
   ret = (dword)p - (dword)StringDB->DB;
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

@@ -7,7 +7,7 @@
 
 void OSDDrawList(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   int                   i;
   dword                 XStart, XEnd, Y;
@@ -138,5 +138,5 @@ void OSDDrawList(void)
 
   if(CallbackProcedure) CallbackProcedure(OSDCB_List, OSDRgn);
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

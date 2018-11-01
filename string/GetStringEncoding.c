@@ -3,7 +3,7 @@
 
 void GetStringEncoding(char *Text, bool *hasAnsiChars, bool *hasUTFChars)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   byte           *p, *pEnd;
   byte            BytesPerChar;
@@ -27,5 +27,5 @@ void GetStringEncoding(char *Text, bool *hasAnsiChars, bool *hasUTFChars)
   if(hasAnsiChars) *hasAnsiChars = AC;
   if(hasUTFChars) *hasUTFChars = UC;
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

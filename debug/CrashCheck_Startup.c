@@ -2,7 +2,7 @@
 
 void CrashCheck_Startup(char *TAPName, tCrashCheckStatus *CCStatus)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   int                   RebootCount = 0;
   INILOCATION           INILocation;
@@ -30,5 +30,5 @@ void CrashCheck_Startup(char *TAPName, tCrashCheckStatus *CCStatus)
     else *CCStatus = CCS_ExcessiveRebootsDetected;
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

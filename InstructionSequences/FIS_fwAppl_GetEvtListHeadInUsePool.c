@@ -2,13 +2,13 @@
 
 inline dword FIS_fwAppl_GetEvtListHeadInUsePool(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   static dword          _Appl_GetEvtListHeadInUsePool = 0;
 
   if(!_Appl_GetEvtListHeadInUsePool)
     _Appl_GetEvtListHeadInUsePool = TryResolve("_Z28Appl_GetEvtListHeadInUsePoolv");
 
-  TRACEEXIT;
+  TRACEEXIT();
   return _Appl_GetEvtListHeadInUsePool;
 }

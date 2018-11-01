@@ -5,7 +5,7 @@
 
 dword VFD_TranslateSegments(byte Character, DISPLAYSTYLE DisplayStyle)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword ret;
 
@@ -41,6 +41,6 @@ dword VFD_TranslateSegments(byte Character, DISPLAYSTYLE DisplayStyle)
         break;
     }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

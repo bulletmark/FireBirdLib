@@ -5,7 +5,7 @@
 
 void PSBuffer_Free(tPSBuffer *PSBuffer)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   if(PSBuffer)
   {
@@ -18,5 +18,5 @@ void PSBuffer_Free(tPSBuffer *PSBuffer)
     memset(PSBuffer, 0, sizeof(tPSBuffer));
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

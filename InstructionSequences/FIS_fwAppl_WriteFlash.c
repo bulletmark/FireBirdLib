@@ -2,13 +2,13 @@
 
 inline dword FIS_fwAppl_WriteFlash(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   static dword          _Appl_WriteFlash = 0;
 
   if(!_Appl_WriteFlash)
     _Appl_WriteFlash = TryResolve("_Z15Appl_WriteFlashb");
 
-  TRACEEXIT;
+  TRACEEXIT();
   return _Appl_WriteFlash;
 }

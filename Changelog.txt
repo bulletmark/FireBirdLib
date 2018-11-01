@@ -1039,3 +1039,4 @@ The following functions accept any form a path. The INI and language INI functio
             Fixed: Potential buffer overflow in TAP_PrintNet() (replacing TAP_Print())
 2018-08-31: Fixed: Made empty macro a statement to avoid empty statements
             Fixed: Handle a possible initialization error in InitTAPex()
+2018-09-01: Fixed: Access to the CurTapTask variable (index of the currently active TAP) has been centralised in InitTAPex()

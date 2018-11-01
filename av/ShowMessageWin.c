@@ -2,7 +2,7 @@
 
 void ShowMessageWin(char *title, char *lpMessage1, char *lpMessage2, dword dwDelay)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   char *content[4];
 
@@ -13,5 +13,5 @@ void ShowMessageWin(char *title, char *lpMessage1, char *lpMessage2, dword dwDel
 
   ShowMessageWindow(content, 720, 576, FNT_Size_1926, ALIGN_CENTER, RGB(156,156,156), RGB(255,255,82), RGB(230,255,230), RGB(25,41,82), dwDelay);
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

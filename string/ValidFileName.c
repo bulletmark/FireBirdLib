@@ -3,7 +3,7 @@
 
 char *ValidFileName(char *strName, eRemoveChars ControlCharacters, char *Result, int ResultSize)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   char                  *s, *d, *l;
   byte                  BytesPerCharacter;
@@ -40,6 +40,6 @@ char *ValidFileName(char *strName, eRemoveChars ControlCharacters, char *Result,
   }
   if(ResultSize) *d = '\0';
 
-  TRACEEXIT;
+  TRACEEXIT();
   return Result;
 }

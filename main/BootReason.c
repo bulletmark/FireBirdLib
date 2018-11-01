@@ -2,13 +2,13 @@
 
 tBootReason BootReason(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   tBootReason ret;
 
   volatile word *reason = (word *)FIS_vBootReason();
   ret = (reason ? (tBootReason)*reason : BOOT_FRONT_PANEL);
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

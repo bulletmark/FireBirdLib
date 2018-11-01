@@ -6,7 +6,7 @@
 
 bool StringDBLoad(tStringDB *StringDB, char *FileName)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   int                   f;
   bool                  ret;
@@ -15,7 +15,7 @@ bool StringDBLoad(tStringDB *StringDB, char *FileName)
 
   if(!StringDB || !StringDB->DB || !FileName || !*FileName)
   {
-    TRACEEXIT;
+    TRACEEXIT();
     return FALSE;
   }
 
@@ -38,7 +38,7 @@ bool StringDBLoad(tStringDB *StringDB, char *FileName)
         StringDB->DBSize = 0;
         close(f);
 
-        TRACEEXIT;
+        TRACEEXIT();
         return FALSE;
       }
       StringDB->DBSize = l;
@@ -56,6 +56,6 @@ bool StringDBLoad(tStringDB *StringDB, char *FileName)
     }
   }
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

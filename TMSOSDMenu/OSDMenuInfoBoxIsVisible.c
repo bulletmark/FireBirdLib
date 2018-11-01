@@ -2,8 +2,8 @@
 
 bool OSDMenuInfoBoxIsVisible(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
-  TRACEEXIT;
+  TRACEEXIT();
   return (InfoBoxOSDRgn != 0);
 }

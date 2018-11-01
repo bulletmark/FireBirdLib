@@ -2,7 +2,7 @@
 
 int ApplTap_GetEmptyTask(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   int (*__ApplTap_GetEmptyTask)(void);
   int ret = 0;
@@ -10,6 +10,6 @@ int ApplTap_GetEmptyTask(void)
   __ApplTap_GetEmptyTask = (void*)FIS_fwApplTap_GetEmptyTask();
   if(__ApplTap_GetEmptyTask) ret = __ApplTap_GetEmptyTask();
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

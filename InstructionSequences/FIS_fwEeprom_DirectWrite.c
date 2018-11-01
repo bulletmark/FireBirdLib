@@ -2,13 +2,13 @@
 
 inline dword FIS_fwEeprom_DirectWrite(void)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   static dword          _Eeprom_DirectWrite = 0;
 
   if(!_Eeprom_DirectWrite)
     _Eeprom_DirectWrite = TryResolve("Eeprom_DirectWrite");
 
-  TRACEEXIT;
+  TRACEEXIT();
   return _Eeprom_DirectWrite;
 }

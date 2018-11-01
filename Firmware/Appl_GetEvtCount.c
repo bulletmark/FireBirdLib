@@ -2,7 +2,7 @@
 
 dword Appl_GetEvtCount(byte SatIdx, word NetID, word TSID, word ServiceID)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   dword (*__Appl_GetEvtCount)(byte SatIdx, word NetID, word TSID, word ServiceID);
   dword ret = 0;
@@ -10,6 +10,6 @@ dword Appl_GetEvtCount(byte SatIdx, word NetID, word TSID, word ServiceID)
   __Appl_GetEvtCount = (void*)FIS_fwAppl_GetEvtCount();
   if(__Appl_GetEvtCount) ret = __Appl_GetEvtCount(SatIdx, NetID, TSID, ServiceID);
 
-  TRACEEXIT;
+  TRACEEXIT();
   return ret;
 }

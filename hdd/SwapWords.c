@@ -2,7 +2,7 @@
 
 void SwapWords(word *DataBuf)
 {
-  TRACEENTER;
+  TRACEENTER();
 
   int                   i;
 
@@ -10,5 +10,5 @@ void SwapWords(word *DataBuf)
     for(i = 0; i < 256; i++)
       DataBuf[i] = ((DataBuf[i] & 0x00FF) << 8) | ((DataBuf[i] & 0xFF00) >> 8);
 
-  TRACEEXIT;
+  TRACEEXIT();
 }

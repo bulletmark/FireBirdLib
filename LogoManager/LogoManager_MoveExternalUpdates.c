@@ -26,7 +26,7 @@ void LogoManager_MoveExternalUpdates(void)
 
         if(!access(DatFile, F_OK))
         {
-          TAP_SPrint(cmd, "mv %s /mnt/hd/ProgramFiles/Settings/Logos", DatFile);
+          TAP_SPrint(cmd, "mv %s /mnt/hd" LOGOROOT, DatFile);
           system(cmd);
         }
       }

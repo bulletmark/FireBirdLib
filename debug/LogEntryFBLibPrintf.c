@@ -5,6 +5,7 @@
 #include                <stdarg.h>
 #include                <sys/types.h>
 #include                <utime.h>
+#undef FB_NO_DEBUG
 #include                "libFireBird.h"
 
 int vsnprintf(char *str, size_t size, const char *format, va_list ap);   //define missing prototype

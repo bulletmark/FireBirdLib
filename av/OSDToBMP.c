@@ -11,7 +11,7 @@ void OSDToBMP(TYPE_OsdBaseInfo *OsdBaseInfo, int BMPwidth, int BMPheight, byte *
 
   (void)Alpha;
 
-  if(BMPPixelBuffer)
+  if (!BMPPixelBuffer)
   {
     TRACEEXIT();
     return;

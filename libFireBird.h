@@ -3,11 +3,33 @@
 
   //#define STACKTRACE
 
-  #define __FBLIB_RELEASEDATE__ "2018-09-08"
+  #define __FBLIB_RELEASEDATE__ "2018-11-28"
 
   #define __FBLIB_VERSION__ __FBLIB_RELEASEDATE__
 
   #define isTMS         1
+
+  // Call FBLIB's special check-and-log API wrapper functions.
+  #define FB_DEBUG_CHK
+
+  // Call LogEntryFBLibPrintf().
+  #define FB_LOG_ENTRY_LIB_PRINTF
+
+  // Make use of tracing functions.
+  #define FB_CALL_TRACE
+
+  // Define the following if you want to suppress all debug-like functions,
+  // thus not getting any debug information at runtime.
+  #ifdef FB_NO_DEBUG
+    #undef STACKTRACE
+    #undef FB_DEBUG_CHK
+    #undef FB_LOG_ENTRY_LIB_PRINTF
+    // Define the following at library compile time
+    // if you are using FB_NO_DEBUG.
+    #ifndef FB_LIBRARY_COMPILATION
+      #undef FB_CALL_TRACE
+    #endif
+  #endif
 
   #ifdef PC_BASED
     #define inline
@@ -36,6 +58,9 @@
   /* Main                                                                                                                      */
   /*****************************************************************************************************************************/
   #define TAP_MAX       16
+
+  #define DIR_PROGRAMFILES "/ProgramFiles"
+  #define DIR_SETTINGS     "Settings"
 
   typedef enum
   {
@@ -217,6 +242,7 @@
   #define G8888(x)      (((x)>> 8)&0xff)
   #define B8888(x)      (((x)>> 0)&0xff)
 
+  #define ARGB2TMS(a,r,g,b)   ((dword) (((a) ? TAP_ALPHA : 0) << 24 | (byte) ((r) * 8.2258) << 16 | (byte) ((g) * 8.2258) << 8 | (byte) ((b) * 8.2258)))
   #define ARGBtoTMS(a,r,g,b)  a*=0xff;r*=8.2258;g*=8.2258;b*=8.2258
   #define TMStoARGB(a,r,g,b)  a/=0xff;r/=8.2258;g/=8.2258;b/=8.2258
 
@@ -1182,10 +1208,15 @@
   void   LogEntryPrintf(char *FileName, char *ProgramName, bool Console, eTimeStampFormat TimeStampFormat, char *format, ...);
   void   LogEntryGeneric(char *ProgramName, bool Console, char *Text);
   void   LogEntryGenericPrintf(char *ProgramName, bool Console, char *format, ...);
+#ifdef FB_LOG_ENTRY_LIB_PRINTF
   void   LogEntryFBLibPrintf(bool Console, char *format, ...);
+#else
+  #define LogEntryFBLibPrintf(Console, ...) do { if (0) TAP_Print(__VA_ARGS__); } while (0)
+#endif
   bool   HookFirmware(char *FirmwareFunctionName, void *RedirectTo, void *PointerToOriginal);
   bool   UnhookFirmware(char *FirmwareFunctionName, void *RedirectTo, void *PointerToOriginal);
 
+#ifdef FB_CALL_TRACE
   void   CallTraceInit(void);
   void   CallTraceEnable(bool Enable);
   void   CallTraceEnter(char *ProcName);
@@ -1194,6 +1225,16 @@
   void   CallTraceComment(char *Comment);
   void   CallTraceExportStats(char *FileName);
   void   CallTraceResetStats(void);
+#else
+  #define CallTraceInit(...) (void) 0
+  #define CallTraceEnable(...) (void) 0
+  #define CallTraceEnter(...) (void) 0
+  #define CallTraceExit(...) (void) 0
+  #define CallTraceExitResult(...) (void) 0
+  #define CallTraceComment(...) (void) 0
+  #define CallTraceExportStats(...) (void) 0
+  #define CallTraceResetStats(...) (void) 0
+#endif
 
   #ifdef STACKTRACE
     #define TRACEENTER()    CallTraceEnter((char*)__FUNCTION__)
@@ -1213,6 +1254,7 @@
   void   CrashCheck_Startup(char *TAPName, tCrashCheckStatus *CCStatus);
   void   CrashCheck_Shutdown(char *TAPName);
 
+#ifdef FB_DEBUG_CHK
   void *TAP_MemAlloc_Chk(char *Comment, dword size);
   int   TAP_Osd_Copy_Chk(char *Comment, word srcRgnNum, word dstRgnNum, dword srcX, dword srcY, dword w, dword h, dword dstX, dword dstY,  bool sprite);
   int   TAP_Osd_Create_Chk(char *Comment, dword x, dword y, dword w, dword h, byte lutIdx, int flag);
@@ -1222,6 +1264,17 @@
   int   TAP_Osd_PutPixel_Chk(char *Comment, word rgn, dword x, dword y, dword pix);
   void  TAP_Osd_RestoreBox_Chk(char *Comment, word rgn, dword x, dword y, dword w, dword h, void *data);
   byte *TAP_Osd_SaveBox_Chk(char *Comment, word rgn, dword x, dword y, dword w, dword h);
+#else
+  #define TAP_MemAlloc_Chk(Comment, ...) TAP_MemAlloc(__VA_ARGS__)
+  #define TAP_Osd_Copy_Chk(Comment, ...) TAP_Osd_Copy(__VA_ARGS__)
+  #define TAP_Osd_Create_Chk(Comment, ...) TAP_Osd_Create(__VA_ARGS__)
+  #define TAP_Osd_FillBox_Chk(Comment, ...) TAP_Osd_FillBox(__VA_ARGS__)
+  #define TAP_Osd_PutFreeColorGd_Chk(Comment, ...) TAP_Osd_PutFreeColorGd(__VA_ARGS__)
+  #define TAP_Osd_PutGd_Chk(Comment, ...) TAP_Osd_PutGd(__VA_ARGS__)
+  #define TAP_Osd_PutPixel_Chk(Comment, ...) TAP_Osd_PutPixel(__VA_ARGS__)
+  #define TAP_Osd_RestoreBox_Chk(Comment, ...) TAP_Osd_RestoreBox(__VA_ARGS__)
+  #define TAP_Osd_SaveBox_Chk(Comment, ...) TAP_Osd_SaveBox(__VA_ARGS__)
+#endif
 
 
   /*****************************************************************************************************************************/
@@ -1746,7 +1799,8 @@
   /* FontManager                                                                                                               */
   /*****************************************************************************************************************************/
 
-  #define FONTSDIR      "/ProgramFiles/Settings/Fonts"
+  #define DIR_FONTS     "Fonts"
+  #define FONTSDIR      DIR_PROGRAMFILES "/" DIR_SETTINGS "/" DIR_FONTS
 
   typedef struct
   {
@@ -2136,7 +2190,8 @@
   /* LogoManager                                                                                                               */
   /*****************************************************************************************************************************/
 
-  #define LOGOROOT        "/ProgramFiles/Settings/Logos"
+  #define DIR_LOGOS       "Logos"
+  #define LOGOROOT        DIR_PROGRAMFILES "/" DIR_SETTINGS "/" DIR_LOGOS
   #define LOGOPACK        "LogoPack.tar"
   #define LOGOCACHE       "Logo.cache"
   #define LOGOCACHEID     "LGC"

@@ -1,3 +1,4 @@
+#undef FB_NO_DEBUG
 #include                "libFireBird.h"
 
 void* TAP_MemAlloc_Chk(char *Comment, dword size)

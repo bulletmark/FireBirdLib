@@ -16,7 +16,7 @@ dword HDD_TAP_Callback(dword TAPID, void *ProcedureAddress, dword param1, dword 
     if(!curTapTask || (!LibInitialized && !InitTAPex()))
     {
       TRACEEXIT();
-      return FALSE;
+      return 0;
     }
 
     int Index = HDD_TAP_GetIndexByID(TAPID);

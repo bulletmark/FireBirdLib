@@ -1,3 +1,4 @@
+#undef FB_NO_DEBUG
 #include "libFireBird.h"
 
 byte* TAP_Osd_SaveBox_Chk(char *Comment, word rgn, dword x, dword y, dword w, dword h)

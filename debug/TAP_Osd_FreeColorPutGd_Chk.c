@@ -1,3 +1,4 @@
+#undef FB_NO_DEBUG
 #include                "libFireBird.h"
 
 //int TAP_Osd_PutFreeColorGd(word rgn, int x, int y, TYPE_GrData * gd, bool sprite, dword FilterColor);

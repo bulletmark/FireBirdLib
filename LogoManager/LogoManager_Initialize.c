@@ -21,11 +21,11 @@ void LogoManager_Initialize(void *CallbackRoutine)
   LogoManager_CB = CallbackRoutine;
 
   HDD_TAP_PushDir();
-  HDD_ChangeDir("/ProgramFiles");
-  if(!TAP_Hdd_Exist("Settings")) TAP_Hdd_Create("Settings", ATTR_FOLDER);
-  HDD_ChangeDir("Settings");
-  if(!TAP_Hdd_Exist("Logos")) TAP_Hdd_Create("Logos", ATTR_FOLDER);
-  HDD_ChangeDir("Logos");
+  HDD_ChangeDir(DIR_PROGRAMFILES);
+  if(!TAP_Hdd_Exist(DIR_SETTINGS)) TAP_Hdd_Create(DIR_SETTINGS, ATTR_FOLDER);
+  if(!TAP_Hdd_Exist(DIR_LOGOS)) HDD_ChangeDir(DIR_SETTINGS);
+  if(!TAP_Hdd_Exist(DIR_LOGOS)) TAP_Hdd_Create(DIR_LOGOS, ATTR_FOLDER);
+  HDD_ChangeDir(LOGOROOT);
 
   if(!LogoManager_LUTInitialized || !TAP_Hdd_Exist(LOGOCACHE))
   {

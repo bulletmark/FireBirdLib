@@ -1,7 +1,7 @@
 #include                <string.h>
 #include                "FBLib_flash.h"
 
-bool FlashServiceDel(int SvcType, int SvcNum)
+bool FlashServiceDel(int SvcType, int SvcIndex)
 {
   TRACEENTER();
 
@@ -16,7 +16,7 @@ bool FlashServiceDel(int SvcType, int SvcNum)
   }
 
   //SvcNum out of range
-  if((SvcNum < 0) || (SvcNum >= FlashServiceGetTotal(SvcType)))
+  if((SvcIndex < 0) || (SvcIndex >= FlashServiceGetTotal(SvcType)))
   {
     TRACEEXIT();
     return FALSE;
@@ -51,20 +51,20 @@ bool FlashServiceDel(int SvcType, int SvcNum)
     {
       TYPE_Service_TMSS    *p;
 
-      FlashServiceDelServiceName(SvcType, SvcNum);
+      FlashServiceDelServiceName(SvcType, SvcIndex);
 
       if(SvcType == SVC_TYPE_Tv)
-        p = (TYPE_Service_TMSS*)(FIS_vFlashBlockTVServices() + SvcNum * sizeof(TYPE_Service_TMSS));
+        p = (TYPE_Service_TMSS*)(FIS_vFlashBlockTVServices() + SvcIndex * sizeof(TYPE_Service_TMSS));
       else
-        p = (TYPE_Service_TMSS*)(FIS_vFlashBlockRadioServices() + SvcNum * sizeof(TYPE_Service_TMSS));
+        p = (TYPE_Service_TMSS*)(FIS_vFlashBlockRadioServices() + SvcIndex * sizeof(TYPE_Service_TMSS));
       if(p && FlashServiceDelete(p))
       {
         *nSvc = *nSvc - 1;
 
         //TODO: Delete provider
 
-        FlashReindexFavorites(SvcType, SvcNum, -1);
-        FlashReindexTimers(SvcType, SvcNum, -1);
+        FlashReindexFavorites(SvcType, SvcIndex, -1);
+        FlashReindexTimers(SvcType, SvcIndex, -1);
 
         ret = TRUE;
       }
@@ -75,20 +75,20 @@ bool FlashServiceDel(int SvcType, int SvcNum)
     {
       TYPE_Service_TMST    *p;
 
-      FlashServiceDelServiceName(SvcType, SvcNum);
+      FlashServiceDelServiceName(SvcType, SvcIndex);
 
       if(SvcType == SVC_TYPE_Tv)
-        p = (TYPE_Service_TMST*)(FIS_vFlashBlockTVServices() + SvcNum * sizeof(TYPE_Service_TMST));
+        p = (TYPE_Service_TMST*)(FIS_vFlashBlockTVServices() + SvcIndex * sizeof(TYPE_Service_TMST));
       else
-        p = (TYPE_Service_TMST*)(FIS_vFlashBlockRadioServices() + SvcNum * sizeof(TYPE_Service_TMST));
+        p = (TYPE_Service_TMST*)(FIS_vFlashBlockRadioServices() + SvcIndex * sizeof(TYPE_Service_TMST));
       if(p && FlashServiceDelete(p))
       {
         *nSvc = *nSvc - 1;
 
         //TODO: Delete provider
 
-        FlashReindexFavorites(SvcType, SvcNum, -1);
-        FlashReindexTimers(SvcType, SvcNum, -1);
+        FlashReindexFavorites(SvcType, SvcIndex, -1);
+        FlashReindexTimers(SvcType, SvcIndex, -1);
 
         ret = TRUE;
       }
@@ -99,20 +99,20 @@ bool FlashServiceDel(int SvcType, int SvcNum)
     {
       TYPE_Service_TMSC    *p;
 
-      FlashServiceDelServiceName(SvcType, SvcNum);
+      FlashServiceDelServiceName(SvcType, SvcIndex);
 
       if(SvcType == SVC_TYPE_Tv)
-        p = (TYPE_Service_TMSC*)(FIS_vFlashBlockTVServices() + SvcNum * sizeof(TYPE_Service_TMSC));
+        p = (TYPE_Service_TMSC*)(FIS_vFlashBlockTVServices() + SvcIndex * sizeof(TYPE_Service_TMSC));
       else
-        p = (TYPE_Service_TMSC*)(FIS_vFlashBlockRadioServices() + SvcNum * sizeof(TYPE_Service_TMSC));
+        p = (TYPE_Service_TMSC*)(FIS_vFlashBlockRadioServices() + SvcIndex * sizeof(TYPE_Service_TMSC));
       if(p && FlashServiceDelete(p))
       {
         *nSvc = *nSvc - 1;
 
         //TODO: Delete provider
 
-        FlashReindexFavorites(SvcType, SvcNum, -1);
-        FlashReindexTimers(SvcType, SvcNum, -1);
+        FlashReindexFavorites(SvcType, SvcIndex, -1);
+        FlashReindexTimers(SvcType, SvcIndex, -1);
 
         ret = TRUE;
       }

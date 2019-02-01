@@ -1040,3 +1040,21 @@ The following functions accept any form a path. The INI and language INI functio
 2018-08-31: Fixed: Made empty macro a statement to avoid empty statements
             Fixed: Handle a possible initialization error in InitTAPex()
 2018-09-01: Fixed: Access to the CurTapTask variable (index of the currently active TAP) has been centralised in InitTAPex()
+2018-09-08: Fixed: added parentheses back to TRACEENTER/TRACEEXIT to keep backward compatibility with TAPs that use these macros
+2018-09-23: Added: FB_DEBUG_CHK and FB_NO_DEBUG to suppress all debug-like check-and-log functions
+            Added: FB_NO_DEBUG undefines STACKTRACE
+            Added: FB_LOG_ENTRY_LIB_PRINTF to let FB_NO_DEBUG suppress a debug-like internal logging function
+            Fixed: Return value should formally match return type of HDD_TAP_Callback()
+            Modified: Release date
+2018-10-21: Added: FB_CALL_TRACE to let FB_NO_DEBUG suppress all CallTrace function calls
+            Added: FB_LIBRARY_COMPILATION to enable the CallTrace functions to remain part of the library (and control their usage at TAP compile time)
+2018-11-02: Added: ARGB2TMS to convert a TF5k ARGB quadruple directly to the TMS color
+2018-11-04: Fixed: OSDToBMP() didn't do anything because a condition was incorrect
+2018-11-20: Fixed: FlashTransponderTablesDel() deletes all services on the selected transponder or renumbers the transponder indices where necessary
+2018-11-22: Fixed: a redraw after OSDMenuItemsClear() still did show all items
+2018-11-23: Fixed: OSDDrawList() doesn't draw a cursor if the item list is empty
+            Fixed: OSDMenuItemsClear() also resets CurrentTopIndex to 0
+2018-11-28: Fixed: Wrong usage of FONTYOFFSET in OSDDrawMemo()
+            Fixed: OSDMemoInitialize() didn't utilize struct member FontMemo
+            Fixed: HORSPACE in OSDMemoInitialize() was too small (Memo width of 600 px minus 16 px left indent equals 584 px, so with a 16 px right margin the available space is 568 px)
+            Fixed: OSDMemoInitialize() omitted lines and created additional blank lines

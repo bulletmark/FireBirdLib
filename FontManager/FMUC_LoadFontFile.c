@@ -23,7 +23,7 @@ bool FMUC_LoadFontFile(char *FontFileName, tFontDataUC *FontData)
   ConvertPathType(FontFileName, FileName, PF_FileNameOnly);
 
   //Open the font file
-  strcpy(AbsFileName, "/mnt/hd/ProgramFiles/Settings/Fonts/");
+  strcpy(AbsFileName, "/mnt/hd" FONTSDIR "/");
   strcat(AbsFileName, FileName);
 
   FontData->FileHandle = open(AbsFileName, O_RDONLY, 0600);

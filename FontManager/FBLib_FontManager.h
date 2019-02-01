@@ -3,8 +3,6 @@
 
   #include              "libFireBird.h"
 
-  #define FONTDIR       "/ProgramFiles/Settings/Fonts"
-
   typedef struct
   {
     byte  r;

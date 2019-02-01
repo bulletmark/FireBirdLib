@@ -6,12 +6,12 @@ void OSDMemoInitialize(bool ScrollLoop, char *TitleLeft, char *TitleRight, char 
 {
   TRACEENTER();
 
-  char                 *from, *to, *p, c;
-  int                   Width;
+  char                 *from, *upto, *p, c;
+  dword                 spW, Width = 0;
   char                 *Buffer;
   tMenu                *pMenu;
 
-  #define HORSPACE      550
+  #define HORSPACE      568
 
   OSDMenuInitialize(FALSE, FALSE, FALSE, ScrollLoop, TitleLeft, TitleRight);
   pMenu = &Menu[CurrentMenuLevel];
@@ -31,48 +31,40 @@ void OSDMemoInitialize(bool ScrollLoop, char *TitleLeft, char *TitleRight, char 
   StrReplace(Buffer, "\r\n", "\n");
   if(Buffer[strlen(Buffer)] != '\n') strcat(Buffer, "\n");
 
-  from = Buffer;
-  to = Buffer;
-  while(*from)
-  {
-    p = strpbrk(to + 1, " \n");
+  spW = FMUC_GetStringWidth(" ", pMenu->FontMemo);
 
-    if(p == NULL)
+  from = Buffer;
+  upto = from - 1;
+
+  while ((p = strpbrk(upto + 1, " \n")))
+  {
+    c = *p;
+    *p = 0;
+
+    Width += FMUC_GetStringWidth(upto + 1, pMenu->FontMemo) + (c == ' ' ? spW : 0);
+
+    if (Width > HORSPACE)
     {
-      //Nothing has been found, terminate
-      break;
+      if (upto < from) upto = p;
+
+      *upto = 0;
+      OSDMenuItemAdd(from, NULL, NULL, NULL, TRUE, FALSE, 0);
+      from = upto + 1;
+      Width = 0;
     }
     else
     {
-      if(from > to) to = p;
-
-      c = *p;
-      *p = '\0';
-      Width = FMUC_GetStringWidth(from, &OSDMenuFont_14);
-      if(Width > HORSPACE)
+      if (c == '\n')
       {
-        *to = '\0';
-        OSDMenuItemAdd(from, NULL, NULL, NULL, TRUE, FALSE, 0);
-        from = to + 1;
-        to = p;
-      }
-      *p = c;
-
-      if(c == '\n')
-      {
-        if(from >= to)
-        {
-          OSDMenuItemAdd(" ", NULL, NULL, NULL, TRUE, FALSE, 0);
-        }
-        else
-        {
-          *p = '\0';
-          OSDMenuItemAdd(from, NULL, NULL, NULL, TRUE, FALSE, 0);
-        }
+        OSDMenuItemAdd(*from ? from : " ", NULL, NULL, NULL, TRUE, FALSE, 0);
         from = p + 1;
+        Width = 0;
       }
-      to = p;
+
+      upto = p;
     }
+
+    *p = c;
   }
 
   TAP_MemFree(Buffer);

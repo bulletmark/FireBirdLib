@@ -10,6 +10,18 @@
 #define MAXMBBUTTONS     5
 #define FONTYOFFSET     -3
 
+#define WaitSpinnerItems       12
+#define WaitSpinnerItemWidth    6
+#define WaitSpinnerItemHeight  14
+#define WaitSpinnerWidth       ((2 * WaitSpinnerItems - 1) * WaitSpinnerItemWidth)
+#define WaitSpinnerItemsTrail   8
+#define WaitSpinnerSpeed       10
+#define WaitSpinnerItemColorBlank RGB(192, 192, 192)
+#define WaitSpinnerItemColorShade -64   // shade to RGB(128, 128, 128)
+#define WaitSpinnerItemColorTrail RGB(120, 120, 120)
+
+extern dword WaitSpinnerPosY;
+
 typedef struct
 {
   char                  Name[ITEMNAMESIZE];
@@ -17,6 +29,7 @@ typedef struct
   TYPE_GrData          *pNameIconGd;
   TYPE_GrData          *pValueIconGd;
   dword                 ColorPatch;
+  dword                 NameColor;
   dword                 TextColor;
   bool                  Selectable;
   bool                  ValueArrows;
@@ -36,11 +49,13 @@ typedef struct
 typedef enum
 {
   OMDM_Standard,
-  OMDM_Memo
+  OMDM_Memo,
+  OMDM_Text            // like Memo, but CurrentTopIndex won't follow CurrentSelection
 } tOSDMenuDisplayMode;
 
 typedef struct
 {
+  int                   NrLines;
   tItem                *Item;
   int                   NrItems;
   int                   MaxItems;
@@ -49,6 +64,7 @@ typedef struct
   bool                  AllowScrollingOfLongText;
   bool                  HasValueColumn;
   dword                 ValueXPos;
+  int                   ValueXOffset;
   bool                  ScrollLoop;
   bool                  NumberedItems;
   bool                  hasValueArrows;
@@ -60,6 +76,11 @@ typedef struct
   dword                 LogoX;
   dword                 LogoY;
   TYPE_GrData          *pLogoGd;
+  dword                 PrevLogoX;
+  dword                 PrevLogoY;
+  dword                 PrevLogoW;
+  dword                 PrevLogoH;
+  char                 *MemoText;
   tOSDMenuDisplayMode  OSDMenuDisplayMode;
   tFontDataUC          *FontLeftTitle;
   tFontDataUC          *FontRightTitle;
@@ -160,20 +181,28 @@ extern TYPE_GrData      _Button_volplus_Gd;
 extern TYPE_GrData      _Button_white_Gd;
 extern TYPE_GrData      _Button_yellow_Gd;
 
+extern TYPE_GrData      _Cursor_Blue_Normal_Gd;
+extern TYPE_GrData      _Cursor_Blue_Small_Gd;
+extern TYPE_GrData      _Cursor_Blue_Tiny_Gd;
+extern TYPE_GrData      _Cursor_Dark_Normal_Gd;
+extern TYPE_GrData      _Cursor_Dark_Small_Gd;
+extern TYPE_GrData      _Cursor_Dark_Tiny_Gd;
 extern TYPE_GrData      _InfoBox_Gd;
-extern TYPE_GrData      _Messagebox_Gd;
+extern TYPE_GrData      _InputBox_Gd;
 extern TYPE_GrData      _MessageBoxSelectedButtonBackground_Gd;
+extern TYPE_GrData      _pfeil_l_Gd;
+extern TYPE_GrData      _pfeil_l_bright_Gd;
+extern TYPE_GrData      _pfeil_r_Gd;
+extern TYPE_GrData      _pfeil_r_bright_Gd;
+extern TYPE_GrData      _Progressbar_Gd;
 extern TYPE_GrData      _ScrollBarInvisible_Gd;
 extern TYPE_GrData      _ScrollBarKnob_Gd;
 extern TYPE_GrData      _ScrollBarVisible_Gd;
-extern TYPE_GrData      _Selection_Bar_Gd;
 
 extern TYPE_GrData      _ColorPicker_Gd;
 extern TYPE_GrData      _ColorPicker_CursorNone_Gd;
 extern TYPE_GrData      _ColorPicker_CursorDeselected_Gd;
 extern TYPE_GrData      _ColorPicker_ValueBackroundSelected_Gd;
-
-extern TYPE_GrData      _WaitSpinner_All_Gd;
 
 extern word             OSDRgn;
 extern word             MyOSDRgn; //Used by OSDMenuSaveMyRegion()
@@ -212,7 +241,6 @@ extern dword            WaitSpinnerTimeout;
 
 int  OSDMenuFindNextSelectableEntry(int CurrentSelection);
 int  OSDMenuFindPreviousSelectableEntry(int CurrentSelection);
-int  OSDMenuGetW(char * str, byte fntSize);
 void OSDCalcIndices(void);
 void OSDDrawBackground(void);
 void OSDDrawButtons(void);
@@ -221,13 +249,15 @@ void OSDDrawLogo(void);
 void OSDDrawMemo(void);
 void OSDDrawScrollBar(void);
 void OSDDrawTitle(void);
+void OSDMemoFormatText(void);
 void OSDMenuColorPickerDrawCursor(tCurrentColorSelected CursorColor, bool Selected);
-void OSDMenuDrawCursor(dword x, dword y, dword w);
+void OSDMenuDrawCursor(dword x, dword y, dword w, dword h);
 void OSDMenuFreeStdFonts(void);
 TYPE_GrData *OSDMenuGetIconPointer(tButtonIcon ButtonIcon, TYPE_GrData *UserDefinedButton);
 void OSDMenuLoadStdFonts(void);
-void OSDMenuPutS(word rgn, dword x, dword y, dword maxX, char * str, dword fcolor, dword bcolor, byte fntSize, byte bDot, byte align);
 void OSDMenuWaitSpinnerIdle(void);
+void OSDMenuWaitSpinnerDrawItem(word rgn, dword x, dword rgb);
+dword OSDMenuWaitSpinnerShadeColor(dword rgb, word step, word steps);
 
 extern void (*CallbackProcedure)(tOSDCB OSDCBType, word OSDRgn);
 

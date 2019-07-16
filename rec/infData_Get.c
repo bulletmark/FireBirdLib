@@ -32,7 +32,7 @@ bool infData_Get(char *infFileName, char *NameTag, dword *PayloadSize, byte **Pa
         fread(DataBlock, TFRPlusHdr.PayloadSize, 1, infDatainfFile);
       else
       {
-        TAP_SPrint(s, "failed to reserve %d bytes for %s:%s", TFRPlusHdr.PayloadSize, infFileName, NameTag);
+        TAP_SPrint(s, "failed to reserve %lu bytes for %s:%s", TFRPlusHdr.PayloadSize, infFileName, NameTag);
         LogEntryFBLibPrintf(TRUE, "infData: %s", s);
       }
     }

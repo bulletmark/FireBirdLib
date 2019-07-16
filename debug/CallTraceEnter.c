@@ -12,7 +12,7 @@ void CallTraceEnter(char *ProcName)
 
   if(!CallTraceInitialized) CallTraceInit();
 
-  if(CallLevel >= CTSTACKSIZE) LogEntryFBLibPrintf(TRUE, "CallLevel Overflow! (TAPID 0x%8.8x)", __tap_ud__);
+  if(CallLevel >= CTSTACKSIZE) LogEntryFBLibPrintf(TRUE, "CallLevel Overflow! (TAPID 0x%8.8lx)", __tap_ud__);
 
   if(ProcName)
   {

@@ -7,26 +7,43 @@ void OSDMenuUpdate(bool SuppressOSDSync)
   //Create an OSD region if not already available
   if(OSDRgn == 0)
   {
-    OSDDirty     = TRUE;
-    TitleDirty   = TRUE;
-    ListDirty    = TRUE;
-    ButtonsDirty = TRUE;
-    LogoDirty    = TRUE;
+    OSDDirty = TRUE;
     OSDRgn = TAP_Osd_Create(0, 0, 720, 576, 0, 0);
     TAP_ExitNormal();
   }
 
   //Draw background & grey rectangles
-  if(OSDDirty) OSDDrawBackground();
+  if (OSDDirty)
+  {
+    OSDDrawBackground();
+    OSDDirty     = FALSE;
+    TitleDirty   = TRUE;
+    ListDirty    = TRUE;
+    ButtonsDirty = TRUE;
+    LogoDirty    = TRUE;
+  }
 
   //Draw left and right title
-  if(TitleDirty) OSDDrawTitle();
-
-  //Draw software icon
-  if(LogoDirty) OSDDrawLogo();
+  if (TitleDirty)
+  {
+    OSDDrawTitle();
+    TitleDirty = FALSE;
+  }
 
   //Draw buttons
-  if(ButtonsDirty) OSDDrawButtons();
+  if (ButtonsDirty)
+  {
+    OSDDrawButtons();
+    ButtonsDirty = FALSE;
+    LogoDirty    = TRUE;
+  }
+
+  //Draw software icon
+  if (LogoDirty)
+  {
+    OSDDrawLogo();
+    LogoDirty = FALSE;
+  }
 
   //Calculate TopIndex & SelectionIndex
   OSDCalcIndices();
@@ -41,8 +58,11 @@ void OSDMenuUpdate(bool SuppressOSDSync)
     switch(Menu[CurrentMenuLevel].OSDMenuDisplayMode)
     {
       case OMDM_Standard: OSDDrawList(); break;
+      case OMDM_Text:
       case OMDM_Memo:     OSDDrawMemo(); break;
     }
+
+    ListDirty = FALSE;
   }
 
   //Show OSD

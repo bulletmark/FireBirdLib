@@ -15,7 +15,7 @@ int OSDMenuScrollPageUp(void)
   }
   else if(pMenu->CurrentSelection == pMenu->CurrentTopIndex)
   {
-    x = pMenu->CurrentSelection - 10;
+    x = pMenu->CurrentSelection - pMenu->NrLines;
     if(x < 0) x = 0;
     ret = OSDMenuFindPreviousSelectableEntry(x + 1);
   }

@@ -1,6 +1,55 @@
 #include                <string.h>
 #include                "FBLib_flash.h"
 
+static bool FlashADDecode_ST_TMSS(TYPE_AutoDescrambleTimer *Data, tAutoDescrambleTimer *ADTimer)
+{
+  int                        i;
+
+  TRACEENTER();
+
+  memset(ADTimer, 0, sizeof(tAutoDescrambleTimer));
+  ADTimer->StartTime        = Data->StartTime;
+  ADTimer->EndTime          = Data->EndTime;
+  ADTimer->Duration         = Data->Duration;
+  ADTimer->ReservationType  = Data->ReservationType;
+  ADTimer->DelOrig          = Data->DelOrig;
+  ADTimer->NrOfFiles        = Data->NrOfFiles;
+  ADTimer->AutomaticMode    = Data->AutomaticMode;
+  ADTimer->unknown1         = Data->unknown1;
+  ADTimer->unknown2         = Data->unknown2;
+  ADTimer->unknown3         = Data->unknown3;
+
+  for(i = 0; i < 50; i++)
+    strncpy(ADTimer->FileName[i], Data->FileName[i], MAX_FILE_NAME_SIZE);
+
+  TRACEEXIT();
+  return TRUE;
+}
+
+static bool FlashADDecode_ST_TMSC(TYPE_AutoDescrambleTimer *Data, tAutoDescrambleTimer *ADTimer)
+{
+  bool ret;
+
+  TRACEENTER();
+
+  ret = FlashADDecode_ST_TMSS(Data, ADTimer);
+
+  TRACEEXIT();
+  return ret;
+}
+
+static bool FlashADDecode_ST_TMST(TYPE_AutoDescrambleTimer *Data, tAutoDescrambleTimer *ADTimer)
+{
+  bool ret;
+
+  TRACEENTER();
+
+  ret = FlashADDecode_ST_TMSS(Data, ADTimer);
+
+  TRACEEXIT();
+  return ret;
+}
+
 bool FlashADDecode(void *Data, tAutoDescrambleTimer *ADTimer)
 {
   TRACEENTER();
@@ -39,50 +88,50 @@ bool FlashADDecode(void *Data, tAutoDescrambleTimer *ADTimer)
   return ret;
 }
 
-bool FlashADDecode_ST_TMSS(TYPE_AutoDescrambleTimer *Data, tAutoDescrambleTimer *ADTimer)
+static bool FlashADEncode_ST_TMSS(TYPE_AutoDescrambleTimer *Data, tAutoDescrambleTimer *ADTimer)
 {
-  int                        i;
+  int                   i;
 
   TRACEENTER();
 
-  memset(ADTimer, 0, sizeof(tAutoDescrambleTimer));
-  ADTimer->StartTime        = Data->StartTime;
-  ADTimer->EndTime          = Data->EndTime;
-  ADTimer->Duration         = Data->Duration;
-  ADTimer->ReservationType  = Data->ReservationType;
-  ADTimer->DelOrig          = Data->DelOrig;
-  ADTimer->NrOfFiles        = Data->NrOfFiles;
-  ADTimer->AutomaticMode    = Data->AutomaticMode;
-  ADTimer->unknown1         = Data->unknown1;
-  ADTimer->unknown2         = Data->unknown2;
-  ADTimer->unknown3         = Data->unknown3;
+  memset(Data, 0, sizeof(TYPE_AutoDescrambleTimer));
+  Data->StartTime        = ADTimer->StartTime;
+  Data->EndTime          = ADTimer->EndTime;
+  Data->Duration         = ADTimer->Duration;
+  Data->ReservationType  = ADTimer->ReservationType;
+  Data->DelOrig          = ADTimer->DelOrig;
+  Data->NrOfFiles        = ADTimer->NrOfFiles;
+  Data->AutomaticMode    = ADTimer->AutomaticMode;
+  Data->unknown1         = ADTimer->unknown1;
+  Data->unknown2         = ADTimer->unknown2;
+  Data->unknown3         = ADTimer->unknown3;
 
   for(i = 0; i < 50; i++)
-    strncpy(ADTimer->FileName[i], Data->FileName[i], MAX_FILE_NAME_SIZE);
+    strncpy(Data->FileName[i], ADTimer->FileName[i], MAX_FILE_NAME_SIZE);
 
   TRACEEXIT();
   return TRUE;
 }
 
-bool FlashADDecode_ST_TMSC(TYPE_AutoDescrambleTimer *Data, tAutoDescrambleTimer *ADTimer)
+static bool FlashADEncode_ST_TMSC(TYPE_AutoDescrambleTimer *Data, tAutoDescrambleTimer *ADTimer)
 {
   bool ret;
 
   TRACEENTER();
 
-  ret = FlashADDecode_ST_TMSS(Data, ADTimer);
+  ret = FlashADEncode_ST_TMSS(Data, ADTimer);
 
   TRACEEXIT();
   return ret;
 }
 
-bool FlashADDecode_ST_TMST(TYPE_AutoDescrambleTimer *Data, tAutoDescrambleTimer *ADTimer)
+static bool FlashADEncode_ST_TMST(TYPE_AutoDescrambleTimer *Data, tAutoDescrambleTimer *ADTimer)
 {
   bool ret;
 
   TRACEENTER();
 
-  ret = FlashADDecode_ST_TMSS(Data, ADTimer);
+  ret = FlashADEncode_ST_TMSS(Data, ADTimer);
 
   TRACEEXIT();
   return ret;
@@ -121,55 +170,6 @@ bool FlashADEncode(void *Data, tAutoDescrambleTimer *ADTimer)
 
     case ST_NRTYPES: break;
   }
-
-  TRACEEXIT();
-  return ret;
-}
-
-bool FlashADEncode_ST_TMSS(TYPE_AutoDescrambleTimer *Data, tAutoDescrambleTimer *ADTimer)
-{
-  int                   i;
-
-  TRACEENTER();
-
-  memset(Data, 0, sizeof(TYPE_AutoDescrambleTimer));
-  Data->StartTime        = ADTimer->StartTime;
-  Data->EndTime          = ADTimer->EndTime;
-  Data->Duration         = ADTimer->Duration;
-  Data->ReservationType  = ADTimer->ReservationType;
-  Data->DelOrig          = ADTimer->DelOrig;
-  Data->NrOfFiles        = ADTimer->NrOfFiles;
-  Data->AutomaticMode    = ADTimer->AutomaticMode;
-  Data->unknown1         = ADTimer->unknown1;
-  Data->unknown2         = ADTimer->unknown2;
-  Data->unknown3         = ADTimer->unknown3;
-
-  for(i = 0; i < 50; i++)
-    strncpy(Data->FileName[i], ADTimer->FileName[i], MAX_FILE_NAME_SIZE);
-
-  TRACEEXIT();
-  return TRUE;
-}
-
-bool FlashADEncode_ST_TMSC(TYPE_AutoDescrambleTimer *Data, tAutoDescrambleTimer *ADTimer)
-{
-  bool ret;
-
-  TRACEENTER();
-
-  ret = FlashADEncode_ST_TMSS(Data, ADTimer);
-
-  TRACEEXIT();
-  return ret;
-}
-
-bool FlashADEncode_ST_TMST(TYPE_AutoDescrambleTimer *Data, tAutoDescrambleTimer *ADTimer)
-{
-  bool ret;
-
-  TRACEENTER();
-
-  ret = FlashADEncode_ST_TMSS(Data, ADTimer);
 
   TRACEEXIT();
   return ret;

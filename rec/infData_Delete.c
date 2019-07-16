@@ -48,7 +48,7 @@ bool infData_Delete(char *infFileName, char *NameTag)
         }
         else
         {
-          LogEntryFBLibPrintf(TRUE, "infData: failed to reserve %d bytes for deletion of %s:%s", TFRPlusHdr.PayloadSize, infFileName, NameTagHdr);
+          LogEntryFBLibPrintf(TRUE, "infData: failed to reserve %lu bytes for deletion of %s:%s", TFRPlusHdr.PayloadSize, infFileName, NameTagHdr);
           TFRPlusHdr.PayloadSize = 0;
         }
       }

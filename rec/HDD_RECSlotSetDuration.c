@@ -23,13 +23,13 @@ bool HDD_RECSlotSetDuration(byte Slot, word Duration)
   }
 
   //Check if the selected REC-slot is currently in use
-  if(RECSlot->Duration == 0)
+  if(RECSlot->TimerInfo.Duration == 0)
   {
     TRACEEXIT();
     return FALSE;
   }
 
-  RECSlot->Duration = Duration;
+  RECSlot->TimerInfo.Duration = Duration;
 
   TRACEEXIT();
   return TRUE;

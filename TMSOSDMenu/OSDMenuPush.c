@@ -12,6 +12,7 @@ bool OSDMenuPush(void)
 
   CurrentMenuLevel++;
   memset(&Menu[CurrentMenuLevel], 0, sizeof(tMenu));
+  OSDDirty = TRUE;
 
   TRACEEXIT();
   return TRUE;

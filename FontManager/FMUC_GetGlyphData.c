@@ -9,8 +9,10 @@ tGlyphCacheUC *FMUC_GetGlyphData(tFontDataUC *FontData, byte *UTF8Character, byt
   dword                 UTF32;
   tGlyphCacheUC        *GC;
 
-  if(!FontData || !UTF8Character || !*UTF8Character)
+  if(!FontData || (FontData->FileHandle <= 0) || !UTF8Character || !*UTF8Character)
   {
+    if(BytesPerChar) *BytesPerChar = 1;
+
     TRACEEXIT();
     return NULL;
   }

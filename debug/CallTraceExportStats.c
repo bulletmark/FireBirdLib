@@ -28,7 +28,7 @@ void CallTraceExportStats(char *FileName)
           t = (double)(CallTraceStats[i].TotalTime * 10) / CallTraceStats[i].NrCalls;
         else
           t = 0;
-        TAP_SPrint(Output, "%s;%d;%d;%d;%d;%1.1f\r\n", CallTraceStats[i].ProcName, CallTraceStats[i].NrCalls, CallTraceStats[i].MinTime*10, CallTraceStats[i].MaxTime*10, CallTraceStats[i].TotalTime*10, t);
+        TAP_SPrint(Output, "%s;%lu;%lu;%lu;%lu;%1.1f\r\n", CallTraceStats[i].ProcName, CallTraceStats[i].NrCalls, CallTraceStats[i].MinTime*10, CallTraceStats[i].MaxTime*10, CallTraceStats[i].TotalTime*10, t);
         write(f, Output, strlen(Output));
       }
       close(f);

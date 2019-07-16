@@ -1,21 +1,21 @@
 #include                <string.h>
 #include                "FBLib_flash.h"
 
-bool FlashTransponderTablesDel(int SatIndex, int TransponderIndex)
+bool FlashTransponderTablesDel(int SatNum, int TransponderNum)
 {
   TRACEENTER();
 
   bool ret;
 
   //SatNum out of range
-  if((SatIndex < 0) || (SatIndex >= FlashSatTablesGetTotal()))
+  if((SatNum < 0) || (SatNum >= FlashSatTablesGetTotal()))
   {
     TRACEEXIT();
     return FALSE;
   }
 
   //TransponderNum out of range
-  if((TransponderIndex < 0) || (TransponderIndex >= FlashTransponderTablesGetTotal(SatIndex)))
+  if((TransponderNum < 0) || (TransponderNum >= FlashTransponderTablesGetTotal(SatNum)))
   {
     TRACEEXIT();
     return FALSE;
@@ -69,12 +69,12 @@ bool FlashTransponderTablesDel(int SatIndex, int TransponderIndex)
       //Find the location where to delete the transponder
       TPIdx = 0;
       pSat = (TYPE_SatInfo_TMSS*)(FIS_vFlashBlockSatInfo());
-      for(i = 0; i < SatIndex; i++)
+      for(i = 0; i < SatNum; i++)
       {
         TPIdx += pSat->NrOfTransponders;
         pSat++;
       }
-      pTransp += (TPIdx + TransponderIndex);
+      pTransp += (TPIdx + TransponderNum);
 
       //Move all transponders
       while(pTranspEnd > pTransp)
@@ -113,7 +113,7 @@ bool FlashTransponderTablesDel(int SatIndex, int TransponderIndex)
       }
 
       //Find the location where to delete the transponder
-      pTransp += TransponderIndex;
+      pTransp += TransponderNum;
 
       //Find the end of the transponder list
       pTranspEnd = pTransp;
@@ -156,7 +156,7 @@ bool FlashTransponderTablesDel(int SatIndex, int TransponderIndex)
       }
 
       //Find the location where to delete the transponder
-      pTransp += TransponderIndex;
+      pTransp += TransponderNum;
 
       //Find the end of the transponder list
       pTranspEnd = pTransp;
@@ -192,11 +192,11 @@ bool FlashTransponderTablesDel(int SatIndex, int TransponderIndex)
     i = NrServices - 1;
     while(i >= 0)
     {
-      if(FlashServiceGetInfo(SVC_TYPE_Tv, i, &Service) && (Service.SatIndex == SatIndex))
+      if(FlashServiceGetInfo(SVC_TYPE_Tv, i, &Service) && (Service.SatIndex == SatNum))
       {
-        if(Service.TransponderIndex == TransponderIndex)
+        if(Service.TransponderIndex == TransponderNum)
           FlashServiceDel(SVC_TYPE_Tv, i);
-        else if(Service.TransponderIndex > TransponderIndex)
+        else if(Service.TransponderIndex > TransponderNum)
         {
           Service.TransponderIndex--;
           FlashServiceSetInfo(SVC_TYPE_Tv, i, &Service);
@@ -210,11 +210,11 @@ bool FlashTransponderTablesDel(int SatIndex, int TransponderIndex)
     i = NrServices - 1;
     while(i >= 0)
     {
-      if(FlashServiceGetInfo(SVC_TYPE_Radio, i, &Service) && (Service.SatIndex == SatIndex))
+      if(FlashServiceGetInfo(SVC_TYPE_Radio, i, &Service) && (Service.SatIndex == SatNum))
       {
-        if(Service.TransponderIndex == TransponderIndex)
+        if(Service.TransponderIndex == TransponderNum)
           FlashServiceDel(SVC_TYPE_Radio, i);
-        else if(Service.TransponderIndex > TransponderIndex)
+        else if(Service.TransponderIndex > TransponderNum)
         {
           Service.TransponderIndex--;
           FlashServiceSetInfo(SVC_TYPE_Radio, i, &Service);

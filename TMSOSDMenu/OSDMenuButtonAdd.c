@@ -32,7 +32,7 @@ void OSDMenuButtonAdd(dword Line, tButtonIcon ButtonIcon, TYPE_GrData *ButtonGd,
 
   ButtonsDirty = TRUE;
 
-  pMenu->ButtonXStart[Line] = pMenu->ButtonXStart[Line] + IconGd->width + OSDMenuGetW(Text, 12) + 8;
+  pMenu->ButtonXStart[Line] = pMenu->ButtonXStart[Line] + IconGd->width + FMUC_GetStringWidth(Text, pMenu->FontButtons) + 8;
 
   TRACEEXIT();
 }

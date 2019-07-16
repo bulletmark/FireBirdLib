@@ -18,6 +18,7 @@ bool OSDMenuPop(void)
   }
 
   CurrentMenuLevel--;
+  OSDDirty = TRUE;
 
   TRACEEXIT();
   return TRUE;

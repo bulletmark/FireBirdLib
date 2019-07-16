@@ -132,7 +132,7 @@ bool PSBuffer_ProcessTSPacket(tPSBuffer *PSBuffer, byte *TSBuffer, ulong64 FileO
       {
         if(CCError)
         {
-          //WriteLog(Format('  CC error while parsing PID 0x%4.4x, file offset 0x%8.8x', [PSBuffer->PID, FileOffset]), 1);
+          //WriteLog(Format('  CC error while parsing PID 0x%4.4x, file offset 0x%8.8llx', [PSBuffer->PID, FileOffset]), 1);
 
           PSBuffer->pInBufferData = &PSBuffer->pInBuffer->PSData[0];
           //memset(PSBuffer->pInBufferData, 0, PSBuffer->BufferSize);
@@ -141,7 +141,7 @@ bool PSBuffer_ProcessTSPacket(tPSBuffer *PSBuffer, byte *TSBuffer, ulong64 FileO
 
         if(TSError)
         {
-          //WriteLog(Format('  TransporStreamError error while parsing PID 0x%4.4x, file offset 0x%8.8x', [PSBuffer->PID, FileOffset]), 1);
+          //WriteLog(Format('  TransporStreamError error while parsing PID 0x%4.4x, file offset 0x%8.8llx', [PSBuffer->PID, FileOffset]), 1);
 
           PSBuffer->pInBufferData = &PSBuffer->pInBuffer->PSData[0];
           //memset(PSBuffer->pInBufferData, 0, PSBuffer->BufferSize);
@@ -150,7 +150,7 @@ bool PSBuffer_ProcessTSPacket(tPSBuffer *PSBuffer, byte *TSBuffer, ulong64 FileO
 
         if(Crypted)
         {
-          //WriteLog(Format('  packet marked as crypted while parsing PID 0x%4.4x, file offset 0x%8.8x', [PSBuffer->PID, FileOffset]), 1);
+          //WriteLog(Format('  packet marked as crypted while parsing PID 0x%4.4x, file offset 0x%8.8llx', [PSBuffer->PID, FileOffset]), 1);
 
           PSBuffer->pInBufferData = &PSBuffer->pInBuffer->PSData[0];
           //memset(PSBuffer->pInBufferData, 0, PSBuffer->BufferSize);

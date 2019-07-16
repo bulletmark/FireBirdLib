@@ -6,6 +6,7 @@ void OSDMenuSetCursor(tCursorType CursorType)
   TRACEENTER();
 
   MenuCursorType = CursorType;
+  ListDirty = TRUE;
 
   TRACEEXIT();
 }

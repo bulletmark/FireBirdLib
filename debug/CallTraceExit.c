@@ -64,7 +64,7 @@ void CallTraceExit(dword *Magic)
     }
   }
   else
-    LogEntryFBLibPrintf(TRUE, "CallLevel Underflow! (TAPID 0x%8.8x)", __tap_ud__);
+    LogEntryFBLibPrintf(TRUE, "CallLevel Underflow! (TAPID 0x%8.8lx)", __tap_ud__);
 
   if(CallTraceEnabled || Magic)
   {

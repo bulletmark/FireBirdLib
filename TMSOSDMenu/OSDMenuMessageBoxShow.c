@@ -58,6 +58,7 @@ void OSDMenuMessageBoxShow(void)
     if(!pText) break;
     *pText = '\0';
     pText++;
+    if (Lines == 7) break;
   }
 
   dy = 20;

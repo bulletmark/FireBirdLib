@@ -10,9 +10,21 @@ void OSDCalcIndices(void)
   pMenu = &Menu[CurrentMenuLevel];
 
   //if TopIndex or SelectionIndex has changed, make list dirty
-  if(pMenu->OSDMenuDisplayMode == OMDM_Memo)
+  if(pMenu->OSDMenuDisplayMode == OMDM_Memo || pMenu->OSDMenuDisplayMode == OMDM_Text)
   {
     pMenu->CurrentTopIndex = pMenu->CurrentSelection;
+
+    if (pMenu->OSDMenuDisplayMode == OMDM_Text)
+    {
+      if (pMenu->CurrentTopIndex + pMenu->NrLines > pMenu->NrItems)
+      {
+        pMenu->CurrentTopIndex = pMenu->NrItems - pMenu->NrLines;
+
+        if (pMenu->CurrentTopIndex < 0) pMenu->CurrentTopIndex = 0;
+
+        pMenu->CurrentSelection = pMenu->CurrentTopIndex;
+      }
+    }
   }
   else
   {
@@ -45,7 +57,7 @@ void OSDCalcIndices(void)
     }
 
 
-    if(pMenu->CurrentSelection > (pMenu->CurrentTopIndex + 9))
+    if(pMenu->CurrentSelection > (pMenu->CurrentTopIndex + pMenu->NrLines - 1))
     {
       if(pMenu->CurrentSelection < pMenu->NrItems - 1)
       {
@@ -63,16 +75,16 @@ void OSDCalcIndices(void)
           }
         }
         if(Selectable)
-          pMenu->CurrentTopIndex = pMenu->CurrentSelection - 9;
+          pMenu->CurrentTopIndex = pMenu->CurrentSelection - pMenu->NrLines + 1;
         else
-          pMenu->CurrentTopIndex = pMenu->NrItems - 10;
+          pMenu->CurrentTopIndex = pMenu->NrItems - pMenu->NrLines;
 
-        if((pMenu->CurrentSelection - pMenu->CurrentTopIndex) > 10)
-          pMenu->CurrentTopIndex = pMenu->CurrentSelection - 10;
+        if((pMenu->CurrentSelection - pMenu->CurrentTopIndex) > pMenu->NrLines)
+          pMenu->CurrentTopIndex = pMenu->CurrentSelection - pMenu->NrLines;
       }
       else
       {
-        pMenu->CurrentTopIndex = pMenu->CurrentSelection - 9;
+        pMenu->CurrentTopIndex = pMenu->CurrentSelection - pMenu->NrLines + 1;
       }
     }
   }

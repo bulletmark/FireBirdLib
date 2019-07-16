@@ -1,4 +1,5 @@
-#undef FB_NO_DEBUG
+#define                 FB_DEBUG_CHK
+#define                 FB_LOG_ENTRY_LIB_PRINTF
 #include                "libFireBird.h"
 
 //TAP_Osd_PutGd(word rgn, int x, int y, TYPE_GrData * gd, bool sprite);

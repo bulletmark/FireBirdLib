@@ -19,10 +19,7 @@ endif
 
 #TAP_LIBS =  ${BASE}/tapinit.o ${BASE}/libtap.so -lc
 TAP_OBJS := $(patsubst %.c,%.o,$(wildcard *.c))
-TAP_OBJS += $(patsubst fonts/%.c,%.o,$(wildcard fonts/*.c))
 TAP_HEAD = ${SRC_DIR}/libFireBird.h FBLib_$(BLOCK).h $(CUR_DIR)/Makefile
-
-vpath %.c ./fonts
 
 all: ${TAP_OBJS}
 	@$(Q_)-${RM} *.d

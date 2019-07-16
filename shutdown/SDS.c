@@ -118,7 +118,7 @@ bool SetHandler(dword EventID, void *Handler, void **OrigHandler)
         {
           if(LastStatus != -11)
           {
-            TAP_SPrint(Log, "Found 0x%x handler @ index %d. Already redirected to 0x%8.8x", EventID, i, EventQueueDetails->Handler);
+            TAP_SPrint(Log, "Found 0x%lx handler @ index %d. Already redirected to 0x%8.8lx", EventID, i, EventQueueDetails->Handler);
             WriteLog(Log);
             LastStatus = -11;
           }
@@ -129,7 +129,7 @@ bool SetHandler(dword EventID, void *Handler, void **OrigHandler)
 
         if(LastStatus != -12)
         {
-          TAP_SPrint(Log, "Found 0x%x handler @ index %d. Redirecting from 0x%8.8x to 0x%8.8x", EventID, i, EventQueueDetails->Handler, (dword)Handler);
+          TAP_SPrint(Log, "Found 0x%lx handler @ index %d. Redirecting from 0x%8.8lx to 0x%8.8lx", EventID, i, EventQueueDetails->Handler, (dword)Handler);
           WriteLog(Log);
           LastStatus = -12;
         }
@@ -145,7 +145,7 @@ bool SetHandler(dword EventID, void *Handler, void **OrigHandler)
 
   if(LastStatus != -13)
   {
-    TAP_SPrint(Log, "EventID %4.4x not yet declared", EventID);
+    TAP_SPrint(Log, "EventID %4.4lx not yet declared", EventID);
     WriteLog(Log);
     LastStatus = -13;
   }

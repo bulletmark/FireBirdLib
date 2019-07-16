@@ -1,33 +1,33 @@
 #ifndef __FBLIB__
   #define __FBLIB__
 
-  //#define STACKTRACE
-
-  #define __FBLIB_RELEASEDATE__ "2018-11-28"
+  #define __FBLIB_RELEASEDATE__ "2019-02-22"
 
   #define __FBLIB_VERSION__ __FBLIB_RELEASEDATE__
 
   #define isTMS         1
 
-  // Call FBLIB's special check-and-log API wrapper functions.
-  #define FB_DEBUG_CHK
+  // Use -DFB_DEBUG_FULL if you want to activate all debug-like functions,
+  // thus getting debugging and tracing information at runtime.
+  #ifdef FB_DEBUG_FULL
+    #define FB_DEBUG
+    #define STACKTRACE
+  #endif
 
-  // Call LogEntryFBLibPrintf().
-  #define FB_LOG_ENTRY_LIB_PRINTF
+  // Use -DFB_DEBUG if you want to activate debug-like functions,
+  // thus getting debugging information at runtime.
+  #ifdef FB_DEBUG
+    // Call FBLIB's special check-and-log API wrapper functions.
+    #define FB_DEBUG_CHK
+    // Call LogEntryFBLibPrintf().
+    #define FB_LOG_ENTRY_LIB_PRINTF
+    // Make use of tracing functions.
+    #define FB_CALL_TRACE
+  #endif
 
-  // Make use of tracing functions.
-  #define FB_CALL_TRACE
-
-  // Define the following if you want to suppress all debug-like functions,
-  // thus not getting any debug information at runtime.
-  #ifdef FB_NO_DEBUG
-    #undef STACKTRACE
-    #undef FB_DEBUG_CHK
-    #undef FB_LOG_ENTRY_LIB_PRINTF
-    // Define the following at library compile time
-    // if you are using FB_NO_DEBUG.
-    #ifndef FB_LIBRARY_COMPILATION
-      #undef FB_CALL_TRACE
+  #ifdef STACKTRACE
+    #ifndef FB_CALL_TRACE
+      #define FB_CALL_TRACE
     #endif
   #endif
 
@@ -1240,8 +1240,8 @@
     #define TRACEENTER()    CallTraceEnter((char*)__FUNCTION__)
     #define TRACEEXIT()     CallTraceExit(NULL)
   #else
-    #define TRACEENTER()
-    #define TRACEEXIT()
+    #define TRACEENTER()    (void) 0
+    #define TRACEEXIT()     (void) 0
   #endif
 
   typedef enum
@@ -1524,10 +1524,12 @@
     word                  PMTPID;
     word                  PCRPID;
     word                  VideoPID;
-    word                  AudioPID;
+    word                  AudioPID:13;
+    word                  AudioTypeFlag:2;
+    word                  AudioAutoSelect:1;
     word                  LCN;
     word                  AudioStreamType;
-    char                  ServiceName[MAX_SvcName+1];
+    char                  ServiceName[MAX_SvcName + 1];
     char                  ProviderName[40];
     byte                  NameLock;
     word                  Flags2;
@@ -1634,18 +1636,18 @@
 
   typedef struct
   {
-      short               UTCOffset;
-      word                SleepTimer;
+    short                 UTCOffset;
+    word                  SleepTimer;
 
-      byte                unknown1:3;
-      byte                GMTCollection:3;        //0=Normal, 1=CAS Only, 2=User Select
-      byte                Mode:1;                 //0=Auto, 1=Manual
-      byte                unknown2:1;
+    byte                  unknown1:3;
+    byte                  GMTCollection:3;        //0=Normal, 1=CAS Only, 2=User Select
+    byte                  Mode:1;                 //0=Auto, 1=Manual
+    byte                  unknown2:1;
 
-      byte                unknown3;
+    byte                  unknown3;
 
-      word                DST:2;                  //0=off, 3=on
-      word                unknown4:14;
+    word                  DST:2;                  //0=off, 3=on
+    word                  unknown4:14;
   }tFlashTimeInfo;
 
   bool FlashTimeGetInfo(tFlashTimeInfo *TimeInfo);
@@ -1681,6 +1683,7 @@
     byte                unused8[8];
     byte                IceTV;
     byte                unused9[13];
+    byte                unused10[8];
     dword               rs_timestamp1;			//RS timers are OT timers where (rs_timestamp1 != 0)
     char                rs_episodeCRID[64];
     char                rs_seriesCRID[64];
@@ -2715,16 +2718,32 @@
 
   typedef enum
   {
+    LH_Normal,
+    LH_Small,
+    LH_Tiny
+  } tLineHeight;
+
+  typedef enum
+  {
     CT_Standard,
     CT_Dark,
     CT_Box,
     CT_NRITEMS
   } tCursorType;
 
+  enum // human-friendly arguments to OSDMenuUpdate()
+  {
+    DO_SYNC,
+    NO_SYNC
+  };
+
   //Main OSD
   void OSDMenuInitialize(bool AllowScrollingOfLongText, bool HasValueColumn, bool NumberedItems, bool ScrollLoop, char *TitleLeft, char *TitleRight);
   void OSDMenuSetFont(tFontDataUC *LeftTitle, tFontDataUC *RightTitle, tFontDataUC *ListNumber, tFontDataUC *ListName, tFontDataUC *ListValue, tFontDataUC *Buttons, tFontDataUC *Memo);
+  void OSDMenuSetMemo(bool SelectionAlwaysOnTop);
   void OSDMenuSetCursor(tCursorType CursorType);
+  void OSDMenuSetLineHeight(tLineHeight type);
+  int  OSDMenuGetNrOfLines(void);
   void OSDMenuUpdate(bool SuppressOSDSync);
   void OSDMenuModifyTitleLeft(char *Text);
   void OSDMenuModifyTitleRight(char *Text);
@@ -2735,6 +2754,9 @@
   void OSDMenuLogo(dword X, dword Y, TYPE_GrData *LogoGd);
   void OSDMenuDestroy(void);
   void OSDMenuDestroyNoOSDUpdate(void);
+  int  OSDMenuGetW(char *str, byte fntSize);
+  int  OSDMenuGetH(char *str, byte fntSize);
+  void OSDMenuPutS(word rgn, dword x, dword y, dword maxX, char * str, dword fcolor, dword bcolor, byte fntSize, byte bDot, byte align);
   bool OSDMenuIsVisible(void);
 
   //Callback function for custom menu drawings
@@ -2839,10 +2861,12 @@
   bool  OSDMenuItemModifyName(int ItemIndex, char *Text);
   bool  OSDMenuItemModifyValue(int ItemIndex, char *Text);
   void  OSDMenuItemModifyValueXPos(dword NewValueXPos);
+  void  OSDMenuItemModifyValueLeftArrowGap(int NewGapWidth);
   bool  OSDMenuItemModifyNameIcon(int ItemIndex, TYPE_GrData *pNameIconGd);
   bool  OSDMenuItemModifyValueIcon(int ItemIndex, TYPE_GrData *pValueIconGd);
   bool  OSDMenuItemModifySelectable(int ItemIndex, bool Selectable);
   bool  OSDMenuItemModifyColorPatch(int ItemIndex, dword Color); //set to 0 to disable
+  bool  OSDMenuItemModifyNameColor(int ItemIndex, dword Color);
   bool  OSDMenuItemModifyTextColor(int ItemIndex, dword Color);
   bool  OSDMenuItemModifyID(int ItemIndex, dword ID);
   bool  OSDMenuItemModifyCustomIndex(int ItemIndex, int CustomIndex);

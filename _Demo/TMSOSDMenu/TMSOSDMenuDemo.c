@@ -28,6 +28,8 @@ tState                  State = ST_Init;
 
 dword TAP_EventHandler(word event, dword param1, dword param2)
 {
+  static tCursorType cursor = CT_Standard;
+
   (void) param2;
 
   OSDMenuEvent(&event, &param1, &param2);
@@ -55,12 +57,11 @@ dword TAP_EventHandler(word event, dword param1, dword param2)
       OSDMenuItemAdd("Umlaute", "\x5ABC ƒ÷‹‰ˆ¸ﬂ", NULL, NULL, TRUE, TRUE, 0);
       OSDMenuItemAdd("This text is too long for this line", "", NULL, NULL, TRUE, TRUE, 0);
 
-      OSDMenuButtonAdd(1, BI_Red,    NULL, "Button 1");
-      OSDMenuButtonAdd(1, BI_Green,  NULL, "Button 2");
-      OSDMenuButtonAdd(1, BI_Yellow, NULL, "Button 3");
+      OSDMenuButtonAdd(1, BI_Red,    NULL, "Tiny");
+      OSDMenuButtonAdd(1, BI_Green,  NULL, "Normal");
+      OSDMenuButtonAdd(1, BI_Yellow, NULL, "Small");
 
-      OSDMenuButtonAdd(2, BI_Blue,  NULL,  "Button 4");
-      OSDMenuButtonAdd(2, BI_White, NULL,  "Button 5");
+      OSDMenuButtonAdd(2, BI_Blue,  NULL, "Change Cursor");
 
       OSDMenuUpdate(FALSE);
 
@@ -84,6 +85,27 @@ dword TAP_EventHandler(word event, dword param1, dword param2)
           OSDMenuMessageBoxButtonSelect(0);
           OSDMenuMessageBoxShow();
           State = ST_YesNoDialog;
+        }
+        else if (param1 == RKEY_Red)
+        {
+          OSDMenuSetLineHeight(LH_Tiny);
+          OSDMenuUpdate(FALSE);
+        }
+        else if (param1 == RKEY_Green)
+        {
+          OSDMenuSetLineHeight(LH_Normal);
+          OSDMenuUpdate(FALSE);
+        }
+        else if (param1 == RKEY_Yellow)
+        {
+          OSDMenuSetLineHeight(LH_Small);
+          OSDMenuUpdate(FALSE);
+        }
+        else if (param1 == RKEY_Blue)
+        {
+          if (++cursor == CT_NRITEMS) cursor = CT_Standard;
+          OSDMenuSetCursor(cursor);
+          OSDMenuUpdate(FALSE);
         }
         param1 = 0;
       }

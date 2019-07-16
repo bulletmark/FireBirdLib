@@ -1,4 +1,5 @@
-#undef FB_NO_DEBUG
+#define                 FB_DEBUG_CHK
+#define                 FB_LOG_ENTRY_LIB_PRINTF
 #include                "libFireBird.h"
 
 int TAP_Osd_PutPixel_Chk(char *Comment, word rgn, dword x, dword y, dword pix)
@@ -14,8 +15,8 @@ int TAP_Osd_PutPixel_Chk(char *Comment, word rgn, dword x, dword y, dword pix)
     RgnW = GetOSDRegionWidth(rgn);
 
     if(!isOSDRegionAlive(rgn)) LogEntryFBLibPrintf(TRUE, "TAP_Osd_PutPixel_Chk Warning: rgn(%d) points to an undefined region @ %s", rgn, Comment);
-    if(x >= RgnW) LogEntryFBLibPrintf(TRUE, "TAP_Osd_PutPixel_Chk Warning: x(%d) out of range @ %s", x, Comment);
-    if(y >= RgnH) LogEntryFBLibPrintf(TRUE, "TAP_Osd_PutPixel_Chk Warning: y(%d) out of range @ %s", y, Comment);
+    if(x >= RgnW) LogEntryFBLibPrintf(TRUE, "TAP_Osd_PutPixel_Chk Warning: x(%lu) out of range @ %s", x, Comment);
+    if(y >= RgnH) LogEntryFBLibPrintf(TRUE, "TAP_Osd_PutPixel_Chk Warning: y(%lu) out of range @ %s", y, Comment);
   }
 
   ret = TAP_Osd_PutPixel(rgn, x, y, pix);

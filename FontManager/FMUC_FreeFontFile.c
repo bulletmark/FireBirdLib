@@ -14,7 +14,7 @@ void FMUC_FreeFontFile(tFontDataUC *FontData)
 
     if(FontData->GlyphCache) FMUC_FreeMemory("FMUC_FreeFontFile", FontData->GlyphCache);
     if(FontData->FontDef) FMUC_FreeMemory("FMUC_FreeFontFile", FontData->FontDef);
-    if(FontData->FileHandle) close(FontData->FileHandle);
+    if(FontData->FileHandle > 0) close(FontData->FileHandle);
 
     memset(FontData, 0, sizeof(tFontDataUC));
   }

@@ -16,8 +16,8 @@ void OSDMenuColorPickerDrawCursor(tCurrentColorSelected CursorColor, bool Select
     {
       case CCS_Red:
       {
-        y = 56;
-        TextY = 44;
+        y = 58;
+        TextY = 46;
         CurrentX = ColorPickerLastCursorRed;
         NewX = ((ColorPickerColor >> 16) & 0xff) + CURSORXOFFET;
         ColorPickerLastCursorRed = NewX;
@@ -26,8 +26,8 @@ void OSDMenuColorPickerDrawCursor(tCurrentColorSelected CursorColor, bool Select
 
       case CCS_Green:
       {
-        y = 78;
-        TextY =66;
+        y = 80;
+        TextY =68;
         CurrentX = ColorPickerLastCursorGreen;
         NewX = ((ColorPickerColor >> 8) & 0xff) + CURSORXOFFET;
         ColorPickerLastCursorGreen = NewX;
@@ -36,8 +36,8 @@ void OSDMenuColorPickerDrawCursor(tCurrentColorSelected CursorColor, bool Select
 
       case CCS_Blue:
       {
-        y = 100;
-        TextY = 88;
+        y = 102;
+        TextY = 90;
         CurrentX = ColorPickerLastCursorBlue;
         NewX = (ColorPickerColor & 0xff) + CURSORXOFFET;
         ColorPickerLastCursorBlue = NewX;
@@ -61,8 +61,8 @@ void OSDMenuColorPickerDrawCursor(tCurrentColorSelected CursorColor, bool Select
       OSDMenuPutS(ColorPickerOSDRgn, 310 - (MB->width >> 1), TextY, 310 + (MB->width >> 1), s, RGB(192,192,192), COLOR_None, 12, FALSE, ALIGN_CENTER);
     }
 
-    TAP_Osd_FillBox(ColorPickerOSDRgn, 211, 116, 60, 18, ColorPickerColor | 0xff000000);
-    TAP_Osd_DrawRectangle(ColorPickerOSDRgn, 211, 116, 60, 18, 1, RGB(192,192,192));
+    TAP_Osd_FillBox(ColorPickerOSDRgn, 212, 119, 60, 18, ColorPickerColor | 0xff000000);
+    TAP_Osd_DrawRectangle(ColorPickerOSDRgn, 212, 119, 60, 18, 1, RGB(192,192,192));
   }
 
   TRACEEXIT();

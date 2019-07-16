@@ -151,9 +151,9 @@ void DumpTVServices(void)
     if(FlashServiceGetInfo(SVC_TYPE_Tv, i, &Channel))
     {
       PRINTLOG("  %3.3d: '%s' / '%s'", i, Channel.ServiceName, Channel.ProviderName);
-      PRINTLOG("    SatIndex=%d, VideoStreamType=%2.2x, AudioStreamType=%2.2x, Tuner=%d, TpIndex=%d, LCN=%d", Channel.SatIndex, Channel.VideoStreamType, Channel.AudioStreamType, Channel.Tuner, Channel.TransponderIndex, Channel.LCN);
-      PRINTLOG("    ServiceID=%4.4x, PMTPID=%4.4x, PCRPID=%4.4x, VideoPID=%4.4x, AudioPID=%4.4x", Channel.ServiceID, Channel.PMTPID, Channel.PCRPID, Channel.VideoPID, Channel.AudioPID);
-      PRINTLOG("    FlagDelete=%s, FlagCAS=%s, FlagLock=%s, FlagSkip=%s", GetBoolString(Channel.FlagDelete), GetBoolString(Channel.FlagCAS), GetBoolString(Channel.FlagLock), GetBoolString(Channel.FlagSkip));
+      PRINTLOG("    SatIndex=%d, VideoStreamType=0x%2.2x, AudioStreamType=0x%2.2x, Tuner=%d, TpIndex=%d, LCN=%d", Channel.SatIndex, Channel.VideoStreamType, Channel.AudioStreamType, Channel.Tuner, Channel.TransponderIndex, Channel.LCN);
+      PRINTLOG("    ServiceID=0x%4.4x, PMTPID=0x%4.4x, PCRPID=0x%4.4x, VideoPID=0x%4.4x, AudioPID=0x%4.4x, AudioType=%d, AudioAutoSelect=%d", Channel.ServiceID, Channel.PMTPID, Channel.PCRPID, Channel.VideoPID, Channel.AudioPID, Channel.AudioTypeFlag, Channel.AudioAutoSelect);
+      PRINTLOG("    FlagDelete=%s, FlagCAS=%s, FlagLock=%s, FlagSkip=%s, NameLock=%s, Flags2=0x%4.4x", GetBoolString(Channel.FlagDelete), GetBoolString(Channel.FlagCAS), GetBoolString(Channel.FlagLock), GetBoolString(Channel.FlagSkip), GetBoolString(Channel.NameLock), Channel.Flags2);
 
       s[0] = '\0';
       for(j = 0; j < 6; j++)
@@ -183,9 +183,9 @@ void DumpRadioServices(void)
     if(FlashServiceGetInfo(SVC_TYPE_Radio, i, &Channel))
     {
       PRINTLOG("  %3.3d: '%s' / '%s'", i, Channel.ServiceName, Channel.ProviderName);
-      PRINTLOG("    SatIndex=%d, VideoStreamType=%2.2x, AudioStreamType=%2.2x, Tuner=%d, TpIndex=%d, LCN=%d", Channel.SatIndex, Channel.VideoStreamType, Channel.AudioStreamType, Channel.Tuner, Channel.TransponderIndex, Channel.LCN);
-      PRINTLOG("    ServiceID=%4.4x, PMTPID=%4.4x, PCRPID=%4.4x, VideoPID=%4.4x, AudioPID=%4.4x", Channel.ServiceID, Channel.PMTPID, Channel.PCRPID, Channel.VideoPID, Channel.AudioPID);
-      PRINTLOG("    FlagDelete=%s, FlagCAS=%s, FlagLock=%s, FlagSkip=%s", GetBoolString(Channel.FlagDelete), GetBoolString(Channel.FlagCAS), GetBoolString(Channel.FlagLock), GetBoolString(Channel.FlagSkip));
+      PRINTLOG("    SatIndex=%d, VideoStreamType=0x%2.2x, AudioStreamType=0x%2.2x, Tuner=%d, TpIndex=%d, LCN=%d", Channel.SatIndex, Channel.VideoStreamType, Channel.AudioStreamType, Channel.Tuner, Channel.TransponderIndex, Channel.LCN);
+      PRINTLOG("    ServiceID=0x%4.4x, PMTPID=0x%4.4x, PCRPID=0x%4.4x, VideoPID=0x%4.4x, AudioPID=0x%4.4x, AudioType=%d, AudioAutoSelect=%d", Channel.ServiceID, Channel.PMTPID, Channel.PCRPID, Channel.VideoPID, Channel.AudioPID, Channel.AudioTypeFlag, Channel.AudioAutoSelect);
+      PRINTLOG("    FlagDelete=%s, FlagCAS=%s, FlagLock=%s, FlagSkip=%s, NameLock=%s, Flags2=0x%4.4x", GetBoolString(Channel.FlagDelete), GetBoolString(Channel.FlagCAS), GetBoolString(Channel.FlagLock), GetBoolString(Channel.FlagSkip), GetBoolString(Channel.NameLock), Channel.Flags2);
 
       s[0] = '\0';
       for(j = 0; j < 6; j++)
@@ -258,13 +258,14 @@ void DumpSatTables(void)
 
           PRINTLOG("      LNBSupply=%d, DiSEqC10=%d, DiSEqC11=%d, DiSEqC12=%d, DiSEqC12Flags=%s", Sat.LNB[0].LNBSupply, Sat.LNB[0].DiSEqC10, Sat.LNB[0].DiSEqC11, Sat.LNB[0].DiSEqC12, s);
           PRINTLOG("      UniversalLNB=%d, Switch22=%d, LowBand=%d, HBFrq=%d, LoopThrough=%d", Sat.LNB[0].UniversalLNB, Sat.LNB[0].Switch22, Sat.LNB[0].LowBand, Sat.LNB[0].HBFrq, Sat.LNB[0].LoopThrough);
+          PRINTLOG("      DiSEqC11=%d, UniCableSatPosition=%d, UniCableunused;=%d, UniCableUserBand=%d, UniCableFrq=%d", Sat.LNB[0].DiSEqC11, Sat.LNB[0].UniCableSatPosition, Sat.LNB[0].UniCableunused, Sat.LNB[0].UniCableUserBand, Sat.LNB[0].UniCableFrq);
 
           s[0] = '\0';
-          for(j = 0; j < 5; j++)
+          for(j = 0; j < 2; j++)
           {
             TAP_SPrint(&s[strlen(s)], "%2.2x ", Sat.LNB[0].unused5[j]);
           }
-          PRINTLOG("      unused1=%2.2x, unused2=%2.2x, unused3=%2.2x, unused4=%2.2x, unused5=%s", Sat.LNB[0].unused1, Sat.LNB[0].unused2, Sat.LNB[0].unused3, Sat.LNB[0].unused4, s);
+          PRINTLOG("      unused1=0x%2.2x, unused2=0x%2.2x, unused3=0x%2.2x, unused4=0x%2.2x, unused5=%s", Sat.LNB[0].unused1, Sat.LNB[0].unused2, Sat.LNB[0].unused3, Sat.LNB[0].unused4, s);
 
           PRINTLOG("    LNB2");
 
@@ -276,13 +277,14 @@ void DumpSatTables(void)
 
           PRINTLOG("      LNBSupply=%d, DiSEqC10=%d, DiSEqC11=%d, DiSEqC12=%d, DiSEqC12Flags=%s", Sat.LNB[1].LNBSupply, Sat.LNB[1].DiSEqC10, Sat.LNB[1].DiSEqC11, Sat.LNB[1].DiSEqC12, s);
           PRINTLOG("      UniversalLNB=%d, Switch22=%d, LowBand=%d, HBFrq=%d, LoopThrough=%d", Sat.LNB[1].UniversalLNB, Sat.LNB[1].Switch22, Sat.LNB[1].LowBand, Sat.LNB[1].HBFrq, Sat.LNB[1].LoopThrough);
+          PRINTLOG("      DiSEqC11=%d, UniCableSatPosition=%d, UniCableunused;=%d, UniCableUserBand=%d, UniCableFrq=%d", Sat.LNB[1].DiSEqC11, Sat.LNB[1].UniCableSatPosition, Sat.LNB[1].UniCableunused, Sat.LNB[1].UniCableUserBand, Sat.LNB[1].UniCableFrq);
 
           s[0] = '\0';
-          for(j = 0; j < 5; j++)
+          for(j = 0; j < 2; j++)
           {
             TAP_SPrint(&s[strlen(s)], "%2.2x ", Sat.LNB[1].unused5[j]);
           }
-          PRINTLOG("      unused1=%2.2x, unused2=%2.2x, unused3=%2.2x, unused4=%2.2x, unused5=%s", Sat.LNB[1].unused1, Sat.LNB[1].unused2, Sat.LNB[1].unused3, Sat.LNB[1].unused4, s);
+          PRINTLOG("      unused1=0x%2.2x, unused2=0x%2.2x, unused3=0x%2.2x, unused4=0x%2.2x, unused5=%s", Sat.LNB[1].unused1, Sat.LNB[1].unused2, Sat.LNB[1].unused3, Sat.LNB[1].unused4, s);
           break;
         }
       }
@@ -327,25 +329,25 @@ void DumpTransponderTable(void)
           case ST_TMSS:
           {
             PRINTLOG("  %3.3d: SatIndex=%d, Frequency=%d, SymbolRate=%d", i, TpTable.SatIndex, TpTable.Frequency, TpTable.SymbolRate);
-            PRINTLOG("    TSID=%4.4x, ONID=%4.4x,Pilot=%s", TpTable.TSID, TpTable.OriginalNetworkID, GetBoolString(TpTable.Pilot));
+            PRINTLOG("    TSID=0x%4.4x, ONID=0x%4.4x, Pilot=%s", TpTable.TSID, TpTable.OriginalNetworkID, GetBoolString(TpTable.Pilot));
             PRINTLOG("    FEC=%d, Modulation=%d, ModSystem=%d, Polarisation=%d, ClockSync=%s", TpTable.FEC, TpTable.Modulation, TpTable.ModSystem, TpTable.Polarisation, GetBoolString(TpTable.ClockSync));
-            PRINTLOG("    unused1=%4.4x, unused2=%4.4x, unused3=%2.2x, unused4=%4.4x", TpTable.unused1, TpTable.unused2, TpTable.unused3, TpTable.unused4);
+            PRINTLOG("    unused1=0x%4.4x, unused2=0x%4.4x, unused3=0x%2.2x, unused4=0x%4.4x", TpTable.unused1, TpTable.unused2, TpTable.unused3, TpTable.unused4);
             break;
           }
 
           case ST_TMST:
           {
             PRINTLOG("  %3.3d: SatIndex=%d, Frequency=%d", i, TpTable.SatIndex, TpTable.Frequency);
-            PRINTLOG("    ChannelNr=%d, Bandwidth=%d, TSID=%4.4x, ONID=%4.4x, NetworkID=%4.4x, LPHP=%d", TpTable.ChannelNr, TpTable.Bandwidth, TpTable.TSID, TpTable.OriginalNetworkID, TpTable.NetworkID, TpTable.LPHP);
-            PRINTLOG("    unused1=%4.4x, unused2=%4.4x", TpTable.unused1, TpTable.unused2);
+            PRINTLOG("    ChannelNr=%d, Bandwidth=%d, TSID=0x%4.4x, ONID=0x%4.4x, NetworkID=0x%4.4x, LPHP=%d", TpTable.ChannelNr, TpTable.Bandwidth, TpTable.TSID, TpTable.OriginalNetworkID, TpTable.NetworkID, TpTable.LPHP);
+            PRINTLOG("    unused1=0x%4.4x, unused2=0x%4.4x", TpTable.unused1, TpTable.unused2);
             break;
           }
 
           case ST_TMSC:
           {
             PRINTLOG("  %3.3d: SatIndex=%d, Frequency=%d, SymbolRate=%d", i, TpTable.SatIndex, TpTable.Frequency, TpTable.SymbolRate);
-            PRINTLOG("    TSID=%4.4x, ONID=%4.4x, Modulation=%d", TpTable.TSID, TpTable.OriginalNetworkID, TpTable.Modulation);
-            PRINTLOG("    unused1=%4.4x", TpTable.unused1);
+            PRINTLOG("    TSID=0x%4.4x, ONID=0x%4.4x, Modulation=%d", TpTable.TSID, TpTable.OriginalNetworkID, TpTable.Modulation);
+            PRINTLOG("    unused1=0x%4.4x", TpTable.unused1);
             break;
           }
         }
@@ -367,7 +369,7 @@ void DumpTimeInfo(void)
   if(FlashTimeGetInfo(&TimeInfo))
   {
     PRINTLOG("  UTCOffset=%d, SleepTimer=%d, GMTCollection=%d, Mode=%d, DST=%2.2x", TimeInfo.UTCOffset, TimeInfo.SleepTimer, TimeInfo.GMTCollection, TimeInfo.Mode, TimeInfo.DST);
-    PRINTLOG("  unknown1=%2.2x, unknown2=%2.2x, unknown3=%2.2x, unknown4=%2.2x", TimeInfo.unknown1, TimeInfo.unknown2, TimeInfo.unknown3, TimeInfo.unknown4);
+    PRINTLOG("  unknown1=0x%2.2x, unknown2=0x%2.2x, unknown3=0x%2.2x, unknown4=0x%2.2x", TimeInfo.unknown1, TimeInfo.unknown2, TimeInfo.unknown3, TimeInfo.unknown4);
   }
   else
   {
@@ -389,15 +391,16 @@ void DumpTimer(void)
     if(FlashTimerGetInfo(i, &TimerInfo))
     {
       PRINTLOG("  %3.3d: '%s'", i, TimerInfo.FileName);
-      PRINTLOG("    TunerIndex=%d, RecMode=%d, DemuxPath=%d, ManualRec=%d, SatIndex=%d, ServiceType=%d, PMT=%4.4x", TimerInfo.TunerIndex, TimerInfo.RecMode, TimerInfo.DemuxPath, TimerInfo.ManualRec, TimerInfo.SatIndex, TimerInfo.ServiceType, TimerInfo.PMTPID);
-      PRINTLOG("    ReservationType=%d, ServiceID=%4.4x, Duration=%d, StartTime=%4.4x, EndTime=%4.4x", TimerInfo.ReservationType, TimerInfo.ServiceID, TimerInfo.Duration, TimerInfo.StartTime, TimerInfo.EndTime);
-      PRINTLOG("    isRec=%d, NameSet=%d, EPGMarker=%d, EventID1=%4.4x, EventID2=%4.4x, ServiceIndex=%d", TimerInfo.isRec, TimerInfo.NameSet, TimerInfo.EPGMarker, TimerInfo.EventID1, TimerInfo.EventID2, TimerInfo.ServiceIndex);
+      PRINTLOG("    TunerIndex=%d, RecMode=%d, DemuxPath=%d, ManualRec=%d, SatIndex=%d, ServiceType=%d, PMT=0x%4.4x", TimerInfo.TunerIndex, TimerInfo.RecMode, TimerInfo.DemuxPath, TimerInfo.ManualRec, TimerInfo.SatIndex, TimerInfo.ServiceType, TimerInfo.PMTPID);
+      PRINTLOG("    ReservationType=%d, ServiceID=0x%4.4x, Duration=%d, StartTime=0x%4.4x, EndTime=0x%4.4x", TimerInfo.ReservationType, TimerInfo.ServiceID, TimerInfo.Duration, TimerInfo.StartTime, TimerInfo.EndTime);
+      PRINTLOG("    isRec=%d, NameSet=%d, EPGMarker=%d, EventID1=0x%4.4x, EventID2=0x%4.4x, ServiceIndex=%d", TimerInfo.isRec, TimerInfo.NameSet, TimerInfo.EPGMarker, TimerInfo.EventID1, TimerInfo.EventID2, TimerInfo.ServiceIndex);
 
       t[0] = '\0';
-      for(j = 0; j < 14; j++)
+      for(j = 0; j < 7; j++)
         TAP_SPrint(&t[strlen(t)], "%2.2x ", TimerInfo.unused8[j]);
 
-      PRINTLOG("    unused1=%2.2x, unused2=%2.2x, unused3=%2.2x, unused5=%4.4x, unused8=%s", TimerInfo.unused1, TimerInfo.unused2, TimerInfo.unused3, TimerInfo.unused5, t);
+      PRINTLOG("    unused1=0x%2.2x, unused2=0x%2.2x, unused3=0x%2.2x, unused4=0x%2.2x, unused5=0x%4.4x, unused8=%s", TimerInfo.unused1, TimerInfo.unused2, TimerInfo.unused3, TimerInfo.unused4, TimerInfo.unused5, t);
+      PRINTLOG("    unknown1=0x%4.4x", TimerInfo.unknown1);
     }
     else
     {
@@ -415,8 +418,8 @@ void DumpADTimer(void)
   PRINTLOG("AutoDescramble timer");
   if(FlashADGetInfo(&ADTimer))
   {
-    PRINTLOG("  StartTime=%4.4x, EndTime=%4.4x, Duration=%d, ReservationType=%d, DelOrig=%s, NrOfFiles=%d, AutomaticMode=%d", ADTimer.StartTime, ADTimer.EndTime, ADTimer.Duration, ADTimer.ReservationType, GetBoolString(ADTimer.DelOrig), ADTimer.NrOfFiles, ADTimer.AutomaticMode);
-    PRINTLOG("  unknown1=%4.4x, unknown2=%4.4x, unknown3=%4.4x", ADTimer.unknown1, ADTimer.unknown2, ADTimer.unknown3);
+    PRINTLOG("  StartTime=0x%4.4x, EndTime=0x%4.4x, Duration=%d, ReservationType=%d, DelOrig=%s, NrOfFiles=%d, AutomaticMode=%d", ADTimer.StartTime, ADTimer.EndTime, ADTimer.Duration, ADTimer.ReservationType, GetBoolString(ADTimer.DelOrig), ADTimer.NrOfFiles, ADTimer.AutomaticMode);
+    PRINTLOG("  unknown1=0x%4.4x, unknown2=0x%4.4x, unknown3=0x%4.4x", ADTimer.unknown1, ADTimer.unknown2, ADTimer.unknown3);
 
     for(i = 0; i < ADTimer.NrOfFiles; i++)
     {

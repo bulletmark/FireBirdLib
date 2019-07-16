@@ -61,7 +61,7 @@ void Test1(void)
   //EPGInfo_FilterChannelByIndex(0, 1032);
 
   NrEntries = EPGInfo_FindFirst(&EPGData);
-  TAP_Print("  %d entries cached\n", NrEntries);
+  TAP_Print("  %ld entries cached\n", NrEntries);
   for(i = 0; i < NrEntries; i++)
   {
     TAP_Print("  %s: (%d) %s (%d')\n", TimeFormat(EPGData.StartTime, 0, TIMESTAMP_YMDHM, TS), EPGData.TimeZone, EPGData.EventName, EPGData.duration);
@@ -85,7 +85,7 @@ void Test2(void)
   TAP_Channel_GetCurrent(&SvcType, &SvcNum);
   EPGInfo_FilterChannelByIndex(SvcType, SvcNum, FALSE);
   NrEntries = EPGInfo_FindFirst(&EPGData);
-  TAP_Print("  %d entries cached\n", NrEntries);
+  TAP_Print("  %ld entries cached\n", NrEntries);
   for(i = 0; i < NrEntries; i++)
   {
     TAP_Print("  %s: (%d) %s (%d')\n", TimeFormat(EPGData.StartTime, 0, TIMESTAMP_YMDHM, TS), EPGData.TimeZone, EPGData.EventName, EPGData.duration);
@@ -106,7 +106,7 @@ void Test3(void)
   EPGInfo_FilterReset();
   EPGInfo_FilterDuration(60, 70);
   NrEntries = EPGInfo_FindFirst(&EPGData);
-  TAP_Print("  %d entries cached\n", NrEntries);
+  TAP_Print("  %ld entries cached\n", NrEntries);
   for(i = 0; i < NrEntries; i++)
   {
     TAP_Print("  %s: (%d) %s (%d')\n", TimeFormat(EPGData.StartTime, 0, TIMESTAMP_YMDHM, TS), EPGData.TimeZone, EPGData.EventName, EPGData.duration);
@@ -133,7 +133,7 @@ void Test4(void)
   EPGInfo_FilterCallback(CallbackFunction);
 
   NrEntries = EPGInfo_FindFirst(&EPGData);
-  TAP_Print("  %d entries cached\n", NrEntries);
+  TAP_Print("  %ld entries cached\n", NrEntries);
   for(i = 0; i < NrEntries; i++)
   {
     TAP_Print("  %s: (%d) %s (%d')\n", TimeFormat(EPGData.StartTime, 0, TIMESTAMP_YMDHM, TS), EPGData.TimeZone, EPGData.EventName, EPGData.duration);
@@ -156,7 +156,7 @@ void Test5(void)
   TAP_Channel_GetCurrent(&SvcType, &SvcNum);
   EPGInfo_FilterChannelByIndex(SvcType, SvcNum, FALSE);
   NrEntries = EPGInfo_FindFirst(&EPGData);
-  TAP_Print("  %d entries cached\n", NrEntries);
+  TAP_Print("  %ld entries cached\n", NrEntries);
   for(i = 0; i < 10; i++)
   {
     TAP_Print("  %s: (%d) %s (%d')\n", TimeFormat(EPGData.StartTime, 0, TIMESTAMP_YMDHM, TS), EPGData.TimeZone, EPGData.EventName, EPGData.duration);

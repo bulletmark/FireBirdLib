@@ -61,13 +61,13 @@ bool FMUC_LoadFontFile(char *FontFileName, tFontDataUC *FontData)
   {
     close(FontData->FileHandle);
     FontData->FileHandle = 0;
-    LogEntryFBLibPrintf(TRUE, "FontManager UC: failed to allocate %d bytes for the FontDef table of '%s'", FontData->FontDefEntries * sizeof(tFontDefUC), FileName);
+    LogEntryFBLibPrintf(TRUE, "FontManager UC: failed to allocate %lu bytes for the FontDef table of '%s'", FontData->FontDefEntries * sizeof(tFontDefUC), FileName);
 
     TRACEEXIT();
     return FALSE;
   }
 
-  //LogEntryFBLibPrintf(TRUE, "FontManager UC: %d glyphs available in '%s'", FontData->FontDefEntries, FontFileName);
+  //LogEntryFBLibPrintf(TRUE, "FontManager UC: %lu glyphs available in '%s'", FontData->FontDefEntries, FontFileName);
 
   //Read the FontDef table
   read(FontData->FileHandle, FontData->FontDef, sizeof(tFontDefUC) * FontData->FontDefEntries);
@@ -78,7 +78,7 @@ bool FMUC_LoadFontFile(char *FontFileName, tFontDataUC *FontData)
   FontData->GlyphCache = FMUC_ReserveMemory("FMUC_LoadFontFile GlyphCache", FontData->FontDefEntries * sizeof(tGlyphCacheUC));
   if(FontData->GlyphCache == NULL)
   {
-    LogEntryFBLibPrintf(TRUE, "FontManager UC: failed to allocate %d bytes for the FontCache table of '%s'", FontData->FontDefEntries * sizeof(tGlyphCacheUC), FileName);
+    LogEntryFBLibPrintf(TRUE, "FontManager UC: failed to allocate %lu bytes for the FontCache table of '%s'", FontData->FontDefEntries * sizeof(tGlyphCacheUC), FileName);
 
     TRACEEXIT();
     return FALSE;

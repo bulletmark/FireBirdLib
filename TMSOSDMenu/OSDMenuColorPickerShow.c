@@ -41,15 +41,15 @@ void OSDMenuColorPickerShow(char *Title, dword Color)
   OSDMenuPutS(ColorPickerOSDRgn, 0, 10, 380, Title, RGB(232,146,17), COLOR_None, 14, FALSE, ALIGN_CENTER);
 
   x = 10;
-  TAP_Osd_PutGd(ColorPickerOSDRgn, x , 115, &_Button_red_Gd, TRUE);
+  TAP_Osd_PutGd(ColorPickerOSDRgn, x , 118, &_Button_red_Gd, TRUE);
   x += (_Button_red_Gd.width + 2);
-  TAP_Osd_PutGd(ColorPickerOSDRgn, x , 115, &_Button_green_Gd, TRUE);
+  TAP_Osd_PutGd(ColorPickerOSDRgn, x , 118, &_Button_green_Gd, TRUE);
   x += (_Button_green_Gd.width + 2);
-  TAP_Osd_PutGd(ColorPickerOSDRgn, x , 115, &_Button_blue_Gd, TRUE);
+  TAP_Osd_PutGd(ColorPickerOSDRgn, x , 118, &_Button_blue_Gd, TRUE);
   x += (_Button_blue_Gd.width + 5);
-  TAP_Osd_PutGd(ColorPickerOSDRgn, x , 115, &_Button_ok_Gd, TRUE);
+  TAP_Osd_PutGd(ColorPickerOSDRgn, x , 118, &_Button_ok_Gd, TRUE);
   x += (_Button_ok_Gd.width + 5);
-  TAP_Osd_PutGd(ColorPickerOSDRgn, x , 115, &_Button_exit_Gd, TRUE);
+  TAP_Osd_PutGd(ColorPickerOSDRgn, x , 118, &_Button_exit_Gd, TRUE);
 
   OSDMenuColorPickerDrawCursor(CCS_Red, TRUE);
   OSDMenuColorPickerDrawCursor(CCS_Green, FALSE);

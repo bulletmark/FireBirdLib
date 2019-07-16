@@ -4,18 +4,20 @@ void OSDDrawMemo(void)
 {
   TRACEENTER();
 
-  int                   i;
+  int                   dLines, i;
   dword                 Y;
   tMenu                *pMenu;
 
   pMenu = &Menu[CurrentMenuLevel];
 
-  //The background
-  TAP_Osd_Draw3dBoxFill(OSDRgn, 60, 96, 600, 367, RGB(30, 30, 30), RGB(30, 30, 30), RGB(30, 30, 30));
+  dLines = (pMenu->NrLines == 18 ? 20 : 24);
 
-  for(i = 0; i < 15; i++)
+  //The background
+  TAP_Osd_Draw3dBoxFill(OSDRgn, 60, 96, 600, 368, RGB(30, 30, 30), RGB(30, 30, 30), RGB(30, 30, 30));
+
+  for(i = 0; i < pMenu->NrLines; i++)
   {
-    Y = 99 + (i * 24);
+    Y = 99 + (i * dLines);
 
     //The text of the left column
     if((i + pMenu->CurrentTopIndex) < pMenu->NrItems)

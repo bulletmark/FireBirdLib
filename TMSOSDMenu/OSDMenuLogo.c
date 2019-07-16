@@ -8,6 +8,14 @@ void OSDMenuLogo(dword X, dword Y, TYPE_GrData *LogoGd)
 
   pMenu = &Menu[CurrentMenuLevel];
 
+  if (pMenu->pLogoGd)
+  {
+    pMenu->PrevLogoX = pMenu->LogoX;
+    pMenu->PrevLogoY = pMenu->LogoY;
+    pMenu->PrevLogoW = pMenu->pLogoGd->width;
+    pMenu->PrevLogoH = pMenu->pLogoGd->height;
+  }
+
   pMenu->LogoX = X;
   pMenu->LogoY = Y;
   pMenu->pLogoGd = LogoGd;

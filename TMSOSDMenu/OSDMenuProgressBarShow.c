@@ -1,9 +1,7 @@
 #include                <string.h>
 #include                "FBLib_TMSOSDMenu.h"
-#include                "graphic/Progressbar.gd"
-#include                "graphic/InputBox.gd"
 
-#define PROGRESSBARX    233
+#define PROGRESSBARX    234
 #define PROGRESSBARY    330
 
 void OSDMenuProgressBarShow(char *Title, char *Text, dword Value, dword MaxValue, TYPE_GrData *DifferentProgressBar)

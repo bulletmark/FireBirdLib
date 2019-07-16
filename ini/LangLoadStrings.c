@@ -48,13 +48,13 @@ INILOCATION LangLoadStrings(char *LangFile, dword NrStrings, int FallbackLang, c
   for(i = 0; i < NrStrings; i++)
   {
     LangStringPtr[i] = TotalLength;
-    TAP_SPrint(Key, "%s_%3.3d", iso639_1(OSDLan), i);
+    TAP_SPrint(Key, "%s_%3.3lu", iso639_1(OSDLan), i);
     INIGetString(Key, s, "", sizeof(s));
 
     //If the string is not available in the current language, use the fallback language
     if(!s[0] && (FallbackLang >= 0))
     {
-      TAP_SPrint(Key, "%s_%3.3d", iso639_1(FallbackLang), i);
+      TAP_SPrint(Key, "%s_%3.3lu", iso639_1(FallbackLang), i);
       INIGetString(Key, s, "", sizeof(s));
     }
 
@@ -76,13 +76,13 @@ INILOCATION LangLoadStrings(char *LangFile, dword NrStrings, int FallbackLang, c
   memset(LangStrings, 0, TotalLength);
   for(i = 0; i < NrStrings; i++)
   {
-    TAP_SPrint(Key, "%s_%3.3d", iso639_1(OSDLan), i);
+    TAP_SPrint(Key, "%s_%3.3lu", iso639_1(OSDLan), i);
     INIGetString(Key, s, "", sizeof(s));
 
     //If the string is not available in the current language, use the fallback language
     if(!s[0] && (FallbackLang >= 0))
     {
-      TAP_SPrint(Key, "%s_%3.3d", iso639_1(FallbackLang), i);
+      TAP_SPrint(Key, "%s_%3.3lu", iso639_1(FallbackLang), i);
       INIGetString(Key, s, "", sizeof(s));
     }
 

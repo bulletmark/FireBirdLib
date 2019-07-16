@@ -13,9 +13,9 @@ int OSDMenuScrollPageDown(void)
   {
     ret = OSDMenuFindNextSelectableEntry(-1);
   }
-  else if(pMenu->CurrentSelection == (pMenu->CurrentTopIndex + 9))
+  else if(pMenu->CurrentSelection == (pMenu->CurrentTopIndex + pMenu->NrLines - 1))
   {
-    x = pMenu->CurrentSelection + 9;
+    x = pMenu->CurrentSelection + pMenu->NrLines - 1;
     if(x >= pMenu->NrItems) x = pMenu->NrItems - 2;
     if(x < (pMenu->NrItems - 1))
       ret = OSDMenuFindNextSelectableEntry(x);
@@ -24,7 +24,7 @@ int OSDMenuScrollPageDown(void)
   }
   else
   {
-    x = pMenu->CurrentSelection + 8 - (pMenu->CurrentSelection - pMenu->CurrentTopIndex);
+    x = pMenu->CurrentSelection + pMenu->NrLines - 2 - (pMenu->CurrentSelection - pMenu->CurrentTopIndex);
     if(x >= pMenu->NrItems) x = pMenu->NrItems - 2;
     ret = OSDMenuFindNextSelectableEntry(x);
   }

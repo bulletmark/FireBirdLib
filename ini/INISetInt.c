@@ -7,7 +7,7 @@ void INISetInt(char *Key, long int Value)
 
   char                  s[12];
 
-  sprintf(s, "%d", Value);
+  sprintf(s, "%ld", Value);
   INISetString(Key, s);
 
   TRACEEXIT();

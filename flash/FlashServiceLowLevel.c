@@ -1,6 +1,73 @@
 #include                <string.h>
 #include                "FBLib_flash.h"
 
+static bool FlashServiceDecode_ST_TMSS(TYPE_Service_TMSS *Data, tFlashService *Service)
+{
+  char                 *Text;
+
+  TRACEENTER();
+
+  memset(Service, 0, sizeof(tFlashService));
+  Service->SatIndex        = Data->SatIdx;
+  Service->VideoStreamType = Data->VideoStreamType;
+  Service->FlagDelete      = Data->DelFlag;
+  Service->FlagCAS         = Data->CASFlag;
+  Service->FlagLock        = Data->LockFlag;
+  Service->FlagSkip        = Data->SkipFlag;
+  Service->Tuner           = Data->TunerNum;
+  Service->TransponderIndex= Data->TPIdx;
+  Service->ServiceID       = Data->SVCID;
+  Service->PMTPID          = Data->PMTPID;
+  Service->PCRPID          = Data->PCRPID;
+  Service->VideoPID        = Data->VideoPID;
+  Service->AudioPID        = Data->AudioPID;
+  Service->AudioTypeFlag   = Data->AudioTypeFlag;
+  Service->AudioAutoSelect = Data->AudioAutoSelect;
+  Service->LCN             = Data->LCN;
+  Service->AudioStreamType = Data->AudioStreamType;
+  Service->NameLock        = Data->NameLock;
+  Service->Flags2          = Data->Flags2;
+  memcpy(Service->unknown2, Data->unknown2, 6);
+
+  Text = (char*)(FIS_vFlashBlockServiceName() + Data->NameOffset);
+  strncpy(Service->ServiceName, Text, MAX_SvcName);
+
+  if(Data->ProviderIdx < 256)
+  {
+    Text = (char*)(FIS_vFlashBlockProviderInfo() + 21 * Data->ProviderIdx);
+    strncpy(Service->ProviderName, Text, 20);
+  }
+
+  TRACEEXIT();
+  return TRUE;
+}
+
+static bool FlashServiceDecode_ST_TMST(TYPE_Service_TMST *Data, tFlashService *Service)
+{
+  bool ret;
+
+  TRACEENTER();
+
+  //The TV and radio service structures are identical
+  ret = FlashServiceDecode_ST_TMSS(Data, Service);
+
+  TRACEEXIT();
+  return ret;
+}
+
+static bool FlashServiceDecode_ST_TMSC(TYPE_Service_TMSC *Data, tFlashService *Service)
+{
+  bool ret;
+
+  TRACEENTER();
+
+  //The TV and radio service structures are identical
+  ret = FlashServiceDecode_ST_TMSS(Data, Service);
+
+  TRACEEXIT();
+  return ret;
+}
+
 bool FlashServiceDecode(void *Data, tFlashService *Service)
 {
   TRACEENTER();
@@ -39,111 +106,8 @@ bool FlashServiceDecode(void *Data, tFlashService *Service)
   return ret;
 }
 
-bool FlashServiceDecode_ST_TMSS(TYPE_Service_TMSS *Data, tFlashService *Service)
-{
-  char                 *Text;
 
-  TRACEENTER();
-
-  memset(Service, 0, sizeof(tFlashService));
-  Service->SatIndex        = Data->SatIdx;
-  Service->VideoStreamType = Data->VideoStreamType;
-  Service->FlagDelete      = Data->DelFlag;
-  Service->FlagCAS         = Data->CASFlag;
-  Service->FlagLock        = Data->LockFlag;
-  Service->FlagSkip        = Data->SkipFlag;
-  Service->Tuner           = Data->TunerNum;
-  Service->TransponderIndex= Data->TPIdx;
-  Service->ServiceID       = Data->SVCID;
-  Service->PMTPID          = Data->PMTPID;
-  Service->PCRPID          = Data->PCRPID;
-  Service->VideoPID        = Data->VideoPID;
-  Service->AudioPID        = Data->AudioPID;
-  Service->LCN             = Data->LCN;
-  Service->AudioStreamType = Data->AudioStreamType;
-  Service->NameLock        = Data->NameLock;
-  Service->Flags2          = Data->Flags2;
-  memcpy(Service->unknown2, Data->unknown2, 6);
-
-  Text = (char*)(FIS_vFlashBlockServiceName() + Data->NameOffset);
-  strncpy(Service->ServiceName, Text, MAX_SvcName);
-
-  if(Data->ProviderIdx < 256)
-  {
-    Text = (char*)(FIS_vFlashBlockProviderInfo() + 21 * Data->ProviderIdx);
-    strncpy(Service->ProviderName, Text, 20);
-  }
-
-  TRACEEXIT();
-  return TRUE;
-}
-
-bool FlashServiceDecode_ST_TMST(TYPE_Service_TMST *Data, tFlashService *Service)
-{
-  bool ret;
-
-  TRACEENTER();
-
-  //The TV and radio service structures are identical
-  ret = FlashServiceDecode_ST_TMSS(Data, Service);
-
-  TRACEEXIT();
-  return ret;
-}
-
-bool FlashServiceDecode_ST_TMSC(TYPE_Service_TMSC *Data, tFlashService *Service)
-{
-  bool ret;
-
-  TRACEENTER();
-
-  //The TV and radio service structures are identical
-  ret = FlashServiceDecode_ST_TMSS(Data, Service);
-
-  TRACEEXIT();
-  return ret;
-}
-
-
-bool FlashServiceEncode(void *Data, tFlashService *Service)
-{
-  bool ret;
-
-  TRACEENTER();
-
-  //Service is NULL
-  if(!Data || !Service)
-  {
-    TRACEEXIT();
-    return FALSE;
-  }
-
-  ret = FALSE;
-  switch(GetSystemType())
-  {
-    //Unknown and old 5k/6k systems are not supported
-    case ST_UNKNOWN:
-    case ST_S:
-    case ST_ST:
-    case ST_T:
-    case ST_C:
-    case ST_CT:
-    case ST_T5700:
-    case ST_T5800:
-    case ST_TF7k7HDPVR: break;
-
-    case ST_TMSS: ret = FlashServiceEncode_ST_TMSS(Data, Service); break;
-    case ST_TMST: ret = FlashServiceEncode_ST_TMST(Data, Service); break;
-    case ST_TMSC: ret = FlashServiceEncode_ST_TMSC(Data, Service); break;
-
-    case ST_NRTYPES: break;
-  }
-
-  TRACEEXIT();
-  return ret;
-}
-
-bool FlashServiceEncode_ST_TMSS(TYPE_Service_TMSS *Data, tFlashService *Service)
+static bool FlashServiceEncode_ST_TMSS(TYPE_Service_TMSS *Data, tFlashService *Service)
 {
   bool                  isRadio;
   int                   ServiceIndex;
@@ -185,6 +149,8 @@ bool FlashServiceEncode_ST_TMSS(TYPE_Service_TMSS *Data, tFlashService *Service)
   Data->PCRPID          = Service->PCRPID;
   Data->VideoPID        = Service->VideoPID;
   Data->AudioPID        = Service->AudioPID;
+  Data->AudioTypeFlag   = Service->AudioTypeFlag;
+  Data->AudioAutoSelect = Service->AudioAutoSelect;
   Data->LCN             = Service->LCN;
   Data->AudioStreamType = Service->AudioStreamType;
   Data->NameLock        = Service->NameLock;
@@ -202,7 +168,7 @@ bool FlashServiceEncode_ST_TMSS(TYPE_Service_TMSS *Data, tFlashService *Service)
   return TRUE;
 }
 
-bool FlashServiceEncode_ST_TMST(TYPE_Service_TMST *Data, tFlashService *Service)
+static bool FlashServiceEncode_ST_TMST(TYPE_Service_TMST *Data, tFlashService *Service)
 {
   bool ret;
 
@@ -215,7 +181,7 @@ bool FlashServiceEncode_ST_TMST(TYPE_Service_TMST *Data, tFlashService *Service)
   return ret;
 }
 
-bool FlashServiceEncode_ST_TMSC(TYPE_Service_TMSC *Data, tFlashService *Service)
+static bool FlashServiceEncode_ST_TMSC(TYPE_Service_TMSC *Data, tFlashService *Service)
 {
   bool ret;
 
@@ -223,6 +189,91 @@ bool FlashServiceEncode_ST_TMSC(TYPE_Service_TMSC *Data, tFlashService *Service)
 
   //The TV and radio service structures are identical
   ret = FlashServiceEncode_ST_TMSS(Data, Service);
+
+  TRACEEXIT();
+  return ret;
+}
+
+bool FlashServiceEncode(void *Data, tFlashService *Service)
+{
+  bool ret;
+
+  TRACEENTER();
+
+  //Service is NULL
+  if(!Data || !Service)
+  {
+    TRACEEXIT();
+    return FALSE;
+  }
+
+  ret = FALSE;
+  switch(GetSystemType())
+  {
+    //Unknown and old 5k/6k systems are not supported
+    case ST_UNKNOWN:
+    case ST_S:
+    case ST_ST:
+    case ST_T:
+    case ST_C:
+    case ST_CT:
+    case ST_T5700:
+    case ST_T5800:
+    case ST_TF7k7HDPVR: break;
+
+    case ST_TMSS: ret = FlashServiceEncode_ST_TMSS(Data, Service); break;
+    case ST_TMST: ret = FlashServiceEncode_ST_TMST(Data, Service); break;
+    case ST_TMSC: ret = FlashServiceEncode_ST_TMSC(Data, Service); break;
+
+    case ST_NRTYPES: break;
+  }
+
+  TRACEEXIT();
+  return ret;
+}
+
+
+static bool FlashServiceDelete_ST_TMSS(TYPE_Service_TMSS *Data)
+{
+  TYPE_Service_TMSS    *NextData;
+
+  TRACEENTER();
+
+  NextData = Data + 1;
+
+  while(NextData->TunerNum != 0)
+  {
+    memcpy(Data, NextData, sizeof(TYPE_Service_TMSS));
+    Data++;
+    NextData++;
+  }
+  memset(Data, 0, sizeof(TYPE_Service_TMSS));
+
+  TRACEEXIT();
+  return TRUE;
+}
+
+static bool FlashServiceDelete_ST_TMST(TYPE_Service_TMST *Data)
+{
+  bool ret;
+
+  TRACEENTER();
+
+  //The TV and radio service structures are identical
+  ret = FlashServiceDelete_ST_TMSS(Data);
+
+  TRACEEXIT();
+  return ret;
+}
+
+static bool FlashServiceDelete_ST_TMSC(TYPE_Service_TMSC *Data)
+{
+  bool ret;
+
+  TRACEENTER();
+
+  //The TV and radio service structures are identical
+  ret = FlashServiceDelete_ST_TMSS(Data);
 
   TRACEEXIT();
   return ret;
@@ -266,52 +317,6 @@ bool FlashServiceDelete(void *Data)
   return ret;
 }
 
-bool FlashServiceDelete_ST_TMSS(TYPE_Service_TMSS *Data)
-{
-  TYPE_Service_TMSS    *NextData;
-
-  TRACEENTER();
-
-  NextData = Data + 1;
-
-  while(NextData->TunerNum != 0)
-  {
-    memcpy(Data, NextData, sizeof(TYPE_Service_TMSS));
-    Data++;
-    NextData++;
-  }
-  memset(Data, 0, sizeof(TYPE_Service_TMSS));
-
-  TRACEEXIT();
-  return TRUE;
-}
-
-bool FlashServiceDelete_ST_TMST(TYPE_Service_TMST *Data)
-{
-  bool ret;
-
-  TRACEENTER();
-
-  //The TV and radio service structures are identical
-  ret = FlashServiceDelete_ST_TMSS(Data);
-
-  TRACEEXIT();
-  return ret;
-}
-
-bool FlashServiceDelete_ST_TMSC(TYPE_Service_TMSC *Data)
-{
-  bool ret;
-
-  TRACEENTER();
-
-  //The TV and radio service structures are identical
-  ret = FlashServiceDelete_ST_TMSS(Data);
-
-  TRACEEXIT();
-  return ret;
-}
-
 bool FlashServiceDelServiceName(int SvcType, int SvcNum)
 {
   void (*Appl_DeleteTvSvcName)(unsigned short, bool);
@@ -344,154 +349,4 @@ bool FlashServiceDelServiceName(int SvcType, int SvcNum)
 
   TRACEEXIT();
   return TRUE;
-}
-
-//Set FromSvcNum = -1 when adding a service entry
-//or  ToSvcNum = -1 to deleting a service entry
-void FlashReindexFavorites(int SvcType, int FromSvcNum, int ToSvcNum)
-{
-  tFavorites           *Favorites;
-  int                   i, j;
-
-  TRACEENTER();
-
-  Favorites = (tFavorites*)FIS_vFlashBlockFavoriteGroup();
-
-  for(i = 0; i < MAXFAVS; i++)
-  {
-    if(Favorites->GroupName[0] && Favorites->NrEntries)
-    {
-      j = 0;
-      while(j < Favorites->NrEntries)
-      {
-        if(Favorites->SvcType[j] == SvcType)
-        {
-          if(FromSvcNum == -1)
-          {
-            //Case 1: a new service has been inserted at ToSvcNum
-            if(Favorites->SvcNum[j] >= ToSvcNum) Favorites->SvcNum[j]++;
-          }
-          else if(ToSvcNum == -1)
-          {
-            //Case 2: a service has been deleted at FromSvcNum
-            if(Favorites->SvcNum[j] >= FromSvcNum)
-            {
-              if(Favorites->SvcNum[j] == FromSvcNum)
-              {
-                memcpy(&Favorites->SvcNum[j], &Favorites->SvcNum[j + 1], (100 - j - 1) * sizeof(word));
-                Favorites->SvcNum[99] = 0;
-                Favorites->NrEntries--;
-              }
-              else
-                Favorites->SvcNum[j]--;
-            }
-          }
-          else if(FromSvcNum < ToSvcNum)
-          {
-            //Case 3: a service has been moved up
-            if((Favorites->SvcNum[j] >= FromSvcNum) && (Favorites->SvcNum[j] <= ToSvcNum))
-            {
-              if(Favorites->SvcNum[j] == FromSvcNum)
-                Favorites->SvcNum[j] = ToSvcNum;
-              else
-                Favorites->SvcNum[j]--;
-            }
-          }
-          else
-          {
-            //Case 4: a service has been moved down
-            if((Favorites->SvcNum[j] <= FromSvcNum) && (Favorites->SvcNum[j] >= ToSvcNum))
-            {
-              if(Favorites->SvcNum[j] == FromSvcNum)
-                Favorites->SvcNum[j] = ToSvcNum;
-              else
-                Favorites->SvcNum[j]++;
-            }
-          }
-        }
-        j++;
-      }
-    }
-    Favorites++;
-  }
-
-  TRACEEXIT();
-}
-
-void FlashReindexTimers(int SvcType, int FromSvcNum, int ToSvcNum)
-{
-  int                   NrTimer, i;
-  TYPE_TimerInfo        TimerInfo;
-
-  TRACEENTER();
-
-  NrTimer = TAP_Timer_GetTotalNum();
-  for(i = NrTimer - 1; i >= 0; i--)
-  {
-    TAP_Timer_GetInfo(i, &TimerInfo);
-    if(TimerInfo.svcType == SvcType)
-    {
-      if(FromSvcNum == -1)
-      {
-        //Case 1: a new service has been inserted at ToSvcNum
-        if(TimerInfo.svcNum >= ToSvcNum)
-        {
-          TimerInfo.svcNum++;
-          TAP_Timer_Modify(i, &TimerInfo);
-        }
-      }
-      else if(ToSvcNum == -1)
-      {
-        //Case 2: a service has been deleted at FromSvcNum
-        if(TimerInfo.svcNum >= FromSvcNum)
-        {
-          if(TimerInfo.svcNum == FromSvcNum)
-          {
-            TAP_Timer_Delete(i);
-          }
-          else
-          {
-            TimerInfo.svcNum--;
-            TAP_Timer_Modify(i, &TimerInfo);
-          }
-        }
-      }
-      else if(FromSvcNum < ToSvcNum)
-      {
-        //Case 3: a service has been moved up
-        if((TimerInfo.svcNum >= FromSvcNum) && (TimerInfo.svcNum <= ToSvcNum))
-        {
-          if(TimerInfo.svcNum == FromSvcNum)
-          {
-            TimerInfo.svcNum = ToSvcNum;
-            TAP_Timer_Modify(i, &TimerInfo);
-          }
-          else
-          {
-            TimerInfo.svcNum--;
-            TAP_Timer_Modify(i, &TimerInfo);
-          }
-        }
-      }
-      else
-      {
-        //Case 4: a service has been moved down
-        if((TimerInfo.svcNum <= FromSvcNum) && (TimerInfo.svcNum >= ToSvcNum))
-        {
-          if(TimerInfo.svcNum == FromSvcNum)
-          {
-            TimerInfo.svcNum = ToSvcNum;
-            TAP_Timer_Modify(i, &TimerInfo);
-          }
-          else
-          {
-            TimerInfo.svcNum++;
-            TAP_Timer_Modify(i, &TimerInfo);
-          }
-        }
-      }
-    }
-  }
-
-  TRACEEXIT();
 }

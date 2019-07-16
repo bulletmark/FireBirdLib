@@ -1,6 +1,8 @@
 #include                <string.h>
 #include                "FBLib_TMSOSDMenu.h"
 
+dword WaitSpinnerPosY;
+
 void OSDMenuInfoBoxShow(char *Title, char *Text, dword Timeout)
 {
   TRACEENTER();
@@ -42,7 +44,7 @@ void OSDMenuInfoBoxShow(char *Title, char *Text, dword Timeout)
   OSDMenuPutS(InfoBoxOSDRgn, 0, 10, 380, Title, RGB(232,146,17), COLOR_None, 14, FALSE, ALIGN_CENTER);
 
   //Count the number of lines
-  strncpy(s, Text, 256);
+  strncpy(s, Text, 255);
   s[255] = '\0';
   pText = s;
   EndOfText = s + strlen(s);
@@ -54,6 +56,7 @@ void OSDMenuInfoBoxShow(char *Title, char *Text, dword Timeout)
     if(!pText) break;
     *pText = '\0';
     pText++;
+    if (Lines == 7) break;
   }
 
   dy = 20;
@@ -65,6 +68,8 @@ void OSDMenuInfoBoxShow(char *Title, char *Text, dword Timeout)
     y += dy;
     pText += (strlen(pText) + 1);
   }
+
+  WaitSpinnerPosY = (Lines == 6 ? 164 : 158) + ((24 - WaitSpinnerItemHeight) >> 1);
 
   if(Timeout)
     InfoBoxTimeOut = TAP_GetTick() + Timeout;

@@ -1058,3 +1058,46 @@ The following functions accept any form a path. The INI and language INI functio
             Fixed: OSDMemoInitialize() didn't utilize struct member FontMemo
             Fixed: HORSPACE in OSDMemoInitialize() was too small (Memo width of 600 px minus 16 px left indent equals 584 px, so with a 16 px right margin the available space is 568 px)
             Fixed: OSDMemoInitialize() omitted lines and created additional blank lines
+2018-12-01: Fixed: OSDMemoInitialize() produced a blank line at the end by always adding \n to Text, even if already properly terminated by \n
+2018-12-02: Fixed: OSDMenu's background height was 1 px too small (10 * 35 px + 9 * 2 px = 368 px)
+            Fixed: OSDMenu drawing didn't always start at y = 96 (which is the top of the background)
+            Fixed: OSDMenu's first list item's height was 1 px too small (130 - 96 = 34 but should be 35 like all other list items)
+            Fixed: OSDMenu's scrollbar bottom position was 3 px too high (368 - 2 * 12 - 20 = 324)
+            Fixed: OSDMenu's selected list item lacked the 2 px separation line at its bottom
+            Fixed: OSDMenu's scrollbar was 1 px too far to the right (659 is end of the background, 660 the necessary gap)
+2018-12-06: Fixed: OSDMenuButtonAdd() didn't utilize struct member FontButtons
+            Fixed: Limit button drawing to the end of the separation line (minus margin)
+            Fixed: OSDMenu's left title was 3 px too far to the right and 1 px too low (right title was 3 px too low)
+            Fixed: OSDMenu's progress bar was 1 px too close to the left ((720 - 252) / 2 = 234)
+            Fixed: OSDMenu's color picker was 2 px too high up, buttons and color box were 3 px too far from the bottom and color box was 1 px too close to the left
+2019-01-17: Fixed: Reset "Dirty" flags after drawing to avoid repetitive redrawing of all OSD content
+2019-01-18: Added: FB_DEBUG and FB_DEBUG_FULL to enable debugging which is disabled by default now (FB_NO_DEBUG and FB_LIBRARY_COMPILATION have been removed)
+2019-02-11: Fixed: Limit the number of InfoBox lines and MessageBox lines to 7 (which is the maximum number of lines that can be displayed)
+            Fixed: FMUC_FreeFontFile() closed a font file even if the file handle was invalid due to an open error
+            Fixed: FMUC_GetGlyphData() sought for glyphs even if the file handle was invalid due to an open or header error
+2019-02-18: Fixed: OSDMenuPush() and OSDMenuPop() missed to set OSDDirty
+2019-02-19: Fixed: Improved several flash structs and helper functions. Thanks to chris86
+2019-02-20: Fixed: Modified FlashServiceFindNum() so that it will find services even if a transponder occupies more than one transponder entry (e.g. 1MHz offset)
+2019-02-21: Fixed: The title area has never been erased if marked dirty
+            Fixed: The logo area has never been erased if marked dirty
+2019-02-22: Added: DO_SYNC and NO_SYNC - human-friendly arguments to OSDMenuUpdate()
+            Fixed: OSDMenuGetW() and OSDMenuPutS() could not handle all sizes of the standard fonts (new: use size + 0xB for bold fonts)
+            Added: OSDMenuGetH() to get a string's height
+            Added: OSDMenuGetW(), OSDMenuGetH() and OSDMenuPutS() made public (i.e. part of the API)
+            Fixed: OSDDrawList() limited the width of the name even without value arrows and a value itself
+            Fixed: OSDDrawScrollBar() didn't take into account the different number of lines of the two OSDMenuDisplayModes
+            Added: OSDMenuItemModifyNameColor() to change the color of the name separately from the color of the item line
+            Added: OSDMenuItemModifyValueLeftArrowGap() to be able to control the distance between name and value
+            Added: OSDMenuSetMemo() to be able to initialize and control an OSDMemo from scratch
+            Added: OMDM_Text - an OSDMemo that won't scoll beyond its last line
+            Modified: OSDMenuSetMemo() can either set OMDM_Memo or OMDM_Text now
+            Added: OSDMenuSetLineHeight() and enums tLineHeight to allow for a different number of lines
+            Added: OSDMenuGetNrOfLines() to query the current number of lines
+            Fixed: The ScrollBar graphics contained various pixels with slightly wrong color
+            Added: New cursor graphics that are necessary for different line heights (i.e. different number of lines)
+            Fixed: OSDMenuSetCursor() doesn't draw the new cursor
+            Added: OSDMemoFormatText() to allow a dynamic change of the font size (i.e. the number of lines)
+            Added: TMSOSDMenu memo demo
+            Modified: TMSOSDMenu menu demo demonstrates dynamic change of both the font size (i.e. the number of lines) and the cursor type
+            Modified: Replace the previous WaitSpinner with one that (unlike a circular one) looks undistorted on the 5:4 OSD
+            Modified: Release date

@@ -1,6 +1,6 @@
 #include "libFireBird.h"
 
-bool PSBuffer_ProcessTSPacket(tPSBuffer *PSBuffer, byte *TSBuffer, ulong64 FileOffset)
+bool PSBuffer_ProcessTSPacket(tPSBuffer *PSBuffer, const byte *TSBuffer, ulong64 FileOffset)
 {
   TRACEENTER();
 
@@ -21,7 +21,7 @@ bool PSBuffer_ProcessTSPacket(tPSBuffer *PSBuffer, byte *TSBuffer, ulong64 FileO
     ulong64              *pi64;
     ulong64               fo;
 
-    memcpy(PSBuffer->pInBufferData, &TSBuffer[PayloadOffset], PayloadLen);
+    memcpy(PSBuffer->pInBufferData, (void *) &TSBuffer[PayloadOffset], PayloadLen);
 
     fo = FileOffset + PayloadOffset;
     pi64 = &PSBuffer->pInBuffer->FileOffset[PSBuffer->InBufferDataIndex];

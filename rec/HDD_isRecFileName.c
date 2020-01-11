@@ -1,6 +1,6 @@
 #include "libFireBird.h"
 
-bool HDD_isRecFileName(char *FileName)
+bool HDD_isRecFileName(const char *FileName)
 {
   TRACEENTER();
 

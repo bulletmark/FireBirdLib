@@ -2,7 +2,7 @@
 #include                <string.h>
 #include                "FBLib_hdd.h"
 
-bool HDD_GetFileSizeAndInode(char *FileName, __ino64_t *CInode, __off64_t *FileSize)
+bool HDD_GetFileSizeAndInode(const char *FileName, __ino64_t *CInode, __off64_t *FileSize)
 {
   TRACEENTER();
 

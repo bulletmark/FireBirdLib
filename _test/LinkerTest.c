@@ -4,6 +4,7 @@
 /************************************************/
 
 #include "../av/FBLib_av.h"
+#include "../Time/FBLib_Time.h"
 #include "../EPG/FBLib_EPG.h"
 #include "../flash/FBLib_flash.h"
 #include "../FontManager/FBLib_FontManager.h"
@@ -75,6 +76,7 @@ int TAP_Main()
   ApplChannel_GetBer(0, NULL);
   ApplCiplus_CamSelect(0);
   ApplCiplus_GetSelectedCam();
+  ApplClock_SetTimeMJD(0, 0, 0, 0);
   ApplHdd_FileCutPaste(NULL, 0, 0, NULL);
   ApplHdd_FreeSize(NULL, FALSE);
   ApplHdd_GetFileInfo(0, NULL, NULL, 0, 0);
@@ -241,6 +243,7 @@ int TAP_Main()
   FIS_fwApplChannel_GetBer();
   FIS_fwApplCiplus_CamSelect();
   FIS_fwApplCiplus_GetSelectedCam();
+  FIS_fwApplClock_SetTimeMJD();
   FIS_fwApplHdd_FileCutPaste();
   FIS_fwApplHdd_FreeSize();
   FIS_fwApplHdd_GetFileInfo();
@@ -322,6 +325,7 @@ int TAP_Main()
   FIS_vFlashBlockTransponderInfo();
   FIS_vFlashBlockTVServices();
   FIS_vfrontfd();
+  FIS_vgmt();
   FIS_vGrid();
   FIS_vHddDivxFolder();
   FIS_vhddRecordFile();
@@ -389,12 +393,14 @@ int TAP_Main()
   FlashServiceMove(0, 0, 0);
   FlashServiceSetInfo(0, 0, NULL);
   FlashTimeDecode(NULL, NULL);
+  FlashTimeEncode(NULL, NULL);
   FlashTimeGetInfo(NULL);
   FlashTimerDecode(NULL, NULL);
   FlashTimerEncode(NULL, NULL);
   FlashTimerGetInfo(0, NULL);
   FlashTimerSetInfo(0, NULL);
   FlashTimerStructSize();
+  FlashTimeSetInfo(NULL);
   FlashTransponderFindIndex(0, 0, 0);
   FlashTransponderFindIndex2(0, 0, 0, 0);
   FlashTransponderTablesAdd(0, NULL);
@@ -475,6 +481,7 @@ int TAP_Main()
   HDD_FindPCR(NULL, 0, 0);
   HDD_FindSymbolicLink(NULL, NULL, NULL);
   HDD_GetAbsolutePathByTypeFile(NULL, NULL);
+  HDD_GetFileDir("", DIR_ROOT, "");
   HDD_GetFileSizeAndInode(NULL, NULL, NULL);
   HDD_GetFileTimeByFileName(NULL);
   HDD_GetFileTimeByTypeFile(NULL);
@@ -600,7 +607,7 @@ int TAP_Main()
   LoadFirmwareDat(NULL, NULL, NULL);
   LocalTime2UTC(0, NULL);
   LogEntry(NULL, NULL, FALSE, 0, NULL);
-  LogEntryFBLibPrintf(FALSE, NULL);
+  LogEntryFBLibPrintf(FALSE, " ");
   LogEntryGeneric(NULL, FALSE, NULL);
   LogEntryGenericPrintf(NULL, FALSE, NULL);
   LogEntryPrintf(NULL, NULL, FALSE, 0, NULL);
@@ -640,9 +647,11 @@ int TAP_Main()
   OSDDrawMemo();
   OSDDrawScrollBar();
   OSDDrawTitle();
+  OSDMemoFormatText();
   OSDMemoInitialize(FALSE, NULL, NULL, NULL);
   OSDMenuButtonAdd(0, 0, NULL, NULL);
   OSDMenuButtonColor(0);
+  OSDMenuButtonModifyText(0, "");
   OSDMenuButtonsClear();
   OSDMenuColorPickerColor();
   OSDMenuColorPickerDestroy();
@@ -651,23 +660,27 @@ int TAP_Main()
   OSDMenuColorPickerShow(NULL, 0);
   OSDMenuDestroy();
   OSDMenuDestroyNoOSDUpdate();
-  OSDMenuDrawCursor(0, 0, 0);
+  OSDMenuDrawCursor(0, 0, 0, 0);
   OSDMenuEvent(NULL, NULL, NULL);
   OSDMenuFindNextSelectableEntry(0);
   OSDMenuFindPreviousSelectableEntry(0);
   OSDMenuFreeStdFonts();
   OSDMenuGetButtonIcon(0);
   OSDMenuGetCurrentItem();
+  OSDMenuGetStringHeight("", 0);
   OSDMenuGetIconPointer(0, NULL);
   OSDMenuGetLastUnprocessedKey();
+  OSDMenuGetNrOfLines();
   OSDMenuGetW(NULL, 0);
   OSDMenuInfoBoxDestroy();
   OSDMenuInfoBoxDestroyNoOSDUpdate();
+  OSDMenuInfoBoxExitButton(FALSE);
   OSDMenuInfoBoxIsVisible();
   OSDMenuInfoBoxShow(NULL, NULL, 0);
   OSDMenuInitialize(FALSE, FALSE, FALSE, FALSE, NULL, NULL);
   OSDMenuIsVisible();
   OSDMenuItemAdd(NULL, NULL, NULL, NULL, FALSE, FALSE, 0);
+  OSDMenuItemFindID(0);
   OSDMenuItemFindName(NULL);
   OSDMenuItemFindValue(NULL);
   OSDMenuItemGetCurrentID();
@@ -675,23 +688,31 @@ int TAP_Main()
   OSDMenuItemGetCurrentValue();
   OSDMenuItemGetID(0);
   OSDMenuItemGetName(0);
+  OSDMenuItemGetNameColor(0);
   OSDMenuItemGetNrOfItems();
+  OSDMenuItemGetTextColor(0);
   OSDMenuItemGetTopIndex();
   OSDMenuItemGetValue(0);
   OSDMenuItemModifyColorPatch(0, 0);
   OSDMenuItemModifyCustomIndex(0, 0);
   OSDMenuItemModifyID(0, 0);
   OSDMenuItemModifyName(0, NULL);
+  OSDMenuItemModifyNameColor(0, 0);
   OSDMenuItemModifyNameIcon(0, NULL);
   OSDMenuItemModifySelectable(0, FALSE);
   OSDMenuItemModifyTextColor(0, 0);
   OSDMenuItemModifyValue(0, NULL);
+  OSDMenuItemModifyValueArrows(0, FALSE);
   OSDMenuItemModifyValueIcon(0, NULL);
+  OSDMenuItemModifyValueLeftArrowGap(0);
   OSDMenuItemModifyValueXPos(0);
+  OSDMenuItemPassDrawing(0, FALSE, FALSE);
   OSDMenuItemsClear();
   OSDMenuItemSortID(FALSE);
   OSDMenuItemSortNameColumn(FALSE, FALSE);
   OSDMenuItemSortValueColumn(FALSE, FALSE);
+  OSDMenuKeyboard_AutomaticLowerCase(FALSE);
+  OSDMenuKeyboard_ChangeKeypad(KPM_Standard, NULL);
   OSDMenuKeyboard_CursorEnd();
   OSDMenuKeyboard_CursorLeft();
   OSDMenuKeyboard_CursorRight();
@@ -705,9 +726,14 @@ int TAP_Main()
   OSDMenuKeyboard_isVisible();
   OSDMenuKeyboard_LegendButton(0, 0, NULL);
   OSDMenuKeyboard_SaveAndFinish();
+  OSDMenuKeyboard_SetCursor(KC_Text);
+  OSDMenuKeyboard_SetKeypadMode(KPM_Standard);
   OSDMenuKeyboard_Setup(NULL, NULL, 0);
   OSDMenuKeyboard_Show();
   OSDMenuKeyboard_TMSRemoteDirectMode(FALSE);
+  OSDMenuListBoxDestroy();
+  OSDMenuListBoxDestroyNoOSDUpdate();
+  OSDMenuListBoxIsVisible();
   OSDMenuLoadStdFonts();
   OSDMenuLogo(0, 0, NULL);
   OSDMenuMessageBoxAllowScrollOver();
@@ -734,6 +760,7 @@ int TAP_Main()
   OSDMenuProgressBarShow(NULL, NULL, 0, 0, NULL);
   OSDMenuPush();
   OSDMenuPutS(0, 0, 0, 0, NULL, 0, 0, 0, 0, 0);
+  OSDMenuPutString(0, 0, 0, 0, "", 0, 0, 0, 0, 0);
   OSDMenuSaveMyRegion(0);
   OSDMenuScrollDown();
   OSDMenuScrollEnd();
@@ -746,6 +773,8 @@ int TAP_Main()
   OSDMenuSetCallback(NULL);
   OSDMenuSetCursor(0);
   OSDMenuSetFont(NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+  OSDMenuSetLineHeight(LH_Normal);
+  OSDMenuSetMemo(FALSE);
   OSDMenuUpdate(FALSE);
   OSDMenuWaitSpinnerIdle();
   OSDMenuWaitSpinnerInit();
@@ -795,7 +824,7 @@ int TAP_Main()
   StringEndsWith(NULL, NULL);
   strlenUC(NULL);
   StrMkISO(NULL);
-  StrMkUTF8(NULL, 0);
+  StrMkUTF8(NULL, 0, 0);
   strncpyUC(NULL, NULL, 0);
   StrReplace(NULL, NULL, NULL);
   StrToISO(NULL, NULL);

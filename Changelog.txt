@@ -1101,3 +1101,63 @@ The following functions accept any form a path. The INI and language INI functio
             Modified: TMSOSDMenu menu demo demonstrates dynamic change of both the font size (i.e. the number of lines) and the cursor type
             Modified: Replace the previous WaitSpinner with one that (unlike a circular one) looks undistorted on the 5:4 OSD
             Modified: Release date
+2019-09-26  Fixed: Potential out-of-bounds read in StringEndsWith()
+2019-10-03  Fixed: FMUC_PutStringAA() and FM_PutStringAA(): both drew one pixel line too high
+2019-10-04  Fixed: OSDMenuPutS() made private again (due to the use of FONTYOFFSET)
+            Added: OSDMenuPutString() (user-usable replacement for OSDMenuPutS())
+            Modified: OSDMenuGetH() renamed OSDMenuGetStringHeight()
+            Modified: Rename OSDMenuGetW() OSDMenuGetStringWidth() and define OSDMenuGetW as an alias
+            Fixed: Check ItemIndex for potential out-of-bounds array access
+2019-10-08  Modified: Return type of OSDMenuGetStringHeight() and OSDMenuGetStringWidth() changed from integer to dword
+2019-10-16  Added: OSDMenuItemPassDrawing() to allow a user-controlled item drawing
+            Added: TMSOSDMenu PassDrawing demo
+            Added: Cursor type CT_Hide to hide the cursor
+            Added: OSDMenuButtonModifyText() to allow label replacement without graphic position change
+            Modified: Release date
+2019-10-18  Fixed: Potential out-of-bounds access in OSDMenuButtonAdd()
+            Fixed: Potential null pointer usage in OSDMenuMessageBoxButtonAdd()
+            Fixed: OSDMenuDestroyNoOSDUpdate() and OSDMenuPop() left some memory unreleased
+            Fixed: The callback function was common to all menus (not menu-specific) and was not saved and restored with OSDMenuPush()/OSDMenuPop()
+            Modified: Release date
+2019-11-22  Added: OSDMenuItemFindID()
+            Added: OSDMenuItemGetNameColor()
+            Added: OSDMenuItemGetTextColor()
+            Added: OSDMenuFindNextSelectableEntry() and OSDMenuFindPreviousSelectableEntry() made public (i.e. part of the API)
+            Modified: Increase the maximum length of keyboard button texts from 19 to 22
+            Modified: Increase the width for keyboard buttons and texts by 2 px (so as not to waste space)
+            Modified: Enable the edited text to spread wider, so that there is the same spacing to the left and right
+            Fixed: Potential string overflow (OSDMenuKeyboard_StringVar)
+            Modified: Don't return a space character for empty keys
+            Fixed: Reset KeyPadMode to its default when initializing the keyboard
+            Added: OSDMenuKeyboard_ChangeKeypad() to change or suppress keypads (except Standard and CAPS)
+            Added: OSDMenuKeyboard_SetKeypadMode() to change the default starting keypad mode
+            Fixed: Align keyboard title horizontally and vertically centered (2 px to the left and 3 px up)
+            Fixed: Align key descriptions centered (1 px to the right)
+            Fixed: Align keyboard text and cursor centered (2 px up)
+            Added: OSDMenuKeyboard_SetCursor() to change the cursor type
+            Added: OSDMenuKeyboard_AutomaticLowerCase() to automatically change to standard keypad mode after entering an upper-case character
+            Modified: Replace three dots "..." by UTF-8 horizontal ellipsis character
+            Modified: StrMkUTF8() has now an additional parameter "size" and writes at most "size" bytes (including the terminating null byte) to SourceString
+            Fixed: Wrong use of MAX_FILE_NAME_SIZE (which in fact is the max. string length of a file name)
+            Fixed: Prevent ValidFileName() from missing MAX_FILE_NAME_SIZE and looping over whole strName with UTF-8 characters
+            Added: HDD_GetFileDir() which got lost when converting to TMS only code
+            Modified: Make constant parameters of the functions in elf, hdd, tap, TMSOSDKeyboard, TMSOSDMenu, rec and string const
+            Modified: Release date
+2019-12-12  Fixed: isMJD() had a year 2020 problem
+            Added: OSDMenuItemModifyValueArrows()
+            Modified: Void cursor when OSD is dirty (instead of only when number of lines changes)
+            Added: New menu type "ListBox" (supporting basically all existing menu features)
+            Added: Restrict the buttons in list boxes to 2 lines
+            Added: OSDMenuListBoxIsVisible()
+            Added: OSDMenuListBoxDestroy() and OSDMenuListBoxDestroyNoOSDUpdate()
+            Modified: TMSOSDMenu demo demonstrates use of a list box
+            Added: TMSOSDMenu ListBox demo to demonstrate a stand-alone list box
+            Added: OSDMenuInfoBoxExitButton() to add an Exit button to an InfoBox without automatic timeout
+            Modified: Release date
+2019-12-30  Fixed: INIFindStartEnd() mistook trailing substrings for the key to search for
+            Modified: Make TAP_GetSysOsdControl() return a true/false value
+            Modified: Release date
+2020-01-02  Added: FlashTimeSetInfo() and FlashTimeEncode()
+            Fixed tFlashTimeInfo: the firmware handles unknown3 as part of a 16-bit structure.
+            Modified tFlashTimeInfo: separated the two DST flags (AutoDSTEnabled, DSTActive)
+            Added: ApplClock_SetTimeMJD(), FIS_fwApplClock_SetTimeMJD() and FIS_vgmt()

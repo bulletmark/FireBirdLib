@@ -3,7 +3,7 @@
 
 extern FILE            *infDatainfFile;
 
-bool infData_Get(char *infFileName, char *NameTag, dword *PayloadSize, byte **Payload)
+bool infData_Get(const char *infFileName, const char *NameTag, dword *PayloadSize, byte **Payload)
 {
   byte                 *DataBlock;
   bool                  ret;

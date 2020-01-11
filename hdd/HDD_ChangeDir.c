@@ -2,7 +2,7 @@
 #include "FBLib_hdd.h"
 #include "libFireBird.h"
 
-bool HDD_ChangeDir(char *Dir)
+bool HDD_ChangeDir(const char *Dir)
 {
   TRACEENTER();
 

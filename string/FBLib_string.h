@@ -9,7 +9,7 @@ extern char             AnsiLower[30];
 extern char             UTF8Upper[64];
 extern char             UTF8Lower[64];
 
-bool isLegalChar(byte*, eRemoveChars);
-char *stricstr(char *, char *);
+bool isLegalChar(const byte*, eRemoveChars);
+char *stricstr(const char *, const char *);
 
 #endif

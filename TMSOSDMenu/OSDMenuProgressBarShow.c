@@ -4,7 +4,7 @@
 #define PROGRESSBARX    234
 #define PROGRESSBARY    330
 
-void OSDMenuProgressBarShow(char *Title, char *Text, dword Value, dword MaxValue, TYPE_GrData *DifferentProgressBar)
+void OSDMenuProgressBarShow(const char *Title, const char *Text, dword Value, dword MaxValue, TYPE_GrData *DifferentProgressBar)
 {
   TRACEENTER();
 

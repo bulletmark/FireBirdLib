@@ -1,7 +1,7 @@
 #include                <string.h>
 #include                "libFireBird.h"
 
-void GetStringEncoding(char *Text, bool *hasAnsiChars, bool *hasUTFChars)
+void GetStringEncoding(const char *Text, bool *hasAnsiChars, bool *hasUTFChars)
 {
   TRACEENTER();
 

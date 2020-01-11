@@ -3,7 +3,7 @@
 #include                "libFireBird.h"
 #include                "FBLib_hdd.h"
 
-bool HDD_RecycleSF(char *FileName)
+bool HDD_RecycleSF(const char *FileName)
 {
   TRACEENTER();
 

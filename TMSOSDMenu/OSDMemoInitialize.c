@@ -1,7 +1,7 @@
 #include                <string.h>
 #include                "FBLib_TMSOSDMenu.h"
 
-void OSDMemoInitialize(bool ScrollLoop, char *TitleLeft, char *TitleRight, char *Text)
+void OSDMemoInitialize(bool ScrollLoop, const char *TitleLeft, const char *TitleRight, const char *Text)
 {
   tMenu                *pMenu;
 

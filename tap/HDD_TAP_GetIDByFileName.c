@@ -1,6 +1,6 @@
 #include "libFireBird.h"
 
-dword HDD_TAP_GetIDByFileName(char *TAPFileName)
+dword HDD_TAP_GetIDByFileName(const char *TAPFileName)
 {
   TRACEENTER();
 

@@ -17,7 +17,7 @@ void OSDDrawLogo(void)
 
   if(pMenu->pLogoGd) TAP_Osd_PutGd(OSDRgn, pMenu->LogoX , pMenu->LogoY, pMenu->pLogoGd, FALSE);
 
-  if(CallbackProcedure) CallbackProcedure(OSDCB_Logo, OSDRgn);
+  if (pMenu->CallbackProcedure) pMenu->CallbackProcedure(OSDCB_Logo, OSDRgn);
 
   TRACEEXIT();
 }

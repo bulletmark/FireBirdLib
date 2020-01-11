@@ -3,7 +3,7 @@
 
 extern FILE            *infDatainfFile;
 
-bool infData_Delete(char *infFileName, char *NameTag)
+bool infData_Delete(const char *infFileName, const char *NameTag)
 {
   bool                  ret;
   dword                 SourcePos, DestPos, Len;

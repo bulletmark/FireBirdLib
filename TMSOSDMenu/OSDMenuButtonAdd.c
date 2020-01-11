@@ -1,21 +1,22 @@
 #include                <string.h>
 #include                "FBLib_TMSOSDMenu.h"
 
-void OSDMenuButtonAdd(dword Line, tButtonIcon ButtonIcon, TYPE_GrData *ButtonGd, char *Text)
+void OSDMenuButtonAdd(dword Line, tButtonIcon ButtonIcon, TYPE_GrData *ButtonGd, const char *Text)
 {
   TRACEENTER();
 
   tMenu                *pMenu;
   TYPE_GrData          *IconGd;
 
+  pMenu = &Menu[CurrentMenuLevel];
+
   IconGd = OSDMenuGetIconPointer(ButtonIcon, ButtonGd);
-  if((Line == 0) || (Line > 3) || (!IconGd) || (!Text))
+  if((Line == 0) || (Line > 3) || (!IconGd) || (!Text) || (pMenu->NrButtons >= MAXBUTTONS) || (pMenu->OSDMenuDisplayMode == OMDM_ListBox && Line == 3))
   {
     TRACEEXIT();
     return;
   }
 
-  pMenu = &Menu[CurrentMenuLevel];
   pMenu->Buttons[pMenu->NrButtons].X = pMenu->ButtonXStart[Line];
 
   switch(Line)

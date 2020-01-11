@@ -1,11 +1,12 @@
 #include <string.h>
 #include "FBLib_string.h"
 
-char *ValidFileName(char *strName, eRemoveChars ControlCharacters, char *Result, int ResultSize)
+char *ValidFileName(const char *strName, eRemoveChars ControlCharacters, char *Result, int ResultSize)
 {
   TRACEENTER();
 
-  char                  *s, *d, *l;
+  const char            *s;
+  char                  *d, *l;
   byte                  BytesPerCharacter;
 
   d = Result;
@@ -14,27 +15,29 @@ char *ValidFileName(char *strName, eRemoveChars ControlCharacters, char *Result,
   {
     strcpy(Result, strName);
     s = strName;
-    l = d + MAX_FILE_NAME_SIZE - 1;
+    l = d + MAX_FILE_NAME_SIZE;
 
     while(*s)
     {
       if(isLegalChar(s, ControlCharacters))
       {
-        *d = *s;
         if(isUTF8Char(s, &BytesPerCharacter))
         {
+          if(d + BytesPerCharacter >= l) break;
+
           //As this is a multibyte UTF character, copy all bytes
-          memcpy(d, s, BytesPerCharacter);
+          memcpy(d, (void *) s, BytesPerCharacter);
           d += BytesPerCharacter;
           s += (BytesPerCharacter - 1);
         }
         else
         {
+          if(d == l) break;
+
           *d = *s;
           d++;
         }
       }
-      if(d == l) break;
       s++;
     }
   }

@@ -8,7 +8,7 @@ void OSDMenuButtonsClear(void)
 
   Menu[CurrentMenuLevel].NrButtons = 0;
   for(i = 0; i < 4; i++)
-    Menu[CurrentMenuLevel].ButtonXStart[i] = 55;
+    Menu[CurrentMenuLevel].ButtonXStart[i] = Menu[CurrentMenuLevel].XPos - 5;
   ButtonColor = RGB(230, 230, 250);
 
   ButtonsDirty = TRUE;

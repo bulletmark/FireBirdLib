@@ -4,7 +4,7 @@
 
 extern FILE            *infDatainfFile;
 
-bool infData_LocateSig(char *NameTag, dword *PayloadSize)
+bool infData_LocateSig(const char *NameTag, dword *PayloadSize)
 {
   bool                  ret;
   tTFRPlusHdr           TFRPlusHdr;

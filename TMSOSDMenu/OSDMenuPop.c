@@ -17,6 +17,12 @@ bool OSDMenuPop(void)
     Menu[CurrentMenuLevel].Item = NULL;
   }
 
+  if (Menu[CurrentMenuLevel].MemoText)
+  {
+    TAP_MemFree(Menu[CurrentMenuLevel].MemoText);
+    Menu[CurrentMenuLevel].MemoText = NULL;
+  }
+
   CurrentMenuLevel--;
   OSDDirty = TRUE;
 

@@ -1,7 +1,7 @@
 #include                <string.h>
 #include                "libFireBird.h"
 
-tFileInUse HDD_isFileInUse(char *FileName)
+tFileInUse HDD_isFileInUse(const char *FileName)
 {
   TRACEENTER();
 

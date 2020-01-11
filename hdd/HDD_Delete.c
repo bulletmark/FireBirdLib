@@ -2,7 +2,7 @@
 #include                <string.h>
 #include                "libFireBird.h"
 
-void HDD_Delete(char *FileName)
+void HDD_Delete(const char *FileName)
 {
   TRACEENTER();
 

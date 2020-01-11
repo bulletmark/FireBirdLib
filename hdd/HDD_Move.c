@@ -4,7 +4,7 @@
 #include                "FBLib_hdd.h"
 #include                "libFireBird.h"
 
-bool HDD_Move(char *FileName, char *FromDir, char *ToDir)
+bool HDD_Move(const char *FileName, const char *FromDir, const char *ToDir)
 {
   TRACEENTER();
 

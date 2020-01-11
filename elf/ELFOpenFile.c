@@ -9,7 +9,7 @@ char                    *shstrtab = NULL;
 char                    *strtab = NULL;
 Elf32_Sym               *symtab = NULL;
 
-bool ELFOpenFile(char *FileName)
+bool ELFOpenFile(const char *FileName)
 {
   TRACEENTER();
 

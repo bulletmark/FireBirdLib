@@ -1,7 +1,7 @@
 #include <string.h>
 #include "FBLib_string.h"
 
-char *ParseLine(char *zeile, size_t *n, char delim)
+char *ParseLine(const char *zeile, size_t *n, char delim)
 {
   TRACEENTER();
 
@@ -22,7 +22,7 @@ char *ParseLine(char *zeile, size_t *n, char delim)
     *n = p - zeile;
 
     TRACEEXIT();
-    return zeile;
+    return (char *) zeile;
   }
   else
   {
@@ -30,7 +30,7 @@ char *ParseLine(char *zeile, size_t *n, char delim)
 
     TRACEEXIT();
 
-    return zeile;
+    return (char *) zeile;
   }
 
   TRACEEXIT();

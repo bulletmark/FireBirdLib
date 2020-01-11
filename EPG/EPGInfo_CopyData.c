@@ -32,13 +32,13 @@ void EPGInfo_CopyData(TYPE_EvtInfo *EvtInfo, TYPE_EPGInfo *EPGInfo, dword EventS
     //Event Name
     memset(EPGInfo->EventName, 0, sizeof(EPGInfo->EventName));
     strncpyUC(EPGInfo->EventName, EvtInfo->ShortEventText, EvtInfo->NameLength);
-    StrMkUTF8(EPGInfo->EventName, 9);
+    StrMkUTF8(EPGInfo->EventName, sizeof(EPGInfo->EventName), 9);
     EPGInfo->NameLength = strlen(EPGInfo->EventName);
 
     //Short event text
     memset(EPGInfo->ShortEventText, 0, sizeof(EPGInfo->ShortEventText));
     strcpyUC(EPGInfo->ShortEventText, &EvtInfo->ShortEventText[EvtInfo->NameLength]);
-    StrMkUTF8(EPGInfo->ShortEventText, 9);
+    StrMkUTF8(EPGInfo->ShortEventText, sizeof(EPGInfo->ShortEventText), 9);
     EPGInfo->ShortEventTextLength = strlen(EPGInfo->ShortEventText);
 
     //Long event text
@@ -54,7 +54,7 @@ void EPGInfo_CopyData(TYPE_EvtInfo *EvtInfo, TYPE_EPGInfo *EPGInfo, dword EventS
       if(*p == '\x00') *p = '\x01';
       p++;
     }
-    StrMkUTF8(EPGInfo->EventName, 9);
+    StrMkUTF8(EPGInfo->EventName, sizeof(EPGInfo->EventName), 9);
     EPGInfo->ExtEventTextLength = strlen(EPGInfo->ExtEventText);
     p = EPGInfo->ExtEventText;
     while(*p)

@@ -1,8 +1,8 @@
 #include "FBLib_TMSOSDMenu.h"
 
-int OSDMenuGetH (char *str, byte fntSize)
+dword OSDMenuGetStringHeight (const char *str, byte fntSize)
 {
-  int ret = 0;
+  dword ret = 0;
 
   TRACEENTER();
 

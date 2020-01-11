@@ -2,7 +2,7 @@
 #include                "FBLib_hdd.h"
 #include                "libFireBird.h"
 
-dword HDD_GetFileTimeByFileName(char *FileName)
+dword HDD_GetFileTimeByFileName(const char *FileName)
 {
   TRACEENTER();
 

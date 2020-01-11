@@ -2,7 +2,7 @@
 #include                <string.h>
 #include                "libFireBird.h"
 
-bool HDD_Rename(char *FileName, char *NewFileName)
+bool HDD_Rename(const char *FileName, const char *NewFileName)
 {
   TRACEENTER();
 

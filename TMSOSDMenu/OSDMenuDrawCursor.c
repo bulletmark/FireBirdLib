@@ -8,6 +8,8 @@ void OSDMenuDrawCursor(dword x, dword y, dword w, dword h)
 
   TRACEENTER();
 
+  if (MenuCursorType == CT_Hide) return;
+
   if(MenuCursorType == CT_Box)
   {
     Color = RGB(90, 205, 236);

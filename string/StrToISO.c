@@ -1,7 +1,7 @@
 #include                <string.h>
 #include                "libFireBird.h"
 
-void StrToISO(byte *SourceString, byte *DestString)
+void StrToISO(const byte *SourceString, byte *DestString)
 {
   TRACEENTER();
 

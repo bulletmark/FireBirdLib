@@ -2,7 +2,7 @@
 #include                <stdlib.h>
 #include                "FBLib_TMSOSDMenu.h"
 
-bool OSDMenuItemAdd(char *Name, char *Value, TYPE_GrData *pNameIconGd, TYPE_GrData *pValueIconGd, bool Selectable, bool ValueArrows, dword ID)
+bool OSDMenuItemAdd(const char *Name, const char *Value, TYPE_GrData *pNameIconGd, TYPE_GrData *pValueIconGd, bool Selectable, bool ValueArrows, dword ID)
 {
   TRACEENTER();
 
@@ -55,6 +55,8 @@ bool OSDMenuItemAdd(char *Name, char *Value, TYPE_GrData *pNameIconGd, TYPE_GrDa
   pMenu->Item[pMenu->NrItems].NameColor     = RGB(255, 255, 255);
   pMenu->Item[pMenu->NrItems].TextColor     = RGB(255, 255, 255);
   pMenu->Item[pMenu->NrItems].CustomIndex   = -1;
+  pMenu->Item[pMenu->NrItems].drawName      = TRUE;
+  pMenu->Item[pMenu->NrItems].drawValue     = TRUE;
 
   if(ValueArrows) pMenu->hasValueArrows = TRUE;
 

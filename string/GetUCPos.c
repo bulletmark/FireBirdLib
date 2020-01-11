@@ -1,6 +1,6 @@
 #include                "libFireBird.h"
 
-byte *GetUCPos(byte *String, int CharPos)
+byte *GetUCPos(const byte *String, int CharPos)
 {
   TRACEENTER();
 
@@ -27,5 +27,5 @@ byte *GetUCPos(byte *String, int CharPos)
   }
 
   TRACEEXIT();
-  return String;
+  return (byte *) String;
 }

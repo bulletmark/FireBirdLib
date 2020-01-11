@@ -3,7 +3,7 @@
 
 dword WaitSpinnerPosY;
 
-void OSDMenuInfoBoxShow(char *Title, char *Text, dword Timeout)
+void OSDMenuInfoBoxShow(const char *Title, const char *Text, dword Timeout)
 {
   TRACEENTER();
 
@@ -74,7 +74,11 @@ void OSDMenuInfoBoxShow(char *Title, char *Text, dword Timeout)
   if(Timeout)
     InfoBoxTimeOut = TAP_GetTick() + Timeout;
   else
+  {
+    if (InfoBoxExitButton) TAP_Osd_PutGd(InfoBoxOSDRgn, _InfoBox_Gd.width - _Button_exit_Gd.width - 8, Lines == 6 ? 167 : 163, &_Button_exit_Gd, TRUE);
+
     InfoBoxTimeOut = 0xffffffff;
+  }
 
   TAP_Osd_Sync();
 

@@ -1,7 +1,7 @@
 #include                <string.h>
 #include                "libFireBird.h"
 
-void ConvertPathType(char *Source, char *Dest, tPathFormat DestFormat)
+void ConvertPathType(const char *Source, char *Dest, tPathFormat DestFormat)
 {
   TRACEENTER();
 

@@ -2,7 +2,7 @@
 #include                <stdlib.h>
 #include                "libFireBird.h"
 
-void StrToISOAlloc(byte *SourceString, byte **DestString)
+void StrToISOAlloc(const byte *SourceString, byte **DestString)
 {
   TRACEENTER();
 

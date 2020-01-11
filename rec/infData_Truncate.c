@@ -1,7 +1,7 @@
 #include <unistd.h>
 #include "FBLib_rec.h"
 
-void infData_Truncate(char *infFileName, dword Position)
+void infData_Truncate(const char *infFileName, dword Position)
 {
   TRACEENTER();
 

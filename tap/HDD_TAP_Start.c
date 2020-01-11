@@ -5,7 +5,7 @@
 
 TYPE_Parametered_Tap   *fbl_parametered_tap = NULL;
 
-dword HDD_TAP_Start(char *TAPFileName, bool BatchMode, void* ParameterBlock, dword *TAPID)
+dword HDD_TAP_Start(const char *TAPFileName, bool BatchMode, void* ParameterBlock, dword *TAPID)
 {
   TRACEENTER();
 

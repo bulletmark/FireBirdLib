@@ -1,15 +1,15 @@
 #include                "libFireBird.h"
 
-byte *SkipCharTableBytes(byte *p)
+byte *SkipCharTableBytes(const byte *p)
 {
   TRACEENTER();
 
-  byte                 *ret;
+  const byte           *ret;
 
   if((p == NULL) || (*p == '\0'))
   {
     TRACEEXIT();
-    return p;
+    return (byte *) p;
   }
 
   ret = p;
@@ -24,5 +24,5 @@ byte *SkipCharTableBytes(byte *p)
   }
 
   TRACEEXIT();
-  return ret;
+  return (byte *) ret;
 }

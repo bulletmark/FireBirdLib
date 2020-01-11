@@ -2,7 +2,7 @@
 #include                <stdio.h>
 #include                "FBLib_hdd.h"
 
-bool HDD_InfBlockSet(char *RecPath, tinfBlock *infBlock)
+bool HDD_InfBlockSet(const char *RecPath, tinfBlock *infBlock)
 {
   TRACEENTER();
 

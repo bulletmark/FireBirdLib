@@ -1,0 +1,30 @@
+ApplHdd_GetFileInfo(word p1, unsigned int *p2, unsigned int *p3, unsigned __int8 p4, unsigned __int8 p5)
+
+p1 = $a0 = in Slot? (1, -1, _tempRecSlot)
+p2 = $a1 = out TotalBlocks
+p3 = $a2 = out CurrentBlock
+p4 = $a3 = in Abfragetyp (0, 1, 2)
+p5 = $v1
+
+
+switch(p4)
+  case 0: ApplHdd_GetRecFileInfo(p1, p2, p3);
+  case 1: ApplHdd_GetRecPlaybackFileInfo(p1, p2, p3, p5);
+  case 2: ApplHdd_GetPlaybackFileInfo(p1, p2, p3, p5);
+  else return 0xfe00;
+
+ApplHdd_GetRecPlaybackFileInfo(p1, p2, p3, p5)
+{
+  ApplHdd_GetPlaybackFileInfo(1, temp var_20, p3, p5);
+  ApplHdd_GetRecFileInfo(p1, p2, temp var_1c);
+}
+
+ApplHdd_GetFileInfo(1, *p2, *p3, 2, 0)
+ApplHdd_GetFileInfo(1, *p2, *p3, 2, 1)
+ApplHdd_GetFileInfo(1, *p2, *p3, 2, 2)
+ApplHdd_GetFileInfo(1, *p2, *p3, 2, 3)
+ApplHdd_GetFileInfo(_tempRecSlot, *p2, *p3, 0, 2)
+ApplHdd_GetFileInfo(_tempRecSlot, *p2, *p3, 1, 0)
+ApplHdd_GetFileInfo(_tempRecSlot, *p2, *p3, 1, 1)
+ApplHdd_GetFileInfo(_tempRecSlot, *p2, *p3, 1, 2)
+ApplHdd_GetFileInfo(Appl_IsRecSvc() - 1, *p2, *p3, 0, 2)

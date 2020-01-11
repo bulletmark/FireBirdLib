@@ -1,7 +1,7 @@
 #include "FBLib_hdd.h"
 #include "libFireBird.h"
 
-int SendHDDCommand(dword Command, byte *CommandBlock, int BufferSize)
+int SendHDDCommand(dword Command, const byte *CommandBlock, int BufferSize)
 {
   TRACEENTER();
 

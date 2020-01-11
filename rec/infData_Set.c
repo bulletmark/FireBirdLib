@@ -4,7 +4,7 @@
 
 extern FILE            *infDatainfFile;
 
-bool infData_Set(char *infFileName, char *NameTag, dword PayloadSize, byte *Payload)
+bool infData_Set(const char *infFileName, char *NameTag, dword PayloadSize, byte *Payload)
 {
   bool                  ret;
   tTFRPlusHdr           TFRPlusHdr;

@@ -1,6 +1,6 @@
 #include "FBLib_string.h"
 
-bool isLegalChar(byte *c, eRemoveChars ControlCharacters)
+bool isLegalChar(const byte *c, eRemoveChars ControlCharacters)
 {
   TRACEENTER();
 

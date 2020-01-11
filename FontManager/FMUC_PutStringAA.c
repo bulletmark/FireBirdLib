@@ -2,11 +2,11 @@
 #include                <string.h>
 #include                "FBLib_FontManager.h"
 
-void FMUC_PutStringAA(word rgn, dword x, dword y, dword maxX, char *str, dword fcolor, dword bcolor, tFontDataUC *FontData, byte bDot, byte align, float AntiAliasFactor)
+void FMUC_PutStringAA(word rgn, dword x, dword y, dword maxX, const char *str, dword fcolor, dword bcolor, tFontDataUC *FontData, byte bDot, byte align, float AntiAliasFactor)
 {
   TRACEENTER();
 
-  dword                 XEnd, YEnd;
+  int                   XEnd, YEnd;
   dword                *PixelData;
   byte                 *FontBitmap;
   byte                 *p, *pEnd;
@@ -64,7 +64,7 @@ void FMUC_PutStringAA(word rgn, dword x, dword y, dword maxX, char *str, dword f
   }
   MakeValidFileName(newstr, ControlChars | LFChars);
 
-  XEnd = x + FMUC_GetStringWidth(newstr, FontData);
+  XEnd = x + FMUC_GetStringWidth(newstr, FontData) - 1;
   dotWidth = 0;
 
   switch(bDot)
@@ -73,7 +73,7 @@ void FMUC_PutStringAA(word rgn, dword x, dword y, dword maxX, char *str, dword f
     {
       char *p;
 
-      if(XEnd > maxX)
+      if(XEnd > (int)maxX)
       {
         newstrlen = strlen(newstr);
         p = FMUC_FindUTF8Start(&newstr[newstrlen - 1]);
@@ -89,7 +89,7 @@ void FMUC_PutStringAA(word rgn, dword x, dword y, dword maxX, char *str, dword f
           }
           p = FMUC_FindUTF8Start(p - 1);
           newstrlen--;
-        } while((XEnd > maxX) && (width != 0) && (newstrlen > 0) && (p > newstr));
+        } while((XEnd > (int)maxX) && (width != 0) && (newstrlen > 0) && (p > newstr));
       }
       break;
     }
@@ -98,9 +98,9 @@ void FMUC_PutStringAA(word rgn, dword x, dword y, dword maxX, char *str, dword f
     {
       char *p;
 
-      if(XEnd > maxX)
+      if(XEnd > (int)maxX)
       {
-        dotWidth = FMUC_GetStringWidth("... ", FontData);
+        dotWidth = FMUC_GetStringWidth("… ", FontData);
         XEnd += dotWidth;
 
         newstrlen = strlen(newstr);
@@ -116,8 +116,8 @@ void FMUC_PutStringAA(word rgn, dword x, dword y, dword maxX, char *str, dword f
           }
           p = FMUC_FindUTF8Start(p - 1);
           newstrlen--;
-        } while((XEnd > maxX) && (width != 0) && (newstrlen > 0) && (p > newstr));
-        strcat(newstr, "...");
+        } while((XEnd > (int)maxX) && (width != 0) && (newstrlen > 0) && (p > newstr));
+        strcat(newstr, "…");
       }
       break;
     }
@@ -127,9 +127,9 @@ void FMUC_PutStringAA(word rgn, dword x, dword y, dword maxX, char *str, dword f
       char *p;
 
       p = newstr;
-      if(XEnd > maxX)
+      if(XEnd > (int)maxX)
       {
-        dotWidth = FMUC_GetStringWidth("...", FontData);
+        dotWidth = FMUC_GetStringWidth("…", FontData);
         XEnd += dotWidth;
         newstrlen = strlen(newstr);
         do
@@ -142,16 +142,16 @@ void FMUC_PutStringAA(word rgn, dword x, dword y, dword maxX, char *str, dword f
           }
           p = FMUC_FindNextUTF8(p);
           newstrlen--;
-        } while((XEnd > maxX) && (width != 0) && (newstrlen > 0));
+        } while((XEnd > (int)maxX) && (width != 0) && (newstrlen > 0));
 
         DeleteAt(newstr, 0, (int)(p - newstr));
-        InsertAt(newstr, 0, "...");
+        InsertAt(newstr, 0, "…");
       }
       break;
     }
   }
 
-  if(XEnd > maxX)
+  if(XEnd > (int)maxX)
   {
     TAP_MemFree(newstr);
 
@@ -159,8 +159,7 @@ void FMUC_PutStringAA(word rgn, dword x, dword y, dword maxX, char *str, dword f
     return;
   }
 
-  YEnd = y + FMUC_GetStringHeight(newstr, FontData);
-  if(XEnd > maxX) XEnd = maxX;
+  YEnd = y + FMUC_GetStringHeight(newstr, FontData) - 1;
 
   switch(align)
   {
@@ -187,10 +186,9 @@ void FMUC_PutStringAA(word rgn, dword x, dword y, dword maxX, char *str, dword f
       break;
   }
 
-
   if(bcolor & 0xff000000)
   {
-    TAP_Osd_FillBox(rgn, x, y, maxX - x, YEnd - y + 1, bcolor);
+    TAP_Osd_FillBox(rgn, x, y, maxX - x + 1, YEnd - y + 1, bcolor);
     FM_InitAlphaLUT(fcolor, bcolor, AntiAliasFactor);
   }
 
@@ -212,7 +210,7 @@ void FMUC_PutStringAA(word rgn, dword x, dword y, dword maxX, char *str, dword f
 
         if(isDiacriticalMark)
         {
-          //Jump back to the position of the last character based in the width of both glyphs
+          //Jump back to the position of the last character based on the width of both glyphs
           NextCX = CX;
           CX = LastCC - (GlyphData->Width >> 1);
         }

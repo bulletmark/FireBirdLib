@@ -3,7 +3,7 @@
 #include                <stdlib.h>
 #include                "libFireBird.h"
 
-void HDD_RemoveDir(char *DirPath, bool Recursive)
+void HDD_RemoveDir(const char *DirPath, bool Recursive)
 {
   TRACEENTER();
 

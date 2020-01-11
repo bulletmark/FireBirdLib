@@ -1,7 +1,7 @@
 #include                <string.h>
 #include                "libFireBird.h"
 
-byte *strncpyUC(byte *dest, byte *src, size_t n)
+byte *strncpyUC(byte *dest, const byte *src, size_t n)
 {
   TRACEENTER();
 
@@ -21,7 +21,7 @@ byte *strncpyUC(byte *dest, byte *src, size_t n)
     strncpy(dest, src, n);
   else
   {
-    memcpy(dest, src, CharTableBytes < n ? CharTableBytes : n);
+    memcpy(dest, (void *) src, CharTableBytes < n ? CharTableBytes : n);
     strncpy(&dest[CharTableBytes], p, n - CharTableBytes);
   }
 

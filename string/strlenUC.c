@@ -1,7 +1,7 @@
 #include                <string.h>
 #include                "libFireBird.h"
 
-int strlenUC(byte *s)
+int strlenUC(const byte *s)
 {
   TRACEENTER();
 

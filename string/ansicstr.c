@@ -29,12 +29,13 @@
     : (c) >= 'A' && (c) <= 'F' ? (c)-'A'+10 : (c)-'0')
 
 
-char *ansicstr (char *string, int len, int flags, int *sawc, int *rlen)
+char *ansicstr (const char *string, int len, int flags, int *sawc, int *rlen)
 {
   TRACEENTER();
 
   int                   c, temp;
-  char                 *ret, *r, *s;
+  char                 *ret, *r;
+  const char           *s;
 
   if(rlen) *rlen = 0;
   if(sawc) *sawc = 0;

@@ -1,7 +1,7 @@
 #include                <string.h>
 #include                "FBLib_TMSOSDMenu.h"
 
-void OSDMenuColorPickerShow(char *Title, dword Color)
+void OSDMenuColorPickerShow(const char *Title, dword Color)
 {
   TRACEENTER();
 

@@ -1,6 +1,6 @@
 #include "FBLib_rec.h"
 
-bool infData_isAvail(char *infFileName, char *NameTag, dword *PayloadSize)
+bool infData_isAvail(const char *infFileName, const char *NameTag, dword *PayloadSize)
 {
   bool                  ret;
 

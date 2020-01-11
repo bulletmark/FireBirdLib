@@ -4,7 +4,7 @@ void OSDMenuSetCallback(void *OSDCallbackRoutine)
 {
   TRACEENTER();
 
-  CallbackProcedure = OSDCallbackRoutine;
+  Menu[CurrentMenuLevel].CallbackProcedure = OSDCallbackRoutine;
 
   TRACEEXIT();
 }

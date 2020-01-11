@@ -4,7 +4,7 @@
 #include                <string.h>
 #include                "libFireBird.h"
 
-bool HDD_FindMountPointDevice(char *File, char *MountPoint, char *MountDevice)
+bool HDD_FindMountPointDevice(const char *File, char *MountPoint, char *MountDevice)
 {
   TRACEENTER();
 

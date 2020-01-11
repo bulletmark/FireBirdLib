@@ -11,6 +11,7 @@ void OSDDrawList(void)
   dword                 ItemColor;
   char                  s[4];
   dword                 MaxNameIconWidth, MaxValueIconWidth;
+  word                  ItemRgn = 0;
 
   pMenu = &Menu[CurrentMenuLevel];
 
@@ -48,13 +49,13 @@ void OSDDrawList(void)
   dLines = hL + 2;
 
   //The background
-  TAP_Osd_Draw3dBoxFill(OSDRgn, 60, 96, 600, pMenu->NrLines * dLines - 2, RGB(30, 30, 30), RGB(30, 30, 30), RGB(30, 30, 30));
+  TAP_Osd_Draw3dBoxFill(OSDRgn, pMenu->XPos, 96, pMenu->Width, pMenu->NrLines * dLines - 2, RGB(30, 30, 30), RGB(30, 30, 30), RGB(30, 30, 30));
 
   for(i = 0; i < pMenu->NrLines; i++)
   {
     yL = 96 + (i * dLines);
 
-    TAP_Osd_DrawRectangle(OSDRgn, 60, yL + hL, 600, 2, 1, RGB(16, 16, 16));
+    TAP_Osd_DrawRectangle(OSDRgn, pMenu->XPos, yL + hL, pMenu->Width, 2, 1, RGB(16, 16, 16));
 
     pItem = &pMenu->Item[i + pMenu->CurrentTopIndex];
 
@@ -63,18 +64,18 @@ void OSDDrawList(void)
       //Draw the background or selection bar and the optional value arrows
       if ((i + pMenu->CurrentTopIndex) == pMenu->CurrentSelection)
       {
-        OSDMenuDrawCursor(60, yL, 600, hL);
+        OSDMenuDrawCursor(pMenu->XPos, yL, pMenu->Width, hL);
 
         if (pMenu->HasValueColumn && pItem->ValueArrows)
         {
           TAP_Osd_PutGd(OSDRgn, pMenu->ValueXPos + 20, yL + ((hL - _pfeil_l_Gd.height) >> 1), (MenuCursorType == CT_Standard ? &_pfeil_l_Gd : &_pfeil_l_bright_Gd), TRUE);
-          TAP_Osd_PutGd(OSDRgn, 640, yL + ((hL - _pfeil_r_Gd.height) >> 1), (MenuCursorType == CT_Standard ? &_pfeil_r_Gd : &_pfeil_r_bright_Gd), TRUE);
+          TAP_Osd_PutGd(OSDRgn, pMenu->XPos + pMenu->Width - 20, yL + ((hL - _pfeil_r_Gd.height) >> 1), (MenuCursorType == CT_Standard ? &_pfeil_r_Gd : &_pfeil_r_bright_Gd), TRUE);
         }
       }
 
       //Draw line content
 
-      XEnd = (pMenu->HasValueColumn && (pItem->ValueArrows || *pItem->Value) ? pMenu->ValueXPos : 645);
+      XEnd = (pMenu->HasValueColumn && (pItem->ValueArrows || *pItem->Value) ? pMenu->ValueXPos : pMenu->XPos + pMenu->Width - 15);
       yT = YText + (i * dLines);
 
       if(pItem->Selectable)
@@ -122,11 +123,11 @@ void OSDDrawList(void)
           }
         }
 
-        FMUC_PutStringAA(OSDRgn, 71, yT + 5 + FONTYOFFSET, MaxX, s, ItemColor, COLOR_None, pMenu->FontListLineNumber, FALSE, ALIGN_LEFT, 1);
+        FMUC_PutStringAA(OSDRgn, pMenu->XPos + 11, yT + 5 + FONTYOFFSET, MaxX, s, ItemColor, COLOR_None, pMenu->FontListLineNumber, FALSE, ALIGN_LEFT, 1);
       }
       else
       {
-        XStart = 76;
+        XStart = pMenu->XPos + 16;
       }
 
       //Icons on the left column
@@ -134,12 +135,12 @@ void OSDDrawList(void)
         TAP_Osd_PutGd(OSDRgn, XStart, yL + ((hL - pItem->pNameIconGd->height) >> 1), pItem->pNameIconGd, TRUE);
 
       //The text of the left column
-      FMUC_PutStringAA(OSDRgn, XStart + MaxNameIconWidth, yT + 5 + FONTYOFFSET, XEnd, pItem->Name, pItem->Selectable ? pItem->NameColor : ItemColor, COLOR_None, pMenu->FontListNameColumn, TRUE, ALIGN_LEFT, 1);
+      if (pItem->drawName) FMUC_PutStringAA(OSDRgn, XStart + MaxNameIconWidth, yT + 5 + FONTYOFFSET, XEnd, pItem->Name, pItem->Selectable ? pItem->NameColor : ItemColor, COLOR_None, pMenu->FontListNameColumn, TRUE, ALIGN_LEFT, 1);
 
       if(pMenu->HasValueColumn)
       {
         //The text of the right column
-        FMUC_PutStringAA(OSDRgn, pMenu->ValueXPos + 30 + pMenu->ValueXOffset + MaxValueIconWidth, yT + 5 + FONTYOFFSET, 645, pItem->Value, ItemColor, COLOR_None, pMenu->FontListValueColumn, TRUE, ALIGN_LEFT, 1);
+        if (pItem->drawValue) FMUC_PutStringAA(OSDRgn, pMenu->ValueXPos + 30 + pMenu->ValueXOffset + MaxValueIconWidth, yT + 5 + FONTYOFFSET, pMenu->XPos + pMenu->Width - 15, pItem->Value, ItemColor, COLOR_None, pMenu->FontListValueColumn, TRUE, ALIGN_LEFT, 1);
 
         //The color patch or icon of the right column. The former has priority
         if(pItem->ColorPatch)
@@ -153,10 +154,21 @@ void OSDDrawList(void)
             TAP_Osd_PutGd(OSDRgn, pMenu->ValueXPos + 30 + pMenu->ValueXOffset, yL + ((hL - pItem->pValueIconGd->height) >> 1), pItem->pValueIconGd, TRUE);
         }
       }
+
+      if (pItem->passDrawing && pMenu->CallbackProcedure)
+      {
+        if (!ItemRgn) ItemRgn = TAP_Osd_Create(0, 0, pMenu->Width, hL, 0, OSD_Flag_MemRgn);
+
+        TAP_Osd_Copy(OSDRgn, ItemRgn, pMenu->XPos, yL, pMenu->Width, hL, 0, 0, FALSE);
+        pMenu->CallbackProcedure(OSDCB_ListItem | (pItem->ID << 8), ItemRgn);
+        TAP_Osd_Copy(ItemRgn, OSDRgn, 0, 0, pMenu->Width, hL, pMenu->XPos, yL, FALSE);
+      }
     }
   }
 
-  if(CallbackProcedure) CallbackProcedure(OSDCB_List, OSDRgn);
+  if (ItemRgn) TAP_Osd_Delete(ItemRgn);
+
+  if (pMenu->CallbackProcedure) pMenu->CallbackProcedure(OSDCB_List, OSDRgn);
 
   TRACEEXIT();
 }

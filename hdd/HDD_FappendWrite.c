@@ -2,7 +2,7 @@
 #include <string.h>
 #include "libFireBird.h"
 
-bool HDD_FappendWrite(TYPE_File *file, char *data)
+bool HDD_FappendWrite(TYPE_File *file, const char *data)
 {
   TRACEENTER();
 

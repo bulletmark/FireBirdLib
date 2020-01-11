@@ -8,7 +8,7 @@ bool OSDMenuItemModifySelectable(int ItemIndex, bool Selectable)
 
   pMenu = &Menu[CurrentMenuLevel];
 
-  if((pMenu->NrItems == 0) || (ItemIndex >= pMenu->NrItems))
+  if((ItemIndex < 0) || (ItemIndex >= pMenu->NrItems))
   {
     TRACEEXIT();
     return FALSE;

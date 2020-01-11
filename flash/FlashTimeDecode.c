@@ -6,15 +6,16 @@ static bool FlashTimeDecode_ST_TMSS(tFlashTimeInfo *Data, tFlashTimeInfo *TimeIn
   TRACEENTER();
 
   memset(TimeInfo, 0, sizeof(tFlashTimeInfo));
-  TimeInfo->UTCOffset     = Data->UTCOffset;
-  TimeInfo->SleepTimer    = Data->SleepTimer;
-  TimeInfo->unknown1      = Data->unknown1;
-  TimeInfo->GMTCollection = Data->GMTCollection;
-  TimeInfo->Mode          = Data->Mode;
-  TimeInfo->unknown2      = Data->unknown2;
-  TimeInfo->unknown3      = Data->unknown3;
-  TimeInfo->DST           = Data->DST;
-  TimeInfo->unknown4      = Data->unknown4;
+  TimeInfo->UTCOffset      = Data->UTCOffset;
+  TimeInfo->SleepTimer     = Data->SleepTimer;
+  TimeInfo->unknown1       = Data->unknown1;
+  TimeInfo->GMTCollection  = Data->GMTCollection;
+  TimeInfo->Mode           = Data->Mode;
+  TimeInfo->unknown2       = Data->unknown2;
+  TimeInfo->unknown3       = Data->unknown3;
+  TimeInfo->DSTActive      = Data->DSTActive;
+  TimeInfo->AutoDSTEnabled = Data->AutoDSTEnabled;
+  TimeInfo->unknown4       = Data->unknown4;
 
   TRACEEXIT();
   return TRUE;

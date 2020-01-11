@@ -2,7 +2,7 @@
 #include                "FBLib_hdd.h"
 #include                "libFireBird.h"
 
-__ino64_t HDD_GetInodeByFileName(char *FileName)
+__ino64_t HDD_GetInodeByFileName(const char *FileName)
 {
   TRACEENTER();
 

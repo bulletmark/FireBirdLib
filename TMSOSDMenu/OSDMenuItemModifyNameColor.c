@@ -8,7 +8,7 @@ bool OSDMenuItemModifyNameColor (int ItemIndex, dword Color)
 
   pMenu = &Menu[CurrentMenuLevel];
 
-  if(pMenu->NrItems == 0 || ItemIndex >= pMenu->NrItems || ItemIndex < 0)
+  if(ItemIndex < 0 || ItemIndex >= pMenu->NrItems)
   {
     TRACEEXIT();
     return FALSE;

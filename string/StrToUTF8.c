@@ -143,7 +143,7 @@ typedef struct
 
 #include "Big5Data.h"
 
-bool StrToUTF8(byte *SourceString, byte *DestString, byte DefaultISO8859CharSet)
+bool StrToUTF8(const byte *SourceString, byte *DestString, byte DefaultISO8859CharSet)
 {
   TRACEENTER();
 
@@ -318,7 +318,7 @@ bool StrToUTF8(byte *SourceString, byte *DestString, byte DefaultISO8859CharSet)
       if(isUTF8Char(SourceString, &BytesPerCharacter))
       {
         //Already UTF8: just copy
-        memcpy(DestString, SourceString, BytesPerCharacter);
+        memcpy(DestString, (void *) SourceString, BytesPerCharacter);
         SourceString += BytesPerCharacter;
         DestString += BytesPerCharacter;
       }
@@ -336,7 +336,7 @@ bool StrToUTF8(byte *SourceString, byte *DestString, byte DefaultISO8859CharSet)
           char          Dia[3], *p;
           int           Index;
 
-          memcpy(Dia, SourceString, 2);
+          memcpy(Dia, (void *) SourceString, 2);
           Dia[2] = '\0';
           p = strstr(ISO6937, Dia);
           if(p)

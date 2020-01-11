@@ -1,12 +1,12 @@
 #include                <string.h>
 #include                "FBLib_FontManager.h"
 
-dword FMUC_GetStringHeight(char *Text, tFontDataUC *FontData)
+dword FMUC_GetStringHeight(const char *Text, tFontDataUC *FontData)
 {
   TRACEENTER();
 
   tGlyphCacheUC        *GlyphData;
-  byte                 *p, *pEnd;
+  const byte           *p, *pEnd;
   byte                  BytesPerChar;
   dword                 Height = 0;
 

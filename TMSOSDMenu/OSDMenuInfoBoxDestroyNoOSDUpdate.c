@@ -15,6 +15,7 @@ void OSDMenuInfoBoxDestroyNoOSDUpdate(void)
   if(InfoBoxOSDRgn)
   {
     TAP_Osd_Delete(InfoBoxOSDRgn);
+    InfoBoxExitButton = FALSE;
     InfoBoxOSDRgn = 0;
 
     if(InfoBoxSaveArea)

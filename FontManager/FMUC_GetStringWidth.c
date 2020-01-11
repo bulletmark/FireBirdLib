@@ -1,13 +1,13 @@
 #include                <string.h>
 #include                "FBLib_FontManager.h"
 
-dword FMUC_GetStringWidth(char *Text, tFontDataUC *FontData)
+dword FMUC_GetStringWidth(const char *Text, tFontDataUC *FontData)
 {
   TRACEENTER();
 
   dword                 Width = 0;
   tGlyphCacheUC        *GlyphData;
-  byte                 *p, *pEnd;
+  const byte           *p, *pEnd;
   byte                  BytesPerChar;
 
   if(!Text || !Text[0] || !FontData)

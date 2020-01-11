@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include "libFireBird.h"
 
-void SeparateFileNameComponents(char *FileName, char *Path, char *Name, char *Ext, int *Index, bool *isRec, bool *isDel)
+void SeparateFileNameComponents(const char *FileName, char *Path, char *Name, char *Ext, int *Index, bool *isRec, bool *isDel)
 {
   TRACEENTER();
 

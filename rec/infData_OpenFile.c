@@ -3,7 +3,7 @@
 
 FILE                   *infDatainfFile = NULL;
 
-bool infData_OpenFile(char *infFileName)
+bool infData_OpenFile(const char *infFileName)
 {
   TRACEENTER();
 

@@ -2,7 +2,7 @@
 #include                <unistd.h>
 #include                "libFireBird.h"
 
-int HDD_FindSymbolicLink(char *pathName, char *returnedPath, char *fullPathName)
+int HDD_FindSymbolicLink(const char *pathName, char *returnedPath, char *fullPathName)
 {
   TRACEENTER();
 

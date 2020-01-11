@@ -4,7 +4,7 @@
 
 extern FILE            *infDatainfFile;
 
-bool infData_GetNameByIndex(char *infFileName, dword NameIndex, char *NameTag)
+bool infData_GetNameByIndex(const char *infFileName, dword NameIndex, char *NameTag)
 {
   bool                  ret;
   tTFRPlusHdr           TFRPlusHdr;

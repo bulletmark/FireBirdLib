@@ -5,7 +5,7 @@ void FM_PutStringAA(word rgn, dword x, dword y, dword maxX, char *str, dword fco
 {
   TRACEENTER();
 
-  dword                 XEnd, YEnd;
+  int                   XEnd, YEnd;
   dword                *PixelData;
   byte                 *FontBitmap;
   dword                 i, X, Y;
@@ -35,7 +35,7 @@ void FM_PutStringAA(word rgn, dword x, dword y, dword maxX, char *str, dword fco
   strncpy(newstr, str, sizeof(newstr));
   newstr[sizeof(newstr) - 1] = '\0';
 
-  XEnd = x + FM_GetStringWidth(newstr, FontData);
+  XEnd = x + FM_GetStringWidth(newstr, FontData) - 1;
   dotWidth = 0;
 
   switch(bDot)
@@ -45,7 +45,7 @@ void FM_PutStringAA(word rgn, dword x, dword y, dword maxX, char *str, dword fco
       char *p;
 
       p = &newstr[strlen(newstr) - 1];
-      if(XEnd > maxX)
+      if(XEnd > (int)maxX)
       {
         newstrlen = strlen(newstr);
         do
@@ -58,7 +58,7 @@ void FM_PutStringAA(word rgn, dword x, dword y, dword maxX, char *str, dword fco
           *p = '\0';
           p--;
           newstrlen--;
-        } while((XEnd > maxX) && (width != 0) && (newstrlen > 0));
+        } while((XEnd > (int)maxX) && (width != 0) && (newstrlen > 0));
       }
       break;
     }
@@ -68,7 +68,7 @@ void FM_PutStringAA(word rgn, dword x, dword y, dword maxX, char *str, dword fco
       char *p;
 
       p = &newstr[strlen(newstr) - 1];
-      if(XEnd > maxX)
+      if(XEnd > (int)maxX)
       {
         dotWidth = FM_GetStringWidth("...", FontData);
         XEnd += dotWidth;
@@ -83,7 +83,7 @@ void FM_PutStringAA(word rgn, dword x, dword y, dword maxX, char *str, dword fco
           *p = '\0';
           p--;
           newstrlen--;
-        } while((XEnd > maxX) && (width != 0) && (newstrlen > 0));
+        } while((XEnd > (int)maxX) && (width != 0) && (newstrlen > 0));
         strcat(newstr, "...");
       }
       break;
@@ -94,7 +94,7 @@ void FM_PutStringAA(word rgn, dword x, dword y, dword maxX, char *str, dword fco
       char *p;
 
       p = newstr;
-      if(XEnd > maxX)
+      if(XEnd > (int)maxX)
       {
         dotWidth = FM_GetStringWidth("...", FontData);
         XEnd += dotWidth;
@@ -108,7 +108,7 @@ void FM_PutStringAA(word rgn, dword x, dword y, dword maxX, char *str, dword fco
           }
           p++;
           newstrlen--;
-        } while((XEnd > maxX) && (width != 0) && (newstrlen > 0));
+        } while((XEnd > (int)maxX) && (width != 0) && (newstrlen > 0));
         DeleteAt(newstr, 0, (int)(p - newstr));
         InsertAt(newstr, 0, "...");
       }
@@ -117,14 +117,13 @@ void FM_PutStringAA(word rgn, dword x, dword y, dword maxX, char *str, dword fco
     }
   }
 
-  if(XEnd > maxX)
+  if(XEnd > (int)maxX)
   {
     TRACEEXIT();
     return;
   }
 
-  YEnd = y + FM_GetStringHeight(newstr, FontData);
-  if(XEnd > maxX) XEnd = maxX;
+  YEnd = y + FM_GetStringHeight(newstr, FontData) - 1;
 
   switch(align)
   {
@@ -153,12 +152,11 @@ void FM_PutStringAA(word rgn, dword x, dword y, dword maxX, char *str, dword fco
 
   if(bcolor & 0xff000000)
   {
-    TAP_Osd_FillBox(rgn, x, y, maxX - x, YEnd - y + 1, bcolor);
+    TAP_Osd_FillBox(rgn, x, y, maxX - x + 1, YEnd - y + 1, bcolor);
     FM_InitAlphaLUT(fcolor, bcolor, AntiAliasFactor);
   }
 
   PixelData = (dword*) TAP_Osd_SaveBox(rgn, SaveBoxX, y, XEnd - x + 1, YEnd - y + 1);
-
   if(PixelData)
   {
     CX = 0;

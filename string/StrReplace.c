@@ -1,7 +1,7 @@
 #include                <string.h>
 #include                "libFireBird.h"
 
-bool StrReplace(char *String, char *Find, char *Replace)
+bool StrReplace(char *String, const char *Find, const char *Replace)
 {
   TRACEENTER();
 
@@ -42,7 +42,7 @@ bool StrReplace(char *String, char *Find, char *Replace)
       if(p)
       {
         ret = TRUE;
-        TAP_MemCpy(p, Replace, ReplaceLen);
+        TAP_MemCpy(p, (void *) Replace, ReplaceLen);
         strcpy(p + ReplaceLen, p + FindLen);
         p += ReplaceLen;
       }
@@ -79,7 +79,7 @@ bool StrReplace(char *String, char *Find, char *Replace)
       {
         TAP_MemCpy(d, s, p - s);
         d += (p - s);
-        TAP_MemCpy(d, Replace, ReplaceLen);
+        TAP_MemCpy(d, (void *) Replace, ReplaceLen);
         d += ReplaceLen;
 
         p += FindLen;

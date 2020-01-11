@@ -8,7 +8,7 @@ bool OSDMenuItemModifyValueIcon(int ItemIndex, TYPE_GrData *pValueIconGd)
 
   pMenu = &Menu[CurrentMenuLevel];
 
-  if((pMenu->NrItems == 0) || (ItemIndex >= pMenu->NrItems))
+  if((ItemIndex < 0) || (ItemIndex >= pMenu->NrItems))
   {
     TRACEEXIT();
     return FALSE;

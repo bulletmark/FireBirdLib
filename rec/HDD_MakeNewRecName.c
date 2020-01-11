@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "libFireBird.h"
 
-char *HDD_MakeNewRecName(char *fname, word sequence, char *NewRecName, int NewRecNameSize)
+char *HDD_MakeNewRecName(const char *fname, word sequence, char *NewRecName, int NewRecNameSize)
 {
   TRACEENTER();
 
@@ -41,7 +41,7 @@ char *HDD_MakeNewRecName(char *fname, word sequence, char *NewRecName, int NewRe
     len = strlen(try);
 
     if(!(p = strrchr(try, '.'))) p = try + len;
-    if((j = MAX_FILE_NAME_SIZE - len - 4) < 0)
+    if((j = MAX_FILE_NAME_SIZE - len - 3) < 0)
     {
       strcpy(p + j, p);
       p += j;

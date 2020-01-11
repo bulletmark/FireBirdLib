@@ -26,8 +26,8 @@ typedef struct
 
 extern bool             LibInitialized;
 
-word getWord(void *buffer, bool NeedsByteSwapping);
-dword getDword(void *buffer, bool NeedsByteSwapping);
+word getWord(const void *buffer, bool NeedsByteSwapping);
+dword getDword(const void *buffer, bool NeedsByteSwapping);
 void setWord(void *buffer, word Data, bool BigEndian);
 void setDword(void *buffer, dword Data, bool BigEndian);
 
@@ -54,11 +54,10 @@ void HDD_EncodeRECHeader_ST_TMSS(byte *Buffer, tRECHeaderInfo *RECHeaderInfo);
 void HDD_EncodeRECHeader_ST_TMST(byte *Buffer, tRECHeaderInfo *RECHeaderInfo);
 void HDD_EncodeRECHeader_ST_TMSC(byte *Buffer, tRECHeaderInfo *RECHeaderInfo);
 
-bool   infData_OpenFile(char *infFileName);
-bool   infData_Delete(char *infFileName, char *NameTag);
+bool   infData_OpenFile(const char *infFileName);
 dword  infData_Flen(void);
-bool   infData_LocateSig(char *NameTag, dword *PayloadSize);
-void   infData_Truncate(char *infFileName, dword Position);
+bool   infData_LocateSig(const char *NameTag, dword *PayloadSize);
+void   infData_Truncate(const char *infFileName, dword Position);
 void   infData_CloseFile(void);
 
 #endif

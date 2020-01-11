@@ -1,7 +1,7 @@
 #include <string.h>
 #include "FBLib_rec.h"
 
-word getWord(void *buffer, bool NeedsByteSwapping)
+word getWord(const void *buffer, bool NeedsByteSwapping)
 {
   TRACEENTER();
 
@@ -18,7 +18,7 @@ word getWord(void *buffer, bool NeedsByteSwapping)
   return w;
 }
 
-dword getDword(void *buffer, bool NeedsByteSwapping)
+dword getDword(const void *buffer, bool NeedsByteSwapping)
 {
   TRACEENTER();
 

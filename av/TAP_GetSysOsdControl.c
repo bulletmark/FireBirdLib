@@ -15,10 +15,10 @@ bool TAP_GetSysOsdControl(TYPE_TapSysOsdId osdId)
 
   switch(osdId)
   {
-    case SYSOSD_InfoBox:        return *__tapSysOsdCtrl & 0x00000001;
-    case SYSOSD_PvrInfo:        return *__tapSysOsdCtrl & 0x00000100;
-    case SYSOSD_VolumeBar:      return *__tapSysOsdCtrl & 0x00010000;
-    case SYSOSD_ServiceStatus:  return *__tapSysOsdCtrl & 0x01000000;
+    case SYSOSD_InfoBox:        return (*__tapSysOsdCtrl & 0x00000001) != 0;
+    case SYSOSD_PvrInfo:        return (*__tapSysOsdCtrl & 0x00000100) != 0;
+    case SYSOSD_VolumeBar:      return (*__tapSysOsdCtrl & 0x00010000) != 0;
+    case SYSOSD_ServiceStatus:  return (*__tapSysOsdCtrl & 0x01000000) != 0;
   }
 
   TRACEEXIT();

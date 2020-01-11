@@ -1,7 +1,7 @@
 #include                <string.h>
 #include                "libFireBird.h"
 
-void SeparatePathComponents(char *FullName, char *Path, char *FileName, char *FileExt)
+void SeparatePathComponents(const char *FullName, char *Path, char *FileName, char *FileExt)
 {
   TRACEENTER();
 

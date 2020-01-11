@@ -1,13 +1,13 @@
 #include <string.h>
 #include "libFireBird.h"
 
-bool StringEndsWith(char *text, char *postfix)
+bool StringEndsWith(const char *text, const char *postfix)
 {
   TRACEENTER();
 
-  char                 *p;
-  int                   i;
-  bool                  ret;
+  const char           *p;
+  int                   l, i;
+  bool                  ret = FALSE;
 
   if(!text || !*text || !postfix || !*postfix)
   {
@@ -15,9 +15,14 @@ bool StringEndsWith(char *text, char *postfix)
     return FALSE;
   }
 
+  l = strlen(text);
   i = strlen(postfix);
-  p = &text[strlen(text) - i];
-  ret = (memcmp(p, postfix, i) == 0);
+
+  if (l >= i)
+  {
+    p = &text[l - i];
+    ret = (memcmp(p, postfix, i) == 0);
+  }
 
   TRACEEXIT();
   return ret;

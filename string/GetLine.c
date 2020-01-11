@@ -1,7 +1,7 @@
 #include <string.h>
 #include "libFireBird.h"
 
-size_t GetLine(char *data, bool strip)
+size_t GetLine(const char *data, bool strip)
 {
   TRACEENTER();
 

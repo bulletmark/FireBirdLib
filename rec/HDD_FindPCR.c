@@ -1,6 +1,6 @@
 #include "libFireBird.h"
 
-int HDD_FindPCR(byte *pBuffer, dword BufferSize, word PID)
+int HDD_FindPCR(const byte *pBuffer, dword BufferSize, word PID)
 {
   TRACEENTER();
 

@@ -8,21 +8,18 @@ bool GetCurrentTimeZone(short *TZOffset, bool *DST)
   //DST is set to TRUE if the Toppy is currently in DST mode
 
   tFlashTimeInfo        FlashTimeInfo;
-  bool                  bDST;
   bool                  ret;
 
   ret = FALSE;
   if(FlashTimeGetInfo(&FlashTimeInfo))
   {
-    bDST = (FlashTimeInfo.DST == 3);
-
     if(TZOffset)
     {
       *TZOffset = FlashTimeInfo.UTCOffset;
-      if(bDST) *TZOffset = AddTime(*TZOffset, -60);
+      if(FlashTimeInfo.DSTActive) *TZOffset = AddTime(*TZOffset, -60);
     }
 
-    if(DST) *DST = bDST;
+    if(DST) *DST = FlashTimeInfo.DSTActive;
 
     ret = TRUE;
   }

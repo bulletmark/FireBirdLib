@@ -2,7 +2,7 @@
 #include                <string.h>
 #include                "libFireBird.h"
 
-bool HDD_TAP_GetInfo(char *FileName, tTAPInfo *pTAPInfo)
+bool HDD_TAP_GetInfo(const char *FileName, tTAPInfo *pTAPInfo)
 {
   TRACEENTER();
 

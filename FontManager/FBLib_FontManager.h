@@ -21,7 +21,7 @@
   void            FM_InitAlphaLUT(dword fgColor, dword bgColor, float AntiAliasFactor);
   dword           FM_AlphaBlendRGB(byte Alpha, dword FG, dword BG, float AntiAliasFactor);
 
-  tGlyphCacheUC  *FMUC_GetGlyphData(tFontDataUC *FontData, byte *UTF8Character, byte *BytesPerChar);
+  tGlyphCacheUC  *FMUC_GetGlyphData(tFontDataUC *FontData, const byte *UTF8Character, byte *BytesPerChar);
   byte           *FMUC_FindUTF8Start(byte *p);
   byte           *FMUC_FindNextUTF8(byte *p);
   bool            FMUC_IsDiacriticalMark(dword Character);

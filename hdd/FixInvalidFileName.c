@@ -6,7 +6,7 @@ bool FixInvalidFileName(char *FileName)
 {
   TRACEENTER();
 
-  char                  NewRecName[TS_FILE_NAME_SIZE+5];
+  char                  NewRecName[MAX_FILE_NAME_SIZE + 1];
   char                 *Slash, Path[FBLIB_DIR_SIZE];
   bool                  ret;
 
@@ -42,7 +42,7 @@ bool FixInvalidFileName(char *FileName)
     if(isUTFToppy())
     {
       //Use ISO 8859-9 as the default encoding table
-      StrMkUTF8(NewRecName, 9);
+      StrMkUTF8(NewRecName, sizeof(NewRecName), 9);
     }
     else
     {

@@ -1,7 +1,7 @@
 #include                "ELF.h"
 #include                "FBLib_elf.h"
 
-dword ELFGetSectionIndex(char *SectionName)
+dword ELFGetSectionIndex(const char *SectionName)
 {
   TRACEENTER();
 

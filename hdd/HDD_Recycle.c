@@ -2,7 +2,7 @@
 #include                <string.h>
 #include                "libFireBird.h"
 
-bool HDD_Recycle(char *FileName)
+bool HDD_Recycle(const char *FileName)
 {
   TRACEENTER();
 

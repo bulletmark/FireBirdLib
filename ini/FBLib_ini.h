@@ -10,7 +10,7 @@ extern char *INIBuffer, *INICommentBuffer;
 
 extern dword BufferSize;
 
-char *stricstr(char *, char *);
+char *stricstr(const char *, const char *);
 void INIFindStartEnd(char *, char **, char **, dword);
 
 #endif

@@ -2,7 +2,7 @@
 #include                <string.h>
 #include                "FBLib_hdd.h"
 
-tPathFormat GetPathType(char *Source)
+tPathFormat GetPathType(const char *Source)
 {
   TRACEENTER();
 

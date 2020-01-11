@@ -1,6 +1,6 @@
 #include "libFireBird.h"
 
-dword UTF8ToUTF32(byte *UTF8Character, byte *BytesPerChar)
+dword UTF8ToUTF32(const byte *UTF8Character, byte *BytesPerChar)
 {
   TRACEENTER();
 

@@ -16,11 +16,12 @@ void OSDMenuUpdate(bool SuppressOSDSync)
   if (OSDDirty)
   {
     OSDDrawBackground();
-    OSDDirty     = FALSE;
-    TitleDirty   = TRUE;
-    ListDirty    = TRUE;
-    ButtonsDirty = TRUE;
-    LogoDirty    = TRUE;
+    OSDDirty          = FALSE;
+    OSDMenuLastCursor = LCT_NRCURSORS;
+    TitleDirty        = TRUE;
+    ListDirty         = TRUE;
+    ButtonsDirty      = TRUE;
+    LogoDirty         = TRUE;
   }
 
   //Draw left and right title
@@ -57,7 +58,8 @@ void OSDMenuUpdate(bool SuppressOSDSync)
     OSDDrawScrollBar();
     switch(Menu[CurrentMenuLevel].OSDMenuDisplayMode)
     {
-      case OMDM_Standard: OSDDrawList(); break;
+      case OMDM_Standard:
+      case OMDM_ListBox:  OSDDrawList(); break;
       case OMDM_Text:
       case OMDM_Memo:     OSDDrawMemo(); break;
     }

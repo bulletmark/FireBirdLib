@@ -1,13 +1,16 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 'Program to copy one or more TAP files to specified Topfield PVR host.'
 # (C) Mark Blakeney, Mar 2012.
+
+import sys
+import argparse
+import ftplib
+from pathlib import Path
 
 PROG = '/ProgramFiles'
 AUTO = PROG + '/AutoStart'
 USER = 'guest'
 PASS = '0000'
-
-import os, sys, argparse, ftplib
 
 def main():
     'Main code'
@@ -19,7 +22,7 @@ def main():
     opt.add_argument('-p', '--password', default=PASS,
             help='ftp login user password')
     opt.add_argument('-n', '--noauto', action='store_true',
-            help='put tapfile[s] in "%s" dir rather than "%s"' % (PROG, AUTO))
+            help=f'put tapfile[s] in "{PROG}" dir rather than "{AUTO}"')
     opt.add_argument('host',
             help='Topfield PVR IP host name/address')
     opt.add_argument('tapfile', nargs='+',
@@ -29,29 +32,21 @@ def main():
     # Connect to host
     try:
         ftp = ftplib.FTP(args.host, args.user, args.password)
-    except:
-        sys.exit('Can not connect to "%s"' % args.host)
-
-    error_code = 0
+    except Exception:
+        sys.exit(f'Can not connect to "{args.host}"')
 
     # Transfer TAP files ..
     tdir = PROG if args.noauto else AUTO
     ftp.cwd(tdir)
-    for tap in args.tapfile:
-        if not os.path.isfile(tap):
-            sys.stderr.write('ERROR reading file "%s"\n' % tap)
-            error_code = 1
-        else:
-            basetap = os.path.basename(tap)
-            with open(tap, 'rb') as fp:
-                try:
-                    ftp.storbinary('STOR %s' % basetap, fp)
-                except:
-                    error_code = 1
-                    sys.stderr.write('***** ERROR copying "%s" to %s:%s/\n' % \
-                            (tap, args.host, tdir))
-                else:
-                    print 'Copied "%s" to %s:%s/' % (tap, args.host, tdir)
+    for tapstr in args.tapfile:
+        tap = Path(tapstr)
+
+        if not tap.is_file():
+            sys.exit(f'No file {tap}')
+
+        print(f'Copying "{tap}" to {args.host}:{tdir}/ ..')
+        with tap.open('rb') as fp:
+            ftp.storbinary(f'STOR {tap.name}', fp)
 
     ftp.close()
     sys.exit(error_code)

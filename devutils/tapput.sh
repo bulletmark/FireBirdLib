@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # Defaults
 PROG="/ProgramFiles"
 AUTO="$PROG/AutoStart"

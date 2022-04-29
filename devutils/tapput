@@ -49,7 +49,6 @@ def main():
             ftp.storbinary(f'STOR {tap.name}', fp)
 
     ftp.close()
-    sys.exit(error_code)
 
 if __name__ == '__main__':
     main()
